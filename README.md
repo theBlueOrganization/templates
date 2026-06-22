@@ -29,3 +29,7 @@ templates/
 ├── mobile-scroll/         ← 모바일 최적화 스크롤 페이지
 └── ...                    ← 추가 템플릿
 ```
+
+## 관련 문서
+ 
+협업 방법, 브랜치 규칙, PR 규정은 [CONTRIBUTING.md](./CONTRIBUTING.md)를 참고하세요.

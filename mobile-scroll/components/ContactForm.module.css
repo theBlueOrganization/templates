@@ -1,0 +1,228 @@
+.section {
+  background-color: #1e293b;
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ─── 폼 박스 ───────────────────────────────────────── */
+.box {
+  width: 100%;
+  max-width: 600px;
+  background: #ffffff;
+  color: #333;
+  padding: 40px 36px;
+  border-radius: 14px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
+
+  /* 페이드업 초기 상태 */
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.box.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.heading {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-align: center;
+  margin-bottom: 28px;
+  letter-spacing: -0.02em;
+}
+
+/* ─── 필드 그룹 ─────────────────────────────────────── */
+.group {
+  margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 8px;
+}
+
+.required {
+  color: #ef4444;
+  margin-left: 2px;
+}
+
+.hint {
+  font-size: 1rem;
+  color: #94a3b8;
+  font-weight: 400;
+  margin-left: 6px;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  outline: none;
+  background: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+  min-height: 48px;
+}
+
+.input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+/* ─── 전화번호 3칸 ──────────────────────────────────── */
+.telBox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  min-width: 0; /* flex 자식 overflow 방지 */
+}
+
+.telInput {
+  flex: 1;
+  min-width: 0;  /* 이게 핵심 — flex 자식이 내용 크기로 커지는 것 방지 */
+  width: 0;      /* flex: 1 이 균등하게 나눠갖도록 기준점 0 설정 */
+  padding: 12px 4px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 1rem;
+  text-align: center;
+  outline: none;
+  min-height: 48px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.telInput:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+.hyphen {
+  color: #94a3b8;
+  font-weight: 700;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+/* ─── 체크박스 ──────────────────────────────────────── */
+.checkLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 14px 0;
+  font-size: 1rem;
+  color: #475569;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  cursor: pointer;
+  accent-color: #3b82f6;
+}
+
+/* ─── 개인정보 동의 ─────────────────────────────────── */
+.privacySection {
+  margin-top: 24px;
+}
+
+.privacyTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 6px;
+}
+
+.privacyText {
+  width: 100%;
+  height: 160px;
+  border: 1px solid #e2e8f0;
+  background-color: #f8fafc;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1rem;
+  color: #64748b;
+  resize: none;
+  outline: none;
+  line-height: 1.6;
+  font-family: inherit;
+}
+
+/* ─── 제출 버튼 ─────────────────────────────────────── */
+.submitWrap {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
+  transition: transform 0.15s, opacity 0.2s;
+  letter-spacing: 0.01em;
+}
+
+.submitBtn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(59, 130, 246, 0.45);
+}
+
+.submitBtn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ─── 문의 배지 ─────────────────────────────────────── */
+.badge {
+  display: inline-block;
+  margin-top: 14px;
+  background-color: #fef2f2;
+  border: 1px solid #fee2e2;
+  padding: 8px 18px;
+  border-radius: 24px;
+}
+
+.badgeText {
+  font-size: 1rem;
+  color: #dc2626;
+  font-weight: 600;
+}
+
+/* ─── 모바일 ────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .section {
+    padding: 48px 12px 80px;
+  }
+  .box {
+    padding: 28px 20px;
+  }
+  .heading {
+    font-size: 1.25rem;
+  }
+}

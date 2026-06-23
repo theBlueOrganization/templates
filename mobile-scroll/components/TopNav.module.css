@@ -1,0 +1,73 @@
+.nav {
+  position: fixed;
+  top: -80px;
+  /* 800px 컨테이너와 맞추기 위해 left/width 대신 max-width + margin 활용 */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 600px;
+  height: 60px;
+  background-color: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: top 0.35s ease-in-out;
+}
+
+.nav.show {
+  top: 0;
+}
+
+.list {
+  display: flex;
+  list-style: none;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* 메뉴를 균등 분할 */
+.list li {
+  flex: 1;
+  display: flex;
+}
+
+.link {
+  flex: 1;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #475569;
+  padding: 0 8px;
+  letter-spacing: 0.01em;
+  transition: color 0.2s, border-color 0.2s;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.link:hover {
+  color: #1d4ed8;
+}
+
+.link.active {
+  color: #1d4ed8;
+  border-bottom-color: #1d4ed8;
+}
+
+@media (max-width: 480px) {
+  .link {
+    font-size: 0.8rem;
+  }
+}

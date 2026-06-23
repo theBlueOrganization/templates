@@ -1,0 +1,79 @@
+.section {
+  width: 100%;
+  background-color: #ffffff;
+  scroll-margin-top: 70px;
+  padding-bottom: 60px;
+}
+
+/* ─── 섹션 헤더 ─────────────────────────────────────── */
+.header {
+  text-align: center;
+  padding: 64px 20px 36px;
+}
+
+.title {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.03em;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: #64748b;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.divider {
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, #1d4ed8, #3b82f6);
+  border-radius: 2px;
+  margin: 0 auto;
+}
+
+/* ─── 이미지 목록 ────────────────────────────────────── */
+.imageList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.imageWrap {
+  width: 100%;
+  line-height: 0;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ─── 모바일 ────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .header {
+    padding: 48px 16px 28px;
+  }
+  .title {
+    font-size: 1.5rem;
+  }
+  .subtitle {
+    font-size: 0.85rem;
+  }
+}
+
+.fadeUp {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
+}
+
+.fadeUp.visible {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: auto;
+}

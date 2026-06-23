@@ -1,0 +1,60 @@
+/* ─── 전역 리셋 & 기본값 ─────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #e8edf2;
+}
+
+body {
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  color: #333;
+  /* 600px 이하에서는 화면 너비에 맞게 자연스럽게 축소 */
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding-bottom: 65px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.12);
+  background-color: #ffffff;
+}
+
+/* 이미지 기본값 */
+img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 버튼 기본값 */
+button {
+  font-family: inherit;
+}
+
+/* 포커스 가시성 (접근성) */
+:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* 모션 감소 설정 대응 */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -6,6 +6,7 @@ import ImageSection from "../../../components/ImageSection";
 import ContactForm  from "../../../components/ContactForm";
 import BottomBar    from "../../../components/BottomBar";
 import SiteFooter   from "../../../components/SiteFooter";
+import PopupBanner  from "../../../components/PopupBanner";
 
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -60,6 +61,10 @@ export default async function AptPage({ params }) {
       <SiteFooter company={site.company} telNumber={site.telNumber} />
 
       <BottomBar telNumber={site.telNumber} theme={site.theme} />
+
+      {site.popup?.enabled && (
+        <PopupBanner popup={site.popup} />
+      )}
     </>
   );
 }

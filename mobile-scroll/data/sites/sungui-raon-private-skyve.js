@@ -8,9 +8,18 @@ const config = {
   projectName: "숭의역 라온프라이빗 스카이브",
   shortName:   "숭의역 라온프라이빗 스카이브",
   telNumber:   "1666-1050",
-  ogImage:     "https://theblue-apt.vercel.app/apt/sungui-raon-private-skyve/link_share_img.png",
+  ogImage:     "https://theblue-apt.vercel.app/apt/sungui-raon-private-skyve/share_img.png",
+  adminPhones:  ["01071901052","01048086474"],
   sheetId:      "",
   sheetTab:     "숭의역라온프라이빗스카이브",
+
+  popup: {
+    enabled: true,
+    image: {
+      src: "/apt/sungui-raon-private-skyve/4.webp",
+      alt: "숭의역 라온프라이빗 스카이브 팝업",
+    },
+  },
 
   // ── 유입 경로 (utm_source) 옵션 ──
   showUtmInSms: true,
@@ -44,7 +53,7 @@ const config = {
     title:         "역세권·학군·인프라\n인천 마지막\n3억대 아파트",
     subtitle:      "숭의역 도보 5분 · 신광초 50m",
     bgColor:       " #181a37",
-    accentKeyword: "숭의역 초역세권",
+    accentKeyword: "역세권·학군·인프라",
     image: {
       src:    "/apt/sungui-raon-private-skyve/1.webp",
       alt:    "숭의역 라온프라이빗 스카이브 대표 이미지",
@@ -161,7 +170,7 @@ const config = {
     title: {
       color:       "#ffffff",
       fontSize:    "clamp(2.3rem,8vw,3rem)",
-      accentColor: "#f5c445",
+      accentColor: "#a7ce41",
     },
     // 히어로 서브타이틀
     subtitle: {

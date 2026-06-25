@@ -52,6 +52,7 @@
   padding: 80px 28px 0;
   /* padding-top을 고정값으로 두고 역산한 transform으로 시각적 중앙 구현 */
   transform: translateY(calc(50vh - 50% - 80px));
+  transform: translateY(calc(50dvh - 50% - 80px));
   opacity: 0;
   transition: opacity 0.3s ease;
   will-change: transform;
@@ -102,6 +103,7 @@
 ── */
 @keyframes text-up {
   from { transform: translateY(calc(50vh - 50% - 80px)); }
+  from { transform: translateY(calc(50dvh - 50% - 80px)); }
   to   { transform: translateY(0); }
 }
 
@@ -306,6 +308,7 @@
     padding-left: 20px;
     padding-right: 20px;
     transform: translateY(calc(50vh - 50% - 70px));
+    transform: translateY(calc(50dvh - 50% - 70px));
   }
   .textBlock.settled {
     padding-left: 20px;
@@ -313,6 +316,7 @@
   }
   @keyframes text-up {
     from { transform: translateY(calc(50vh - 50% - 70px)); }
+    from { transform: translateY(calc(50dvh - 50% - 70px)); }
     to   { transform: translateY(0); }
   }
 }

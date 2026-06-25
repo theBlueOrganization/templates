@@ -140,8 +140,23 @@
   font-weight: 600;
   color: #ff6b6b;
   border-color: rgba(255, 107, 107, 0.5);
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
   animation: el-in 0.45s ease 0.1s forwards,
-             urgentPulse 1.6s ease-in-out 2.8s infinite;
+             urgentPulse 2.4s ease-in-out 2.8s infinite;
+}
+
+.badge.urgent::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #ff6b6b;
+  opacity: 0;
+  border-radius: inherit;
+  z-index: -1;
+  pointer-events: none;
+  animation: urgentBg 2.4s ease-in-out 2.8s infinite;
 }
 
 @keyframes el-in {
@@ -200,6 +215,12 @@
 .textBlock.visible .titleLine:nth-child(3) .titleInner {
   animation: hz-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.65s forwards;
 }
+.textBlock.visible .titleLine:nth-child(4) .titleInner {
+  animation: hz-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.78s forwards;
+}
+.textBlock.visible .titleLine:nth-child(5) .titleInner {
+  animation: hz-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.90s forwards;
+}
 
 @keyframes hz-rise {
   to { transform: translateY(0); opacity: 1; }
@@ -246,12 +267,10 @@
   align-items: center;
   gap: 7px;
   opacity: 0;
-  transition: opacity 0.8s ease;
 }
 
 .scrollHint.visible {
-  opacity: 1;
-  animation: pulse 2s ease-in-out infinite;
+  animation: scrollReveal 0.8s ease forwards, pulse 2s ease-in-out 0.8s infinite;
 }
 
 .scrollText {
@@ -269,14 +288,23 @@
   transform: rotate(45deg);
 }
 
+@keyframes scrollReveal {
+  to { opacity: 1; }
+}
+
 @keyframes pulse {
-  0%, 100% { opacity: 0.3; }
-  50%       { opacity: 1; }
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
 }
 
 @keyframes urgentPulse {
-  0%, 100% { color: #ff6b6b; background: transparent; border-color: rgba(255, 107, 107, 0.5); }
-  50%       { color: #fff;   background: #ff6b6b;      border-color: #ff6b6b; }
+  0%, 100% { color: #ff6b6b; }
+  50%      { color: #fff; }
+}
+
+@keyframes urgentBg {
+  0%, 100% { opacity: 0; }
+  50%      { opacity: 1; }
 }
 
 @media (max-width: 800px) {
@@ -301,5 +329,7 @@
   .textBlock.curtainOut  { animation: none !important; }
   .titleInner            { animation: none !important; transform: none !important; opacity: 1 !important; }
   .badgeRow, .brand, .subtitle { animation: none !important; opacity: 1 !important; }
-  .scrollHint.visible    { animation: none !important; }
+  .scrollHint.visible    { animation: none !important; opacity: 1 !important; }
+  .badge.urgent          { animation: none !important; opacity: 1 !important; }
+  .badge.urgent::after   { animation: none !important; }
 }

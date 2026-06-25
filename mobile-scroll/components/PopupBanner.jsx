@@ -8,26 +8,9 @@ export default function PopupBanner({ popup }) {
 
   useEffect(() => {
     if (!popup?.enabled) return;
-
-    const hero = document.getElementById("home");
-    if (!hero) return;
-
-    let wasVisible = false;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          wasVisible = true;
-        } else if (wasVisible) {
-          setOpen(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0 }
-    );
-
-    observer.observe(hero);
-    return () => observer.disconnect();
+    // 히어로 settled 시점(2850ms) 직후 팝업 표시
+    const t = setTimeout(() => setOpen(true), 2900);
+    return () => clearTimeout(t);
   }, [popup]);
 
   useEffect(() => {

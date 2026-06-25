@@ -50,10 +50,10 @@ const config = {
     eyebrow:       "숭의역 초역세권",
     eyebrowUrgent: 1,
     brand:         "숭의역 라온프라이빗 스카이브",
-    title:         "역세권·학군·인프라\n인천 마지막\n3억대 아파트",
+    title: "인천 3억 원대 APT와\n반려생활을 한 번에\n바꿀 수 있는 기회를\n만나 보세요.",
     subtitle:      "숭의역 도보 5분 · 신광초 50m",
     bgColor:       " #181a37",
-    accentKeyword: "역세권·학군·인프라",
+    accentKeyword:  ["3억 원대", "반려생활","기회"],
     image: {
       src:    "/apt/sungui-raon-private-skyve/1.webp",
       alt:    "숭의역 라온프라이빗 스카이브 대표 이미지",
@@ -63,6 +63,15 @@ const config = {
   },
 
   sections: [
+    {
+      id:       "pet-friendly",
+      type:     "image",
+      title:    "특별제공",
+      subtitle: "라온 프라이빗의 펫특화 설계",
+      images: [
+        { src: "/apt/sungui-raon-private-skyve/1-4.webp", alt: "프리미엄" },
+      ],
+    },
     {
       id:       "overview",
       type:     "image-then-spec",
@@ -151,8 +160,8 @@ const config = {
 
     // 히어로 배지 (eyebrow)
     eyebrow: {
-      color:       "#7ec8e3",
-      borderColor: "rgba(126,200,227,0.45)",
+      color:       "#ff6b6b",
+      borderColor: "rgba(255,107,107,0.5)",
       fontSize:    "1rem",
     },
     // 긴급 배지 (eyebrowUrgent)

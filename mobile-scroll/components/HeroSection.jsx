@@ -23,7 +23,9 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
 
   const titleLines = title?.split("\n") ?? [];
   const badges     = eyebrow?.split("｜").map((s) => s.trim()) ?? [];
-  const keyword    = accentKeyword ?? "";
+  const keywords   = Array.isArray(accentKeyword)
+    ? accentKeyword.filter(Boolean)
+    : accentKeyword ? [accentKeyword] : [];
   const th         = theme ?? {};
   const curtainColor = th.hero?.curtainColor ?? "#0f172a";
 
@@ -79,17 +81,18 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
           {titleLines.map((line, i) => (
             <span key={i} className={styles.titleLine}>
               <span className={styles.titleInner}>
-                {keyword ? (
-                  line.split(keyword).map((part, j, arr) => (
-                    <span key={j}>
-                      {part}
-                      {j < arr.length - 1 && (
-                        <em className={styles.accent} style={{ color: th.title?.accentColor }}>
-                          {keyword}
+                {keywords.length > 0 ? (
+                  line
+                    .split(new RegExp(`(${keywords.map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})`))
+                    .map((part, j) =>
+                      keywords.includes(part) ? (
+                        <em key={j} className={styles.accent} style={{ color: th.title?.accentColor }}>
+                          {part}
                         </em>
-                      )}
-                    </span>
-                  ))
+                      ) : (
+                        <span key={j}>{part}</span>
+                      )
+                    )
                 ) : (
                   line
                 )}

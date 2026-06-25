@@ -45,15 +45,13 @@
 ── */
 .textBlock {
   position: absolute;
+  top: 0;
   left: 0;
   right: 0;
   z-index: 15;
-  padding: 0 28px;
-
-  /* 시작: 화면 세로 중앙 */
-  top: 50%;
-  transform: translateY(-50%);
-
+  padding: 80px 28px 0;
+  /* padding-top을 고정값으로 두고 역산한 transform으로 시각적 중앙 구현 */
+  transform: translateY(calc(50vh - 50% - 80px));
   opacity: 0;
   transition: opacity 0.3s ease;
   will-change: transform;
@@ -70,9 +68,7 @@
 
 /* 애니메이션 끝난 후 최종 위치에 고정 */
 .textBlock.settled {
-  top: 0;
   transform: translateY(0);
-  padding-top: 80px;
   animation: none;
   transition: none;
   opacity: 1;
@@ -105,16 +101,8 @@
    커튼과 같은 거리를 같은 속도로 이동하도록 계산
 ── */
 @keyframes text-up {
-  from {
-    top: 50%;
-    transform: translateY(-50%);
-    padding-top: 0;
-  }
-  to {
-    top: 0;
-    transform: translateY(0);
-    padding-top: 80px;
-  }
+  from { transform: translateY(calc(50vh - 50% - 80px)); }
+  to   { transform: translateY(0); }
 }
 
 /* ── 배지 행 ── */
@@ -314,17 +302,18 @@
     background-position: center bottom !important;
   }
   .textBlock {
+    padding-top: 70px;
     padding-left: 20px;
     padding-right: 20px;
+    transform: translateY(calc(50vh - 50% - 70px));
   }
   .textBlock.settled {
-    padding-top: 70px;
     padding-left: 20px;
     padding-right: 20px;
   }
   @keyframes text-up {
-    from { top: 50%; transform: translateY(-50%); padding-top: 0; }
-    to   { top: 0;   transform: translateY(0);    padding-top: 70px; }
+    from { transform: translateY(calc(50vh - 50% - 70px)); }
+    to   { transform: translateY(0); }
   }
 }
 

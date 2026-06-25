@@ -102,9 +102,11 @@
    커튼과 같은 거리를 같은 속도로 이동하도록 계산
 ── */
 @keyframes text-up {
-  from { transform: translateY(calc(50vh - 50% - 80px)); }
-  from { transform: translateY(calc(50dvh - 50% - 80px)); }
-  to   { transform: translateY(0); }
+  from {
+    transform: translateY(calc(50vh - 50% - 80px));
+    transform: translateY(calc(50dvh - 50% - 80px));
+  }
+  to { transform: translateY(0); }
 }
 
 /* ── 배지 행 ── */
@@ -315,9 +317,11 @@
     padding-right: 20px;
   }
   @keyframes text-up {
-    from { transform: translateY(calc(50vh - 50% - 70px)); }
-    from { transform: translateY(calc(50dvh - 50% - 70px)); }
-    to   { transform: translateY(0); }
+    from {
+      transform: translateY(calc(50vh - 50% - 70px));
+      transform: translateY(calc(50dvh - 50% - 70px));
+    }
+    to { transform: translateY(0); }
   }
 }
 

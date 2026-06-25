@@ -69,7 +69,7 @@ const config = {
       title:    "특별제공",
       subtitle: "라온 프라이빗의 펫특화 설계",
       images: [
-        { src: "/apt/sungui-raon-private-skyve/1-4.webp", alt: "프리미엄" },
+        { src: "/apt/sungui-raon-private-skyve/1-4.webp", alt: "펫특화 설계" },
       ],
     },
     {
@@ -178,7 +178,7 @@ const config = {
     // 히어로 메인 타이틀
     title: {
       color:       "#ffffff",
-      fontSize:    "clamp(2.3rem,8vw,3rem)",
+      fontSize:    "clamp(2.1rem,8vw,2.7rem)",
       accentColor: "#a7ce41",
     },
     // 히어로 서브타이틀

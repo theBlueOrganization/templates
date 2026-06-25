@@ -313,6 +313,10 @@
     background-size: 100% auto !important;
     background-position: center bottom !important;
   }
+  .textBlock {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
   .textBlock.settled {
     padding-top: 70px;
     padding-left: 20px;

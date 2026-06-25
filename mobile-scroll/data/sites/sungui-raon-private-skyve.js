@@ -69,7 +69,7 @@ const config = {
       title:    "특별제공",
       subtitle: "라온 프라이빗의 펫특화 설계",
       images: [
-        { src: "/apt/sungui-raon-private-skyve/1-4.webp", alt: "프리미엄" },
+        { src: "/apt/sungui-raon-private-skyve/1-4.webp", alt: "펫특화 설계" },
       ],
     },
     {

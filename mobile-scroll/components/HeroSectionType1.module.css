@@ -193,7 +193,7 @@
   align-items: center;
   gap: 7px;
   opacity: 0;
-  animation: scroll-reveal 0.8s ease 2.2s forwards, scroll-pulse 2s ease-in-out 3s infinite;
+  animation: scroll-reveal 0.8s ease 3s forwards, scroll-pulse 2s ease-in-out 3.8s infinite;
 }
 
 .scrollText {

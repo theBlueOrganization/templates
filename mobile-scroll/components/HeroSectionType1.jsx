@@ -2,7 +2,7 @@
 
 import styles from "./HeroSectionType1.module.css";
 
-export default function HeroSectionType1({ image, eyebrow, brand, title, subtitle, bgColor, accentKeyword, theme }) {
+export default function HeroSectionType1({ image, eyebrow, eyebrowUrgent, brand, title, subtitle, bgColor, accentKeyword, theme }) {
   const titleLines = title?.split("\n") ?? [];
   const badges     = eyebrow?.split("｜").map((s) => s.trim()).filter(Boolean) ?? [];
   const keywords   = Array.isArray(accentKeyword)
@@ -24,13 +24,20 @@ export default function HeroSectionType1({ image, eyebrow, brand, title, subtitl
 
         {badges.length > 0 && (
           <div className={styles.badgeRow}>
-            {badges.map((b, i) => (
-              <span key={i} className={styles.badge}
-                style={{ color: th.eyebrow?.color, borderColor: th.eyebrow?.borderColor, fontSize: th.eyebrow?.fontSize }}
-              >
-                {b}
-              </span>
-            ))}
+            {badges.map((b, i) => {
+              const isUrgent = i < (eyebrowUrgent ?? 0);
+              return (
+                <span
+                  key={i}
+                  className={styles.badge}
+                  style={isUrgent
+                    ? { color: th.eyebrowUrgent?.color, borderColor: th.eyebrowUrgent?.borderColor }
+                    : { color: th.eyebrow?.color, borderColor: th.eyebrow?.borderColor, fontSize: th.eyebrow?.fontSize }}
+                >
+                  {b}
+                </span>
+              );
+            })}
           </div>
         )}
 

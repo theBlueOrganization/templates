@@ -299,6 +299,70 @@
   50%      { opacity: 1; }
 }
 
+/* ══════════════════════════════════════════════════════
+   Accent 변형 (?v=accent)
+   — 인트로 커튼 없이 즉시 표시 + 타이틀 강조 드롭 모션
+   ══════════════════════════════════════════════════════ */
+
+/* 텍스트 블록: 커튼 없이 즉시 최종 위치에 고정 */
+.textBlock.accentMode {
+  transform: translateY(0);
+  opacity: 1;
+  animation: none;
+  transition: none;
+}
+
+/* 배경 그라디언트 오버레이 */
+.textBlock.accentMode::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, hsl(180deg 5% 27% / 70%), #42494900);
+  opacity: 0;
+  animation: bg-fadein 0.9s ease 0.1s forwards;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* 타이틀 초기 상태: 위에서 내려오는 드롭 */
+.textBlock.accentMode .titleInner {
+  transform: translateY(-14px);
+  opacity: 0;
+}
+
+/* 스프링 바운스 스태거 — 각 라인 0.08s 간격 */
+.textBlock.accentMode .titleLine:nth-child(1) .titleInner {
+  animation: accent-drop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.04s forwards;
+}
+.textBlock.accentMode .titleLine:nth-child(2) .titleInner {
+  animation: accent-drop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.12s forwards;
+}
+.textBlock.accentMode .titleLine:nth-child(3) .titleInner {
+  animation: accent-drop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.20s forwards;
+}
+.textBlock.accentMode .titleLine:nth-child(4) .titleInner {
+  animation: accent-drop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.28s forwards;
+}
+.textBlock.accentMode .titleLine:nth-child(5) .titleInner {
+  animation: accent-drop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.36s forwards;
+}
+
+@keyframes accent-drop {
+  from { transform: translateY(-14px); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+
+/* 강조 키워드: 타이틀 착지 후 글로우 펄스 */
+.textBlock.accentMode .accent {
+  animation: accent-keyword-glow 1.2s ease 0.75s forwards;
+}
+
+@keyframes accent-keyword-glow {
+  0%   { text-shadow: none; }
+  45%  { text-shadow: 0 0 22px rgba(245, 196, 69, 0.9), 0 0 6px rgba(245, 196, 69, 0.5); }
+  100% { text-shadow: 0 0 10px rgba(245, 196, 69, 0.3); }
+}
+
 @media (max-width: 800px) {
   .hero { height: 100vh; height: 100dvh; }
   .imageWrap {
@@ -333,4 +397,7 @@
   .scrollHint.visible    { animation: none !important; opacity: 1 !important; }
   .badge.urgent          { animation: none !important; opacity: 1 !important; }
   .badge.urgent::after   { animation: none !important; }
+  /* accent 변형 */
+  .textBlock.accentMode .titleInner { animation: none !important; transform: none !important; opacity: 1 !important; }
+  .textBlock.accentMode .accent     { animation: none !important; }
 }

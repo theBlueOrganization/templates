@@ -26,7 +26,10 @@ const config = {
   utmSources: [
     { label: "SKT1",    value: "SKT1" },
     { label: "SKT2",    value: "SKT2" },
+    { label: "Lpoint",    value: "lpoint" },
+    { label: "Lpoint2",    value: "lpoint2" },
   ],
+
 
   company: {
     name:      "주식회사 더블루파트너스",
@@ -50,16 +53,17 @@ const config = {
     eyebrow:       "숭의역 초역세권",
     eyebrowUrgent: 1,
     brand:         "숭의역 라온프라이빗 스카이브",
-    title: "인천 3억 원대 APT와\n반려생활을 한 번에\n바꿀 수 있는 기회를\n만나 보세요.",
+    title: "5년전 분양가 그대로\n인천 3억원대 아파트\n전세금이면 내집 마련 가능\n지금 아니면 다시 없을 기회",
     subtitle:      "숭의역 도보 5분 · 신광초 50m",
     bgColor:       " #181a37",
-    accentKeyword:  ["3억 원대", "반려생활","기회"],
+    accentKeyword:  ["5년전 분양가", "3억원대","내집 마련"],
     image: {
       src:    "/apt/sungui-raon-private-skyve/1.webp",
       alt:    "숭의역 라온프라이빗 스카이브 대표 이미지",
       width:  800,
       height: 500,
     },
+    enableVariants: true,
   },
 
   sections: [
@@ -178,7 +182,7 @@ const config = {
     // 히어로 메인 타이틀
     title: {
       color:       "#ffffff",
-      fontSize:    "clamp(2.1rem,8vw,2.7rem)",
+      fontSize:    "clamp(1.6rem,8vw,2.7rem)",
       accentColor: "#a7ce41",
     },
     // 히어로 서브타이틀

@@ -26,6 +26,8 @@ import hanlaJakjeon    from "./sites/hanla-jakjeon.js";
 import sujainPungmu2   from "./sites/gimpo-pungmu-sujain2.js";
 import sujainPungmu2b  from "./sites/gimpo-pungmu-sujain2-2.js";
 import suguiRaonSkyve from "./sites/sungui-raon-private-skyve.js";
+import gyeongsanHobanSummit1  from "./sites/gyeongsan-hobansummit-1.js";
+
 
 /** @type {SiteConfig[]} */
 const sites = [
@@ -34,6 +36,7 @@ const sites = [
   sujainPungmu2,
   sujainPungmu2b,
   suguiRaonSkyve,
+  gyeongsanHobanSummit1,
 ];
 
 // ─── 유틸 함수 ────────────────────────────────────────────

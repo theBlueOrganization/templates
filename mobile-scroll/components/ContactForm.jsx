@@ -72,7 +72,6 @@ export default function ContactForm({ config }) {
           sheetTab,
           utmSource,
           showUtmInSms: config.showUtmInSms,
-          useKakao: kakao ?? false,
           slug: slug ?? null,
         }),
       });

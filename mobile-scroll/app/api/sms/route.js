@@ -83,7 +83,7 @@ export async function POST(request) {
     const {
       name, phone, visit_date, visit_time, gift_check, privacy_agree,
       projectName, adminPhones, sheetId, sheetTab, utmSource, showUtmInSms,
-      useKakao, slug,
+      slug,
     } = body;
 
     if (!name || !phone) {
@@ -138,7 +138,7 @@ export async function POST(request) {
 
     await Promise.all(
       recipients.map(async (to) => {
-        if (useKakao && resolvedTemplateId) {
+        if (siteConfig?.kakao === true && resolvedTemplateId) {
           try {
             await sendKakaoAlimtalk({
               to,

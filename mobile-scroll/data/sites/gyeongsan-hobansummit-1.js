@@ -11,17 +11,16 @@ const config = {
   ogImage:     "https://theblue-apt.vercel.app/apt/gyeongsan-hobansummit-1/share_img.png",
   adminPhones:  ["01083209697"],
   kakao:        true,
-// kakaoTemplateId: "별도템플릿ID",  // 기본 템플릿과 다를 때만 명시
   sheetId:      "",
   sheetTab:     "경산상방공원호반써밋1단지",
 
-  // popup: {
-  //   enabled: false,
-  //   image: {
-  //     src: "/apt/gyeongsan-hobansummit-1/4.webp",
-  //     alt: "경산 상방공원 호반써밋 1단지 팝업",
-  //   },
-  // },
+  popup: {
+    enabled: true,
+    image: {
+      src: "/apt/gyeongsan-hobansummit-1/4.webp",
+      alt: "경산 상방공원 호반써밋 1단지 팝업",
+    },
+  },
 
   company: {
     name:      "주식회사 더블루파트너스",
@@ -42,19 +41,20 @@ const config = {
   ],
 
   hero: {
-    eyebrow:       "프리미엄문화생활｜숲세권｜학세권",
+    eyebrow:       "토지거래허가제외｜숲세권｜학세권",
     eyebrowUrgent: 1,
     brand:         "경산 상방공원 호반써밋 1단지",
-    title: "상방공원을 통째로 누리는\n경산 유일의 초대형 공원특구\n다시 없을 4억대 찬스",
-    subtitle:      "총 1,004세대 브랜드 대단지 · 2천만원으로 입주까지",
-    bgColor:       " #181a37",
-    accentKeyword:  ["상방공원", "초대형 공원특구", "4억대"],
+    title: "상방공원을 통째로 누리는\n경산 최고의 명품 공원특구\n다시 없을 4억대 찬스",
+    subtitle:      "총 1,004세대 브랜드 대단지",
+    bgColor: "linear-gradient(to right, #5491d8, #3878cb, #1a5bb2)",
+    accentKeyword:  ["상방공원", "공원특구", "4억대"],
     image: {
       src:    "/apt/gyeongsan-hobansummit-1/1.webp",
       alt:    "경산 상방공원 호반써밋 1단지 대표 이미지",
       width:  800,
       height: 500,
     },
+    enableVariants: true,
   },
 
   sections: [
@@ -97,7 +97,7 @@ const config = {
       title:    "프리미엄",
       subtitle: "특별함이 일상이 되는 공간",
       images: [
-        { src: "/apt/gyeongsan-hobansummit-1/1-3.webp", alt: "프리미엄" },
+        { src: "/apt/gyeongsan-hobansummit-1/2-1.webp", alt: "프리미엄" },
       ],
     },
     {
@@ -107,7 +107,7 @@ const config = {
       title:    "단지설계",
       subtitle: "초고층 고품격 주거공간",
       images: [
-        { src: "/apt/gyeongsan-hobansummit-1/2-1.webp", alt: "단지설계" },
+        { src: "/apt/gyeongsan-hobansummit-1/2-2.webp", alt: "단지설계" },
       ],
     },
     {
@@ -117,7 +117,7 @@ const config = {
       title:    "커뮤니티",
       subtitle: "일상에 활력을 더하는 주거공간",
       images: [
-        { src: "/apt/gyeongsan-hobansummit-1/2-2.webp", alt: "커뮤니티" },
+        { src: "/apt/gyeongsan-hobansummit-1/3-1.webp", alt: "커뮤니티" },
       ],
     },
     {
@@ -127,7 +127,7 @@ const config = {
       title:    "평면도",
       subtitle: "휴식이 완성되는 주거공간",
       images: [
-        { src: "/apt/gyeongsan-hobansummit-1/3-1.webp", alt: "평면도" },
+        { src: "/apt/gyeongsan-hobansummit-1/3-2.webp", alt: "평면도" },
       ],
     },
   ],
@@ -135,12 +135,12 @@ const config = {
   theme: {
     // ── 히어로 커튼 색상 ──
     hero: {
-      curtainColor: "#293747",  // 커튼 시작 색상 (원하는 색으로 변경)
+      curtainColor: "#0e4081",  // 커튼 시작 색상 (원하는 색으로 변경)
     },
 
     // 섹션 헤더 구분선
     ImageSection_divider: {
-      background: "linear-gradient(90deg, #8baf3d, #a7ce41)",
+      background: "linear-gradient(90deg, #CA705B, #ecab9c)",
       width:      "40px",
       height:     "3px",
     },
@@ -166,7 +166,7 @@ const config = {
     title: {
       color:       "#ffffff",
       fontSize:    "clamp(1.6rem,8vw,2.7rem)",
-      accentColor: "#a7ce41",
+      accentColor: "#e0f931",
     },
     // 히어로 서브타이틀
     subtitle: {

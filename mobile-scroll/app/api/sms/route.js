@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
 import { google } from "googleapis";
+import { getSiteBySlug } from "../../../data/siteRegistry";
 
 const SOLAPI_URL = "https://api.solapi.com/messages/v4/send";
 
@@ -46,6 +47,7 @@ async function sendSms({ to, text }) {
     method: "POST",
     headers: { "Content-Type": "application/json", ...makeSignature(SOLAPI_API_KEY, SOLAPI_API_SECRET) },
     body: JSON.stringify({ message: { to, from: SOLAPI_SENDER, text } }),
+    signal: AbortSignal.timeout(8000),
   });
   const data = await res.json();
   if (!res.ok || data.errorCode) throw new Error(data.message || "SMS 발송 실패");
@@ -68,6 +70,7 @@ async function sendKakaoAlimtalk({ to, templateId, variables }) {
         },
       },
     }),
+    signal: AbortSignal.timeout(8000),
   });
   const data = await res.json();
   if (!res.ok || data.errorCode) throw new Error(data.message || "카카오 발송 실패");
@@ -80,7 +83,7 @@ export async function POST(request) {
     const {
       name, phone, visit_date, visit_time, gift_check, privacy_agree,
       projectName, adminPhones, sheetId, sheetTab, utmSource, showUtmInSms,
-      useKakao, kakaoTemplateId,
+      useKakao, slug,
     } = body;
 
     if (!name || !phone) {
@@ -128,10 +131,13 @@ export async function POST(request) {
       `개인정보동의: ${privacyText}` +
       utmLine;
 
-    const resolvedTemplateId = kakaoTemplateId || process.env.KAKAO_TEMPLATE_ID;
+    const siteConfig = slug ? getSiteBySlug(slug) : null;
+    const resolvedTemplateId = siteConfig?.kakaoTemplateId || process.env.KAKAO_TEMPLATE_ID;
 
-    await Promise.all([
-      ...recipients.map(async (to) => {
+    const sheetPromise = saveToSheet({ name, phone, visit_date, visit_time, gift_check, privacy_agree, projectName, sheetId, sheetTab, utmSource });
+
+    await Promise.all(
+      recipients.map(async (to) => {
         if (useKakao && resolvedTemplateId) {
           try {
             await sendKakaoAlimtalk({
@@ -156,12 +162,18 @@ export async function POST(request) {
         } else {
           await sendSms({ to, text: adminMessage });
         }
-      }),
-      saveToSheet({ name, phone, visit_date, visit_time, gift_check, privacy_agree, projectName, sheetId, sheetTab, utmSource })
-        .catch((e) => console.error("[SHEET] 저장 실패:", e)),
-    ]);
+      })
+    );
 
-    return NextResponse.json({ success: true });
+    let sheetSaved = true;
+    try {
+      await sheetPromise;
+    } catch (e) {
+      console.error("[SHEET] 저장 실패:", e);
+      sheetSaved = false;
+    }
+
+    return NextResponse.json({ success: true, sheetSaved });
   } catch (error) {
     console.error("[SMS] 서버 오류:", error);
     return NextResponse.json({ success: false, message: "서버 오류가 발생했습니다." }, { status: 500 });

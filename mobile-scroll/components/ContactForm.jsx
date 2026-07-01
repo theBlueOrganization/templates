@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import styles from "./ContactForm.module.css";
 
 export default function ContactForm({ config }) {
-  const { projectName, visitTimeOptions, privacyText, adminPhones, sheetId, sheetTab, theme } = config;
+  const { projectName, visitTimeOptions, privacyText, adminPhones, sheetId, sheetTab, theme, kakao, kakaoTemplateId } = config;
   const th = theme ?? {};
   const [inquiryCount, setInquiryCount] = useState(null);
   const [submitting, setSubmitting] = useState(false);
@@ -50,7 +50,7 @@ export default function ContactForm({ config }) {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    setUtmSource(params.get("utm_source") ?? "직접유입");
+    setUtmSource(params.get("utm_source") ?? "미확인");
   }, []);
 
   const handleSubmit = async (e) => {
@@ -72,6 +72,8 @@ export default function ContactForm({ config }) {
           sheetTab,
           utmSource,
           showUtmInSms: config.showUtmInSms,
+          useKakao: kakao ?? false,
+          kakaoTemplateId: kakaoTemplateId ?? null,
         }),
       });
       const data = await res.json();

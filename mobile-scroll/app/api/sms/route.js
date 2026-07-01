@@ -35,15 +35,53 @@ async function saveToSheet({ name, phone, visit_date, visit_time, gift_check, pr
     range: `'${tab}'!A1`,
     valueInputOption: "USER_ENTERED",
     requestBody: {
-      values: [[now, projectName, name, phone, visit_date ?? "", visit_time ?? "", giftText, privacyText, utmSource ?? "직접유입"]],
+      values: [[now, projectName, name, phone, visit_date ?? "", visit_time ?? "", giftText, privacyText, utmSource ?? "미확인"]],
     },
   });
+}
+
+async function sendSms({ to, text }) {
+  const { SOLAPI_API_KEY, SOLAPI_API_SECRET, SOLAPI_SENDER } = process.env;
+  const res = await fetch(SOLAPI_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", ...makeSignature(SOLAPI_API_KEY, SOLAPI_API_SECRET) },
+    body: JSON.stringify({ message: { to, from: SOLAPI_SENDER, text } }),
+  });
+  const data = await res.json();
+  if (!res.ok || data.errorCode) throw new Error(data.message || "SMS 발송 실패");
+  return data;
+}
+
+async function sendKakaoAlimtalk({ to, templateId, variables }) {
+  const { SOLAPI_API_KEY, SOLAPI_API_SECRET, SOLAPI_SENDER, KAKAO_SENDER_KEY } = process.env;
+  const res = await fetch(SOLAPI_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", ...makeSignature(SOLAPI_API_KEY, SOLAPI_API_SECRET) },
+    body: JSON.stringify({
+      message: {
+        to,
+        from: SOLAPI_SENDER,
+        kakaoOptions: {
+          pfId: KAKAO_SENDER_KEY,
+          templateId,
+          variables,
+        },
+      },
+    }),
+  });
+  const data = await res.json();
+  if (!res.ok || data.errorCode) throw new Error(data.message || "카카오 발송 실패");
+  return data;
 }
 
 export async function POST(request) {
   try {
     const body = await request.json();
-    const { name, phone, visit_date, visit_time, gift_check, privacy_agree, projectName, adminPhones, sheetId, sheetTab, utmSource, showUtmInSms } = body;
+    const {
+      name, phone, visit_date, visit_time, gift_check, privacy_agree,
+      projectName, adminPhones, sheetId, sheetTab, utmSource, showUtmInSms,
+      useKakao, kakaoTemplateId,
+    } = body;
 
     if (!name || !phone) {
       return NextResponse.json(
@@ -76,7 +114,7 @@ export async function POST(request) {
     const giftText    = gift_check    ? "체크함" : "아님";
     const privacyText = privacy_agree ? "동의함" : "미동의";
 
-    const utmLine = showUtmInSms && utmSource && utmSource !== "직접유입"
+    const utmLine = showUtmInSms && utmSource && utmSource !== "미확인"
       ? `\n유입매체: ${utmSource}`
       : "";
 
@@ -90,29 +128,38 @@ export async function POST(request) {
       `개인정보동의: ${privacyText}` +
       utmLine;
 
-    const smsSends = recipients.map((to) =>
-      fetch(SOLAPI_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", ...makeSignature(SOLAPI_API_KEY, SOLAPI_API_SECRET) },
-        body: JSON.stringify({ message: { to, from: SOLAPI_SENDER, text: adminMessage } }),
-      })
-    );
+    const resolvedTemplateId = kakaoTemplateId || process.env.KAKAO_TEMPLATE_ID;
 
-    const [adminRes] = await Promise.all([
-      ...smsSends,
-      // 시트 저장
+    await Promise.all([
+      ...recipients.map(async (to) => {
+        if (useKakao && resolvedTemplateId) {
+          try {
+            await sendKakaoAlimtalk({
+              to,
+              templateId: resolvedTemplateId,
+              variables: {
+                "#{현장명}":      projectName  ?? "",
+                "#{유입매체}":    utmSource    ?? "미확인",
+                "#{이름}":        name         ?? "",
+                "#{연락처}":      phone        ?? "",
+                "#{방문예약일}":   visit_date  ?? "미입력",
+                "#{방문예약시간}": visit_time  ?? "미입력",
+                "#{사은품등록}":   giftText,
+                "#{개인정보동의}": privacyText,
+              },
+            });
+            console.log(`[카카오] 발송 성공: ${to}`);
+          } catch (kakaoError) {
+            console.warn(`[카카오] 실패 → SMS 폴백: ${to}`, kakaoError.message);
+            await sendSms({ to, text: adminMessage });
+          }
+        } else {
+          await sendSms({ to, text: adminMessage });
+        }
+      }),
       saveToSheet({ name, phone, visit_date, visit_time, gift_check, privacy_agree, projectName, sheetId, sheetTab, utmSource })
         .catch((e) => console.error("[SHEET] 저장 실패:", e)),
     ]);
-
-    const solapiData = await adminRes.json();
-    if (!adminRes.ok || solapiData.errorCode) {
-      console.error("[SMS] Solapi 발송 실패:", solapiData);
-      return NextResponse.json(
-        { success: false, message: "문자 발송에 실패했습니다. 잠시 후 다시 시도해 주세요." },
-        { status: 502 }
-      );
-    }
 
     return NextResponse.json({ success: true });
   } catch (error) {

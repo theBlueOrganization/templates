@@ -9,8 +9,9 @@ const config = {
   shortName:   "경산 상방공원 호반써밋 1단지",
   telNumber:   "1555-3167",
   ogImage:     "https://theblue-apt.vercel.app/apt/gyeongsan-hobansummit-1/share_img.png",
-  //adminPhones:  ["01028643100"],
   adminPhones:  ["01083209697"],
+  kakao:        true,
+// kakaoTemplateId: "별도템플릿ID",  // 기본 템플릿과 다를 때만 명시
   sheetId:      "",
   sheetTab:     "경산상방공원호반써밋1단지",
 

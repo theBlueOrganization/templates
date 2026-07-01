@@ -54,6 +54,8 @@ export default async function AptPage({ params }) {
           sheetId:          site.sheetId,
           sheetTab:         site.sheetTab,
           showUtmInSms:     site.showUtmInSms,
+          kakao:            site.kakao,
+          slug:             site.slug,
           theme:            site.theme,
         }}
       />

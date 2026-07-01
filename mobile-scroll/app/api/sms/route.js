@@ -45,7 +45,7 @@ async function sendSms({ to, text }) {
   const { SOLAPI_API_KEY, SOLAPI_API_SECRET, SOLAPI_SENDER } = process.env;
   const res = await fetch(SOLAPI_URL, {
     method: "POST",
-    headers: { "Content-Type": "application/json", ...makeSignature(SOLAPI_API_KEY, SOLAPI_API_SECRET) },
+    headers: { "Content-Type": "application/json; charset=utf-8", ...makeSignature(SOLAPI_API_KEY, SOLAPI_API_SECRET) },
     body: JSON.stringify({ message: { to, from: SOLAPI_SENDER, text } }),
     signal: AbortSignal.timeout(8000),
   });
@@ -58,7 +58,7 @@ async function sendKakaoAlimtalk({ to, templateId, variables }) {
   const { SOLAPI_API_KEY, SOLAPI_API_SECRET, SOLAPI_SENDER, KAKAO_SENDER_KEY } = process.env;
   const res = await fetch(SOLAPI_URL, {
     method: "POST",
-    headers: { "Content-Type": "application/json", ...makeSignature(SOLAPI_API_KEY, SOLAPI_API_SECRET) },
+    headers: { "Content-Type": "application/json; charset=utf-8", ...makeSignature(SOLAPI_API_KEY, SOLAPI_API_SECRET) },
     body: JSON.stringify({
       message: {
         to,

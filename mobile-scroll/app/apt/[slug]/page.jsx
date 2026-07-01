@@ -27,10 +27,17 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function AptPage({ params }) {
+export default async function AptPage({ params, searchParams }) {
   const { slug } = await params;
+  const { office: officeId } = await searchParams;
   const site = getSiteBySlug(slug);
   if (!site) notFound();
+
+  const officeData = site.offices
+    ? (site.offices.find((o) => o.id === officeId) ?? site.offices[0])
+    : null;
+  const resolvedTelNumber   = officeData?.telNumber   ?? site.telNumber;
+  const resolvedAdminPhones = officeData?.adminPhones ?? site.adminPhones;
 
   const navItems = site.sections
     .filter((s) => s.navLabel)
@@ -50,7 +57,7 @@ export default async function AptPage({ params }) {
           projectName:      site.projectName,
           visitTimeOptions: site.visitTimeOptions,
           privacyText:      site.privacyText,
-          adminPhones:      site.adminPhones,
+          adminPhones:      resolvedAdminPhones,
           sheetId:          site.sheetId,
           sheetTab:         site.sheetTab,
           showUtmInSms:     site.showUtmInSms,
@@ -60,9 +67,9 @@ export default async function AptPage({ params }) {
         }}
       />
 
-      <SiteFooter company={site.company} telNumber={site.telNumber} />
+      <SiteFooter company={site.company} telNumber={resolvedTelNumber} />
 
-      <BottomBar telNumber={site.telNumber} theme={site.theme} />
+      <BottomBar telNumber={resolvedTelNumber} theme={site.theme} />
 
       {site.popup?.enabled && (
         <PopupBanner popup={site.popup} />

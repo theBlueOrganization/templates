@@ -10,6 +10,7 @@
  *
  * @typedef {Object} SiteConfig
  * @property {string}   slug
+ * @property {string}   [subdomain] - addupapt.kr 한글 서브도메인 노출용 (선택, 없으면 기존 /apt/[slug] 경로로만 접근)
  * @property {string}   projectName
  * @property {string}   shortName
  * @property {string}   telNumber

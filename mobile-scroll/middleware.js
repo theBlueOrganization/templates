@@ -7,19 +7,18 @@ const subdomainToSlug = new Map(
     .map((s) => [new URL(`https://${s.subdomain}.addupapt.kr`).hostname, s.slug])
 );
 
-const BYPASS_PATHNAMES = new Set(["/favicon.ico", "/robots.txt", "/sitemap.xml"]);
-
 function shouldBypass(pathname) {
   return (
     pathname.startsWith("/_next/") ||
     pathname.startsWith("/api/") ||
     pathname.startsWith("/apt/") ||
-    BYPASS_PATHNAMES.has(pathname)
+    /\.[^/]+$/.test(pathname) // 확장자 있는 정적 파일 경로 (favicon.ico, robots.txt, og 이미지, 폰트 등)
   );
 }
 
 export function middleware(request) {
-  const slug = subdomainToSlug.get(request.nextUrl.hostname);
+  const hostname = request.headers.get("host") ?? request.nextUrl.hostname;
+  const slug = subdomainToSlug.get(hostname);
   if (!slug) return NextResponse.next();
 
   const { pathname } = request.nextUrl;

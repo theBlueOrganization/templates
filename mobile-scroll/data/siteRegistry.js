@@ -29,6 +29,7 @@ import sujainPungmu2b  from "./sites/gimpo-pungmu-sujain2-2.js";
 import suguiRaonSkyve from "./sites/sungui-raon-private-skyve.js";
 import gyeongsanHobanSummit1  from "./sites/gyeongsan-hobansummit-1.js";
 import cheonwangMoaelgaTreview  from "./sites/cheonwang-moaelga-treview.js";
+import hillstateSiheungTheclass  from "./sites/hillstate-siheung-theclass.js";
 
 
 /** @type {SiteConfig[]} */
@@ -40,6 +41,7 @@ const sites = [
   suguiRaonSkyve,
   gyeongsanHobanSummit1,
   cheonwangMoaelgaTreview,
+  hillstateSiheungTheclass,
 ];
 
 // ─── 유틸 함수 ────────────────────────────────────────────

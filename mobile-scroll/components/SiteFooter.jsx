@@ -4,6 +4,8 @@ export default function SiteFooter({ company, telNumber }) {
   return (
     <footer id="main-footer" className={styles.footer}>
       <div className={styles.container}>
+        <p className={styles.agencyLabel}>홈페이지 운영·관리 대행사</p>
+
         <div className={styles.info}>
           <p><span className={styles.key}>담당자명</span>{company.name}</p>
           <p><span className={styles.key}>사업자 등록번호</span>{company.bizNumber}</p>

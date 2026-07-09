@@ -11,6 +11,14 @@
   margin: 0 auto;
 }
 
+/* ─── 운영 대행사 라벨 ───────────────────────────────── */
+.agencyLabel {
+  color: #64748b;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
 /* ─── 회사 정보 ─────────────────────────────────────── */
 .info {
   display: flex;
@@ -23,12 +31,12 @@
 
 .info p {
   margin: 0;
-  color: #cbd5e1;
+  color: #64748b;
   font-size: 0.85rem;
 }
 
 .key {
-  color: #64748b;
+  color: #475569;
   font-weight: 600;
   margin-right: 8px;
 }

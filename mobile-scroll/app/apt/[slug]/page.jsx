@@ -22,6 +22,7 @@ export async function generateMetadata({ params }) {
       description: `${site.projectName} 분양 정보 및 빠른 상담 신청`,
       images: [{ url: site.ogImage }],
     },
+    ...(site.favicon ? { icons: { icon: site.favicon } } : {}),
   };
 }
 

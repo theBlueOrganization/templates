@@ -16,9 +16,9 @@ body {
   font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
   color: #333;
-  /* 600px 이하에서는 화면 너비에 맞게 자연스럽게 축소 */
+  /* 750px 이하에서는 화면 너비에 맞게 자연스럽게 축소 */
   width: 100%;
-  max-width: 600px;
+  max-width: 750px;
   margin: 0 auto;
   padding-bottom: 65px;
   -webkit-font-smoothing: antialiased;

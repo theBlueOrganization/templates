@@ -9,7 +9,8 @@ const config = {
   projectName: "힐스테이트 시흥 더 클래스",
   shortName:   "힐스테이트 시흥 더 클래스",
   telNumber:   "1833-6561",
-  ogImage:     "https://theblue-apt.vercel.app/apt/hillstate-siheung-theclass/share_img.png",
+  ogImage:     "/apt/hillstate-siheung-theclass/share_img.png",
+  favicon:     "/apt/hillstate-siheung-theclass/favicon.jpg",
   adminPhones:  ["01027075551"],
   sheetId:      "",
   sheetTab:     "힐스테이트시흥더클래스",
@@ -21,6 +22,12 @@ const config = {
       alt: "힐스테이트 시흥 더 클래스 팝업",
     },
   },
+
+  // ── 유입 경로 (utm_source) 옵션 ──
+  showUtmInSms: true,
+  utmSources: [
+    { label: "BC",    value: "bc" },
+  ],
 
   company: {
     name:      "주식회사 더블루파트너스",
@@ -41,13 +48,13 @@ const config = {
   ],
 
   hero: {
-    eyebrow:       "시흥대야역세권",
-    eyebrowUrgent: 0,
+    eyebrow:       "은계·대야 마지막 신축",
+    eyebrowUrgent: 1,
     brand:         "힐스테이트 시흥 더 클래스",
-    title:         "탁월한 브랜드 가치\n시흥 최고의 입지\n힐스테이트 시흥 더 클래스",
-    subtitle:      "힐스테이트 시흥 더 클래스",
-    bgColor:       "#0e4081",
-    accentKeyword:  ["브랜드","입지","힐스테이트"],
+    title:         "시흥대야역 도보 5분\n초중고 안심 통학권\nGTX-B 환승 서울생활권",
+    subtitle:      "역세권·교육·생활 인프라 완비",
+    bgColor:       "linear-gradient(to right, rgb(63 129 200), rgb(60 125 199), rgb(67 131 201))",
+    accentKeyword:  ["시흥대야역","안심 통학권","GTX-B","서울생활권"],
     image: {
       src:    "/apt/hillstate-siheung-theclass/1.webp",
       alt:    "힐스테이트 시흥 더 클래스 대표 이미지",
@@ -62,7 +69,7 @@ const config = {
       type:     "image-then-spec",
       navLabel: "사업개요",
       title:    "사업개요",
-      subtitle: "입지·규모·특화설계를 한눈에",
+      subtitle: "입지·규모를 한눈에",
       images: [
         { src: "/apt/hillstate-siheung-theclass/1-1.webp", alt: "사업개요" },
       ],
@@ -103,7 +110,7 @@ const config = {
       type:     "image",
       navLabel: "단지설계",
       title:    "단지설계",
-      subtitle: "초고층 고품격 주거공간",
+      subtitle: "자연과 조화를 이루는 단지 설계",
       images: [
         { src: "/apt/hillstate-siheung-theclass/2-2.webp", alt: "단지설계" },
       ],
@@ -133,7 +140,7 @@ const config = {
   theme: {
     // ── 히어로 커튼 색상 ──
     hero: {
-      curtainColor: "#0e4081",  // 커튼 시작 색상 (원하는 색으로 변경)
+      curtainColor: "#413C3B",  // 커튼 시작 색상 (원하는 색으로 변경)
     },
 
     // 섹션 헤더 구분선
@@ -164,7 +171,7 @@ const config = {
     title: {
       color:       "#ffffff",
       fontSize:    "clamp(1.6rem,8vw,2.7rem)",
-      accentColor: "#e93c47",
+      accentColor: "#f5b43b",
     },
     // 히어로 서브타이틀
     subtitle: {

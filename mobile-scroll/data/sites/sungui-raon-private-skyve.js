@@ -8,7 +8,7 @@ const config = {
   projectName: "숭의역 라온프라이빗 스카이브",
   shortName:   "숭의역 라온프라이빗 스카이브",
   telNumber:   "1666-1050",
-  ogImage:     "https://theblue-apt.vercel.app/apt/sungui-raon-private-skyve/share_img.png",
+  ogImage:     "/apt/sungui-raon-private-skyve/share_img.png",
   adminPhones:  ["01071901052","01048086474"],
   sheetId:      "",
   sheetTab:     "숭의역라온프라이빗스카이브",

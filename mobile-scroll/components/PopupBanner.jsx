@@ -27,9 +27,11 @@ export default function PopupBanner({ popup }) {
   return (
     <div className={styles.overlay} onClick={() => setOpen(false)}>
       <div className={styles.card} onClick={(e) => e.stopPropagation()}>
-        <button className={styles.closeBtn} onClick={() => setOpen(false)} aria-label="팝업 닫기">
-          ✕
-        </button>
+        <div className={styles.closeBtnWrap}>
+          <button className={styles.closeBtn} onClick={() => setOpen(false)} aria-label="팝업 닫기">
+            ✕
+          </button>
+        </div>
         <img
           src={popup.image.src}
           alt={popup.image.alt ?? ""}

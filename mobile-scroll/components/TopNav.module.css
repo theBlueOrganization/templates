@@ -1,11 +1,11 @@
 .nav {
   position: fixed;
   top: -80px;
-  /* 800px 컨테이너와 맞추기 위해 left/width 대신 max-width + margin 활용 */
+  /* 750px 컨테이너와 맞추기 위해 left/width 대신 max-width + margin 활용 */
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 600px;
+  max-width: 750px;
   height: 60px;
   background-color: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(8px);

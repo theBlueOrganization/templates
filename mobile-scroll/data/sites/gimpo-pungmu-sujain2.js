@@ -8,7 +8,7 @@ const config = {
   projectName: "풍무역세권 수자인 그라센트 2차",
   shortName:   "풍무역세권 수자인 그라센트 2차",
   telNumber:   "1666-9234",
-  ogImage:     "https://theblue-apt.vercel.app/apt/gimpo-pungmu-sujain2/link_share_img.png",
+  ogImage:     "/apt/gimpo-pungmu-sujain2/link_share_img.png",
   adminPhones:  ["01057314488","01071901052"],
   sheetId:      "",
   sheetTab:     "풍무역세권수자인그라센트2차",

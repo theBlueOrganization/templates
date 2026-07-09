@@ -15,6 +15,7 @@
  * @property {string}   shortName
  * @property {string}   telNumber
  * @property {string}   ogImage
+ * @property {string}   [favicon] - 브라우저 탭 파비콘 경로 (선택, 없으면 기본 파비콘 없음)
  * @property {{ name: string, bizNumber: string, email: string }} company
  * @property {string[]} visitTimeOptions
  * @property {{ label: string, target: string }[]} navItems

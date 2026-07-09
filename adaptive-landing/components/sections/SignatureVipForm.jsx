@@ -1,0 +1,181 @@
+'use client'
+
+import { useState } from 'react'
+import Reveal from '../motion/Reveal'
+import styles from './SignatureVipForm.module.css'
+
+const initialForm = {
+  name: '',
+  phone1: '',
+  phone2: '',
+  phone3: '',
+  service: '',
+  visit_date: '',
+  visit_time: '',
+  age: '',
+  privacy_agree: false,
+}
+
+// VIP 24시간 온라인예약센터 — 기존 ContactForm과 필드 구성이 달라(서비스 종류/연령대 라디오)
+// 별도 컴포넌트로 만들고, /api/sms에 serviceType/ageRange 필드를 추가로 실어 보낸다.
+export default function SignatureVipForm({ config }) {
+  const { vipForm } = config.signature
+  const { projectName, visitTimeOptions, adminPhones, sheetId, sheetTab, showUtmInSms } = config
+
+  const [form, setForm] = useState(initialForm)
+  const [submitting, setSubmitting] = useState(false)
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target
+    setForm((prev) => ({ ...prev, [name]: type === 'checkbox' ? checked : value }))
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    if (!form.privacy_agree) {
+      alert('개인정보 수집 및 이용에 동의해 주세요.')
+      return
+    }
+    const phone = `${form.phone1}-${form.phone2}-${form.phone3}`
+    setSubmitting(true)
+    try {
+      const res = await fetch('/api/sms', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name,
+          phone,
+          visit_date: form.visit_date,
+          visit_time: form.visit_time,
+          privacy_agree: form.privacy_agree,
+          serviceType: form.service,
+          ageRange: form.age,
+          projectName,
+          adminPhones,
+          sheetId,
+          sheetTab,
+          showUtmInSms,
+        }),
+      })
+      const data = await res.json()
+      if (data.success) {
+        alert('예약이 완료되었습니다. 확인 후 연락드리겠습니다.')
+        setForm(initialForm)
+      } else {
+        alert(data.message ?? '오류가 발생했습니다. 다시 시도해주세요.')
+      }
+    } catch {
+      alert('전송에 실패했습니다. 네트워크 상태를 확인해 주세요.')
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  return (
+    <section id={vipForm.id} className={styles.section}>
+      <Reveal className={styles.card}>
+        <form onSubmit={handleSubmit} noValidate>
+          <div className={styles.header}>
+            <p className={styles.eyebrow}>{vipForm.eyebrow}</p>
+            <h2 className={styles.title}>
+              <span>{vipForm.titleLine1}</span>
+              <strong>{vipForm.titleLine2}</strong>
+            </h2>
+            <p className={styles.desc}>{vipForm.desc}</p>
+          </div>
+
+          <div className={styles.group}>
+            <h3 className={styles.groupTitle}>개인정보 수집 동의</h3>
+            <div className={styles.privacyBox}>
+              <p>{vipForm.privacyText}</p>
+            </div>
+            <label className={styles.checkLabel}>
+              <input type="checkbox" name="privacy_agree" checked={form.privacy_agree} onChange={handleChange} required />
+              위 개인정보 수집 및 이용에 동의합니다. (필수)
+            </label>
+          </div>
+
+          <div className={styles.group}>
+            <h3 className={styles.groupTitle}>고객 정보 입력</h3>
+
+            <div className={styles.row}>
+              <span className={styles.label}>이름</span>
+              <input
+                type="text"
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                required
+                placeholder="이름을 입력해주세요"
+                className={styles.input}
+              />
+            </div>
+
+            <div className={styles.row}>
+              <span className={styles.label}>휴대폰</span>
+              <div className={styles.phoneRow}>
+                {['phone1', 'phone2', 'phone3'].map((field, i) => (
+                  <input
+                    key={field}
+                    name={field}
+                    type="tel"
+                    inputMode="numeric"
+                    maxLength={i === 0 ? 3 : 4}
+                    value={form[field]}
+                    onChange={handleChange}
+                    required
+                    placeholder={i === 0 ? '010' : i === 1 ? '1234' : '5678'}
+                    className={styles.phoneInput}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <div className={styles.row}>
+              <span className={styles.label}>원하시는 서비스</span>
+              <div className={styles.radioWrap}>
+                {vipForm.serviceOptions.map((opt) => (
+                  <label key={opt} className={styles.radioLabel}>
+                    <input type="radio" name="service" value={opt} checked={form.service === opt} onChange={handleChange} required />
+                    {opt}
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div className={styles.row}>
+              <span className={styles.label}>원하시는 일시</span>
+              <div className={styles.datetimeRow}>
+                <input type="date" name="visit_date" value={form.visit_date} onChange={handleChange} className={styles.dateInput} />
+                <select name="visit_time" value={form.visit_time} onChange={handleChange} className={styles.selectInput}>
+                  <option value="">시간을 선택해주세요</option>
+                  {visitTimeOptions.map((t) => (
+                    <option key={t} value={t}>
+                      {t}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div className={styles.row}>
+              <span className={styles.label}>연령대</span>
+              <div className={styles.radioWrap}>
+                {vipForm.ageOptions.map((opt) => (
+                  <label key={opt} className={styles.radioLabel}>
+                    <input type="radio" name="age" value={opt} checked={form.age === opt} onChange={handleChange} />
+                    {opt}
+                  </label>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" disabled={submitting} className={styles.submitBtn}>
+            {submitting ? '전송 중...' : '예약완료'}
+          </button>
+        </form>
+      </Reveal>
+    </section>
+  )
+}

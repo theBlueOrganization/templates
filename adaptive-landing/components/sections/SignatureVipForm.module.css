@@ -1,0 +1,232 @@
+.section {
+  background: #051c37;
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  width: 100%;
+  max-width: 950px;
+  background: #06203e;
+  border-radius: 12px;
+  box-shadow: 0 30px 30px rgba(0, 0, 0, 0.2);
+  padding: 40px 24px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(234, 230, 218, 0.8);
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 22px;
+  font-weight: 300;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.title strong {
+  font-weight: 700;
+  color: #eae6da;
+}
+
+.desc {
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.group {
+  padding: 24px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.groupTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #eae6da;
+  margin-bottom: 16px;
+}
+
+.privacyBox {
+  height: 140px;
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+}
+
+.privacyBox p {
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+  white-space: pre-line;
+}
+
+.checkLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #eae6da;
+}
+
+.checkLabel input {
+  width: 18px;
+  height: 18px;
+  accent-color: #eae6da;
+  flex-shrink: 0;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #eae6da;
+}
+
+.input,
+.dateInput,
+.selectInput,
+.phoneInput {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  padding: 15px 16px;
+  font-size: 15px;
+  color: #fff;
+  max-width: 380px;
+}
+
+.input::placeholder,
+.dateInput::placeholder {
+  color: #757575;
+}
+
+.phoneRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 380px;
+}
+
+.phoneInput {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+}
+
+.radioWrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.radioLabel input {
+  width: 18px;
+  height: 18px;
+  accent-color: #eae6da;
+}
+
+.datetimeRow {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 380px;
+}
+
+.submitBtn {
+  width: 100%;
+  margin-top: 8px;
+  background: #eae6da;
+  color: #06203e;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  padding: 20px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+}
+
+@media (min-width: 640px) {
+  .datetimeRow {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 768px) {
+  .card {
+    padding: 60px;
+  }
+
+  .title {
+    font-size: 30px;
+  }
+
+  .row {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .label {
+    width: 160px;
+    flex-shrink: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding: 120px 20px 80px;
+  }
+
+  .title {
+    font-size: 38px;
+  }
+
+  .desc {
+    font-size: 16px;
+  }
+}

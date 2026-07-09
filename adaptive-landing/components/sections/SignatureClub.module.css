@@ -1,0 +1,168 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.intro,
+.wellness,
+.sportsHealth,
+.cafeLounge,
+.eduKids {
+  padding: 60px 0;
+}
+
+.intro,
+.sportsHealth,
+.eduKids {
+  background: #fff;
+}
+
+.wellness {
+  background: #081412;
+}
+
+.cafeLounge {
+  background: #f5f6f5;
+}
+
+.introHead {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  padding: 0 20px;
+  margin-bottom: 40px;
+}
+
+.introEyebrow {
+  font-family: var(--font-playfair);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #b39258;
+}
+
+.introTitle {
+  display: flex;
+  flex-direction: column;
+  font-size: 24px;
+  font-weight: 300;
+  color: #06203e;
+  letter-spacing: -0.03em;
+  line-height: 1.35;
+}
+
+.introTitle strong {
+  font-weight: 700;
+}
+
+.introDesc {
+  font-size: 14px;
+  color: #555;
+}
+
+.floorPlanBox {
+  padding: 0 20px;
+  max-width: 1700px;
+  margin: 0 auto;
+}
+
+.wellnessHeroWrap {
+  padding: 0 20px;
+  max-width: 1408px;
+  margin: 0 auto 24px;
+}
+
+.wellnessHeroTrigger {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1408 / 900;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+.wellnessHeroImage {
+  object-fit: cover;
+  opacity: 0.95;
+}
+
+.wellnessHeroCap {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px 20px;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(2.5px);
+  text-align: left;
+}
+
+.wellnessHeroCap strong {
+  color: #b39258;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.wellnessHeroCap span {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+@media (min-width: 768px) {
+  .introTitle {
+    font-size: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .intro,
+  .wellness,
+  .sportsHealth,
+  .cafeLounge,
+  .eduKids {
+    padding: 140px 0;
+  }
+
+  .introHead {
+    margin-bottom: 60px;
+  }
+
+  .introTitle {
+    font-size: 44px;
+  }
+
+  .introDesc {
+    font-size: 18px;
+  }
+
+  .wellnessHeroWrap {
+    margin-bottom: 40px;
+  }
+
+  .wellnessHeroTrigger {
+    aspect-ratio: 1408 / 720;
+  }
+
+  .wellnessHeroCap {
+    max-width: 550px;
+    padding: 35px 40px;
+    border-top-right-radius: 16px;
+  }
+
+  .wellnessHeroCap strong {
+    font-size: 26px;
+  }
+
+  .wellnessHeroCap span {
+    font-size: 16px;
+  }
+}

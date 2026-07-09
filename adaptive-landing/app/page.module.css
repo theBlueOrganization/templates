@@ -1,0 +1,62 @@
+.page {
+  min-height: 100vh;
+  background: #f9fafb;
+  padding: 32px;
+}
+
+.heading {
+  margin-bottom: 8px;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
+}
+
+.subheading {
+  margin-bottom: 24px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #6b7280;
+}
+
+.list {
+  max-width: 448px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card {
+  display: block;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  padding: 16px;
+  transition: all 0.15s;
+}
+
+.card:hover {
+  border-color: #60a5fa;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.projectName {
+  display: block;
+  font-weight: 600;
+  color: #111827;
+}
+
+.slug {
+  margin-top: 2px;
+  display: block;
+  font-size: 14px;
+  line-height: 20px;
+  color: #9ca3af;
+}
+
+.tel {
+  margin-top: 4px;
+  display: block;
+  font-size: 14px;
+  line-height: 20px;
+  color: #6b7280;
+}

@@ -1,0 +1,213 @@
+.footer {
+  background: #111;
+  background-image: linear-gradient(90deg, rgba(5, 28, 55, 0.4) 0%, rgba(5, 28, 55, 0.4) 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 32px 20px 24px;
+}
+
+.container {
+  max-width: 1700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.topRow {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.gnbWrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.highlightText {
+  color: #eae6da;
+  font-size: 15px;
+  letter-spacing: -0.5px;
+}
+
+.callBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 14px;
+}
+
+.topRight {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.slogan {
+  color: #888;
+  font-size: 11px;
+}
+
+.familySelectWrap {
+  display: block;
+  max-width: 220px;
+}
+
+.familySelect {
+  width: 100%;
+  background: #222;
+  border: 1px solid #333;
+  color: #ccc;
+  font-size: 12px;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+.hr {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.bottomRow {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.logo {
+  opacity: 0.8;
+  width: 110px;
+}
+
+.logo img {
+  width: 100%;
+  height: auto;
+}
+
+.vr {
+  display: none;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.companyLines {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  font-size: 12px;
+}
+
+.companyLine strong {
+  color: #ccc;
+  font-weight: 500;
+  margin-right: 4px;
+}
+
+.companyLine {
+  color: #999;
+  font-weight: 300;
+}
+
+.disclaimers {
+  display: flex;
+  flex-direction: column;
+}
+
+.disclaimers p {
+  color: #666;
+  font-size: 11px;
+  letter-spacing: -0.3px;
+  line-height: 1.5;
+}
+
+.copyright {
+  color: #444;
+  font-size: 11px;
+  letter-spacing: 0.22px;
+  padding-top: 4px;
+}
+
+.cs {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.csPhone {
+  color: #fff;
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -0.5px;
+}
+
+.csHours {
+  color: #888;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .topRow {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .topRight {
+    align-items: flex-end;
+  }
+
+  .cs {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer {
+    padding: 41px 110px 30px;
+  }
+
+  .container {
+    gap: 20px;
+  }
+
+  .bottomRow {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 40px;
+  }
+
+  .vr {
+    display: block;
+    width: 1px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
+  }
+
+  .info {
+    flex: 1;
+  }
+
+  .cs {
+    min-width: 160px;
+    flex-shrink: 0;
+  }
+
+  .csPhone {
+    font-size: 22px;
+  }
+}

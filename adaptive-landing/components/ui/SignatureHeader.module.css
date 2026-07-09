@@ -1,0 +1,195 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background: #06203e;
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.headerScrolled {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+}
+
+.headerTransparent {
+  background: transparent;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  padding: 0 20px;
+}
+
+.logo {
+  display: block;
+  width: 140px;
+  flex-shrink: 0;
+}
+
+.logo img {
+  width: 100%;
+  height: auto;
+}
+
+.gnb {
+  display: none;
+}
+
+.gnbItem {
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: -0.5px;
+  padding: 0 7px;
+  white-space: nowrap;
+}
+
+.quick {
+  display: none;
+}
+
+.quickCta {
+  background: #fff;
+  color: #06203e;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: -0.5px;
+  padding: 9px 12px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.quickPhone {
+  background: #06203e;
+  border: 1px solid #d4a187;
+  color: #d4a187;
+  font-size: 17px;
+  padding: 9px 12px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.menuToggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.menuToggle span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: #fff;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.menuToggleOpen span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menuToggleOpen span:nth-child(2) {
+  opacity: 0;
+}
+
+.menuToggleOpen span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.mobileMenu {
+  display: flex;
+  flex-direction: column;
+  background: #06203e;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px 20px 20px;
+}
+
+.mobileMenuItem {
+  padding: 14px 0;
+  text-align: left;
+  color: #fff;
+  font-size: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mobileMenuCta {
+  margin-top: 16px;
+  background: #eae6da;
+  color: #06203e;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 14px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
+  .inner {
+    height: 96px;
+    padding: 0 24px;
+  }
+
+  .logo {
+    width: 190px;
+    flex-shrink: 0;
+  }
+
+  .gnb {
+    display: flex;
+    align-items: center;
+    flex-shrink: 1;
+  }
+
+  .quick {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .menuToggle {
+    display: none;
+  }
+}
+
+/* 1024px 구간은 nav 7개 항목이 겨우 들어맞는 최소치라, 화면이 넓어지면 여백을 조금 더 넉넉하게 되돌림 */
+@media (min-width: 1280px) {
+  .inner {
+    padding: 0 40px;
+  }
+
+  .logo {
+    width: 220px;
+  }
+
+  .gnbItem {
+    font-size: 17px;
+    padding: 0 16px;
+  }
+
+  .quick {
+    gap: 10px;
+  }
+
+  .quickCta {
+    font-size: 14px;
+    padding: 11px 14px;
+  }
+
+  .quickPhone {
+    font-size: 19px;
+    padding: 11px 14px;
+  }
+}

@@ -1,0 +1,198 @@
+.section {
+  background: #fdfdfc;
+  padding: 60px 20px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  color: #111;
+}
+
+.eyebrow strong {
+  font-weight: 700;
+  color: #c8b693;
+}
+
+.title {
+  font-family: var(--font-montserrat);
+  font-weight: 300;
+  font-size: 32px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #c8b693;
+}
+
+.descTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: #111;
+  line-height: 1.6;
+}
+
+.descAccent {
+  font-weight: 700;
+  color: #111;
+}
+
+.descBody {
+  font-size: 14px;
+  font-weight: 300;
+  color: #444;
+  line-height: 1.7;
+}
+
+.descBodyAccent {
+  font-weight: 700;
+  color: #111;
+}
+
+.mapWrap {
+  max-width: 1160px;
+  margin: 32px auto;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.mapImage {
+  width: 100%;
+  height: auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cardTitle {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px;
+  font-size: 18px;
+  font-weight: 400;
+  color: #111;
+  letter-spacing: -0.03em;
+}
+
+.cardTitle strong {
+  font-weight: 800;
+}
+
+.cardTag {
+  margin-left: 8px;
+  font-family: var(--font-montserrat);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #c8b693;
+}
+
+.cardImgWrap {
+  border-radius: 4px;
+  overflow: hidden;
+  background: #f0f0f0;
+}
+
+.cardImg {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 550 / 231;
+  object-fit: cover;
+}
+
+.cardDesc {
+  font-size: 14px;
+  font-weight: 300;
+  color: #666;
+  line-height: 1.7;
+}
+
+.cardDesc strong {
+  font-weight: 700;
+  color: #222;
+}
+
+.disclaimer {
+  max-width: 1160px;
+  margin: 40px auto 0;
+  font-size: 11px;
+  color: #777;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 44px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding: 100px 40px;
+  }
+
+  .header {
+    max-width: 850px;
+  }
+
+  .eyebrow {
+    font-size: 17.6px;
+  }
+
+  .title {
+    font-size: 64px;
+    letter-spacing: 0.15em;
+  }
+
+  .descTitle {
+    font-size: 20.8px;
+  }
+
+  .descBody {
+    font-size: 20.8px;
+  }
+
+  .mapWrap {
+    margin: 60px auto;
+  }
+
+  .grid {
+    gap: 60px;
+  }
+
+  .cardTitle {
+    font-size: 24px;
+  }
+
+  .cardDesc {
+    font-size: 17.6px;
+  }
+}

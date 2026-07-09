@@ -1,0 +1,55 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.item {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.trigger {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 573 / 450;
+  background: #111;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
+}
+
+.caption {
+  position: absolute;
+  left: 20px;
+  bottom: 16px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .caption {
+    left: 30px;
+    bottom: 20px;
+    font-size: 20px;
+  }
+}

@@ -1,0 +1,154 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 20px 60px;
+}
+
+.wrapReverse {
+  flex-direction: column;
+}
+
+.visual {
+  position: relative;
+  padding-bottom: 30%;
+}
+
+.mainTrigger {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 627 / 500;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #e5e7eb;
+  box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+}
+
+.mainImage {
+  object-fit: cover;
+}
+
+.mainGradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
+}
+
+.mainCaption {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.subTrigger {
+  position: absolute;
+  bottom: -8%;
+  width: 55%;
+  aspect-ratio: 392 / 320;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 6px solid #fff;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2);
+  background: #e5e7eb;
+}
+
+.subTriggerRight {
+  right: -5%;
+}
+
+.subTriggerLeft {
+  left: -5%;
+}
+
+.subImage {
+  object-fit: cover;
+}
+
+.subGradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
+}
+
+.subCaption {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding-top: 8%;
+}
+
+.tag {
+  display: inline-flex;
+  padding: 5px 14px;
+  border-radius: 20px;
+  background: #06203e;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #06203e;
+  letter-spacing: -0.03em;
+}
+
+.desc {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}
+
+@media (min-width: 1024px) {
+  .wrap {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0;
+    padding: 0 96px 100px;
+  }
+
+  .wrapReverse {
+    flex-direction: row-reverse;
+  }
+
+  .visual {
+    width: 45.9%;
+    padding-bottom: 0;
+  }
+
+  .text {
+    width: 26.8%;
+    padding-top: 0;
+  }
+
+  .title {
+    font-size: 36px;
+  }
+
+  .desc {
+    font-size: 17px;
+  }
+}

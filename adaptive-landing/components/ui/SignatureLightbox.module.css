@@ -1,0 +1,44 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(3, 10, 9, 0.9);
+}
+
+.inner {
+  position: relative;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.closeBtn {
+  position: absolute;
+  top: -44px;
+  right: 0;
+  color: #eae6da;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.caption {
+  margin-top: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .closeBtn {
+    font-size: 15px;
+  }
+}

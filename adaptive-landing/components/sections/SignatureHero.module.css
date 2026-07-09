@@ -1,0 +1,331 @@
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100svh;
+  background: #06203e;
+  overflow: hidden;
+  padding: 100px 20px 120px;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+}
+
+.bgImage {
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(3, 21, 24, 0.3) 0%, rgba(0, 0, 0, 0.85) 100%);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 900px;
+}
+
+.eyebrow {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  line-height: 1.6;
+  color: #b39258;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 20px;
+}
+
+.eyebrowAccent {
+  display: inline-block;
+  margin-top: 2px;
+  font-weight: 600;
+  background: linear-gradient(125deg, #b39258 0%, #c5a46d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.title {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 1.15;
+  color: #f4f4f4;
+  letter-spacing: -0.03em;
+  text-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+  margin-bottom: 28px;
+}
+
+.desc {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 13.5px;
+  line-height: 1.9;
+  color: #a0a5aa;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+.descAccent {
+  font-weight: 400;
+  color: #f4f4f4;
+}
+
+.scrollIndicator {
+  /* 모바일은 하단이 mobileBar(안내바+버튼)로 채워지므로 스크롤 힌트는 데스크톱에서만 표시 */
+  display: none;
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  z-index: 1;
+}
+
+.scrollText {
+  font-family: var(--font-montserrat);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.scrollLine {
+  width: 1px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.scrollLine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  animation: scrollLineMove 2s ease-in-out infinite;
+}
+
+@keyframes scrollLineMove {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@media (min-width: 768px) {
+  .eyebrow {
+    font-size: 15px;
+  }
+
+  .title {
+    font-size: 52px;
+  }
+
+  .desc {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    padding: 120px 20px 140px;
+  }
+
+  .content {
+    max-width: 1200px;
+  }
+
+  .eyebrow {
+    font-size: 18.4px;
+    letter-spacing: 0.25em;
+    margin-bottom: 24px;
+  }
+
+  .title {
+    font-size: 80px;
+    letter-spacing: -0.03em;
+    margin-bottom: 40px;
+  }
+
+  .desc {
+    font-size: 17.6px;
+  }
+
+  .scrollIndicator {
+    display: flex;
+    bottom: 50px;
+    gap: 20px;
+  }
+
+  .scrollText {
+    font-size: 12.8px;
+  }
+
+  .scrollLine {
+    height: 70px;
+  }
+
+  .mobileBar {
+    display: none;
+  }
+}
+
+/* 모바일 전용 하단 액션바 — 안내 롤링 배너 + 전화상담/방문예약 버튼 + 프로모 말풍선 */
+.mobileBar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+}
+
+.announceBar {
+  position: relative;
+  height: 40px;
+  background: #004c45;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+.announceTrack {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.5s ease;
+}
+
+.announceItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+}
+
+.announceBadge {
+  flex-shrink: 0;
+  background: rgba(234, 230, 218, 0.15);
+  border: 1px solid rgba(234, 230, 218, 0.3);
+  border-radius: 3px;
+  padding: 3px 7px;
+  color: #eae6da;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+.announceText {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 13.5px;
+  letter-spacing: -0.3px;
+}
+
+.announceStrong {
+  color: #fff;
+  font-weight: 500;
+}
+
+.announceLight {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 300;
+}
+
+.actionButtons {
+  position: relative;
+  display: flex;
+  height: 60px;
+}
+
+.callBtn,
+.visitBtn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-top: 1px solid;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.callBtn {
+  background: #fff;
+  border-top-color: #e2e8f0;
+  color: #004c45;
+}
+
+.visitBtn {
+  background: #eae6da;
+  border-top-color: #eae6da;
+  color: #111;
+}
+
+.promoBubble {
+  position: absolute;
+  right: 14px;
+  bottom: 100%;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #eae6da;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+  padding: 8px 16px 8px 12px;
+  box-shadow: 0 4px 7.5px rgba(0, 0, 0, 0.15);
+  color: #111;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+}
+
+.pulseDot {
+  flex-shrink: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #004c45;
+  animation: pulseDot 1.6s ease-in-out infinite;
+}
+
+.bubbleTail {
+  position: absolute;
+  right: 24px;
+  bottom: -5px;
+  width: 10px;
+  height: 10px;
+  background: #eae6da;
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  transform: rotate(45deg);
+}
+
+@keyframes pulseDot {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.8);
+    opacity: 0.4;
+  }
+}

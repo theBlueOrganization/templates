@@ -1,0 +1,182 @@
+.section {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  background: #f5f5f0;
+  overflow: hidden;
+  padding: 80px 20px;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+}
+
+.bgImage {
+  object-fit: cover;
+}
+
+@media (min-width: 1024px) {
+  .bg {
+    background-attachment: fixed;
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 900px;
+}
+
+.eyebrow {
+  font-family: var(--font-cormorant);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  color: #06203e;
+  margin-bottom: 16px;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+
+.titleLine1 {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 28px;
+  letter-spacing: -0.03em;
+  color: #1a1a1a;
+}
+
+.titleLine2 {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 36px;
+  letter-spacing: -0.02em;
+  background: linear-gradient(116deg, #06203e 0%, #082d57 50%, #06203e 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.desc {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.8;
+  color: #555;
+}
+
+.descAccent {
+  font-weight: 800;
+  color: #06203e;
+}
+
+.scrollIndicator {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  z-index: 1;
+}
+
+.scrollText {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #06203e;
+}
+
+.scrollLine {
+  width: 1px;
+  height: 40px;
+  background: rgba(6, 32, 62, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.scrollLine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #06203e;
+  animation: scrollLineMove 2s ease-in-out infinite;
+}
+
+@keyframes scrollLineMove {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@media (min-width: 768px) {
+  .titleLine1 {
+    font-size: 40px;
+  }
+
+  .titleLine2 {
+    font-size: 56px;
+  }
+
+  .desc {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    min-height: 100vh;
+    padding: 120px 20px;
+  }
+
+  .eyebrow {
+    font-size: 17.6px;
+    letter-spacing: 0.5em;
+    margin-bottom: 24px;
+  }
+
+  .title {
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+
+  .titleLine1 {
+    font-size: 60.8px;
+    letter-spacing: -0.05em;
+  }
+
+  .titleLine2 {
+    font-size: 88px;
+    letter-spacing: -0.02em;
+  }
+
+  .desc {
+    font-size: 20px;
+  }
+
+  .scrollIndicator {
+    bottom: 40px;
+  }
+
+  .scrollLine {
+    height: 60px;
+  }
+}

@@ -1,0 +1,81 @@
+.table {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 430px;
+  border-top: 1px solid #e5e7eb;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@media (min-width: 768px) {
+  .table {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .table {
+    max-width: 1200px;
+  }
+}
+
+.row {
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.label {
+  width: 36%;
+  background: #f9fafb;
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+@media (min-width: 768px) {
+  .label {
+    width: 28%;
+    padding: 12px 24px;
+  }
+}
+
+.value {
+  padding: 12px 16px;
+  color: #1f2937;
+}
+
+@media (min-width: 768px) {
+  .value {
+    padding: 12px 24px;
+  }
+}
+
+.valueLine {
+  display: block;
+}
+
+.imageGroup {
+  margin: 0 auto;
+  display: grid;
+  max-width: 430px;
+  gap: 12px;
+}
+
+@media (min-width: 768px) {
+  .imageGroup {
+    max-width: 768px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .imageGroup {
+    max-width: 1200px;
+  }
+}
+
+.image {
+  height: auto;
+  width: 100%;
+}

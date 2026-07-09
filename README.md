@@ -14,9 +14,10 @@ theBlueOrganization 납품용 템플릿 레포지토리
  
 ## 템플릿 목록
  
-| 폴더 | 설명 | 상태 |
-|------|------|------|
-| [mobile-scroll](./mobile-scroll) | 모바일 최적화 스크롤 페이지 (분양홍보 이벤트) | 이전 예정 |
+| 폴더 | 설명 | 상태 | 배포 |
+|------|------|------|------|
+| [mobile-scroll](./mobile-scroll) | 모바일 최적화 스크롤 페이지 (분양홍보 이벤트) | 이전 예정 | [theblue-apt.vercel.app](https://theblue-apt.vercel.app) |
+| [adaptive-landing](./adaptive-landing) | 모바일+PC 반응형 랜딩페이지 (Framer Motion 애니메이션) | 운영 중 | [adaptive-landing-ochre.vercel.app](https://adaptive-landing-ochre.vercel.app) |
  
 ---
  
@@ -27,6 +28,7 @@ templates/
 ├── README.md              ← 이 파일
 ├── CONTRIBUTING.md        ← 협업 규정
 ├── mobile-scroll/         ← 모바일 최적화 스크롤 페이지
+├── adaptive-landing/      ← 모바일+PC 반응형 랜딩페이지
 └── ...                    ← 추가 템플릿
 ```
 

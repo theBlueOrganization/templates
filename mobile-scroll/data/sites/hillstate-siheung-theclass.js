@@ -9,7 +9,7 @@ const config = {
   projectName: "힐스테이트 시흥 더 클래스",
   shortName:   "힐스테이트 시흥 더 클래스",
   telNumber:   "1833-6561",
-  ogImage:     "https://theblue-apt.vercel.app/apt/hillstate-siheung-theclass/share_img.png",
+  ogImage:     "/apt/hillstate-siheung-theclass/share_img.png",
   favicon:     "/apt/hillstate-siheung-theclass/favicon.jpg",
   adminPhones:  ["01027075551"],
   sheetId:      "",

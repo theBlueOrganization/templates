@@ -18,7 +18,7 @@ const config = {
   projectName: "인하대역 수자인 로이센트",
   shortName:   "인하대역 수자인 로이센트",
   telNumber:   "1666-1050",
-  ogImage:     "https://theblue-apt.vercel.app/apt/sujainroicent-inha/link_share_img.png",
+  ogImage:     "/apt/sujainroicent-inha/link_share_img.png",
   adminPhones:  ["01048086474","01071901052"],
   sheetId:      "",
   sheetTab:     "인하대역수자인로이센트",

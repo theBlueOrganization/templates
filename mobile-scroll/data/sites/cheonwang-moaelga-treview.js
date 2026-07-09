@@ -8,7 +8,7 @@ const config = {
   projectName: "천왕역 모아엘가 트레뷰",
   shortName:   "천왕역 모아엘가 트레뷰",
   telNumber:   "1688-0814",
-  ogImage:     "https://theblue-apt.vercel.app/apt/cheonwang-moaelga-treview/share_img.png",
+  ogImage:     "/apt/cheonwang-moaelga-treview/share_img.png",
   adminPhones:  ["01094026953"],
   sheetId:      "",
   sheetTab:     "천왕역모아엘가트레뷰",

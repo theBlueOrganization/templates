@@ -18,7 +18,7 @@ const config = {
   projectName: "인천작전 한라비발디",
   shortName:   "인천작전 한라비발디",
   telNumber:   "1533-1916",
-  ogImage:     "https://theblue-apt.vercel.app/apt/hanla-jakjeon/link_share_img.png",
+  ogImage:     "/apt/hanla-jakjeon/link_share_img.png",
   adminPhones:  ["01026307968","01071901052"],
   sheetId:      "",
   sheetTab:     "인천작전한라비발디",

@@ -29,29 +29,43 @@ async function saveToSheet(payload) {
   const sheets = google.sheets({ version: 'v4', auth })
   const now = new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })
   const tab = sheetTab ?? process.env.GOOGLE_SHEET_DEFAULT_TAB ?? '상담신청'
+  const targetSpreadsheetId = sheetId || process.env.GOOGLE_SHEET_ID
+  const row = [
+    now,
+    projectName,
+    name,
+    phone,
+    visit_date ?? '',
+    visit_time ?? '',
+    gift_check ? '체크함' : '아님',
+    privacy_agree ? '동의함' : '미동의',
+    utmSource ?? '직접유입',
+    serviceType ?? '',
+    ageRange ?? '',
+  ]
 
-  await sheets.spreadsheets.values.append({
-    spreadsheetId: sheetId || process.env.GOOGLE_SHEET_ID,
-    range: `'${tab}'!A1`,
-    valueInputOption: 'USER_ENTERED',
-    requestBody: {
-      values: [
-        [
-          now,
-          projectName,
-          name,
-          phone,
-          visit_date ?? '',
-          visit_time ?? '',
-          gift_check ? '체크함' : '아님',
-          privacy_agree ? '동의함' : '미동의',
-          utmSource ?? '직접유입',
-          serviceType ?? '',
-          ageRange ?? '',
-        ],
-      ],
-    },
-  })
+  try {
+    await sheets.spreadsheets.values.append({
+      spreadsheetId: targetSpreadsheetId,
+      range: `'${tab}'!A1`,
+      valueInputOption: 'USER_ENTERED',
+      requestBody: { values: [row] },
+    })
+  } catch (e) {
+    // 새 현장의 sheetTab이 아직 스프레드시트에 없는 경우 자동으로 탭을 만들고 재시도한다
+    if (!e.message?.includes('Unable to parse range')) throw e
+    console.warn(`[SHEET] 탭 "${tab}"이 없어 새로 생성 후 재시도`)
+    await sheets.spreadsheets.batchUpdate({
+      spreadsheetId: targetSpreadsheetId,
+      requestBody: { requests: [{ addSheet: { properties: { title: tab } } }] },
+    })
+    await sheets.spreadsheets.values.append({
+      spreadsheetId: targetSpreadsheetId,
+      range: `'${tab}'!A1`,
+      valueInputOption: 'USER_ENTERED',
+      requestBody: { values: [row] },
+    })
+  }
 }
 
 export async function POST(request) {

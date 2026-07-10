@@ -66,7 +66,9 @@ async function sendSms({ to, text }) {
     signal: AbortSignal.timeout(8000),
   });
   const data = await res.json();
-  if (!res.ok || data.errorCode) throw new Error(data.message || "SMS 발송 실패");
+  if (!res.ok || data.errorCode) {
+    throw new Error(`SMS 발송 실패 (to: ${to}, status: ${res.status}, errorCode: ${data.errorCode ?? "N/A"}): ${data.message || JSON.stringify(data)}`);
+  }
   return data;
 }
 
@@ -89,7 +91,9 @@ async function sendKakaoAlimtalk({ to, templateId, variables }) {
     signal: AbortSignal.timeout(8000),
   });
   const data = await res.json();
-  if (!res.ok || data.errorCode) throw new Error(data.message || "카카오 발송 실패");
+  if (!res.ok || data.errorCode) {
+    throw new Error(`카카오 발송 실패 (to: ${to}, status: ${res.status}, errorCode: ${data.errorCode ?? "N/A"}): ${data.message || JSON.stringify(data)}`);
+  }
   return data;
 }
 

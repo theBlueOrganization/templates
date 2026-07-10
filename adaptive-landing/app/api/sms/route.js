@@ -176,7 +176,7 @@ export async function POST(request) {
         })
         const data = await res.json()
         if (!res.ok || data.errorCode) {
-          throw new Error(data.message || 'SMS 발송 실패')
+          throw new Error(`SMS 발송 실패 (to: ${to}, status: ${res.status}, errorCode: ${data.errorCode ?? 'N/A'}): ${data.message || JSON.stringify(data)}`)
         }
         return data
       })

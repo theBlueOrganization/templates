@@ -102,8 +102,14 @@ export async function POST(request) {
     }
 
     const { SOLAPI_API_KEY, SOLAPI_API_SECRET, SOLAPI_SENDER, ADMIN_PHONE } = process.env;
-    if (!SOLAPI_API_KEY || !SOLAPI_API_SECRET || !SOLAPI_SENDER || !ADMIN_PHONE) {
-      console.error("[SMS] 필수 환경변수 누락");
+    const missingEnv = [
+      !SOLAPI_API_KEY && "SOLAPI_API_KEY",
+      !SOLAPI_API_SECRET && "SOLAPI_API_SECRET",
+      !SOLAPI_SENDER && "SOLAPI_SENDER",
+      !ADMIN_PHONE && "ADMIN_PHONE",
+    ].filter(Boolean);
+    if (missingEnv.length > 0) {
+      console.error(`[SMS] 필수 환경변수 누락: ${missingEnv.join(", ")}`);
       return NextResponse.json(
         { success: false, message: "서버 설정 오류. 관리자에게 문의하세요." },
         { status: 500 }
@@ -134,9 +140,14 @@ export async function POST(request) {
     const siteConfig = slug ? getSiteBySlug(slug) : null;
     const resolvedTemplateId = siteConfig?.kakaoTemplateId || process.env.KAKAO_TEMPLATE_ID;
 
-    const sheetPromise = saveToSheet({ name, phone, visit_date, visit_time, gift_check, privacy_agree, projectName, sheetId, sheetTab, utmSource });
+    const sheetPromise = saveToSheet({ name, phone, visit_date, visit_time, gift_check, privacy_agree, projectName, sheetId, sheetTab, utmSource })
+      .then(() => true)
+      .catch((e) => {
+        console.error("[SHEET] 저장 실패:", e);
+        return false;
+      });
 
-    await Promise.all(
+    const sendResults = await Promise.allSettled(
       recipients.map(async (to) => {
         if (siteConfig?.kakao === true && resolvedTemplateId) {
           try {
@@ -165,12 +176,17 @@ export async function POST(request) {
       })
     );
 
-    let sheetSaved = true;
-    try {
-      await sheetPromise;
-    } catch (e) {
-      console.error("[SHEET] 저장 실패:", e);
-      sheetSaved = false;
+    const sheetSaved = await sheetPromise;
+
+    const failed = sendResults.filter((r) => r.status === "rejected");
+    if (failed.length > 0) {
+      failed.forEach((r) => console.error("[SMS] 발송 실패:", r.reason?.message ?? r.reason));
+    }
+    if (failed.length === recipients.length) {
+      return NextResponse.json(
+        { success: false, message: "문자 발송에 실패했습니다. 잠시 후 다시 시도해 주세요.", sheetSaved },
+        { status: 502 }
+      );
     }
 
     return NextResponse.json({ success: true, sheetSaved });

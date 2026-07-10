@@ -90,8 +90,14 @@ export async function POST(request) {
     }
 
     const { SOLAPI_API_KEY, SOLAPI_API_SECRET, SOLAPI_SENDER, ADMIN_PHONE } = process.env
-    if (!SOLAPI_API_KEY || !SOLAPI_API_SECRET || !SOLAPI_SENDER || !ADMIN_PHONE) {
-      console.error('[SMS] 필수 환경변수 누락')
+    const missingEnv = [
+      !SOLAPI_API_KEY && 'SOLAPI_API_KEY',
+      !SOLAPI_API_SECRET && 'SOLAPI_API_SECRET',
+      !SOLAPI_SENDER && 'SOLAPI_SENDER',
+      !ADMIN_PHONE && 'ADMIN_PHONE',
+    ].filter(Boolean)
+    if (missingEnv.length > 0) {
+      console.error(`[SMS] 필수 환경변수 누락: ${missingEnv.join(', ')}`)
       return NextResponse.json(
         { success: false, message: '서버 설정 오류. 관리자에게 문의하세요.' },
         { status: 500 }
@@ -124,45 +130,58 @@ export async function POST(request) {
       `\n개인정보동의: ${privacy_agree ? '동의함' : '미동의'}` +
       utmLine
 
-    const smsSends = recipients.map((to) =>
-      fetch(SOLAPI_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          ...makeSignature(SOLAPI_API_KEY, SOLAPI_API_SECRET),
-        },
-        body: JSON.stringify({ message: { to, from: SOLAPI_SENDER, text: adminMessage } }),
+    const sheetPromise = saveToSheet({
+      name,
+      phone,
+      visit_date,
+      visit_time,
+      gift_check,
+      privacy_agree,
+      projectName,
+      sheetId,
+      sheetTab,
+      utmSource,
+      serviceType,
+      ageRange,
+    })
+      .then(() => true)
+      .catch((e) => {
+        console.error('[SHEET] 저장 실패:', e)
+        return false
+      })
+
+    const sendResults = await Promise.allSettled(
+      recipients.map(async (to) => {
+        const res = await fetch(SOLAPI_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            ...makeSignature(SOLAPI_API_KEY, SOLAPI_API_SECRET),
+          },
+          body: JSON.stringify({ message: { to, from: SOLAPI_SENDER, text: adminMessage } }),
+        })
+        const data = await res.json()
+        if (!res.ok || data.errorCode) {
+          throw new Error(data.message || 'SMS 발송 실패')
+        }
+        return data
       })
     )
 
-    const [adminRes] = await Promise.all([
-      ...smsSends,
-      saveToSheet({
-        name,
-        phone,
-        visit_date,
-        visit_time,
-        gift_check,
-        privacy_agree,
-        projectName,
-        sheetId,
-        sheetTab,
-        utmSource,
-        serviceType,
-        ageRange,
-      }).catch((e) => console.error('[SHEET] 저장 실패:', e)),
-    ])
+    const sheetSaved = await sheetPromise
 
-    const solapiData = await adminRes.json()
-    if (!adminRes.ok || solapiData.errorCode) {
-      console.error('[SMS] Solapi 발송 실패:', solapiData)
+    const failed = sendResults.filter((r) => r.status === 'rejected')
+    if (failed.length > 0) {
+      failed.forEach((r) => console.error('[SMS] Solapi 발송 실패:', r.reason?.message ?? r.reason))
+    }
+    if (failed.length === recipients.length) {
       return NextResponse.json(
-        { success: false, message: '문자 발송에 실패했습니다. 잠시 후 다시 시도해 주세요.' },
+        { success: false, message: '문자 발송에 실패했습니다. 잠시 후 다시 시도해 주세요.', sheetSaved },
         { status: 502 }
       )
     }
 
-    return NextResponse.json({ success: true })
+    return NextResponse.json({ success: true, sheetSaved })
   } catch (error) {
     console.error('[SMS] 서버 오류:', error)
     return NextResponse.json({ success: false, message: '서버 오류가 발생했습니다.' }, { status: 500 })

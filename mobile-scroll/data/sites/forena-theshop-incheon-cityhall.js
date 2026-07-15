@@ -50,7 +50,7 @@ const config = {
   ],
 
   hero: {
-    eyebrow:       "트리플 역세권｜초품아 안심학군｜중앙공원 에코라이프",
+    eyebrow:       "트리플 역세권｜초품아 안심학군",
     eyebrowUrgent: 1,
     brand:         "포레나더샵 인천시청역",
     title:         "인천시청역 트리플 역세권\nGTX-B로 더 빨라질 서울\n2,568세대 명품 대단지",

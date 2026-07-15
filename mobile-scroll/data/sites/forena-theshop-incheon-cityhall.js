@@ -5,21 +5,30 @@
 
 const config = {
   slug:        "forena-theshop-incheon-cityhall",
-  projectName: "상인천 포레나 더샵",
-  shortName:   "상인천 포레나 더샵",
-  telNumber:   "1234-1234",
+  projectName: "포레나더샵인천시청역",
+  shortName:   "포레나더샵인천시청역",
+  telNumber:   "1668 0093",
   ogImage:     "/apt/forena-theshop-incheon-cityhall/share_img.png",
-  adminPhones:  ["01083209697"],
+  favicon:     "/apt/forena-theshop-incheon-cityhall/favicon.ico",
+  adminPhones:  ["01034894684"],
   sheetId:      "",
-  sheetTab:     "상인천포레나더샵",
+  sheetTab:     "포레나더샵인천시청역",
 
   popup: {
     enabled: true,
     image: {
       src: "/apt/forena-theshop-incheon-cityhall/4.webp",
-      alt: "상인천 포레나 더샵 팝업",
+      alt: "포레나더샵인천시청역 팝업",
     },
   },
+  
+  // ── 유입 경로 (utm_source) 옵션 ──
+  showUtmInSms: true,
+  utmSources: [
+    { label: "SKT",    value: "SKT" },
+    { label: "shinhan",    value: "shinhan" },
+  ],
+
 
   company: {
     name:      "주식회사 더블루파트너스",
@@ -40,16 +49,16 @@ const config = {
   ],
 
   hero: {
-    eyebrow:       "간석1구역 주택재개발 정비사업",
+    eyebrow:       "트리플 역세권｜초품아 안심학군｜중앙공원 에코라이프",
     eyebrowUrgent: 1,
-    brand:         "상인천 포레나 더샵",
-    title:         "간석1동 대단지 재개발\n지상 최고 35층 2,568세대\n인천시청역 생활권",
+    brand:         "포레나더샵 인천시청역",
+    title:         "인천시청역 트리플 역세권\nGTX-B로 더 빨라질 서울\n2,568세대 명품 대단지",
     subtitle:      "간석1구역 주택재개발 정비사업",
-    bgColor:       "#0F1B33",
-    accentKeyword:  ["간석1구역","2,568세대","인천시청역","대단지"],
+    bgColor:       "linear-gradient(to right, rgb(48 101 192), rgb(55 112 199), rgb(72 127 207)",
+    accentKeyword:  ["인천시청역", "GTX-B", "2,568세대"],
     image: {
       src:    "/apt/forena-theshop-incheon-cityhall/1.webp",
-      alt:    "상인천 포레나 더샵 대표 이미지",
+      alt:    "포레나더샵인천시청역 대표 이미지",
       width:  800,
       height: 500,
     },
@@ -76,7 +85,6 @@ const config = {
         { label: "건축규모", value: "지하4층 ~ 지상18층~35층" },
         { label: "세대수",   value: "총 2,568세대(일반분양 735세대)" },
         { label: "주차대수", value: "총 3,243대(세대당 1.26대)" },
-        { label: "입주예정일", value: "추후 공지" },
       ],
     },
     {
@@ -151,8 +159,8 @@ const config = {
     },
     // 긴급 배지 (eyebrowUrgent)
     eyebrowUrgent: {
-      color:       "#f5c15c",
-      borderColor: "rgba(245,193,92,0.5)",
+      color:       "#ff6b6b",
+      borderColor: "rgba(255,107,107,0.5)",
     },
 
     // 히어로 브랜드명
@@ -178,7 +186,7 @@ const config = {
     },
     // 상담 신청 버튼
     ContactForm_submitBtn: {
-      background: "linear-gradient(135deg, #d4af37, #b8860b)",
+      background: "#f8e090",
       color:      "#0F1B33",
       fontSize:   "1.15rem",
     },
@@ -197,9 +205,9 @@ const config = {
   privacyText: `본 분양사업과 관련된 상담을 수행하는 상담사 (이하 "개인정보처리자")는 아래와 같이 귀하의 개인정보를 수집, 이용하고자 합니다.
 수집된 개인정보는 명시된 목적 외의 용도로 이용되지 않으며, 「개인정보 보호법」 등 관계 법령을 준수하여 안전하게 처리됩니다.
 
-1. 개인정보의 처리 목적 : 상인천 포레나 더샵 분양 관련 정보 제공, 분양 상담 진행 및 고객 문의 응대
+1. 개인정보의 처리 목적 : 포레나더샵인천시청역 분양 관련 정보 제공, 분양 상담 진행 및 고객 문의 응대
 2. 처리하는 개인정보의 항목 : 성명, 휴대전화번호
-3. 개인정보의 처리 및 보유 기간 : 상인천 포레나 더샵 분양 완료 시까지
+3. 개인정보의 처리 및 보유 기간 : 포레나더샵인천시청역 분양 완료 시까지
 4. 동의 거부 권리 및 거부 시 불이익 : 동의를 거부할 경우 관심고객 등록이 불가합니다.
 5. 개인정보 처리 위탁 : 홈페이지 운영·관리 대행사 주식회사 더블루파트너스 (addup@addup.kr)`,
 };

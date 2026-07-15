@@ -5,6 +5,7 @@
 
 const config = {
   slug:        "forena-theshop-incheon-cityhall",
+  subdomain:   "포레나더샵인천시청역",
   projectName: "포레나더샵인천시청역",
   shortName:   "포레나더샵인천시청역",
   telNumber:   "1668 0093",

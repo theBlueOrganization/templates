@@ -54,7 +54,7 @@ const config = {
     brand:         "포레나더샵 인천시청역",
     title:         "인천시청역 트리플 역세권\nGTX-B로 더 빨라질 서울\n2,568세대 명품 대단지",
     subtitle:      "간석1구역 주택재개발 정비사업",
-    bgColor:       "linear-gradient(to right, rgb(48 101 192), rgb(55 112 199), rgb(72 127 207)",
+    bgColor:       "linear-gradient(to right, rgb(48 101 192), rgb(55 112 199), rgb(72 127 207))",
     accentKeyword:  ["인천시청역", "GTX-B", "2,568세대"],
     image: {
       src:    "/apt/forena-theshop-incheon-cityhall/1.webp",

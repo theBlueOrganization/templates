@@ -31,6 +31,7 @@ import suguiRaonSkyve from "./sites/sungui-raon-private-skyve.js";
 import gyeongsanHobanSummit1  from "./sites/gyeongsan-hobansummit-1.js";
 import cheonwangMoaelgaTreview  from "./sites/cheonwang-moaelga-treview.js";
 import hillstateSiheungTheclass  from "./sites/hillstate-siheung-theclass.js";
+import forenaTheshopIncheonCityhall  from "./sites/forena-theshop-incheon-cityhall.js";
 
 
 /** @type {SiteConfig[]} */
@@ -43,6 +44,7 @@ const sites = [
   gyeongsanHobanSummit1,
   cheonwangMoaelgaTreview,
   hillstateSiheungTheclass,
+  forenaTheshopIncheonCityhall,
 ];
 
 // ─── 유틸 함수 ────────────────────────────────────────────

@@ -148,7 +148,9 @@ export async function POST(request) {
       : "";
 
     const siteConfig = slug ? getSiteBySlug(slug) : null;
-    const resolvedTemplateId = siteConfig?.kakaoTemplateId || process.env.KAKAO_TEMPLATE_ID;
+    const utmKakaoTemplateId = siteConfig?.kakaoByUtm?.[utmSource];
+    const resolvedTemplateId = utmKakaoTemplateId || siteConfig?.kakaoTemplateId || process.env.KAKAO_TEMPLATE_ID;
+    const useKakao = Boolean(utmKakaoTemplateId) || (siteConfig?.kakao === true && Boolean(resolvedTemplateId));
 
     const utmProjectSuffix = siteConfig?.smsProjectNameByUtm?.[utmSource];
     const smsProjectName = utmProjectSuffix ? `${projectName} +${utmProjectSuffix}` : projectName;
@@ -172,7 +174,7 @@ export async function POST(request) {
 
     const sendResults = await Promise.allSettled(
       recipients.map(async (to) => {
-        if (siteConfig?.kakao === true && resolvedTemplateId) {
+        if (useKakao) {
           try {
             await sendKakaoAlimtalk({
               to,

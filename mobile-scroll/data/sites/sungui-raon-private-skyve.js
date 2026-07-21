@@ -43,6 +43,11 @@ const config = {
     B: "1666-1352",
   },
 
+  // utm_source=B로 들어온 상담만 문자 대신 카카오 알림톡으로 발송 (다른 유입경로는 그대로 문자)
+  kakaoByUtm: {
+    B: "KA01TP260622093537285QA4EPtdxJyI",
+  },
+
   // utm_source=C로 들어온 방문자에게만 히어로 문구를 다르게 표시 (subtitle은 기존 값 유지)
   heroByUtm: {
     C: {

@@ -28,8 +28,13 @@ const config = {
     { label: "SKT2",    value: "SKT2" },
     { label: "Lpoint",    value: "lpoint" },
     { label: "Lpoint2",    value: "lpoint2" },
+    { label: "신한",    value: "sh" },
   ],
 
+  // utm_source=sh로 들어온 상담만 문자 발송 시 현장명 뒤에 "+신한"을 붙여서 표시
+  smsProjectNameByUtm: {
+    sh: "신한",
+  },
 
   company: {
     name:      "주식회사 더블루파트너스",

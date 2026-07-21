@@ -147,8 +147,14 @@ export async function POST(request) {
       ? `\n유입매체: ${utmSource}`
       : "";
 
+    const siteConfig = slug ? getSiteBySlug(slug) : null;
+    const resolvedTemplateId = siteConfig?.kakaoTemplateId || process.env.KAKAO_TEMPLATE_ID;
+
+    const utmProjectSuffix = siteConfig?.smsProjectNameByUtm?.[utmSource];
+    const smsProjectName = utmProjectSuffix ? `${projectName} +${utmProjectSuffix}` : projectName;
+
     const adminMessage =
-      `[${projectName}] 신규 상담 신청\n` +
+      `[${smsProjectName}] 신규 상담 신청\n` +
       `이름: ${name}\n` +
       `연락처: ${phone}\n` +
       `방문예약일: ${visit_date || "미입력"}\n` +
@@ -156,9 +162,6 @@ export async function POST(request) {
       `사은품등록: ${giftText}\n` +
       `개인정보동의: ${privacyText}` +
       utmLine;
-
-    const siteConfig = slug ? getSiteBySlug(slug) : null;
-    const resolvedTemplateId = siteConfig?.kakaoTemplateId || process.env.KAKAO_TEMPLATE_ID;
 
     const sheetPromise = saveToSheet({ name, phone, visit_date, visit_time, gift_check, privacy_agree, projectName, sheetId, sheetTab, utmSource })
       .then(() => true)
@@ -175,7 +178,7 @@ export async function POST(request) {
               to,
               templateId: resolvedTemplateId,
               variables: {
-                "#{현장명}":      projectName  ?? "",
+                "#{현장명}":      smsProjectName ?? "",
                 "#{유입매체}":    utmSource    ?? "미확인",
                 "#{이름}":        name         ?? "",
                 "#{연락처}":      phone        ?? "",

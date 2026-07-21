@@ -57,21 +57,22 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
 
   const isAccent = variant === "accent";
 
-  const effectiveTitle    = heroOverride?.title    ?? title;
-  const effectiveSubtitle = heroOverride?.subtitle ?? subtitle;
+  const effectiveTitle         = heroOverride?.title         ?? title;
+  const effectiveSubtitle      = heroOverride?.subtitle      ?? subtitle;
+  const effectiveAccentKeyword = heroOverride?.accentKeyword ?? accentKeyword;
 
   // type1 별도 컴포넌트로 위임
   if (variant === "type1") {
-    return <HeroSectionType1 image={image} eyebrow={eyebrow} eyebrowUrgent={eyebrowUrgent} brand={brand} title={effectiveTitle} subtitle={effectiveSubtitle} bgColor={bgColor} accentKeyword={accentKeyword} theme={theme} />;
+    return <HeroSectionType1 image={image} eyebrow={eyebrow} eyebrowUrgent={eyebrowUrgent} brand={brand} title={effectiveTitle} subtitle={effectiveSubtitle} bgColor={bgColor} accentKeyword={effectiveAccentKeyword} theme={theme} />;
   }
 
   const showScrollHint = settled || accentReady;
 
   const titleLines = effectiveTitle?.split("\n") ?? [];
   const badges     = eyebrow?.split("｜").map((s) => s.trim()) ?? [];
-  const keywords   = Array.isArray(accentKeyword)
-    ? accentKeyword.filter(Boolean)
-    : accentKeyword ? [accentKeyword] : [];
+  const keywords   = Array.isArray(effectiveAccentKeyword)
+    ? effectiveAccentKeyword.filter(Boolean)
+    : effectiveAccentKeyword ? [effectiveAccentKeyword] : [];
   const th         = theme ?? {};
   const curtainColor = th.hero?.curtainColor ?? "#0f172a";
 

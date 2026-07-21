@@ -47,7 +47,7 @@ const config = {
   heroByUtm: {
     C: {
       title: "4가지 노선 초역세권 41층\n인천 25평 3억원대 아파트\n주변 시세 차익 1억 예상",
-      accentKeyword: ["4가지 노선", "1억 예상"],
+      accentKeyword: ["4가지 노선", "3억원대", "1억 예상"],
     },
   },
 

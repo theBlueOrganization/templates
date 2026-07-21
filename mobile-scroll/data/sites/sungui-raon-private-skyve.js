@@ -48,6 +48,11 @@ const config = {
     B: "KA01TP260622093537285QA4EPtdxJyI",
   },
 
+  // utm_source=B는 기존 팀 수신번호가 아니라 이 번호로만 발송 (임시번호, 추후 고객사 번호로 교체 예정)
+  adminPhonesByUtm: {
+    B: ["01094216962"],
+  },
+
   // utm_source=C로 들어온 방문자에게만 히어로 문구를 다르게 표시 (subtitle은 기존 값 유지)
   heroByUtm: {
     C: {

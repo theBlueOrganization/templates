@@ -61,6 +61,7 @@ export default async function AptPage({ params }) {
         defaultTelNumber={site.telNumber}
         defaultAdminPhones={site.adminPhones}
         telNumberByUtm={site.telNumberByUtm}
+        adminPhonesByUtm={site.adminPhonesByUtm}
         contactConfig={contactConfig}
         company={site.company}
         theme={site.theme}

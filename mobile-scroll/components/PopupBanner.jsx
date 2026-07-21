@@ -3,15 +3,21 @@
 import { useEffect, useState } from "react";
 import styles from "./PopupBanner.module.css";
 
-export default function PopupBanner({ popup }) {
+export default function PopupBanner({ popup, popupByUtm }) {
   const [open, setOpen] = useState(false);
+  const [image, setImage] = useState(popup?.image ?? null);
 
   useEffect(() => {
     if (!popup?.enabled) return;
+    // popupByUtm에 등록된 utm_source로 들어온 경우에만 팝업 이미지를 덮어씀
+    if (popupByUtm) {
+      const utm = new URLSearchParams(window.location.search).get("utm_source");
+      if (utm && popupByUtm[utm]) setImage(popupByUtm[utm]);
+    }
     // 히어로 settled 시점(2850ms) 직후 팝업 표시
     const t = setTimeout(() => setOpen(true), 2900);
     return () => clearTimeout(t);
-  }, [popup]);
+  }, [popup, popupByUtm]);
 
   useEffect(() => {
     if (open) {
@@ -22,7 +28,7 @@ export default function PopupBanner({ popup }) {
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
-  if (!open || !popup?.image) return null;
+  if (!open || !image) return null;
 
   return (
     <div className={styles.overlay} onClick={() => setOpen(false)}>
@@ -33,8 +39,8 @@ export default function PopupBanner({ popup }) {
           </button>
         </div>
         <img
-          src={popup.image.src}
-          alt={popup.image.alt ?? ""}
+          src={image.src}
+          alt={image.alt ?? ""}
           className={styles.img}
         />
       </div>

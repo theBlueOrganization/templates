@@ -21,6 +21,22 @@ const config = {
     },
   },
 
+  // utm_source=SKT1/lpoint2/sh로 들어온 방문자에게만 팝업 이미지를 다르게 표시
+  popupByUtm: {
+    SKT1: {
+      src: "/apt/sungui-raon-private-skyve/4-2.webp",
+      alt: "숭의역 라온프라이빗 스카이브 팝업",
+    },
+    lpoint2: {
+      src: "/apt/sungui-raon-private-skyve/4-2.webp",
+      alt: "숭의역 라온프라이빗 스카이브 팝업",
+    },
+    sh: {
+      src: "/apt/sungui-raon-private-skyve/4-2.webp",
+      alt: "숭의역 라온프라이빗 스카이브 팝업",
+    },
+  },
+
   // ── 유입 경로 (utm_source) 옵션 ──
   showUtmInSms: true,
   utmSources: [

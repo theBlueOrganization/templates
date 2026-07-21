@@ -7,9 +7,9 @@ const config = {
   slug:        "sungui-raon-private-skyve",
   projectName: "숭의역 라온프라이빗 스카이브",
   shortName:   "숭의역 라온프라이빗 스카이브",
-  telNumber:   "1666-1050",
+  telNumber:   "1800-2261",
   ogImage:     "/apt/sungui-raon-private-skyve/share_img.png",
-  adminPhones:  ["01071901052","01048086474"],
+  adminPhones:  ["01071901052","01048086474","01090447402"],
   sheetId:      "",
   sheetTab:     "숭의역라온프라이빗스카이브",
 

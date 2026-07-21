@@ -21,13 +21,13 @@ const config = {
     },
   },
 
-  // utm_source=SKT1/lpoint2/sh로 들어온 방문자에게만 팝업 이미지를 다르게 표시
+  // utm_source=SKT1/Lpoint2/sh로 들어온 방문자에게만 팝업 이미지를 다르게 표시
   popupByUtm: {
     SKT1: {
       src: "/apt/sungui-raon-private-skyve/4-2.webp",
       alt: "숭의역 라온프라이빗 스카이브 팝업",
     },
-    lpoint2: {
+    Lpoint2: {
       src: "/apt/sungui-raon-private-skyve/4-2.webp",
       alt: "숭의역 라온프라이빗 스카이브 팝업",
     },
@@ -43,7 +43,7 @@ const config = {
     { label: "SKT1",    value: "SKT1" },
     { label: "SKT2",    value: "SKT2" },
     { label: "Lpoint",    value: "lpoint" },
-    { label: "Lpoint2",    value: "lpoint2" },
+    { label: "Lpoint2",    value: "Lpoint2" },
     { label: "신한",    value: "sh" },
     { label: "B",    value: "B" },
     { label: "C",    value: "C" },

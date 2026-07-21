@@ -50,7 +50,7 @@ export default async function AptPage({ params }) {
   return (
     <>
       <TopNav navItems={navItems} />
-      <HeroSection {...site.hero} theme={site.theme} />
+      <HeroSection {...site.hero} theme={site.theme} heroByUtm={site.heroByUtm} />
 
       {site.sections.map((section) => (
         <ImageSection key={section.id} {...section} theme={site.theme} />
@@ -60,6 +60,7 @@ export default async function AptPage({ params }) {
         offices={site.offices ?? null}
         defaultTelNumber={site.telNumber}
         defaultAdminPhones={site.adminPhones}
+        telNumberByUtm={site.telNumberByUtm}
         contactConfig={contactConfig}
         company={site.company}
         theme={site.theme}

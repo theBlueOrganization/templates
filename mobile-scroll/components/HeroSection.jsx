@@ -6,24 +6,31 @@ import HeroSectionType1 from "./HeroSectionType1";
 
 // variant: "default" | "type1" | "type2" | "type3" …
 // 추후 변형 추가 시 여기에 케이스 추가
-export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, title, subtitle, bgColor, accentKeyword, theme, enableVariants }) {
+export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, title, subtitle, bgColor, accentKeyword, theme, enableVariants, heroByUtm }) {
   const [variant,     setVariant]    = useState("default");
   const [ready,       setReady]      = useState(false);
   const [visible,    setVisible]    = useState(false);
   const [curtainOut, setCurtainOut] = useState(false);
   const [settled,    setSettled]    = useState(false);
   const [accentReady, setAccentReady] = useState(false);
+  const [heroOverride, setHeroOverride] = useState(null);
 
   // data에서 enableVariants: true 로 opt-in한 경우에만 쿼리스트링 감지
   // useLayoutEffect: 페인트 전에 실행 → 타입 전환 시 플래시 없음
   // ?v=1 → type1, ?v=2 → type2 …
   useLayoutEffect(() => {
+    const params = new URLSearchParams(window.location.search);
     if (enableVariants) {
-      const v = new URLSearchParams(window.location.search).get("v");
+      const v = params.get("v");
       if (v === "1") setVariant("type1");
     }
+    // heroByUtm에 등록된 utm_source로 들어온 경우에만 title/subtitle을 덮어씀
+    if (heroByUtm) {
+      const utm = params.get("utm_source");
+      if (utm && heroByUtm[utm]) setHeroOverride(heroByUtm[utm]);
+    }
     setReady(true);
-  }, [enableVariants]);
+  }, [enableVariants, heroByUtm]);
 
   // default 변형: 기존 3단계 커튼 애니메이션
   useEffect(() => {
@@ -43,21 +50,24 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
 
   // ── 모든 hook 이후 ──
 
-  // enableVariants 페이지에서 variant 확정 전: 투명 placeholder로 SSR 커튼 플래시 차단
-  if (!ready && enableVariants) {
+  // enableVariants 또는 heroByUtm 페이지에서 확정 전: 투명 placeholder로 SSR 플래시 차단
+  if (!ready && (enableVariants || heroByUtm)) {
     return <section id="home" className={styles.hero} style={{ opacity: 0 }} />;
   }
 
   const isAccent = variant === "accent";
 
+  const effectiveTitle    = heroOverride?.title    ?? title;
+  const effectiveSubtitle = heroOverride?.subtitle ?? subtitle;
+
   // type1 별도 컴포넌트로 위임
   if (variant === "type1") {
-    return <HeroSectionType1 image={image} eyebrow={eyebrow} eyebrowUrgent={eyebrowUrgent} brand={brand} title={title} subtitle={subtitle} bgColor={bgColor} accentKeyword={accentKeyword} theme={theme} />;
+    return <HeroSectionType1 image={image} eyebrow={eyebrow} eyebrowUrgent={eyebrowUrgent} brand={brand} title={effectiveTitle} subtitle={effectiveSubtitle} bgColor={bgColor} accentKeyword={accentKeyword} theme={theme} />;
   }
 
   const showScrollHint = settled || accentReady;
 
-  const titleLines = title?.split("\n") ?? [];
+  const titleLines = effectiveTitle?.split("\n") ?? [];
   const badges     = eyebrow?.split("｜").map((s) => s.trim()) ?? [];
   const keywords   = Array.isArray(accentKeyword)
     ? accentKeyword.filter(Boolean)
@@ -139,9 +149,9 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
             </span>
           ))}
         </h1>
-        {subtitle && (
+        {effectiveSubtitle && (
           <p className={styles.subtitle}>
-            {subtitle}
+            {effectiveSubtitle}
           </p>
         )}
       </div>

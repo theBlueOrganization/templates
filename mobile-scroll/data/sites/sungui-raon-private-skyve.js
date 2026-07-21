@@ -29,11 +29,25 @@ const config = {
     { label: "Lpoint",    value: "lpoint" },
     { label: "Lpoint2",    value: "lpoint2" },
     { label: "신한",    value: "sh" },
+    { label: "B",    value: "B" },
+    { label: "C",    value: "C" },
   ],
 
   // utm_source=sh로 들어온 상담만 문자 발송 시 현장명 뒤에 "+신한"을 붙여서 표시
   smsProjectNameByUtm: {
     sh: "신한",
+  },
+
+  // utm_source=B로 들어온 방문자에게만 화면 문의처 번호를 다르게 표시 (문자 수신번호(adminPhones)는 영향 없음)
+  telNumberByUtm: {
+    B: "1666-1352",
+  },
+
+  // utm_source=C로 들어온 방문자에게만 히어로 문구를 다르게 표시 (subtitle은 기존 값 유지)
+  heroByUtm: {
+    C: {
+      title: "4가지노선 초역세권 41층\n인천 25평 3억원대 아파트\n주변 시세 차익 1억 예상",
+    },
   },
 
   company: {

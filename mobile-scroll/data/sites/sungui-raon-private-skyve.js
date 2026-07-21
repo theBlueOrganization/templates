@@ -2,6 +2,7 @@
  * 현장 슬러그: sungui-raon-private-skyve
  * URL: /apt/sungui-raon-private-skyve
  */
+//b :-> 화면 문의처만 변경 1666-1352
 
 const config = {
   slug:        "sungui-raon-private-skyve",

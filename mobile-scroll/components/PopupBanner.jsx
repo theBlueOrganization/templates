@@ -20,13 +20,13 @@ export default function PopupBanner({ popup, popupByUtm }) {
   }, [popup, popupByUtm]);
 
   useEffect(() => {
-    if (open) {
+    if (open && image) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
     }
     return () => { document.body.style.overflow = ""; };
-  }, [open]);
+  }, [open, image]);
 
   if (!open || !image) return null;
 

@@ -16,7 +16,7 @@ function makeSignature(apiKey, apiSecret) {
   };
 }
 
-async function saveToSheet({ name, phone, visit_date, visit_time, gift_check, privacy_agree, projectName, sheetId, sheetTab, utmSource }) {
+async function saveToSheet({ name, phone, visit_date, visit_time, gift_check, privacy_agree, projectName, sheetId, sheetTab, utmSource, officeLabel }) {
   const auth = new google.auth.GoogleAuth({
     credentials: {
       client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
@@ -31,7 +31,7 @@ async function saveToSheet({ name, phone, visit_date, visit_time, gift_check, pr
   const privacyText = privacy_agree ? "동의함" : "미동의";
   const tab = sheetTab ?? process.env.GOOGLE_SHEET_DEFAULT_TAB ?? "상담신청";
   const targetSpreadsheetId = sheetId || process.env.GOOGLE_SHEET_ID;
-  const row = [now, projectName, name, phone, visit_date ?? "", visit_time ?? "", giftText, privacyText, utmSource ?? "미확인"];
+  const row = [now, projectName, name, phone, visit_date ?? "", visit_time ?? "", giftText, privacyText, utmSource ?? "미확인", officeLabel ?? ""];
 
   try {
     await sheets.spreadsheets.values.append({
@@ -103,7 +103,7 @@ export async function POST(request) {
     const {
       name, phone, visit_date, visit_time, gift_check, privacy_agree,
       projectName, adminPhones, sheetId, sheetTab, utmSource, showUtmInSms,
-      slug,
+      slug, officeLabel,
     } = body;
 
     if (!name || !phone) {
@@ -165,7 +165,7 @@ export async function POST(request) {
       `개인정보동의: ${privacyText}` +
       utmLine;
 
-    const sheetPromise = saveToSheet({ name, phone, visit_date, visit_time, gift_check, privacy_agree, projectName, sheetId, sheetTab, utmSource })
+    const sheetPromise = saveToSheet({ name, phone, visit_date, visit_time, gift_check, privacy_agree, projectName, sheetId, sheetTab, utmSource, officeLabel })
       .then(() => true)
       .catch((e) => {
         console.error("[SHEET] 저장 실패:", e);

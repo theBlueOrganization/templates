@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import styles from "./ContactForm.module.css";
 
 export default function ContactForm({ config }) {
-  const { projectName, visitTimeOptions, privacyText, adminPhones, sheetId, sheetTab, theme, kakao, slug } = config;
+  const { projectName, visitTimeOptions, privacyText, adminPhones, sheetId, sheetTab, theme, kakao, slug, officeLabel } = config;
   const th = theme ?? {};
   const [inquiryCount, setInquiryCount] = useState(null);
   const [submitting, setSubmitting] = useState(false);
@@ -73,6 +73,7 @@ export default function ContactForm({ config }) {
           utmSource,
           showUtmInSms: config.showUtmInSms,
           slug: slug ?? null,
+          officeLabel: officeLabel ?? "",
         }),
       });
       const data = await res.json();

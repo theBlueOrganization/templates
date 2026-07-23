@@ -1,15 +1,22 @@
+'use client'
+
 import Image from 'next/image'
+import { useUtmSource } from '../../lib/useUtmSource'
 import styles from './SignatureFooter.module.css'
 
 // eupseong-prugio 전용 푸터 — 시행/시공/온라인대행 등 다중 회사정보 라인 + Family Site 셀렉트를 포함
-export default function SignatureFooter({ footer, telNumber }) {
+export default function SignatureFooter({ footer, telNumber, telNumberByUtm }) {
+  // telNumberByUtm에 등록된 utm_source로 들어온 경우에만 노출 전화번호를 덮어씀 (SignatureHeader/SignatureHero와 동일 규칙)
+  const utmSource = useUtmSource()
+  const resolvedTelNumber = telNumberByUtm?.[utmSource] ?? telNumber
+
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.topRow}>
           <div className={styles.gnbWrap}>
             <p className={styles.highlightText}>{footer.highlightText}</p>
-            <a href={`tel:${telNumber}`} className={styles.callBtn} aria-label="전화상담">
+            <a href={`tel:${resolvedTelNumber}`} className={styles.callBtn} aria-label="전화상담">
               📞
             </a>
           </div>

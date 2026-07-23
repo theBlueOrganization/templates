@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { cn } from '../../lib/utils'
+import { useUtmSource } from '../../lib/useUtmSource'
 import styles from './SignatureHeader.module.css'
 
 // PC 헤더 높이(96px, SignatureHeader.module.css .inner 1024px 값과 동일하게 유지)
@@ -11,10 +12,13 @@ const DESKTOP_HEADER_HEIGHT = 96
 // eupseong-prugio 전용 헤더 — PC(1024px 이상)에서는 히어로(#hero) 구간에서만 투명하고,
 // 그 아래로 스크롤하면 짙은 네이비 배경으로 자연스럽게(transition) 전환됨. 모바일은 항상 네이비 배경.
 // gnb 라벨은 실제 페이지 섹션 id(sectionIds)와 순서대로 매칭해 스크롤 이동시킴.
-export default function SignatureHeader({ header, sectionIds = [], ctaTargetId }) {
+export default function SignatureHeader({ header, sectionIds = [], ctaTargetId, telNumberByUtm }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [transparent, setTransparent] = useState(false)
+  // telNumberByUtm에 등록된 utm_source로 들어온 경우에만 노출 전화번호를 덮어씀
+  const utmSource = useUtmSource()
+  const phone = telNumberByUtm?.[utmSource] ?? header.phone
 
   useEffect(() => {
     const heroEl = document.getElementById('hero')
@@ -66,8 +70,8 @@ export default function SignatureHeader({ header, sectionIds = [], ctaTargetId }
           <button type="button" className={styles.quickCta} onClick={() => scrollTo(ctaTargetId)}>
             {header.quickCtaLabel}
           </button>
-          <a href={`tel:${header.phone}`} className={styles.quickPhone}>
-            {header.phone}
+          <a href={`tel:${phone}`} className={styles.quickPhone}>
+            {phone}
           </a>
         </div>
 

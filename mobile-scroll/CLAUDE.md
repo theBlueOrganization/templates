@@ -40,8 +40,10 @@
 | `kakaoByUtm` | 특정 유입경로만 카카오 알림톡으로 발송 (나머지는 SMS) |
 | `heroByUtm` | 특정 유입경로 방문자에게만 히어로 타이틀/서브타이틀 등을 다르게 표시 |
 | `hero.enableVariants` | `?v=1` 쿼리스트링으로 히어로 타입(레이아웃 변형) 전환 허용 |
-| `popupByUtm` | 특정 유입경로 방문자에게만 팝업 이미지를 다르게 표시 |
-| `clientCompany` | `{ name, bizNumber, representative, address }` — 값이 있을 때만 `ClientFooter`가 `SiteFooter` 바로 위에 렌더링 (고객사/분양사 정보, 대행사 정보보다 강조된 톤) |
+| `popupByUtm` | 특정 유입경로 방문자에게만 (배열의 첫 번째) 팝업 이미지를 다르게 표시 |
+| `clientCompany` | `{ name, bizNumber, representative, address }` — 값이 있을 때만 `ClientFooter`가 `SiteFooter` 바로 위에 렌더링 (고객사/분양사 정보, 대행사 정보보다 강조된 톤). `theme.ClientFooter_name`/`_key`/`_value`로 색상 커스터마이징 가능 |
+
+**`popup` 필드 형태**: 단일 객체 `{ enabled, image }` 또는 배열 `[{ enabled, image }, ...]` 둘 다 지원. 배열이면 팝업을 순차 표시 — 하나를 닫으면 다음 팝업이 이어서 뜨고(우측 상단에 "1/2" 표시), 마지막 팝업을 닫으면 완전히 사라짐.
 
 **상담 접수 데이터 흐름**: `ContactForm` 제출 → `/api/sms` → ① `adminPhones`로 SMS(또는 카카오) 발송 ② 구글시트에 행 추가. 시트 컬럼 순서: `신청시간, 현장명, 이름, 연락처, 방문예약일, 방문예약시간, 사은품등록, 개인정보동의, 유입매체, 접수오피스`(10번째, `offices` 없는 현장은 빈 값). 전체 현장 시트를 한 곳에 모으는 "통합DB" 탭은 스프레드시트에 바인딩된 Apps Script(`mergeAllSheets`, 확장 프로그램 > Apps Script)가 담당 — 시트 컬럼 개수를 바꾸면 이 스크립트의 하드코딩된 컬럼 수(A~J = 10)도 같이 맞춰야 함.
 

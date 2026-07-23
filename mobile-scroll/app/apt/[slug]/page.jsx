@@ -68,7 +68,7 @@ export default async function AptPage({ params }) {
         theme={site.theme}
       />
 
-      {site.popup?.enabled && (
+      {site.popup && (
         <PopupBanner popup={site.popup} popupByUtm={site.popupByUtm} />
       )}
     </>

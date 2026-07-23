@@ -4,6 +4,10 @@ export const metadata = {
   metadataBase: new URL("https://theblue-apt.vercel.app"),
   title: "분양 현장 목록 - 주식회사 더블루파트너스",
   description: "주식회사 더블루파트너스가 운영하는 분양 현장 목록입니다.",
+  openGraph: {
+    title: "분양 현장 목록 - 주식회사 더블루파트너스",
+    description: "주식회사 더블루파트너스가 운영하는 분양 현장 목록입니다.",
+  },
 };
 
 export default function RootLayout({ children }) {

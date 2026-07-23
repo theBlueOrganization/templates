@@ -42,7 +42,7 @@ description: 새 분양 현장(아파트 랜딩페이지)을 추가할 때 사�
 - `ogImage` 경로가 실제 배치 경로와 일치하는지 확인
 
 ## 5단계 — 브랜치 생성 및 커밋
-- 브랜치명: `feat/은지/YYYYMMDD-HHmm/[slug]` (`format/initials/date-time/project-name` 컨벤션)
+- 브랜치명: `feat/<initials>/YYYYMMDD-HHmm/[slug]` (`format/initials/date-time/project-name` 컨벤션, `<initials>`는 작업자 본인 이니셜로 교체)
 - 커밋 메시지: `feat: [현장명] 랜딩페이지 추가`
 - 실제 push나 PR 생성 전 반드시 사용자에게 확인받는다
 

@@ -15,8 +15,12 @@ export default function SiteFooter({ company, telNumber }) {
 
           <span className={styles.key}>이메일</span>
           <span className={styles.value}>{company.email}</span>
-          <span className={styles.key}>전화번호</span>
-          <span className={styles.value}>{company.phone}</span>
+          {company.phone && (
+            <>
+              <span className={styles.key}>전화번호</span>
+              <span className={styles.value}>{company.phone}</span>
+            </>
+          )}
         </div>
 
         <div className={styles.notice}>

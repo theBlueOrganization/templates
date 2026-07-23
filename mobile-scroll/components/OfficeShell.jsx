@@ -24,7 +24,7 @@ function OfficeShellInner({ offices, defaultTelNumber, defaultAdminPhones, telNu
   return (
     <>
       <ContactForm config={{ ...contactConfig, adminPhones, officeLabel }} />
-      <ClientFooter clientCompany={clientCompany} />
+      <ClientFooter clientCompany={clientCompany} theme={theme} />
       <SiteFooter company={company} telNumber={telNumber} />
       <BottomBar telNumber={telNumber} theme={theme} />
     </>
@@ -41,7 +41,7 @@ export default function OfficeShell({ offices, defaultTelNumber, defaultAdminPho
       fallback={
         <>
           <ContactForm config={{ ...contactConfig, adminPhones: fallbackAdminPhones, officeLabel: fallbackOfficeLabel, disabled: Boolean(offices) }} />
-          <ClientFooter clientCompany={clientCompany} />
+          <ClientFooter clientCompany={clientCompany} theme={theme} />
           <SiteFooter company={company} telNumber={fallbackTelNumber} />
           <BottomBar telNumber={fallbackTelNumber} theme={theme} />
         </>

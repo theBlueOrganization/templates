@@ -1,6 +1,6 @@
 ---
 name: regression-checker
-description: components/, app/, data/siteConfig.js, data/siteRegistry.js 등 여러 현장이 공유하는 코드를 수정한 뒤 사용. 기존에 배포된 현장들이 새 변경사항 때문에 깨지지 않는지 검증한다. "템플릿 수정했는데 확인해줘", "컴포넌트 바꿨어", "회귀 체크", "기존 현장 영향 확인" 요청 시 반드시 사용할 것. 새 현장 추가 작업(site-adder 담당)에는 사용하지 않는다.
+description: components/, app/, data/sites/*.js, data/siteRegistry.js 등 여러 현장이 공유하는 코드를 수정한 뒤 사용. 기존에 배포된 현장들이 새 변경사항 때문에 깨지지 않는지 검증한다. "템플릿 수정했는데 확인해줘", "컴포넌트 바꿨어", "회귀 체크", "기존 현장 영향 확인" 요청 시 반드시 사용할 것. 새 현장 추가 작업(site-adder 담당)에는 사용하지 않는다.
 ---
 
 # 역할
@@ -23,7 +23,7 @@ description: components/, app/, data/siteConfig.js, data/siteRegistry.js 등 여
 # 검증 절차
 
 ## 1. 변경 범위 파악
-`git diff` 또는 최근 커밋 기준으로 `components/`, `app/`, `data/siteConfig.js`, `data/siteRegistry.js` 중
+`git diff` 또는 최근 커밋 기준으로 `components/`, `app/`, `data/sites/*.js`, `data/siteRegistry.js` 중
 무엇이 바뀌었는지 확인한다.
 
 ## 2. 새로 참조하는 필드/프롭 추출

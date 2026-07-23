@@ -7,7 +7,7 @@
 
 ## 프로젝트 구조
 
-```
+```text
 ├── app/
 │   ├── api/sms/route.js           ← Solapi 문자·카카오 알림톡 발송 + 구글시트 저장
 │   ├── api/count/route.js         ← 상담 신청 카운터 (구글시트 행 수 조회)

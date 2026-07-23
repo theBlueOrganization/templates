@@ -3,10 +3,11 @@
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import ContactForm from "./ContactForm";
+import ClientFooter from "./ClientFooter";
 import SiteFooter from "./SiteFooter";
 import BottomBar from "./BottomBar";
 
-function OfficeShellInner({ offices, defaultTelNumber, defaultAdminPhones, telNumberByUtm, adminPhonesByUtm, contactConfig, company, theme }) {
+function OfficeShellInner({ offices, defaultTelNumber, defaultAdminPhones, telNumberByUtm, adminPhonesByUtm, contactConfig, company, clientCompany, theme }) {
   const searchParams = useSearchParams();
   const officeId = searchParams.get("office");
   const utmSource = searchParams.get("utm_source");
@@ -23,13 +24,14 @@ function OfficeShellInner({ offices, defaultTelNumber, defaultAdminPhones, telNu
   return (
     <>
       <ContactForm config={{ ...contactConfig, adminPhones, officeLabel }} />
+      <ClientFooter clientCompany={clientCompany} theme={theme} />
       <SiteFooter company={company} telNumber={telNumber} />
       <BottomBar telNumber={telNumber} theme={theme} />
     </>
   );
 }
 
-export default function OfficeShell({ offices, defaultTelNumber, defaultAdminPhones, telNumberByUtm, adminPhonesByUtm, contactConfig, company, theme }) {
+export default function OfficeShell({ offices, defaultTelNumber, defaultAdminPhones, telNumberByUtm, adminPhonesByUtm, contactConfig, company, clientCompany, theme }) {
   const fallbackTelNumber   = offices?.[0]?.telNumber   ?? defaultTelNumber;
   const fallbackAdminPhones = offices?.[0]?.adminPhones ?? defaultAdminPhones;
   const fallbackOfficeLabel = offices?.[0] ? `${offices[0].id} (${offices[0].telNumber})` : "";
@@ -39,6 +41,7 @@ export default function OfficeShell({ offices, defaultTelNumber, defaultAdminPho
       fallback={
         <>
           <ContactForm config={{ ...contactConfig, adminPhones: fallbackAdminPhones, officeLabel: fallbackOfficeLabel, disabled: Boolean(offices) }} />
+          <ClientFooter clientCompany={clientCompany} theme={theme} />
           <SiteFooter company={company} telNumber={fallbackTelNumber} />
           <BottomBar telNumber={fallbackTelNumber} theme={theme} />
         </>
@@ -52,6 +55,7 @@ export default function OfficeShell({ offices, defaultTelNumber, defaultAdminPho
         adminPhonesByUtm={adminPhonesByUtm}
         contactConfig={contactConfig}
         company={company}
+        clientCompany={clientCompany}
         theme={theme}
       />
     </Suspense>

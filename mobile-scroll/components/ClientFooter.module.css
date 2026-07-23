@@ -1,0 +1,46 @@
+.wrap {
+  background-color: #1e293b;
+  padding: 32px 20px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ─── 상호 (헤딩) ───────────────────────────────────── */
+.name {
+  color: #ffffff80;
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin: 0 0 12px;
+}
+
+/* ─── 나머지 정보 (SiteFooter보다 눈에 띄게, 세로 스택) ── */
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.info p {
+  margin: 0;
+  color: #ffffff80;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.key {
+  color: #ffffff80;
+  font-weight: 700;
+  margin-right: 8px;
+}
+
+/* ─── 모바일 ────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .name {
+    font-size: 1.05rem;
+  }
+}

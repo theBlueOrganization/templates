@@ -1,9 +1,15 @@
 # adaptive-landing — 반응형 분양 랜딩페이지 템플릿 (Next.js App Router)
 
-> `templates-main/mobile-scroll`, `second_templates`와 달리 **모바일과 PC를 모두 대응하는 반응형** 템플릿입니다.
-> 애니메이션은 IntersectionObserver 대신 **Framer Motion**(`whileInView`, `variants`, `AnimatePresence`)으로 관리합니다.
-> 스택은 mobile-scroll처럼 **순수 JavaScript**입니다 (TypeScript 아님) — 현재 단계에서는 타입 유지보수 부담 없이 빠르게 반복 납품하는 게 우선이라 판단해 JS로 전환했습니다.
-> 스타일은 **컴포넌트별 CSS Modules**(`ComponentName.module.css`)로 관리합니다 — Tailwind 유틸리티 클래스 대신, 각 컴포넌트 파일 옆의 CSS 파일을 열어서 직접 값을 고칠 수 있게 하기 위함입니다. 자세한 작성 규칙은 `DESIGN_SYSTEM.md` 0번 항목 참고.
+부동산 분양 홍보용 랜딩페이지를 현장(아파트 단지)별로 반복 납품하기 위한 템플릿입니다.
+모바일과 PC를 모두 지원하는 반응형 레이아웃이며, 하나의 코드베이스에서 `data/sites/[slug].js`
+파일만 바꿔가며 여러 현장을 운영합니다.
+
+- **프레임워크**: Next.js 15 (App Router, React 19)
+- **언어**: JavaScript (JSX, TypeScript 아님)
+- **스타일**: 컴포넌트별 CSS Modules (`ComponentName.module.css`) — Tailwind 미사용. 각 컴포넌트
+  파일 옆의 CSS 파일을 열어서 값을 직접 고칩니다. 자세한 작성 규칙은 `DESIGN_SYSTEM.md` 참고.
+- **애니메이션**: Framer Motion (`whileInView`, `variants`, `AnimatePresence`)
+- **연동**: Solapi(SMS), Google Sheets API(상담 데이터 저장)
 
 ---
 
@@ -15,15 +21,43 @@
 - Framer Motion
 - Solapi (SMS), Google Sheets API (상담 데이터 수집)
 
-## 다른 템플릿과의 차이
+---
 
-| | mobile-scroll | second_templates | **adaptive-landing** |
-|---|---|---|---|
-| 언어 | JavaScript | TypeScript | **JavaScript** |
-| 스타일 | CSS Modules | Tailwind v4 | **CSS Modules** |
-| 레이아웃 | 모바일 전용 (600px 고정) | 모바일 전용 (390px 고정) | **모바일 + PC 반응형** |
-| 애니메이션 | CSS keyframes + setTimeout | CSS keyframes + setTimeout | **Framer Motion** |
-| 섹션 타입 | 범용 이미지/스펙 블록 1종 | 범용 이미지/스펙 블록 1종 | **About/Point/Gallery/Location + 범용 블록**, `type` 필드로 구분 |
+## 이 템플릿의 구조 — "Signature" 컴포넌트 스택
+
+새 현장마다 Figma 디자인이 완전히 다르기 때문에, 정해진 섹션 타입을 조합하는 방식이 아니라
+**전용 컴포넌트 세트(이름이 모두 `Signature`로 시작) 하나**를 씁니다. 헤더 → 히어로 →
+사업개요 → 위치안내 → 프리미엄 → 조경 → 단지소개 → 세대안내 → 커뮤니티 → 상담신청폼 → 푸터
+순서로 고정돼 있고, 각 섹션에 들어갈 텍스트·이미지·데이터를 현장 파일에서 채워 넣습니다.
+
+`data/sites/[slug].js`의 `signature` 객체 아래 각 필드가 그대로 하나의 컴포넌트에 대응합니다.
+필드는 빠짐없이 채워야 합니다(컴포넌트가 값이 없다는 걸 가정하고 짜여 있지 않습니다).
+
+| `signature.` 필드 | 담당 컴포넌트 | 내용 |
+|---|---|---|
+| `header` | `components/ui/SignatureHeader` | 상단 고정 헤더 (로고, 메뉴, 전화번호) |
+| `hero` | `components/sections/SignatureHero` | 첫 화면 히어로 |
+| `summary` | `components/sections/SignatureSummary` | 사업개요 |
+| `location` | `components/sections/SignatureLocation` | 위치안내 |
+| `premiumIntro` | `components/sections/SignaturePremiumIntro` | 프리미엄 전환 섹션 |
+| `premiumValue` | `components/sections/SignaturePremiumValue` | 핵심 가치 카드 6종 |
+| `landscape` | `components/sections/SignatureLandscape` | 조경안내 |
+| `complex` | `components/sections/SignatureComplex` | 단지소개(배치도·동호수표) |
+| `unitPlan` | `components/sections/SignatureUnitPlan` | 세대안내(탭형 평면도) |
+| `club` | `components/sections/SignatureClub` | 커뮤니티 시설 안내 |
+| `vipForm` | `components/sections/SignatureVipForm` | 상담신청 폼 |
+| `footer` | `components/ui/SignatureFooter` | 하단 회사정보 |
+
+`header.gnb` 배열의 순서는 위 표의 섹션 순서(각 섹션의 `id`)와 1:1로 매칭되어, 메뉴를
+누르면 해당 섹션으로 스크롤 이동합니다.
+
+각 필드가 정확히 어떤 값을 받는지는 `data/sites/example-apt.js`에 필드별 주석으로 문서화돼
+있습니다 — 새 현장을 만들 때 이 파일을 복사해서 값만 바꾸면 됩니다.
+
+Figma 디자인이 기존 현장과 크게 다르면:
+1. 비슷한 구조면 해당 `Signature*.jsx`/`.module.css`를 그 현장에 맞게 직접 수정합니다.
+2. 완전히 새로운 레이아웃 섹션이 필요하면 `components/sections/`(또는 `ui/`)에 `Signature`
+   접두어로 새 컴포넌트를 추가하고 `app/apt/[slug]/page.jsx`의 렌더 목록에 끼워 넣습니다.
 
 ---
 
@@ -33,7 +67,7 @@
 app/
 ├── apt/[slug]/page.jsx        ← 현장별 랜딩페이지 (SSG)
 ├── api/
-│   ├── sms/route.js           ← SMS 발송 + Google Sheets 저장 (second_templates 검증 로직 그대로)
+│   ├── sms/route.js           ← SMS 발송 + Google Sheets 저장
 │   └── count/route.js         ← 상담 신청 건수 조회
 ├── globals.css
 ├── layout.jsx
@@ -44,48 +78,56 @@ components/
 │   ├── Reveal.jsx             ← whileInView fade+slide 공용 래퍼
 │   └── Stagger.jsx            ← Stagger / StaggerItem — 카드 목록 순차 등장
 ├── sections/
-│   ├── SectionRenderer.jsx    ← section.type → 컴포넌트 매핑
-│   ├── SectionHeader.jsx      ← 구분선 + 제목 + 부제 (공용)
-│   ├── HeroSection.jsx        ← 배지→브랜드→타이틀 순차 리빌 + 커튼 애니메이션
-│   ├── AboutSection.jsx       ← 텍스트 + 이미지 2단 (모바일 스택 / PC 그리드)
-│   ├── PointSection.jsx       ← 핵심 강점 카드 그리드
-│   ├── GallerySection.jsx     ← 이미지 갤러리 + 클릭 확대(라이트박스)
-│   ├── LocationSection.jsx    ← 지도 이미지 + 주소 + 교통정보
-│   ├── ImageBlockSection.jsx  ← 범용 이미지/스펙 테이블 블록 (image / image-then-spec / spec-then-image / spec-only)
-│   └── ContactForm.jsx        ← "use client", 상담신청 폼
+│   ├── SignatureHero.jsx          ← 히어로 — 배지→타이틀→설명 순차 리빌, 모바일 하단 액션바
+│   ├── SignatureSummary.jsx       ← 사업개요 (조감도+썸네일+스펙표)
+│   ├── SignatureLocation.jsx      ← 위치안내 (지도+features 카드 4개)
+│   ├── SignaturePremiumIntro.jsx  ← 프리미엄 전환 섹션 (배경 이미지+카피)
+│   ├── SignaturePremiumValue.jsx  ← 핵심 가치 카드 6종 그리드
+│   ├── SignatureLandscape.jsx     ← 조경안내 패널
+│   ├── SignatureComplex.jsx       ← 단지소개 (배치도+동호수표)
+│   ├── SignatureUnitPlan.jsx      ← 세대안내 (탭형 평면도+스펙)
+│   ├── SignatureClub.jsx          ← 커뮤니티 (intro/wellness/sportsHealth/cafeLounge/eduKids)
+│   ├── SignatureClubSectionHeader.jsx / SignatureFacilityHalfGallery.jsx / SignatureFacilityShowcase.jsx / SignatureFloorPlanViewer.jsx ← SignatureClub 하위 컴포넌트
+│   └── SignatureVipForm.jsx       ← "use client", 상담신청 폼
 └── ui/
-    ├── TopNav.jsx             ← "use client", 모바일 가로스크롤 메뉴 / PC 고정 메뉴
-    ├── BottomBar.jsx          ← "use client", 모바일·태블릿 전용(lg:hidden) 하단 CTA
-    ├── PopupBanner.jsx        ← "use client"
-    └── SiteFooter.jsx
+    ├── SignatureHeader.jsx    ← "use client", PC 고정 헤더 (히어로 구간 투명→스크롤 시 배경)
+    ├── SignatureFooter.jsx    ← "use client", 회사정보 + Family Site 셀렉트
+    ├── SignatureLightbox.jsx  ← 이미지 확대 라이트박스 (SignatureClub 공용)
+    └── PopupBanner.jsx        ← "use client" (현재 페이지에서 미사용, 필요시 재연결)
 
 data/
 ├── siteRegistry.js            ← 전체 현장 등록부
-└── sites/example-apt.js       ← 현장별 설정 데이터 예시 (5개 섹션 타입 모두 사용, 필드별 주석 포함)
+└── sites/example-apt.js       ← 현장별 설정 데이터 예시 (signature 전체 필드, 필드별 주석 포함)
 
 lib/
-└── utils.js                   ← cn()
+├── utils.js                   ← cn(), splitHighlight()
+└── useUtmSource.js            ← ?utm_source= 값을 읽는 공용 훅
 
 public/apt/[slug]/             ← 현장별 이미지 (.webp 권장)
 ```
 
 ---
 
-## 섹션을 독립 컴포넌트로 관리하는 구조
+## 상담 신청 흐름 (SMS + Google Sheets)
 
-`data/sites/[slug].js`의 `sections` 배열에 아래 다섯 가지 타입 중 하나를 순서대로 나열하면 `SectionRenderer`가 알맞은 컴포넌트로 렌더링합니다. 새 섹션이 필요하면 `components/sections/`에 컴포넌트를 만들고 `SectionRenderer.jsx`에 분기 한 줄만 추가하면 됩니다.
+`SignatureVipForm`에서 상담 신청을 제출하면 `POST /api/sms`가 호출되어:
 
-| `type` | 컴포넌트 | 용도 |
-|---|---|---|
-| `about` | `AboutSection` | 브랜드/컨셉 소개 (텍스트 + 이미지 2단) |
-| `point` | `PointSection` | 핵심 강점 카드 그리드 (3~6개) |
-| `gallery` | `GallerySection` | 평면도·조감도 등 이미지 갤러리 + 라이트박스 |
-| `location` | `LocationSection` | 위치·교통 안내 |
-| `image` / `image-then-spec` / `spec-then-image` / `spec-only` | `ImageBlockSection` | 사업개요 등 범용 이미지/스펙 테이블 블록 |
+1. `adminPhones`로 등록된 관리자 번호들에 Solapi로 SMS 발송
+2. Google Sheets에 상담 내용 한 줄 추가 (해당 탭이 없으면 자동 생성)
 
-`navLabel`이 있는 섹션만 `TopNav`에 자동 등록됩니다.
+두 작업은 병렬로 처리되며, 시트 저장이 실패해도 SMS 발송 성공 여부와는 무관하게 응답합니다.
 
-각 현장 데이터가 어떤 필드를 받는지는 별도 타입 파일 없이 `data/sites/example-apt.js`에 필드별 주석으로 적어뒀습니다 — 새 현장을 만들 때 이 파일을 복사해서 참고하세요.
+## 유입경로(UTM) 오버라이드
+
+방문 URL에 `?utm_source=값`이 붙어 있으면 그 값을 어디서 유입됐는지 기록하는 용도로 씁니다.
+
+- `telNumberByUtm`: `utm_source` 값별로 화면에 노출하는 전화번호를 다르게 (`SignatureHeader`/`SignatureHero`/`SignatureFooter`에 공통 적용)
+- `adminPhonesByUtm`: `utm_source` 값별로 SMS를 받을 관리자 번호를 다르게 (`SignatureVipForm` → `/api/sms`)
+- `showUtmInSms`: 관리자에게 보내는 알림 문자에 "유입매체: OO" 줄을 추가할지 여부
+- 위 두 오버라이드 필드는 선택 사항이며, 없으면 기본 `telNumber`/`adminPhones`를 그대로 씁니다
+- `?utm_source=` 값은 `lib/useUtmSource.js`가 컴포넌트가 마운트된 뒤 `window.location.search`를
+  읽어서 가져옵니다. `useSearchParams`를 쓰면 Suspense 경계가 필요해지고 페이지가 정적
+  생성(SSG)에서 제외되므로, 이 방식으로 우회합니다.
 
 ## 반응형 규칙
 
@@ -94,21 +136,19 @@ public/apt/[slug]/             ← 현장별 이미지 (.webp 권장)
 작성되어 있으니 값만 열어서 고치면 됩니다.
 
 - 컨테이너: `max-width: 430px; margin: 0 auto;` → 768px에서 `max-width: 768px` → 1024px에서 `max-width: 1200px`
-- `BottomBar`는 `@media (min-width: 1024px) { display: none; }` — 데스크톱에서는 `TopNav`의 전화번호 버튼이 그 역할을 대신합니다.
-- `Gallery`는 모바일에서 가로 스크롤 스냅, 1024px 이상에서 그리드로 전환됩니다.
+- `SignatureHeader`는 PC(1024px 이상)에서 히어로 구간만 투명 배경이고, 그 아래로 스크롤하면 배경이 채워집니다
 
 ## Framer Motion 적용 지점
 
-- `Reveal` / `Stagger`·`StaggerItem`: 기존 IntersectionObserver 패턴을 대체하는 공용 스크롤 리빌 컴포넌트
-- `HeroSection`: `variants` + `staggerChildren`으로 배지 → 브랜드 → 타이틀 순차 등장, 커튼 슬라이드업
-- `TopNav`: `useScroll` + `useTransform`으로 스크롤에 따른 배경/그림자 전환
-- `BottomBar`, `PopupBanner`, `GallerySection` 라이트박스: `AnimatePresence`로 mount/unmount 애니메이션
+- `Reveal` / `Stagger`·`StaggerItem`(`components/motion/`): 스크롤 진입 시 등장 애니메이션을 위한 공용 컴포넌트
+- `SignatureHero`: `variants`로 배지 → 타이틀 → 설명 순차 등장
+- `SignatureClub`의 라이트박스(`SignatureLightbox`): `AnimatePresence`로 mount/unmount 애니메이션
 
 ---
 
 ## 새 현장 추가 절차
 
-1. `data/sites/example-apt.js`를 복사해서 `data/sites/[slug].js` 생성 (파일 안 주석 참고)
+1. `data/sites/example-apt.js`를 복사해서 `data/sites/[slug].js` 생성 (파일 안 주석 참고, `signature` 하위 필드를 새 Figma 디자인 값으로 교체)
 2. `data/siteRegistry.js`에 import 후 `sites` 배열에 추가
 3. `public/apt/[slug]/` 폴더에 이미지 추가 (.webp 권장)
 4. `git push` → Vercel 자동 배포
@@ -139,4 +179,4 @@ npm run dev
 `/apt/example-apt`에서 예시 데이터를 확인할 수 있습니다.
 
 > 예시 현장(`example-apt`)의 이미지 경로는 실제 파일 없이 placeholder로 작성되어 있습니다.
-> 실 서비스 전에 `public/apt/example-apt/`에 실제 `.webp` 이미지를 추가해야 합니다.
+> 실 서비스 전에 `public/apt/example-apt/`에 실제 이미지를 추가해야 합니다.

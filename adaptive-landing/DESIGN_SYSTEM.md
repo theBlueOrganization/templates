@@ -66,55 +66,49 @@ Figma MCP로 디자인을 받아 구현할 때 이 템플릿에서 지켜야 하
   추가한 뒤 `app/globals.css`의 `:root`에 CSS 변수를 등록합니다.
 - 간격(margin/padding/gap)도 Figma 수치를 그대로 px로 씁니다.
 
-## 3. 컬러 — 하드코딩 금지, theme 객체로
+## 3. 컬러 — `.module.css`에 직접 기록 (theme 객체 없음)
 
-Figma 컬러 스타일을 `.module.css`에 직접 박아넣지 않습니다. 현장마다 색이 바뀌므로 항상 `theme`
-prop(각 현장 데이터의 `theme` 객체)을 통해 받아 **인라인 `style={{ color: ... }}`로 적용**하고,
-실제 값은 `data/sites/[slug].js`의 `theme` 객체에 기록합니다. CSS Module 파일에는 테마와 무관한
-고정 색(예: 본문 회색 `#4b5563`, 구분선 `#e5e7eb` 같은 중립색)만 적어둡니다.
+adaptive-landing은 현장마다 Figma 디자인 자체가 다른 전제라, 여러 현장이 컴포넌트를 공유하며
+색만 바꿔 쓰는 `theme` prop 방식을 쓰지 않습니다. Figma 컬러 스타일은 해당 `Signature*.module.css`
+파일에 **그대로 하드코딩**합니다 (예: `SignatureHero.module.css`의 `color: #b39258;`).
 
-기존 필드로 커버되지 않는 색상이 Figma에 있으면:
-1. 해당 컴포넌트에서 `theme?.about?.titleColor` 형태로 새 키를 참조하도록 코드 추가 (JSX의 `style` 속성)
-2. `example-apt.js`의 `theme` 객체에 그 키의 기본값 예시 추가
-3. `example-apt.js` 상단 주석에 새 키가 뭘 하는지 한 줄 추가
+- 새 현장의 Figma가 기존 색과 다르면 그 현장이 쓰는 `Signature*.module.css`를 직접 열어서 값을
+  바꿉니다. 여러 현장이 같은 컴포넌트 코드를 그대로 재사용하지 않는다는 전제이므로, 바뀐 색이
+  다른 현장에 영향을 주지 않는지 걱정할 필요가 없습니다.
+- 정말 레이아웃까지 크게 달라 기존 `Signature*` 컴포넌트를 그대로 못 쓰면, 새 컴포넌트로
+  분리합니다(4번 항목 참고). 기존 컴포넌트에 `if(slug === ...)` 같은 현장별 분기를 넣지 않습니다.
 
-`.module.css` 파일 안에 현장마다 바뀌어야 하는 색을 새로 하드코딩하지 않습니다 (fallback `??`
-기본값을 JSX의 인라인 style에 넣는 것은 허용).
+## 4. Figma 새 디자인이 들어왔을 때
 
-## 4. Figma 섹션 → 섹션 타입 매핑
+새 현장 Figma는 매번 레이아웃이 다르다는 전제라, 고정된 섹션 타입 목록에 끼워 맞추지 않고
+`Signature*` 컴포넌트를 그 현장에 맞게 직접 고치거나 새로 만듭니다.
 
-Figma 프레임/레이어 이름과 구성으로 아래처럼 판단합니다. 현장 데이터의 각 섹션 객체는 `type` 필드로
-어떤 컴포넌트를 쓸지 정합니다.
+1. 기존 `Signature*` 컴포넌트와 구조가 거의 같으면(카피/이미지/개수만 다름) — 해당 컴포넌트의
+   `.jsx`/`.module.css`를 열어서 Figma 값에 맞게 수정합니다. `data/sites/[slug].js`의
+   `signature.xxx` 필드 값만 바꿔서 해결되는 경우가 대부분입니다.
+2. 완전히 새로운 레이아웃 섹션이 필요하면 `components/sections/`(또는 `ui/`)에 `Signature`
+   접두어로 새 컴포넌트와 `.module.css`를 추가하고, `app/apt/[slug]/page.jsx`의 렌더 목록에
+   끼워 넣습니다.
+3. `data/sites/example-apt.js` 상단 주석의 "signature 필드 ↔ 컴포넌트" 표에도 추가한 필드를
+   반영합니다 (새 현장을 만들 사람이 참고할 유일한 필드 문서이므로 빠뜨리지 않습니다).
 
-| Figma 구성 | `type` 값 | 컴포넌트 |
-|---|---|---|
-| 텍스트 + 이미지 2단 (브랜드/컨셉 소개) | `about` | `AboutSection` |
-| 아이콘+제목+설명 카드 3~6개 반복 그리드 | `point` | `PointSection` |
-| 이미지 여러 장 나열 (평면도·조감도 등) | `gallery` | `GallerySection` |
-| 지도 + 주소 + 교통정보 | `location` | `LocationSection` |
-| 그 외 이미지/스펙표 조합 (사업개요 등) | `image` / `image-then-spec` / `spec-then-image` / `spec-only` | `ImageBlockSection` |
-
-이 5종에 안 맞는 완전히 새로운 레이아웃이면:
-1. `components/sections/`에 새 컴포넌트와 `.module.css` 작성
-2. `SectionRenderer.jsx`에 분기 한 줄 추가
-3. `data/sites/example-apt.js` 상단 주석의 타입 목록에도 추가
-
-기존 타입에 억지로 끼워 맞추지 않습니다 (예: 지도가 없는데 `location`을 쓰지 않기).
+여러 현장이 완전히 동일한 레이아웃을 그대로 재사용하는 경우가 아니라면, 미래의 다른 현장을
+가정한 범용 옵션(예: `variant` prop)을 미리 만들어두지 않습니다 — 그 현장에 필요한 것만 만듭니다.
 
 ## 5. 반응형 레이아웃 규칙
 
 - Figma Desktop 프레임이 2단 그리드면 768px(또는 해당 폭) 이상에서
   `grid-template-columns: repeat(2, 1fr)`을 주고, Mobile이 세로 스택이면 기본 상태는
   `display: grid`만 두고 컬럼을 지정하지 않아 순서대로 쌓이게 합니다.
-- 이미지 좌/우 위치가 Figma에서 지정돼 있으면 `AboutSection`의 `imagePosition` 필드처럼 데이터로
-  표현하고, `order` 값을 담은 CSS 클래스(`.order1` / `.order2`)를 조건부로 골라 적용합니다.
-  컴포넌트 코드에 순서를 하드코딩하지 않습니다.
-- 갤러리류(이미지 여러 장)는 Mobile은 `overflow-x: auto` + `scroll-snap-type: x mandatory` 가로
-  스크롤, 1024px 이상에서 `display: grid`로 전환하는 기존 `GallerySection` 패턴을 기본으로
-  따릅니다.
-- `BottomBar`는 `@media (min-width: 1024px) { display: none; }`이 기본입니다. Desktop 프레임에
-  별도 CTA 바가 있으면 `TopNav`나 새 Desktop 전용 컴포넌트로 옮기고, `BottomBar`를 데스크톱에서
-  강제로 보이게 하지 않습니다.
+- 이미지 좌/우 위치가 Figma에서 지정돼 있으면 `SignatureClub`의 `showcase.side` 필드처럼
+  데이터로 표현하고, 그 값에 따라 조건부 CSS 클래스를 골라 적용합니다. 컴포넌트 코드에 순서를
+  하드코딩하지 않습니다.
+- 이미지 여러 장을 좌우로 넘기는 갤러리류는 Mobile에서 `overflow-x: auto` +
+  `scroll-snap-type: x mandatory` 가로 스크롤, 1024px 이상에서 `display: grid`로 전환하는
+  `SignatureFacilityHalfGallery` 패턴을 기본으로 따릅니다.
+- 모바일 하단 고정 CTA가 필요하면 `SignatureHero`의 `mobileBar`처럼 히어로 컴포넌트 안에 포함시켜
+  데스크톱(1024px 이상)에서는 `display: none`으로 숨기고, 데스크톱 CTA는 `SignatureHeader`의
+  `quickCta`/전화번호 버튼이 대신하게 합니다.
 
 ## 6. 모션 (Figma Prototype/Interaction → Framer Motion)
 
@@ -124,9 +118,9 @@ Figma 프레임/레이어 이름과 구성으로 아래처럼 판단합니다. �
   `[0.76, 0, 0.24, 1]`. Figma에 명시된 이징이 있으면 그 값으로 교체합니다.
 - 개별 섹션 컴포넌트 안에 새 모션 로직을 인라인으로 작성하지 않습니다. 재사용 가능한 패턴이면
   `components/motion/`에 컴포넌트를 추가하고, 그 섹션에만 필요한 1회성 모션이면 해당 섹션 파일
-  안에서 `framer-motion`을 직접 써도 됩니다 (`HeroSection.jsx`, `GallerySection.jsx`처럼).
-- CSS `@keyframes`가 필요한 순수 CSS 애니메이션(예: `HeroSection`의 스크롤 힌트 바운스)은 해당
-  컴포넌트의 `.module.css` 안에 `@keyframes`를 정의해서 씁니다.
+  안에서 `framer-motion`을 직접 써도 됩니다 (`SignatureHero.jsx`처럼).
+- CSS `@keyframes`가 필요한 순수 CSS 애니메이션은 해당 컴포넌트의 `.module.css` 안에
+  `@keyframes`를 정의해서 씁니다.
 
 ## 7. 에셋
 

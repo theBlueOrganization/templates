@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Reveal from '../motion/Reveal'
+import { useUtmSource } from '../../lib/useUtmSource'
 import styles from './SignatureVipForm.module.css'
 
 const initialForm = {
@@ -20,10 +21,14 @@ const initialForm = {
 // 별도 컴포넌트로 만들고, /api/sms에 serviceType/ageRange 필드를 추가로 실어 보낸다.
 export default function SignatureVipForm({ config }) {
   const { vipForm } = config.signature
-  const { projectName, visitTimeOptions, adminPhones, sheetId, sheetTab, showUtmInSms } = config
+  const { projectName, visitTimeOptions, adminPhones, adminPhonesByUtm, sheetId, sheetTab, showUtmInSms } = config
 
   const [form, setForm] = useState(initialForm)
   const [submitting, setSubmitting] = useState(false)
+  // 방문 URL의 ?utm_source=카카오 같은 값 — 어디서 유입됐는지 기록 + adminPhonesByUtm 분기에 사용
+  const utmSource = useUtmSource() ?? '직접유입'
+  // adminPhonesByUtm에 등록된 utm_source로 들어온 경우에만 SMS 수신번호를 덮어씀
+  const resolvedAdminPhones = adminPhonesByUtm?.[utmSource] ?? adminPhones
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target
@@ -51,9 +56,10 @@ export default function SignatureVipForm({ config }) {
           serviceType: form.service,
           ageRange: form.age,
           projectName,
-          adminPhones,
+          adminPhones: resolvedAdminPhones,
           sheetId,
           sheetTab,
+          utmSource,
           showUtmInSms,
         }),
       })

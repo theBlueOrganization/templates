@@ -1,9 +1,6 @@
 // ────────────────────────────────────────────────────────────
 // eupseong-prugio: Figma "Template2" 디자인을 그대로 구현한 현장.
-// 레이아웃이 example-apt의 5종 섹션(about/point/gallery/location/image*)과
-// 전혀 달라(전용 헤더·전용 폼·드래그 평면도·라이트박스 갤러리 등) 범용
-// SectionRenderer를 쓰지 않고, template: 'signature' 값으로 표시해
-// app/apt/[slug]/page.jsx가 이 파일 전용 컴포넌트 스택을 렌더링하게 했다.
+// adaptive-landing은 이 signature 구조 하나만 쓴다 (data/sites/example-apt.js와 동일한 형태).
 //
 // signature 객체 아래 각 필드가 그대로 하나의 섹션 컴포넌트에 대응한다:
 //   header        → components/ui/SignatureHeader
@@ -30,8 +27,6 @@ const config = {
   sheetId: '',
   sheetTab: '업성푸르지오레이크시티',
   showUtmInSms: true,
-  // 있으면 app/apt/[slug]/page.jsx가 범용 렌더러 대신 signature 전용 스택을 사용
-  template: 'signature',
 
   company: {
     name: '주식회사 더블루파트너스',

@@ -1,18 +1,10 @@
 import "./globals.css";
 
-export async function generateMetadata() {
-  const { siteConfig } = await import("../data/siteConfig");
-  return {
-    metadataBase: new URL("https://theblue-apt.vercel.app"),
-    title: `${siteConfig.projectName} - 공식 분양 안내`,
-    description: `${siteConfig.projectName} 분양 정보 및 빠른 상담 신청`,
-    openGraph: {
-      title: `${siteConfig.projectName} - 공식 분양 안내`,
-      description: `${siteConfig.projectName} 분양 정보 및 빠른 상담 신청`,
-      images: [{ url: siteConfig.ogImage }],
-    },
-  };
-}
+export const metadata = {
+  metadataBase: new URL("https://theblue-apt.vercel.app"),
+  title: "분양 현장 목록 - 주식회사 더블루파트너스",
+  description: "주식회사 더블루파트너스가 운영하는 분양 현장 목록입니다.",
+};
 
 export default function RootLayout({ children }) {
   return (

@@ -28,6 +28,7 @@ const config = {
     name:      "주식회사 더블루파트너스",
     bizNumber: "789-81-03093",
     email:     "addup@addup.kr",
+    phone:     "1666-1755",
   },
 
   visitTimeOptions: [

@@ -4,13 +4,19 @@ export default function SiteFooter({ company, telNumber }) {
   return (
     <footer id="main-footer" className={styles.footer}>
       <div className={styles.container}>
-        <p className={styles.agencyLabel}>홈페이지 운영·관리 대행사</p>
+        <p className={styles.leadContact}><span className={styles.leadKey}>대표 분양 상담 문의</span>{telNumber}</p>
 
+        <p className={styles.agencyLabel}>홈페이지 운영·관리 대행사</p>
         <div className={styles.info}>
-          <p><span className={styles.key}>담당자명</span>{company.name}</p>
-          <p><span className={styles.key}>사업자 등록번호</span>{company.bizNumber}</p>
-          <p><span className={styles.key}>이메일</span>{company.email}</p>
-          <p><span className={styles.key}>대표 분양 상담 문의</span>{telNumber}</p>
+          <span className={styles.key}>담당회사</span>
+          <span className={styles.value}>{company.name}</span>
+          <span className={styles.key}>사업자 등록번호</span>
+          <span className={styles.value}>{company.bizNumber}</span>
+
+          <span className={styles.key}>이메일</span>
+          <span className={styles.value}>{company.email}</span>
+          <span className={styles.key}>전화번호</span>
+          <span className={styles.value}>{company.phone}</span>
         </div>
 
         <div className={styles.notice}>

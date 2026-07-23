@@ -11,26 +11,42 @@
   margin: 0 auto;
 }
 
+/* ─── 대표 분양 상담 문의 (분양사 번호 — 대행사 정보보다 강조) ── */
+.leadContact {
+  color: #64748b;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.leadKey {
+  color: #64748b;
+  font-weight: 800;
+  margin-right: 12px;
+}
+
 /* ─── 운영 대행사 라벨 ───────────────────────────────── */
 .agencyLabel {
   color: #64748b;
   font-size: 0.9rem;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
-/* ─── 회사 정보 ─────────────────────────────────────── */
+/* ─── 회사 정보 (라벨/값 그리드 정렬 — 가로·세로 라인 맞춤) ── */
 .info {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 28px;
+  display: grid;
+  grid-template-columns: max-content max-content max-content 1fr;
+  column-gap: 12px;
+  row-gap: 8px;
   margin-bottom: 24px;
   padding-bottom: 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.info p {
-  margin: 0;
+.value {
   color: #64748b;
   font-size: 0.85rem;
 }
@@ -38,7 +54,13 @@
 .key {
   color: #475569;
   font-weight: 600;
-  margin-right: 8px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+/* 두 번째 항목 쌍(사업자 등록번호/전화번호) 앞에 그룹 간격 */
+.key:nth-child(4n + 3) {
+  margin-left: 24px;
 }
 
 /* ─── 면책 고지 ─────────────────────────────────────── */
@@ -66,7 +88,9 @@
     padding-bottom: 90px;
   }
   .info {
-    flex-direction: column;
-    gap: 6px;
+    grid-template-columns: max-content 1fr;
+  }
+  .key:nth-child(4n + 3) {
+    margin-left: 0;
   }
 }

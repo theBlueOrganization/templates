@@ -38,7 +38,7 @@ export default function OfficeShell({ offices, defaultTelNumber, defaultAdminPho
     <Suspense
       fallback={
         <>
-          <ContactForm config={{ ...contactConfig, adminPhones: fallbackAdminPhones, officeLabel: fallbackOfficeLabel }} />
+          <ContactForm config={{ ...contactConfig, adminPhones: fallbackAdminPhones, officeLabel: fallbackOfficeLabel, disabled: Boolean(offices) }} />
           <SiteFooter company={company} telNumber={fallbackTelNumber} />
           <BottomBar telNumber={fallbackTelNumber} theme={theme} />
         </>

@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import styles from "./ContactForm.module.css";
 
 export default function ContactForm({ config }) {
-  const { projectName, visitTimeOptions, privacyText, adminPhones, sheetId, sheetTab, theme, kakao, slug, officeLabel } = config;
+  const { projectName, visitTimeOptions, privacyText, adminPhones, sheetId, sheetTab, theme, kakao, slug, officeLabel, disabled } = config;
   const th = theme ?? {};
   const [inquiryCount, setInquiryCount] = useState(null);
   const [submitting, setSubmitting] = useState(false);
@@ -55,6 +55,7 @@ export default function ContactForm({ config }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (disabled) return;
     if (!form.privacy_agree) { alert("개인정보 수집·이용에 동의해 주세요."); return; }
     const phone = `${form.phone1}-${form.phone2}-${form.phone3}`;
     setSubmitting(true);
@@ -148,7 +149,7 @@ export default function ContactForm({ config }) {
           <button
             type="submit"
             className={styles.submitBtn}
-            disabled={submitting}
+            disabled={submitting || disabled}
             style={{
               background: th.ContactForm_submitBtn?.background,
               color:      th.ContactForm_submitBtn?.color,

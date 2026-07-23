@@ -2,7 +2,7 @@
  * 현장 슬러그: sungui-raon-private-skyve
  * URL: /apt/sungui-raon-private-skyve
  */
-//b :-> 화면 문의처만 변경 1666-1352
+//b :-> 화면 문의처(1666-1352) + 히어로 문구(C와 동일)
 
 const config = {
   slug:        "sungui-raon-private-skyve",
@@ -23,7 +23,9 @@ const config = {
   },
 
   // utm_source=SKT1/Lpoint2/sh로 들어온 방문자에게만 팝업 이미지를 다르게 표시
+  // B: 팝업 이미지 추후 추가 예정 — 지금은 null로 숨겨두고 구조만 유지
   popupByUtm: {
+    B: null,
     SKT1: {
       src: "/apt/sungui-raon-private-skyve/4-2.webp",
       alt: "숭의역 라온프라이빗 스카이브 팝업",
@@ -70,8 +72,12 @@ const config = {
     B: ["01023537202"],
   },
 
-  // utm_source=C로 들어온 방문자에게만 히어로 문구를 다르게 표시 (subtitle은 기존 값 유지)
+  // utm_source=B/C로 들어온 방문자에게만 히어로 문구를 다르게 표시 (subtitle은 기존 값 유지)
   heroByUtm: {
+    B: {
+      title: "4가지 노선 초역세권 41층\n인천 25평 3억원대 아파트\n주변 시세 차익 1억 예상",
+      accentKeyword: ["4가지 노선", "3억원대", "1억 예상"],
+    },
     C: {
       title: "4가지 노선 초역세권 41층\n인천 25평 3억원대 아파트\n주변 시세 차익 1억 예상",
       accentKeyword: ["4가지 노선", "3억원대", "1억 예상"],

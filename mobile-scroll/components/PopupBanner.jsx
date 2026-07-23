@@ -9,10 +9,10 @@ export default function PopupBanner({ popup, popupByUtm }) {
 
   useEffect(() => {
     if (!popup?.enabled) return;
-    // popupByUtm에 등록된 utm_source로 들어온 경우에만 팝업 이미지를 덮어씀
+    // popupByUtm에 등록된 utm_source로 들어온 경우에만 팝업 이미지를 덮어씀 (null이면 팝업 자체를 숨김)
     if (popupByUtm) {
       const utm = new URLSearchParams(window.location.search).get("utm_source");
-      if (utm && popupByUtm[utm]) setImage(popupByUtm[utm]);
+      if (utm && utm in popupByUtm) setImage(popupByUtm[utm]);
     }
     // 히어로 settled 시점(2850ms) 직후 팝업 표시
     const t = setTimeout(() => setOpen(true), 2900);
@@ -20,13 +20,13 @@ export default function PopupBanner({ popup, popupByUtm }) {
   }, [popup, popupByUtm]);
 
   useEffect(() => {
-    if (open) {
+    if (open && image) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
     }
     return () => { document.body.style.overflow = ""; };
-  }, [open]);
+  }, [open, image]);
 
   if (!open || !image) return null;
 

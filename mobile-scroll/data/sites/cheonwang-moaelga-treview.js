@@ -13,13 +13,23 @@ const config = {
   sheetId:      "",
   sheetTab:     "천왕역모아엘가트레뷰",
 
-  popup: {
-    enabled: true,
-    image: {
-      src: "/apt/cheonwang-moaelga-treview/4.webp",
-      alt: "천왕역 모아엘가 트레뷰 팝업",
+  // 순차 표시: 첫 번째 팝업을 닫으면 두 번째 팝업이 이어서 뜸
+  popup: [
+    {
+      enabled: true,
+      image: {
+        src: "/apt/cheonwang-moaelga-treview/4.webp",
+        alt: "천왕역 모아엘가 트레뷰 팝업",
+      },
     },
-  },
+    {
+      enabled: true,
+      image: {
+        src: "/apt/cheonwang-moaelga-treview/4-1.webp",
+        alt: "천왕역 모아엘가 트레뷰 팝업",
+      },
+    },
+  ],
 
   company: {
     name:      "주식회사 더블루파트너스",

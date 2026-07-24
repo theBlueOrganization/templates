@@ -3,9 +3,12 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "./ContactForm.module.css";
 
-export default function ContactForm({ config }) {
+export default function ContactForm({ config, instanceId }) {
   const { projectName, visitTimeOptions, privacyText, adminPhones, sheetId, sheetTab, theme, kakao, slug, officeLabel, disabled } = config;
   const th = theme ?? {};
+  // instanceId가 있으면(한 페이지에 폼이 2개 이상일 때) id 충돌을 피하기 위해 접미사를 붙임
+  const sectionId = instanceId ? `contact-section-${instanceId}` : "contact-section";
+  const fieldId = (base) => (instanceId ? `${base}-${instanceId}` : base);
   const [inquiryCount, setInquiryCount] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -93,7 +96,7 @@ export default function ContactForm({ config }) {
   };
 
   return (
-    <section id="contact-section" className={styles.section} style={{ background: th.contactSection?.background }} ref={sectionRef}>
+    <section id={sectionId} className={styles.section} style={{ background: th.contactSection?.background }} ref={sectionRef}>
       <form
         className={`${styles.box} ${visible ? styles.visible : ""}`}
         onSubmit={handleSubmit}
@@ -102,8 +105,8 @@ export default function ContactForm({ config }) {
         <h2 className={styles.heading}>상담신청 및 방문예약</h2>
 
         <div className={styles.group}>
-          <label className={styles.label} htmlFor="name">1. 성명 <span className={styles.required}>*</span></label>
-          <input className={styles.input} id="name" name="name" type="text" value={form.name} onChange={handleChange} minLength={2} maxLength={10} required placeholder="홍길동" />
+          <label className={styles.label} htmlFor={fieldId("name")}>1. 성명 <span className={styles.required}>*</span></label>
+          <input className={styles.input} id={fieldId("name")} name="name" type="text" value={form.name} onChange={handleChange} minLength={2} maxLength={10} required placeholder="홍길동" />
         </div>
 
         <div className={styles.group}>
@@ -118,13 +121,13 @@ export default function ContactForm({ config }) {
         </div>
 
         <div className={styles.group}>
-          <label className={styles.label} htmlFor="visit_date">3. 방문예약일자</label>
-          <input className={styles.input} id="visit_date" name="visit_date" type="date" value={form.visit_date} onChange={handleChange} />
+          <label className={styles.label} htmlFor={fieldId("visit_date")}>3. 방문예약일자</label>
+          <input className={styles.input} id={fieldId("visit_date")} name="visit_date" type="date" value={form.visit_date} onChange={handleChange} />
         </div>
 
         <div className={styles.group}>
-          <label className={styles.label} htmlFor="visit_time">4. 방문예약시간</label>
-          <select className={styles.input} id="visit_time" name="visit_time" value={form.visit_time} onChange={handleChange}>
+          <label className={styles.label} htmlFor={fieldId("visit_time")}>4. 방문예약시간</label>
+          <select className={styles.input} id={fieldId("visit_time")} name="visit_time" value={form.visit_time} onChange={handleChange}>
             <option value="">-방문시간선택-</option>
             {visitTimeOptions.map((t) => (<option key={t} value={t}>{t}</option>))}
           </select>

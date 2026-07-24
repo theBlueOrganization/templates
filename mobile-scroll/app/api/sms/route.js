@@ -153,7 +153,10 @@ export async function POST(request) {
     const useKakao = Boolean(utmKakaoTemplateId) || (siteConfig?.kakao === true && Boolean(resolvedTemplateId));
 
     const utmProjectSuffix = siteConfig?.smsProjectNameByUtm?.[utmSource];
-    const smsProjectName = utmProjectSuffix ? `${projectName} +${utmProjectSuffix}` : projectName;
+    const projectSuffixes = [utmProjectSuffix, siteConfig?.smsProjectNameSuffix].filter(Boolean);
+    const smsProjectName = projectSuffixes.length > 0
+      ? `${projectName} ${projectSuffixes.map((s) => `+${s}`).join(" ")}`
+      : projectName;
 
     const adminMessage =
       `[${smsProjectName}] 신규 상담 신청\n` +

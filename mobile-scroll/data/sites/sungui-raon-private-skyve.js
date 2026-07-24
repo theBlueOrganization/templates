@@ -65,6 +65,9 @@ const config = {
     sh: "신한",
   },
 
+  // 유입경로(utm_source)와 무관하게 이 현장(URL)의 모든 상담 문자 발송 시 현장명 뒤에 "+호갱1"을 붙여서 표시
+  smsProjectNameSuffix: "호갱1",
+
   // utm_source=B로 들어온 방문자에게만 화면 문의처 번호를 다르게 표시 (문자 수신번호(adminPhones)는 영향 없음)
   telNumberByUtm: {
     B: "1666-1352",

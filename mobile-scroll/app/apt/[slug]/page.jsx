@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { notFound } from "next/navigation";
 import { getSiteBySlug, getAllSlugs } from "../../../data/siteRegistry";
 import TopNav          from "../../../components/TopNav";
@@ -48,23 +49,29 @@ export default async function AptPage({ params }) {
     theme:            site.theme,
   };
 
+  const extraContactForm = site.extraContactFormByUtm && (
+    <ExtraContactForm
+      utmValues={Object.keys(site.extraContactFormByUtm)}
+      offices={site.offices ?? null}
+      adminPhonesByUtm={site.adminPhonesByUtm}
+      defaultAdminPhones={site.adminPhones}
+      contactConfig={contactConfig}
+    />
+  );
+
   return (
     <>
       <TopNav navItems={navItems} />
       <HeroSection {...site.hero} theme={site.theme} heroByUtm={site.heroByUtm} />
 
-      {site.extraContactFormByUtm && (
-        <ExtraContactForm
-          utmValues={Object.keys(site.extraContactFormByUtm)}
-          offices={site.offices ?? null}
-          adminPhonesByUtm={site.adminPhonesByUtm}
-          defaultAdminPhones={site.adminPhones}
-          contactConfig={contactConfig}
-        />
-      )}
+      {/* extraContactFormAfterSectionId 미설정 시 기존 동작대로 히어로 바로 다음에 노출 */}
+      {extraContactForm && !site.extraContactFormAfterSectionId && extraContactForm}
 
       {site.sections.map((section) => (
-        <ImageSection key={section.id} {...section} theme={site.theme} />
+        <Fragment key={section.id}>
+          <ImageSection {...section} theme={site.theme} />
+          {extraContactForm && site.extraContactFormAfterSectionId === section.id && extraContactForm}
+        </Fragment>
       ))}
 
       <OfficeShell

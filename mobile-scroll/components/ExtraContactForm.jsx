@@ -4,12 +4,17 @@ import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import ContactForm from "./ContactForm";
 
-function ExtraContactFormInner({ utmValues, offices, adminPhonesByUtm, defaultAdminPhones, contactConfig }) {
+function ExtraContactFormInner({ utmValues, excludeUtmValues, offices, adminPhonesByUtm, defaultAdminPhones, contactConfig }) {
   const searchParams = useSearchParams();
   const utmSource = searchParams.get("utm_source");
 
-  // extraContactFormByUtm에 등록된 utm_source로 들어온 경우에만 상담신청 폼을 추가로 노출
-  if (!utmSource || !utmValues.includes(utmSource)) return null;
+  if (excludeUtmValues) {
+    // excludeUtmValues에 등록된 utm_source만 제외하고 기본 노출
+    if (utmSource && excludeUtmValues.includes(utmSource)) return null;
+  } else {
+    // extraContactFormByUtm에 등록된 utm_source로 들어온 경우에만 상담신청 폼을 추가로 노출
+    if (!utmSource || !utmValues.includes(utmSource)) return null;
+  }
 
   const officeId = searchParams.get("office");
   const officeData = offices ? (offices.find((o) => o.id === officeId) ?? offices[0]) : null;

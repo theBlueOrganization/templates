@@ -43,6 +43,7 @@ export default function ImageSection({
   images = [],
   theme,
   utmOnly,      // 있으면 이 utm_source 목록에 해당하는 방문자에게만 섹션 노출 (없으면 항상 노출, 기존 현장 영향 없음)
+  utmExclude,   // 있으면 이 utm_source 목록에 해당하는 방문자에게만 섹션을 숨김 (그 외에는 기본 노출, 없으면 기존과 동일)
   showHeader = true, // false면 제목/부제/구분선 헤더 블록 자체를 렌더링하지 않음 (없으면 기존과 동일)
   sectionBg,    // 있으면 이 섹션 전체 배경색 적용 (없으면 기존 CSS 기본값 #ffffff 그대로)
 }) {
@@ -53,12 +54,17 @@ export default function ImageSection({
   const [visible, setVisible] = useState(!utmOnly);
 
   useEffect(() => {
-    if (!utmOnly) return;
     const utm = new URLSearchParams(window.location.search).get("utm_source");
-    setVisible(!!utm && utmOnly.includes(utm));
-  }, [utmOnly]);
+    if (utmOnly) {
+      setVisible(!!utm && utmOnly.includes(utm));
+      return;
+    }
+    if (utmExclude) {
+      setVisible(!(utm && utmExclude.includes(utm)));
+    }
+  }, [utmOnly, utmExclude]);
 
-  if (utmOnly && !visible) return null;
+  if ((utmOnly || utmExclude) && !visible) return null;
 
   return (
     <section

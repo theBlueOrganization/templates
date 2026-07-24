@@ -63,13 +63,9 @@ const config = {
     ],
   },
 
-  // utm_source=SKT1/Lpoint2/sh로 들어온 방문자에게만 계약 조건 변경 섹션 다음에
-  // 상담신청 및 방문예약 폼을 하나 더 노출 (기존 하단 상담신청 섹션은 그대로 유지 — 총 2개)
-  extraContactFormByUtm: {
-    SKT1: true,
-    Lpoint2: true,
-    sh: true,
-  },
+  // utm_source=B를 제외한 모든 방문자(기본/직접접속, C 포함)에게 계약 조건 변경 섹션 다음에
+  // 상담신청 및 방문예약 폼을 하나 더 노출 (기존 하단 상담신청 섹션은 그대로 유지 — 총 2개). B는 기존 동작 그대로 유지
+  extraContactFormExcludeUtm: ["B"],
   // 위 폼의 노출 위치: "contract-change" 섹션(계약 조건 변경) 바로 다음
   extraContactFormAfterSectionId: "contract-change",
 
@@ -155,7 +151,7 @@ const config = {
 
   sections: [
     {
-      // utm_source=SKT1/Lpoint2/sh로 들어온 방문자에게만 노출 (다른 유입경로는 이 섹션을 보지 않음)
+      // utm_source=B를 제외한 모든 방문자(기본/직접접속, C 포함)에게 노출. B만 이 섹션을 보지 않음
       id:       "contract-change",
       type:     "image",
       title:    "계약 조건 변경",
@@ -163,7 +159,7 @@ const config = {
       images: [
         { src: "/apt/sungui-raon-private-skyve/1-5.webp", alt: "계약 조건 변경" },
       ],
-      utmOnly:    ["SKT1", "Lpoint2", "sh"],
+      utmExclude: ["B"],
       showHeader: false,
       sectionBg:  "#2A3746",
     },

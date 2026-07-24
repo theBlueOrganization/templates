@@ -156,6 +156,19 @@ const config = {
 
   sections: [
     {
+      // utm_source=SKT1/Lpoint2/sh로 들어온 방문자에게만 노출 (다른 유입경로는 이 섹션을 보지 않음)
+      id:       "contract-change",
+      type:     "image",
+      title:    "계약 조건 변경",
+      subtitle: "달라진 계약 조건을 확인하세요",
+      images: [
+        { src: "/apt/sungui-raon-private-skyve/1-5.webp", alt: "계약 조건 변경" },
+      ],
+      utmOnly:    ["SKT1", "Lpoint2", "sh"],
+      showHeader: false,
+      sectionBg:  "#2A3746",
+    },
+    {
       id:       "pet-friendly",
       type:     "image",
       title:    "특별제공",

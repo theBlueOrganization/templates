@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import SpecTable from "./SpecTable";
 import styles from "./ImageSection.module.css";
 
@@ -42,28 +42,47 @@ export default function ImageSection({
   specItems,
   images = [],
   theme,
+  utmOnly,      // 있으면 이 utm_source 목록에 해당하는 방문자에게만 섹션 노출 (없으면 항상 노출, 기존 현장 영향 없음)
+  showHeader = true, // false면 제목/부제/구분선 헤더 블록 자체를 렌더링하지 않음 (없으면 기존과 동일)
+  sectionBg,    // 있으면 이 섹션 전체 배경색 적용 (없으면 기존 CSS 기본값 #ffffff 그대로)
 }) {
   const th = theme ?? {};
   const hasSpec   = specItems && specItems.length > 0;
   const hasImages = images.length > 0;
 
-  return (
-    <section id={id} className={styles.section}>
+  const [visible, setVisible] = useState(!utmOnly);
 
-      <FadeUp>
-        <div className={styles.header}>
-          <h2 className={styles.title}>{title}</h2>
-          {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
-          <div
-            className={styles.divider}
-            style={{
-              background: th.ImageSection_divider?.background,
-              width:      th.ImageSection_divider?.width,
-              height:     th.ImageSection_divider?.height,
-            }}
-          />
-        </div>
-      </FadeUp>
+  useEffect(() => {
+    if (!utmOnly) return;
+    const utm = new URLSearchParams(window.location.search).get("utm_source");
+    setVisible(!!utm && utmOnly.includes(utm));
+  }, [utmOnly]);
+
+  if (utmOnly && !visible) return null;
+
+  return (
+    <section
+      id={id}
+      className={styles.section}
+      style={sectionBg ? { background: sectionBg } : undefined}
+    >
+
+      {showHeader && (
+        <FadeUp>
+          <div className={styles.header}>
+            <h2 className={styles.title}>{title}</h2>
+            {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
+            <div
+              className={styles.divider}
+              style={{
+                background: th.ImageSection_divider?.background,
+                width:      th.ImageSection_divider?.width,
+                height:     th.ImageSection_divider?.height,
+              }}
+            />
+          </div>
+        </FadeUp>
+      )}
 
       {hasImages && type === "image-then-spec" && (
         <div className={styles.imageList}>

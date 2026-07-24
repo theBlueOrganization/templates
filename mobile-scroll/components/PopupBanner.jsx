@@ -5,24 +5,30 @@ import styles from "./PopupBanner.module.css";
 
 export default function PopupBanner({ popup, popupByUtm }) {
   // popup은 단일 객체(기존 방식) 또는 배열(순차 표시, 여러 개)을 모두 지원
-  const popups = (Array.isArray(popup) ? popup : popup ? [popup] : []).filter((p) => p?.enabled);
-  const images = popups.map((p) => p.image ?? null);
+  const basePopups = (Array.isArray(popup) ? popup : popup ? [popup] : []).filter((p) => p?.enabled);
+  const baseImages = basePopups.map((p) => p.image ?? null);
 
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
-  // overrideImage: undefined = 미적용, null = 명시적으로 숨김, 객체 = 교체 이미지
-  const [overrideImage, setOverrideImage] = useState(undefined);
-  const [overrideApplied, setOverrideApplied] = useState(false);
+  const [images, setImages] = useState(baseImages);
 
   useEffect(() => {
-    if (popups.length === 0) return;
-    // popupByUtm은 첫 번째 팝업에만 적용 (기존 단일 팝업 현장과 호환)
-    // 값이 null이어도 "이 유입경로는 팝업 숨김"이라는 의도이므로 override 여부 자체를 별도로 추적
+    if (baseImages.length === 0) return;
+    // popupByUtm에 등록된 utm_source로 들어온 경우에만 팝업 구성을 덮어씀
+    // - 배열: 팝업 전체 순서를 교체 (예: 특정 유입경로에만 팝업 2개 이상 노출)
+    // - 객체: 첫 번째 팝업 이미지만 교체, 나머지는 기존 순서 유지 (기존 단일 팝업 현장과 호환)
+    // - null: 팝업 자체를 숨김
     if (popupByUtm) {
       const utm = new URLSearchParams(window.location.search).get("utm_source");
       if (utm && utm in popupByUtm) {
-        setOverrideImage(popupByUtm[utm]);
-        setOverrideApplied(true);
+        const override = popupByUtm[utm];
+        if (Array.isArray(override)) {
+          setImages(override);
+        } else if (override === null) {
+          setImages([]);
+        } else {
+          setImages([override, ...baseImages.slice(1)]);
+        }
       }
     }
     // 히어로 settled 시점(2850ms) 직후 팝업 표시
@@ -31,7 +37,7 @@ export default function PopupBanner({ popup, popupByUtm }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const currentImage = index === 0 && overrideApplied ? overrideImage : images[index];
+  const currentImage = images[index] ?? null;
 
   useEffect(() => {
     if (open && currentImage) {

@@ -22,10 +22,18 @@ const config = {
     },
   },
 
-  // utm_source=SKT1/Lpoint2/sh로 들어온 방문자에게만 팝업을 2개(순차 표시)로 다르게 노출
-  // B: 팝업 이미지 추후 추가 예정 — 지금은 null로 숨겨두고 구조만 유지
+  // utm_source=B/SKT1/Lpoint2/sh로 들어온 방문자에게만 팝업을 2개(순차 표시)로 다르게 노출
   popupByUtm: {
-    B: null,
+    B: [
+      {
+        src: "/apt/sungui-raon-private-skyve/popup1.webp",
+        alt: "숭의역 라온프라이빗 스카이브 팝업",
+      },
+      {
+        src: "/apt/sungui-raon-private-skyve/popup2.webp",
+        alt: "숭의역 라온프라이빗 스카이브 팝업",
+      },
+    ],
     SKT1: [
       {
         src: "/apt/sungui-raon-private-skyve/popup1.webp",

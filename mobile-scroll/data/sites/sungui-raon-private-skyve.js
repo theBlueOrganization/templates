@@ -63,13 +63,15 @@ const config = {
     ],
   },
 
-  // utm_source=SKT1/Lpoint2/sh로 들어온 방문자에게만 히어로 섹션과 특별제공 섹션 사이에
+  // utm_source=SKT1/Lpoint2/sh로 들어온 방문자에게만 계약 조건 변경 섹션 다음에
   // 상담신청 및 방문예약 폼을 하나 더 노출 (기존 하단 상담신청 섹션은 그대로 유지 — 총 2개)
   extraContactFormByUtm: {
     SKT1: true,
     Lpoint2: true,
     sh: true,
   },
+  // 위 폼의 노출 위치: "contract-change" 섹션(계약 조건 변경) 바로 다음
+  extraContactFormAfterSectionId: "contract-change",
 
   // ── 유입 경로 (utm_source) 옵션 ──
   showUtmInSms: true,

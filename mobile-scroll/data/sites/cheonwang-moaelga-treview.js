@@ -61,10 +61,10 @@ const config = {
     eyebrow:       "토지거래허가구역 제외 특권",
     eyebrowUrgent: 2,
     brand:         "천왕역 모아엘가 트레뷰",
-    title:         "토지거래허가구역 제외\n서울 마지막 8억대 신축\n항동·천왕 천왕뉴타운\n평당가 대비 압도적 가격",
+    title:         "서울 신축아파트 8억대\n 토지거래허가구역 제외!!\n항동·천왕지구의 천지개벽\n서울 평당가 대비 저렴한 가격",
     subtitle:      "강남 직통 7호선 초역세권",
     bgColor:       " #233E7A",
-    accentKeyword:  ["토지거래허가구역 제외","8억대 신축", "천왕뉴타운", "압도적 가격"],
+    accentKeyword:  ["8억대","토지거래허가구역", "항동·천왕지구", "저렴한 가격"],
     image: {
       src:    "/apt/cheonwang-moaelga-treview/1.webp",
       alt:    "천왕역 모아엘가 트레뷰 대표 이미지",
@@ -181,7 +181,7 @@ const config = {
     // 히어로 메인 타이틀
     title: {
       color:       "#ffffff",
-      fontSize:    "clamp(1.6rem,9vw,3rem)",
+      fontSize:    "clamp(1.5rem,7vw,3rem)",
       accentColor: "#edcc1e",
     },
     // 히어로 서브타이틀

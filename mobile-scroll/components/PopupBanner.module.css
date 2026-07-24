@@ -68,6 +68,16 @@
   background: rgba(0, 0, 0, 0.85);
 }
 
+.ctaHotspot {
+  position: absolute;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  z-index: 1;
+  -webkit-tap-highlight-color: transparent;
+}
+
 .pageIndicator {
   position: absolute;
   top: 10px;

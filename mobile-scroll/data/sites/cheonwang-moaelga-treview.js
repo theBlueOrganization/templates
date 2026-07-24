@@ -20,6 +20,12 @@ const config = {
       image: {
         src: "/apt/cheonwang-moaelga-treview/4.webp",
         alt: "천왕역 모아엘가 트레뷰 팝업",
+        // 이미지 안 "방문예약 하기" 버튼 위치(% 기준) — 클릭하면 남은 팝업(4-1.webp)은
+        // 건너뛰고 상담 신청 섹션(#contact-section)으로 바로 스크롤 이동
+        cta: {
+          target: "#contact-section",
+          rect: { top: "72%", left: "13%", width: "54%", height: "12%" },
+        },
       },
     },
     {
@@ -50,14 +56,14 @@ const config = {
     "17:00 ~ 18:00",
   ],
 
-  hero: {
-    eyebrow:       "토지거래허가 제외｜천왕역 초역세권",
+    hero: {
+    eyebrow:       "토지거래허가구역 제외 특권",
     eyebrowUrgent: 2,
     brand:         "천왕역 모아엘가 트레뷰",
-    title: "토지거래허가 제외 특권\n천왕역 1분 초역세권\n서울 직통 특급 교통망",
-    subtitle:      "토지거래허가 제외 특권",
+    title:         "토지거래허가구역 제외\n서울 마지막 8억대 신축\n항동·천왕 천왕뉴타운\n평당가 대비 압도적 가격",
+    subtitle:      "강남 직통 7호선 초역세권",
     bgColor:       " #233E7A",
-    accentKeyword:  ["토지거래허가 제외", "초역세권", "특급 교통망"],
+    accentKeyword:  ["토지거래허가구역 제외","8억대 신축", "천왕뉴타운", "압도적 가격"],
     image: {
       src:    "/apt/cheonwang-moaelga-treview/1.webp",
       alt:    "천왕역 모아엘가 트레뷰 대표 이미지",

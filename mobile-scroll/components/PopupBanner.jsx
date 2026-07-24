@@ -62,6 +62,15 @@ export default function PopupBanner({ popup, popupByUtm }) {
     }
   };
 
+  // 이미지 안에 그려진 버튼 위치(cta.rect, % 기준)를 클릭하면 남은 팝업은 건너뛰고
+  // cta.target(예: "#contact-section")으로 바로 스크롤 이동
+  const handleCtaClick = (e) => {
+    e.stopPropagation();
+    setOpen(false);
+    const target = document.querySelector(currentImage.cta.target);
+    target?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div className={styles.overlay} onClick={handleClose}>
       <div className={styles.card} onClick={(e) => e.stopPropagation()}>
@@ -78,6 +87,20 @@ export default function PopupBanner({ popup, popupByUtm }) {
           alt={currentImage.alt ?? ""}
           className={styles.img}
         />
+        {currentImage.cta && (
+          <button
+            type="button"
+            className={styles.ctaHotspot}
+            style={{
+              top:    currentImage.cta.rect.top,
+              left:   currentImage.cta.rect.left,
+              width:  currentImage.cta.rect.width,
+              height: currentImage.cta.rect.height,
+            }}
+            onClick={handleCtaClick}
+            aria-label="방문예약 상담 신청 섹션으로 이동"
+          />
+        )}
       </div>
     </div>
   );

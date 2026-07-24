@@ -49,9 +49,10 @@ export default async function AptPage({ params }) {
     theme:            site.theme,
   };
 
-  const extraContactForm = site.extraContactFormByUtm && (
+  const extraContactForm = (site.extraContactFormByUtm || site.extraContactFormExcludeUtm) && (
     <ExtraContactForm
-      utmValues={Object.keys(site.extraContactFormByUtm)}
+      utmValues={site.extraContactFormByUtm ? Object.keys(site.extraContactFormByUtm) : null}
+      excludeUtmValues={site.extraContactFormExcludeUtm ?? null}
       offices={site.offices ?? null}
       adminPhonesByUtm={site.adminPhonesByUtm}
       defaultAdminPhones={site.adminPhones}

@@ -13,24 +13,27 @@ export default function PopupBanner({ popup, popupByUtm }) {
   const [images, setImages] = useState(baseImages);
 
   useEffect(() => {
-    if (baseImages.length === 0) return;
     // popupByUtm에 등록된 utm_source로 들어온 경우에만 팝업 구성을 덮어씀
-    // - 배열: 팝업 전체 순서를 교체 (예: 특정 유입경로에만 팝업 2개 이상 노출)
+    // - 배열: 팝업 전체 순서를 교체 (예: 기본 팝업이 없는 현장이라도 특정 유입경로에만 팝업 노출 가능)
     // - 객체: 첫 번째 팝업 이미지만 교체, 나머지는 기존 순서 유지 (기존 단일 팝업 현장과 호환)
     // - null: 팝업 자체를 숨김
+    // baseImages가 비어 있어도(기본 팝업 미설정) override는 항상 평가해야 함
+    let resolvedImages = baseImages;
     if (popupByUtm) {
       const utm = new URLSearchParams(window.location.search).get("utm_source");
       if (utm && utm in popupByUtm) {
         const override = popupByUtm[utm];
         if (Array.isArray(override)) {
-          setImages(override);
+          resolvedImages = override;
         } else if (override === null) {
-          setImages([]);
+          resolvedImages = [];
         } else {
-          setImages([override, ...baseImages.slice(1)]);
+          resolvedImages = [override, ...baseImages.slice(1)];
         }
       }
     }
+    setImages(resolvedImages);
+    if (resolvedImages.length === 0) return;
     // 히어로 settled 시점(2850ms) 직후 팝업 표시
     const t = setTimeout(() => setOpen(true), 2900);
     return () => clearTimeout(t);

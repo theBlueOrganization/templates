@@ -55,7 +55,7 @@ const config = {
     { label: "SKT2",    value: "SKT2" },
     { label: "Lpoint",    value: "lpoint" },
     { label: "Lpoint2",    value: "Lpoint2" },
-    { label: "LPOINT3",    value: "LPOINT3" },
+    { label: "Lpoint3",    value: "Lpoint3" },
     { label: "신한",    value: "sh" },
     { label: "B",    value: "B" },
     { label: "OK",    value: "OK" },
@@ -72,12 +72,14 @@ const config = {
   smsProjectNameSuffix: "호갱1",
 
   // utm_source=B로 들어온 방문자에게만 화면 문의처 번호를 다르게 표시 (문자 수신번호(adminPhones)는 영향 없음)
-  // SKT2/LPOINT3/NA는 문의처만 별도 번호(1666-1050)로 표시하고, 나머지 구조(팝업 2개,
+  // SKT2/Lpoint3/NA는 문의처만 별도 번호(1666-1050)로 표시하고, 나머지 구조(팝업 2개,
   // 조건변경 섹션, 상담신청 폼 2개, 히어로 문구 등)는 기본값 그대로 유지
+  // utm_source는 대소문자 정확히 일치해야 하므로(heroByUtm[utm]과 동일한 방식) key는 실제
+  // 배포 링크의 utm_source 값과 철자·대소문자를 그대로 맞춰야 함
   telNumberByUtm: {
     B: "1666-1352",
     SKT2: "1666-1050",
-    LPOINT3: "1666-1050",
+    Lpoint3: "1666-1050",
     NA: "1666-1050",
   },
 

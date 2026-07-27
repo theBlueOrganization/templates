@@ -41,6 +41,7 @@ export default function ImageSection({
   subtitle,
   specItems,
   images = [],
+  tabs,         // 있으면 [{ label, images, specItems }] 탭 메뉴로 전환해서 보여줌 (없으면 기존과 동일하게 images/specItems 그대로 사용)
   theme,
   utmOnly,      // 있으면 이 utm_source 목록에 해당하는 방문자에게만 섹션 노출 (없으면 항상 노출, 기존 현장 영향 없음)
   utmExclude,   // 있으면 이 utm_source 목록에 해당하는 방문자에게만 섹션을 숨김 (그 외에는 기본 노출, 없으면 기존과 동일)
@@ -48,8 +49,14 @@ export default function ImageSection({
   sectionBg,    // 있으면 이 섹션 전체 배경색 적용 (없으면 기존 CSS 기본값 #ffffff 그대로)
 }) {
   const th = theme ?? {};
-  const hasSpec   = specItems && specItems.length > 0;
-  const hasImages = images.length > 0;
+  const hasTabs = tabs && tabs.length > 0;
+  const [activeTab, setActiveTab] = useState(0);
+
+  const activeImages    = hasTabs ? tabs[activeTab].images ?? [] : images;
+  const activeSpecItems = hasTabs ? tabs[activeTab].specItems : specItems;
+
+  const hasSpec   = activeSpecItems && activeSpecItems.length > 0;
+  const hasImages = activeImages.length > 0;
 
   const [visible, setVisible] = useState(!utmOnly);
 
@@ -90,9 +97,30 @@ export default function ImageSection({
         </FadeUp>
       )}
 
+      {hasTabs && (
+        <FadeUp>
+          <div className={styles.tabMenu}>
+            {tabs.map((tab, idx) => (
+              <button
+                key={idx}
+                type="button"
+                className={
+                  idx === activeTab
+                    ? `${styles.tabButton} ${styles.tabButtonActive}`
+                    : styles.tabButton
+                }
+                onClick={() => setActiveTab(idx)}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </FadeUp>
+      )}
+
       {hasImages && type === "image-then-spec" && (
         <div className={styles.imageList}>
-          {images.map((img, idx) => (
+          {activeImages.map((img, idx) => (
             <FadeUp key={idx} delay={idx === 0 ? 100 : 0}>
               <div className={styles.imageWrap}>
                 <img
@@ -110,13 +138,13 @@ export default function ImageSection({
 
       {hasSpec && (
         <FadeUp delay={100}>
-          <SpecTable items={specItems} />
+          <SpecTable items={activeSpecItems} />
         </FadeUp>
       )}
 
       {hasImages && type !== "image-then-spec" && (
         <div className={styles.imageList}>
-          {images.map((img, idx) => (
+          {activeImages.map((img, idx) => (
             <FadeUp key={idx} delay={idx === 0 ? 100 : 0}>
               <div className={styles.imageWrap}>
                 <img

@@ -154,6 +154,7 @@ const config = {
       sectionBg:  "#2A3746",
     },
     {
+      // utm_source=OK/SKT2/Lpoint3/NA로 들어온 방문자에게는 이 섹션을 숨김 (그 외 유입경로는 그대로 노출)
       id:       "pet-friendly",
       type:     "image",
       title:    "특별제공",
@@ -161,6 +162,7 @@ const config = {
       images: [
         { src: "/apt/sungui-raon-private-skyve/1-4.webp", alt: "펫특화 설계" },
       ],
+      utmExclude: ["OK", "SKT2", "Lpoint3", "NA"],
     },
     {
       id:       "overview",

@@ -2,7 +2,7 @@
  * 현장 슬러그: sungui-raon-private-skyve
  * URL: /apt/sungui-raon-private-skyve
  */
-//b :-> 화면 문의처(1666-1352) + 히어로 문구(C와 동일)
+//b :-> 화면 문의처(1666-1352) + 히어로 문구 별도 적용
 
 const config = {
   slug:        "sungui-raon-private-skyve",
@@ -14,7 +14,7 @@ const config = {
   sheetId:      "",
   sheetTab:     "숭의역라온프라이빗스카이브",
 
-  // utm_source=B를 제외한 모든 방문자(기본/직접접속, C 포함)에게 팝업을 2개(순차 표시)로 기본 노출
+  // utm_source=B를 제외한 모든 방문자(기본/직접접속, OK 포함)에게 팝업을 2개(순차 표시)로 기본 노출
   popup: [
     {
       enabled: true,
@@ -42,7 +42,7 @@ const config = {
     ],
   },
 
-  // utm_source=B를 제외한 모든 방문자(기본/직접접속, C 포함)에게 계약 조건 변경 섹션 다음에
+  // utm_source=B를 제외한 모든 방문자(기본/직접접속, OK 포함)에게 계약 조건 변경 섹션 다음에
   // 상담신청 및 방문예약 폼을 하나 더 노출 (기존 하단 상담신청 섹션은 그대로 유지 — 총 2개). B는 기존 동작 그대로 유지
   extraContactFormExcludeUtm: ["B"],
   // 위 폼의 노출 위치: "contract-change" 섹션(계약 조건 변경) 바로 다음
@@ -57,7 +57,7 @@ const config = {
     { label: "Lpoint2",    value: "Lpoint2" },
     { label: "신한",    value: "sh" },
     { label: "B",    value: "B" },
-    { label: "C",    value: "C" },
+    { label: "OK",    value: "OK" },
   ],
 
   // utm_source=sh로 들어온 상담만 문자 발송 시 현장명 뒤에 "+신한"을 붙여서 표시
@@ -66,7 +66,7 @@ const config = {
   },
 
   // utm_source가 아예 없는 접속(이 URL 그대로 접근)의 상담 문자 발송 시에만 현장명 뒤에 "+호갱1"을 붙여서 표시
-  // utm_source가 있는 접속(SKT1/Lpoint2/sh/B/C 등)에는 절대 붙지 않음 — sh는 기존처럼 "+신한"만 표시
+  // utm_source가 있는 접속(SKT1/Lpoint2/sh/B/OK 등)에는 절대 붙지 않음 — sh는 기존처럼 "+신한"만 표시
   smsProjectNameSuffix: "호갱1",
 
   // utm_source=B로 들어온 방문자에게만 화면 문의처 번호를 다르게 표시 (문자 수신번호(adminPhones)는 영향 없음)
@@ -84,13 +84,10 @@ const config = {
     B: ["01023537202"],
   },
 
-  // utm_source=B/C로 들어온 방문자에게만 히어로 문구를 다르게 표시 (subtitle은 기존 값 유지)
+  // utm_source=B로 들어온 방문자에게만 히어로 문구를 다르게 표시 (subtitle은 기존 값 유지)
+  // OK 등 그 외 유입경로는 등록된 오버라이드가 없어 기본 히어로 문구 그대로 노출됨
   heroByUtm: {
     B: {
-      title: "4가지 노선 초역세권 41층\n인천 25평 3억원대 아파트\n주변 시세 차익 1억 예상",
-      accentKeyword: ["4가지 노선", "3억원대", "1억 예상"],
-    },
-    C: {
       title: "4가지 노선 초역세권 41층\n인천 25평 3억원대 아파트\n주변 시세 차익 1억 예상",
       accentKeyword: ["4가지 노선", "3억원대", "1억 예상"],
     },

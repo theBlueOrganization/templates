@@ -71,7 +71,7 @@ const config = {
   // utm_source가 있는 접속(SKT1/Lpoint2/sh/B/OK 등)에는 절대 붙지 않음 — sh는 기존처럼 "+신한"만 표시
   smsProjectNameSuffix: "호갱1",
 
-  // utm_source=B로 들어온 방문자에게만 화면 문의처 번호를 다르게 표시 (문자 수신번호(adminPhones)는 영향 없음)
+  // utm_source=B/SKT2/Lpoint3/NA/sh로 들어온 방문자에게만 화면 문의처 번호를 다르게 표시 (문자 수신번호(adminPhones)는 영향 없음)
   // SKT2/Lpoint3/NA/sh는 문의처만 별도 번호(1666-1050)로 표시하고, 나머지 구조(팝업 2개,
   // 조건변경 섹션, 상담신청 폼 2개, 히어로 문구 등)는 기본값 그대로 유지
   // utm_source는 대소문자 정확히 일치해야 하므로(heroByUtm[utm]과 동일한 방식) key는 실제

@@ -54,10 +54,10 @@ const config = {
     bgColor:       "#1e293b",
     accentKeyword: "오산헤리티지자이",
     image: {
-      src:    "/apt/osan-heritage-xi/1.webp",
+      src:    "/apt/osan-heritage-xi/main.webp",
       alt:    "오산헤리티지자이 대표 이미지",
-      width:  800,
-      height: 500,
+      width:  750,
+      height: 1100,
     },
   },
 
@@ -92,7 +92,7 @@ const config = {
         {
           label: "2단지",
           images: [
-            { src: "/apt/osan-heritage-xi/1-1b.webp", alt: "사업개요 2단지" },
+            { src: "/apt/osan-heritage-xi/1-2.webp", alt: "사업개요 2단지" },
           ],
           specItems: [
             { label: "사업명",   value: "추후입력" },
@@ -116,7 +116,7 @@ const config = {
       title:    "입지환경",
       subtitle: "생활이 편리한 핵심 입지",
       images: [
-        { src: "/apt/osan-heritage-xi/1-2.webp", alt: "입지환경" },
+        { src: "/apt/osan-heritage-xi/1-3.webp", alt: "입지환경" },
       ],
     },
     {

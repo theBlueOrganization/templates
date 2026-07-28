@@ -14,7 +14,7 @@
   width: 100%;
   height: 100%;
   z-index: 0;
-  background-size: 100% auto !important;
+  /* background-size는 JSX 인라인 스타일(theme.hero.imageFit, 기본값 cover)로 제어 */
   background-position: center bottom !important;
 }
 
@@ -366,7 +366,6 @@
 @media (max-width: 800px) {
   .hero { height: 100vh; height: 100dvh; }
   .imageWrap {
-    background-size: 100% auto !important;
     background-position: center bottom !important;
   }
   .textBlock {

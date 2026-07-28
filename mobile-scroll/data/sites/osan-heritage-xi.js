@@ -53,7 +53,7 @@ const config = {
     title:         "병점X동탄 더블생활권\nGTX-C 역세권 대단지\n오산 최초 프리미엄 브랜드",
     subtitle:      " GS건설 헤리티지자이",
     bgColor:       "#1e293b",
-    accentKeyword: "오산헤리티지자이",
+    accentKeyword: ["병점X동탄", "역세권", "프리미엄 브랜드"],
     image: {
       src:    "/apt/osan-heritage-xi/main.webp",
       alt:    "오산헤리티지자이 대표 이미지",

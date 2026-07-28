@@ -12,7 +12,7 @@ const config = {
   shortName:   "오산헤리티지자이",
   telNumber:   "1666-1081",
   ogImage:     "/apt/osan-heritage-xi/share_img.png",
-  adminPhones:  ["01094216962"],
+  adminPhones:  ["01032662158"],
   kakao:        true,
   kakaoTemplateId: "KA01TP260622093537285QA4EPtdxJyI",
   sheetId:      "",
@@ -49,8 +49,8 @@ const config = {
   hero: {
     eyebrow:       "특별공급｜선착순",
     eyebrowUrgent: 1,
-    brand:         "병점X동탄 더블생활권",
-    title:         "GTX-C 역세권 대단지\n오산 최초 프리미엄 브랜드\n GS건설 헤리티지자이",
+    brand:         "오산헤리티지자이",
+    title:         "병점X동탄 더블생활권\nGTX-C 역세권 대단지\n오산 최초 프리미엄 브랜드",
     subtitle:      " GS건설 헤리티지자이",
     bgColor:       "#1e293b",
     accentKeyword: "오산헤리티지자이",
@@ -58,7 +58,7 @@ const config = {
       src:    "/apt/osan-heritage-xi/main.webp",
       alt:    "오산헤리티지자이 대표 이미지",
       width:  750,
-      height: 800,
+      height: 500,
     },
   },
 

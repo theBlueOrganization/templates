@@ -123,6 +123,7 @@ const config = {
     // ── 히어로 커튼 색상 ──
     hero: {
       curtainColor: "#1e293b",  // 커튼 시작 색상 (원하는 색으로 변경)
+      imageFit: "100% auto",    // 이미지 가장자리에 SUJAIN 워드마크가 있어 cover로 자르면 잘려나감
     },
 
     // 섹션 헤더 구분선

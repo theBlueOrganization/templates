@@ -75,6 +75,9 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
     : effectiveAccentKeyword ? [effectiveAccentKeyword] : [];
   const th         = theme ?? {};
   const curtainColor = th.hero?.curtainColor ?? "#0f172a";
+  // 이미지 원본 비율이 화면 세로 비율보다 짧은 경우 cover로 채우면 좌우가 잘림 —
+  // 브랜드 워드마크가 이미지 가장자리에 있는 현장은 theme.hero.imageFit으로 기존 "100% auto" 유지
+  const heroImageFit = th.hero?.imageFit ?? "cover";
 
   return (
     <section id="home" className={styles.hero}>
@@ -82,7 +85,10 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
       {/* 배경 이미지 */}
       <div
         className={`${styles.imageWrap} ${settled ? styles.visible : ""}`}
-        style={{ background: `url(${image?.src}) no-repeat, ${bgColor}` }}
+        style={{
+          background: `url(${image?.src}) no-repeat, ${bgColor}`,
+          backgroundSize: heroImageFit,
+        }}
       />
 
       {/* 커튼 — accent 변형에선 렌더하지 않음 */}

@@ -11,16 +11,15 @@ const config = {
   shortName:   "오산헤리티지자이",
   telNumber:   "1666-1081",
   ogImage:     "/apt/osan-heritage-xi/share_img.png",
-  adminPhones:  ["01032662158"],
+  adminPhones:  ["01094216962"],
   kakao:        true,
   sheetId:      "",
   sheetTab:     "오산헤리티지자이",
 
-  // TODO: 실제 팝업 이미지 준비되면 교체
   popup: {
     enabled: true,
     image: {
-      src: "/apt/osan-heritage-xi/4.webp",
+      src: "/apt/osan-heritage-xi/popup.webp",
       alt: "오산헤리티지자이 팝업",
     },
   },
@@ -50,14 +49,14 @@ const config = {
     eyebrowUrgent: 1,
     brand:         "병점X동탄 더블생활권",
     title:         "GTX-C 역세권 대단지\n오산 최초 프리미엄 브랜드\n GS건설 헤리티지자이",
-    subtitle:      "부제목 준비 중",
+    subtitle:      " GS건설 헤리티지자이",
     bgColor:       "#1e293b",
     accentKeyword: "오산헤리티지자이",
     image: {
       src:    "/apt/osan-heritage-xi/main.webp",
       alt:    "오산헤리티지자이 대표 이미지",
       width:  750,
-      height: 1100,
+      height: 800,
     },
   },
 
@@ -79,12 +78,12 @@ const config = {
           specItems: [
             { label: "사업명",   value: "오산 양산4지구 도시개발사업지구내 1BL공동주택 신축공사" },
             { label: "대지위치", value: "경기도 오산시 양산동 223번지 일원" },
-            { label: "대지면적", value: "추후입력" },
-            { label: "건축면적", value: "추후입력" },
+            { label: "대지면적", value: "55,220㎡" },
             { label: "연면적",   value: "185,635.8279㎡" },
-            { label: "건폐율",   value: "추후입력" },
-            { label: "용적률",   value: "추후입력" },
-            { label: "건축규모", value: "추후입력" },
+            { label: "건폐율",   value: "18.19%" },
+            { label: "용적률",   value: "225.73%" },
+            { label: "건축규모", value: "지하 2층 ~ 지상 27층 / 13개동" },
+            { label: "세대수", value: "총 1,783세대(1BL 1,069세대)" },
            
             
           ],
@@ -95,14 +94,14 @@ const config = {
             { src: "/apt/osan-heritage-xi/1-2.webp", alt: "사업개요 2단지" },
           ],
           specItems: [
-            { label: "사업명",   value: "추후입력" },
-            { label: "대지위치", value: "추후입력" },
-            { label: "대지면적", value: "추후입력" },
-            { label: "건축면적", value: "추후입력" },
-            { label: "연면적",   value: "추후입력" },
-            { label: "건폐율",   value: "추후입력" },
-            { label: "용적률",   value: "추후입력" },
-            { label: "건축규모", value: "추후입력" },
+        { label: "사업명",   value: "오산 양산4지구 도시개발사업지구내 2BL공동주택 신축공사" },
+            { label: "대지위치", value: "경기도 오산시 양산동 328-2번지 일원" },
+            { label: "대지면적", value: "36,880㎡" },
+            { label: "연면적",   value: "127,132.1994㎡" },
+            { label: "건폐율",   value: "17.38%" },
+            { label: "용적률",   value: "226.13%" },
+            { label: "건축규모", value: "지하 2층 ~ 지상 27층 / 9개동" },
+            { label: "세대수", value: "총 1,783세대(2BL 714세대)" },
          
            
           ],

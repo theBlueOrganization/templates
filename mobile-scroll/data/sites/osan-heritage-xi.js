@@ -154,7 +154,8 @@ const config = {
       title:    "평면도",
       subtitle: "휴식이 완성되는 주거공간",
       images: [
-        { src: "/apt/osan-heritage-xi/3-2.webp", alt: "평면도" },
+        { src: "/apt/osan-heritage-xi/3-2.webp", alt: "평면도 75~84C" },
+        { src: "/apt/osan-heritage-xi/3-2b.webp", alt: "평면도 84D~166P" },
       ],
     },
   ],

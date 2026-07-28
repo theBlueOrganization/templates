@@ -2,7 +2,8 @@
  * 현장 슬러그: osan-heritage-xi
  * URL: /apt/osan-heritage-xi
  */
-// 상담 접수 알림은 SMS 대신 카카오 알림톡으로 발송 (kakaoTemplateId 미지정 → env KAKAO_TEMPLATE_ID 사용)
+// 상담 접수 알림은 SMS 대신 카카오 알림톡으로 발송
+// env KAKAO_TEMPLATE_ID 폴백이 실제로 안 잡히는 것으로 보여, 테스트를 위해 기존 승인 템플릿ID(숭의역 라온프라이빗 스카이브용)를 임시로 직접 지정 — 템플릿 변수/문구가 안 맞으면 발송 실패할 수 있음, 확정되면 오산헤리티지자이 전용 템플릿ID로 교체 필요
 
 const config = {
   slug:        "osan-heritage-xi",
@@ -13,6 +14,7 @@ const config = {
   ogImage:     "/apt/osan-heritage-xi/share_img.png",
   adminPhones:  ["01094216962"],
   kakao:        true,
+  kakaoTemplateId: "KA01TP260622093537285QA4EPtdxJyI",
   sheetId:      "",
   sheetTab:     "오산헤리티지자이",
 

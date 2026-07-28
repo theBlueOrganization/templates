@@ -1,0 +1,9 @@
+[config]
+model = "gpt-4o"
+fallback_model = "gpt-4o-mini"
+
+[pr_reviewer]
+extra_instructions = "모든 리뷰 및 모든 설명 댓글은 반드시 자연스러운 '한국어(Korean)'로만 작성해 주세요."
+
+[pr_description]
+extra_instructions = "PR 요약 설명도 반드시 '한국어(Korean)'로 작성해 주세요."

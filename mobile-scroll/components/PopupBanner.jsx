@@ -42,13 +42,24 @@ export default function PopupBanner({ popup, popupByUtm }) {
 
   const currentImage = images[index] ?? null;
 
+  // overflow: hidden만으로는 iOS Safari/카카오톡 인앱 브라우저에서 배경이 그대로 스크롤되는
+  // 경우가 있어, body를 현재 스크롤 위치에서 position: fixed로 고정하고 닫힐 때 복원함
   useEffect(() => {
-    if (open && currentImage) {
-      document.body.style.overflow = "hidden";
-    } else {
+    if (!(open && currentImage)) return;
+    const scrollY = window.scrollY;
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
       document.body.style.overflow = "";
-    }
-    return () => { document.body.style.overflow = ""; };
+      window.scrollTo(0, scrollY);
+    };
   }, [open, currentImage]);
 
   if (!open || !currentImage) return null;

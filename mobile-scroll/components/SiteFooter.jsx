@@ -1,10 +1,12 @@
 import styles from "./SiteFooter.module.css";
 
-export default function SiteFooter({ company, telNumber }) {
+export default function SiteFooter({ company, telNumber, hideLeadContact }) {
   return (
     <footer id="main-footer" className={styles.footer}>
       <div className={styles.container}>
-        <p className={styles.leadContact}><span className={styles.leadKey}>대표 분양 상담 문의</span>{telNumber}</p>
+        {!hideLeadContact && (
+          <p className={styles.leadContact}><span className={styles.leadKey}>대표 분양 상담 문의</span>{telNumber}</p>
+        )}
 
         <p className={styles.agencyLabel}>홈페이지 운영·관리 대행사</p>
         <div className={styles.info}>

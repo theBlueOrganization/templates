@@ -17,6 +17,19 @@
   margin: 0 0 12px;
 }
 
+/* ─── 대표 분양 상담 문의 (SiteFooter의 대행사 정보보다 강조 톤 유지) ── */
+.leadContact {
+  color: #ffffff80;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+
+.leadKey {
+  font-weight: 800;
+  margin-right: 12px;
+}
+
 /* ─── 나머지 정보 (SiteFooter보다 눈에 띄게, 세로 스택) ── */
 .info {
   display: flex;

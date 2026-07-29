@@ -15,6 +15,20 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
   const [accentReady, setAccentReady] = useState(false);
   const [heroOverride, setHeroOverride] = useState(null);
 
+  // 모바일 브라우저는 스크롤 중 주소창이 접히고 펴지며 100dvh(동적 뷰포트 높이)가 실시간으로
+  // 바뀌는데, 이를 background-size: cover와 함께 쓰면 배경 이미지가 스크롤 중 커졌다 작아졌다
+  // 하는 것처럼 보임(PC는 주소창 접힘이 없어 재현되지 않음). --vh를 최초 1회(+실제 기기 회전 시에만)
+  // 측정해 고정값으로 박아두고 CSS에서 이 값을 쓰면, 스크롤 중 주소창 변화와 무관하게 높이가
+  // 고정된다. resize 이벤트는 주소창 접힘에도 발생하므로 일부러 구독하지 않음(재현 방지).
+  useEffect(() => {
+    const setVh = () => {
+      document.documentElement.style.setProperty("--vh", `${window.innerHeight * 0.01}px`);
+    };
+    setVh();
+    window.addEventListener("orientationchange", setVh);
+    return () => window.removeEventListener("orientationchange", setVh);
+  }, []);
+
   // data에서 enableVariants: true 로 opt-in한 경우에만 쿼리스트링 감지
   // useLayoutEffect: 페인트 전에 실행 → 타입 전환 시 플래시 없음
   // ?v=1 → type1, ?v=2 → type2 …

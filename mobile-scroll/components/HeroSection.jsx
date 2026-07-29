@@ -20,7 +20,9 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
   // 하는 것처럼 보임(PC는 주소창 접힘이 없어 재현되지 않음). --vh를 최초 1회(+실제 기기 회전 시에만)
   // 측정해 고정값으로 박아두고 CSS에서 이 값을 쓰면, 스크롤 중 주소창 변화와 무관하게 높이가
   // 고정된다. resize 이벤트는 주소창 접힘에도 발생하므로 일부러 구독하지 않음(재현 방지).
-  useEffect(() => {
+  // useLayoutEffect: 첫 페인트 전에 실행 → 100vh 폴백에서 실측 높이로 넘어갈 때 순간적으로
+  // 커지거나 작아지는 점프(초기 CLS) 방지
+  useLayoutEffect(() => {
     const setVh = () => {
       document.documentElement.style.setProperty("--vh", `${window.innerHeight * 0.01}px`);
     };

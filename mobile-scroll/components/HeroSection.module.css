@@ -5,6 +5,9 @@
   height: calc(var(--vh, 1vh) * 100); /* HeroSection.jsx가 1회 측정해 고정 — 스크롤 중 주소창 접힘에 무관 */
   min-height: 500px;
   overflow: hidden;
+  /* 인트로 텍스트 중앙 정렬 계산의 기본값 — theme.hero.height로 오버라이드한 현장은
+     JSX 인라인 --hero-half가 이 값을 덮어씀(inline이 항상 우선) */
+  --hero-half: calc(var(--vh, 1vh) * 50);
 }
 
 /* ── 배경 이미지 ── */

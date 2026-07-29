@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./PopupBanner.module.css";
 
 export default function PopupBanner({ popup, popupByUtm }) {
@@ -11,6 +11,9 @@ export default function PopupBanner({ popup, popupByUtm }) {
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
   const [images, setImages] = useState(baseImages);
+  const scrollYRef = useRef(0);
+  // CTA로 닫힌 경우, 잠금 해제 직후 이동할 대상(잠금 해제 전 스크롤은 씹힘) — 일반 닫기는 null 유지
+  const pendingScrollTargetRef = useRef(null);
 
   useEffect(() => {
     // popupByUtm에 등록된 utm_source로 들어온 경우에만 팝업 구성을 덮어씀
@@ -43,24 +46,41 @@ export default function PopupBanner({ popup, popupByUtm }) {
   const currentImage = images[index] ?? null;
 
   // overflow: hidden만으로는 iOS Safari/카카오톡 인앱 브라우저에서 배경이 그대로 스크롤되는
-  // 경우가 있어, body를 현재 스크롤 위치에서 position: fixed로 고정하고 닫힐 때 복원함
+  // 경우가 있어, body를 현재 스크롤 위치에서 position: fixed로 고정하고 닫힐 때 복원함.
+  // currentImage가 아닌 open에만 반응 — 순차 팝업(다음 페이지) 넘김 중에는 잠금을 유지·유지된 채로 둠
   useEffect(() => {
-    if (!(open && currentImage)) return;
+    if (!open) return;
     const scrollY = window.scrollY;
+    scrollYRef.current = scrollY;
+    const prevStyle = {
+      position: document.body.style.position,
+      top:      document.body.style.top,
+      left:     document.body.style.left,
+      right:    document.body.style.right,
+      overflow: document.body.style.overflow,
+    };
     document.body.style.position = "fixed";
     document.body.style.top = `-${scrollY}px`;
     document.body.style.left = "0";
     document.body.style.right = "0";
     document.body.style.overflow = "hidden";
     return () => {
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.left = "";
-      document.body.style.right = "";
-      document.body.style.overflow = "";
-      window.scrollTo(0, scrollY);
+      document.body.style.position = prevStyle.position;
+      document.body.style.top = prevStyle.top;
+      document.body.style.left = prevStyle.left;
+      document.body.style.right = prevStyle.right;
+      document.body.style.overflow = prevStyle.overflow;
+
+      const ctaTarget = pendingScrollTargetRef.current;
+      pendingScrollTargetRef.current = null;
+      if (ctaTarget) {
+        // 잠금이 풀리기 전엔 scrollIntoView가 무시되므로, 스타일 복원 다음 프레임에 이동
+        requestAnimationFrame(() => ctaTarget.scrollIntoView({ behavior: "smooth" }));
+      } else {
+        window.scrollTo(0, scrollYRef.current);
+      }
     };
-  }, [open, currentImage]);
+  }, [open]);
 
   if (!open || !currentImage) return null;
 
@@ -80,9 +100,9 @@ export default function PopupBanner({ popup, popupByUtm }) {
   const handleCtaClick = (e) => {
     if (!cta) return;
     e.stopPropagation();
+    // 잠금이 아직 걸린 상태라 지금 scrollIntoView를 호출해도 씹힘 — 잠금 해제 시점에 이동하도록 예약
+    pendingScrollTargetRef.current = document.querySelector(cta.target);
     setOpen(false);
-    const target = document.querySelector(cta.target);
-    target?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (

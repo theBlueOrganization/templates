@@ -62,7 +62,7 @@ const config = {
     bgColor:       "#1e293b",
     accentKeyword: ["병점X동탄", "역세권", "프리미엄 브랜드"],
     image: {
-      src:    "/apt/osan-heritage-xi/main.webp",
+      src:    "/apt/osan-heritage-xi/main1.webp",
       alt:    "오산헤리티지자이 대표 이미지",
       width:  750,
       height: 500,
@@ -171,10 +171,9 @@ const config = {
 
   theme: {
     // ── 히어로 커튼 색상 ──
-    // height: 가로로 넓은 히어로 이미지를 100vh로 채우면 좌우가 많이 잘려 배경이 잘 안 보여서 낮춤
+    // 높이는 숭의역 라온프라이빗 스카이브와 동일하게 기본값(100dvh) 사용
     hero: {
       curtainColor: "#1e293b",
-      height: "78vh",
     },
 
     // 섹션 헤더 구분선

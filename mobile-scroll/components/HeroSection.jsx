@@ -78,9 +78,12 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
   // 이미지 원본 비율이 화면 세로 비율보다 짧은 경우 cover로 채우면 좌우가 잘림 —
   // 브랜드 워드마크가 이미지 가장자리에 있는 현장은 theme.hero.imageFit으로 기존 "100% auto" 유지
   const heroImageFit = th.hero?.imageFit ?? "cover";
+  // 가로로 넓은 이미지를 100vh 섹션에 cover로 채우면 좌우가 과하게 잘려 배경이 잘 안 보이는 현장은
+  // theme.hero.height로 섹션 높이를 낮춰 크롭을 줄임 (미설정 시 기존 100dvh 유지)
+  const heroHeight = th.hero?.height;
 
   return (
-    <section id="home" className={styles.hero}>
+    <section id="home" className={styles.hero} style={heroHeight ? { height: heroHeight } : undefined}>
 
       {/* 배경 이미지 */}
       <div

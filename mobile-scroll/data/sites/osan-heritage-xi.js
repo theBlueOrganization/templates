@@ -10,13 +10,20 @@ const config = {
   subdomain:   "오산헤리티지자이",
   projectName: "오산헤리티지자이",
   shortName:   "오산헤리티지자이",
-  telNumber:   "1666-1081",
+  telNumber:   "1555-1841",
   ogImage:     "/apt/osan-heritage-xi/share_img.png",
   adminPhones:  ["01032662158"],
   kakao:        true,
   kakaoTemplateId: "KA01TP260622093537285QA4EPtdxJyI",
   sheetId:      "",
   sheetTab:     "오산헤리티지자이",
+
+  // 분양사(개인정보 수집주체) 정보 — SiteFooter의 더블루파트너스(운영대행사) 정보와 별개로,
+  // ClientFooter가 그 위에 더 강조된 톤으로 노출
+  clientCompany: {
+    name:      "(주)세인디엔씨",
+    bizNumber: "824-88-01908",
+  },
 
   popup: {
     enabled: true,
@@ -164,8 +171,10 @@ const config = {
 
   theme: {
     // ── 히어로 커튼 색상 ──
+    // height: 가로로 넓은 히어로 이미지를 100vh로 채우면 좌우가 많이 잘려 배경이 잘 안 보여서 낮춤
     hero: {
       curtainColor: "#1e293b",
+      height: "78vh",
     },
 
     // 섹션 헤더 구분선

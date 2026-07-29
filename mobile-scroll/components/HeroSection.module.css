@@ -51,9 +51,10 @@
   right: 0;
   z-index: 15;
   padding: 80px 28px 40px;
-  /* padding-top을 고정값으로 두고 역산한 transform으로 시각적 중앙 구현 */
-  transform: translateY(calc(50vh - 50% - 80px));
-  transform: translateY(calc(50dvh - 50% - 80px));
+  /* padding-top을 고정값으로 두고 역산한 transform으로 시각적 중앙 구현 —
+     --hero-half는 theme.hero.height로 섹션 높이를 커스텀한 현장에서 JS가 주입(기본값 없으면 미설정) */
+  transform: translateY(calc(var(--hero-half, 50vh) - 50% - 80px));
+  transform: translateY(calc(var(--hero-half, 50dvh) - 50% - 80px));
   opacity: 0;
   transition: opacity 0.3s ease;
   will-change: transform;
@@ -105,8 +106,8 @@
 ── */
 @keyframes text-up {
   from {
-    transform: translateY(calc(50vh - 50% - 80px));
-    transform: translateY(calc(50dvh - 50% - 80px));
+    transform: translateY(calc(var(--hero-half, 50vh) - 50% - 80px));
+    transform: translateY(calc(var(--hero-half, 50dvh) - 50% - 80px));
   }
   to { transform: translateY(0); }
 }
@@ -373,8 +374,8 @@
     padding-top: 70px;
     padding-left: 20px;
     padding-right: 20px;
-    transform: translateY(calc(50vh - 50% - 70px));
-    transform: translateY(calc(50dvh - 50% - 70px));
+    transform: translateY(calc(var(--hero-half, 50vh) - 50% - 70px));
+    transform: translateY(calc(var(--hero-half, 50dvh) - 50% - 70px));
   }
   .textBlock.settled {
     padding-left: 20px;
@@ -382,8 +383,8 @@
   }
   @keyframes text-up {
     from {
-      transform: translateY(calc(50vh - 50% - 70px));
-      transform: translateY(calc(50dvh - 50% - 70px));
+      transform: translateY(calc(var(--hero-half, 50vh) - 50% - 70px));
+      transform: translateY(calc(var(--hero-half, 50dvh) - 50% - 70px));
     }
     to { transform: translateY(0); }
   }

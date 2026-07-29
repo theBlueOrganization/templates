@@ -15,9 +15,9 @@ export default function ClientFooter({ clientCompany, theme }) {
           {name}
         </p>
         <div className={styles.info} style={{ color: th.ClientFooter_value?.color }}>
-          <p><span className={styles.key} style={{ color: th.ClientFooter_key?.color }}>사업자 등록번호</span>{bizNumber}</p>
-          <p><span className={styles.key} style={{ color: th.ClientFooter_key?.color }}>대표자</span>{representative}</p>
-          <p><span className={styles.key} style={{ color: th.ClientFooter_key?.color }}>주소</span>{address}</p>
+          {bizNumber && <p><span className={styles.key} style={{ color: th.ClientFooter_key?.color }}>사업자 등록번호</span>{bizNumber}</p>}
+          {representative && <p><span className={styles.key} style={{ color: th.ClientFooter_key?.color }}>대표자</span>{representative}</p>}
+          {address && <p><span className={styles.key} style={{ color: th.ClientFooter_key?.color }}>주소</span>{address}</p>}
         </div>
       </div>
     </div>

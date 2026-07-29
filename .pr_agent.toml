@@ -3,7 +3,12 @@ model = "gpt-4o"
 fallback_model = "gpt-4o-mini"
 
 [pr_reviewer]
-extra_instructions = "모든 리뷰 및 모든 설명 댓글은 반드시 자연스러운 '한국어(Korean)'로만 작성해 주세요."
+extra_instructions = """
+1. 모든 리뷰 및 설명 댓글은 반드시 자연스러운 '한국어(Korean)'로만 작성해 주세요.
+2. [중요 프로젝트 규칙]
+   - 공유 컴포넌트 변경 시 기존 현장 호환성 및 'mobile-scroll' 선택 필드 호환성을 반드시 검사해 주세요.
+   - 프로젝트가 분리되어 있는 경우, 각 독립 프로젝트의 규칙이나 스타일이 혼용되지 않는지 엄격히 점검해 주세요.
+"""
 
 [pr_description]
 extra_instructions = "PR 요약 설명도 반드시 '한국어(Korean)'로 작성해 주세요."

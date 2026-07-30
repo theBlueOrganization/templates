@@ -15,18 +15,20 @@ export default function ClientFooter({ clientCompany, telNumber, theme }) {
         >
           {name}
         </p>
-        {/* 문의번호·사업자 등록번호는 나란히 배치 — 화면이 좁으면 자동으로 줄바꿈 */}
+        {/* 문의번호·사업자 등록번호 — 그리드로 라벨 폭을 고정해 값 시작 위치를 맞춤 */}
         {(telNumber || bizNumber) && (
           <div className={styles.leadRow}>
             {telNumber && (
-              <p className={styles.leadContact} style={leadStyle}>
-                <span className={styles.leadKey}>대표 분양 상담 문의</span>{telNumber}
-              </p>
+              <>
+                <span className={`${styles.leadContact} ${styles.leadKey}`} style={leadStyle}>대표 분양 상담 문의</span>
+                <span className={styles.leadContact} style={leadStyle}>{telNumber}</span>
+              </>
             )}
             {bizNumber && (
-              <p className={styles.leadContact} style={leadStyle}>
-                <span className={styles.leadKey}>사업자 등록번호</span>{bizNumber}
-              </p>
+              <>
+                <span className={`${styles.leadContact} ${styles.leadKey}`} style={leadStyle}>사업자 등록번호</span>
+                <span className={styles.leadContact} style={leadStyle}>{bizNumber}</span>
+              </>
             )}
           </div>
         )}

@@ -17,11 +17,12 @@
   margin: 0 0 12px;
 }
 
-/* ─── 대표 분양 상담 문의 / 사업자 등록번호 (세로 나열, SiteFooter보다 강조 톤 유지) ── */
+/* ─── 대표 분양 상담 문의 / 사업자 등록번호 (그리드로 값 시작 위치 정렬, SiteFooter보다 강조 톤 유지) ── */
 .leadRow {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  row-gap: 4px;
+  column-gap: 12px;
   margin: 0 0 12px;
 }
 
@@ -29,12 +30,10 @@
   color: #ffffff80;
   font-size: 1rem;
   font-weight: 700;
-  margin: 0;
 }
 
 .leadKey {
   font-weight: 800;
-  margin-right: 12px;
 }
 
 /* ─── 나머지 정보 (SiteFooter보다 눈에 띄게, 세로 스택) ── */

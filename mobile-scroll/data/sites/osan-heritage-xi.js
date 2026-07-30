@@ -223,6 +223,10 @@ const config = {
       fontSize: "1.5rem",
       color:    "#ffffff",
     },
+    // 대표 분양 상담 문의 / 사업자 등록번호 — 상호명보단 작지만 기본값(1rem)보단 눈에 띄게
+    ClientFooter_leadContact: {
+      fontSize: "1.15rem",
+    },
     // 상담 신청 버튼
     ContactForm_submitBtn: {
       background: "linear-gradient(135deg, #3b82f6, #1d4ed8)",

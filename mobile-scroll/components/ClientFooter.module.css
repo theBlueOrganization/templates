@@ -17,12 +17,20 @@
   margin: 0 0 12px;
 }
 
-/* ─── 대표 분양 상담 문의 (SiteFooter의 대행사 정보보다 강조 톤 유지) ── */
+/* ─── 대표 분양 상담 문의 / 사업자 등록번호 (나란히 배치, SiteFooter보다 강조 톤 유지) ── */
+.leadRow {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 4px;
+  margin: 0 0 12px;
+}
+
 .leadContact {
   color: #ffffff80;
   font-size: 1rem;
   font-weight: 700;
-  margin: 0 0 12px;
+  margin: 0;
 }
 
 .leadKey {

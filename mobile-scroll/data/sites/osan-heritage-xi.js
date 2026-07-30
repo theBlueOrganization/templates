@@ -62,7 +62,7 @@ const config = {
     bgColor:       "#1e293b",
     accentKeyword: ["병점X동탄", "역세권", "프리미엄 브랜드"],
     image: {
-      src:    "/apt/osan-heritage-xi/main1.webp",
+      src:    "/apt/osan-heritage-xi/main2.webp",
       alt:    "오산헤리티지자이 대표 이미지",
       width:  750,
       height: 500,
@@ -215,6 +215,17 @@ const config = {
     // 상담 신청 섹션 배경
     contactSection: {
       background: "#1e293b",
+    },
+
+    // 분양사 정보(ClientFooter) 상호명 — 기본값(모바일 1.05rem, 반투명 흰색)이 흐리고 작아
+    // 보여 크기를 더 키우고 불투명 흰색으로 바꿔 확실히 강조되도록 함
+    ClientFooter_name: {
+      fontSize: "1.5rem",
+      color:    "#ffffff",
+    },
+    // 대표 분양 상담 문의 / 사업자 등록번호 — 상호명보단 작지만 기본값(1rem)보단 눈에 띄게
+    ClientFooter_leadContact: {
+      fontSize: "1.15rem",
     },
     // 상담 신청 버튼
     ContactForm_submitBtn: {

@@ -62,7 +62,7 @@ const config = {
     bgColor:       "#1e293b",
     accentKeyword: ["병점X동탄", "역세권", "프리미엄 브랜드"],
     image: {
-      src:    "/apt/osan-heritage-xi/main1.webp",
+      src:    "/apt/osan-heritage-xi/main2.webp",
       alt:    "오산헤리티지자이 대표 이미지",
       width:  750,
       height: 500,

@@ -10,7 +10,7 @@ const config = {
   subdomain:   "오산헤리티지자이",
   projectName: "오산헤리티지자이",
   shortName:   "오산헤리티지자이",
-  telNumber:   "1555-1841",
+  telNumber:   "1666-1081",
   ogImage:     "/apt/osan-heritage-xi/share_img.png",
   adminPhones:  ["01032662158"],
   kakao:        true,

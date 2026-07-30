@@ -217,9 +217,11 @@ const config = {
       background: "#1e293b",
     },
 
-    // 분양사 정보(ClientFooter) 상호명 — 기본값(모바일 1.05rem)이 작아 보여 키움
+    // 분양사 정보(ClientFooter) 상호명 — 기본값(모바일 1.05rem, 반투명 흰색)이 흐리고 작아
+    // 보여 크기를 더 키우고 불투명 흰색으로 바꿔 확실히 강조되도록 함
     ClientFooter_name: {
-      fontSize: "1.2rem",
+      fontSize: "1.5rem",
+      color:    "#ffffff",
     },
     // 상담 신청 버튼
     ContactForm_submitBtn: {

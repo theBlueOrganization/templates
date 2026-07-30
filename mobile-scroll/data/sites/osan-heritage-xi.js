@@ -216,6 +216,11 @@ const config = {
     contactSection: {
       background: "#1e293b",
     },
+
+    // 분양사 정보(ClientFooter) 상호명 — 기본값(모바일 1.05rem)이 작아 보여 키움
+    ClientFooter_name: {
+      fontSize: "1.2rem",
+    },
     // 상담 신청 버튼
     ContactForm_submitBtn: {
       background: "linear-gradient(135deg, #3b82f6, #1d4ed8)",

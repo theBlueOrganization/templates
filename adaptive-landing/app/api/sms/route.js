@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import crypto from 'crypto'
 import { google } from 'googleapis'
+import { getSiteBySlug } from '../../../data/siteRegistry'
 
 const SOLAPI_URL = 'https://api.solapi.com/messages/v4/send'
 
@@ -68,6 +69,50 @@ async function saveToSheet(payload) {
   }
 }
 
+async function sendSms({ to, text }) {
+  const { SOLAPI_API_KEY, SOLAPI_API_SECRET, SOLAPI_SENDER } = process.env
+  const res = await fetch(SOLAPI_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      ...makeSignature(SOLAPI_API_KEY, SOLAPI_API_SECRET),
+    },
+    body: JSON.stringify({ message: { to, from: SOLAPI_SENDER, text } }),
+  })
+  const data = await res.json()
+  if (!res.ok || data.errorCode) {
+    throw new Error(`SMS 발송 실패 (to: ${to}, status: ${res.status}, errorCode: ${data.errorCode ?? 'N/A'}): ${data.message || JSON.stringify(data)}`)
+  }
+  return data
+}
+
+async function sendKakaoAlimtalk({ to, templateId, variables }) {
+  const { SOLAPI_API_KEY, SOLAPI_API_SECRET, SOLAPI_SENDER, KAKAO_SENDER_KEY } = process.env
+  const res = await fetch(SOLAPI_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      ...makeSignature(SOLAPI_API_KEY, SOLAPI_API_SECRET),
+    },
+    body: JSON.stringify({
+      message: {
+        to,
+        from: SOLAPI_SENDER,
+        kakaoOptions: {
+          pfId: KAKAO_SENDER_KEY,
+          templateId,
+          variables,
+        },
+      },
+    }),
+  })
+  const data = await res.json()
+  if (!res.ok || data.errorCode) {
+    throw new Error(`카카오 발송 실패 (to: ${to}, status: ${res.status}, errorCode: ${data.errorCode ?? 'N/A'}): ${data.message || JSON.stringify(data)}`)
+  }
+  return data
+}
+
 export async function POST(request) {
   try {
     const body = await request.json()
@@ -86,6 +131,7 @@ export async function POST(request) {
       showUtmInSms,
       serviceType,
       ageRange,
+      slug,
     } = body
 
     if (!name || !phone) {
@@ -132,6 +178,10 @@ export async function POST(request) {
     const ageLine = ageRange ? `\n연령대: ${ageRange}` : ''
     const giftLine = serviceType ? '' : `\n사은품등록: ${gift_check ? '체크함' : '아님'}`
 
+    const siteConfig = slug ? getSiteBySlug(slug) : null
+    const resolvedTemplateId = siteConfig?.kakaoTemplateId || process.env.KAKAO_TEMPLATE_ID
+    const useKakao = siteConfig?.kakao === true && Boolean(resolvedTemplateId)
+
     const adminMessage =
       `[${projectName}] 신규 상담 신청\n` +
       `이름: ${name}\n` +
@@ -166,19 +216,28 @@ export async function POST(request) {
 
     const sendResults = await Promise.allSettled(
       recipients.map(async (to) => {
-        const res = await fetch(SOLAPI_URL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            ...makeSignature(SOLAPI_API_KEY, SOLAPI_API_SECRET),
-          },
-          body: JSON.stringify({ message: { to, from: SOLAPI_SENDER, text: adminMessage } }),
-        })
-        const data = await res.json()
-        if (!res.ok || data.errorCode) {
-          throw new Error(`SMS 발송 실패 (to: ${to}, status: ${res.status}, errorCode: ${data.errorCode ?? 'N/A'}): ${data.message || JSON.stringify(data)}`)
+        if (useKakao) {
+          try {
+            await sendKakaoAlimtalk({
+              to,
+              templateId: resolvedTemplateId,
+              variables: {
+                '#{현장명}': projectName ?? '',
+                '#{유입매체}': utmSource ?? '직접유입',
+                '#{이름}': name ?? '',
+                '#{연락처}': phone ?? '',
+                '#{방문예약일}': visit_date || '미입력',
+                '#{방문예약시간}': visit_time || '미입력',
+                '#{희망서비스}': serviceType || '미입력',
+                '#{연령대}': ageRange || '미입력',
+              },
+            })
+            return
+          } catch (kakaoError) {
+            console.warn(`[카카오] 실패 → SMS 폴백: ${to}`, kakaoError.message)
+          }
         }
-        return data
+        await sendSms({ to, text: adminMessage })
       })
     )
 

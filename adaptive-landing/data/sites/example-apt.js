@@ -42,6 +42,10 @@ const config = {
   sheetTab: '예시아파트',
   // true면 상담 접수 알림 문자에 "유입매체: 카카오" 같은 줄이 추가됨 (utm_source가 있고 직접유입이 아닐 때만)
   showUtmInSms: true,
+  // 선택 필드: true + kakaoTemplateId가 있으면 상담 접수 알림을 SMS 대신 카카오 알림톡으로 발송 (실패 시 SMS로 자동 폴백)
+  // kakao: true,
+  // 솔라피 콘솔 → 카카오 알림톡 → 템플릿 관리에서 발급받은 템플릿ID (없으면 .env.local의 KAKAO_TEMPLATE_ID로 폴백)
+  // kakaoTemplateId: '',
 
   // 회사 정보 (보통 현장마다 똑같음, 대행사 정보)
   company: {

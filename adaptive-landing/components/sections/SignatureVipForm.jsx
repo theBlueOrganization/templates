@@ -21,7 +21,7 @@ const initialForm = {
 // 별도 컴포넌트로 만들고, /api/sms에 serviceType/ageRange 필드를 추가로 실어 보낸다.
 export default function SignatureVipForm({ config }) {
   const { vipForm } = config.signature
-  const { projectName, visitTimeOptions, adminPhones, adminPhonesByUtm, sheetId, sheetTab, showUtmInSms } = config
+  const { slug, projectName, visitTimeOptions, adminPhones, adminPhonesByUtm, sheetId, sheetTab, showUtmInSms } = config
 
   const [form, setForm] = useState(initialForm)
   const [submitting, setSubmitting] = useState(false)
@@ -61,6 +61,7 @@ export default function SignatureVipForm({ config }) {
           sheetTab,
           utmSource,
           showUtmInSms,
+          slug,
         }),
       })
       const data = await res.json()

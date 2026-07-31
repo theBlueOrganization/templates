@@ -23,10 +23,12 @@ const config = {
   telNumber: '1533-6100',
   ogImage: 'https://example.vercel.app/apt/eupseong-prugio/hero-bg.jpg',
   // 비워두면 ADMIN_PHONE(.env) 환경변수로 폴백됨
-  adminPhones: [],
+  adminPhones: ['01094216962'],
   sheetId: '',
   sheetTab: '업성푸르지오레이크시티',
   showUtmInSms: true,
+  // 카카오 알림톡 테스트용 — 실패 시 SMS로 자동 폴백
+  kakao: true,
 
   company: {
     name: '주식회사 더블루파트너스',

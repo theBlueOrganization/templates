@@ -65,9 +65,12 @@ const config = {
     { label: "카카오",    value: "kakao" },
   ],
 
-  // utm_source=sh로 들어온 상담만 문자 발송 시 현장명 뒤에 "+신한"을 붙여서 표시
+  // utm_source=sh/channeltalk/bc로 들어온 상담만 문자 발송 시 현장명 뒤에
+  // "+신한"/"+채널톡"/"+BC"를 붙여서 표시
   smsProjectNameByUtm: {
     sh: "신한",
+    channeltalk: "채널톡",
+    bc: "BC",
   },
 
   // utm_source가 아예 없는 접속(이 URL 그대로 접근)의 상담 문자 발송 시에만 현장명 뒤에 "+호갱1"을 붙여서 표시
@@ -98,8 +101,10 @@ const config = {
   },
 
   // utm_source=B는 기존 팀 수신번호가 아니라 이 번호로만 발송 (임시번호, 추후 고객사 번호로 교체 예정)
+  // utm_source=NA는 고객사 요청으로 이 3개 번호로만 발송
   adminPhonesByUtm: {
     B: ["01023537202"],
+    NA: ["01071901052","01048787464","01083773101"],
   },
 
   // utm_source=B로 들어온 방문자에게만 히어로 문구를 다르게 표시 (subtitle은 기존 값 유지)
@@ -160,17 +165,6 @@ const config = {
       utmExclude: ["B"],
       showHeader: false,
       sectionBg:  "#2A3746",
-    },
-    {
-      // utm_source=Lpoint로 들어온 방문자에게만 이 섹션을 노출 (sh/B 제외, 기본/직접접속, SKT1/SKT2/Lpoint2/Lpoint3/OK/NA는 숨김)
-      id:       "pet-friendly",
-      type:     "image",
-      title:    "특별제공",
-      subtitle: "라온 프라이빗의 펫특화 설계",
-      images: [
-        { src: "/apt/sungui-raon-private-skyve/1-4.webp", alt: "펫특화 설계" },
-      ],
-      utmOnly: ["Lpoint"],
     },
     {
       id:       "overview",

@@ -77,8 +77,8 @@ const config = {
   // utm_source가 있는 접속(SKT1/Lpoint2/sh/B/OK 등)에는 절대 붙지 않음 — sh는 기존처럼 "+신한"만 표시
   smsProjectNameSuffix: "호갱1",
 
-  // utm_source=B/SKT1/SKT2/Lpoint3/NA/sh/OK/channeltalk/bc/kakao로 들어온 방문자에게만 화면 문의처 번호를 다르게 표시 (문자 수신번호(adminPhones)는 영향 없음)
-  // SKT1/SKT2/NA/kakao는 1666-1050, sh/channeltalk는 1800-2261, Lpoint3/OK/bc는 1522-8602로 표시하고, 나머지 구조(팝업 2개,
+  // utm_source=B/SKT1/SKT2/Lpoint2/Lpoint3/NA/sh/OK/channeltalk/bc/kakao로 들어온 방문자에게만 화면 문의처 번호를 다르게 표시 (문자 수신번호(adminPhones)는 영향 없음)
+  // SKT1/SKT2/Lpoint2/bc/kakao는 1666-1050, sh/channeltalk는 1800-2261, Lpoint3/OK/NA는 1522-8602로 표시하고, 나머지 구조(팝업 2개,
   // 조건변경 섹션, 상담신청 폼 2개, 히어로 문구 등)는 기본값 그대로 유지
   // utm_source는 대소문자 정확히 일치해야 하므로(heroByUtm[utm]과 동일한 방식) key는 실제
   // 배포 링크의 utm_source 값과 철자·대소문자를 그대로 맞춰야 함
@@ -86,12 +86,13 @@ const config = {
     B: "1666-1352",
     SKT1: "1666-1050",
     SKT2: "1666-1050",
+    Lpoint2: "1666-1050",
     Lpoint3: "1522-8602",
-    NA: "1666-1050",
+    NA: "1522-8602",
     sh: "1800-2261",
     OK: "1522-8602",
     channeltalk: "1800-2261",
-    bc: "1522-8602",
+    bc: "1666-1050",
     kakao: "1666-1050",
   },
 

@@ -28,6 +28,7 @@ import hanlaJakjeon    from "./sites/hanla-jakjeon.js";
 import sujainPungmu2   from "./sites/gimpo-pungmu-sujain2.js";
 import sujainPungmu2b  from "./sites/gimpo-pungmu-sujain2-2.js";
 import suguiRaonSkyve from "./sites/sungui-raon-private-skyve.js";
+import suguiRaonPrivate2 from "./sites/sungui-raon-private-2.js";
 import gyeongsanHobanSummit1  from "./sites/gyeongsan-hobansummit-1.js";
 import cheonwangMoaelgaTreview  from "./sites/cheonwang-moaelga-treview.js";
 import hillstateSiheungTheclass  from "./sites/hillstate-siheung-theclass.js";
@@ -42,6 +43,7 @@ const sites = [
   sujainPungmu2,
   sujainPungmu2b,
   suguiRaonSkyve,
+  suguiRaonPrivate2,
   gyeongsanHobanSummit1,
   cheonwangMoaelgaTreview,
   hillstateSiheungTheclass,

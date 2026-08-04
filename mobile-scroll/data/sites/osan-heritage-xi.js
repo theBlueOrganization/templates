@@ -18,6 +18,11 @@ const config = {
   sheetId:      "",
   sheetTab:     "오산헤리티지자이",
 
+  // 사업개요 섹션 위(히어로 바로 다음)에 상담신청 폼을 하나 더 노출 (id: contact-section-top)
+  // extraContactFormAfterSectionId를 지정하지 않으면 기본 위치(히어로 다음)에 뜨고,
+  // excludeUtmValues를 빈 배열로 두면 utm_source와 무관하게 모든 방문자에게 노출됨
+  extraContactFormExcludeUtm: [],
+
   // 분양사(개인정보 수집주체) 정보 — SiteFooter의 더블루파트너스(운영대행사) 정보와 별개로,
   // ClientFooter가 그 위에 더 강조된 톤으로 노출
   clientCompany: {

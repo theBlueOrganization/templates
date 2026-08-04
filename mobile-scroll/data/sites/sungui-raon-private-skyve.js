@@ -61,6 +61,8 @@ const config = {
     { label: "OK",    value: "OK" },
     { label: "NA",    value: "NA" },
     { label: "채널톡",    value: "channeltalk" },
+    { label: "채널톡2",    value: "channeltalk2" },
+    { label: "nice",    value: "nice" },
     { label: "BC",    value: "bc" },
     { label: "카카오",    value: "kakao" },
   ],
@@ -71,6 +73,7 @@ const config = {
     sh: "신한",
     channeltalk: "채널톡",
     bc: "BC",
+    nice: "nice",
   },
 
   // utm_source가 아예 없는 접속(이 URL 그대로 접근)의 상담 문자 발송 시에만 현장명 뒤에 "+호갱1"을 붙여서 표시
@@ -92,6 +95,8 @@ const config = {
     sh: "1800-2261",
     OK: "1522-8602",
     channeltalk: "1800-2261",
+    channeltalk2: "1800-2261",
+    nice: "1800-2261",
     bc: "1666-1050",
     kakao: "1666-1050",
   },

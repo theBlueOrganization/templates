@@ -1,4 +1,5 @@
 import "./globals.css";
+import GoogleAnalytics from "../components/GoogleAnalytics";
 
 export const metadata = {
   metadataBase: new URL("https://theblue-apt.vercel.app"),
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
           href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Black+Han+Sans&family=Cormorant+Garamond:ital,wght@1,300;1,400&family=Noto+Sans+KR:wght@300;400;700&family=Noto+Serif+KR:wght@300;400;700;900&display=swap"
           rel="stylesheet"
         />
+        <GoogleAnalytics />
       </head>
       <body>
         {children}

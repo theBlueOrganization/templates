@@ -17,7 +17,7 @@ const config = {
   ogImage:     "/apt/sungui-raon-private-2/share_img.webp",
   adminPhones:  ["01094216962"], // 임시 번호 — 추후 실제 수신번호로 교체 예정
   sheetId:      "",
-  sheetTab:     "숭의역라온프라이빗2",
+  sheetTab:     "숭의역라온프라이빗스카이브2",
 
   company: {
     name:      "주식회사 더블루파트너스",

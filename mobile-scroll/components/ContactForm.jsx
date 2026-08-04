@@ -82,6 +82,18 @@ export default function ContactForm({ config, instanceId }) {
       });
       const data = await res.json();
       if (data.success) {
+        // 분석 이벤트 실패가 실제 제출 성공 처리에 영향을 주지 않도록 별도로 격리
+        try {
+          if (typeof window !== "undefined" && typeof window.gtag === "function") {
+            window.gtag("event", "form_submit", {
+              event_category: "consultation",
+              event_label: projectName,
+              utm_source: utmSource,
+            });
+          }
+        } catch {
+          // GA 이벤트 실패는 무시 — 상담 신청 자체는 이미 정상 처리됨
+        }
         alert("상담 신청이 완료되었습니다. 확인 후 연락드리겠습니다.");
         setInquiryCount((prev) => (prev ?? 20) + 1);
         setForm({ name: "", phone1: "", phone2: "", phone3: "", visit_date: "", visit_time: "", gift_check: false, privacy_agree: false });

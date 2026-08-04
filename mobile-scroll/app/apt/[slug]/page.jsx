@@ -7,6 +7,7 @@ import ImageSection    from "../../../components/ImageSection";
 import OfficeShell     from "../../../components/OfficeShell";
 import PopupBanner     from "../../../components/PopupBanner";
 import ExtraContactForm from "../../../components/ExtraContactForm";
+import SunguiRaonPrivate2Landing from "../../../components/sungui-raon-private-2/SunguiRaonPrivate2Landing";
 
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -32,6 +33,13 @@ export default async function AptPage({ params }) {
   const { slug } = await params;
   const site = getSiteBySlug(slug);
   if (!site) notFound();
+
+  // 숭의역 라온프라이빗2는 원본 사이트(diling.kr/su-raon)를 그대로 재현한 완전히 다른
+  // 구조의 전용 페이지 — 공용 섹션/테마 렌더링 파이프라인을 타지 않고 통째로 분리한다.
+  // SMS/구글시트/카카오 발송은 동일한 site 데이터(adminPhones, sheetTab 등)를 그대로 사용.
+  if (slug === "sungui-raon-private-2") {
+    return <SunguiRaonPrivate2Landing site={site} />;
+  }
 
   const navItems = site.sections
     .filter((s) => s.navLabel)

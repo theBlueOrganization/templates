@@ -10,11 +10,17 @@ body:has(.sr2) {
   max-width: none;
   box-shadow: none;
   padding-bottom: 0;
-  background-color: transparent;
+  background-color: #ffffff;
 }
 /* 햄버거 메뉴 열림 시 스크롤바 폭 보정은 SunguiRaonPrivate2Nav.jsx에서 실측한 값으로
    body에 padding-right를 직접 주는 방식으로 처리한다(이 CSS만으로는 body의 실제
    스크롤 컨테이너 여부가 브라우저마다 달라 확실히 보정되지 않아 JS 방식으로 교체). */
+
+/* html의 전역 배경(#e8edf2, 다른 현장의 모바일 캔버스 바깥 여백용 옅은 하늘색)이
+   스크롤 바운스 시 살짝 비쳐 보이는 문제 — 이 페이지만 흰색으로 덮는다 */
+html:has(.sr2) {
+  background-color: #ffffff;
+}
 
 .sr2 { font-family: 'Noto Sans KR', sans-serif; color: #333; line-height: 1.7; overflow-x: hidden; }
 .sr2 * { box-sizing: border-box; }
@@ -359,7 +365,7 @@ body:has(.sr2) {
 /* ===== FOOTER (자체 회사 정보로 교체) ===== */
 .sr2 .landing-footer {
   text-align: center; padding: 0;
-  background: linear-gradient(180deg, #12203a 0%, #0a1526 100%);
+  background: #2A3746;
   color: rgba(255,255,255,.85);
 }
 .sr2 .footer-accent-line { height: 2px; background: linear-gradient(90deg, transparent 0%, var(--btn-color) 50%, transparent 100%); }
@@ -375,6 +381,7 @@ body:has(.sr2) {
 }
 .sr2 .footer-brand { font-size: 15px; font-weight: 800; color: inherit; opacity: .85; letter-spacing: 2px; margin-bottom: 10px; }
 .sr2 .footer-info { font-size: 13px; color: inherit; opacity: .55; margin-bottom: 8px; line-height: 1.8; }
+.sr2 .footer-lead-contact { font-size: 17px; opacity: .85; }
 .sr2 .footer-copy { font-size: 12px; opacity: .45; }
 @media (max-width: 768px) { .sr2 .landing-footer { padding-bottom: 76px; } }
 
@@ -412,25 +419,30 @@ body:has(.sr2) {
 }
 .sr2 .rsv-popup-header {
   background: linear-gradient(160deg, #16283f 0%, #0f1c2e 100%);
-  padding: 22px 24px 20px; text-align: center; color: #fff;
+  padding: 12px 24px 10px; text-align: center; color: #fff;
 }
 .sr2 .rsv-popup-brand {
-  display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; opacity: .85;
+  display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 4px; opacity: .85;
 }
-.sr2 .rsv-popup-shield { width: 18px; height: 18px; color: var(--btn-color); }
+.sr2 .rsv-popup-shield { width: 14px; height: 14px; color: var(--btn-color); }
 .sr2 .rsv-popup-shield svg { width: 100%; height: 100%; }
-.sr2 .rsv-popup-brand-word { font-size: 12px; letter-spacing: 3px; font-weight: 600; }
+.sr2 .rsv-popup-brand-word { font-size: 10px; letter-spacing: 2px; font-weight: 600; }
 .sr2 .rsv-popup-title { margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.02em; }
-/* 높이가 낮은 가로 배너 이미지 — 카드 폭에 맞춰 꽉 채우고 높이는 원본 비율대로 낮게 */
+/* 이미지를 자르지 않고 원본 비율 그대로 카드 폭에 맞춰 전체가 보이게 표시 */
 .sr2 .rsv-popup-image-wrap { line-height: 0; background: #0f1c2e; }
 .sr2 .rsv-popup-image-wrap img { width: 100%; height: auto; display: block; }
 .sr2 .rsv-popup-target {
-  display: flex; align-items: center; gap: 10px; padding: 16px 20px; background: #fff;
-  border-bottom: 1px solid #f0f0f0; font-size: 13px; color: #444;
+  display: flex; align-items: center; gap: 8px; padding: 14px 16px; background: #fff;
+  border-bottom: 1px solid #f0f0f0; color: #444;
 }
 .sr2 .rsv-popup-target-tag {
   flex-shrink: 0; background: var(--btn-color); color: var(--btn-text-color);
-  font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 999px;
+  font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 999px;
+}
+/* 한 줄 고정 — 좁은 화면에서도 줄바꿈 없이 폰트 크기를 자동으로 줄여서 맞춘다 */
+.sr2 .rsv-popup-target-text {
+  flex: 1; min-width: 0; white-space: nowrap;
+  font-size: clamp(10px, 3.2vw, 13px); letter-spacing: -0.2px;
 }
 .sr2 .rsv-popup-target-text em { font-style: normal; color: #d9455f; font-weight: 700; }
 .sr2 .rsv-popup-form { padding: 20px 24px 12px; }
@@ -441,6 +453,7 @@ body:has(.sr2) {
   background: #f7f7f7; font-size: 15px; font-family: inherit;
 }
 .sr2 .rsv-popup-input:focus { outline: none; border-color: var(--btn-color); background: #fff; }
+.sr2 .rsv-popup-date-trigger { text-align: left; color: #222; cursor: pointer; }
 .sr2 .rsv-popup-tel-row { display: flex; gap: 8px; }
 .sr2 .rsv-popup-tel-input {
   flex: 1; min-width: 0; width: 0; padding: 14px 8px; border: 1px solid #e2e2e2; border-radius: 8px;

@@ -66,9 +66,9 @@ const config = {
     targetText: "방문예약 등록 후, 모델하우스 관람고객",
     targetHighlight: "(담당자 지명 필수)",
     image: {
-      src: "/apt/sungui-raon-private-2/popup1.webp",
+      src: "/apt/sungui-raon-private-2/popup2.webp",
       alt: "방문예약 사은품 이미지",
-      width: 600, height: 800,
+      width: 720, height: 603,
     },
   },
 

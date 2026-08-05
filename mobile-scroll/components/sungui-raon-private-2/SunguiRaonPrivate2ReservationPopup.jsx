@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import VisitDateTimeModal, { formatDateKo } from "./VisitDateTimeModal";
 
 // "오늘 하루 안보기" 체크 시 localStorage에 자정까지의 만료 시각을 저장해 숨김
 function isHiddenToday(id) {
@@ -34,10 +35,15 @@ export default function SunguiRaonPrivate2ReservationPopup({
   const [phone1, setPhone1] = useState("");
   const [phone2, setPhone2] = useState("");
   const [phone3, setPhone3] = useState("");
+  const [visitDate, setVisitDate] = useState("");
+  const [visitTime, setVisitTime] = useState("");
+  const [pickerOpen, setPickerOpen] = useState(false);
   const [agree, setAgree] = useState(false);
   const [privacyOpen, setPrivacyOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [utmSource, setUtmSource] = useState("미확인");
+
+  const visitLabel = visitDate ? `${formatDateKo(visitDate)}${visitTime ? ` · ${visitTime}` : ""}` : "날짜/시간 선택";
 
   useEffect(() => {
     if (!isHiddenToday(id)) setOpen(true);
@@ -64,6 +70,7 @@ export default function SunguiRaonPrivate2ReservationPopup({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name, phone,
+          visit_date: visitDate, visit_time: visitTime,
           privacy_agree: agree,
           projectName,
           adminPhones,
@@ -77,7 +84,7 @@ export default function SunguiRaonPrivate2ReservationPopup({
       const data = await res.json();
       if (data.success) {
         alert("방문예약이 접수되었습니다. 확인 후 연락드리겠습니다.");
-        setName(""); setPhone1(""); setPhone2(""); setPhone3(""); setAgree(false);
+        setName(""); setPhone1(""); setPhone2(""); setPhone3(""); setVisitDate(""); setVisitTime(""); setAgree(false);
         handleClose();
       } else {
         alert(data.message ?? "오류가 발생했습니다. 다시 시도해주세요.");
@@ -140,6 +147,20 @@ export default function SunguiRaonPrivate2ReservationPopup({
               onChange={(e) => setPhone3(e.target.value.replace(/[^0-9]/g, ""))} required
             />
           </div>
+
+          <label className="rsv-popup-label">방문예정일 (선택)</label>
+          <button type="button" className="rsv-popup-input rsv-popup-date-trigger" onClick={() => setPickerOpen(true)}>
+            {visitLabel}
+          </button>
+
+          {pickerOpen && (
+            <VisitDateTimeModal
+              initialDate={visitDate}
+              initialTime={visitTime}
+              onConfirm={({ date, time }) => { setVisitDate(date); setVisitTime(time); setPickerOpen(false); }}
+              onClose={() => setPickerOpen(false)}
+            />
+          )}
 
           <div className="rsv-popup-privacy-row">
             <label className="rsv-popup-check">

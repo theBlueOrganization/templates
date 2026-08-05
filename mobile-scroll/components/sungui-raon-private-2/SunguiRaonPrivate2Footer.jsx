@@ -9,6 +9,8 @@ export default function SunguiRaonPrivate2Footer({ company, telNumber, projectNa
         <p className="footer-lead-label">모델하우스 상담</p>
         <p className="footer-lead-tel">{telNumber}</p>
 
+        <div className="footer-divider" />
+
         <p className="footer-brand">홈페이지 운영·관리 대행사</p>
         <p className="footer-info">
           담당회사 {company.name} · 사업자 등록번호 {company.bizNumber}

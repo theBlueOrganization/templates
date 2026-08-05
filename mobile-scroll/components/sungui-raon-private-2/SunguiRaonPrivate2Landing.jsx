@@ -42,7 +42,6 @@ export default function SunguiRaonPrivate2Landing({ site }) {
           title={site.popup.title}
           targetText={site.popup.targetText}
           targetHighlight={site.popup.targetHighlight}
-          telNumber={site.telNumber}
           projectName={site.projectName}
           adminPhones={site.adminPhones}
           sheetId={site.sheetId}

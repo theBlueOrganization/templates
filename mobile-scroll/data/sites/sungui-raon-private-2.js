@@ -73,7 +73,7 @@ const config = {
     image: {
       src: "/apt/sungui-raon-private-2/popup2.webp",
       alt: "방문예약 사은품 이미지",
-      width: 720, height: 581,
+      width: 720, height: 651,
     },
   },
 

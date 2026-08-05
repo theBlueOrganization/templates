@@ -372,7 +372,8 @@ html:has(.sr2) {
 .sr2 .footer-inner { padding: 40px 24px 28px; }
 .sr2 .footer-brand { font-size: 15px; font-weight: 800; color: inherit; opacity: .85; letter-spacing: 2px; margin-bottom: 10px; }
 .sr2 .footer-info { font-size: 13px; color: inherit; opacity: .55; margin-bottom: 8px; line-height: 1.8; }
-.sr2 .footer-lead-contact { font-size: 22px; font-weight: 700; opacity: .95; }
+.sr2 .footer-lead-label { font-size: 17px; font-weight: 700; opacity: .85; margin: 0 0 6px; }
+.sr2 .footer-lead-tel { font-size: 30px; font-weight: 800; color: #fff; margin: 0 0 18px; }
 .sr2 .footer-copy { font-size: 12px; opacity: .45; }
 @media (max-width: 768px) { .sr2 .landing-footer { padding-bottom: 76px; } }
 
@@ -421,7 +422,7 @@ html:has(.sr2) {
 .sr2 .rsv-popup-image-wrap { line-height: 0; background: #0f1c2e; }
 .sr2 .rsv-popup-image-wrap img { width: 100%; height: auto; display: block; }
 .sr2 .rsv-popup-target {
-  display: flex; align-items: center; gap: 8px; padding: 14px 16px; background: #fff;
+  display: flex; align-items: center; gap: 8px; padding: 10px 16px; background: #fff;
   border-bottom: 1px solid #f0f0f0; color: #444;
 }
 .sr2 .rsv-popup-target-tag {

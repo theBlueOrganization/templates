@@ -32,7 +32,7 @@ export default function SunguiRaonPrivate2Landing({ site }) {
         privacyText={site.privacyText}
       />
       <SunguiRaonPrivate2FloatingCta telNumber={site.telNumber} />
-      <SunguiRaonPrivate2Footer company={site.company} telNumber={site.telNumber} projectName={site.projectName} logo={site.logo} />
+      <SunguiRaonPrivate2Footer company={site.company} telNumber={site.telNumber} projectName={site.projectName} />
 
       {site.popup && (
         <SunguiRaonPrivate2ReservationPopup

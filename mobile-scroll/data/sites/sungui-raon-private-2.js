@@ -15,7 +15,7 @@ const config = {
   shortName:   "숭의역 라온프라이빗",
   telNumber:   "1811-4166",
   ogImage:     "/apt/sungui-raon-private-2/share_img.webp",
-  adminPhones:  ["01094216962"], // 임시 번호 — 추후 실제 수신번호로 교체 예정
+  adminPhones:  ["01044411561"],
   sheetId:      "",
   sheetTab:     "숭의역라온프라이빗스카이브2",
 
@@ -68,7 +68,7 @@ const config = {
     image: {
       src: "/apt/sungui-raon-private-2/popup2.webp",
       alt: "방문예약 사은품 이미지",
-      width: 720, height: 603,
+      width: 971, height: 822,
     },
   },
 

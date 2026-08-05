@@ -370,18 +370,9 @@ html:has(.sr2) {
 }
 .sr2 .footer-accent-line { height: 2px; background: linear-gradient(90deg, transparent 0%, var(--btn-color) 50%, transparent 100%); }
 .sr2 .footer-inner { padding: 40px 24px 28px; }
-.sr2 .footer-logo-wrap {
-  display: inline-flex; margin: 0 auto 28px; background: #ffffff;
-  border-radius: 14px; padding: 16px 28px;
-}
-.sr2 .footer-logo { display: block; height: 56px; width: auto; }
-@media (max-width: 768px) {
-  .sr2 .footer-logo-wrap { padding: 12px 20px; margin-bottom: 22px; }
-  .sr2 .footer-logo { height: 40px; }
-}
 .sr2 .footer-brand { font-size: 15px; font-weight: 800; color: inherit; opacity: .85; letter-spacing: 2px; margin-bottom: 10px; }
 .sr2 .footer-info { font-size: 13px; color: inherit; opacity: .55; margin-bottom: 8px; line-height: 1.8; }
-.sr2 .footer-lead-contact { font-size: 17px; opacity: .85; }
+.sr2 .footer-lead-contact { font-size: 22px; font-weight: 700; opacity: .95; }
 .sr2 .footer-copy { font-size: 12px; opacity: .45; }
 @media (max-width: 768px) { .sr2 .landing-footer { padding-bottom: 76px; } }
 

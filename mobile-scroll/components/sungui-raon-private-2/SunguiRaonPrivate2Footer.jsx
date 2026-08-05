@@ -1,17 +1,11 @@
 // 원본 사이트 푸터(제작사 배너 이미지)는 다른 회사(대행사) 크레딧이라 쓰지 않고,
 // 다른 모든 현장의 SiteFooter와 같은 내용(대표 문의처, 대행사 정보, 법적 고지, 저작권)을
 // 이 페이지 다크 테마에 맞춰 구성한다.
-export default function SunguiRaonPrivate2Footer({ company, telNumber, projectName, logo }) {
+export default function SunguiRaonPrivate2Footer({ company, telNumber, projectName }) {
   return (
     <footer className="landing-footer">
       <div className="footer-accent-line" />
       <div className="footer-inner">
-        {logo && (
-          <div className="footer-logo-wrap">
-            <img src={logo.src} alt={logo.alt ?? ""} width={logo.width} height={logo.height} className="footer-logo" />
-          </div>
-        )}
-
         <p className="footer-info footer-lead-contact" style={{ marginBottom: 16 }}>
           대표 분양 상담 문의 <strong style={{ color: "#fff" }}>{telNumber}</strong>
         </p>

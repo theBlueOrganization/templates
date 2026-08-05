@@ -413,11 +413,9 @@ html:has(.sr2) {
   padding: 12px 24px 10px; text-align: center; color: #fff;
 }
 .sr2 .rsv-popup-brand {
-  display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 4px; opacity: .85;
+  display: flex; align-items: center; justify-content: center; margin-bottom: 4px;
 }
-.sr2 .rsv-popup-shield { width: 14px; height: 14px; color: var(--btn-color); }
-.sr2 .rsv-popup-shield svg { width: 100%; height: 100%; }
-.sr2 .rsv-popup-brand-word { font-size: 10px; letter-spacing: 2px; font-weight: 600; }
+.sr2 .rsv-popup-logo { display: block; height: 16px; width: auto; }
 .sr2 .rsv-popup-title { margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.02em; }
 /* 이미지를 자르지 않고 원본 비율 그대로 카드 폭에 맞춰 전체가 보이게 표시 */
 .sr2 .rsv-popup-image-wrap { line-height: 0; background: #0f1c2e; }

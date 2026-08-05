@@ -59,16 +59,21 @@ const config = {
     { label: "44OA", src: "/apt/sungui-raon-private-2/3-4.webp", alt: "44OA 평면도", width: 877, height: 1536 },
   ],
 
-  // 방문예약 사은품 증정 팝업 — image는 임시 자리표시자, 실제 사은품 이미지로 교체 예정
+  // 방문예약 사은품 증정 팝업
   popup: {
     id: "sr2-popup1",
     title: "방문예약 사은품 증정",
     targetText: "방문예약 등록 후, 모델하우스 관람고객",
     targetHighlight: "(담당자 지명 필수)",
+    logo: {
+      src: "/apt/sungui-raon-private-2/logo-w.webp",
+      alt: "숭의역 라온프라이빗 스카이브",
+      width: 279, height: 69,
+    },
     image: {
       src: "/apt/sungui-raon-private-2/popup2.webp",
       alt: "방문예약 사은품 이미지",
-      width: 971, height: 822,
+      width: 720, height: 581,
     },
   },
 

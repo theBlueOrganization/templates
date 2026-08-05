@@ -38,6 +38,7 @@ export default function SunguiRaonPrivate2Landing({ site }) {
         <SunguiRaonPrivate2ReservationPopup
           id={site.popup.id}
           image={site.popup.image}
+          logo={site.popup.logo}
           title={site.popup.title}
           targetText={site.popup.targetText}
           targetHighlight={site.popup.targetHighlight}

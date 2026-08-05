@@ -12,7 +12,7 @@ export default function SunguiRaonPrivate2Footer({ company, telNumber, projectNa
           </div>
         )}
 
-        <p className="footer-info" style={{ marginBottom: 16 }}>
+        <p className="footer-info footer-lead-contact" style={{ marginBottom: 16 }}>
           대표 분양 상담 문의 <strong style={{ color: "#fff" }}>{telNumber}</strong>
         </p>
 

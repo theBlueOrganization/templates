@@ -422,7 +422,7 @@ html:has(.sr2) {
 .sr2 .rsv-popup-image-wrap { line-height: 0; background: #0f1c2e; }
 .sr2 .rsv-popup-image-wrap img { width: 100%; height: auto; display: block; }
 .sr2 .rsv-popup-target {
-  display: flex; align-items: center; gap: 8px; padding: 6px 16px; background: #fff;
+  display: flex; align-items: center; gap: 8px; padding: 10px 16px; background: #fff;
   border-bottom: 1px solid #f0f0f0; color: #444;
 }
 .sr2 .rsv-popup-target-tag {

@@ -374,7 +374,7 @@ html:has(.sr2) {
 .sr2 .footer-info { font-size: 13px; color: inherit; opacity: .55; margin-bottom: 8px; line-height: 1.8; }
 .sr2 .footer-lead-label { font-size: 17px; font-weight: 700; opacity: .85; margin: 0 0 6px; }
 .sr2 .footer-lead-tel { font-size: 30px; font-weight: 800; color: #fff; margin: 0 0 18px; }
-.sr2 .footer-divider { height: 1px; background: rgba(255,255,255,.15); margin: 20px 60px 28px; }
+.sr2 .footer-divider { height: 1px; background: rgba(255,255,255,.15); margin: 20px 150px 28px; }
 .sr2 .footer-copy { font-size: 12px; opacity: .45; }
 @media (max-width: 768px) { .sr2 .landing-footer { padding-bottom: 76px; } }
 

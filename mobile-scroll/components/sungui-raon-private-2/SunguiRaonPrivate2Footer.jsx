@@ -6,9 +6,8 @@ export default function SunguiRaonPrivate2Footer({ company, telNumber, projectNa
     <footer className="landing-footer">
       <div className="footer-accent-line" />
       <div className="footer-inner">
-        <p className="footer-info footer-lead-contact" style={{ marginBottom: 16 }}>
-          대표 분양 상담 문의 <strong style={{ color: "#fff" }}>{telNumber}</strong>
-        </p>
+        <p className="footer-lead-label">모델하우스 상담</p>
+        <p className="footer-lead-tel">{telNumber}</p>
 
         <p className="footer-brand">홈페이지 운영·관리 대행사</p>
         <p className="footer-info">

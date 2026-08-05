@@ -26,7 +26,7 @@ function hideUntilTomorrow(id) {
 // 방문예약 사은품 증정 팝업 — 이미지 배너 + 대상 안내 + 이름/연락처 미니 폼을 한 번에 보여주고,
 // 제출 시 하단 상담신청 폼과 동일하게 /api/sms로 발송한다(솔라피 SMS/구글시트/카카오 연동 공유).
 export default function SunguiRaonPrivate2ReservationPopup({
-  id, image, logo, title, targetText, targetHighlight,
+  id, image, logo, title, targetText, targetHighlight, telNumber,
   projectName, adminPhones, sheetId, sheetTab, slug, privacyText,
 }) {
   const [open, setOpen] = useState(false);
@@ -115,10 +115,17 @@ export default function SunguiRaonPrivate2ReservationPopup({
         </div>
 
         <div className="rsv-popup-target">
-          <span className="rsv-popup-target-tag">대상</span>
-          <span className="rsv-popup-target-text">
-            {targetText} <em>{targetHighlight}</em>
-          </span>
+          <div className="rsv-popup-target-row">
+            <span className="rsv-popup-target-tag">대상</span>
+            <span className="rsv-popup-target-text">
+              {targetText} <em>{targetHighlight}</em>
+            </span>
+          </div>
+          {telNumber && (
+            <div className="rsv-popup-target-tel">
+              문의 <strong>{telNumber}</strong>
+            </div>
+          )}
         </div>
 
         <form className="rsv-popup-form" onSubmit={handleSubmit}>

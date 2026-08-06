@@ -32,15 +32,11 @@ const config = {
     },
   ],
 
-  // 팝업2 이미지 최신본 교체에 맞춰 B 유입경로도 기본과 동일하게 popup1+popup2 순차 노출
+  // utm_source=B만 popup1 1개로 다르게 노출 (다른 유입경로는 위 기본 popup 그대로)
   popupByUtm: {
     B: [
       {
         src: "/apt/sungui-raon-private-skyve/popup1.webp",
-        alt: "숭의역 라온프라이빗 스카이브 팝업",
-      },
-      {
-        src: "/apt/sungui-raon-private-skyve/popup2.webp",
         alt: "숭의역 라온프라이빗 스카이브 팝업",
       },
     ],

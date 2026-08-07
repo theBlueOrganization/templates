@@ -34,6 +34,7 @@ import cheonwangMoaelgaTreview  from "./sites/cheonwang-moaelga-treview.js";
 import hillstateSiheungTheclass  from "./sites/hillstate-siheung-theclass.js";
 import forenaTheshopIncheonCityhall  from "./sites/forena-theshop-incheon-cityhall.js";
 import osanHeritageXi  from "./sites/osan-heritage-xi.js";
+import harringtonPlaceNowonCentral  from "./sites/harrington-place-nowon-central.js";
 
 
 /** @type {SiteConfig[]} */
@@ -49,6 +50,7 @@ const sites = [
   hillstateSiheungTheclass,
   forenaTheshopIncheonCityhall,
   osanHeritageXi,
+  harringtonPlaceNowonCentral,
 ];
 
 // ─── 유틸 함수 ────────────────────────────────────────────

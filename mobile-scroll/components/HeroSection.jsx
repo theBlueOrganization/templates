@@ -181,8 +181,16 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
           ))}
         </h1>
         {effectiveSubtitle && (
-          <p className={styles.subtitle}>
-            {effectiveSubtitle}
+          <p className={styles.subtitle} style={{ color: th.subtitle?.color, fontSize: th.subtitle?.fontSize }}>
+            {effectiveSubtitle.split(/(\d[\d-]{5,}\d)/).map((part, i) =>
+              /^\d[\d-]{5,}\d$/.test(part) ? (
+                <em key={i} className={styles.subtitleAccent} style={{ color: th.subtitle?.accentColor }}>
+                  {part}
+                </em>
+              ) : (
+                part
+              )
+            )}
           </p>
         )}
       </div>

@@ -53,13 +53,13 @@ const config = {
   ],
 
   hero: {
-    eyebrow:       "선착순 분양중",
+    eyebrow:       "선착순 분양중｜더블역세권",
     eyebrowUrgent: 1,
     brand:         "해링턴플레이스 노원 센트럴",
-    title:         "서울 동북권의 정점에 서다\n해링턴 플레이스 노원 센트럴\nTODO 셋째 줄",
+    title:         "서울 동북권의 정점에 서다\n해링턴 플레이스\n노원 센트럴",
     subtitle:      "분양문의) 1661-8664",
     bgColor:       "linear-gradient(to right, rgb(48 101 192), rgb(55 112 199), rgb(72 127 207))",
-    accentKeyword: ["TODO"],
+    accentKeyword: ["동북권","해링턴 플레이스"],
     image: {
       src:    "/apt/harrington-place-nowon-central/1.webp",
       alt:    "해링턴플레이스 노원 센트럴 대표 이미지",
@@ -146,15 +146,15 @@ const config = {
 
     // 섹션 헤더 구분선
     ImageSection_divider: {
-      background: "linear-gradient(90deg, #b8860b, #f5d67d)",
+      background: "linear-gradient(90deg, #5b4fd6, #a78bfa)",
       width:      "40px",
       height:     "3px",
     },
 
     // 히어로 배지 (eyebrow)
     eyebrow: {
-      color:       "#f5c15c",
-      borderColor: "rgba(245,193,92,0.5)",
+      color:       "#b39ef5",
+      borderColor: "rgba(179,158,245,0.55)",
       fontSize:    "1rem",
     },
     // 긴급 배지 (eyebrowUrgent)
@@ -172,12 +172,13 @@ const config = {
     title: {
       color:       "#ffffff",
       fontSize:    "clamp(1.6rem,8vw,2.7rem)",
-      accentColor: "#f5c15c",
+      accentColor: "#9d7cf0",
     },
     // 히어로 서브타이틀
     subtitle: {
-      color:    "rgb(255, 255, 255)",
-      fontSize: "1rem",
+      color:       "rgb(255, 255, 255)",
+      fontSize:    "1.15rem",
+      accentColor: "#ff6b6b",
     },
 
     // 상담 신청 섹션 배경
@@ -186,14 +187,14 @@ const config = {
     },
     // 상담 신청 버튼
     ContactForm_submitBtn: {
-      background: "#f8e090",
-      color:      "#0F1B33",
+      background: "linear-gradient(90deg, #8b5cf6, #6d5bf5)",
+      color:      "#ffffff",
       fontSize:   "1.15rem",
     },
 
     // 하단 고정 버튼바
     BottomBar_callBtn: {
-      background: "#f1e9d2",
+      background: "#d6cdfb",
       color:      "#0F1B33",
     },
     BottomBar_regBtn: {

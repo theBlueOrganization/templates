@@ -9,7 +9,7 @@
 
 const config = {
   slug:        "osan-heritage-xi-2",
-  subdomain:   "오산헤리티지자이2",
+  subdomain:   "오산헤리티지자이zi",
   projectName: "오산헤리티지자이",
   shortName:   "오산헤리티지자이",
   telNumber:   "1666-1081",
@@ -19,18 +19,6 @@ const config = {
   kakaoTemplateId: "KA01TP260622093537285QA4EPtdxJyI",
   sheetId:      "",
   sheetTab:     "오산헤리티지자이2",
-
-  // 사업개요("overview") 섹션 바로 아래에 상담신청 폼을 하나 더 노출 (id: contact-section-top)
-  // excludeUtmValues를 빈 배열로 두면 utm_source와 무관하게 모든 방문자에게 노출됨
-  extraContactFormExcludeUtm: [],
-  extraContactFormAfterSectionId: "overview",
-
-  // 분양사(개인정보 수집주체) 정보 — SiteFooter의 더블루파트너스(운영대행사) 정보와 별개로,
-  // ClientFooter가 그 위에 더 강조된 톤으로 노출
-  clientCompany: {
-    name:      "(주)세인디엔씨",
-    bizNumber: "824-88-01908",
-  },
 
   popup: {
     enabled: true,

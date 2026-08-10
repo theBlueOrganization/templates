@@ -83,12 +83,16 @@ export default function ContactForm({ config, instanceId }) {
       const data = await res.json();
       if (data.success) {
         // 분석 이벤트 실패가 실제 제출 성공 처리에 영향을 주지 않도록 별도로 격리
+        // 이벤트명은 GA4 예약어(자동 수집되는 form_submit)와 겹치지 않도록 form_submit_consulting 사용
         try {
           if (typeof window !== "undefined" && typeof window.gtag === "function") {
-            window.gtag("event", "form_submit", {
+            window.gtag("event", "form_submit_consulting", {
               event_category: "consultation",
               event_label: projectName,
               utm_source: utmSource,
+              // 쿼리스트링/해시는 제외(순수 경로만) — utm_source는 위에서 별도 파라미터로 이미 전송하므로
+              // 중복도 없고, 앞으로 URL 쿼리에 민감한 값이 추가되더라도 GA로 새어나가지 않음
+              page_location: window.location.origin + window.location.pathname,
             });
           }
         } catch {

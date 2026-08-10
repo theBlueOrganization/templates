@@ -242,6 +242,11 @@
   animation: el-in 0.45s ease 0.9s forwards;
 }
 
+.subtitleAccent {
+  font-style: normal;
+  font-weight: 700;
+}
+
 .subtitle::before {
   content: '';
   display: inline-block;

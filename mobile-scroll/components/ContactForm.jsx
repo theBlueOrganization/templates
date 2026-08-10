@@ -90,7 +90,9 @@ export default function ContactForm({ config, instanceId }) {
               event_category: "consultation",
               event_label: projectName,
               utm_source: utmSource,
-              page_location: window.location.href,
+              // 쿼리스트링/해시는 제외(순수 경로만) — utm_source는 위에서 별도 파라미터로 이미 전송하므로
+              // 중복도 없고, 앞으로 URL 쿼리에 민감한 값이 추가되더라도 GA로 새어나가지 않음
+              page_location: window.location.origin + window.location.pathname,
             });
           }
         } catch {

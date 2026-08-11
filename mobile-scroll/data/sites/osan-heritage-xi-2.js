@@ -14,7 +14,7 @@ const config = {
   shortName:   "오산헤리티지자이",
   telNumber:   "1600-1646",
   ogImage:     "/apt/osan-heritage-xi-2/share_img.png",
-  adminPhones:  ["01094216962"],
+  adminPhones:  ["01050268008"],
   kakao:        true,
   kakaoTemplateId: "KA01TP260622093537285QA4EPtdxJyI",
   sheetId:      "",

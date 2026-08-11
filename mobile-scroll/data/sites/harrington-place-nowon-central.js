@@ -19,9 +19,9 @@ const config = {
   sheetTab:     "해링턴플레이스노원센트럴",
 
   popup: {
-    enabled: false,
+    enabled: true,
     image: {
-      src: "/apt/harrington-place-nowon-central/4.webp",
+      src: "/apt/harrington-place-nowon-central/popup.webp",
       alt: "해링턴플레이스 노원 센트럴 팝업",
     },
   },
@@ -153,8 +153,8 @@ const config = {
 
     // 히어로 배지 (eyebrow)
     eyebrow: {
-      color:       "#b39ef5",
-      borderColor: "rgba(179,158,245,0.55)",
+      color:       "rgba(255,255,255,0.9)",
+      borderColor: "rgba(255,255,255,0.4)",
       fontSize:    "1rem",
     },
     // 긴급 배지 (eyebrowUrgent)
@@ -172,13 +172,13 @@ const config = {
     title: {
       color:       "#ffffff",
       fontSize:    "clamp(1.6rem,8vw,2.7rem)",
-      accentColor: "#9d7cf0",
+      accentColor: "#C9A6FF",
     },
     // 히어로 서브타이틀
     subtitle: {
-      color:       "rgb(255, 255, 255)",
+      color:       "#ffffff",
       fontSize:    "1.15rem",
-      accentColor: "#ff6b6b",
+      accentColor: "#ffffff",
     },
 
     // 상담 신청 섹션 배경

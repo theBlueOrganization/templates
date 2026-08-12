@@ -69,6 +69,7 @@
 }
 
 .ctaHotspot {
+  display: block;
   position: absolute;
   border: none;
   background: transparent;

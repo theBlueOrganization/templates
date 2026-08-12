@@ -42,6 +42,7 @@ export default function ImageSection({
   specItems,
   images = [],
   tabs,         // 있으면 [{ label, images, specItems }] 탭 메뉴로 전환해서 보여줌 (없으면 기존과 동일하게 images/specItems 그대로 사용)
+  gallery,      // 있으면 [{ src, alt, label? }] 2단 그리드 갤러리 노출 — 클릭하면 라이트박스로 크게 보임 (없으면 기존과 동일)
   theme,
   utmOnly,      // 있으면 이 utm_source 목록에 해당하는 방문자에게만 섹션 노출 (없으면 항상 노출, 기존 현장 영향 없음)
   utmExclude,   // 있으면 이 utm_source 목록에 해당하는 방문자에게만 섹션을 숨김 (그 외에는 기본 노출, 없으면 기존과 동일)
@@ -59,6 +60,8 @@ export default function ImageSection({
   const hasImages = activeImages.length > 0;
 
   const [visible, setVisible] = useState(!utmOnly);
+  const [lightboxIndex, setLightboxIndex] = useState(null);
+  const hasGallery = gallery && gallery.length > 0;
 
   useEffect(() => {
     const utm = new URLSearchParams(window.location.search).get("utm_source");
@@ -157,6 +160,74 @@ export default function ImageSection({
               </div>
             </FadeUp>
           ))}
+        </div>
+      )}
+
+      {hasGallery && (
+        <FadeUp delay={100}>
+          <div className={styles.galleryGrid}>
+            {gallery.map((g, idx) => (
+              <button
+                key={idx}
+                type="button"
+                className={styles.galleryItem}
+                onClick={() => setLightboxIndex(idx)}
+              >
+                <img src={g.src} alt={g.alt ?? ""} className={styles.galleryImg} />
+                <span className={styles.galleryIcon} aria-hidden="true">
+                  <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.625 3.125C8.732 3.125 3.125 8.732 3.125 15.625S8.732 28.125 15.625 28.125c3.283 0 6.27-1.268 8.504-3.338l8.809 8.809a1.563 1.563 0 0 0 2.21-2.21l-8.809-8.809a12.53 12.53 0 0 0 3.286-8.502C28.125 8.732 22.518 3.125 15.625 3.125zm0 3.125a9.375 9.375 0 1 1 0 18.75 9.375 9.375 0 0 1 0-18.75z" fill="#fff"/>
+                  </svg>
+                </span>
+                {g.label && <span className={styles.galleryLabel}>{g.label}</span>}
+              </button>
+            ))}
+          </div>
+        </FadeUp>
+      )}
+
+      {hasGallery && lightboxIndex !== null && (
+        <div className={styles.lightboxOverlay} onClick={() => setLightboxIndex(null)}>
+          <button
+            type="button"
+            className={styles.lightboxClose}
+            onClick={() => setLightboxIndex(null)}
+            aria-label="닫기"
+          >
+            ✕
+          </button>
+          {gallery.length > 1 && (
+            <button
+              type="button"
+              className={`${styles.lightboxNav} ${styles.lightboxPrev}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                setLightboxIndex((i) => (i - 1 + gallery.length) % gallery.length);
+              }}
+              aria-label="이전 이미지"
+            >
+              ‹
+            </button>
+          )}
+          <img
+            src={gallery[lightboxIndex].src}
+            alt={gallery[lightboxIndex].alt ?? ""}
+            className={styles.lightboxImg}
+            onClick={(e) => e.stopPropagation()}
+          />
+          {gallery.length > 1 && (
+            <button
+              type="button"
+              className={`${styles.lightboxNav} ${styles.lightboxNext}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                setLightboxIndex((i) => (i + 1) % gallery.length);
+              }}
+              aria-label="다음 이미지"
+            >
+              ›
+            </button>
+          )}
         </div>
       )}
 

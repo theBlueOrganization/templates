@@ -2,13 +2,13 @@
   width: 100%;
   background-color: #ffffff;
   scroll-margin-top: 70px;
-  padding-bottom: 60px;
+  padding-bottom: var(--section-padding-bottom, 60px);
 }
 
 /* ─── 섹션 헤더 ─────────────────────────────────────── */
 .header {
   text-align: center;
-  padding: 64px 20px 36px;
+  padding: var(--header-padding-top, 64px) 20px var(--header-padding-bottom, 36px);
 }
 
 .title {

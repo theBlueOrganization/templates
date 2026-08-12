@@ -91,6 +91,7 @@ const config = {
       navLabel: "사업개요",
       title:    "사업개요",
       subtitle: "입지·규모를 한눈에",
+      headerPaddingTop: "48px",  // 이 섹션만 위 여백을 사이트 공통값보다 넉넉하게
       specItems: [
         { label: "사업명",   value: "해링턴 플레이스 노원 센트럴" },
         { label: "대지위치", value: "서울 노원구 노원로 495(상계동 690, 해링턴플레이스 노원 센트럴)" },
@@ -160,6 +161,13 @@ const config = {
       background: "linear-gradient(90deg, #7B6C55, #A08B6D)",
       width:      "40px",
       height:     "3px",
+    },
+
+    // 섹션 사이 여백 축소 (기본 60px/64px/36px → 더 좁게)
+    ImageSection_spacing: {
+      sectionPaddingBottom: "10px",
+      headerPaddingTop:     "18px",
+      headerPaddingBottom:  "8px",
     },
 
     // 히어로 배지 (eyebrow)

@@ -14,6 +14,7 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
   const [settled,    setSettled]    = useState(false);
   const [accentReady, setAccentReady] = useState(false);
   const [heroOverride, setHeroOverride] = useState(null);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   // 모바일 브라우저는 스크롤 중 주소창이 접히고 펴지며 100dvh(동적 뷰포트 높이)가 실시간으로
   // 바뀌는데, 이를 background-size: cover와 함께 쓰면 배경 이미지가 스크롤 중 커졌다 작아졌다
@@ -30,6 +31,18 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
     window.addEventListener("orientationchange", setVh);
     return () => window.removeEventListener("orientationchange", setVh);
   }, []);
+
+  // theme.hero.aspectRatio가 있는 현장만 대상 — PC(모바일 카드 폭 750px보다 넓은 화면)에서는
+  // 100dvh 그대로 쓰면 창 높이가 이미지 비율보다 짧아 위쪽이 과하게 잘림. 750px 이하(모바일)는
+  // 기존처럼 100dvh + cover 그대로 두고, 750px 초과(PC)일 때만 높이를 이미지 비율에 맞춤
+  useLayoutEffect(() => {
+    if (!theme?.hero?.aspectRatio) return;
+    const mq = window.matchMedia("(min-width: 751px)");
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, [theme?.hero?.aspectRatio]);
 
   // data에서 enableVariants: true 로 opt-in한 경우에만 쿼리스트링 감지
   // useLayoutEffect: 페인트 전에 실행 → 타입 전환 시 플래시 없음
@@ -97,11 +110,18 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
   // 가로로 넓은 이미지를 100vh 섹션에 cover로 채우면 좌우가 과하게 잘려 배경이 잘 안 보이는 현장은
   // theme.hero.height로 섹션 높이를 낮춰 크롭을 줄임 (미설정 시 기존 100dvh 유지)
   const heroHeight = th.hero?.height;
+  // 이미지 세로 길이가 섹션보다 길면 기본값(center bottom)은 위쪽(하늘 등)이 잘림 —
+  // 상단이 잘리면 안 되는 현장은 theme.hero.imagePosition으로 "center top" 등으로 변경
+  const heroImagePosition = th.hero?.imagePosition;
+  // 이미지 비율(가로/세로)에 맞춰 PC(751px 이상)에서만 섹션 높이를 고정 — 모바일은 100dvh + cover 그대로 유지
+  const heroAspectRatio = th.hero?.aspectRatio;
   // 인트로 텍스트 중앙 정렬 계산(--hero-half)도 섹션 높이 기준으로 같이 보정 —
   // 안 그러면 78vh처럼 줄어든 섹션에서 텍스트가 뷰포트 기준 50vh로 계산돼 중앙에서 벗어남
-  const heroStyle = heroHeight
-    ? { height: heroHeight, "--hero-half": `calc(${heroHeight} / 2)` }
-    : undefined;
+  const heroStyle = {
+    ...(heroHeight ? { height: heroHeight, "--hero-half": `calc(${heroHeight} / 2)` } : {}),
+    ...(heroAspectRatio && isDesktop ? { height: "auto", aspectRatio: heroAspectRatio } : {}),
+    ...(heroImagePosition ? { "--hero-image-position": heroImagePosition } : {}),
+  };
 
   return (
     <section id="home" className={styles.hero} style={heroStyle}>

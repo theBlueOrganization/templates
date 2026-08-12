@@ -4,7 +4,9 @@ import { useState, useEffect, useRef } from "react";
 import styles from "./ContactForm.module.css";
 
 export default function ContactForm({ config, instanceId }) {
-  const { projectName, visitTimeOptions, privacyText, adminPhones, sheetId, sheetTab, theme, kakao, slug, officeLabel, disabled } = config;
+  const { projectName, visitTimeOptions, privacyText, adminPhones, sheetId, sheetTab, theme, kakao, slug, officeLabel, disabled, inquiryCountOffset } = config;
+  // 실제 상담 건수에 더해 표시할 심리적 안전 수치 — 미설정 시 기존 +20 그대로 유지
+  const countOffset = inquiryCountOffset ?? 20;
   const th = theme ?? {};
   // instanceId가 있으면(한 페이지에 폼이 2개 이상일 때) id 충돌을 피하기 위해 접미사를 붙임
   const sectionId = instanceId ? `contact-section-${instanceId}` : "contact-section";
@@ -35,9 +37,9 @@ export default function ContactForm({ config, instanceId }) {
     if (sheetId) params.set("sheetId", sheetId);
     fetch(`/api/count?${params}`)
       .then((r) => r.json())
-      .then((d) => setInquiryCount(d.count + 20))
-      .catch(() => setInquiryCount(20));
-  }, [sheetTab, sheetId]);
+      .then((d) => setInquiryCount(d.count + countOffset))
+      .catch(() => setInquiryCount(countOffset));
+  }, [sheetTab, sheetId, countOffset]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -99,7 +101,7 @@ export default function ContactForm({ config, instanceId }) {
           // GA 이벤트 실패는 무시 — 상담 신청 자체는 이미 정상 처리됨
         }
         alert("상담 신청이 완료되었습니다. 확인 후 연락드리겠습니다.");
-        setInquiryCount((prev) => (prev ?? 20) + 1);
+        setInquiryCount((prev) => (prev ?? countOffset) + 1);
         setForm({ name: "", phone1: "", phone2: "", phone3: "", visit_date: "", visit_time: "", gift_check: false, privacy_agree: false });
       } else {
         alert(data.message ?? "오류가 발생했습니다. 다시 시도해주세요.");

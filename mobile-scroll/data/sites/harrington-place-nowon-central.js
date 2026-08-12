@@ -18,6 +18,9 @@ const config = {
   sheetId:      "",
   sheetTab:     "해링턴플레이스노원센트럴",
 
+  // 실제 상담 건수에 이 값을 더해 "오늘까지 N명이 문의했습니다"에 표시 — 182명 노출 목적
+  inquiryCountOffset: 181,
+
   popup: {
     enabled: true,
     image: {
@@ -78,22 +81,20 @@ const config = {
       showHeader: false,
       images: [
         { src: "/apt/harrington-place-nowon-central/sub-main.webp", alt: "해링턴플레이스 노원 센트럴 서브 메인 이미지" },
-        { src: "/apt/harrington-place-nowon-central/gif_img.gif",   alt: "해링턴플레이스 노원 센트럴 소개 애니메이션" },
+        // 클릭하면 상담 전화(tel:)로 바로 연결
+        { src: "/apt/harrington-place-nowon-central/gif_img.gif",   alt: "해링턴플레이스 노원 센트럴 소개 애니메이션", tel: "1661-8664" },
       ],
     },
     {
       id:       "overview",
-      type:     "image-then-spec",
+      type:     "spec-only",
       navLabel: "사업개요",
       title:    "사업개요",
       subtitle: "입지·규모를 한눈에",
-      images: [
-        { src: "/apt/harrington-place-nowon-central/1-1.webp", alt: "사업개요" },
-      ],
       specItems: [
         { label: "사업명",   value: "해링턴 플레이스 노원 센트럴" },
         { label: "대지위치", value: "서울 노원구 노원로 495(상계동 690, 해링턴플레이스 노원 센트럴)" },
-        { label: "공급호수", value: " 299세대중 공공지원 민간임대 150세대, 일반분양 61세대, 공공임대 88세대(서울시 26세대, SH 62세대)" },
+        { label: "공급호수", value: "299세대" },
         { label: "공급규모", value: "지하4층~지상23층" },
         { label: "시행사",   value: "주식회사 엘앤피개발" },
         { label: "시공사",   value: "효성중공업(주)" },
@@ -121,11 +122,11 @@ const config = {
     {
       id:       "complexenvironment",
       type:     "image",
-      navLabel: "단지설계",
-      title:    "단지설계",
-      subtitle: "자연과 조화를 이루는 단지 설계",
+      navLabel: "모델하우스",
+      title:    "모델하우스 미리보기",
+      subtitle: "방문 전, 미리 만나보는 모델하우스",
       images: [
-        { src: "/apt/harrington-place-nowon-central/2-2.webp", alt: "단지설계" },
+        { src: "/apt/harrington-place-nowon-central/2-2.webp", alt: "모델하우스 미리보기" },
       ],
     },
     {

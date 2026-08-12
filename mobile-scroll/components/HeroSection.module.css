@@ -18,7 +18,8 @@
   height: 100%;
   z-index: 0;
   /* background-size는 JSX 인라인 스타일(theme.hero.imageFit, 기본값 cover)로 제어 */
-  background-position: center bottom !important;
+  /* 기본값 center bottom — theme.hero.imagePosition이 있으면 --hero-image-position으로 override */
+  background-position: var(--hero-image-position, center bottom) !important;
 }
 
 .imageWrap.visible {
@@ -375,7 +376,7 @@
 @media (max-width: 800px) {
   .hero { height: 100vh; height: calc(var(--vh, 1vh) * 100); }
   .imageWrap {
-    background-position: center bottom !important;
+    background-position: var(--hero-image-position, center bottom) !important;
   }
   .textBlock {
     padding-top: 70px;

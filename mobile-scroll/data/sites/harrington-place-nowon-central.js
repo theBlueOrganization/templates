@@ -19,9 +19,9 @@ const config = {
   sheetTab:     "해링턴플레이스노원센트럴",
 
   popup: {
-    enabled: false,
+    enabled: true,
     image: {
-      src: "/apt/harrington-place-nowon-central/4.webp",
+      src: "/apt/harrington-place-nowon-central/popup.webp",
       alt: "해링턴플레이스 노원 센트럴 팝업",
     },
   },
@@ -32,6 +32,10 @@ const config = {
     { label: "SKT",    value: "SKT" },
     { label: "shinhan", value: "shinhan" },
   ],
+
+  // sub-visual 섹션 다음에 상담신청 폼을 하나 더 노출 (하단 상담신청 섹션과 합쳐 총 2개)
+  extraContactFormExcludeUtm: [],
+  extraContactFormAfterSectionId: "sub-visual",
 
   company: {
     name:      "주식회사 더블루파트너스",
@@ -53,15 +57,9 @@ const config = {
   ],
 
   hero: {
-    eyebrow:       "선착순 분양중｜더블역세권",
-    eyebrowUrgent: 1,
-    brand:         "해링턴플레이스 노원 센트럴",
-    title:         "서울 동북권의 정점에 서다\n해링턴 플레이스\n노원 센트럴",
-    subtitle:      "분양문의) 1661-8664",
-    bgColor:       "linear-gradient(to right, rgb(48 101 192), rgb(55 112 199), rgb(72 127 207))",
-    accentKeyword: ["동북권","해링턴 플레이스"],
+    bgColor: "#0F1B33",  // contain 사용 시 남는 여백을 네이비로 채움
     image: {
-      src:    "/apt/harrington-place-nowon-central/1.webp",
+      src:    "/apt/harrington-place-nowon-central/main.webp",
       alt:    "해링턴플레이스 노원 센트럴 대표 이미지",
       width:  800,
       height: 500,
@@ -69,6 +67,15 @@ const config = {
   },
 
   sections: [
+    {
+      id:         "sub-visual",
+      type:       "image",
+      showHeader: false,
+      images: [
+        { src: "/apt/harrington-place-nowon-central/sub-main.webp", alt: "해링턴플레이스 노원 센트럴 서브 메인 이미지" },
+        { src: "/apt/harrington-place-nowon-central/gif_img.gif",   alt: "해링턴플레이스 노원 센트럴 소개 애니메이션" },
+      ],
+    },
     {
       id:       "overview",
       type:     "image-then-spec",
@@ -126,35 +133,28 @@ const config = {
         { src: "/apt/harrington-place-nowon-central/3-1.webp", alt: "커뮤니티" },
       ],
     },
-    {
-      id:       "complex",
-      type:     "image",
-      navLabel: "평면도",
-      title:    "평면도",
-      subtitle: "휴식이 완성되는 주거공간",
-      images: [
-        { src: "/apt/harrington-place-nowon-central/3-2.webp", alt: "평면도" },
-      ],
-    },
   ],
 
   theme: {
     // ── 히어로 커튼 색상 ──
     hero: {
-      curtainColor: "#0F1B33",  // 네이비
+      curtainColor:  "#0F1B33",  // 네이비
+      imageFit:      "cover",  // 모바일은 여백 없이 항상 꽉 채움
+      imagePosition: "center bottom",  // 잘릴 땐 항상 위쪽만 잘리고 아래쪽 내용은 항상 보존
+      aspectRatio:   "1800 / 2700",  // main.webp 실제 비율(1800/2935)보다 낮춰서 PC에서 위쪽을 좀 더 크롭
     },
 
     // 섹션 헤더 구분선
     ImageSection_divider: {
-      background: "linear-gradient(90deg, #5b4fd6, #a78bfa)",
+      background: "linear-gradient(90deg, #7B6C55, #A08B6D)",
       width:      "40px",
       height:     "3px",
     },
 
     // 히어로 배지 (eyebrow)
     eyebrow: {
-      color:       "#b39ef5",
-      borderColor: "rgba(179,158,245,0.55)",
+      color:       "#C9BBA0",
+      borderColor: "rgba(201,187,160,0.55)",
       fontSize:    "1rem",
     },
     // 긴급 배지 (eyebrowUrgent)
@@ -172,7 +172,7 @@ const config = {
     title: {
       color:       "#ffffff",
       fontSize:    "clamp(1.6rem,8vw,2.7rem)",
-      accentColor: "#9d7cf0",
+      accentColor: "#C9BBA0",
     },
     // 히어로 서브타이틀
     subtitle: {
@@ -187,14 +187,14 @@ const config = {
     },
     // 상담 신청 버튼
     ContactForm_submitBtn: {
-      background: "linear-gradient(90deg, #8b5cf6, #6d5bf5)",
+      background: "linear-gradient(90deg, #7B6C55, #96835F)",
       color:      "#ffffff",
       fontSize:   "1.15rem",
     },
 
     // 하단 고정 버튼바
     BottomBar_callBtn: {
-      background: "#d6cdfb",
+      background: "#E4DCC9",
       color:      "#0F1B33",
     },
     BottomBar_regBtn: {

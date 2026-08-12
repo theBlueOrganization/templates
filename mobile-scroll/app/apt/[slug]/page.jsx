@@ -55,6 +55,7 @@ export default async function AptPage({ params }) {
     kakao:            site.kakao,
     slug:             site.slug,
     theme:            site.theme,
+    inquiryCountOffset: site.inquiryCountOffset,
   };
 
   const extraContactForm = (site.extraContactFormByUtm || site.extraContactFormExcludeUtm) && (

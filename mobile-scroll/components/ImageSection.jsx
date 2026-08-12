@@ -126,13 +126,25 @@ export default function ImageSection({
           {activeImages.map((img, idx) => (
             <FadeUp key={idx} delay={idx === 0 ? 100 : 0}>
               <div className={styles.imageWrap}>
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  width={800}
-                  height={600}
-                  className={styles.image}
-                />
+                {img.tel ? (
+                  <a href={`tel:${img.tel}`} aria-label={`전화 상담 ${img.tel}로 연결`}>
+                    <img
+                      src={img.src}
+                      alt={img.alt}
+                      width={800}
+                      height={600}
+                      className={styles.image}
+                    />
+                  </a>
+                ) : (
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    width={800}
+                    height={600}
+                    className={styles.image}
+                  />
+                )}
               </div>
             </FadeUp>
           ))}
@@ -150,13 +162,25 @@ export default function ImageSection({
           {activeImages.map((img, idx) => (
             <FadeUp key={idx} delay={idx === 0 ? 100 : 0}>
               <div className={styles.imageWrap}>
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  width={800}
-                  height={600}
-                  className={styles.image}
-                />
+                {img.tel ? (
+                  <a href={`tel:${img.tel}`} aria-label={`전화 상담 ${img.tel}로 연결`}>
+                    <img
+                      src={img.src}
+                      alt={img.alt}
+                      width={800}
+                      height={600}
+                      className={styles.image}
+                    />
+                  </a>
+                ) : (
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    width={800}
+                    height={600}
+                    className={styles.image}
+                  />
+                )}
               </div>
             </FadeUp>
           ))}

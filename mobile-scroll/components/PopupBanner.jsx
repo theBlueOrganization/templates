@@ -93,12 +93,12 @@ export default function PopupBanner({ popup, popupByUtm }) {
     }
   };
 
-  // 이미지 안에 그려진 버튼 위치(cta.rect, % 기준)를 클릭하면 남은 팝업은 건너뛰고
-  // cta.target(예: "#contact-section")으로 바로 스크롤 이동
-  // target/rect가 둘 다 있을 때만 유효한 설정으로 취급 (부분 설정은 무시)
-  const cta = currentImage.cta?.target && currentImage.cta?.rect ? currentImage.cta : null;
+  // 이미지 안에 그려진 버튼 위치(cta.rect, % 기준)를 클릭했을 때의 동작 —
+  // cta.target(예: "#contact-section")이면 남은 팝업은 건너뛰고 그 섹션으로 스크롤 이동,
+  // cta.tel(전화번호)이면 바로 전화 연결(tel:). rect와 둘 중 하나가 있을 때만 유효 (부분 설정은 무시)
+  const cta = (currentImage.cta?.target || currentImage.cta?.tel) && currentImage.cta?.rect ? currentImage.cta : null;
   const handleCtaClick = (e) => {
-    if (!cta) return;
+    if (!cta || cta.tel) return;
     e.stopPropagation();
     // 잠금이 아직 걸린 상태라 지금 scrollIntoView를 호출해도 씹힘 — 잠금 해제 시점에 이동하도록 예약
     pendingScrollTargetRef.current = document.querySelector(cta.target);
@@ -121,7 +121,21 @@ export default function PopupBanner({ popup, popupByUtm }) {
           alt={currentImage.alt ?? ""}
           className={styles.img}
         />
-        {cta && (
+        {cta && cta.tel && (
+          <a
+            href={`tel:${cta.tel}`}
+            className={styles.ctaHotspot}
+            style={{
+              top:    cta.rect.top,
+              left:   cta.rect.left,
+              width:  cta.rect.width,
+              height: cta.rect.height,
+            }}
+            onClick={(e) => e.stopPropagation()}
+            aria-label={`전화 상담 ${cta.tel}로 연결`}
+          />
+        )}
+        {cta && cta.target && (
           <button
             type="button"
             className={styles.ctaHotspot}

@@ -23,6 +23,11 @@ const config = {
     image: {
       src: "/apt/harrington-place-nowon-central/popup.webp",
       alt: "해링턴플레이스 노원 센트럴 팝업",
+      // 이미지 안 "지금 문의하세요!" 버튼 위치(% 기준) — 클릭하면 상담 전화(tel:)로 바로 연결
+      cta: {
+        tel:  "1661-8664",
+        rect: { top: "86%", left: "8%", width: "84%", height: "7%" },
+      },
     },
   },
 
@@ -132,6 +137,11 @@ const config = {
       images: [
         { src: "/apt/harrington-place-nowon-central/3-1.webp", alt: "커뮤니티" },
       ],
+      // 2단 그리드 갤러리 — 클릭하면 라이트박스로 크게 보임
+      gallery: Array.from({ length: 20 }, (_, i) => ({
+        src: `/apt/harrington-place-nowon-central/community-${i + 1}.webp`,
+        alt: "해링턴플레이스 노원 센트럴 커뮤니티",
+      })),
     },
   ],
 

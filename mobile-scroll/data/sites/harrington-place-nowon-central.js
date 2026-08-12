@@ -176,9 +176,9 @@ const config = {
     },
     // 히어로 서브타이틀
     subtitle: {
-      color:       "rgb(255, 255, 255)",
+      color:       "#ffffff",
       fontSize:    "1.15rem",
-      accentColor: "#ff6b6b",
+      accentColor: "#ffffff",
     },
 
     // 상담 신청 섹션 배경

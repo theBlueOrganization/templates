@@ -165,9 +165,9 @@ const config = {
 
     // 섹션 사이 여백 축소 (기본 60px/64px/36px → 더 좁게)
     ImageSection_spacing: {
-      sectionPaddingBottom: "10px",
-      headerPaddingTop:     "18px",
-      headerPaddingBottom:  "8px",
+      sectionPaddingBottom: "0px",
+      headerPaddingTop:     "4px",
+      headerPaddingBottom:  "0px",
     },
 
     // 히어로 배지 (eyebrow)

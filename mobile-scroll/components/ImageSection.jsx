@@ -48,6 +48,7 @@ export default function ImageSection({
   utmExclude,   // 있으면 이 utm_source 목록에 해당하는 방문자에게만 섹션을 숨김 (그 외에는 기본 노출, 없으면 기존과 동일)
   showHeader = true, // false면 제목/부제/구분선 헤더 블록 자체를 렌더링하지 않음 (없으면 기존과 동일)
   sectionBg,    // 있으면 이 섹션 전체 배경색 적용 (없으면 기존 CSS 기본값 #ffffff 그대로)
+  headerPaddingTop, // 있으면 이 섹션만 theme.ImageSection_spacing.headerPaddingTop 대신 이 값을 사용
 }) {
   const th = theme ?? {};
   const hasTabs = tabs && tabs.length > 0;
@@ -76,11 +77,22 @@ export default function ImageSection({
 
   if ((utmOnly || utmExclude) && !visible) return null;
 
+  // 섹션 사이 여백(헤더 위/아래, 섹션 하단)을 현장별로 좁히고 싶을 때 사용 —
+  // 미설정 시 기존 기본값(60px/64px/36px) 그대로 유지, 다른 현장 영향 없음
+  const spacing = th.ImageSection_spacing;
+  // 섹션 자체의 headerPaddingTop이 있으면 테마 공통값보다 우선
+  const effectiveHeaderPaddingTop = headerPaddingTop ?? spacing?.headerPaddingTop;
+  const spacingStyle = {
+    ...(spacing?.sectionPaddingBottom ? { "--section-padding-bottom": spacing.sectionPaddingBottom } : {}),
+    ...(effectiveHeaderPaddingTop     ? { "--header-padding-top":     effectiveHeaderPaddingTop }     : {}),
+    ...(spacing?.headerPaddingBottom  ? { "--header-padding-bottom":  spacing.headerPaddingBottom }   : {}),
+  };
+
   return (
     <section
       id={id}
       className={styles.section}
-      style={sectionBg ? { background: sectionBg } : undefined}
+      style={{ ...(sectionBg ? { background: sectionBg } : {}), ...spacingStyle }}
     >
 
       {showHeader && (

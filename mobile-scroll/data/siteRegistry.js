@@ -35,6 +35,7 @@ import hillstateSiheungTheclass  from "./sites/hillstate-siheung-theclass.js";
 import forenaTheshopIncheonCityhall  from "./sites/forena-theshop-incheon-cityhall.js";
 import osanHeritageXi  from "./sites/osan-heritage-xi.js";
 import osanHeritageXi2  from "./sites/osan-heritage-xi-2.js";
+import osanHeritageXi3  from "./sites/osan-heritage-xi-3.js";
 import harringtonPlaceNowonCentral  from "./sites/harrington-place-nowon-central.js";
 
 
@@ -52,6 +53,7 @@ const sites = [
   forenaTheshopIncheonCityhall,
   osanHeritageXi,
   osanHeritageXi2,
+  osanHeritageXi3,
   harringtonPlaceNowonCentral,
 ];
 

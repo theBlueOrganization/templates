@@ -175,6 +175,10 @@ export default function ContactForm({ config, instanceId }) {
               background: th.ContactForm_submitBtn?.background,
               color:      th.ContactForm_submitBtn?.color,
               fontSize:   th.ContactForm_submitBtn?.fontSize,
+              // 미설정 시 기존 CSS 기본값(파란색 그림자) 그대로 유지, 다른 현장 영향 없음
+              ...(th.ContactForm_submitBtn?.shadowColor
+                ? { boxShadow: `0 4px 14px ${th.ContactForm_submitBtn.shadowColor}` }
+                : {}),
             }}
           >
             {submitting ? "전송 중..." : "지금 신청하고 혜택 받기"}

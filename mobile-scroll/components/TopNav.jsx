@@ -3,7 +3,12 @@
 import { useState, useEffect } from "react";
 import styles from "./TopNav.module.css";
 
-export default function TopNav({ navItems }) {
+export default function TopNav({ navItems, theme }) {
+  const th = theme ?? {};
+  // 미설정 시 기존 CSS 기본값(파란색) 그대로 유지, 다른 현장 영향 없음
+  const activeStyle = th.TopNav_active
+    ? { "--topnav-active-color": th.TopNav_active.color, "--topnav-active-border": th.TopNav_active.borderColor }
+    : undefined;
   const [visible, setVisible] = useState(false);
   const [activeTarget, setActiveTarget] = useState(navItems[0]?.target ?? "");
 
@@ -46,7 +51,7 @@ export default function TopNav({ navItems }) {
   };
 
   return (
-    <nav className={`${styles.nav} ${visible ? styles.show : ""}`} aria-label="페이지 내 탐색">
+    <nav className={`${styles.nav} ${visible ? styles.show : ""}`} style={activeStyle} aria-label="페이지 내 탐색">
       <ul className={styles.list}>
         {navItems.map((item) => (
           <li key={item.target}>

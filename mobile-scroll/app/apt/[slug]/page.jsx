@@ -71,7 +71,7 @@ export default async function AptPage({ params }) {
 
   return (
     <>
-      <TopNav navItems={navItems} />
+      <TopNav navItems={navItems} theme={site.theme} />
       <HeroSection {...site.hero} theme={site.theme} heroByUtm={site.heroByUtm} />
 
       {/* extraContactFormAfterSectionId 미설정 시 기존 동작대로 히어로 바로 다음에 노출 */}

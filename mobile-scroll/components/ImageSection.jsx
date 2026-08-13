@@ -53,9 +53,24 @@ export default function ImageSection({
   const th = theme ?? {};
   const hasTabs = tabs && tabs.length > 0;
   const [activeTab, setActiveTab] = useState(0);
+  const [activeSubTab, setActiveSubTab] = useState(0);
 
-  const activeImages    = hasTabs ? tabs[activeTab].images ?? [] : images;
-  const activeSpecItems = hasTabs ? tabs[activeTab].specItems : specItems;
+  // 탭 전환 시 이전 탭의 서브탭 선택이 남아있지 않도록 초기화
+  useEffect(() => {
+    setActiveSubTab(0);
+  }, [activeTab]);
+
+  const currentTab = hasTabs ? tabs[activeTab] : null;
+  // 탭 안에 다시 탭이 있는 경우 (예: 차수 탭 안에 타입별 탭) — 없으면 기존과 동일하게 동작
+  const subTabs    = currentTab?.subTabs;
+  const hasSubTabs = subTabs && subTabs.length > 0;
+
+  const activeImages    = hasSubTabs
+    ? subTabs[activeSubTab].images ?? []
+    : hasTabs
+    ? currentTab.images ?? []
+    : images;
+  const activeSpecItems = hasTabs ? currentTab.specItems : specItems;
 
   const hasSpec   = activeSpecItems && activeSpecItems.length > 0;
   const hasImages = activeImages.length > 0;
@@ -87,6 +102,17 @@ export default function ImageSection({
     ...(effectiveHeaderPaddingTop     ? { "--header-padding-top":     effectiveHeaderPaddingTop }     : {}),
     ...(spacing?.headerPaddingBottom  ? { "--header-padding-bottom":  spacing.headerPaddingBottom }   : {}),
   };
+
+  // 탭/서브탭 활성 버튼 색상 — 미설정 시 기존 CSS 기본값(파란색) 그대로 유지, 다른 현장 영향 없음
+  const tabActive = th.ImageSection_tabActive;
+  const tabActiveStyle = tabActive
+    ? { background: tabActive.background, borderColor: tabActive.borderColor, color: tabActive.color }
+    : undefined;
+  // 서브탭 활성 색상 — 별도 지정 없으면 탭 활성 색상과 동일하게 유지
+  const subTabActive = th.ImageSection_subTabActive ?? tabActive;
+  const subTabActiveStyle = subTabActive
+    ? { background: subTabActive.background, borderColor: subTabActive.borderColor, color: subTabActive.color }
+    : undefined;
 
   return (
     <section
@@ -124,9 +150,32 @@ export default function ImageSection({
                     ? `${styles.tabButton} ${styles.tabButtonActive}`
                     : styles.tabButton
                 }
+                style={idx === activeTab ? tabActiveStyle : undefined}
                 onClick={() => setActiveTab(idx)}
               >
                 {tab.label}
+              </button>
+            ))}
+          </div>
+        </FadeUp>
+      )}
+
+      {hasSubTabs && (
+        <FadeUp>
+          <div className={styles.subTabMenu}>
+            {subTabs.map((subTab, idx) => (
+              <button
+                key={idx}
+                type="button"
+                className={
+                  idx === activeSubTab
+                    ? `${styles.subTabButton} ${styles.subTabButtonActive}`
+                    : styles.subTabButton
+                }
+                style={idx === activeSubTab ? subTabActiveStyle : undefined}
+                onClick={() => setActiveSubTab(idx)}
+              >
+                {subTab.label}
               </button>
             ))}
           </div>

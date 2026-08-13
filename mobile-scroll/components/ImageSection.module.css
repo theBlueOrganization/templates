@@ -60,6 +60,33 @@
   color: #ffffff;
 }
 
+/* ─── 서브탭 메뉴 (탭 안의 탭, 예: 차수 탭 안의 타입별 탭) ──────── */
+.subTabMenu {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0 20px 24px;
+}
+
+.subTabButton {
+  padding: 6px 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #64748b;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.subTabButtonActive {
+  background: #0f172a;
+  border-color: #0f172a;
+  color: #ffffff;
+}
+
 /* ─── 이미지 목록 ────────────────────────────────────── */
 .imageList {
   display: flex;

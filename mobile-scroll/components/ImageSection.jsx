@@ -66,7 +66,7 @@ export default function ImageSection({
   const hasSubTabs = subTabs && subTabs.length > 0;
 
   const activeImages    = hasSubTabs
-    ? subTabs[activeSubTab].images ?? []
+    ? subTabs[activeSubTab]?.images ?? []
     : hasTabs
     ? currentTab.images ?? []
     : images;
@@ -151,7 +151,7 @@ export default function ImageSection({
                     : styles.tabButton
                 }
                 style={idx === activeTab ? tabActiveStyle : undefined}
-                onClick={() => setActiveTab(idx)}
+                onClick={() => { setActiveTab(idx); setActiveSubTab(0); }}
               >
                 {tab.label}
               </button>

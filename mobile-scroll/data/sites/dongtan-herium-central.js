@@ -13,7 +13,7 @@ const config = {
   projectName: "동탄헤리움센트럴",
   shortName:   "동탄헤리움센트럴",
   telNumber:   "1800-4336", // TODO: 실제 상담 전화번호로 교체
-  ogImage:     "/apt/dongtan-herium-central/share_img.png",
+  ogImage:     "/apt/dongtan-herium-central/share_img.png?v=0814",
   favicon:     "/apt/dongtan-herium-central/favicon.ico",
   adminPhones:  ["01064603622"],
   sheetId:      "",

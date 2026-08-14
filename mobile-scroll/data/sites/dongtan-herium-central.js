@@ -54,7 +54,7 @@ const config = {
     eyebrowUrgent: 1, 
     brand:         "「동탄역헤리움센트럴」",
     title:         "동탄의 내일을 선점할 랜드마크\n동탄 1·2신도시 핵심 입지!",
-    subtitle:      "STR.GTX-A(확정), 인동선.동탄트램(예정)",
+    subtitle:      "SRT.GTX-A(확정), 인동선.동탄트램(예정)",
     accentKeyword: ["랜드마크", "동탄 1·2신도시"],
     bgColor: "#0F1B33", 
     image: {
@@ -63,6 +63,11 @@ const config = {
       width:  800,
       height: 500,
     },
+  },
+
+  clientCompany: {
+    bizNumber:      "434-88-02873",
+    representative: "신우철,이담경", 
   },
 
   sections: [

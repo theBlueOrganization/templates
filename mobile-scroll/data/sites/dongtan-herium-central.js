@@ -50,13 +50,13 @@ const config = {
   ],
 
   hero: {
-    eyebrow:       "동탄신도시｜사전예약", // TODO: 실제 배지 문구로 교체 ("｜"로 구분)
-    eyebrowUrgent: 1, // 왼쪽부터 1개 배지만 urgent 스타일
+    eyebrow:       "동탄신도시｜사전예약",
+    eyebrowUrgent: 1, 
     brand:         "「동탄역헤리움센트럴」",
-    title:         "동탄의 내일을 선점할 랜드마크",
-    subtitle:      "동탄 1·2신도시 핵심 입지!",
-    accentKeyword: "랜드마크",
-    bgColor: "#0F1B33", // TODO: 히어로 이미지 스포이드로 추출한 배경색으로 교체
+    title:         "동탄의 내일을 선점할 랜드마크\n동탄 1·2신도시 핵심 입지!",
+    subtitle:      "쿼터블교통망 [SRT·GTX-A·인동선·동탄트램]",
+    accentKeyword: ["랜드마크", "동탄 1·2신도시"],
+    bgColor: "#0F1B33", 
     image: {
       src:    "/apt/dongtan-herium-central/main.webp",
       alt:    "동탄헤리움센트럴 대표 이미지",
@@ -85,58 +85,58 @@ const config = {
         {
           label: "1차(9-4BL)",
           images: [
-            { src: "/apt/dongtan-herium-central/1-1.webp", alt: "사업개요 1차(9-4BL)" }, // TODO: 실제 사업개요 이미지로 교체
+            { src: "/apt/dongtan-herium-central/1-1-1.webp", alt: "사업개요 1차(9-4BL)" },  // TODO: 실제 사업개요 이미지로 교체
           ],
           specItems: [
             { label: "사업명",   value: "동탄헤리움센트럴" }, // TODO: 실제 사업명으로 교체
-            { label: "대지위치", value: "오산동 1024-4" },
+            { label: "대지위치", value: "동탄대로 411번길 15" },
             { label: "지역/지구", value: "일반상업지역, 지구단위계획구역" },
             { label: "용도",     value: "근린생활시설, 오피스텔" },
             { label: "규모",     value: "지상 4층 ~ 지상 10층" },
             { label: "대지면적", value: "2,153.70㎡ (651.49py)" },
-            { label: "건폐율",   value: "62.15% (법정 70%)" },
-            { label: "용적률",   value: "592.61% (법정 600%)" },
-            { label: "연면적",   value: "19,056.05㎡ (5,764.43py)" },
+            { label: "건폐율",   value: "63.73% (법정 70%)" },
+            { label: "용적률",   value: "592.67% (법정 600%)" },
+            { label: "연면적",   value: "19,074.63㎡ (5,770.07py)" },
             { label: "공급내역", value: "주거형 오피스텔 144실 (59A-72실, 59B-63실, 62C-9실)" },
-            { label: "주차대수", value: "152대 (자주식 107대, 기계식 45대)" },
+            { label: "주차대수", value: "153대 (자주식 108대, 기계식 45대)" },
           ],
         },
         {
           label: "2차(9-5BL)",
           images: [
-            { src: "/apt/dongtan-herium-central/1-1.webp", alt: "사업개요 2차(9-5BL)" }, // TODO: 실제 사업개요 이미지로 교체
+            { src: "/apt/dongtan-herium-central/1-1-2.webp", alt: "사업개요 2차(9-5BL)" }, // TODO: 실제 사업개요 이미지로 교체
           ],
           specItems: [
             { label: "사업명",   value: "동탄헤리움센트럴" }, // TODO: 실제 사업명으로 교체
-            { label: "대지위치", value: "오산동 1024-5" },
+            { label: "대지위치", value: "동탄대로 411번길 11" },
             { label: "지역/지구", value: "일반상업지역, 지구단위계획구역" },
             { label: "용도",     value: "근린생활시설, 오피스텔" },
             { label: "규모",     value: "지상 4층 ~ 지상 10층" },
             { label: "대지면적", value: "2,245.00㎡ (679.11py)" },
-            { label: "건폐율",   value: "69.42% (법정 70%)" },
-            { label: "용적률",   value: "593.92% (법정 600%)" },
-            { label: "연면적",   value: "19,806.87㎡ (5,991.55py)" },
+            { label: "건폐율",   value: "69.99% (법정 70%)" },
+            { label: "용적률",   value: "595.04% (법정 600%)" },
+            { label: "연면적",   value: "19,810.69㎡ (5,992.73py)" },
             { label: "공급내역", value: "오피스텔 144실 (59A-90실, 63B-27실, 69C-18실, 63D-9실)" },
-            { label: "주차대수", value: "154대 (자주식 126대, 기계식 28대)" },
+            { label: "주차대수", value: "156대 (자주식 128대, 기계식 28대)" },
           ],
         },
         {
           label: "3차(15-1BL)",
           images: [
-            { src: "/apt/dongtan-herium-central/1-1.webp", alt: "사업개요 3차(15-1BL)" }, // TODO: 실제 사업개요 이미지로 교체
+            { src: "/apt/dongtan-herium-central/1-1-3.webp", alt: "사업개요 3차(15-1BL)" }, // TODO: 실제 사업개요 이미지로 교체
           ],
           specItems: [
             { label: "사업명",   value: "동탄헤리움센트럴" }, // TODO: 실제 사업명으로 교체
-            { label: "대지위치", value: "오산동 1025" },
+            { label: "대지위치", value: "동탄대로 411번길 7" },
             { label: "지역/지구", value: "일반상업지역, 지구단위계획구역" },
             { label: "용도",     value: "근린생활시설, 오피스텔" },
             { label: "규모",     value: "지상 4층 ~ 지상 10층" },
-            { label: "대지면적", value: "2,660.00㎡ (804.65py)" },
-            { label: "건폐율",   value: "69.58% (법정 70%)" },
-            { label: "용적률",   value: "599.30% (법정 600%)" },
-            { label: "연면적",   value: "23,672.21㎡ (7,160.81py)" },
-            { label: "공급내역", value: "오피스텔 162실 (59A-72, 64B-54, 72C-36)" },
-            { label: "주차대수", value: "202대 (자주식 162대, 기계식 40대)" },
+            { label: "대지면적", value: "2,660.10㎡ (804.68py)" },
+            { label: "건폐율",   value: "69.61% (법정 70%)" },
+            { label: "용적률",   value: "599.69% (법정 600%)" },
+            { label: "연면적",   value: "23,672.68㎡ (7,160.98py)" },
+            { label: "공급내역", value: "오피스텔 162실 (59A-72실, 64B-54실, 72C-36실)" },
+            { label: "주차대수", value: "204대 (자주식 162대, 기계식 40대)" },
           ],
         },
       ],
@@ -241,31 +241,31 @@ const config = {
 
     // 히어로 배지 (eyebrow)
     eyebrow: {
-      color:       "#8C6F41",
-      borderColor: "rgba(140,111,65,0.55)",
+      color:       "#f5c15c",
+      borderColor: "rgba(245,193,92,0.5)",
       fontSize:    "1rem",
     },
     // 긴급 배지 (eyebrowUrgent) — 히어로 강조 문구는 골드 포인트 유지
     eyebrowUrgent: {
-      color:       "#FFCA2F",
-      borderColor: "rgba(255,202,47,0.5)",
+      color:       "#ff6b6b",
+      borderColor: "rgba(255,107,107,0.5)",
     },
 
     // 히어로 브랜드명
     brand: {
       color:    "rgb(255, 255, 255)",
-      fontSize: "1rem",
+      fontSize: "1.15rem",
     },
     // 히어로 메인 타이틀 — 강조 키워드는 골드 포인트
     title: {
       color:       "#ffffff",
-      fontSize:    "clamp(1.6rem,8vw,2.7rem)",
+      fontSize:    "clamp(1.45rem,7vw,2.7rem)",
       accentColor: "#FFCA2F",
     },
     // 히어로 서브타이틀
     subtitle: {
       color:       "#ffffff",
-      fontSize:    "1.15rem",
+      fontSize:    "clamp(0.7rem, 3vw, 1.15rem)",
       accentColor: "#FFCA2F",
     },
 

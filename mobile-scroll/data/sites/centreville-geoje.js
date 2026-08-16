@@ -56,7 +56,7 @@ const config = {
     title:         "동부건설 센트레빌의\n 품격높은 '하이엔드브랜드'의 자부심\n센트레빌 아스테리움 거제", // TODO: 실제 히어로 타이틀로 교체
     subtitle:      "문의) 1688-3358", // TODO: 실제 서브타이틀로 교체
     accentKeyword: "센트레빌",
-    bgColor: "#0F1B33", // TODO: 히어로 이미지 스포이드로 추출한 배경색으로 교체
+    bgColor: "#1A2E5C", // TODO: 히어로 이미지 스포이드로 추출한 배경색으로 교체
     image: {
       src:    "/apt/centreville-geoje/main.webp",
       alt:    "센트레빌 아스테리움 거제 대표 이미지",
@@ -113,13 +113,23 @@ const config = {
       ],
     },
     {
+      id:       "community",
+      type:     "image",
+      navLabel: "커뮤니티",
+      title:    "커뮤니티",
+      subtitle: "일상에 활력을 더하는 주거공간",
+      images: [
+        { src: "/apt/centreville-geoje/3-1.webp", alt: "커뮤니티" },
+      ],
+    },
+    {
       id:       "floorplan",
       type:     "image",
       navLabel: "평면도",
       title:    "평면도",
       subtitle: "휴식이 완성되는 주거공간",
       images: [
-        { src: "/apt/centreville-geoje/3-1.webp", alt: "평면도" },
+        { src: "/apt/centreville-geoje/4-1.webp", alt: "평면도" },
       ],
     },
   ],
@@ -127,27 +137,27 @@ const config = {
   theme: {
     // ── 브랜드 컬러 ── TODO: 실제 브랜드 컬러로 교체
     hero: {
-      curtainColor: "#0F1B33",
+      curtainColor: "#1A2E5C",
     },
 
     // 섹션 헤더 구분선
     ImageSection_divider: {
-      background: "#0F1B33",
+      background: "#1A2E5C",
       width:      "40px",
       height:     "3px",
     },
 
     // 탭 메뉴 활성 버튼
     ImageSection_tabActive: {
-      background:  "#0F1B33",
-      borderColor: "#0F1B33",
+      background:  "#1A2E5C",
+      borderColor: "#1A2E5C",
       color:       "#ffffff",
     },
 
     // 상단 고정 네비게이션 활성 메뉴
     TopNav_active: {
-      color:       "#0F1B33",
-      borderColor: "#0F1B33",
+      color:       "#1A2E5C",
+      borderColor: "#1A2E5C",
     },
 
     // 히어로 배지 (eyebrow)
@@ -182,24 +192,24 @@ const config = {
 
     // 상담 신청 섹션 배경
     contactSection: {
-      background: "#0F1B33",
+      background: "#1A2E5C",
     },
     // 상담 신청 버튼
     ContactForm_submitBtn: {
-      background:  "#0F1B33",
+      background:  "#1A2E5C",
       color:       "#ffffff",
       fontSize:    "1.15rem",
-      shadowColor: "rgba(15,27,51,0.35)",
+      shadowColor: "rgba(26,46,92,0.35)",
     },
 
     // 하단 고정 버튼바
     BottomBar_callBtn: {
-      background: "#0F1B33",
+      background: "#1A2E5C",
       color:      "#ffffff",
     },
     BottomBar_regBtn: {
-      background: "#FFCA2F",
-      color:      "#0F1B33",
+      background: "#2C4373",
+      color:      "#ffffff",
     },
   },
 

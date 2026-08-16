@@ -38,6 +38,7 @@ import osanHeritageXi2  from "./sites/osan-heritage-xi-2.js";
 import osanHeritageXi3  from "./sites/osan-heritage-xi-3.js";
 import harringtonPlaceNowonCentral  from "./sites/harrington-place-nowon-central.js";
 import dongtanHeriumCentral  from "./sites/dongtan-herium-central.js";
+import centrevilleGeoje  from "./sites/centreville-geoje.js";
 
 
 /** @type {SiteConfig[]} */
@@ -57,6 +58,7 @@ const sites = [
   osanHeritageXi3,
   harringtonPlaceNowonCentral,
   dongtanHeriumCentral,
+  centrevilleGeoje,
 ];
 
 // ─── 유틸 함수 ────────────────────────────────────────────

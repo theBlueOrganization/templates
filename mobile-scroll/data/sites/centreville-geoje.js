@@ -23,7 +23,7 @@ const config = {
   inquiryCountOffset: 0,
 
   popup: {
-    enabled: true,
+    enabled: false,
     image: {
       src: "/apt/centreville-geoje/popup.webp",
       alt: "센트레빌 아스테리움 거제 팝업",
@@ -50,12 +50,12 @@ const config = {
   ],
 
   hero: {
-    eyebrow:       "거제｜사전예약", // TODO: 실제 배지 문구로 교체 ("｜"로 구분)
+    eyebrow:       "마운틴뷰｜초품아 학세권", // TODO: 실제 배지 문구로 교체 ("｜"로 구분)
     eyebrowUrgent: 1, // 왼쪽부터 1개 배지만 urgent 스타일
     brand:         "「센트레빌 아스테리움 거제」",
-    title:         "동부건설 센트레빌의\n 품격높은 '하이엔드브랜드'의 자부심\n센트레빌 아스테리움 거제", // TODO: 실제 히어로 타이틀로 교체
+    title:         "동부건설 센트레빌의\n 품격높은 하이엔드브랜드의 자부심\n센트레빌 아스테리움 거제", // TODO: 실제 히어로 타이틀로 교체
     subtitle:      "문의) 1688-3358", // TODO: 실제 서브타이틀로 교체
-    accentKeyword: "센트레빌",
+    accentKeyword: "하이엔드브랜드",
     bgColor: "#1A2E5C", // TODO: 히어로 이미지 스포이드로 추출한 배경색으로 교체
     image: {
       src:    "/apt/centreville-geoje/main.webp",
@@ -66,14 +66,6 @@ const config = {
   },
 
   sections: [
-    {
-      id:         "sub-visual",
-      type:       "image",
-      showHeader: false,
-      images: [
-        { src: "/apt/centreville-geoje/sub-main.webp", alt: "센트레빌 아스테리움 거제 서브 메인 이미지" },
-      ],
-    },
     {
       id:       "overview",
       type:     "image-then-spec",
@@ -116,7 +108,7 @@ const config = {
       ],
     },
     {
-      id:       "complexenvironment",
+      id:       "complex",
       type:     "image",
       navLabel: "단지설계",
       title:    "단지설계",
@@ -124,6 +116,11 @@ const config = {
       images: [
         { src: "/apt/centreville-geoje/2-2.webp", alt: "단지설계" },
       ],
+      // 2단 그리드 갤러리 — 클릭하면 라이트박스로 크게 보임
+      gallery: Array.from({ length: 10 }, (_, i) => ({
+        src: `/apt/centreville-geoje/complex-${i + 1}.webp`,
+        alt: "센트레빌 아스테리움 거제 단지설계",
+      })),
     },
     {
       id:       "community",
@@ -134,6 +131,12 @@ const config = {
       images: [
         { src: "/apt/centreville-geoje/3-1.webp", alt: "커뮤니티" },
       ],
+      // 2단 그리드 갤러리 — 클릭하면 라이트박스로 크게 보임
+      // TODO: community-1.webp ~ community-18.webp 실제 이미지로 교체
+      gallery: Array.from({ length: 18 }, (_, i) => ({
+        src: `/apt/centreville-geoje/community-${i + 1}.webp`,
+        alt: "센트레빌 아스테리움 거제 커뮤니티",
+      })),
     },
     {
       id:       "floorplan",

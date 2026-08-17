@@ -13,8 +13,8 @@ const config = {
   projectName: "센트레빌아스테리움거제",
   shortName:   "센트레빌 아스테리움 거제",
   telNumber:   "1688-3358",
-  ogImage:     "/apt/centreville-geoje/share_img.png",
-  favicon:     "/apt/centreville-geoje/favicon.ico",
+  ogImage:     "/apt/centreville-geoje/share_img.webp",
+  favicon:     "/apt/centreville-geoje/favicon.webp",
   adminPhones:  ["01000000000"], // TODO: 실제 관리자 수신번호로 교체
   sheetId:      "",
   sheetTab:     "센트레빌아스테리움거제",
@@ -76,10 +76,13 @@ const config = {
     },
     {
       id:       "overview",
-      type:     "spec-only",
+      type:     "image-then-spec",
       navLabel: "사업개요",
       title:    "사업개요",
       subtitle: "입지·규모를 한눈에",
+      images: [
+        { src: "/apt/centreville-geoje/1-1.webp", alt: "사업개요" },
+      ],
       specItems: [
         { label: "사업명",   value: "거제시 상동2지구 공동주택 신축공사" },
         { label: "사업위치", value: "경상남도 거제시 상동동 681번지 일원" },
@@ -113,6 +116,16 @@ const config = {
       ],
     },
     {
+      id:       "complexenvironment",
+      type:     "image",
+      navLabel: "단지설계",
+      title:    "단지설계",
+      subtitle: "자연과 조화를 이루는 단지 설계",
+      images: [
+        { src: "/apt/centreville-geoje/2-2.webp", alt: "단지설계" },
+      ],
+    },
+    {
       id:       "community",
       type:     "image",
       navLabel: "커뮤니티",
@@ -129,7 +142,7 @@ const config = {
       title:    "평면도",
       subtitle: "휴식이 완성되는 주거공간",
       images: [
-        { src: "/apt/centreville-geoje/4-1.webp", alt: "평면도" },
+        { src: "/apt/centreville-geoje/3-2.webp", alt: "평면도" },
       ],
     },
   ],

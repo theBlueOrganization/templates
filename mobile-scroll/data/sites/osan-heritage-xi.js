@@ -24,11 +24,19 @@ const config = {
   extraContactFormAfterSectionId: "overview",
 
   // 분양사(개인정보 수집주체) 정보 — SiteFooter의 더블루파트너스(운영대행사) 정보와 별개로,
-  // ClientFooter가 그 위에 더 강조된 톤으로 노출
-  clientCompany: {
-    name:      "(주)세인디엔씨",
-    bizNumber: "824-88-01908",
-  },
+  // ClientFooter가 그 위에 더 강조된 톤으로 노출. 분양대행사 + 시행사 두 곳을 함께 표기
+  clientCompany: [
+    {
+      name:      "(주)세인디엔씨",
+      bizNumber: "824-88-01908",
+    },
+    {
+      roleLabel:      "시행사",
+      name:            "(주)양산사지구에스피씨",
+      bizNumber:      "434-88-02873",
+      representative: "신우철,이담경",
+    },
+  ],
 
   popup: {
     enabled: true,
@@ -74,11 +82,6 @@ const config = {
     },
   },
 
-  clientCompany: {
-    name:            "(주)양산사지구에스피씨",
-    bizNumber:      "434-88-02873",
-    representative: "신우철,이담경", 
-  },
 
   // TODO: 실제 이미지·스펙 데이터 준비되면 교체 (구조는 포레나더샵인천시청역과 동일)
   sections: [
@@ -229,6 +232,23 @@ const config = {
     contactSection: {
       background: "#1e293b",
     },
+
+    // 분양사 정보(ClientFooter) 커스텀 — clientCompany 배열과 같은 순서로 인덱스 매칭
+    // (0: 세인디엔씨, 1: 시행사). 특정 회사만 다르게 하고 싶으면 해당 인덱스에 값 채우고,
+    // 나머지는 {}로 두면 CSS 기본값(공통 clamp) 그대로 사용됨
+    // 시행사(roleLabel 있는 항목)는 상호명이 헤딩이 아니라 grid 안 라벨/값 행으로 표시되므로
+    // ClientFooter_name이 아닌 ClientFooter_key/_value가 적용됨
+    ClientFooter_leadContact: [
+      {}, // 0: 세인디엔씨 — 기본값 사용
+    ],
+    ClientFooter_key: [
+      {}, // 0: 세인디엔씨
+      { fontSize: "0.85rem" }, // 1: 시행사 — SiteFooter 정보 항목과 동일 크기로 축소
+    ],
+    ClientFooter_value: [
+      {}, // 0: 세인디엔씨
+      { fontSize: "0.85rem" }, // 1: 시행사 — SiteFooter 정보 항목과 동일 크기로 축소
+    ],
 
     // 상담 신청 버튼
     ContactForm_submitBtn: {

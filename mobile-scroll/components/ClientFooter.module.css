@@ -1,12 +1,19 @@
 .wrap {
   background-color: #1e293b;
-  padding: 32px 20px 24px;
+  padding: 40px 20px 50px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .container {
   max-width: 1100px;
   margin: 0 auto;
+}
+
+/* ─── 회사 두 곳 이상 병기 시(분양대행사+시행사 등) 구분선 ───────── */
+.block {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 /* ─── 상호 (헤딩) ───────────────────────────────────── */
@@ -29,14 +36,14 @@
 
 .key {
   color: #ffffff80;
-  font-weight: 600;
+  font-weight: 500;
   font-size: clamp(0.85rem, 3vw, 0.95rem);
   white-space: nowrap;
 }
 
 .value {
   color: #ffffff80;
-  font-weight: 600;
+  font-weight: 500;
   font-size: clamp(0.85rem, 3vw, 0.95rem);
   line-height: 1.4;
 }

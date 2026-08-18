@@ -20,12 +20,14 @@ function OfficeShellInner({ offices, defaultTelNumber, defaultAdminPhones, telNu
   const telNumber   = officeData?.telNumber   ?? telNumberByUtm?.[utmSource]   ?? defaultTelNumber;
   const adminPhones = officeData?.adminPhones ?? adminPhonesByUtm?.[utmSource] ?? defaultAdminPhones;
   const officeLabel = officeData ? `${officeData.id} (${officeData.telNumber})` : "";
+  // clientCompany는 단일 객체 또는 배열(분양대행사+시행사 등) 둘 다 지원
+  const hasClientCompany = Array.isArray(clientCompany) ? clientCompany.length > 0 : !!clientCompany;
 
   return (
     <>
       <ContactForm config={{ ...contactConfig, adminPhones, officeLabel }} />
       <ClientFooter clientCompany={clientCompany} telNumber={telNumber} theme={theme} />
-      <SiteFooter company={company} telNumber={telNumber} hideLeadContact={!!clientCompany} />
+      <SiteFooter company={company} telNumber={telNumber} hideLeadContact={hasClientCompany} />
       <BottomBar telNumber={telNumber} theme={theme} />
     </>
   );
@@ -35,6 +37,7 @@ export default function OfficeShell({ offices, defaultTelNumber, defaultAdminPho
   const fallbackTelNumber   = offices?.[0]?.telNumber   ?? defaultTelNumber;
   const fallbackAdminPhones = offices?.[0]?.adminPhones ?? defaultAdminPhones;
   const fallbackOfficeLabel = offices?.[0] ? `${offices[0].id} (${offices[0].telNumber})` : "";
+  const hasClientCompany = Array.isArray(clientCompany) ? clientCompany.length > 0 : !!clientCompany;
 
   return (
     <Suspense
@@ -42,7 +45,7 @@ export default function OfficeShell({ offices, defaultTelNumber, defaultAdminPho
         <>
           <ContactForm config={{ ...contactConfig, adminPhones: fallbackAdminPhones, officeLabel: fallbackOfficeLabel, disabled: Boolean(offices) }} />
           <ClientFooter clientCompany={clientCompany} telNumber={fallbackTelNumber} theme={theme} />
-          <SiteFooter company={company} telNumber={fallbackTelNumber} hideLeadContact={!!clientCompany} />
+          <SiteFooter company={company} telNumber={fallbackTelNumber} hideLeadContact={hasClientCompany} />
           <BottomBar telNumber={fallbackTelNumber} theme={theme} />
         </>
       }

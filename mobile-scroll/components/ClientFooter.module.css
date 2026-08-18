@@ -11,8 +11,8 @@
 
 /* ─── 상호 (헤딩) ───────────────────────────────────── */
 .name {
-  color: #ffffff80;
-  font-size: 1.15rem;
+  color: #ffffff;
+  font-size: clamp(1.05rem, 4vw, 1.15rem);
   font-weight: 700;
   margin: 0 0 14px;
 }
@@ -30,25 +30,18 @@
 .key {
   color: #ffffff80;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 3vw, 0.95rem);
   white-space: nowrap;
 }
 
 .value {
   color: #ffffff80;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 3vw, 0.95rem);
   line-height: 1.4;
 }
 
 /* 대표 분양 상담 문의 / 사업자 등록번호 — SiteFooter보다 강조된 톤 유지 */
 .leadRow {
-  font-size: 1rem;
-}
-
-/* ─── 모바일 ────────────────────────────────────────── */
-@media (max-width: 768px) {
-  .name {
-    font-size: 1.05rem;
-  }
+  font-size: clamp(0.9rem, 3.2vw, 1rem);
 }

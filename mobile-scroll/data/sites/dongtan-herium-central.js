@@ -13,7 +13,7 @@ const config = {
   projectName: "동탄헤리움센트럴",
   shortName:   "동탄헤리움센트럴",
   telNumber:   "1800-4336", // TODO: 실제 상담 전화번호로 교체
-  ogImage:     "/apt/dongtan-herium-central/share_img.png?v=08140500",
+  ogImage:     "/apt/dongtan-herium-central/share_img2.png",
   favicon:     "/apt/dongtan-herium-central/favicon.ico",
   adminPhones:  ["01064603622"],
   sheetId:      "",
@@ -50,7 +50,7 @@ const config = {
   ],
 
   hero: {
-    eyebrow:       "동탄신도시｜사전예약",
+    eyebrow:       "동탄신도시｜상담예약",
     eyebrowUrgent: 1, 
     brand:         "「동탄역헤리움센트럴」",
     title:         "동탄의 내일을 선점할 랜드마크\n동탄 1·2신도시 핵심 입지!",
@@ -63,11 +63,6 @@ const config = {
       width:  800,
       height: 500,
     },
-  },
-
-  clientCompany: {
-    bizNumber:      "434-88-02873",
-    representative: "신우철,이담경", 
   },
 
   sections: [

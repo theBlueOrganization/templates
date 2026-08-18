@@ -15,12 +15,12 @@ const config = {
   telNumber:   "1688-3358",
   ogImage:     "/apt/centreville-geoje/share_img.webp",
   favicon:     "/apt/centreville-geoje/favicon.webp",
-  adminPhones:  ["01000000000"], // TODO: 실제 관리자 수신번호로 교체
+  adminPhones:  ["01094216962"],
   sheetId:      "",
   sheetTab:     "센트레빌아스테리움거제",
 
-  // 실제 상담 건수에 이 값을 더해 "오늘까지 N명이 문의했습니다"에 표시 — TODO: 목표 노출 수치로 교체
-  inquiryCountOffset: 0,
+  // 실제 상담 건수에 이 값을 더해 "오늘까지 N명이 문의했습니다"에 표시
+  inquiryCountOffset: 180,
 
   popup: {
     enabled: false,
@@ -56,7 +56,7 @@ const config = {
     title:         "동부건설 센트레빌의\n 품격높은 하이엔드브랜드의 자부심\n센트레빌 아스테리움 거제", // TODO: 실제 히어로 타이틀로 교체
     subtitle:      "문의) 1688-3358", // TODO: 실제 서브타이틀로 교체
     accentKeyword: "하이엔드브랜드",
-    bgColor: "#1A2E5C", // TODO: 히어로 이미지 스포이드로 추출한 배경색으로 교체
+    bgColor: "#12294D", // TODO: 히어로 이미지 스포이드로 추출한 배경색으로 교체
     image: {
       src:    "/apt/centreville-geoje/main.webp",
       alt:    "센트레빌 아스테리움 거제 대표 이미지",
@@ -153,27 +153,27 @@ const config = {
   theme: {
     // ── 브랜드 컬러 ── TODO: 실제 브랜드 컬러로 교체
     hero: {
-      curtainColor: "#1A2E5C",
+      curtainColor: "#12294D",
     },
 
     // 섹션 헤더 구분선
     ImageSection_divider: {
-      background: "#1A2E5C",
+      background: "#12294D",
       width:      "40px",
       height:     "3px",
     },
 
     // 탭 메뉴 활성 버튼
     ImageSection_tabActive: {
-      background:  "#1A2E5C",
-      borderColor: "#1A2E5C",
+      background:  "#12294D",
+      borderColor: "#12294D",
       color:       "#ffffff",
     },
 
     // 상단 고정 네비게이션 활성 메뉴
     TopNav_active: {
-      color:       "#1A2E5C",
-      borderColor: "#1A2E5C",
+      color:       "#12294D",
+      borderColor: "#12294D",
     },
 
     // 히어로 배지 (eyebrow)
@@ -184,8 +184,8 @@ const config = {
     },
     // 긴급 배지 (eyebrowUrgent)
     eyebrowUrgent: {
-      color:       "#FFCA2F",
-      borderColor: "rgba(255,202,47,0.5)",
+      color:       "#38BDF8",
+      borderColor: "rgba(56,189,248,0.5)",
     },
 
     // 히어로 브랜드명
@@ -197,35 +197,35 @@ const config = {
     title: {
       color:       "#ffffff",
       fontSize:    "clamp(1.6rem,8vw,2.7rem)",
-      accentColor: "#FFCA2F",
+      accentColor: "#38BDF8",
     },
     // 히어로 서브타이틀
     subtitle: {
       color:       "#ffffff",
       fontSize:    "1.15rem",
-      accentColor: "#FFCA2F",
+      accentColor: "#38BDF8",
     },
 
     // 상담 신청 섹션 배경
     contactSection: {
-      background: "#1A2E5C",
+      background: "#12294D",
     },
     // 상담 신청 버튼
     ContactForm_submitBtn: {
-      background:  "#1A2E5C",
+      background:  "#12294D",
       color:       "#ffffff",
       fontSize:    "1.15rem",
-      shadowColor: "rgba(26,46,92,0.35)",
+      shadowColor: "rgba(18,41,77,0.35)",
     },
 
     // 하단 고정 버튼바
     BottomBar_callBtn: {
-      background: "#1A2E5C",
+      background: "#12294D",
       color:      "#ffffff",
     },
     BottomBar_regBtn: {
-      background: "#2C4373",
-      color:      "#ffffff",
+      background: "#38BDF8",
+      color:      "#12294D",
     },
   },
 

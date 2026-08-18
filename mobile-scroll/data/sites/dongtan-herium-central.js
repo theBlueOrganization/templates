@@ -12,15 +12,15 @@ const config = {
   subdomain:   "동탄헤리움센트럴",
   projectName: "동탄헤리움센트럴",
   shortName:   "동탄헤리움센트럴",
-  telNumber:   "1800-4336", // TODO: 실제 상담 전화번호로 교체
-  ogImage:     "/apt/dongtan-herium-central/share_img2.png",
+  telNumber:   "1800-4336",
+  ogImage:     "/apt/dongtan-herium-central/share_img3.png",
   favicon:     "/apt/dongtan-herium-central/favicon.ico",
   adminPhones:  ["01064603622"],
   sheetId:      "",
   sheetTab:     "동탄헤리움센트럴",
 
-  // 실제 상담 건수에 이 값을 더해 "오늘까지 N명이 문의했습니다"에 표시 — TODO: 목표 노출 수치로 교체
-  inquiryCountOffset: 181,
+  // 실제 상담 건수에 이 값을 더해 "오늘까지 N명이 문의했습니다"에 표시
+  inquiryCountOffset: 20,
 
   popup: {
     enabled: true,
@@ -54,7 +54,7 @@ const config = {
     eyebrowUrgent: 1, 
     brand:         "「동탄역헤리움센트럴」",
     title:         "동탄의 내일을 선점할 랜드마크\n동탄 1·2신도시 핵심 입지!",
-    subtitle:      "SRT.GTX-A(확정), 인동선.동탄트램(예정)",
+    subtitle:      "SRT.GTX-A(개통), 인동선.동탄트램(예정)",
     accentKeyword: ["랜드마크", "동탄 1·2신도시"],
     bgColor: "#0F1B33", 
     image: {

@@ -53,11 +53,12 @@ const config = {
       phone: '1877-3569',
     },
 
-    // 진입 팝업 배너 — PopupBanner 전용, 페이지 진입 약 3초 뒤 노출됨
-    // TODO: image는 임시로 대표 이미지(main.webp)를 재사용 중 — 실제 이벤트/공지 이미지로 교체 필요
+    // 진입 팝업 배너 — SignaturePopupBanner 전용, 페이지 진입 약 3초 뒤 노출됨
+    // image는 디자인 완성본을 그대로 씀 (리본 장식·하단 "팝업닫기" 바는 컴포넌트가 이미지 위에 덧그림)
     popup: {
       enabled: true,
-      image: { src: '/apt/wonjongyeok-world-meridian-fore/main.webp', alt: '원종역 월드메르디앙 포레 안내' },
+      image: { src: '/apt/wonjongyeok-world-meridian-fore/popup.webp', alt: '원종역 월드메르디앙 포레 특별혜택 안내', width: 688, height: 1025 },
+      closeLabel: '팝업닫기',
     },
 
     // PC(1024px 이상)에서만 노출되는 우측 고정 퀵메뉴 — SignatureQuickMenu 전용

@@ -45,21 +45,21 @@
 .title {
   font-family: var(--font-montserrat);
   font-weight: 200;
-  font-size: 30px;
+  font-size: 34px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: #111;
+  color: var(--ink, #111);
 }
 
 .title strong {
   font-weight: 600;
-  color: #06203e;
+  color: var(--navy, #06203e);
 }
 
 .subtitle {
   display: flex;
   flex-direction: column;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 300;
   color: #555;
   line-height: 1.6;
@@ -67,10 +67,13 @@
 
 .tabsLayout {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
   width: 100%;
-  max-width: 320px;
+  max-width: 100%;
   padding-bottom: 24px;
   margin-bottom: 24px;
 }
@@ -78,48 +81,47 @@
 .tabGroup {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  padding-bottom: 14px;
-  border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  gap: 6px;
 }
 
-.tabGroup:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
+.tabGroup:not(:first-child) {
+  padding-left: 14px;
+  border-left: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .groupLabel {
-  width: 45px;
+  width: auto;
   font-family: var(--font-montserrat);
   font-weight: 600;
-  font-size: 15px;
+  font-size: 13px;
   letter-spacing: -0.02em;
-  color: #06203e;
+  color: var(--navy, #06203e);
   text-align: left;
+  white-space: nowrap;
 }
 
 .chipWrap {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  flex-wrap: nowrap;
+  gap: 5px;
 }
 
 .chip {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: 4px;
   border: 1px solid rgba(0, 0, 0, 0.15);
   font-family: var(--font-montserrat);
   font-weight: 500;
-  font-size: 13px;
+  font-size: 12px;
   color: #555;
 }
 
 .chipActive {
-  background: #06203e;
-  border-color: #06203e;
+  background: var(--navy, #06203e);
+  border-color: var(--navy, #06203e);
   color: #fff;
   font-weight: 600;
   box-shadow: 0 6px 7px rgba(6, 32, 62, 0.25);
@@ -137,10 +139,10 @@
 .circleStage {
   position: relative;
   width: 100%;
-  max-width: 360px;
+  max-width: 400px;
   border-radius: 12px;
-  padding: 32px 20px;
-  background: linear-gradient(135deg, #041325 0%, #06203e 100%);
+  padding: 24px 16px;
+  background: linear-gradient(135deg, var(--navy, #041325) 0%, var(--navy, #06203e) 100%);
   box-shadow: 0 15px 35px rgba(6, 32, 62, 0.2);
   overflow: hidden;
 }
@@ -153,8 +155,8 @@
 
 .planImageWrap {
   width: 100%;
-  max-width: 260px;
-  margin-bottom: 20px;
+  max-width: 360px;
+  margin-bottom: 16px;
   filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.25));
 }
 
@@ -174,13 +176,13 @@
 .typeTitle h3 {
   font-family: var(--font-montserrat);
   font-weight: 700;
-  font-size: 22px;
+  font-size: 26px;
   letter-spacing: 0.02em;
-  color: #f5f5f0;
+  color: var(--cream, #f5f5f0);
 }
 
 .typeTitle p {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 300;
   color: rgba(255, 255, 255, 0.8);
   letter-spacing: -0.02em;
@@ -210,14 +212,18 @@
   }
 
   .title {
-    font-size: 48px;
+    font-size: 54px;
   }
 
   .subtitle {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .tabsLayout {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    gap: 16px;
     max-width: 100%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     padding-bottom: 28px;
@@ -226,26 +232,37 @@
   .tabGroup {
     justify-content: flex-start;
     flex-wrap: nowrap;
+    gap: 12px;
     border-bottom: none;
     padding-bottom: 0;
   }
 
+  .tabGroup:not(:first-child) {
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .chipWrap {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
   .groupLabel {
-    width: 60px;
-    font-size: 18px;
+    width: 64px;
+    font-size: 19px;
   }
 
   .chip {
-    width: 42px;
-    height: 42px;
-    font-size: 16px;
+    width: 46px;
+    height: 46px;
+    font-size: 17px;
   }
 
   .dataContainer {
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 420px;
+    max-width: 460px;
   }
 
   .specRow {
@@ -257,7 +274,7 @@
   }
 
   .specLabel {
-    font-size: 14.5px;
+    font-size: 16px;
     color: #555;
     letter-spacing: -0.02em;
   }
@@ -265,15 +282,15 @@
   .specValue {
     font-family: var(--font-montserrat);
     font-weight: 500;
-    font-size: 16px;
-    color: #111;
+    font-size: 18px;
+    color: var(--ink, #111);
   }
 
   .specValue em,
   .specValueContract em {
     font-style: normal;
     font-weight: 400;
-    font-size: 13px;
+    font-size: 14.5px;
     color: #888;
     margin-left: 2px;
   }
@@ -282,20 +299,20 @@
     margin-top: 4px;
     padding: 16px 10px;
     background: rgba(6, 32, 62, 0.02);
-    border-top: 2px solid #111;
+    border-top: 2px solid var(--ink, #111);
     border-bottom: none;
   }
 
   .specRowContract .specLabel {
     font-weight: 600;
-    color: #06203e;
+    color: var(--navy, #06203e);
   }
 
   .specValueContract {
     font-family: var(--font-montserrat);
     font-weight: 700;
-    font-size: 18px;
-    color: #06203e;
+    font-size: 20px;
+    color: var(--navy, #06203e);
   }
 
   .rightPanel {
@@ -303,10 +320,10 @@
   }
 
   .circleStage {
-    width: 680px;
-    height: 680px;
-    max-width: 680px;
-    border-radius: 340px;
+    width: 760px;
+    height: 760px;
+    max-width: 760px;
+    border-radius: 380px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -314,15 +331,15 @@
   }
 
   .planImageWrap {
-    max-width: 508px;
+    max-width: 570px;
     margin-bottom: 30px;
   }
 
   .typeTitle h3 {
-    font-size: 32px;
+    font-size: 38px;
   }
 
   .typeTitle p {
-    font-size: 14.5px;
+    font-size: 16px;
   }
 }

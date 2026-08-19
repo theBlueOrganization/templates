@@ -6,6 +6,15 @@
   --font-cormorant: var(--font-cormorant-garamond, 'Cormorant Garamond', serif);
   --font-playfair: var(--font-playfair-display, 'Playfair Display', serif);
   --font-montserrat: var(--font-montserrat, 'Montserrat', sans-serif);
+  /* wonjongyeok-world-meridian-fore 현장 전용 — "특별한 혜택" 섹션 손글씨 강조 문구 */
+  --font-nanum-pen: var(--font-nanum-pen, 'Nanum Pen Script', cursive);
+
+  /* 원종역 월드메르디앙 포레 현장 전용 */
+  --navy: #263241;
+  --ink: #1f2c35;
+  --cream: #f3f1ec;
+  --gold: #e0cd9c;
+  --line: rgba(255, 255, 255, 0.24);
 }
 
 *,

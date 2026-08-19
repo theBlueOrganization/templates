@@ -1,0 +1,178 @@
+.section {
+  position: relative;
+  background: #fff;
+  padding: 60px 20px;
+  overflow: hidden;
+}
+
+.watermark {
+  position: absolute;
+  right: -10px;
+  top: 24px;
+  font-family: var(--font-montserrat);
+  font-weight: 700;
+  font-size: 40px;
+  letter-spacing: 0.05em;
+  color: rgba(38, 50, 65, 0.05);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #1f2c35;
+}
+
+.title strong {
+  color: #263241;
+}
+
+.desc {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.imageWrap {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f3f1ec;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.labelRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(38, 50, 65, 0.06);
+  color: #263241;
+}
+
+.icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.labelEn {
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #999;
+}
+
+.cardTitle {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #1f2c35;
+}
+
+.cardDesc {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.7;
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 30px;
+  }
+
+  .desc {
+    font-size: 15px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding: 100px 40px;
+  }
+
+  .watermark {
+    font-size: 56px;
+    top: 40px;
+  }
+
+  .title {
+    font-size: 40px;
+  }
+
+  .desc {
+    font-size: 17px;
+  }
+
+  .grid {
+    gap: 40px;
+  }
+
+  .icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .labelEn {
+    font-size: 14px;
+  }
+
+  .cardTitle {
+    font-size: 23px;
+  }
+
+  .cardDesc {
+    font-size: 15.5px;
+  }
+}

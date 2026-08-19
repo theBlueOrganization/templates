@@ -1,0 +1,263 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: 60px 12px;
+  background: #263241;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+}
+
+.bgImage {
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  /* 상단은 히어로 섹션 하단(#263241)과 완전히 같은 색으로 시작해서 이음매 없이 이어지도록 함 */
+  background: linear-gradient(180deg, #263241 0%, rgba(4, 12, 22, 0.85) 12%, rgba(4, 12, 22, 0.82) 100%);
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+}
+
+.eyebrow {
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: #e0cd9c;
+  margin-bottom: 20px;
+}
+
+.titleSmall {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 6px;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.title span {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.title strong {
+  font-family: var(--font-nanum-pen);
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 1.2;
+  color: #e0cd9c;
+}
+
+.desc {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.card {
+  padding: 32px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.card:hover {
+  background: #e0cd9c;
+}
+
+.card:hover .tag {
+  color: rgba(38, 50, 65, 0.55);
+}
+
+.card:hover .num,
+.card:hover .cardTitle {
+  color: #263241;
+}
+
+.card:hover .cardDesc {
+  color: rgba(38, 50, 65, 0.7);
+}
+
+.card:last-child {
+  border-bottom: none;
+}
+
+.tag {
+  display: block;
+  font-family: var(--font-montserrat);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  text-align: right;
+  margin-bottom: -18px;
+  transition: color 0.25s ease;
+}
+
+.num {
+  display: block;
+  font-family: var(--font-cormorant);
+  font-weight: 700;
+  font-size: 32px;
+  color: #e0cd9c;
+  margin-bottom: 12px;
+  transition: color 0.25s ease;
+}
+
+.cardTitle {
+  display: flex;
+  flex-direction: column;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin-bottom: 8px;
+  word-break: keep-all;
+  transition: color 0.25s ease;
+}
+
+.cardDesc {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.55);
+  word-break: keep-all;
+  transition: color 0.25s ease;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+  }
+
+  .card {
+    border-bottom: none;
+    border-right: none;
+  }
+
+  .card:nth-child(odd) {
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+    padding-right: 28px;
+  }
+
+  .card:nth-child(even) {
+    padding-left: 28px;
+  }
+
+  .card:nth-child(-n + 2) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding-bottom: 28px;
+  }
+
+  .card:nth-child(n + 3) {
+    padding-top: 28px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding: 0;
+  }
+
+  .container {
+    flex-direction: row;
+    align-items: center;
+    gap: 100px;
+    padding: 0 60px;
+    width: 100%;
+  }
+
+  .left {
+    width: 380px;
+    flex-shrink: 0;
+  }
+
+  .titleSmall {
+    font-size: 16px;
+  }
+
+  .title span {
+    font-size: 44px;
+  }
+
+  .title strong {
+    font-size: 72px;
+  }
+
+  .desc {
+    font-size: 14px;
+  }
+
+  .grid {
+    flex: 1;
+  }
+
+  .card {
+    padding: 32px;
+  }
+
+  .card:nth-child(odd) {
+    padding-right: 40px;
+  }
+
+  .card:nth-child(even) {
+    padding-left: 40px;
+  }
+
+  .card:nth-child(-n + 2) {
+    padding-bottom: 40px;
+  }
+
+  .card:nth-child(n + 3) {
+    padding-top: 40px;
+  }
+
+  .tag {
+    font-size: 11px;
+  }
+
+  .num {
+    font-size: 40px;
+  }
+
+  .cardTitle {
+    font-size: 24px;
+  }
+
+  .cardDesc {
+    font-size: 14px;
+  }
+}

@@ -1,5 +1,5 @@
 .section {
-  background: #fdfdfc;
+  background: var(--cream, #fdfdfc);
   padding: 60px 20px;
 }
 
@@ -18,12 +18,12 @@
   font-weight: 300;
   font-size: 13px;
   letter-spacing: 0.15em;
-  color: #111;
+  color: var(--ink, #111);
 }
 
 .eyebrow strong {
   font-weight: 700;
-  color: #c8b693;
+  color: var(--gold, #c8b693);
 }
 
 .title {
@@ -32,19 +32,40 @@
   font-size: 32px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #c8b693;
+  color: var(--gold, #c8b693);
+  white-space: pre-line;
+  word-break: keep-all;
+}
+
+.titleBold {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 26px;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  color: var(--navy, #06203e);
+  white-space: pre-line;
+  word-break: keep-all;
 }
 
 .descTitle {
   font-size: 16px;
   font-weight: 700;
-  color: #111;
+  color: var(--ink, #111);
   line-height: 1.6;
 }
 
 .descAccent {
   font-weight: 700;
-  color: #111;
+  color: var(--ink, #111);
+}
+
+.descTitleLight {
+  font-size: 14px;
+  font-weight: 300;
+  color: #666;
+  line-height: 1.7;
+  word-break: keep-all;
 }
 
 .descBody {
@@ -56,7 +77,7 @@
 
 .descBodyAccent {
   font-weight: 700;
-  color: #111;
+  color: var(--ink, #111);
 }
 
 .mapWrap {
@@ -71,12 +92,147 @@
   height: auto;
 }
 
+.subhead {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  max-width: 700px;
+  margin: 0 auto 32px;
+}
+
+.subheadEyebrow {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: #999;
+}
+
+.subheadTitle {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--navy, #06203e);
+  white-space: pre-line;
+  word-break: keep-all;
+}
+
 .grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 32px;
   max-width: 1160px;
   margin: 0 auto;
+}
+
+.numCard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 20px;
+  border-top: 2px solid var(--navy, #06203e);
+}
+
+.numCardNum {
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--gold, #c8b693);
+}
+
+.numCardCategory {
+  font-size: 13px;
+  font-weight: 500;
+  color: #999;
+}
+
+.numCardTitle {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--ink, #111);
+  letter-spacing: -0.02em;
+  word-break: keep-all;
+}
+
+.numCardDesc {
+  font-size: 14px;
+  font-weight: 300;
+  color: #666;
+  line-height: 1.7;
+  word-break: keep-all;
+}
+
+.gridPhoto {
+  gap: 20px;
+}
+
+.photoCard {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  background: #fff;
+}
+
+.photoCardImageBox {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.photoCardImg {
+  object-fit: cover;
+  object-position: var(--photo-position, center 65%);
+}
+
+.photoCardContent {
+  padding: 20px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 6px;
+}
+
+.photoCardIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(6, 32, 62, 0.08);
+  color: var(--navy, #06203e);
+  margin-bottom: 4px;
+}
+
+.photoCardIcon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.photoCardCategory {
+  font-size: 13px;
+  font-weight: 500;
+  color: #888;
+}
+
+.photoCardTitle {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--navy, #06203e);
+  letter-spacing: -0.02em;
+  word-break: keep-all;
+}
+
+.photoCardDesc {
+  font-size: 13px;
+  font-weight: 400;
+  color: #555;
+  line-height: 1.6;
+  word-break: keep-all;
 }
 
 .card {
@@ -92,7 +248,7 @@
   gap: 4px;
   font-size: 18px;
   font-weight: 400;
-  color: #111;
+  color: var(--ink, #111);
   letter-spacing: -0.03em;
 }
 
@@ -107,7 +263,7 @@
   font-size: 14px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #c8b693;
+  color: var(--gold, #c8b693);
 }
 
 .cardImgWrap {
@@ -132,7 +288,7 @@
 
 .cardDesc strong {
   font-weight: 700;
-  color: #222;
+  color: var(--ink, #222);
 }
 
 .disclaimer {
@@ -148,9 +304,34 @@
     font-size: 44px;
   }
 
+  .titleBold {
+    font-size: 34px;
+  }
+
+  .subheadTitle {
+    font-size: 28px;
+  }
+
   .grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 40px 32px;
+  }
+
+  .gridPhoto {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .photoCardContent {
+    padding: 24px 24px 28px;
+  }
+
+  .photoCardTitle {
+    font-size: 20px;
+  }
+
+  .photoCardDesc {
+    font-size: 14.5px;
   }
 }
 
@@ -194,5 +375,79 @@
 
   .cardDesc {
     font-size: 17.6px;
+  }
+
+  .titleBold {
+    font-size: 42px;
+  }
+
+  .descTitleLight {
+    font-size: 17.6px;
+  }
+
+  .subheadTitle {
+    font-size: 36px;
+  }
+
+  .gridNum {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+
+  .gridNum .numCard {
+    border-top: none;
+    padding: 0 32px;
+  }
+
+  .gridNum .numCard:first-child {
+    padding-left: 0;
+  }
+
+  .gridNum .numCard:not(:first-child) {
+    border-left: 1px solid #e5e5e0;
+  }
+
+  .numCardTitle {
+    font-size: 22px;
+  }
+
+  .numCardDesc {
+    font-size: 15.2px;
+  }
+
+  .gridPhoto {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+
+  .photoCard {
+    border-radius: 24px;
+  }
+
+  .photoCardContent {
+    padding: 28px 32px 32px;
+    gap: 10px;
+  }
+
+  .photoCardIcon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .photoCardIcon svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .photoCardCategory {
+    font-size: 15px;
+  }
+
+  .photoCardTitle {
+    font-size: 24px;
+  }
+
+  .photoCardDesc {
+    font-size: 15.5px;
   }
 }

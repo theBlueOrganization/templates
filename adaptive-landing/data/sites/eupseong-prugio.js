@@ -18,6 +18,7 @@
 // ────────────────────────────────────────────────────────────
 const config = {
   slug: 'eupseong-prugio',
+  subdomain: '업성푸르지오레이크시티',
   projectName: '업성 푸르지오 레이크시티',
   shortName: '업성 푸르지오',
   telNumber: '1533-6100',

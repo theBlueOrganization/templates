@@ -1,5 +1,5 @@
 .footer {
-  background: #111;
+  background: var(--ink, #111);
   background-image: linear-gradient(90deg, rgba(5, 28, 55, 0.4) 0%, rgba(5, 28, 55, 0.4) 100%);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding: 32px 20px 24px;
@@ -26,7 +26,7 @@
 }
 
 .highlightText {
-  color: #eae6da;
+  color: var(--cream, #eae6da);
   font-size: 15px;
   letter-spacing: -0.5px;
 }

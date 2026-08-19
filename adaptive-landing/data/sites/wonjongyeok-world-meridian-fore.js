@@ -53,6 +53,13 @@ const config = {
       phone: '1877-3569',
     },
 
+    // 진입 팝업 배너 — PopupBanner 전용, 페이지 진입 약 3초 뒤 노출됨
+    // TODO: image는 임시로 대표 이미지(main.webp)를 재사용 중 — 실제 이벤트/공지 이미지로 교체 필요
+    popup: {
+      enabled: true,
+      image: { src: '/apt/wonjongyeok-world-meridian-fore/main.webp', alt: '원종역 월드메르디앙 포레 안내' },
+    },
+
     // PC(1024px 이상)에서만 노출되는 우측 고정 퀵메뉴 — SignatureQuickMenu 전용
     quickMenu: {
       brand: 'WORLD MERIDIAN FORET',

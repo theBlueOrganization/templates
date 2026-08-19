@@ -5,6 +5,7 @@ import {
   Cormorant_Garamond,
   Playfair_Display,
   Montserrat,
+  Gaegu,
 } from 'next/font/google'
 import './globals.css'
 
@@ -51,6 +52,14 @@ const montserrat = Montserrat({
   display: 'swap',
 })
 
+// wonjongyeok-world-meridian-fore 현장의 "특별한 혜택" 섹션 손글씨 강조 문구 전용 폰트 (한글 손글씨체, korean 서브셋 포함)
+const gaegu = Gaegu({
+  subsets: ['latin'],
+  weight: ['700'],
+  variable: '--font-nanum-pen',
+  display: 'swap',
+})
+
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -65,7 +74,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="ko"
-      className={`${notoSansKR.variable} ${notoSerifKR.variable} ${bebasNeue.variable} ${cormorantGaramond.variable} ${playfairDisplay.variable} ${montserrat.variable}`}
+      className={`${notoSansKR.variable} ${notoSerifKR.variable} ${bebasNeue.variable} ${cormorantGaramond.variable} ${playfairDisplay.variable} ${montserrat.variable} ${gaegu.variable}`}
     >
       <body>{children}</body>
     </html>

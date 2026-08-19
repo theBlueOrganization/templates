@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   min-height: 70vh;
-  background: #f5f5f0;
+  background: var(--cream, #f5f5f0);
   overflow: hidden;
   padding: 80px 20px;
 }
@@ -16,6 +16,13 @@
 
 .bgImage {
   object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  /* 어떤 배경 사진이 오더라도 짙은 텍스트 가독성이 보장되도록 크림 톤 스크림을 얹음 */
+  background: linear-gradient(180deg, rgba(245, 245, 240, 0.55) 0%, rgba(245, 245, 240, 0.8) 100%);
 }
 
 @media (min-width: 1024px) {
@@ -31,7 +38,13 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  max-width: 900px;
+}
+
+.accentLine {
+  width: 48px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--navy, #06203e) 0%, var(--gold, #c8b693) 100%);
+  margin-bottom: 20px;
 }
 
 .eyebrow {
@@ -39,7 +52,7 @@
   font-weight: 700;
   font-size: 13px;
   letter-spacing: 0.3em;
-  color: #06203e;
+  color: var(--navy, #06203e);
   margin-bottom: 16px;
 }
 
@@ -48,6 +61,7 @@
   flex-direction: column;
   gap: 6px;
   margin-bottom: 24px;
+  word-break: keep-all;
 }
 
 .titleLine1 {
@@ -55,15 +69,15 @@
   font-weight: 300;
   font-size: 28px;
   letter-spacing: -0.03em;
-  color: #1a1a1a;
+  color: var(--ink, #1a1a1a);
 }
 
 .titleLine2 {
   font-family: var(--font-sans);
   font-weight: 800;
-  font-size: 36px;
+  font-size: 32px;
   letter-spacing: -0.02em;
-  background: linear-gradient(116deg, #06203e 0%, #082d57 50%, #06203e 100%);
+  background: linear-gradient(116deg, var(--navy, #06203e) 0%, var(--navy, #082d57) 50%, var(--navy, #06203e) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -74,11 +88,13 @@
   font-size: 14px;
   line-height: 1.8;
   color: #555;
+  max-width: 640px;
+  white-space: pre-line;
 }
 
 .descAccent {
   font-weight: 800;
-  color: #06203e;
+  color: var(--navy, #06203e);
 }
 
 .scrollIndicator {
@@ -99,7 +115,7 @@
   font-size: 11px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: #06203e;
+  color: var(--navy, #06203e);
 }
 
 .scrollLine {
@@ -114,7 +130,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: #06203e;
+  background: var(--navy, #06203e);
   animation: scrollLineMove 2s ease-in-out infinite;
 }
 
@@ -145,6 +161,11 @@
   .section {
     min-height: 100vh;
     padding: 120px 20px;
+  }
+
+  .accentLine {
+    width: 64px;
+    margin-bottom: 28px;
   }
 
   .eyebrow {

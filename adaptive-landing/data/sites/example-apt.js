@@ -19,11 +19,15 @@
 //   club          → components/sections/SignatureClub (커뮤니티 — intro/wellness/sportsHealth/cafeLounge/eduKids)
 //   vipForm       → components/sections/SignatureVipForm (상담신청 폼)
 //   footer        → components/ui/SignatureFooter
+//   quickMenu     → components/ui/SignatureQuickMenu (선택 필드 — PC 1024px 이상 전용 우측 고정
+//                   퀵메뉴. 없으면 렌더되지 않음. wonjongyeok-world-meridian-fore.js 참고)
 // 위 필드는 컴포넌트가 optional chaining 없이 그대로 읽으므로 전부 채워야 합니다.
 // ────────────────────────────────────────────────────────────
 const config = {
   // URL이 됨: /apt/example-apt
   slug: 'example-apt',
+  // 선택 필드: 있으면 [subdomain].addupapt.kr → /apt/[slug]로 자동 리다이렉트됨 (middleware.js, 공백 없는 한글 문자열)
+  subdomain: '예시아파트',
   projectName: '예시 아파트',
   shortName: '예시 아파트',
   telNumber: '1533-0000',

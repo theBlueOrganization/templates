@@ -1,5 +1,5 @@
 .section {
-  background: #051c37;
+  background: linear-gradient(135deg, var(--navy, #041325) 0%, var(--navy, #06203e) 100%);
   padding: 60px 20px;
   display: flex;
   justify-content: center;
@@ -8,9 +8,10 @@
 .card {
   width: 100%;
   max-width: 950px;
-  background: #06203e;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(200, 182, 147, 0.18);
   border-radius: 12px;
-  box-shadow: 0 30px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 30px 30px rgba(0, 0, 0, 0.25);
   padding: 40px 24px;
 }
 
@@ -28,7 +29,7 @@
   font-weight: 600;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: rgba(234, 230, 218, 0.8);
+  color: var(--gold, #c8b693);
 }
 
 .title {
@@ -43,7 +44,7 @@
 
 .title strong {
   font-weight: 700;
-  color: #eae6da;
+  color: var(--gold, #c8b693);
 }
 
 .desc {
@@ -60,14 +61,14 @@
 .groupTitle {
   font-size: 16px;
   font-weight: 600;
-  color: #eae6da;
+  color: var(--gold, #c8b693);
   margin-bottom: 16px;
 }
 
 .privacyBox {
   height: 140px;
   overflow-y: auto;
-  background: rgba(0, 0, 0, 0.2);
+  background: #fff;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 4px;
   padding: 14px 16px;
@@ -77,7 +78,7 @@
 .privacyBox p {
   font-size: 12.5px;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.6);
+  color: #777;
   white-space: pre-line;
 }
 
@@ -86,13 +87,13 @@
   align-items: center;
   gap: 10px;
   font-size: 14px;
-  color: #eae6da;
+  color: var(--gold, #c8b693);
 }
 
 .checkLabel input {
   width: 18px;
   height: 18px;
-  accent-color: #eae6da;
+  accent-color: var(--gold, #c8b693);
   flex-shrink: 0;
 }
 
@@ -111,7 +112,7 @@
 .label {
   font-size: 14px;
   font-weight: 600;
-  color: #eae6da;
+  color: var(--gold, #c8b693);
 }
 
 .input,
@@ -119,18 +120,18 @@
 .selectInput,
 .phoneInput {
   width: 100%;
-  background: rgba(0, 0, 0, 0.2);
+  background: #fff;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 4px;
   padding: 15px 16px;
   font-size: 15px;
-  color: #fff;
+  color: var(--ink, #111);
   max-width: 380px;
 }
 
 .input::placeholder,
 .dateInput::placeholder {
-  color: #757575;
+  color: #999;
 }
 
 .phoneRow {
@@ -164,7 +165,7 @@
 .radioLabel input {
   width: 18px;
   height: 18px;
-  accent-color: #eae6da;
+  accent-color: var(--gold, #c8b693);
 }
 
 .datetimeRow {
@@ -177,8 +178,8 @@
 .submitBtn {
   width: 100%;
   margin-top: 8px;
-  background: #eae6da;
-  color: #06203e;
+  background: var(--gold, #c8b693);
+  color: var(--navy, #06203e);
   font-weight: 700;
   font-size: 16px;
   letter-spacing: 0.02em;

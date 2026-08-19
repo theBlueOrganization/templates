@@ -2,7 +2,10 @@ import { notFound } from 'next/navigation'
 import { getSiteBySlug, getAllSlugs } from '../../../data/siteRegistry'
 import SignatureHeader from '../../../components/ui/SignatureHeader'
 import SignatureFooter from '../../../components/ui/SignatureFooter'
+import SignatureQuickMenu from '../../../components/ui/SignatureQuickMenu'
 import SignatureHero from '../../../components/sections/SignatureHero'
+import SignatureHeroMinimal from '../../../components/sections/SignatureHeroMinimal'
+import SignatureBenefits from '../../../components/sections/SignatureBenefits'
 import SignatureSummary from '../../../components/sections/SignatureSummary'
 import SignatureLocation from '../../../components/sections/SignatureLocation'
 import SignaturePremiumIntro from '../../../components/sections/SignaturePremiumIntro'
@@ -11,6 +14,7 @@ import SignatureLandscape from '../../../components/sections/SignatureLandscape'
 import SignatureComplex from '../../../components/sections/SignatureComplex'
 import SignatureUnitPlan from '../../../components/sections/SignatureUnitPlan'
 import SignatureClub from '../../../components/sections/SignatureClub'
+import SignatureClubSimple from '../../../components/sections/SignatureClubSimple'
 import SignatureVipForm from '../../../components/sections/SignatureVipForm'
 
 export const viewport = {
@@ -56,32 +60,62 @@ export default async function AptPage({ params }) {
     sig.vipForm.id,
   ]
 
+  // --navy/--ink/--cream/--gold는 app/globals.css :root에 원종역 색상값으로 전역 선언돼 있음.
+  // 공용 Signature* 컴포넌트들은 이 값을 var(--navy, 기존하드코딩값) 형태로 참조하므로,
+  // colorTheme이 없는 현장(eupseong-prugio 등)에서는 값을 'initial'로 무효화해 각 파일의
+  // 기존 하드코딩 색(폴백)이 그대로 적용되게 하고, 원종역만 실제 팔레트 값으로 덮어씀
+  const themeStyle = site.colorTheme
+    ? {
+        '--navy': site.colorTheme.navy,
+        '--ink': site.colorTheme.ink,
+        '--cream': site.colorTheme.cream,
+        '--gold': site.colorTheme.gold,
+      }
+    : { '--navy': 'initial', '--ink': 'initial', '--cream': 'initial', '--gold': 'initial' }
+
   return (
-    <>
+    <div style={themeStyle}>
       <SignatureHeader
         header={sig.header}
         sectionIds={sectionIds}
         ctaTargetId={sig.vipForm.id}
         telNumberByUtm={site.telNumberByUtm}
+        transparentOverHero
       />
       <main>
-        <SignatureHero
-          hero={sig.hero}
-          telNumber={site.telNumber}
-          telNumberByUtm={site.telNumberByUtm}
-          visitTargetId={sig.vipForm.id}
-        />
+        {sig.hero.variant === 'minimal' ? (
+          <SignatureHeroMinimal
+            hero={sig.hero}
+            telNumber={site.telNumber}
+            telNumberByUtm={site.telNumberByUtm}
+            visitTargetId={sig.vipForm.id}
+          />
+        ) : (
+          <SignatureHero
+            hero={sig.hero}
+            telNumber={site.telNumber}
+            telNumberByUtm={site.telNumberByUtm}
+            visitTargetId={sig.vipForm.id}
+          />
+        )}
+        {sig.benefits && <SignatureBenefits benefits={sig.benefits} />}
         <SignatureSummary summary={sig.summary} />
         <SignatureLocation location={sig.location} />
         <SignaturePremiumIntro premiumIntro={sig.premiumIntro} />
         <SignaturePremiumValue premiumValue={sig.premiumValue} />
-        <SignatureLandscape landscape={sig.landscape} />
+        {sig.landscape && <SignatureLandscape landscape={sig.landscape} />}
         <SignatureComplex complex={sig.complex} />
         <SignatureUnitPlan unitPlan={sig.unitPlan} />
-        <SignatureClub club={sig.club} />
+        {sig.club.variant === 'simple' ? <SignatureClubSimple club={sig.club} /> : <SignatureClub club={sig.club} />}
         <SignatureVipForm config={site} />
       </main>
-      <SignatureFooter footer={sig.footer} telNumber={site.telNumber} telNumberByUtm={site.telNumberByUtm} />
-    </>
+      <SignatureFooter
+        footer={sig.footer}
+        telNumber={site.telNumber}
+        telNumberByUtm={site.telNumberByUtm}
+        projectName={site.projectName}
+      />
+      {sig.quickMenu && <SignatureQuickMenu quickMenu={sig.quickMenu} telNumberByUtm={site.telNumberByUtm} />}
+    </div>
   )
 }

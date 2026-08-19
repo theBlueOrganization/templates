@@ -1,0 +1,289 @@
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100svh;
+  background: var(--navy, #06203e);
+  overflow: hidden;
+  padding: 100px 20px 120px;
+  text-align: center;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+}
+
+.bgImage {
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  /* 배경 사진 위에 짙은 네이비 스크림을 얹어 흰색 텍스트 위주 레이아웃의 가독성을 유지 */
+  background: linear-gradient(180deg, rgba(4, 12, 22, 0.5) 0%, rgba(4, 12, 22, 0.78) 60%, var(--navy, #06203e) 100%);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 900px;
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--gold);
+  letter-spacing: -0.01em;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+
+.title {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 1.2;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.divider {
+  width: 48px;
+  height: 3px;
+  background: var(--gold);
+  margin-bottom: 20px;
+}
+
+.descBadges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.descBadge {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--gold);
+  letter-spacing: -0.01em;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(224, 205, 156, 0.4);
+  background: rgba(38, 50, 65, 0.45);
+}
+
+@media (min-width: 768px) {
+  .eyebrow {
+    font-size: 17px;
+  }
+
+  .title {
+    font-size: 56px;
+    margin-bottom: 28px;
+  }
+
+  .divider {
+    width: 56px;
+    margin-bottom: 24px;
+  }
+
+  .descBadge {
+    font-size: 13.5px;
+    padding: 9px 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    padding: 140px 20px 160px;
+  }
+
+  .content {
+    max-width: 1280px;
+  }
+
+  .eyebrow {
+    font-size: 22px;
+    letter-spacing: 0.02em;
+    margin-bottom: 24px;
+  }
+
+  .title {
+    font-size: 108px;
+    letter-spacing: -0.03em;
+    margin-bottom: 36px;
+  }
+
+  .divider {
+    width: 84px;
+    height: 5px;
+    margin-bottom: 32px;
+  }
+
+  .descBadge {
+    font-size: 16px;
+    padding: 11px 20px;
+  }
+
+  .mobileBar {
+    display: none;
+  }
+}
+
+/* 모바일 전용 하단 액션바 — 안내 롤링 배너 + 전화상담/방문예약 버튼 + 프로모 말풍선 */
+.mobileBar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+}
+
+.announceBar {
+  position: relative;
+  height: 40px;
+  background: var(--navy);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.announceTrack {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.5s ease;
+}
+
+.announceItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+}
+
+.announceBadge {
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  padding: 3px 7px;
+  color: var(--cream);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+.announceText {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 13.5px;
+  letter-spacing: -0.3px;
+}
+
+.announceStrong {
+  color: #fff;
+  font-weight: 500;
+}
+
+.announceLight {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 300;
+}
+
+.actionButtons {
+  position: relative;
+  display: flex;
+  height: 60px;
+}
+
+.callBtn,
+.visitBtn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-top: 1px solid;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.callBtn {
+  background: var(--cream);
+  border-top-color: var(--cream);
+  color: var(--navy);
+}
+
+.visitBtn {
+  background: var(--gold);
+  border-top-color: var(--gold);
+  color: var(--navy);
+}
+
+.promoBubble {
+  position: absolute;
+  right: 14px;
+  bottom: 100%;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gold);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+  padding: 8px 16px 8px 12px;
+  box-shadow: 0 4px 7.5px rgba(0, 0, 0, 0.15);
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+}
+
+.pulseDot {
+  flex-shrink: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--navy);
+  animation: pulseDot 1.6s ease-in-out infinite;
+}
+
+.bubbleTail {
+  position: absolute;
+  right: 24px;
+  bottom: -5px;
+  width: 10px;
+  height: 10px;
+  background: var(--gold);
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  transform: rotate(45deg);
+}
+
+@keyframes pulseDot {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.8);
+    opacity: 0.4;
+  }
+}

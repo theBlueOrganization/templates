@@ -15,12 +15,29 @@
   margin-bottom: 32px;
 }
 
+.headLeft {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.headRight {
+  align-items: flex-end;
+  text-align: right;
+}
+
 .eyebrow {
   font-size: 12px;
   font-weight: 400;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: #b39258;
+  color: var(--gold, #b39258);
+}
+
+.eyebrowPlain {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: #888;
 }
 
 .title {
@@ -29,7 +46,7 @@
   font-size: 26px;
   font-weight: 300;
   letter-spacing: -0.03em;
-  color: #06203e;
+  color: var(--navy, #06203e);
 }
 
 .title strong {
@@ -48,6 +65,12 @@
   gap: 24px;
   width: 100%;
   max-width: 1200px;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .imageBox {
@@ -84,6 +107,10 @@
 
   .eyebrow {
     font-size: 16px;
+  }
+
+  .eyebrowPlain {
+    font-size: 15px;
   }
 
   .title {

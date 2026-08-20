@@ -120,9 +120,8 @@ const config = {
       photo: { src: '/apt/wonjongyeok-world-meridian-fore/main.webp', alt: '원종역 월드메르디앙 포레 조감도' },
       thumbs: [
         { src: '/apt/wonjongyeok-world-meridian-fore/sub_image.webp', alt: '단지 전경 야간 투시도' },
-        { src: '/apt/wonjongyeok-world-meridian-fore/overview-thumb-3.jpg', alt: '단지 내 프리미엄 인테리어' },
-        { src: '/apt/wonjongyeok-world-meridian-fore/overview-thumb-4.jpg', alt: '커뮤니티 시설 썸네일' },
-        
+        { src: '/apt/wonjongyeok-world-meridian-fore/overview3.webp', alt: '거실 인테리어' },
+        { src: '/apt/wonjongyeok-world-meridian-fore/overview4.webp', alt: '주방 인테리어' },
       ],
       notice: '※ 본 페이지에 사용된 CG, 이미지 및 내용은 인·허가 과정 중 변경될 수 있습니다.',
       specItems: [
@@ -377,8 +376,7 @@ const config = {
       highlightText: '청약통장없이 로열동호수 선점!',
       agencySlogan: '분양완판 전문가 그룹, (주) 더블루파트너스',
       companyLines: [
-        { label: '시행', value: '(주)시행사명' }, // TODO
-        { label: '시공', value: '(주)월드건설 / 대표자명 / 000-00-00000' }, // TODO
+        { label: '시공', value: '신성토건' },
         { label: '온라인대행', value: '주식회사 더블루파트너스' },
         { label: '사업자등록번호', value: '789-81-03093' },
         { label: '이메일', value: 'addup@addup.kr' },

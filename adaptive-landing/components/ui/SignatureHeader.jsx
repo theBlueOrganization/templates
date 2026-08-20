@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { cn } from '../../lib/utils'
 import { useUtmSource } from '../../lib/useUtmSource'
+import SignaturePhoneModal from './SignaturePhoneModal'
 import styles from './SignatureHeader.module.css'
 
 // 헤더 높이(SignatureHeader.module.css .inner 값과 동일하게 유지) — 모바일 64px, PC(1024px 이상) 96px
@@ -30,6 +31,7 @@ export default function SignatureHeader({
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [transparent, setTransparent] = useState(false)
+  const [phoneModalOpen, setPhoneModalOpen] = useState(false)
   // telNumberByUtm에 등록된 utm_source로 들어온 경우에만 노출 전화번호를 덮어씀
   const utmSource = useUtmSource()
   const phone = telNumberByUtm?.[utmSource] ?? header.phone
@@ -86,9 +88,9 @@ export default function SignatureHeader({
           <button type="button" className={styles.quickCta} onClick={() => scrollTo(ctaTargetId)}>
             {header.quickCtaLabel}
           </button>
-          <a href={`tel:${phone}`} className={styles.quickPhone}>
+          <button type="button" className={styles.quickPhone} onClick={() => setPhoneModalOpen(true)}>
             {phone}
-          </a>
+          </button>
         </div>
 
         <button
@@ -116,6 +118,8 @@ export default function SignatureHeader({
           </button>
         </div>
       )}
+
+      <SignaturePhoneModal open={phoneModalOpen} onClose={() => setPhoneModalOpen(false)} telNumber={phone} />
     </header>
   )
 }

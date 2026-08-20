@@ -14,6 +14,8 @@ const lineVariants = {
 }
 
 // 원종역 월드메르디앙 포레 전용 — 배경 사진 위에 크림 톤 스크림을 얹어 텍스트 위주 레이아웃을 유지하는 히어로
+// 전화상담/방문예약 버튼은 히어로 안에도 그대로 있고(기존과 동일), 히어로를 벗어나는 순간부터는
+// SignatureMobileBottomBar가 화면 하단에 고정된 채로 이어받아 계속 보여줌
 export default function SignatureHeroMinimal({ hero, telNumber, telNumberByUtm, visitTargetId }) {
   const mobileBar = hero.mobileBar
   const [announceIndex, setAnnounceIndex] = useState(0)

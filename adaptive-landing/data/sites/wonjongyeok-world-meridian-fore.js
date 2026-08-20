@@ -376,7 +376,6 @@ const config = {
       highlightText: '청약통장없이 로열동호수 선점!',
       agencySlogan: '분양완판 전문가 그룹, (주) 더블루파트너스',
       companyLines: [
-        { label: '시행', value: '(주)시행사명' }, // TODO
         { label: '시공', value: '신성토건' },
         { label: '온라인대행', value: '주식회사 더블루파트너스' },
         { label: '사업자등록번호', value: '789-81-03093' },

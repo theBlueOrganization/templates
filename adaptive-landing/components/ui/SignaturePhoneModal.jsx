@@ -3,7 +3,8 @@
 import styles from './SignaturePhoneModal.module.css'
 
 // PC 등 tel: 링크가 실제 통화로 이어지지 않는 환경에서 전화번호를 안내하는 팝업.
-// SignatureMobileBottomBar(모바일 하단 고정바)와 SignatureQuickMenu(PC 퀵메뉴)에서 공용으로 사용.
+// SignatureMobileBottomBar·SignatureQuickMenu(원종역 전용)와 SignatureHeader(공용, eupseong-prugio와
+// 공유)에서 함께 사용 — eupseong-prugio에서도 render되므로 색상은 var(--navy, 기존값) 폴백을 씀.
 export default function SignaturePhoneModal({ open, onClose, telNumber }) {
   return (
     <div className={styles.overlay} data-open={open} onClick={onClose}>

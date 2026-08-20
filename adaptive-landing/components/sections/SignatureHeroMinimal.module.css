@@ -204,6 +204,37 @@
   font-weight: 300;
 }
 
+.actionButtons {
+  position: relative;
+  display: flex;
+  height: 60px;
+}
+
+.callBtn,
+.visitBtn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-top: 1px solid;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.callBtn {
+  background: var(--cream);
+  border-top-color: var(--cream);
+  color: var(--navy);
+}
+
+.visitBtn {
+  background: var(--gold);
+  border-top-color: var(--gold);
+  color: var(--navy);
+}
+
 .promoBubble {
   position: absolute;
   right: 14px;

@@ -79,10 +79,10 @@ export default function SignatureQuickMenu({ quickMenu, telNumberByUtm }) {
                 <div className={styles.desk}>
                   <p className={styles.deskLabel}>RESERVATION DESK</p>
                   <p className={styles.deskText}>{quickMenu.deskText}</p>
-                  <a href={`tel:${phone}`} className={styles.deskPhone}>
+                  <button type="button" className={styles.deskPhone} onClick={() => setPhoneModalOpen(true)}>
                     {phone}
                     <span aria-hidden="true">↗</span>
-                  </a>
+                  </button>
                   <p className={styles.deskAddress}>{quickMenu.address}</p>
                 </div>
 

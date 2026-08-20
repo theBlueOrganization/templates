@@ -86,7 +86,12 @@ export default async function AptPage({ params }) {
       />
       <main>
         {sig.hero.variant === 'minimal' ? (
-          <SignatureHeroMinimal hero={sig.hero} telNumber={site.telNumber} telNumberByUtm={site.telNumberByUtm} />
+          <SignatureHeroMinimal
+            hero={sig.hero}
+            telNumber={site.telNumber}
+            telNumberByUtm={site.telNumberByUtm}
+            visitTargetId={sig.vipForm.id}
+          />
         ) : (
           <SignatureHero
             hero={sig.hero}

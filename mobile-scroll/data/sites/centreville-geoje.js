@@ -15,7 +15,7 @@ const config = {
   telNumber:   "1688-3358",
   ogImage:     "/apt/centreville-geoje/share_img.webp",
   favicon:     "/apt/centreville-geoje/favicon.webp",
-  adminPhones:  ["01094216962"],
+  adminPhones:  ["01023765109"],
   sheetId:      "",
   sheetTab:     "센트레빌아스테리움거제",
 
@@ -23,7 +23,7 @@ const config = {
   inquiryCountOffset: 180,
 
   popup: {
-    enabled: false,
+    enabled: true,
     image: {
       src: "/apt/centreville-geoje/popup.webp",
       alt: "센트레빌 아스테리움 거제 팝업",
@@ -50,12 +50,12 @@ const config = {
   ],
 
   hero: {
-    eyebrow:       "마운틴뷰｜초품아 학세권", // TODO: 실제 배지 문구로 교체 ("｜"로 구분)
+    eyebrow:       "중도금 전액 무이자｜초품아 학세권",
     eyebrowUrgent: 1, // 왼쪽부터 1개 배지만 urgent 스타일
     brand:         "「센트레빌 아스테리움 거제」",
-    title:         "동부건설 센트레빌의\n 품격높은 하이엔드브랜드의 자부심\n센트레빌 아스테리움 거제", // TODO: 실제 히어로 타이틀로 교체
-    subtitle:      "문의) 1688-3358", // TODO: 실제 서브타이틀로 교체
-    accentKeyword: "하이엔드브랜드",
+    title:         "센트레빌 아스테리움 거제\n거제 유일 하이엔드•계약금 500만원\n중도금 전액 무이자,발코니 확장 무상",
+    subtitle:      "모델하우스대표번호 1688 - 3358",
+    accentKeyword: ["하이엔드", "500만원", "전액 무이자", "무상"],
     bgColor: "#12294D", // TODO: 히어로 이미지 스포이드로 추출한 배경색으로 교체
     image: {
       src:    "/apt/centreville-geoje/main.webp",

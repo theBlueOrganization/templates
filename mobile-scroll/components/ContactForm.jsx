@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "./ContactForm.module.css";
 
+const PHONE_FIELDS = ["phone1", "phone2", "phone3"];
+
 export default function ContactForm({ config, instanceId }) {
   const { projectName, visitTimeOptions, privacyText, adminPhones, sheetId, sheetTab, theme, kakao, slug, officeLabel, disabled, inquiryCountOffset } = config;
   // 실제 상담 건수에 더해 표시할 심리적 안전 수치 — 미설정 시 기존 +20 그대로 유지
@@ -15,6 +17,10 @@ export default function ContactForm({ config, instanceId }) {
   const [submitting, setSubmitting] = useState(false);
   const [visible, setVisible] = useState(false);
   const sectionRef = useRef(null);
+  // 연락처 3칸은 의도적으로 비제어(uncontrolled) 입력 — controlled로 두면 이름 등 다른 필드
+  // 입력으로 리렌더링될 때마다 React가 DOM 값을 state 값(빈 문자열)으로 되돌려버려서,
+  // 브라우저 자동완성으로 채워진 값이 제출 전에 지워지는 문제가 있었음
+  const phoneRefs = useRef(PHONE_FIELDS.map(() => ({ current: null }))).current;
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -47,7 +53,7 @@ export default function ContactForm({ config, instanceId }) {
   };
 
   const [form, setForm] = useState({
-    name: "", phone1: "", phone2: "", phone3: "",
+    name: "",
     visit_date: "", visit_time: "", gift_check: false, privacy_agree: false,
   });
 
@@ -62,7 +68,8 @@ export default function ContactForm({ config, instanceId }) {
     e.preventDefault();
     if (disabled) return;
     if (!form.privacy_agree) { alert("개인정보 수집·이용에 동의해 주세요."); return; }
-    const phone = `${form.phone1}-${form.phone2}-${form.phone3}`;
+    // 비제어 입력이라 state가 아니라 실제 입력창(DOM) 값을 직접 읽음
+    const phone = phoneRefs.map((r) => r.current?.value ?? "").join("-");
     setSubmitting(true);
     try {
       const res = await fetch("/api/sms", {
@@ -102,7 +109,9 @@ export default function ContactForm({ config, instanceId }) {
         }
         alert("상담 신청이 완료되었습니다. 확인 후 연락드리겠습니다.");
         setInquiryCount((prev) => (prev ?? countOffset) + 1);
-        setForm({ name: "", phone1: "", phone2: "", phone3: "", visit_date: "", visit_time: "", gift_check: false, privacy_agree: false });
+        setForm({ name: "", visit_date: "", visit_time: "", gift_check: false, privacy_agree: false });
+        // 비제어 입력이라 state 초기화로는 안 지워지므로 DOM 값을 직접 비움
+        phoneRefs.forEach((r) => { if (r.current) r.current.value = ""; });
       } else {
         alert(data.message ?? "오류가 발생했습니다. 다시 시도해주세요.");
       }
@@ -130,11 +139,11 @@ export default function ContactForm({ config, instanceId }) {
         <div className={styles.group}>
           <label className={styles.label}>2. 연락처 <span className={styles.required}>*</span></label>
           <div className={styles.telBox}>
-            <input className={styles.telInput} name="phone1" type="tel" inputMode="numeric" maxLength={3} minLength={3} value={form.phone1} onChange={handleChange} required placeholder="010" />
+            <input className={styles.telInput} ref={phoneRefs[0]} name="phone1" type="tel" inputMode="numeric" autoComplete="off" maxLength={3} minLength={3} required />
             <span className={styles.hyphen}>-</span>
-            <input className={styles.telInput} name="phone2" type="tel" inputMode="numeric" maxLength={4} minLength={3} value={form.phone2} onChange={handleChange} required placeholder="1234" />
+            <input className={styles.telInput} ref={phoneRefs[1]} name="phone2" type="tel" inputMode="numeric" autoComplete="off" maxLength={4} minLength={3} required />
             <span className={styles.hyphen}>-</span>
-            <input className={styles.telInput} name="phone3" type="tel" inputMode="numeric" maxLength={4} minLength={4} value={form.phone3} onChange={handleChange} required placeholder="5678" />
+            <input className={styles.telInput} ref={phoneRefs[2]} name="phone3" type="tel" inputMode="numeric" autoComplete="off" maxLength={4} minLength={4} required />
           </div>
         </div>
 

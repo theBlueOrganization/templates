@@ -28,6 +28,16 @@ function isStaticFile(pathname) {
   return /\.[^/]+$/.test(pathname); // 확장자 있는 정적 파일 경로 (favicon.ico, robots.txt, og 이미지, 폰트 등)
 }
 
+// ADAPTIVE_LANDING_ORIGIN 환경변수 값이 잘못돼 있어도(끝에 슬래시/공백/오타 등) 미들웨어 자체가
+// 죽지 않도록 방어 — URL 생성에 실패하면 알려진 정상 origin으로 한 번 더 시도
+function buildAdaptiveLandingUrl(pathAndSearch) {
+  try {
+    return new URL(pathAndSearch, ADAPTIVE_LANDING_ORIGIN);
+  } catch {
+    return new URL(pathAndSearch, "https://adaptive-landing-ochre.vercel.app");
+  }
+}
+
 export function middleware(request) {
   const { pathname, search } = request.nextUrl;
   const hostname = request.headers.get("host") ?? request.nextUrl.hostname;
@@ -35,7 +45,7 @@ export function middleware(request) {
   // adaptive-landing의 정적 자산 요청(/apt2/_next/... 등)은 어느 서브도메인으로 들어왔든
   // 전부 같은 빌드 결과물을 가리키므로, 호스트 매칭 없이 경로 접두사만으로 바로 프록시
   if (pathname === ADAPTIVE_LANDING_BASE_PATH || pathname.startsWith(`${ADAPTIVE_LANDING_BASE_PATH}/`)) {
-    return NextResponse.rewrite(new URL(`${pathname}${search}`, ADAPTIVE_LANDING_ORIGIN));
+    return NextResponse.rewrite(buildAdaptiveLandingUrl(`${pathname}${search}`));
   }
 
   const site = subdomainToSite.get(hostname);
@@ -47,7 +57,7 @@ export function middleware(request) {
     // 이 템플릿은 현장당 페이지가 하나뿐)는 그 현장의 랜딩페이지 경로로 치환
     const isPassthrough = pathname.startsWith("/_next/") || pathname.startsWith("/api/") || isStaticFile(pathname);
     const targetPath = isPassthrough ? pathname : `/apt/${site.slug}`;
-    return NextResponse.rewrite(new URL(`${ADAPTIVE_LANDING_BASE_PATH}${targetPath}${search}`, ADAPTIVE_LANDING_ORIGIN));
+    return NextResponse.rewrite(buildAdaptiveLandingUrl(`${ADAPTIVE_LANDING_BASE_PATH}${targetPath}${search}`));
   }
 
   // 기존 mobile-scroll 현장 — 기존 로직 그대로

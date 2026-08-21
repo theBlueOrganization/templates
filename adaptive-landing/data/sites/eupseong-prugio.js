@@ -22,7 +22,7 @@ const config = {
   projectName: '업성 푸르지오 레이크시티',
   shortName: '업성 푸르지오',
   telNumber: '1533-6100',
-  ogImage: 'https://example.vercel.app/apt/eupseong-prugio/hero-bg.jpg',
+  ogImage: 'https://adaptive-landing-ochre.vercel.app/apt2/apt/eupseong-prugio/hero-bg.jpg',
   // 비워두면 ADMIN_PHONE(.env) 환경변수로 폴백됨
   adminPhones: ['01094216962'],
   sheetId: '',

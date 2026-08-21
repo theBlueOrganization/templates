@@ -12,6 +12,7 @@
 - **섹션 타입**: `sections[]`의 각 항목은 `type`에 따라 `page.jsx`가 다른 컴포넌트로 렌더링 — `"image"`/`"image-then-spec"`(기본, 미지정 시 `"image"`)은 `ImageSection`, `"video"`는 `VideoSection`(`youtubeId` 또는 `src`+`poster`, 유튜브면 `youtubeId` 우선, 둘 다 없으면 섹션 자체가 렌더링되지 않음). navLabel/extraContactFormAfterSectionId 등 `sections[]` 공통 동작은 타입과 무관하게 동일하게 적용됨.
 - **테마 주입**: 색상/폰트 등 현장별 시각 커스터마이징은 `site.theme` 객체를 컴포넌트에 prop으로 전달하는 방식. 컴포넌트 자체 스타일 하드코딩 금지.
 - **한글 서브도메인**: `middleware.js`가 `site.subdomain` (공백 없는 한글 문자열)이 있는 현장만 `[subdomain].addupapt.kr` → `/apt/[slug]`로 rewrite. 없으면 `/apt/[slug]` 경로로만 접근.
+- **Multi-Zone(adaptive-landing 연동)**: `*.addupapt.kr` 와일드카드 도메인은 이 프로젝트(theblue-apt)에만 연결되어 있어서, 다른 템플릿(`adaptive-landing`, 별도 Vercel 프로젝트)으로 보여줄 현장도 이 프로젝트의 `middleware.js`가 게이트웨이 역할을 함. 방법: (1) `adaptive-landing/data/sites/[slug].js`에 현장 등록(그 프로젝트 방식대로), (2) **이 프로젝트의 `siteRegistry.js`에도** 같은 slug로 최소 정보(`slug`, `subdomain`, `template: "adaptive-landing"`)만 담은 항목을 추가 — 이 프로젝트가 실제로 렌더링하진 않고 라우팅 정보로만 사용됨. `middleware.js`가 `template`값을 보고 `adaptive-landing` 배포(`ADAPTIVE_LANDING_ORIGIN` 환경변수)로 요청을 프록시함(정적 자산은 `/apt2` basePath 접두사로 구분). `adaptive-landing` 프로젝트 쪽은 `next.config.mjs`에 `basePath: '/apt2'`가 설정되어 있어야 함.
 
 ## 새 현장 추가 시 (반복 작업 — 판단 불필요, 패턴 고정)
 

@@ -7,15 +7,14 @@ import styles from './SignatureVipForm.module.css'
 
 const initialForm = {
   name: '',
-  phone1: '',
-  phone2: '',
-  phone3: '',
   service: '',
   visit_date: '',
   visit_time: '',
   age: '',
   privacy_agree: false,
 }
+
+const PHONE_FIELDS = ['phone1', 'phone2', 'phone3']
 
 // VIP 24시간 온라인예약센터 — 기존 ContactForm과 필드 구성이 달라(서비스 종류/연령대 라디오)
 // 별도 컴포넌트로 만들고, /api/sms에 serviceType/ageRange 필드를 추가로 실어 보낸다.
@@ -25,9 +24,13 @@ export default function SignatureVipForm({ config }) {
 
   const [form, setForm] = useState(initialForm)
   const [submitting, setSubmitting] = useState(false)
-  // 크롬 등에서 휴대폰번호 자동완성이 React onChange를 거치지 않고 DOM에만 값을 채워넣는
-  // 경우가 있어(특히 인접한 tel 인풋 여러 개), 제출 시 state 대신 실제 입력창 값을 최종 확인용으로 사용
-  const phoneRefs = useRef([])
+  // 휴대폰번호 칸들은 의도적으로 비제어(uncontrolled) 입력으로 둠 — controlled로 만들면
+  // 다른 필드(이름·서비스 등) 변경으로 리렌더링될 때마다 React가 DOM 값을 state 값(빈 문자열)으로
+  // 되돌려버려서, 브라우저 자동완성으로 채워진 값이 제출 전에 지워지는 문제가 있었음.
+  // PHONE_FIELDS 개수에 맞춰 ref를 자동 생성 — 칸 수가 바뀌어도 따로 손댈 곳이 없음.
+  // useRef(...).current로 최초 렌더에만 생성하고, 각 항목은 안정적인 ref 객체라 리렌더링마다
+  // ref 콜백이 새로 만들어져 불필요하게 반복 호출되는 일도 없음
+  const phoneRefs = useRef(PHONE_FIELDS.map(() => ({ current: null }))).current
   // 방문 URL의 ?utm_source=카카오 같은 값 — 어디서 유입됐는지 기록 + adminPhonesByUtm 분기에 사용
   const utmSource = useUtmSource() ?? '직접유입'
   // adminPhonesByUtm에 등록된 utm_source로 들어온 경우에만 SMS 수신번호를 덮어씀
@@ -44,11 +47,8 @@ export default function SignatureVipForm({ config }) {
       alert('개인정보 수집 및 이용에 동의해 주세요.')
       return
     }
-    // state가 비어있어도 브라우저 자동완성으로 화면엔 값이 채워져 있을 수 있으므로,
-    // 실제 입력창(DOM) 값이 있으면 그걸 우선 사용
-    const phoneFields = ['phone1', 'phone2', 'phone3']
-    const phoneParts = phoneFields.map((field, i) => phoneRefs.current[i]?.value || form[field])
-    const phone = phoneParts.join('-')
+    // 비제어 입력이라 state가 아니라 실제 입력창(DOM) 값을 직접 읽음
+    const phone = phoneRefs.map((r) => r.current?.value ?? '').join('-')
     setSubmitting(true)
     try {
       const res = await fetch('/api/sms', {
@@ -75,6 +75,8 @@ export default function SignatureVipForm({ config }) {
       if (data.success) {
         alert('예약이 완료되었습니다. 확인 후 연락드리겠습니다.')
         setForm(initialForm)
+        // 비제어 입력이라 state 초기화로는 안 지워지므로 DOM 값을 직접 비움
+        phoneRefs.forEach((r) => { if (r.current) r.current.value = '' })
       } else {
         alert(data.message ?? '오류가 발생했습니다. 다시 시도해주세요.')
       }
@@ -128,17 +130,15 @@ export default function SignatureVipForm({ config }) {
             <div className={styles.row}>
               <span className={styles.label}>휴대폰</span>
               <div className={styles.phoneRow}>
-                {['phone1', 'phone2', 'phone3'].map((field, i) => (
+                {PHONE_FIELDS.map((field, i) => (
                   <input
                     key={field}
-                    ref={(el) => { phoneRefs.current[i] = el }}
+                    ref={phoneRefs[i]}
                     name={field}
                     type="tel"
                     inputMode="numeric"
                     autoComplete="off"
                     maxLength={i === 0 ? 3 : 4}
-                    value={form[field]}
-                    onChange={handleChange}
                     required
                     className={styles.phoneInput}
                   />

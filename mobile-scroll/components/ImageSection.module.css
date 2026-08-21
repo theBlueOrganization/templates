@@ -26,6 +26,27 @@
   margin-bottom: 20px;
 }
 
+/* ─── 어두운 배경(theme.ImageSection_dark)일 때 밝은 톤으로 전환 ── */
+.title.dark {
+  color: #f1f5f9;
+}
+
+.subtitle.dark {
+  color: #94a3b8;
+}
+
+.tabButton.dark {
+  background: transparent;
+  color: #94a3b8;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.subTabButton.dark {
+  background: transparent;
+  color: #94a3b8;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
 .divider {
   width: 40px;
   height: 3px;
@@ -125,10 +146,11 @@
 }
 
 .galleryImg {
-  width: 100%;
-  height: 100%;
+  width: 107%;
+  height: 107%;
   object-fit: cover;
   display: block;
+  transform: translateY(-2%);
   transition: transform 0.3s ease;
 }
 

@@ -4,6 +4,7 @@ import { getSiteBySlug, getAllSlugs } from "../../../data/siteRegistry";
 import TopNav          from "../../../components/TopNav";
 import HeroSection     from "../../../components/HeroSection";
 import ImageSection    from "../../../components/ImageSection";
+import VideoSection    from "../../../components/VideoSection";
 import OfficeShell     from "../../../components/OfficeShell";
 import PopupBanner     from "../../../components/PopupBanner";
 import ExtraContactForm from "../../../components/ExtraContactForm";
@@ -79,7 +80,9 @@ export default async function AptPage({ params }) {
 
       {site.sections.map((section) => (
         <Fragment key={section.id}>
-          <ImageSection {...section} theme={site.theme} />
+          {section.type === "video"
+            ? <VideoSection {...section} theme={site.theme} />
+            : <ImageSection {...section} theme={site.theme} />}
           {extraContactForm && site.extraContactFormAfterSectionId === section.id && extraContactForm}
         </Fragment>
       ))}

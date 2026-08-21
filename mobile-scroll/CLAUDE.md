@@ -8,7 +8,8 @@
 - **동적 라우팅**: `app/apt/[slug]/page.jsx` 하나가 모든 현장을 렌더링. 현장별 분기 없음.
 - **데이터 = 코드 밖**: 현장 고유 정보는 전부 `data/sites/[slug].js` 설정 객체로 분리. 컴포넌트/페이지 코드는 절대 건드리지 않음.
 - **레지스트리 패턴**: `data/siteRegistry.js`가 모든 현장을 import해서 배열로 관리 (`getSiteBySlug`, `getAllSlugs`).
-- **공유 컴포넌트**: `components/` 아래 모든 현장이 공유 — TopNav, HeroSection, ImageSection, OfficeShell, PopupBanner, ContactForm, ClientFooter, BottomBar, SiteFooter.
+- **공유 컴포넌트**: `components/` 아래 모든 현장이 공유 — TopNav, HeroSection, ImageSection, VideoSection, OfficeShell, PopupBanner, ContactForm, ClientFooter, BottomBar, SiteFooter.
+- **섹션 타입**: `sections[]`의 각 항목은 `type`에 따라 `page.jsx`가 다른 컴포넌트로 렌더링 — `"image"`/`"image-then-spec"`(기본, 미지정 시 `"image"`)은 `ImageSection`, `"video"`는 `VideoSection`(`youtubeId` 또는 `src`+`poster`, 유튜브면 `youtubeId` 우선, 둘 다 없으면 섹션 자체가 렌더링되지 않음). navLabel/extraContactFormAfterSectionId 등 `sections[]` 공통 동작은 타입과 무관하게 동일하게 적용됨.
 - **테마 주입**: 색상/폰트 등 현장별 시각 커스터마이징은 `site.theme` 객체를 컴포넌트에 prop으로 전달하는 방식. 컴포넌트 자체 스타일 하드코딩 금지.
 - **한글 서브도메인**: `middleware.js`가 `site.subdomain` (공백 없는 한글 문자열)이 있는 현장만 `[subdomain].addupapt.kr` → `/apt/[slug]`로 rewrite. 없으면 `/apt/[slug]` 경로로만 접근.
 
@@ -43,6 +44,7 @@
 | `popupByUtm` | 특정 유입경로 방문자에게만 팝업 구성을 다르게 표시. 값이 이미지 객체면 첫 번째 팝업만 교체(나머지 순서 유지), 배열이면 그 유입경로만 팝업 전체를 다른 개수·순서로 교체(예: 특정 유입경로에만 팝업 2개), `null`이면 해당 유입경로는 팝업을 완전히 숨김. 값이 없는(=키가 없는) 유입경로는 기본 `popup` 그대로 노출 |
 | `clientCompany` | `{ name, bizNumber, representative, address }` — 값이 있을 때만 `ClientFooter`가 `SiteFooter` 바로 위에 렌더링 (고객사/분양사 정보, 대행사 정보보다 강조된 톤). 분양대행사 하나만 표기하면 객체 하나, 분양대행사+시행사처럼 두 곳 이상을 함께 표기해야 하면 배열로 지정(`[{...}, {roleLabel: "시행사", ...}]`) — 배열의 첫 번째 항목에만 대표 전화번호(telNumber)와 강조 톤이 적용되고, 두 번째부터는 구분선과 함께 기본 톤으로 표시되며 `roleLabel`이 있으면 상호명 앞에 붙어서 노출됨. 폰트사이즈/컬러는 `ClientFooter.module.css`에 반응형 공통값(clamp)으로 이미 설정되어 있어 대부분 현장은 그대로 사용하면 됨 — 고객사 요청이 있을 때만 `theme.ClientFooter_name`(상호명, color+fontSize)/`theme.ClientFooter_leadContact`(전화번호·사업자번호, color+fontSize)/`theme.ClientFooter_key`·`_value`(대표자·주소, color만)로 개별 오버라이드. 회사가 여러 곳(배열)일 때 이 theme 값들도 배열로 지정하면 `clientCompany` 배열과 같은 인덱스끼리 매칭되어 회사별로 다르게 커스터마이징 가능(객체 하나만 주면 전체 공통 적용) |
 | `extraContactFormByUtm` | `{ [utm_source]: true }` — 등록된 유입경로 방문자에게만 히어로 섹션과 첫 번째 섹션 사이에 상담신청 폼을 하나 더 노출 (기존 하단 상담신청 섹션은 그대로 유지되어 총 2개가 됨). 등록되지 않은 유입경로는 기존처럼 하단 폼 1개만 노출 |
+| `theme.ImageSection_background` / `theme.ImageSection_dark` | 콘텐츠 섹션(사업개요·입지환경 등) 전체 배경색을 현장 공통으로 지정. `_dark: true`면 제목/부제/탭/스펙표 텍스트·테두리가 밝은 톤으로 자동 전환됨(어두운 배경용). 특정 섹션만 예외로 다른 배경을 쓰려면 그 섹션 객체에 `sectionBg` 필드 추가(`ImageSection_background`보다 우선) |
 
 **`popup` 필드 형태**: 단일 객체 `{ enabled, image }` 또는 배열 `[{ enabled, image }, ...]` 둘 다 지원. 배열이면 팝업을 순차 표시 — 하나를 닫으면 다음 팝업이 이어서 뜨고(우측 상단에 "1/2" 표시), 마지막 팝업을 닫으면 완전히 사라짐.
 

@@ -1,0 +1,117 @@
+.section {
+  width: 100%;
+  background-color: #ffffff;
+  scroll-margin-top: 70px;
+  padding: 60px 0;
+}
+
+/* ─── 섹션 헤더 ─────────────────────────────────────── */
+.header {
+  text-align: center;
+  padding: 0 20px 28px;
+}
+
+.title {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.03em;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: #64748b;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* ─── 어두운 배경(theme.ImageSection_dark)일 때 밝은 톤으로 전환 ── */
+.title.dark {
+  color: #f1f5f9;
+}
+
+.subtitle.dark {
+  color: #94a3b8;
+}
+
+/* ─── 영상 ────────────────────────────────────────────
+   가로형(16:9)은 넓게, 세로형(9:16)은 폭을 좁혀 화면에 과도하게 길어지지 않도록 함 */
+.videoWrap {
+  width: 100%;
+  margin: 0 auto;
+  background: #000000;
+  overflow: hidden;
+}
+
+.videoWrap.horizontal {
+  max-width: 750px;
+  aspect-ratio: 16 / 9;
+}
+
+.videoWrap.vertical {
+  max-width: 420px;
+  aspect-ratio: 9 / 16;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: none;
+  object-fit: cover;
+}
+
+/* ─── 재생 전 중앙 재생 버튼 (자체 호스팅 영상만 해당) ─────── */
+.videoBox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.playButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 68px;
+  height: 68px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.playButton svg {
+  width: 28px;
+  height: 28px;
+  margin-left: 4px; /* 삼각형 아이콘 시각적 중앙 보정 */
+}
+
+/* ─── 모바일 ────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.5rem;
+  }
+  .subtitle {
+    font-size: 0.85rem;
+  }
+}
+
+.fadeUp {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
+}
+
+.fadeUp.visible {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: auto;
+}

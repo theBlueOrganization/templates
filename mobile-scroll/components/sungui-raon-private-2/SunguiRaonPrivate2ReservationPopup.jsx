@@ -1,7 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import VisitDateTimeModal, { formatDateKo } from "./VisitDateTimeModal";
+
+const PHONE_FIELDS = ["phone1", "phone2", "phone3"];
+
+// 숫자 이외 문자 제거 — 입력할 때마다 정리하되 state를 거치지 않고 DOM 값을 직접 수정
+// (state를 거치면 controlled input이 되어 자동완성 값이 리렌더링 때 지워지는 문제가 재발함)
+function sanitizeDigits(e) {
+  e.target.value = e.target.value.replace(/[^0-9]/g, "");
+}
 
 // "오늘 하루 안보기" 체크 시 localStorage에 자정까지의 만료 시각을 저장해 숨김
 function isHiddenToday(id) {
@@ -32,9 +40,10 @@ export default function SunguiRaonPrivate2ReservationPopup({
   const [open, setOpen] = useState(false);
   const [hideToday, setHideToday] = useState(false);
   const [name, setName] = useState("");
-  const [phone1, setPhone1] = useState("");
-  const [phone2, setPhone2] = useState("");
-  const [phone3, setPhone3] = useState("");
+  // 연락처 3칸은 의도적으로 비제어(uncontrolled) 입력 — controlled로 두면 이름 등 다른 필드
+  // 입력으로 리렌더링될 때마다 React가 DOM 값을 state 값(빈 문자열)으로 되돌려버려서,
+  // 브라우저 자동완성으로 채워진 값이 제출 전에 지워지는 문제가 있었음
+  const phoneRefs = useRef(PHONE_FIELDS.map(() => ({ current: null }))).current;
   const [visitDate, setVisitDate] = useState("");
   const [visitTime, setVisitTime] = useState("");
   const [pickerOpen, setPickerOpen] = useState(false);
@@ -62,7 +71,8 @@ export default function SunguiRaonPrivate2ReservationPopup({
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!agree) { alert("개인정보 수집·이용에 동의해 주세요."); return; }
-    const phone = `${phone1}-${phone2}-${phone3}`;
+    // 비제어 입력이라 state가 아니라 실제 입력창(DOM) 값을 직접 읽음
+    const phone = phoneRefs.map((r) => r.current?.value ?? "").join("-");
     setSubmitting(true);
     try {
       const res = await fetch("/api/sms", {
@@ -84,7 +94,9 @@ export default function SunguiRaonPrivate2ReservationPopup({
       const data = await res.json();
       if (data.success) {
         alert("방문예약이 접수되었습니다. 확인 후 연락드리겠습니다.");
-        setName(""); setPhone1(""); setPhone2(""); setPhone3(""); setVisitDate(""); setVisitTime(""); setAgree(false);
+        setName(""); setVisitDate(""); setVisitTime(""); setAgree(false);
+        // 비제어 입력이라 state 초기화로는 안 지워지므로 DOM 값을 직접 비움
+        phoneRefs.forEach((r) => { if (r.current) r.current.value = ""; });
         handleClose();
       } else {
         alert(data.message ?? "오류가 발생했습니다. 다시 시도해주세요.");
@@ -131,19 +143,19 @@ export default function SunguiRaonPrivate2ReservationPopup({
           <label className="rsv-popup-label">* 연락처</label>
           <div className="rsv-popup-tel-row">
             <input
-              type="tel" className="rsv-popup-tel-input" placeholder="010" inputMode="numeric"
-              maxLength={3} minLength={3} value={phone1}
-              onChange={(e) => setPhone1(e.target.value.replace(/[^0-9]/g, ""))} required
+              ref={phoneRefs[0]}
+              type="tel" className="rsv-popup-tel-input" inputMode="numeric" autoComplete="off"
+              maxLength={3} minLength={3} onChange={sanitizeDigits} required
             />
             <input
-              type="tel" className="rsv-popup-tel-input" placeholder="1234" inputMode="numeric"
-              maxLength={4} minLength={3} value={phone2}
-              onChange={(e) => setPhone2(e.target.value.replace(/[^0-9]/g, ""))} required
+              ref={phoneRefs[1]}
+              type="tel" className="rsv-popup-tel-input" inputMode="numeric" autoComplete="off"
+              maxLength={4} minLength={3} onChange={sanitizeDigits} required
             />
             <input
-              type="tel" className="rsv-popup-tel-input" placeholder="5678" inputMode="numeric"
-              maxLength={4} minLength={4} value={phone3}
-              onChange={(e) => setPhone3(e.target.value.replace(/[^0-9]/g, ""))} required
+              ref={phoneRefs[2]}
+              type="tel" className="rsv-popup-tel-input" inputMode="numeric" autoComplete="off"
+              maxLength={4} minLength={4} onChange={sanitizeDigits} required
             />
           </div>
 

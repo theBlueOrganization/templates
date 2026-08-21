@@ -26,6 +26,14 @@ const nextConfig = {
         basePath: false,
         permanent: false,
       },
+      // 루트(/)는 내부에서 전체 현장 목록을 확인하는 용도라, basePath 적용 후에도
+      // 그대로 접속되게 유지 (basePath:false 없으면 /apt2/가 목적지에 자동으로 또 붙어버림)
+      {
+        source: '/',
+        destination: '/apt2',
+        basePath: false,
+        permanent: false,
+      },
     ]
   },
 }

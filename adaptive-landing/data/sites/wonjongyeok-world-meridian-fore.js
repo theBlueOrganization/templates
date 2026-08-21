@@ -9,7 +9,7 @@ const config = {
   projectName: '원종역 월드메르디앙 포레',
   shortName: '원종역 월드메르디앙 포레',
   telNumber: '1877-3569',
-  ogImage: 'https://addupapt.kr/apt/wonjongyeok-world-meridian-fore/og.jpg',
+  ogImage: 'https://adaptive-landing-ochre.vercel.app/apt2/apt/wonjongyeok-world-meridian-fore/og.jpg',
   adminPhones: ['01029183185'],
   sheetId: '',
   sheetTab: '원종역월드메르디앙포레',

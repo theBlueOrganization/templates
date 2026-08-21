@@ -66,6 +66,10 @@ export const viewport = {
 }
 
 export const metadata = {
+  // OG/Twitter 이미지처럼 상대경로로 지정된 메타데이터를 절대 URL로 변환할 때 기준이 되는 origin.
+  // basePath('/apt2')는 여기 안 붙음(leading-slash 상대경로는 origin 기준으로 해석되어 metadataBase의
+  // 경로 부분이 무시됨) — 그래서 각 현장의 ogImage 값 자체를 basePath 포함 절대 URL로 지정해야 함
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_ORIGIN ?? 'https://adaptive-landing-ochre.vercel.app'),
   title: '분양 랜딩페이지',
   description: '분양 정보 및 빠른 상담 신청',
 }

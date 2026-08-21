@@ -67,6 +67,15 @@ const config = {
 
   sections: [
     {
+      id:       "promo-video",
+      type:     "video",
+      title:    "센트레빌 아스테리움 거제 소개영상",
+      subtitle: "영상으로 만나보는 프리미엄 라이프",
+      src:       "/apt/centreville-geoje/video_low.mp4",
+      poster:    "/apt/centreville-geoje/main.webp",
+      orientation: "vertical", // 세로형 영상이라 9:16 비율로 표시
+    },
+    {
       id:       "overview",
       type:     "image-then-spec",
       navLabel: "사업개요",
@@ -153,12 +162,17 @@ const config = {
   theme: {
     // ── 브랜드 컬러 ── TODO: 실제 브랜드 컬러로 교체
     hero: {
-      curtainColor: "#12294D",
+      curtainColor: "#182032",
     },
+
+    // 콘텐츠 섹션(사업개요·입지환경 등) 전체 배경을 어두운 색으로 지정 —
+    // dark:true로 제목/부제/탭/스펙표 텍스트도 밝은 톤으로 자동 전환됨
+    ImageSection_background: "#182032",
+    ImageSection_dark: true,
 
     // 섹션 헤더 구분선
     ImageSection_divider: {
-      background: "#12294D",
+      background: "#f5c445",
       width:      "40px",
       height:     "3px",
     },
@@ -173,19 +187,14 @@ const config = {
     // 상단 고정 네비게이션 활성 메뉴
     TopNav_active: {
       color:       "#12294D",
-      borderColor: "#12294D",
+      borderColor: "#f5c445",
     },
 
     // 히어로 배지 (eyebrow)
     eyebrow: {
-      color:       "#C9BBA0",
-      borderColor: "rgba(201,187,160,0.55)",
+      color:       "#f5c445",
+      borderColor: "#f5c445",
       fontSize:    "1rem",
-    },
-    // 긴급 배지 (eyebrowUrgent)
-    eyebrowUrgent: {
-      color:       "#38BDF8",
-      borderColor: "rgba(56,189,248,0.5)",
     },
 
     // 히어로 브랜드명
@@ -196,19 +205,18 @@ const config = {
     // 히어로 메인 타이틀
     title: {
       color:       "#ffffff",
-      fontSize:    "clamp(1.6rem,8vw,2.7rem)",
-      accentColor: "#38BDF8",
+      fontSize:    "clamp(1.2rem, 6vw, 2.2rem)",
+      accentColor: "#f5c445",
     },
     // 히어로 서브타이틀
     subtitle: {
       color:       "#ffffff",
-      fontSize:    "1.15rem",
-      accentColor: "#38BDF8",
+      fontSize:    "clamp(0.5rem, 4vw, 1.5rem)",
     },
 
     // 상담 신청 섹션 배경
     contactSection: {
-      background: "#12294D",
+      background: "#182032",
     },
     // 상담 신청 버튼
     ContactForm_submitBtn: {

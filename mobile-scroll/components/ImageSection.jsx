@@ -47,10 +47,15 @@ export default function ImageSection({
   utmOnly,      // 있으면 이 utm_source 목록에 해당하는 방문자에게만 섹션 노출 (없으면 항상 노출, 기존 현장 영향 없음)
   utmExclude,   // 있으면 이 utm_source 목록에 해당하는 방문자에게만 섹션을 숨김 (그 외에는 기본 노출, 없으면 기존과 동일)
   showHeader = true, // false면 제목/부제/구분선 헤더 블록 자체를 렌더링하지 않음 (없으면 기존과 동일)
-  sectionBg,    // 있으면 이 섹션 전체 배경색 적용 (없으면 기존 CSS 기본값 #ffffff 그대로)
+  sectionBg,    // 있으면 이 섹션 전체 배경색 적용 (없으면 theme.ImageSection_background, 그것도 없으면 기존 CSS 기본값 #ffffff)
   headerPaddingTop, // 있으면 이 섹션만 theme.ImageSection_spacing.headerPaddingTop 대신 이 값을 사용
 }) {
   const th = theme ?? {};
+  // theme.ImageSection_background: 현장 전체 섹션 배경을 한 번에 지정(개별 섹션은 sectionBg로 예외 가능)
+  // theme.ImageSection_dark: true면 제목/부제/탭/스펙표 텍스트를 어두운 배경에 맞게 밝은 톤으로 전환
+  const sectionBackground = sectionBg ?? th.ImageSection_background;
+  const dark = Boolean(th.ImageSection_dark);
+  const darkCx = (base) => (dark ? `${base} ${styles.dark}` : base);
   const hasTabs = tabs && tabs.length > 0;
   const [activeTab, setActiveTab] = useState(0);
   const [activeSubTab, setActiveSubTab] = useState(0);
@@ -118,14 +123,14 @@ export default function ImageSection({
     <section
       id={id}
       className={styles.section}
-      style={{ ...(sectionBg ? { background: sectionBg } : {}), ...spacingStyle }}
+      style={{ ...(sectionBackground ? { background: sectionBackground } : {}), ...spacingStyle }}
     >
 
       {showHeader && (
         <FadeUp>
           <div className={styles.header}>
-            <h2 className={styles.title}>{title}</h2>
-            {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
+            <h2 className={darkCx(styles.title)}>{title}</h2>
+            {subtitle && <p className={darkCx(styles.subtitle)}>{subtitle}</p>}
             <div
               className={styles.divider}
               style={{
@@ -148,7 +153,7 @@ export default function ImageSection({
                 className={
                   idx === activeTab
                     ? `${styles.tabButton} ${styles.tabButtonActive}`
-                    : styles.tabButton
+                    : darkCx(styles.tabButton)
                 }
                 style={idx === activeTab ? tabActiveStyle : undefined}
                 onClick={() => { setActiveTab(idx); setActiveSubTab(0); }}
@@ -170,7 +175,7 @@ export default function ImageSection({
                 className={
                   idx === activeSubTab
                     ? `${styles.subTabButton} ${styles.subTabButtonActive}`
-                    : styles.subTabButton
+                    : darkCx(styles.subTabButton)
                 }
                 style={idx === activeSubTab ? subTabActiveStyle : undefined}
                 onClick={() => setActiveSubTab(idx)}
@@ -214,7 +219,7 @@ export default function ImageSection({
 
       {hasSpec && (
         <FadeUp delay={100}>
-          <SpecTable items={activeSpecItems} />
+          <SpecTable items={activeSpecItems} dark={dark} />
         </FadeUp>
       )}
 

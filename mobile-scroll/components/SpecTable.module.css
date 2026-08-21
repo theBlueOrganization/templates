@@ -64,6 +64,30 @@
   display: block;
 }
 
+/* ─── 어두운 배경(ImageSection의 dark prop)일 때 밝은 톤으로 전환 ── */
+.tableTitle.dark {
+  color: #f1f5f9;
+}
+
+.table.dark {
+  border-top-color: rgba(255, 255, 255, 0.28);
+  border-bottom-color: rgba(255, 255, 255, 0.14);
+}
+
+.row.dark {
+  border-bottom-color: rgba(255, 255, 255, 0.14);
+}
+
+.label.dark {
+  background-color: rgba(255, 255, 255, 0.06);
+  color: #cbd5e1;
+  border-right-color: rgba(255, 255, 255, 0.14);
+}
+
+.value.dark {
+  color: #f1f5f9;
+}
+
 /* ─── 모바일 ────────────────────────────────────────── */
 @media (max-width: 480px) {
   .label {

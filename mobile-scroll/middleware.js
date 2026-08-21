@@ -35,7 +35,7 @@ export function middleware(request) {
   // adaptive-landing의 정적 자산 요청(/apt2/_next/... 등)은 어느 서브도메인으로 들어왔든
   // 전부 같은 빌드 결과물을 가리키므로, 호스트 매칭 없이 경로 접두사만으로 바로 프록시
   if (pathname === ADAPTIVE_LANDING_BASE_PATH || pathname.startsWith(`${ADAPTIVE_LANDING_BASE_PATH}/`)) {
-    return NextResponse.rewrite(`${ADAPTIVE_LANDING_ORIGIN}${pathname}${search}`);
+    return NextResponse.rewrite(new URL(`${pathname}${search}`, ADAPTIVE_LANDING_ORIGIN));
   }
 
   const site = subdomainToSite.get(hostname);
@@ -47,7 +47,7 @@ export function middleware(request) {
     // 이 템플릿은 현장당 페이지가 하나뿐)는 그 현장의 랜딩페이지 경로로 치환
     const isPassthrough = pathname.startsWith("/_next/") || pathname.startsWith("/api/") || isStaticFile(pathname);
     const targetPath = isPassthrough ? pathname : `/apt/${site.slug}`;
-    return NextResponse.rewrite(`${ADAPTIVE_LANDING_ORIGIN}${ADAPTIVE_LANDING_BASE_PATH}${targetPath}${search}`);
+    return NextResponse.rewrite(new URL(`${ADAPTIVE_LANDING_BASE_PATH}${targetPath}${search}`, ADAPTIVE_LANDING_ORIGIN));
   }
 
   // 기존 mobile-scroll 현장 — 기존 로직 그대로

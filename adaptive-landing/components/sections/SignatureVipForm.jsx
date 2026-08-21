@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import Reveal from '../motion/Reveal'
 import { useUtmSource } from '../../lib/useUtmSource'
 import styles from './SignatureVipForm.module.css'
@@ -25,6 +25,9 @@ export default function SignatureVipForm({ config }) {
 
   const [form, setForm] = useState(initialForm)
   const [submitting, setSubmitting] = useState(false)
+  // 크롬 등에서 휴대폰번호 자동완성이 React onChange를 거치지 않고 DOM에만 값을 채워넣는
+  // 경우가 있어(특히 인접한 tel 인풋 여러 개), 제출 시 state 대신 실제 입력창 값을 최종 확인용으로 사용
+  const phoneRefs = useRef([])
   // 방문 URL의 ?utm_source=카카오 같은 값 — 어디서 유입됐는지 기록 + adminPhonesByUtm 분기에 사용
   const utmSource = useUtmSource() ?? '직접유입'
   // adminPhonesByUtm에 등록된 utm_source로 들어온 경우에만 SMS 수신번호를 덮어씀
@@ -41,7 +44,11 @@ export default function SignatureVipForm({ config }) {
       alert('개인정보 수집 및 이용에 동의해 주세요.')
       return
     }
-    const phone = `${form.phone1}-${form.phone2}-${form.phone3}`
+    // state가 비어있어도 브라우저 자동완성으로 화면엔 값이 채워져 있을 수 있으므로,
+    // 실제 입력창(DOM) 값이 있으면 그걸 우선 사용
+    const phoneFields = ['phone1', 'phone2', 'phone3']
+    const phoneParts = phoneFields.map((field, i) => phoneRefs.current[i]?.value || form[field])
+    const phone = phoneParts.join('-')
     setSubmitting(true)
     try {
       const res = await fetch('/api/sms', {
@@ -124,14 +131,15 @@ export default function SignatureVipForm({ config }) {
                 {['phone1', 'phone2', 'phone3'].map((field, i) => (
                   <input
                     key={field}
+                    ref={(el) => { phoneRefs.current[i] = el }}
                     name={field}
                     type="tel"
                     inputMode="numeric"
+                    autoComplete="off"
                     maxLength={i === 0 ? 3 : 4}
                     value={form[field]}
                     onChange={handleChange}
                     required
-                    placeholder={i === 0 ? '010' : i === 1 ? '1234' : '5678'}
                     className={styles.phoneInput}
                   />
                 ))}

@@ -71,13 +71,23 @@ export default function SignatureHeroMinimal({ hero, telNumber, telNumberByUtm, 
 
         {hero.titleImage ? (
           <motion.div className={styles.titleImageWrap} custom={0.25} initial="hidden" animate="show" variants={lineVariants}>
+            {hero.titleImageMobile && (
+              <Image
+                src={hero.titleImageMobile.src}
+                alt={hero.titleImageMobile.alt}
+                width={hero.titleImageMobile.width}
+                height={hero.titleImageMobile.height}
+                priority
+                className={styles.titleImageMobile}
+              />
+            )}
             <Image
               src={hero.titleImage.src}
               alt={hero.titleImage.alt}
               width={hero.titleImage.width}
               height={hero.titleImage.height}
               priority
-              className={styles.titleImage}
+              className={hero.titleImageMobile ? styles.titleImageDesktop : styles.titleImage}
             />
             {hero.titleCaption && <span className={styles.titleCaption}>{hero.titleCaption}</span>}
           </motion.div>

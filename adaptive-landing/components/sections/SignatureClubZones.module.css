@@ -1,6 +1,6 @@
 .section {
   background: #fff;
-  padding: 60px 0 0;
+  padding: 60px 0;
 }
 
 .introHead {
@@ -230,6 +230,38 @@
   gap: 12px;
 }
 
+/* -------- gallery: zones 없이 이미지 원본 비율 그대로 세로로 나열(club.gallery) -------- */
+.galleryStack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.galleryStackItem {
+  width: 100%;
+}
+
+.galleryStackImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.galleryStackPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  aspect-ratio: 850 / 500;
+  border: 1px dashed #ccc;
+  border-radius: 8px;
+  background: #f7f7f7;
+  color: #aaa;
+}
+
 .photoStripItem {
   display: flex;
   flex-direction: column;
@@ -307,11 +339,16 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
   }
+
+  .galleryStack {
+    padding: 0 40px;
+    gap: 28px;
+  }
 }
 
 @media (min-width: 1024px) {
   .section {
-    padding: 100px 0 0;
+    padding: 100px 0;
   }
 
   .introHead {
@@ -349,5 +386,10 @@
 
   .facilityDesc {
     font-size: 14px;
+  }
+
+  .galleryStack {
+    max-width: 900px;
+    margin: 0 auto;
   }
 }

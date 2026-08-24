@@ -54,6 +54,7 @@
   letter-spacing: 0.3em;
   color: var(--navy, #06203e);
   margin-bottom: 16px;
+  text-shadow: 0 1px 8px rgba(255, 255, 255, 0.7);
 }
 
 .title {
@@ -70,6 +71,7 @@
   font-size: 28px;
   letter-spacing: -0.03em;
   color: var(--ink, #1a1a1a);
+  text-shadow: 0 1px 10px rgba(255, 255, 255, 0.75);
 }
 
 .titleLine2 {
@@ -90,6 +92,7 @@
   color: #555;
   max-width: 640px;
   white-space: pre-line;
+  text-shadow: 0 1px 10px rgba(255, 255, 255, 0.75);
 }
 
 .descAccent {

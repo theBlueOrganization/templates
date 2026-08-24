@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { useUtmSource } from '../../lib/useUtmSource'
+import { splitHighlight } from '../../lib/utils'
 import styles from './SignatureHeroMinimal.module.css'
 
 const EASE = [0.22, 1, 0.36, 1]
@@ -11,6 +12,20 @@ const EASE = [0.22, 1, 0.36, 1]
 const lineVariants = {
   hidden: { opacity: 0, y: 20 },
   show: (delay) => ({ opacity: 1, y: 0, transition: { duration: 0.8, delay, ease: EASE } }),
+}
+
+// eyebrowAccent에 있는 단어만 굵게 — 없으면 그냥 평문 그대로
+function Eyebrow({ text, accent }) {
+  if (!accent?.length) return text
+  return splitHighlight(text, accent).map((seg, i) =>
+    seg.accent ? (
+      <strong key={i} className={styles.eyebrowAccent}>
+        {seg.text}
+      </strong>
+    ) : (
+      seg.text
+    )
+  )
 }
 
 // 원종역 월드메르디앙 포레 전용 — 배경 사진 위에 크림 톤 스크림을 얹어 텍스트 위주 레이아웃을 유지하는 히어로
@@ -39,33 +54,63 @@ export default function SignatureHeroMinimal({ hero, telNumber, telNumberByUtm, 
       {hero.bgImage && (
         <div className={styles.bg}>
           <Image src={hero.bgImage.src} alt={hero.bgImage.alt} fill priority sizes="100vw" className={styles.bgImage} />
-          <div className={styles.overlay} />
+          {hero.overlay !== false && <div className={styles.overlay} />}
         </div>
       )}
 
       <div className={styles.content}>
-        <motion.p className={styles.eyebrow} custom={0.1} initial="hidden" animate="show" variants={lineVariants}>
-          {hero.eyebrowLine1}
+        <motion.p
+          className={hero.titleImage ? styles.eyebrowDark : styles.eyebrow}
+          custom={0.1}
+          initial="hidden"
+          animate="show"
+          variants={lineVariants}
+        >
+          <Eyebrow text={hero.eyebrowLine1} accent={hero.eyebrowAccent} />
         </motion.p>
 
-        <motion.h1 className={styles.title} custom={0.25} initial="hidden" animate="show" variants={lineVariants}>
-          {hero.titleLine1}
-        </motion.h1>
+        {hero.titleImage ? (
+          <motion.div className={styles.titleImageWrap} custom={0.25} initial="hidden" animate="show" variants={lineVariants}>
+            <Image
+              src={hero.titleImage.src}
+              alt={hero.titleImage.alt}
+              width={hero.titleImage.width}
+              height={hero.titleImage.height}
+              priority
+              className={styles.titleImage}
+            />
+            {hero.titleCaption && <span className={styles.titleCaption}>{hero.titleCaption}</span>}
+          </motion.div>
+        ) : (
+          <motion.h1 className={styles.title} custom={0.25} initial="hidden" animate="show" variants={lineVariants}>
+            {hero.titleLine1}
+          </motion.h1>
+        )}
 
-        <motion.div
-          className={styles.divider}
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 0.6, delay: 0.5, ease: EASE }}
-        />
+        {hero.brandLine && (
+          <motion.p className={styles.brandLine} custom={0.4} initial="hidden" animate="show" variants={lineVariants}>
+            {hero.brandLine}
+          </motion.p>
+        )}
 
-        <motion.div className={styles.descBadges} custom={0.6} initial="hidden" animate="show" variants={lineVariants}>
-          {hero.descLine1.split(' · ').map((part, i) => (
-            <span key={i} className={styles.descBadge}>
-              {part}
-            </span>
-          ))}
-        </motion.div>
+        {hero.descLine1 && (
+          <>
+            <motion.div
+              className={styles.divider}
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.6, delay: 0.5, ease: EASE }}
+            />
+
+            <motion.div className={styles.descBadges} custom={0.6} initial="hidden" animate="show" variants={lineVariants}>
+              {hero.descLine1.split(' · ').map((part, i) => (
+                <span key={i} className={styles.descBadge}>
+                  {part}
+                </span>
+              ))}
+            </motion.div>
+          </>
+        )}
       </div>
 
       {mobileBar && (

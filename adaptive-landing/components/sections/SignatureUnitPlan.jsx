@@ -48,29 +48,61 @@ export default function SignatureUnitPlan({ unitPlan }) {
             </p>
           </div>
 
-          <div className={styles.tabsLayout}>
-            {unitPlan.groups.map((g, gi) => (
-              <div key={g.area} className={styles.tabGroup}>
-                <span className={styles.groupLabel}>{g.area}</span>
-                <div className={styles.chipWrap}>
-                  {g.types.map((t, ti) => (
-                    <button
-                      key={t.letter}
-                      type="button"
-                      className={cn(styles.chip, gi === groupIndex && ti === typeIndex && styles.chipActive)}
-                      onClick={() => selectTab(gi, ti)}
-                      aria-pressed={gi === groupIndex && ti === typeIndex}
-                    >
-                      {t.letter}
-                    </button>
-                  ))}
-                </div>
+          {unitPlan.tabbedGroups ? (
+            // 면적대(그룹)가 많은 현장용 — 위에서 면적대를 먼저 고르면 그 그룹의 타입 칩만 아래에 나타남
+            <>
+              <div className={styles.groupTabRow}>
+                {unitPlan.groups.map((g, gi) => (
+                  <button
+                    key={g.area}
+                    type="button"
+                    className={cn(styles.groupTab, gi === groupIndex && styles.groupTabActive)}
+                    onClick={() => selectTab(gi, 0)}
+                    aria-pressed={gi === groupIndex}
+                  >
+                    {g.area}
+                  </button>
+                ))}
               </div>
-            ))}
-          </div>
+              <div className={styles.chipWrap}>
+                {group.types.map((t, ti) => (
+                  <button
+                    key={t.letter}
+                    type="button"
+                    className={cn(styles.chip, ti === typeIndex && styles.chipActive)}
+                    onClick={() => selectTab(groupIndex, ti)}
+                    aria-pressed={ti === typeIndex}
+                  >
+                    {t.letter}
+                  </button>
+                ))}
+              </div>
+            </>
+          ) : (
+            <div className={styles.tabsLayout}>
+              {unitPlan.groups.map((g, gi) => (
+                <div key={g.area} className={styles.tabGroup}>
+                  <span className={styles.groupLabel}>{g.area}</span>
+                  <div className={styles.chipWrap}>
+                    {g.types.map((t, ti) => (
+                      <button
+                        key={t.letter}
+                        type="button"
+                        className={cn(styles.chip, gi === groupIndex && ti === typeIndex && styles.chipActive)}
+                        onClick={() => selectTab(gi, ti)}
+                        aria-pressed={gi === groupIndex && ti === typeIndex}
+                      >
+                        {t.letter}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
 
           <div className={styles.dataContainer}>
-            {SPEC_LABELS.map(({ key, label }) => (
+            {SPEC_LABELS.filter(({ key }) => type.specs[key] !== undefined).map(({ key, label }) => (
               <div key={key} className={styles.specRow}>
                 <span className={styles.specLabel}>{label}</span>
                 <strong className={styles.specValue}>
@@ -78,12 +110,14 @@ export default function SignatureUnitPlan({ unitPlan }) {
                 </strong>
               </div>
             ))}
-            <div className={cn(styles.specRow, styles.specRowContract)}>
-              <span className={styles.specLabel}>계약면적</span>
-              <strong className={styles.specValueContract}>
-                {type.specs.contract} <em>㎡</em>
-              </strong>
-            </div>
+            {type.specs.contract !== undefined && (
+              <div className={cn(styles.specRow, styles.specRowContract)}>
+                <span className={styles.specLabel}>계약면적</span>
+                <strong className={styles.specValueContract}>
+                  {type.specs.contract} <em>㎡</em>
+                </strong>
+              </div>
+            )}
           </div>
         </Reveal>
 
@@ -99,7 +133,14 @@ export default function SignatureUnitPlan({ unitPlan }) {
                 transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               >
                 <div className={styles.planImageWrap}>
-                  <Image src={type.image.src} alt={type.image.alt} width={508} height={373} sizes="(min-width: 1024px) 508px, 80vw" className={styles.planImage} />
+                  <Image
+                    src={type.image.src}
+                    alt={type.image.alt}
+                    width={type.image.width || 508}
+                    height={type.image.height || 373}
+                    sizes="(min-width: 1024px) 508px, 80vw"
+                    className={styles.planImage}
+                  />
                 </div>
                 <div className={styles.typeTitle}>
                   <h3>

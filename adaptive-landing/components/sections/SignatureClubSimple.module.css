@@ -34,11 +34,11 @@
   font-size: 24px;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: #1f2c35;
+  color: var(--ink, #1f2c35);
 }
 
 .title strong {
-  color: #263241;
+  color: var(--navy, #263241);
 }
 
 .desc {
@@ -64,7 +64,7 @@
 .imageWrap {
   border-radius: 12px;
   overflow: hidden;
-  background: #f3f1ec;
+  background: var(--cream, #f3f1ec);
 }
 
 .image {
@@ -86,8 +86,8 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: rgba(38, 50, 65, 0.06);
-  color: #263241;
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--navy, #263241);
 }
 
 .icon svg {
@@ -108,7 +108,7 @@
   font-size: 20px;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: #1f2c35;
+  color: var(--ink, #1f2c35);
 }
 
 .cardDesc {

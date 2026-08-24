@@ -17,6 +17,7 @@ import SignatureComplex from '../../../components/sections/SignatureComplex'
 import SignatureUnitPlan from '../../../components/sections/SignatureUnitPlan'
 import SignatureClub from '../../../components/sections/SignatureClub'
 import SignatureClubSimple from '../../../components/sections/SignatureClubSimple'
+import SignatureClubZones from '../../../components/sections/SignatureClubZones'
 import SignatureVipForm from '../../../components/sections/SignatureVipForm'
 
 export const viewport = {
@@ -108,7 +109,13 @@ export default async function AptPage({ params }) {
         {sig.landscape && <SignatureLandscape landscape={sig.landscape} />}
         <SignatureComplex complex={sig.complex} />
         <SignatureUnitPlan unitPlan={sig.unitPlan} />
-        {sig.club.variant === 'simple' ? <SignatureClubSimple club={sig.club} /> : <SignatureClub club={sig.club} />}
+        {sig.club.variant === 'simple' ? (
+          <SignatureClubSimple club={sig.club} />
+        ) : sig.club.variant === 'zones' ? (
+          <SignatureClubZones club={sig.club} />
+        ) : (
+          <SignatureClub club={sig.club} />
+        )}
         <SignatureVipForm config={site} />
       </main>
       <SignatureFooter

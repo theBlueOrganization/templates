@@ -1,5 +1,9 @@
+'use client'
+
 import Image from 'next/image'
+import { useState } from 'react'
 import Reveal from '../motion/Reveal'
+import { cn } from '../../lib/utils'
 import styles from './SignatureComplex.module.css'
 
 function PanelHead({ eyebrow, titleLine1, titleLine2, desc, plainEyebrow, align }) {
@@ -13,6 +17,43 @@ function PanelHead({ eyebrow, titleLine1, titleLine2, desc, plainEyebrow, align 
       </h2>
       <p className={styles.desc}>{desc}</p>
     </Reveal>
+  )
+}
+
+// donghoChart.tabs가 있으면(블록별로 동호수 배치표 이미지가 여러 장인 현장) 블록 선택 버튼을 그려서
+// 고른 블록의 이미지로 바꿔치기함 — 없는 현장은 기존처럼 donghoChart.image 하나만 보여줌
+function DonghoChart({ donghoChart }) {
+  const hasTabs = Array.isArray(donghoChart.tabs) && donghoChart.tabs.length > 0
+  const [activeTab, setActiveTab] = useState(0)
+  const image = hasTabs ? donghoChart.tabs[activeTab].image : donghoChart.image
+
+  return (
+    <>
+      {hasTabs && (
+        <div className={styles.tabRow}>
+          {donghoChart.tabs.map((tab, i) => (
+            <button
+              key={tab.label}
+              type="button"
+              className={cn(styles.tabBtn, i === activeTab && styles.tabBtnActive)}
+              onClick={() => setActiveTab(i)}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+      )}
+      <Reveal delay={0.15} className={styles.imageBox}>
+        <Image
+          src={image.src}
+          alt={image.alt}
+          width={image.width}
+          height={image.height}
+          sizes="(min-width: 1024px) 1200px, calc(100vw - 40px)"
+          className={styles.image}
+        />
+      </Reveal>
+    </>
   )
 }
 
@@ -62,16 +103,7 @@ export default function SignatureComplex({ complex }) {
               align="right"
             />
           )}
-          <Reveal delay={0.15} className={styles.imageBox}>
-            <Image
-              src={complex.donghoChart.image.src}
-              alt={complex.donghoChart.image.alt}
-              width={complex.donghoChart.image.width}
-              height={complex.donghoChart.image.height}
-              sizes="(min-width: 1024px) 1200px, calc(100vw - 40px)"
-              className={styles.image}
-            />
-          </Reveal>
+          <DonghoChart donghoChart={complex.donghoChart} />
         </div>
       </div>
     </section>

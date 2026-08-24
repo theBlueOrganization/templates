@@ -80,6 +80,33 @@
   border-radius: 10px;
 }
 
+.tabRow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.tabBtn {
+  padding: 12px 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink, #111);
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.tabBtnActive {
+  background: var(--navy, #06203e);
+  color: #fff;
+  border-color: var(--navy, #06203e);
+}
+
 .image {
   display: block;
   width: 100%;
@@ -127,5 +154,10 @@
 
   .gallery {
     gap: 40px;
+  }
+
+  .tabBtn {
+    font-size: 15px;
+    padding: 14px 12px;
   }
 }

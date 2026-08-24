@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   padding: 60px 12px;
-  background: #263241;
+  background: var(--navy, #263241);
 }
 
 .bg {
@@ -20,8 +20,8 @@
 .overlay {
   position: absolute;
   inset: 0;
-  /* 상단은 히어로 섹션 하단(#263241)과 완전히 같은 색으로 시작해서 이음매 없이 이어지도록 함 */
-  background: linear-gradient(180deg, #263241 0%, rgba(4, 12, 22, 0.85) 12%, rgba(4, 12, 22, 0.82) 100%);
+  /* 상단은 히어로 섹션 하단(var(--navy))과 완전히 같은 색으로 시작해서 이음매 없이 이어지도록 함 */
+  background: linear-gradient(180deg, var(--navy, #263241) 0%, rgba(4, 12, 22, 0.85) 12%, rgba(4, 12, 22, 0.82) 100%);
 }
 
 .container {
@@ -45,7 +45,7 @@
   font-weight: 600;
   font-size: 11px;
   letter-spacing: 0.15em;
-  color: #e0cd9c;
+  color: var(--gold, #e0cd9c);
   margin-bottom: 20px;
 }
 
@@ -74,7 +74,7 @@
   font-weight: 400;
   font-size: 56px;
   line-height: 1.2;
-  color: #e0cd9c;
+  color: var(--gold, #e0cd9c);
 }
 
 .desc {
@@ -95,20 +95,20 @@
 }
 
 .card:hover {
-  background: #e0cd9c;
+  background: var(--gold, #e0cd9c);
 }
 
 .card:hover .tag {
-  color: rgba(38, 50, 65, 0.55);
+  color: rgba(0, 0, 0, 0.55);
 }
 
 .card:hover .num,
 .card:hover .cardTitle {
-  color: #263241;
+  color: var(--navy, #263241);
 }
 
 .card:hover .cardDesc {
-  color: rgba(38, 50, 65, 0.7);
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .card:last-child {
@@ -133,7 +133,7 @@
   font-family: var(--font-cormorant);
   font-weight: 700;
   font-size: 32px;
-  color: #e0cd9c;
+  color: var(--gold, #e0cd9c);
   margin-bottom: 12px;
   transition: color 0.25s ease;
 }

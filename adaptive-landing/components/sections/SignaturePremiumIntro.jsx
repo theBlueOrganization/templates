@@ -11,7 +11,7 @@ export default function SignaturePremiumIntro({ premiumIntro }) {
     <section className={styles.section}>
       <div className={styles.bg}>
         <Image src={premiumIntro.bgImage.src} alt={premiumIntro.bgImage.alt} fill sizes="100vw" className={styles.bgImage} />
-        <div className={styles.overlay} />
+        {premiumIntro.overlay !== false && <div className={styles.overlay} />}
       </div>
 
       <Reveal className={styles.content}>

@@ -13,6 +13,14 @@
   margin: 0 auto;
 }
 
+.label {
+  font-family: var(--font-montserrat, var(--font-sans));
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  color: var(--navy, #003c66);
+}
+
 .eyebrow {
   font-family: var(--font-sans);
   font-weight: 300;
@@ -219,12 +227,36 @@
   color: #888;
 }
 
+.photoCardEyebrow {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--ink, #111);
+  margin-bottom: 2px;
+}
+
+.photoCardEyebrowAccent {
+  display: block;
+  font-size: 17px;
+  font-weight: 700;
+}
+
 .photoCardTitle {
   font-size: 18px;
   font-weight: 800;
   color: var(--navy, #06203e);
   letter-spacing: -0.02em;
   word-break: keep-all;
+}
+
+/* eyebrowPlain이 있는 카드용 — 영문 한 단어를 크게 보여주는 워터마크 스타일 타이틀 */
+.photoCardTitleXl {
+  font-family: var(--font-montserrat, var(--font-sans));
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--ink, #111);
+  text-transform: uppercase;
+  margin: 4px 0 2px;
 }
 
 .photoCardDesc {
@@ -445,6 +477,18 @@
 
   .photoCardTitle {
     font-size: 24px;
+  }
+
+  .photoCardEyebrow {
+    font-size: 16px;
+  }
+
+  .photoCardEyebrowAccent {
+    font-size: 20px;
+  }
+
+  .photoCardTitleXl {
+    font-size: 48px;
   }
 
   .photoCardDesc {

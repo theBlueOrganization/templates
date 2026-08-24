@@ -57,6 +57,7 @@ export default function SignatureLocation({ location }) {
   return (
     <section id={location.id} className={styles.section}>
       <Reveal className={styles.header}>
+        {location.label && <p className={styles.label}>{location.label}</p>}
         <p className={styles.eyebrow}>
           {location.eyebrowPlain}
           <strong>{location.eyebrowAccent}</strong>
@@ -111,9 +112,18 @@ export default function SignatureLocation({ location }) {
                 />
               </div>
               <div className={styles.photoCardContent}>
-                {CATEGORY_ICONS[f.category] && <span className={styles.photoCardIcon}>{CATEGORY_ICONS[f.category]}</span>}
-                <p className={styles.photoCardCategory}>{f.category}</p>
-                <h3 className={styles.photoCardTitle}>{f.title}</h3>
+                {f.eyebrowPlain ? (
+                  <p className={styles.photoCardEyebrow}>
+                    {f.eyebrowPlain}
+                    <strong className={styles.photoCardEyebrowAccent}>{f.eyebrowAccent}</strong>
+                  </p>
+                ) : (
+                  <>
+                    {CATEGORY_ICONS[f.category] && <span className={styles.photoCardIcon}>{CATEGORY_ICONS[f.category]}</span>}
+                    <p className={styles.photoCardCategory}>{f.category}</p>
+                  </>
+                )}
+                <h3 className={f.eyebrowPlain ? styles.photoCardTitleXl : styles.photoCardTitle}>{f.title}</h3>
                 <p className={styles.photoCardDesc}>{f.desc}</p>
               </div>
             </StaggerItem>

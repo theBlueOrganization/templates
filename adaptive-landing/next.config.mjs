@@ -16,7 +16,12 @@ const nextConfig = {
   // Multi-Zone 방식으로 이 앱을 프록시함 — 프록시 대상 경로 접두사(mobile-scroll의
   // middleware.js에 있는 ADAPTIVE_LANDING_BASE_PATH)와 반드시 일치해야 함
   basePath: '/apt2',
+  // Vercel의 이미지 최적화 엣지가 이 프로젝트의 basePath+Multi-Zone(프록시) 구조와 호환이 안 돼서
+  // /_next/image 요청이 전부 "INVALID_IMAGE_OPTIMIZE_REQUEST"로 거부됨(로컬 dev 서버는 이 엣지
+  // 최적화기를 안 거치는 별개 경로라 정상으로 보였음 — 프로덕션에서만 재현). unoptimized:true로
+  // next/image가 /_next/image를 거치지 않고 원본 파일을 그대로 <img>로 렌더링하게 함
   images: {
+    unoptimized: true,
     remotePatterns: [],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
   },

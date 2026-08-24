@@ -200,12 +200,12 @@ const config = {
     // 히어로 브랜드명
     brand: {
       color:    "rgb(255, 255, 255)",
-      fontSize: "1rem",
+      fontSize: "clamp(1rem, 4vw, 1.5rem)",
     },
     // 히어로 메인 타이틀
     title: {
       color:       "#ffffff",
-      fontSize:    "clamp(1.2rem, 6vw, 2.2rem)",
+      fontSize:    "clamp(1.2rem, 6vw, 2.8rem)",
       accentColor: "#f5c445",
     },
     // 히어로 서브타이틀

@@ -51,8 +51,8 @@ const config = {
 
   hero: {
     eyebrow:       "중도금 전액 무이자｜초품아 학세권",
-    eyebrowUrgent: 1, // 왼쪽부터 1개 배지만 urgent 스타일
-    brand:         "「센트레빌 아스테리움 거제」",
+    eyebrowUrgent: 1, 
+    brand:         "예약제운영ㆍ예약방문시 상품권 증정",
     title:         "센트레빌 아스테리움 거제\n거제 유일 하이엔드•계약금 500만원\n중도금 전액 무이자,발코니 확장 무상",
     subtitle:      "모델하우스대표번호 1688 - 3358",
     accentKeyword: ["하이엔드", "500만원", "전액 무이자", "무상"],

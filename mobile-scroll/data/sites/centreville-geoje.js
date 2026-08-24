@@ -51,8 +51,8 @@ const config = {
 
   hero: {
     eyebrow:       "중도금 전액 무이자｜초품아 학세권",
-    eyebrowUrgent: 1, // 왼쪽부터 1개 배지만 urgent 스타일
-    brand:         "「센트레빌 아스테리움 거제」",
+    eyebrowUrgent: 1, 
+    brand:         "예약제운영ㆍ예약방문시 상품권 증정",
     title:         "센트레빌 아스테리움 거제\n거제 유일 하이엔드•계약금 500만원\n중도금 전액 무이자,발코니 확장 무상",
     subtitle:      "모델하우스대표번호 1688 - 3358",
     accentKeyword: ["하이엔드", "500만원", "전액 무이자", "무상"],
@@ -200,12 +200,12 @@ const config = {
     // 히어로 브랜드명
     brand: {
       color:    "rgb(255, 255, 255)",
-      fontSize: "1rem",
+      fontSize: "clamp(1rem, 4vw, 1.5rem)",
     },
     // 히어로 메인 타이틀
     title: {
       color:       "#ffffff",
-      fontSize:    "clamp(1.2rem, 6vw, 2.2rem)",
+      fontSize:    "clamp(1.2rem, 6vw, 2.8rem)",
       accentColor: "#f5c445",
     },
     // 히어로 서브타이틀

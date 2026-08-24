@@ -13,8 +13,8 @@ const config = {
   projectName: '더샵 송도 그란테르',
   shortName: '더샵 송도 그란테르',
   telNumber: '1666-1050',
-  ogImage: 'https://addupapt.kr/apt/the-sharp-songdo-grand-terre/og.jpg',
-  adminPhones: ['01000000000'], // TODO: 관리자 수신번호로 교체
+  ogImage: 'https://addupapt.kr/apt/the-sharp-songdo-grand-terre/og.webp',
+  adminPhones: ['01048086474', '01090447402', '01071901052'],
   sheetId: '',
   sheetTab: '더샵송도그란테르',
   showUtmInSms: true,
@@ -55,10 +55,10 @@ const config = {
       phone: '1666-1050',
     },
 
-    // TODO: 팝업 이미지 아직 없음 — 받으면 enabled: true로 바꾸고 image.src 교체
+    // 원종역과 동일한 구조 — popup.webp 파일만 올리면 바로 그 이미지로 나옴 (진입 약 3초 후 노출)
     popup: {
-      enabled: false,
-      image: { src: '/apt/the-sharp-songdo-grand-terre/popup.webp', alt: '더샵 송도 그란테르 특별혜택 안내', width: 688, height: 1025 },
+      enabled: true,
+      image: { src: '/apt/the-sharp-songdo-grand-terre/popup.webp', alt: '더샵 송도 그란테르 계약 이벤트 안내', width: 688, height: 911 },
       closeLabel: '팝업닫기',
     },
 
@@ -94,12 +94,19 @@ const config = {
         width: 1188,
         height: 179,
       },
+      // 모바일 전용 — 좁은 화면에서도 안 찌그러지게 2줄로 줄바꿈된 버전 (1024px부터는 위 titleImage로 전환)
+      titleImageMobile: {
+        src: '/apt/the-sharp-songdo-grand-terre/endless-symbol-dark-mobile.webp',
+        alt: 'The Endless Symbol',
+        width: 626,
+        height: 279,
+      },
       titleCaption: 'OF SONGDO',
       brandLine: '더샵 송도그란테르',
       bgImage: { src: '/apt/the-sharp-songdo-grand-terre/main.webp', alt: '더샵 송도 그란테르 대표 조감도' },
       mobileBar: {
         announcements: [{ badge: '안내', textStrong: '더샵 송도 그란테르', textLight: ' 공식 안내센터입니다.' }],
-        bubbleText: '문의하기',
+        bubbleText: '1666-1050',
         callLabel: '전화상담',
         visitLabel: '방문예약',
       },
@@ -107,17 +114,17 @@ const config = {
 
     benefits: {
       id: 'benefits',
-      eyebrow: 'TODO: SPECIAL BENEFITS', // 영문 캡션
-      titleSmall: 'TODO',
-      titleBold: '특별한',
-      titleScript: 'TODO가지 혜택',
-      desc: '최신 제공 자료에 기재된 주요 혜택을 확인하세요.',
+      eyebrow: 'SPECIAL CONDITIONS',
+      titleSmall: '더샵 송도그란테르',
+      titleBold: '특별한 ',
+      titleScript: '4가지 조건',
+      desc: '더샵 송도그란테르만의 특별한 조건을 확인하세요.',
       bgImage: { src: '/apt/the-sharp-songdo-grand-terre/main.webp', alt: '더샵 송도 그란테르 특별 혜택' },
       items: [
-        { num: '01', tag: 'TODO', title: ['TODO 혜택 제목'], desc: 'TODO 혜택 설명' },
-        { num: '02', tag: 'TODO', title: ['TODO 혜택 제목'], desc: 'TODO 혜택 설명' },
-        { num: '03', tag: 'TODO', title: ['TODO 혜택 제목'], desc: 'TODO 혜택 설명' },
-        { num: '04', tag: 'TODO', title: ['TODO 혜택 제목'], desc: 'TODO 혜택 설명' },
+        { num: '01', tag: 'NO.1', title: ['청약통장', '필요 없음'], desc: '' },
+        { num: '02', tag: 'NO.2', title: ['거주지역', '제한 없음'], desc: '' },
+        { num: '03', tag: 'NO.3', title: ['당첨자 관리·재당첨', '제한 없음'], desc: '' },
+        { num: '04', tag: 'NO.4', title: ['선착순 희망 블록·타입·호실', '지정'], desc: '' },
       ],
     },
 
@@ -132,6 +139,7 @@ const config = {
       blocks: [
         {
           label: 'G5-1블록',
+          photo: { src: '/apt/the-sharp-songdo-grand-terre/main.webp', alt: 'G5-1블록 조감도' },
           specItems: [
             { label: '사업부지면적', value: '46,268.30㎡' },
             { label: '규모', value: '지하 2층 ~ 지상 31층' },
@@ -141,6 +149,7 @@ const config = {
         },
         {
           label: 'G5-11블록',
+          photo: { src: '/apt/the-sharp-songdo-grand-terre/premium-01.webp', alt: 'G5-11블록 전경' },
           specItems: [
             { label: '사업부지면적', value: '20,242.20㎡' },
             { label: '규모', value: '지하 2층 ~ 지상 20층' },
@@ -150,6 +159,7 @@ const config = {
         },
         {
           label: 'G5-3블록',
+          photo: { src: '/apt/the-sharp-songdo-grand-terre/premium-02.webp', alt: 'G5-3블록 전경' },
           specItems: [
             { label: '사업부지면적', value: '5,789.80㎡' },
             { label: '규모', value: '지하 2층 ~ 지상 41층' },
@@ -160,6 +170,7 @@ const config = {
         {
           label: 'G5-4블록',
           default: true,
+          photo: { src: '/apt/the-sharp-songdo-grand-terre/premium-03.webp', alt: 'G5-4블록 전경' },
           specItems: [
             { label: '사업부지면적', value: '6,124.10㎡' },
             { label: '규모', value: '지하 2층 ~ 지상 43층' },
@@ -169,6 +180,7 @@ const config = {
         },
         {
           label: 'G5-5블록',
+          photo: { src: '/apt/the-sharp-songdo-grand-terre/premium-04.webp', alt: 'G5-5블록 전경' },
           specItems: [
             { label: '사업부지면적', value: '6,320.40㎡' },
             { label: '규모', value: '지하 2층 ~ 지상 45층' },
@@ -178,6 +190,7 @@ const config = {
         },
         {
           label: 'G5-6블록',
+          photo: { src: '/apt/the-sharp-songdo-grand-terre/sum_img.webp', alt: 'G5-6블록 조감도' },
           specItems: [
             { label: '사업부지면적', value: '6,493.80㎡' },
             { label: '규모', value: '지하 2층 ~ 지상 46층' },
@@ -204,7 +217,7 @@ const config = {
       title: '세상 모든 것을 누리게 될 라이프가 펼쳐지다',
       descTitle: '',
       descTitleAccent: [],
-      mapImage: { src: '/apt/the-sharp-songdo-grand-terre/location-map.webp', alt: '더샵 송도 그란테르 위치 안내도' },
+      mapImage: { src: '/apt/the-sharp-songdo-grand-terre/location-map-v2.webp', alt: '더샵 송도 그란테르 위치 안내도' },
       subhead: {
         eyebrow: '',
         title: '',
@@ -253,14 +266,14 @@ const config = {
     },
 
     premiumIntro: {
-      overlay: false, // 히어로처럼 배경 사진 위 스크림 제거 — 대신 텍스트에 라이트 톤 text-shadow로 가독성 보완
+      // 배경이 너무 밝다는 피드백으로 스크림(그림자) 다시 켬 — overlay 필드 자체를 없애면 기본값(true)이라 렌더링됨
       eyebrow: 'SYMBOLIC PRIDE',
       titleLine1: '송도의 모든 가치를 소유할',
       titleLine2: '위대한 상징',
       descLine1: '최고 46층, 총 1,544세대 스케일의 대단지로 송도 라이프를 더 크고 더 위대하게 이끌',
       descLine1Accent: ['46층', '1,544세대'],
       descLine2: '상징적인 가치를 지닌 압도적인 랜드마크',
-      bgImage: { src: '/apt/the-sharp-songdo-grand-terre/sub_image.webp', alt: '더샵 송도 그란테르 프리미엄 전경' },
+      bgImage: { src: '/apt/the-sharp-songdo-grand-terre/sum_img.webp', alt: '더샵 송도 그란테르 조감도' },
     },
 
     premiumValue: {
@@ -578,10 +591,6 @@ const config = {
       ],
     },
 
-    // 커뮤니티 원본 자료가 1BL/3~6BL/11BL 블록별 CULTURE·SPORTS·EDU ZONE 구조라, 그 구조를 그대로
-    // 살리려고 SignatureClubZones(variant:'zones')로 전용 컴포넌트를 새로 만듦.
-    // 이미지는 아직 안 받아서 image 필드를 전부 비워둠(TODO) — 나중에 src만 채우면 바로 반영됨.
-    // 세부 문구는 캡처 이미지에서 읽은 것이라 정확한 원문과 다를 수 있으니 확인 권장.
     club: {
       id: 'community',
       navLabel: '커뮤니티',
@@ -592,170 +601,17 @@ const config = {
         titleLine2: '클래스가 다른 커뮤니티',
         desc: '블록마다 마련된 다채로운 프리미엄 커뮤니티 시설을 만나보세요.',
       },
-      zones: [
-        {
-          banner: '1BL | SPORTS ZONE(1F, 2F)',
-          blocks: [
-            {
-              type: 'split',
-              label: '104동 1F',
-              facilities: [
-                { title: '필라테스' },
-                { title: '피트니스', desc: '럭셔리 브랜드 머신을 갖춘 프리미엄 트레이닝 공간' },
-                { title: '크로스핏존', desc: '자유롭게 운동할 수 있는 크로스핏존' },
-                { title: "KID'S GYM", desc: '아이들이 안전하게 몸을 움직일 수 있는 공간' },
-              ],
-              image: { src: '/apt/the-sharp-songdo-grand-terre/community-104-1f-floorplan.webp', alt: '104동 1F 평면도' },
-              imageType: 'floorplan',
-              caption: '104동 1F 평면도',
-            },
-            {
-              type: 'photoStrip',
-              photos: [{ image: { src: '/apt/the-sharp-songdo-grand-terre/community-fitness.webp', alt: '피트니스' }, caption: '피트니스' }],
-            },
-            {
-              type: 'split',
-              label: '104동 2F',
-              facilities: [
-                { title: '사우나', desc: '건식·습식 공간을 갖춘 냉온탕 사우나' },
-                { title: '수영장', desc: '25m 4레인 규모의 실내 수영장' },
-              ],
-              image: { src: '/apt/the-sharp-songdo-grand-terre/community-104-2f-floorplan.webp', alt: '104동 2F 평면도' },
-              imageType: 'floorplan',
-              caption: '104동 2F 평면도',
-            },
-          ],
-        },
-        {
-          banner: '1BL | EDU ZONE',
-          blocks: [
-            {
-              type: 'split',
-              label: '101동 9F',
-              facilities: [{ title: '오픈스터디' }],
-              image: { src: '/apt/the-sharp-songdo-grand-terre/community-openstudy.webp', alt: '101동 9F 오픈스터디' },
-              caption: '101동 9F 오픈스터디',
-            },
-          ],
-        },
-        {
-          banner: '1BL | CULTURE ZONE',
-          blocks: [
-            {
-              type: 'pair',
-              items: [
-                {
-                  label: '103동 1F',
-                  facilities: [{ title: "KID'S PLAY", desc: '방문객과 아이가 함께 어우러져 놀이를 즐기는 공간' }],
-                  image: null, // TODO: 103동 1F KID'S PLAY 사진
-                  caption: "KID'S PLAY",
-                },
-                {
-                  label: '106동 2F',
-                  facilities: [{ title: '게스트하우스', desc: '오픈형 파티룸을 포함한 특별한 게스트하우스' }],
-                  image: { src: '/apt/the-sharp-songdo-grand-terre/community-partyroom-106.webp', alt: '106동 2F 오픈 파티룸' },
-                  caption: '오픈 파티룸',
-                },
-              ],
-            },
-          ],
-        },
-        {
-          banner: '3-6BL | CULTURE ZONE',
-          blocks: [
-            {
-              type: 'featured',
-              image: {
-                src: '/apt/the-sharp-songdo-grand-terre/community-3-6block-culture-floorplan.webp',
-                alt: '3~6블록 커뮤니티 평면도(옥상정원·게스트하우스1·게스트하우스2·프라이빗사우나·스카이라운지)',
-              },
-              badge: '3블록 40F, 4블록 42F, 5블록 44F, 6블록 45F',
-              caption: '스카이라운지',
-              facilities: [
-                { title: '게스트하우스', desc: '타지역 이용도, 멀리서 오는 손님도 편리하게 쉬어갈 수 있는 공간' },
-                { title: '스카이라운지', desc: '탁트인 조망과 함께 즐기는 안락한 라운지' },
-                { title: '프라이빗사우나', desc: '특별함을 갖춘 프라이빗 공간' },
-                { title: '옥상정원', desc: '수공간까지 갖춘 상공의 여유' },
-              ],
-            },
-            {
-              type: 'photoStrip',
-              photos: [
-                { image: { src: '/apt/the-sharp-songdo-grand-terre/community-guesthouse-room.webp', alt: '게스트하우스 객실' }, caption: '게스트하우스' },
-                { image: { src: '/apt/the-sharp-songdo-grand-terre/community-rooftop-garden.webp', alt: '옥상정원' }, caption: '옥상정원' },
-                { image: { src: '/apt/the-sharp-songdo-grand-terre/community-private-sauna.webp', alt: '프라이빗사우나' }, caption: '프라이빗사우나' },
-                {
-                  image: { src: '/apt/the-sharp-songdo-grand-terre/community-guesthouse-detail-floorplan.webp', alt: '게스트하우스1·2 상세 평면도' },
-                  caption: '게스트하우스 상세도면',
-                  imageType: 'floorplan',
-                },
-              ],
-            },
-          ],
-        },
-        {
-          banner: '3-6BL | SPORTS ZONE',
-          blocks: [
-            {
-              type: 'featured',
-              image: { src: '/apt/the-sharp-songdo-grand-terre/community-3-6block-fitness-floorplan.webp', alt: '4블록 피트니스 평면도' },
-              caption: '4블록 피트니스',
-              facilities: [],
-            },
-          ],
-        },
-        {
-          banner: '11BL | CULTURE ZONE',
-          blocks: [
-            {
-              type: 'pair',
-              items: [
-                {
-                  label: '1101동 2F',
-                  facilities: [{ title: '오픈라운지', desc: '자유로운 휴식과 소통의 공간' }],
-                  image: null,
-                  caption: '오픈라운지',
-                },
-                {
-                  label: '1102동 2F',
-                  facilities: [{ title: '게스트하우스', desc: '4층에 마련된 게스트하우스' }],
-                  image: { src: '/apt/the-sharp-songdo-grand-terre/community-guesthouse-1102.webp', alt: '1102동 2F 게스트하우스' },
-                  caption: '게스트하우스',
-                },
-              ],
-            },
-          ],
-        },
-        {
-          banner: '11BL | SPORTS ZONE',
-          blocks: [
-            {
-              type: 'split',
-              label: '1102동 1F',
-              facilities: [
-                { title: '사우나', desc: '건식과 그를 갖춘 옥게이더 다른 사우나' },
-                { title: '수영장', desc: '15m 규모의 레일 및 위크아웃 안전 수영공간' },
-              ],
-              image: { src: '/apt/the-sharp-songdo-grand-terre/community-1102-1f-floorplan.webp', alt: '1102동 1F 평면도' },
-              imageType: 'floorplan',
-              caption: '1102동 1F 평면도',
-            },
-          ],
-        },
-        {
-          banner: '11BL | EDU ZONE',
-          blocks: [
-            {
-              type: 'split',
-              facilities: [
-                { label: '1101동 2F', title: '북카페', desc: '독서와 취향을 즐겁게 나눌 수 있는 공간' },
-                { label: '1104동 1F', title: '프라이빗스터디', desc: '각자 온전히 집중할 수 있는 학습 공간' },
-              ],
-              image: { src: '/apt/the-sharp-songdo-grand-terre/community-bookcafe.webp', alt: '1101동 북카페' },
-              caption: '북카페',
-            },
-          ],
-        },
+      // 이미지 자체가 이미 "1BL SPORTS ZONE" 같은 존 배너+텍스트+사진이 다 합쳐진 완성된 섹션 캡처라
+      // 폭:높이 비율이 이미지마다 다름 — 원본 비율 그대로 세로로 쌓아서 보여줌(가로 하나 꽉 채움)
+      gallery: [
+        { image: { src: '/apt/the-sharp-songdo-grand-terre/community1.webp', alt: '1BL 스포츠존', width: 850, height: 591 } },
+        { image: { src: '/apt/the-sharp-songdo-grand-terre/community2.webp', alt: '1BL 에듀존', width: 850, height: 579 } },
+        { image: { src: '/apt/the-sharp-songdo-grand-terre/community3.webp', alt: '1BL 컬처존', width: 850, height: 501 } },
+        { image: { src: '/apt/the-sharp-songdo-grand-terre/community4.webp', alt: '3~6BL 컬처존', width: 850, height: 527 } },
+        { image: { src: '/apt/the-sharp-songdo-grand-terre/community5.webp', alt: '3~6BL 스포츠존', width: 850, height: 282 } },
+        { image: { src: '/apt/the-sharp-songdo-grand-terre/community6.webp', alt: '11BL 컬처존', width: 850, height: 373 } },
+        { image: { src: '/apt/the-sharp-songdo-grand-terre/community7.webp', alt: '11BL 스포츠존', width: 850, height: 725 } },
+        { image: { src: '/apt/the-sharp-songdo-grand-terre/community8.webp', alt: '11BL 에듀존', width: 850, height: 332 } },
       ],
     },
 
@@ -778,10 +634,10 @@ const config = {
     footer: {
       // footer_logo.png는 흰색 "THE SHARP" 심볼(투명 배경) — 짙은 배경에서만 보임, 변환본이 footer-logo.webp
       logo: { src: '/apt/the-sharp-songdo-grand-terre/footer-logo.webp', alt: '더샵 송도 그란테르' },
-      highlightText: 'TODO',
+      highlightText: '1666-1050',
       agencySlogan: '분양완판 전문가 그룹, (주) 더블루파트너스',
       companyLines: [
-        { label: '시공', value: 'TODO' },
+        { label: '시공', value: '㈜포스코이앤씨' },
         { label: '온라인대행', value: '주식회사 더블루파트너스' },
         { label: '사업자등록번호', value: '789-81-03093' },
         { label: '이메일', value: 'addup@addup.kr' },

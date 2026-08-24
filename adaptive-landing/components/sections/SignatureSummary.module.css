@@ -7,7 +7,8 @@
 
 .headingWrap {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .heading {
@@ -118,6 +119,21 @@
   text-align: center;
 }
 
+/* 모바일: 사진/표(mainCol)가 먼저, 블록 탭(blockNavCol)이 그 아래 — 기존 순서 그대로 유지 */
+.body {
+  display: flex;
+  flex-direction: column;
+}
+
+.mainCol {
+  order: 1;
+  min-width: 0;
+}
+
+.blockNavCol {
+  order: 2;
+}
+
 .blockGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -195,6 +211,41 @@
 
   .heading {
     font-size: 32px;
+  }
+
+  /* PC에서 블록 탭을 왼쪽 세로 목록으로, 사진/표를 오른쪽에 배치 */
+  .bodyWithBlocks {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 40px;
+    margin-top: 40px;
+  }
+
+  .bodyWithBlocks .blockNavCol {
+    order: 0;
+    flex: 0 0 200px;
+    position: sticky;
+    top: 100px;
+  }
+
+  .bodyWithBlocks .mainCol {
+    order: 1;
+    flex: 1;
+  }
+
+  .bodyWithBlocks .photoRow {
+    margin-top: 0;
+  }
+
+  .bodyWithBlocks .blockGrid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin: 0;
+  }
+
+  .bodyWithBlocks .blockBtn {
+    text-align: left;
+    padding: 16px 18px;
   }
 
   .photoRow {

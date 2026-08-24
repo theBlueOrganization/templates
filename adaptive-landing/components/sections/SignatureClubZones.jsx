@@ -129,6 +129,7 @@ const BLOCK_COMPONENTS = {
 
 // 커뮤니티 — 원본 자료 그대로 블록(1BL/3~6BL/11BL)별 CULTURE·SPORTS·EDU ZONE 구조로 재현
 // 시설 사진/도면은 아직 파일이 없어 club.zones[].blocks[]의 image가 없으면 그 부분만 비워둔 채로 렌더링됨
+// club.gallery가 있으면(단순 사진 나열만 필요한 현장) zones 구조 없이 사진 그리드만 보여줌
 export default function SignatureClubZones({ club }) {
   return (
     <section id={club.id} className={styles.section}>
@@ -141,7 +142,34 @@ export default function SignatureClubZones({ club }) {
         <p className={styles.introDesc}>{club.intro.desc}</p>
       </Reveal>
 
-      {club.zones.map((zone) => (
+      {/* 이미지 자체가 이미 완성된 섹션 캡처(존 배너+텍스트+사진)라 원본 비율 그대로 세로로 쌓음 */}
+      {club.gallery && (
+        <div className={styles.galleryStack}>
+          {club.gallery.map((item, i) =>
+            item.image ? (
+              <Reveal key={item.image.src} delay={Math.min(0.05 * i, 0.3)} className={styles.galleryStackItem}>
+                <Image
+                  src={item.image.src}
+                  alt={item.alt ?? `커뮤니티 ${i + 1}`}
+                  width={item.image.width}
+                  height={item.image.height}
+                  sizes="(min-width: 1024px) 850px, 100vw"
+                  className={styles.galleryStackImage}
+                />
+              </Reveal>
+            ) : (
+              <Reveal key={i} delay={Math.min(0.05 * i, 0.3)} className={cn(styles.galleryStackItem, styles.galleryStackPlaceholder)}>
+                <span className={styles.framePlaceholderIcon} aria-hidden="true">
+                  🖼
+                </span>
+                <span className={styles.framePlaceholderLabel}>{item.alt ?? `커뮤니티 ${i + 1}`}</span>
+              </Reveal>
+            )
+          )}
+        </div>
+      )}
+
+      {club.zones?.map((zone) => (
         <div key={zone.banner} className={styles.zone}>
           <Reveal className={styles.banner}>
             <span>{zone.banner}</span>

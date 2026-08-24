@@ -72,6 +72,7 @@ const sites = [
 const adaptiveLandingPointers = [
   { slug: "eupseong-prugio", subdomain: "업성푸르지오레이크시티", template: "adaptive-landing" },
   { slug: "wonjongyeok-world-meridian-fore", subdomain: "원종역월드메르디앙포레", template: "adaptive-landing" },
+  { slug: "the-sharp-songdo-grand-terre", subdomain: "더샵송도그란테르", template: "adaptive-landing" },
 ];
 
 const allSites = [...sites, ...adaptiveLandingPointers];

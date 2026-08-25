@@ -10,7 +10,7 @@
 
 const config = {
   slug:        "jeonju-artiem-laterrace",
-  subdomain:   "전주아르티엠라테라스",
+  subdomain:   "전주우아아르티엠",
   projectName: "전주아르티엠라테라스",
   shortName:   "전주 아르티엠 라테라스",
   telNumber:   "1800-0000",

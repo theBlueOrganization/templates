@@ -10,7 +10,7 @@
 
 const config = {
   slug:        "jeonju-artiem-laterrace",
-  subdomain:   "전주우아아르티엠",
+  subdomain:   "아르티엠라테라스",
   projectName: "전주아르티엠라테라스",
   shortName:   "전주 아르티엠 라테라스",
   telNumber:   "1800-0000",
@@ -43,10 +43,10 @@ const config = {
     subtitle: "모델하우스 대표번호 1800-0000",
     bgColor:  "#1e293b", // TODO: 히어로 이미지 스포이드로 추출한 배경색으로 교체
     image: {
-      src:    "/apt/jeonju-artiem-laterrace/main.webp", // TODO: 실제 히어로 이미지로 교체
+      src:    "/apt/jeonju-artiem-laterrace/main.webp",
       alt:    "전주 아르티엠 라테라스 대표 이미지",
-      width:  800,
-      height: 500,
+      width:  1125,
+      height: 1923,
     },
   },
 

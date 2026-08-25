@@ -13,7 +13,7 @@ const config = {
   projectName: '더샵 송도 그란테르',
   shortName: '더샵 송도 그란테르',
   telNumber: '1666-1050',
-  ogImage: 'https://addupapt.kr/apt/the-sharp-songdo-grand-terre/main.webp',
+  ogImage: 'https://adaptive-landing-ochre.vercel.app/apt2/apt/the-sharp-songdo-grand-terre/og.webp',
   adminPhones: ['01048086474', '01090447402', '01071901052'],
   sheetId: '',
   sheetTab: '더샵송도그란테르',

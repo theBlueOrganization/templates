@@ -12,7 +12,7 @@ const config = {
   subdomain: '더샵송도그란테르',
   projectName: '더샵 송도 그란테르',
   shortName: '더샵 송도 그란테르',
-  telNumber: '1666-1050',
+  telNumber: '1800-2261',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt2/apt/the-sharp-songdo-grand-terre/og.webp',
   adminPhones: ['01048086474', '01090447402', '01071901052'],
   sheetId: '',
@@ -52,7 +52,7 @@ const config = {
       logoSize: { base: 100, lg: 150, xl: 170 },
       gnb: ['사업안내', '입지환경', '프리미엄', '단지안내', '세대안내', '커뮤니티', '상담신청 및 방문예약'],
       quickCtaLabel: '관심고객등록',
-      phone: '1666-1050',
+      phone: '1800-2261',
     },
 
     // 원종역과 동일한 구조 — popup.webp 파일만 올리면 바로 그 이미지로 나옴 (진입 약 3초 후 노출)
@@ -65,7 +65,7 @@ const config = {
     quickMenu: {
       brand: 'SONGDO GRAND TERRE', // TODO
       phoneLabel: '분양문의',
-      phone: '1666-1050',
+      phone: '1800-2261',
       favoriteLabel: '관심고객',
       menuLabel: 'MENU',
       ctaTargetId: 'vip-reservation',
@@ -106,7 +106,7 @@ const config = {
       bgImage: { src: '/apt/the-sharp-songdo-grand-terre/main.webp', alt: '더샵 송도 그란테르 대표 조감도' },
       mobileBar: {
         announcements: [{ badge: '안내', textStrong: '더샵 송도 그란테르', textLight: ' 공식 안내센터입니다.' }],
-        bubbleText: '1666-1050',
+        bubbleText: '1800-2261',
         callLabel: '전화상담',
         visitLabel: '방문예약',
       },
@@ -634,7 +634,7 @@ const config = {
     footer: {
       // footer_logo.png는 흰색 "THE SHARP" 심볼(투명 배경) — 짙은 배경에서만 보임, 변환본이 footer-logo.webp
       logo: { src: '/apt/the-sharp-songdo-grand-terre/footer-logo.webp', alt: '더샵 송도 그란테르' },
-      highlightText: '1666-1050',
+      highlightText: '1800-2261',
       agencySlogan: '분양완판 전문가 그룹, (주) 더블루파트너스',
       companyLines: [
         { label: '시공', value: '㈜포스코이앤씨' },
@@ -647,7 +647,7 @@ const config = {
         '※ 사업지 인근의 개발사업과 관련된 사항은 지자체, 개발주체 및 관계기관의 사정에 따라 변경될 수 있습니다.',
         '※ 제작, 편집, 인쇄과정상 오탈자 등의 오류가 있을 수 있으니, 계약 전 반드시 견본주택 관계자에게 문의하시기 바랍니다.',
       ],
-      csPhone: '1666-1050',
+      csPhone: '1800-2261',
       csHours: 'AM 09:00 ~ PM 19:00',
     },
   },

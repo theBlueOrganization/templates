@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getSiteBySlug, getAllSlugs } from "../../../data/siteRegistry";
 import TopNav          from "../../../components/TopNav";
 import HeroSection     from "../../../components/HeroSection";
+import BenefitsSection from "../../../components/BenefitsSection";
 import ImageSection    from "../../../components/ImageSection";
 import VideoSection    from "../../../components/VideoSection";
 import OfficeShell     from "../../../components/OfficeShell";
@@ -74,6 +75,8 @@ export default async function AptPage({ params }) {
     <>
       <TopNav navItems={navItems} theme={site.theme} />
       <HeroSection {...site.hero} theme={site.theme} heroByUtm={site.heroByUtm} />
+
+      {site.benefits && <BenefitsSection benefits={site.benefits} theme={site.theme} />}
 
       {/* extraContactFormAfterSectionId 미설정 시 기존 동작대로 히어로 바로 다음에 노출 */}
       {extraContactForm && !site.extraContactFormAfterSectionId && extraContactForm}

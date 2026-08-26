@@ -14,7 +14,7 @@ const config = {
   shortName: '더샵 송도 그란테르',
   telNumber: '1800-2261',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt2/apt/the-sharp-songdo-grand-terre/og.webp',
-  adminPhones: ['01048086474', '01090447402', '01071901052'],
+  adminPhones: ['01048086474', '01071901052', '01090447402'],
   sheetId: '',
   sheetTab: '더샵송도그란테르',
   showUtmInSms: true,
@@ -270,7 +270,7 @@ const config = {
       eyebrow: 'SYMBOLIC PRIDE',
       titleLine1: '송도의 모든 가치를 소유할',
       titleLine2: '위대한 상징',
-      descLine1: '최고 46층, 총 1,544세대 스케일의 대단지로 송도 라이프를 더 크고 더 위대하게 이끌',
+      descLine1: '최고 46층, 총 1,544세대 [아파트1544세대, 오피스텔96실] 스케일의 브랜드 단지로 송도 라이프를 더 크고 더 위대하게 이끌',
       descLine1Accent: ['46층', '1,544세대'],
       descLine2: '상징적인 가치를 지닌 압도적인 랜드마크',
       bgImage: { src: '/apt/the-sharp-songdo-grand-terre/sum_img.webp', alt: '더샵 송도 그란테르 조감도' },
@@ -285,9 +285,9 @@ const config = {
       cards: [
         {
           num: '01',
-          title: ['압도적인', '랜드마크 스케일'],
-          desc: ['최고 46층, 총 1,544세대 대단지'],
-          image: { src: '/apt/the-sharp-songdo-grand-terre/premium-01.webp', alt: '압도적인 랜드마크 스케일' },
+          title: ['가치있는', '주거 프리미엄'],
+          desc: ['최고 46층, 총 1,544세대', '[아파트1544세대, 오피스텔96실]'],
+          image: { src: '/apt/the-sharp-songdo-grand-terre/premium-01.webp', alt: '가치있는 주거 프리미엄' },
         },
         {
           num: '02',
@@ -297,9 +297,9 @@ const config = {
         },
         {
           num: '03',
-          title: ['상징적인', '워터프론트 입지'],
+          title: ['상징적인', '워터프론트 생활권'],
           desc: ['호수 산책길에서 만끽하는 여유로움'],
-          image: { src: '/apt/the-sharp-songdo-grand-terre/premium-03.webp', alt: '상징적인 워터프론트 입지' },
+          image: { src: '/apt/the-sharp-songdo-grand-terre/premium-03.webp', alt: '상징적인 워터프론트 생활권' },
         },
         {
           num: '04',
@@ -309,9 +309,9 @@ const config = {
         },
         {
           num: '05',
-          title: ['혁신적인', '외관과 커뮤니티'],
-          desc: ['2·3면 개방형 구조와 다양한 특화시설'],
-          image: { src: '/apt/the-sharp-songdo-grand-terre/premium-05.webp', alt: '혁신적인 외관과 커뮤니티' },
+          title: ['혁신적인', '외관과 인프라'],
+          desc: ['2·3면 개방형 구조와 주변 인프라'],
+          image: { src: '/apt/the-sharp-songdo-grand-terre/premium-05.webp', alt: '혁신적인 외관과 인프라' },
         },
       ],
     },

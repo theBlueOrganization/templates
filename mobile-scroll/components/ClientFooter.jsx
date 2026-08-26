@@ -14,7 +14,7 @@ export default function ClientFooter({ clientCompany, telNumber, theme }) {
   return (
     <div className={styles.wrap}>
       <div className={styles.container}>
-        {companies.map(({ roleLabel, name, bizNumber, representative, address, manager, phone, email }, i) => {
+        {companies.map(({ roleLabel, name, bizNumber, representative, address, manager, phone, email, leadLabel }, i) => {
           const isPrimary = i === 0;
           const showTel = isPrimary && telNumber;
           // roleLabel(예: "시행사")이 있으면 상호명을 헤딩이 아니라 grid 안 라벨/값 한 행으로 표시
@@ -50,7 +50,7 @@ export default function ClientFooter({ clientCompany, telNumber, theme }) {
                   )}
                   {showTel && (
                     <>
-                      <span className={`${styles.key} ${styles.leadRow}`} style={leadStyle}>대표 분양 상담 문의</span>
+                      <span className={`${styles.key} ${styles.leadRow}`} style={leadStyle}>{leadLabel ?? "대표 분양 상담 문의"}</span>
                       <span className={`${styles.value} ${styles.leadRow}`} style={leadStyle}>{telNumber}</span>
                     </>
                   )}

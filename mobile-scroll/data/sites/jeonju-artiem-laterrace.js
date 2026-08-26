@@ -13,11 +13,12 @@ const config = {
   subdomain:   "아르티엠라테라스",
   projectName: "전주아르티엠라테라스",
   shortName:   "전주 아르티엠 라테라스",
-  telNumber:   "1800-0000",
+  telNumber:   "063-226-7000",
   ogImage:     "/apt/jeonju-artiem-laterrace/share_img.webp", // TODO: 실제 OG 이미지로 교체
   adminPhones:  ["01027085600"],
   sheetId:      "",
   sheetTab:     "전주아르티엠라테라스",
+  kakao:        true, // 카카오 알림톡 발송 — 템플릿ID 미설정 시 SMS로 자동 폴백
 
   popup: {
     enabled: true,
@@ -31,8 +32,8 @@ const config = {
     name:      "리더스 공인중개사사무소",
     bizNumber: "884-41-00191",
     manager:   "이도경",
-    phone:     "063-226-7000",
     email:     "true-dream@naver.com",
+    leadLabel: "분양 상담 문의", // 기본값 "대표 분양 상담 문의" 대신 이 현장 전용 라벨
   },
 
   company: {
@@ -59,7 +60,7 @@ const config = {
     eyebrowUrgent: 1,
     brand:         "전주 아르티엠 라 테라스",
     title:    "전주 아르티엠 라 테라스\n전주역 개발 최대 수혜지\n프라이빗 테라스와 스카이뷰까지",
-    subtitle: "모델하우스 대표번호 1800-0000",
+    subtitle: "[선착순] 사전 청약 접수 시작",
     bgColor:  "#1e293b", // TODO: 히어로 이미지 스포이드로 추출한 배경색으로 교체
     image: {
       src:    "/apt/jeonju-artiem-laterrace/main.webp",

@@ -104,7 +104,25 @@ const config = {
         { label: "세대수",   value: "84㎡ A·B·C·D 타입 300세대" },
       ],
     },
-    // TODO: 입지환경/프리미엄/단지설계/커뮤니티/평면도 등 나머지 섹션은
+    {
+      id:       "location",
+      type:     "image",
+      navLabel: "입지환경",
+      title:    "입지환경",
+      images: [
+        { src: "/apt/jeonju-artiem-laterrace/2-1.webp", alt: "전주 아르티엠 라테라스 입지환경" },
+      ],
+    },
+    {
+      id:       "complex",
+      type:     "image",
+      navLabel: "단지안내",
+      title:    "단지안내",
+      images: [
+        { src: "/apt/jeonju-artiem-laterrace/2-2.webp", alt: "전주 아르티엠 라테라스 단지안내" },
+      ],
+    },
+    // TODO: 프리미엄/단지설계/커뮤니티/평면도 등 나머지 섹션은
     // 이미지·문구 데이터 확정 후 추가
   ],
 

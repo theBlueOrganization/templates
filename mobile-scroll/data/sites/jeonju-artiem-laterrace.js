@@ -15,9 +15,25 @@ const config = {
   shortName:   "전주 아르티엠 라테라스",
   telNumber:   "1800-0000",
   ogImage:     "/apt/jeonju-artiem-laterrace/share_img.webp", // TODO: 실제 OG 이미지로 교체
-  adminPhones:  ["01094216962"],
+  adminPhones:  ["01027085600"],
   sheetId:      "",
   sheetTab:     "전주아르티엠라테라스",
+
+  popup: {
+    enabled: true,
+    image: {
+      src: "/apt/jeonju-artiem-laterrace/popup.webp",
+      alt: "전주 아르티엠 라테라스 팝업",
+    },
+  },
+
+  clientCompany: {
+    name:      "리더스 공인중개사사무소",
+    bizNumber: "884-41-00191",
+    manager:   "이도경",
+    phone:     "063-226-7000",
+    email:     "true-dream@naver.com",
+  },
 
   company: {
     name:      "주식회사 더블루파트너스",
@@ -39,7 +55,10 @@ const config = {
   ],
 
   hero: {
-    title:    "전주 아르티엠\n라 테라스",
+    eyebrow:       "특별공급｜선착순",
+    eyebrowUrgent: 1,
+    brand:         "전주 아르티엠 라 테라스",
+    title:    "전주 아르티엠 라 테라스\n전주역 개발 최대 수혜지\n프라이빗 테라스와 스카이뷰까지",
     subtitle: "모델하우스 대표번호 1800-0000",
     bgColor:  "#1e293b", // TODO: 히어로 이미지 스포이드로 추출한 배경색으로 교체
     image: {
@@ -48,6 +67,24 @@ const config = {
       width:  1125,
       height: 1923,
     },
+  },
+
+  // 히어로 바로 다음에 노출되는 4가지 특성화 세로 리스트 — 이 현장 전용(benefits 필드가 없으면 렌더링되지 않음)
+  benefits: {
+    eyebrow: "SPECIAL 4",
+    brand:   "전주 아르티엠 라 테라스",
+    title:   "특별한\n4가지 특성화",
+    desc:    "전주 아르티엠 라 테라스만의 특별한 조건을 확인하세요.",
+    bgImage: {
+      src: "/apt/jeonju-artiem-laterrace/main.webp",
+      alt: "전주 아르티엠 라테라스 대표 이미지",
+    },
+    items: [
+      { num: "01", label: "씨티뷰\n전주역 복합도시" },
+      { num: "02", label: "파크뷰\n도당산, 인후공원" },
+      { num: "03", label: "내집안에\n넓은 테라스" },
+      { num: "04", label: "스카이 브릿지\n피트니스" },
+    ],
   },
 
   sections: [
@@ -71,22 +108,30 @@ const config = {
   ],
 
   theme: {
-    // ── 브랜드 컬러 ── TODO: 실제 브랜드 컬러로 교체
+    // ── 브랜드 컬러 ── 남색·하늘색 위주 팔레트
+    // 다크: #1e293b(슬레이트 네이비) / 포인트: #1e3a5f(네이비)~#7ec8e3(하늘색)
     hero: {
       curtainColor: "#1e293b",
+      imageFit:     "100% auto", // cover로 크롭하면 건물이 과하게 확대돼 보여, 원본 비율 그대로(가로 100%) 유지
     },
 
     // 섹션 헤더 구분선
     ImageSection_divider: {
-      background: "#1d4ed8",
+      background: "linear-gradient(90deg, #1e3a5f, #7ec8e3)",
       width:      "40px",
       height:     "3px",
     },
 
     // 상단 고정 네비게이션 활성 메뉴
     TopNav_active: {
-      color:       "#1d4ed8",
-      borderColor: "#1d4ed8",
+      color:       "#1e3a5f",
+      borderColor: "#1e3a5f",
+    },
+
+    // 히어로 배지(eyebrow) — 남색
+    eyebrow: {
+      color:       "#1e3a5f",
+      borderColor: "rgba(30, 58, 95, 0.5)",
     },
 
     // 히어로 메인 타이틀
@@ -106,7 +151,7 @@ const config = {
     },
     // 상담 신청 버튼
     ContactForm_submitBtn: {
-      background: "#1d4ed8",
+      background: "#1e3a5f",
       color:      "#ffffff",
       fontSize:   "1.15rem",
     },
@@ -117,7 +162,7 @@ const config = {
       color:      "#1e293b",
     },
     BottomBar_regBtn: {
-      background: "#1d4ed8",
+      background: "#1e3a5f",
       color:      "#ffffff",
     },
   },

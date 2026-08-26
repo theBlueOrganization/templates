@@ -14,13 +14,13 @@ export default function ClientFooter({ clientCompany, telNumber, theme }) {
   return (
     <div className={styles.wrap}>
       <div className={styles.container}>
-        {companies.map(({ roleLabel, name, bizNumber, representative, address }, i) => {
+        {companies.map(({ roleLabel, name, bizNumber, representative, address, manager, phone, email }, i) => {
           const isPrimary = i === 0;
           const showTel = isPrimary && telNumber;
           // roleLabel(예: "시행사")이 있으면 상호명을 헤딩이 아니라 grid 안 라벨/값 한 행으로 표시
           // — 사업자 등록번호·대표자 등 다른 항목들과 같은 column-gap으로 간격이 맞춰짐
           const nameInGrid = Boolean(roleLabel);
-          const hasAnyRow = showTel || (nameInGrid && name) || bizNumber || representative || address;
+          const hasAnyRow = showTel || (nameInGrid && name) || bizNumber || representative || address || manager || phone || email;
 
           // 전화번호·사업자번호는 SiteFooter보다 강조된 톤 유지, 대표자·주소는 기본 톤 (첫 번째 회사에만 적용)
           const nameTh = themeFor(th.ClientFooter_name, i);
@@ -64,6 +64,24 @@ export default function ClientFooter({ clientCompany, telNumber, theme }) {
                     <>
                       <span className={styles.key} style={keyStyle}>대표자</span>
                       <span className={styles.value} style={valueStyle}>{representative}</span>
+                    </>
+                  )}
+                  {manager && (
+                    <>
+                      <span className={styles.key} style={keyStyle}>관리자</span>
+                      <span className={styles.value} style={valueStyle}>{manager}</span>
+                    </>
+                  )}
+                  {phone && (
+                    <>
+                      <span className={styles.key} style={keyStyle}>전화번호</span>
+                      <span className={styles.value} style={valueStyle}>{phone}</span>
+                    </>
+                  )}
+                  {email && (
+                    <>
+                      <span className={styles.key} style={keyStyle}>이메일</span>
+                      <span className={styles.value} style={valueStyle}>{email}</span>
                     </>
                   )}
                   {address && (

@@ -130,8 +130,9 @@
 .galleryGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  padding: 0 20px;
+  gap: 16px;
+  padding: 0 40px;
+  margin-top: 32px;
 }
 
 .galleryItem {
@@ -143,6 +144,10 @@
   overflow: hidden;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+}
+
+.galleryItemStatic {
+  cursor: default;
 }
 
 .galleryImg {
@@ -193,9 +198,9 @@
   padding: 8px 10px;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent);
   color: #ffffff;
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  text-align: left;
+  text-align: right;
 }
 
 .lightboxOverlay {

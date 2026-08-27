@@ -2,10 +2,8 @@
  * 현장 슬러그: jeonju-artiem-laterrace
  * URL: /apt/jeonju-artiem-laterrace
  *
- * TODO: 사업개요 스펙 데이터만 확정된 스켈레톤입니다.
- * 히어로/입지환경/프리미엄/단지설계/커뮤니티/평면도 등 나머지 이미지·문구·색상은
- * 실제 데이터(Figma, 이미지 에셋)가 오면 채워 넣어야 합니다.
- * 이미지는 public/apt/jeonju-artiem-laterrace/ 폴더에 아직 없으므로 반드시 추가해야 합니다.
+ * TODO: 사업개요/입지환경/단지안내/커뮤니티/평면도 섹션 구조는 잡혀 있으나,
+ * 프리미엄/단지설계 섹션은 아직 없습니다.
  */
 
 const config = {
@@ -14,7 +12,7 @@ const config = {
   projectName: "전주아르티엠라테라스",
   shortName:   "전주 아르티엠 라테라스",
   telNumber:   "063-226-7000",
-  ogImage:     "/apt/jeonju-artiem-laterrace/share_img.webp", // TODO: 실제 OG 이미지로 교체
+  ogImage:     "/apt/jeonju-artiem-laterrace/1.webp",
   adminPhones:  ["01027085600"],
   sheetId:      "",
   sheetTab:     "전주아르티엠라테라스",
@@ -61,12 +59,12 @@ const config = {
     brand:         "전주 아르티엠 라 테라스",
     title:    "전주 아르티엠 라 테라스\n전주역 개발 최대 수혜지\n프라이빗 테라스와 스카이뷰까지",
     subtitle: "[선착순] 사전 청약 접수 시작",
-    bgColor:  "#1e293b", // TODO: 히어로 이미지 스포이드로 추출한 배경색으로 교체
+    bgColor:  "#24263D",
     image: {
-      src:    "/apt/jeonju-artiem-laterrace/main.webp",
+      src:    "/apt/jeonju-artiem-laterrace/1.webp",
       alt:    "전주 아르티엠 라테라스 대표 이미지",
-      width:  1125,
-      height: 1923,
+      width:  1024,
+      height: 511,
     },
   },
 
@@ -122,35 +120,67 @@ const config = {
         { src: "/apt/jeonju-artiem-laterrace/2-2.webp", alt: "전주 아르티엠 라테라스 단지안내" },
       ],
     },
-    // TODO: 프리미엄/단지설계/커뮤니티/평면도 등 나머지 섹션은
+    {
+      id:       "community",
+      type:     "image",
+      navLabel: "커뮤니티",
+      title:    "커뮤니티",
+      images: [
+        { src: "/apt/jeonju-artiem-laterrace/3.webp",   alt: "전주 아르티엠 라테라스 커뮤니티" },
+        { src: "/apt/jeonju-artiem-laterrace/3-1.webp", alt: "전주 아르티엠 라테라스 커뮤니티" },
+      ],
+      // 거제(centreville-geoje) 커뮤니티 섹션과 동일한 2단 그리드 갤러리 — 단, 클릭 확대(라이트박스)는 비활성화
+      gallery: [
+        { src: "/apt/jeonju-artiem-laterrace/community-5.webp",  alt: "전주 아르티엠 라테라스 실내놀이터", label: "실내놀이터" },
+        { src: "/apt/jeonju-artiem-laterrace/community-6.webp",  alt: "전주 아르티엠 라테라스 경로당",     label: "경로당" },
+        { src: "/apt/jeonju-artiem-laterrace/community-7.webp",  alt: "전주 아르티엠 라테라스 주민카페",   label: "주민카페" },
+        { src: "/apt/jeonju-artiem-laterrace/community-8.webp",  alt: "전주 아르티엠 라테라스 멀티룸",     label: "멀티룸" },
+        { src: "/apt/jeonju-artiem-laterrace/community-9.webp",  alt: "전주 아르티엠 라테라스 어린이집",   label: "어린이집" },
+        { src: "/apt/jeonju-artiem-laterrace/community-10.webp", alt: "전주 아르티엠 라테라스 피트니스",   label: "피트니스" },
+        { src: "/apt/jeonju-artiem-laterrace/community-1.webp",  alt: "전주 아르티엠 라테라스 커뮤니티" },
+        { src: "/apt/jeonju-artiem-laterrace/community-2.webp",  alt: "전주 아르티엠 라테라스 커뮤니티" },
+        { src: "/apt/jeonju-artiem-laterrace/community-3.webp",  alt: "전주 아르티엠 라테라스 커뮤니티" },
+        { src: "/apt/jeonju-artiem-laterrace/community-4.webp",  alt: "전주 아르티엠 라테라스 커뮤니티" },
+      ],
+      galleryLightbox: false,
+    },
+    {
+      id:       "floorplan",
+      type:     "image",
+      navLabel: "평면도",
+      title:    "평면도",
+      images: [
+        { src: "/apt/jeonju-artiem-laterrace/2-4.webp", alt: "전주 아르티엠 라테라스 평면도" },
+      ],
+    },
+    // TODO: 프리미엄/단지설계 등 나머지 섹션은
     // 이미지·문구 데이터 확정 후 추가
   ],
 
   theme: {
-    // ── 브랜드 컬러 ── 남색·하늘색 위주 팔레트
-    // 다크: #1e293b(슬레이트 네이비) / 포인트: #1e3a5f(네이비)~#7ec8e3(하늘색)
+    // ── 브랜드 컬러 ── 다크 네이비 + 골드 2색 팔레트
+    // 다크: #24263D / 포인트: #D7A266(골드)
     hero: {
-      curtainColor: "#1e293b",
-      imageFit:     "100% auto", // cover로 크롭하면 건물이 과하게 확대돼 보여, 원본 비율 그대로(가로 100%) 유지
+      curtainColor: "#24263D",
     },
 
     // 섹션 헤더 구분선
     ImageSection_divider: {
-      background: "linear-gradient(90deg, #1e3a5f, #7ec8e3)",
+      background: "#D7A266",
       width:      "40px",
       height:     "3px",
     },
 
     // 상단 고정 네비게이션 활성 메뉴
     TopNav_active: {
-      color:       "#1e3a5f",
-      borderColor: "#1e3a5f",
+      color:       "#D7A266",
+      borderColor: "#D7A266",
     },
 
-    // 히어로 배지(eyebrow) — 남색
+    // 히어로 배지(eyebrow) — 골드
     eyebrow: {
-      color:       "#1e3a5f",
-      borderColor: "rgba(30, 58, 95, 0.5)",
+      color:       "#D7A266",
+      borderColor: "rgba(215, 162, 102, 0.5)",
     },
 
     // 히어로 메인 타이틀
@@ -166,23 +196,23 @@ const config = {
 
     // 상담 신청 섹션 배경
     contactSection: {
-      background: "#1e293b",
+      background: "#24263D",
     },
     // 상담 신청 버튼
     ContactForm_submitBtn: {
-      background: "#1e3a5f",
-      color:      "#ffffff",
+      background: "#D7A266",
+      color:      "#24263D",
       fontSize:   "1.15rem",
     },
 
-    // 하단 고정 버튼바
+    // 하단 고정 버튼바 — 네이비/골드 두 버튼이 짝을 이루도록
     BottomBar_callBtn: {
-      background: "#e2e8f0",
-      color:      "#1e293b",
+      background: "#24263D",
+      color:      "#ffffff",
     },
     BottomBar_regBtn: {
-      background: "#1e3a5f",
-      color:      "#ffffff",
+      background: "#D7A266",
+      color:      "#24263D",
     },
   },
 

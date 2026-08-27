@@ -194,15 +194,21 @@ export default function SignatureInterestPopup({ interest, config, onClose }) {
               </button>
             </form>
 
-            {interest?.giftText && (
-              <div className={styles.giftBox}>
-                {interest.giftText.split('\n').map((line, i) => (
-                  <p key={i} className={styles[`giftLine${i}`] ?? styles.giftLine2}>
-                    {line}
-                  </p>
-                ))}
-              </div>
-            )}
+            {interest?.giftText && (() => {
+              const [heading, ...rest] = interest.giftText.split('\n')
+              return (
+                <div className={styles.giftWrap}>
+                  <div className={styles.giftBox}>
+                    <p className={styles.giftLine0}>{heading}</p>
+                    {rest.map((line, i) => (
+                      <p key={i} className={i === 0 ? styles.giftLine1 : styles.giftLine2}>
+                        {line}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              )
+            })()}
           </motion.div>
         </motion.div>
       )}

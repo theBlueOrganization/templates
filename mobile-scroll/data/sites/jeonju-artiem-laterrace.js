@@ -12,7 +12,7 @@ const config = {
   projectName: "전주아르티엠라테라스",
   shortName:   "전주 아르티엠 라테라스",
   telNumber:   "063-226-7000",
-  ogImage:     "/apt/jeonju-artiem-laterrace/1.webp",
+  ogImage:     "/apt/jeonju-artiem-laterrace/og.webp",
   adminPhones:  ["01027085600"],
   sheetId:      "",
   sheetTab:     "전주아르티엠라테라스",

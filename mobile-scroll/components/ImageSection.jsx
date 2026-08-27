@@ -43,6 +43,7 @@ export default function ImageSection({
   images = [],
   tabs,         // 있으면 [{ label, images, specItems }] 탭 메뉴로 전환해서 보여줌 (없으면 기존과 동일하게 images/specItems 그대로 사용)
   gallery,      // 있으면 [{ src, alt, label? }] 2단 그리드 갤러리 노출 — 클릭하면 라이트박스로 크게 보임 (없으면 기존과 동일)
+  galleryLightbox = true, // false면 갤러리를 그리드로만 보여주고 클릭 확대(라이트박스)를 비활성화 (미설정 시 기존과 동일)
   theme,
   utmOnly,      // 있으면 이 utm_source 목록에 해당하는 방문자에게만 섹션 노출 (없으면 항상 노출, 기존 현장 영향 없음)
   utmExclude,   // 있으면 이 utm_source 목록에 해당하는 방문자에게만 섹션을 숨김 (그 외에는 기본 노출, 없으면 기존과 동일)
@@ -256,27 +257,34 @@ export default function ImageSection({
       {hasGallery && (
         <FadeUp delay={100}>
           <div className={styles.galleryGrid}>
-            {gallery.map((g, idx) => (
-              <button
-                key={idx}
-                type="button"
-                className={styles.galleryItem}
-                onClick={() => setLightboxIndex(idx)}
-              >
-                <img src={g.src} alt={g.alt ?? ""} className={styles.galleryImg} />
-                <span className={styles.galleryIcon} aria-hidden="true">
-                  <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15.625 3.125C8.732 3.125 3.125 8.732 3.125 15.625S8.732 28.125 15.625 28.125c3.283 0 6.27-1.268 8.504-3.338l8.809 8.809a1.563 1.563 0 0 0 2.21-2.21l-8.809-8.809a12.53 12.53 0 0 0 3.286-8.502C28.125 8.732 22.518 3.125 15.625 3.125zm0 3.125a9.375 9.375 0 1 1 0 18.75 9.375 9.375 0 0 1 0-18.75z" fill="#fff"/>
-                  </svg>
-                </span>
-                {g.label && <span className={styles.galleryLabel}>{g.label}</span>}
-              </button>
-            ))}
+            {gallery.map((g, idx) =>
+              galleryLightbox ? (
+                <button
+                  key={idx}
+                  type="button"
+                  className={styles.galleryItem}
+                  onClick={() => setLightboxIndex(idx)}
+                >
+                  <img src={g.src} alt={g.alt ?? ""} className={styles.galleryImg} />
+                  <span className={styles.galleryIcon} aria-hidden="true">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M15.625 3.125C8.732 3.125 3.125 8.732 3.125 15.625S8.732 28.125 15.625 28.125c3.283 0 6.27-1.268 8.504-3.338l8.809 8.809a1.563 1.563 0 0 0 2.21-2.21l-8.809-8.809a12.53 12.53 0 0 0 3.286-8.502C28.125 8.732 22.518 3.125 15.625 3.125zm0 3.125a9.375 9.375 0 1 1 0 18.75 9.375 9.375 0 0 1 0-18.75z" fill="#fff"/>
+                    </svg>
+                  </span>
+                  {g.label && <span className={styles.galleryLabel}>{g.label}</span>}
+                </button>
+              ) : (
+                <div key={idx} className={`${styles.galleryItem} ${styles.galleryItemStatic}`}>
+                  <img src={g.src} alt={g.alt ?? ""} className={styles.galleryImg} />
+                  {g.label && <span className={styles.galleryLabel}>{g.label}</span>}
+                </div>
+              )
+            )}
           </div>
         </FadeUp>
       )}
 
-      {hasGallery && lightboxIndex !== null && (
+      {hasGallery && galleryLightbox && lightboxIndex !== null && (
         <div className={styles.lightboxOverlay} onClick={() => setLightboxIndex(null)}>
           <button
             type="button"

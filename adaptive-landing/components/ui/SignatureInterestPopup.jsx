@@ -105,9 +105,11 @@ export default function SignatureInterestPopup({ interest, config, onClose }) {
             transition={{ duration: 0.25 }}
             onClick={(e) => e.stopPropagation()}
           >
-            <button type="button" onClick={handleClose} aria-label="팝업 닫기" className={styles.closeIcon}>
-              ✕
-            </button>
+            <div className={styles.closeBtnWrap}>
+              <button type="button" onClick={handleClose} aria-label="팝업 닫기" className={styles.closeIcon}>
+                ✕
+              </button>
+            </div>
 
             <p className={styles.eyebrow}>{interest?.eyebrow ?? 'INTEREST'}</p>
             <h2 className={styles.title}>{interest?.title ?? '관심고객등록'}</h2>

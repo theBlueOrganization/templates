@@ -56,10 +56,19 @@ const config = {
     },
 
     // 원종역과 동일한 구조 — popup.webp 파일만 올리면 바로 그 이미지로 나옴 (진입 약 3초 후 노출)
+    // interest(관심고객등록 팝업)가 먼저 뜨고, 닫히면 이 이미지 팝업이 이어서 뜬다 (SignaturePopupSequence 참고)
     popup: {
       enabled: true,
       image: { src: '/apt/the-sharp-songdo-grand-terre/popup.webp', alt: '더샵 송도 그란테르 계약 이벤트 안내', width: 688, height: 911 },
       closeLabel: '팝업닫기',
+      interest: {
+        enabled: true,
+        eyebrow: 'INTEREST',
+        title: '관심고객등록',
+        desc: '이름과 연락처만 남겨주시면\n더샵 송도 그란테르 분양 정보를\n가장 먼저 안내해드립니다.',
+        submitLabel: '관심고객 등록',
+        giftText: '방문/계약고객\n선착순 10명\n신세계백화점 상품권 30만원 증정',
+      },
     },
 
     quickMenu: {

@@ -357,13 +357,14 @@
 
   .rightPanel {
     flex: 1;
+    min-width: 0;
   }
 
   .circleStage {
-    width: 760px;
-    height: 760px;
+    width: min(760px, 100%);
+    aspect-ratio: 1 / 1;
     max-width: 760px;
-    border-radius: 380px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -371,7 +372,7 @@
   }
 
   .planImageWrap {
-    max-width: 570px;
+    max-width: min(570px, 75%);
     margin-bottom: 30px;
   }
 

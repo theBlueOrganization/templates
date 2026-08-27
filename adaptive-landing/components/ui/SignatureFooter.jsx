@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useUtmSource } from '../../lib/useUtmSource'
 import styles from './SignatureFooter.module.css'
 
-// eupseong-prugio 전용 푸터 — 시행/시공/온라인대행 등 다중 회사정보 라인 + Family Site 셀렉트를 포함
+// 전 현장 공용 푸터 — 시행/시공/온라인대행 등 다중 회사정보 라인 포함
 export default function SignatureFooter({ footer, telNumber, telNumberByUtm, projectName }) {
   // telNumberByUtm에 등록된 utm_source로 들어온 경우에만 노출 전화번호를 덮어씀 (SignatureHeader/SignatureHero와 동일 규칙)
   const utmSource = useUtmSource()
@@ -22,15 +22,6 @@ export default function SignatureFooter({ footer, telNumber, telNumberByUtm, pro
           </div>
           <div className={styles.topRight}>
             <p className={styles.slogan}>{footer.agencySlogan}</p>
-            <label className={styles.familySelectWrap}>
-              <select className={styles.familySelect} defaultValue="">
-                <option value="" disabled>
-                  Family Site
-                </option>
-                <option value="daewoo">(주)대우건설</option>
-                <option value="thebluepartners">주식회사 더블루파트너스</option>
-              </select>
-            </label>
           </div>
         </div>
 

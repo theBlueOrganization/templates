@@ -52,14 +52,14 @@ export default async function AptPage({ params }) {
   if (!site) notFound()
 
   const sig = site.signature
-  // header.gnb 순서(사업안내/입지환경/프리미엄/단지안내/세대안내/커뮤니티/상담신청 및 방문예약)와 1:1로 매칭되는 실제 섹션 id
+  // header.gnb 순서와 1:1로 매칭되는 실제 섹션 id — club은 현장에 따라 통째로 뺄 수 있어 선택적으로 포함
   const sectionIds = [
     sig.summary.id,
     sig.location.id,
     sig.premiumValue.id,
     sig.complex.id,
     sig.unitPlan.id,
-    sig.club.id,
+    ...(sig.club ? [sig.club.id] : []),
     sig.vipForm.id,
   ]
 
@@ -109,13 +109,14 @@ export default async function AptPage({ params }) {
         {sig.landscape && <SignatureLandscape landscape={sig.landscape} />}
         <SignatureComplex complex={sig.complex} />
         <SignatureUnitPlan unitPlan={sig.unitPlan} />
-        {sig.club.variant === 'simple' ? (
-          <SignatureClubSimple club={sig.club} />
-        ) : sig.club.variant === 'zones' ? (
-          <SignatureClubZones club={sig.club} />
-        ) : (
-          <SignatureClub club={sig.club} />
-        )}
+        {sig.club &&
+          (sig.club.variant === 'simple' ? (
+            <SignatureClubSimple club={sig.club} />
+          ) : sig.club.variant === 'zones' ? (
+            <SignatureClubZones club={sig.club} />
+          ) : (
+            <SignatureClub club={sig.club} />
+          ))}
         <SignatureVipForm config={site} />
       </main>
       <SignatureFooter

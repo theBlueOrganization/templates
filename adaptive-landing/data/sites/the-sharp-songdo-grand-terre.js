@@ -50,7 +50,7 @@ const config = {
       // 헤더 배경이 짙은 네이비(var(--navy))라 흰색 반전 로고(logo-white.webp) 사용
       logo: { src: '/apt/the-sharp-songdo-grand-terre/logo-white.webp', alt: '더샵 송도 그란테르', width: 260, height: 33 },
       logoSize: { base: 100, lg: 150, xl: 170 },
-      gnb: ['사업안내', '입지환경', '프리미엄', '단지안내', '세대안내', '커뮤니티', '상담신청 및 방문예약'],
+      gnb: ['사업안내', '입지환경', '프리미엄', '단지안내', '세대안내', '상담신청 및 방문예약'],
       quickCtaLabel: '관심고객등록',
       phone: '1800-2261',
     },
@@ -588,30 +588,6 @@ const config = {
             },
           ],
         },
-      ],
-    },
-
-    club: {
-      id: 'community',
-      navLabel: '커뮤니티',
-      variant: 'zones',
-      intro: {
-        eyebrow: 'PRIME COMMUNITY',
-        titleLine1: '당신이 무엇을 기대하든 그 이상',
-        titleLine2: '클래스가 다른 커뮤니티',
-        desc: '블록마다 마련된 다채로운 프리미엄 커뮤니티 시설을 만나보세요.',
-      },
-      // 이미지 자체가 이미 "1BL SPORTS ZONE" 같은 존 배너+텍스트+사진이 다 합쳐진 완성된 섹션 캡처라
-      // 폭:높이 비율이 이미지마다 다름 — 원본 비율 그대로 세로로 쌓아서 보여줌(가로 하나 꽉 채움)
-      gallery: [
-        { image: { src: '/apt/the-sharp-songdo-grand-terre/community1.webp', alt: '1BL 스포츠존', width: 850, height: 591 } },
-        { image: { src: '/apt/the-sharp-songdo-grand-terre/community2.webp', alt: '1BL 에듀존', width: 850, height: 579 } },
-        { image: { src: '/apt/the-sharp-songdo-grand-terre/community3.webp', alt: '1BL 컬처존', width: 850, height: 501 } },
-        { image: { src: '/apt/the-sharp-songdo-grand-terre/community4.webp', alt: '3~6BL 컬처존', width: 850, height: 527 } },
-        { image: { src: '/apt/the-sharp-songdo-grand-terre/community5.webp', alt: '3~6BL 스포츠존', width: 850, height: 282 } },
-        { image: { src: '/apt/the-sharp-songdo-grand-terre/community6.webp', alt: '11BL 컬처존', width: 850, height: 373 } },
-        { image: { src: '/apt/the-sharp-songdo-grand-terre/community7.webp', alt: '11BL 스포츠존', width: 850, height: 725 } },
-        { image: { src: '/apt/the-sharp-songdo-grand-terre/community8.webp', alt: '11BL 에듀존', width: 850, height: 332 } },
       ],
     },
 

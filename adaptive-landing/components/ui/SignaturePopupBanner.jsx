@@ -8,14 +8,14 @@ import styles from './SignaturePopupBanner.module.css'
 // 원종역 월드메르디앙 포레 전용 진입 팝업 — 디자인 완성본 이미지(popup.image) 아래에
 // 하단 "팝업닫기" 바만 코드로 얹음. 현장 데이터의 popup.enabled가 true일 때만 렌더링됨
 // (app/apt/[slug]/page.jsx에서 조건부 렌더).
-export default function SignaturePopupBanner({ popup }) {
+export default function SignaturePopupBanner({ popup, openDelayMs = 2900 }) {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
     if (!popup.enabled) return
-    const t = setTimeout(() => setOpen(true), 2900)
+    const t = setTimeout(() => setOpen(true), openDelayMs)
     return () => clearTimeout(t)
-  }, [popup.enabled])
+  }, [popup.enabled, openDelayMs])
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''

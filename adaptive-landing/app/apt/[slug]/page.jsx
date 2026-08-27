@@ -3,7 +3,7 @@ import { getSiteBySlug, getAllSlugs } from '../../../data/siteRegistry'
 import SignatureHeader from '../../../components/ui/SignatureHeader'
 import SignatureFooter from '../../../components/ui/SignatureFooter'
 import SignatureQuickMenu from '../../../components/ui/SignatureQuickMenu'
-import SignaturePopupBanner from '../../../components/ui/SignaturePopupBanner'
+import SignaturePopupSequence from '../../../components/ui/SignaturePopupSequence'
 import SignatureMobileBottomBar from '../../../components/ui/SignatureMobileBottomBar'
 import SignatureHero from '../../../components/sections/SignatureHero'
 import SignatureHeroMinimal from '../../../components/sections/SignatureHeroMinimal'
@@ -126,7 +126,7 @@ export default async function AptPage({ params }) {
         projectName={site.projectName}
       />
       {sig.quickMenu && <SignatureQuickMenu quickMenu={sig.quickMenu} telNumberByUtm={site.telNumberByUtm} />}
-      {sig.popup?.enabled && <SignaturePopupBanner popup={sig.popup} />}
+      <SignaturePopupSequence popup={sig.popup} config={site} />
       {sig.hero.mobileBar && (
         <SignatureMobileBottomBar
           telNumber={site.telNumber}

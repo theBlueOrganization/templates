@@ -111,7 +111,7 @@ export default function SignatureInterestPopup({ interest, config, onClose }) {
 
             <p className={styles.eyebrow}>{interest?.eyebrow ?? 'INTEREST'}</p>
             <h2 className={styles.title}>{interest?.title ?? '관심고객등록'}</h2>
-            <p className={styles.desc}>{interest?.desc ?? '이름과 연락처만 남겨주시면\n분양 정보를 가장 먼저 안내해드립니다.'}</p>
+            <p className={styles.desc}>{interest?.desc ?? '간단한 정보를 입력해 주시면\n분양 정보를 가장 먼저 안내해드립니다.'}</p>
 
             <form onSubmit={handleSubmit} noValidate className={styles.form}>
               <span className={styles.fieldLabel}>이름</span>

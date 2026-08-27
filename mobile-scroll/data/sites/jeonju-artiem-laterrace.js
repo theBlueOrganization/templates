@@ -19,7 +19,7 @@ const config = {
   kakao:        true, // 카카오 알림톡 발송 — 템플릿ID 미설정 시 SMS로 자동 폴백
 
   popup: {
-    enabled: true,
+    enabled: false,
     image: {
       src: "/apt/jeonju-artiem-laterrace/popup.webp",
       alt: "전주 아르티엠 라테라스 팝업",

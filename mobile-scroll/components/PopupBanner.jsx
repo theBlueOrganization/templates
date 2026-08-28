@@ -93,6 +93,12 @@ export default function PopupBanner({ popup, popupByUtm }) {
     }
   };
 
+  // 잠금이 아직 걸린 상태라 지금 scrollIntoView를 호출해도 씹힘 — 잠금 해제 시점에 이동하도록 예약
+  const scrollToAndClose = (targetSelector) => {
+    pendingScrollTargetRef.current = document.querySelector(targetSelector);
+    setOpen(false);
+  };
+
   // 이미지 안에 그려진 버튼 위치(cta.rect, % 기준)를 클릭했을 때의 동작 —
   // cta.target(예: "#contact-section")이면 남은 팝업은 건너뛰고 그 섹션으로 스크롤 이동,
   // cta.tel(전화번호)이면 바로 전화 연결(tel:). rect와 둘 중 하나가 있을 때만 유효 (부분 설정은 무시)
@@ -100,9 +106,15 @@ export default function PopupBanner({ popup, popupByUtm }) {
   const handleCtaClick = (e) => {
     if (!cta || cta.tel) return;
     e.stopPropagation();
-    // 잠금이 아직 걸린 상태라 지금 scrollIntoView를 호출해도 씹힘 — 잠금 해제 시점에 이동하도록 예약
-    pendingScrollTargetRef.current = document.querySelector(cta.target);
-    setOpen(false);
+    scrollToAndClose(cta.target);
+  };
+
+  // 이미지 하단에 보이는 버튼 — cta 핫스폿과 달리 이미지 위 좌표 지정 없이 항상 이미지 아래에 노출됨
+  const actionButton =
+    currentImage.actionButton?.label && currentImage.actionButton?.target ? currentImage.actionButton : null;
+  const handleActionButtonClick = (e) => {
+    e.stopPropagation();
+    scrollToAndClose(actionButton.target);
   };
 
   return (
@@ -116,11 +128,33 @@ export default function PopupBanner({ popup, popupByUtm }) {
             ✕
           </button>
         </div>
-        <img
-          src={currentImage.src}
-          alt={currentImage.alt ?? ""}
-          className={styles.img}
-        />
+        {actionButton ? (
+          // 버튼이 있는 팝업은 이미지만 자체 스크롤박스에 넣어, 이미지 길이와 무관하게
+          // 버튼은 항상 그 아래 고정된 위치에 그대로 보이도록 분리함
+          <div className={styles.imgScroll}>
+            <img
+              src={currentImage.src}
+              alt={currentImage.alt ?? ""}
+              className={styles.img}
+            />
+          </div>
+        ) : (
+          <img
+            src={currentImage.src}
+            alt={currentImage.alt ?? ""}
+            className={styles.img}
+          />
+        )}
+        {actionButton && (
+          <button
+            type="button"
+            className={styles.actionBtn}
+            style={{ background: actionButton.background, color: actionButton.color }}
+            onClick={handleActionButtonClick}
+          >
+            {actionButton.label}
+          </button>
+        )}
         {cta && cta.tel && (
           <a
             href={`tel:${cta.tel}`}

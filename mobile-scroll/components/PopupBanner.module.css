@@ -45,6 +45,15 @@
   height: auto;
 }
 
+/* actionBtn이 있는 팝업 전용 — 이미지를 자체 스크롤박스에 가둬서, 이미지가 아무리 길어도
+   버튼은 이 박스 바로 아래(카드의 일반 흐름)에 항상 고정 노출됨. 카드 자체 스크롤/sticky에
+   기대지 않아 PC·모바일 뷰포트 크기와 무관하게 항상 보임 */
+.imgScroll {
+  max-height: min(65vh, 620px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .closeBtn {
   position: absolute;
   top: 10px;
@@ -66,6 +75,24 @@
 
 .closeBtn:hover {
   background: rgba(0, 0, 0, 0.85);
+}
+
+.actionBtn {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 14px;
+  border: none;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.actionBtn:active {
+  opacity: 0.85;
 }
 
 .ctaHotspot {

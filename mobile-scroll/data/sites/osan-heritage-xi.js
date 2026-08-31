@@ -38,28 +38,19 @@ const config = {
     },
   ],
 
-  popup: [
-    {
-      enabled: true,
-      image: {
-        src: "/apt/osan-heritage-xi/popup1.webp",
-        alt: "오산헤리티지자이 팝업1",
-        actionButton: {
-          label: "방문예약하기",
-          target: "#contact-section",
-          background: "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 55%, #1e3a5f 100%)",
-          color: "#ffffff",
-        },
+  popup: {
+    enabled: true,
+    image: {
+      src: "/apt/osan-heritage-xi/popup2.webp",
+      alt: "오산헤리티지자이 팝업2",
+      actionButton: {
+        label: "관심고객등록",
+        target: "#contact-section",
+        background: "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 55%, #1e3a5f 100%)",
+        color: "#ffffff",
       },
     },
-    {
-      enabled: true,
-      image: {
-        src: "/apt/osan-heritage-xi/popup2.webp",
-        alt: "오산헤리티지자이 팝업2",
-      },
-    },
-  ],
+  },
 
   company: {
     name:      "주식회사 더블루파트너스",

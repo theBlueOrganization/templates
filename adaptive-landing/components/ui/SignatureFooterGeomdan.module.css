@@ -53,7 +53,6 @@
 .operator {
   margin-top: 18px;
   padding-top: 18px;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .operatorTitle {
@@ -79,23 +78,12 @@
   color: rgba(255, 255, 255, 0.44);
 }
 
-.updated {
-  font-size: 11px;
-  letter-spacing: 0.02em;
-  color: rgba(255, 255, 255, 0.32);
-}
-
-.updated time {
-  color: rgba(255, 255, 255, 0.48);
-}
-
 .copy {
   margin-top: 18px;
   padding-top: 16px;
   font-size: 10.5px;
   letter-spacing: 0.12em;
   color: rgba(255, 255, 255, 0.25);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 @media (min-width: 768px) {

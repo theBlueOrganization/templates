@@ -17,8 +17,10 @@ export default function SignatureHeroGeomdan({ hero }) {
         <h1>
           {hero.titleLine1}
           <br />
-          <em>{hero.titleAccent}</em>
-          {hero.titleSuffix}
+          <span className={styles.titleLine2}>
+            <em>{hero.titleAccent}</em>
+            {hero.titleSuffix}
+          </span>
         </h1>
       </div>
       <div className={styles.seal} aria-label="민간분양 · 분양가상한제 적용단지">

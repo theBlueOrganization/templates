@@ -36,9 +36,6 @@ export default function SignatureFooterGeomdan({ footer, projectName }) {
 
       <div className={styles.bottom}>
         <p>{footer.bottomNote}</p>
-        <p className={styles.updated}>
-          최종 업데이트 <time>{footer.updatedDate}</time>
-        </p>
       </div>
 
       <p className={styles.copy}>

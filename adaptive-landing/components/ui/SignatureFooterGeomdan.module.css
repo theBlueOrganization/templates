@@ -1,0 +1,125 @@
+.footer {
+  padding: 40px 20px 100px;
+  color: rgba(255, 255, 255, 0.55);
+  background: #05131f;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.brand {
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: #fff;
+}
+
+.brand span {
+  margin-left: 8px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  margin: 0;
+}
+
+.meta > div {
+  display: flex;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.meta dt {
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.36);
+}
+
+.meta dd {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.operator {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.operatorTitle {
+  margin: 0 0 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.bottom p {
+  max-width: 62ch;
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.44);
+}
+
+.updated {
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.32);
+}
+
+.updated time {
+  color: rgba(255, 255, 255, 0.48);
+}
+
+.copy {
+  margin-top: 18px;
+  padding-top: 16px;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.25);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (min-width: 768px) {
+  .footer {
+    padding: 56px 40px 60px;
+  }
+
+  .top {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 20px 48px;
+  }
+
+  .bottom {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer {
+    padding: 60px 7vw 60px;
+  }
+}

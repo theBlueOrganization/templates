@@ -1,0 +1,176 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  min-height: 100svh;
+  padding: 112px 0 128px;
+  color: #fff;
+  background: #071a2b;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: center;
+  animation: heroZoom 24s ease-in-out infinite alternate;
+}
+
+@keyframes heroZoom {
+  0% {
+    transform: scale(1.04);
+  }
+  to {
+    transform: scale(1.12);
+  }
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(2, 15, 24, 0.56), rgba(2, 14, 22, 0.13) 62%, rgba(2, 14, 22, 0.03)),
+    linear-gradient(transparent 68%, rgba(6, 24, 38, 0.36) 91%, rgba(6, 24, 38, 0.9) 100%);
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 0 24px;
+}
+
+.eyebrow {
+  margin: 0 0 16px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+}
+
+.hero h1 {
+  margin: 0 0 28px;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(32px, 8.4vw, 42px);
+  line-height: 1.32;
+  letter-spacing: -0.005em;
+}
+
+.hero h1 em {
+  font-style: normal;
+  font-weight: 600;
+  color: #a9dcea;
+}
+
+.seal {
+  position: absolute;
+  z-index: 3;
+  bottom: 104px;
+  right: 18px;
+  width: 104px;
+  height: 104px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.seal svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  animation: sealSpin 20s linear infinite;
+}
+
+.seal text {
+  fill: rgba(255, 255, 255, 0.7);
+  font: 700 7.6px/1 Arial, sans-serif;
+  letter-spacing: 1px;
+}
+
+@keyframes sealSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.sealCore {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 8px;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+}
+
+.sealCore strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #a9dcea;
+}
+
+.note {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 70px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+@media (min-width: 768px) {
+  .hero {
+    min-height: 100svh;
+    padding: 132px 0;
+  }
+
+  .content {
+    max-width: calc(820px + 8vw);
+    padding: 0 8vw;
+  }
+
+  .eyebrow {
+    margin: 0 0 22px;
+    font-size: 12px;
+  }
+
+  .hero h1 {
+    font-size: clamp(34px, 4.5vw, 68px);
+  }
+
+  .seal {
+    width: 132px;
+    height: 132px;
+    bottom: 124px;
+    right: max(4vw, 24px);
+  }
+
+  .seal text {
+    font-size: 8.4px;
+    letter-spacing: 1.4px;
+  }
+
+  .sealCore {
+    font-size: 9px;
+  }
+
+  .sealCore strong {
+    font-size: 13px;
+  }
+
+  .note {
+    left: 8vw;
+    right: max(4vw, 24px);
+    bottom: 80px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg,
+  .seal svg {
+    animation: none;
+  }
+}

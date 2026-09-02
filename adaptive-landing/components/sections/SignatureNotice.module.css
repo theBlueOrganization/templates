@@ -1,0 +1,102 @@
+.section {
+  background: #f4f1ea;
+  padding: clamp(72px, 10vw, 128px) 7vw;
+}
+
+.heading {
+  max-width: 1180px;
+  margin: 0 auto 42px;
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: #214d78;
+}
+
+.heading h2 {
+  margin: 0 0 16px;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(32px, 4.6vw, 62px);
+  line-height: 1.32;
+  color: #0b1822;
+}
+
+.heading h2 em {
+  font-style: normal;
+  color: #214d78;
+}
+
+.desc {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #5a6670;
+}
+
+.grid {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  gap: 18px;
+}
+
+.grid > a {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 22px;
+  background: #fff;
+  border: 1px solid rgba(11, 24, 34, 0.11);
+}
+
+.grid > a > span {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  font-weight: 900;
+  color: #fff;
+  background: #071a2b;
+}
+
+.grid strong {
+  display: block;
+  font-size: 20px;
+}
+
+.grid small {
+  display: block;
+  margin-top: 6px;
+  color: #707a81;
+}
+
+@media (min-width: 768px) {
+  .heading {
+    margin-bottom: 56px;
+  }
+
+  .desc {
+    font-size: 15px;
+    line-height: 1.9;
+  }
+
+  .grid > a {
+    padding: 30px;
+  }
+
+  .grid > a > span {
+    width: 72px;
+    height: 72px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

@@ -1,0 +1,94 @@
+.section {
+  background: #071a2b;
+  color: #fff;
+  padding: 56px 20px;
+}
+
+.heading {
+  max-width: 1180px;
+  margin: 0 auto 32px;
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+}
+
+.heading h2 {
+  margin: 0 0 16px;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(28px, 8vw, 40px);
+  line-height: 1.32;
+  color: #fff;
+}
+
+.heading h2 em {
+  font-style: normal;
+  color: #9ad5e8;
+}
+
+.desc {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.grid {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  gap: 18px;
+}
+
+.card {
+  padding: 26px 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.card svg {
+  color: #c7e3ec;
+}
+
+.card h3 {
+  margin: 16px 0 12px;
+  font-size: clamp(17px, 4.6vw, 20px);
+}
+
+.card p {
+  margin: 0;
+  max-width: 40ch;
+  font-size: 14px;
+  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.sourceNote {
+  max-width: 1180px;
+  margin: 24px auto 0;
+  font-size: 11px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding: 96px 7vw;
+  }
+
+  .heading h2 {
+    font-size: clamp(32px, 4.2vw, 54px);
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .card {
+    padding: 34px 30px;
+  }
+}

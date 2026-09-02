@@ -1,0 +1,112 @@
+.dock {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 90;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  width: 100%;
+  pointer-events: auto;
+}
+
+.actions > a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 8px 12px;
+  text-align: center;
+  color: #f3ede0;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background 0.22s,
+    color 0.22s;
+}
+
+.actions > a::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #f4dcac 50%, transparent);
+  opacity: 0.4;
+}
+
+.actions span {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  line-height: 1;
+}
+
+.visitAction {
+  color: #1c1206;
+  background: linear-gradient(95deg, #c3a06a 0%, #b08d52 52%, #97733f 100%);
+}
+
+.visitAction span {
+  font-weight: 700;
+}
+
+.callAction {
+  color: #e6cfa0;
+  background: linear-gradient(95deg, #234a6c 0%, #163a58 52%, #0b2338 100%);
+}
+
+.callAction span {
+  letter-spacing: 0.14em;
+  font-variant-numeric: tabular-nums;
+}
+
+.visitAction:active,
+.visitAction:focus-visible {
+  color: #e6cfa0;
+  background: linear-gradient(95deg, #234a6c 0%, #163a58 52%, #0b2338 100%);
+  outline: none;
+}
+
+.callAction:active,
+.callAction:focus-visible {
+  color: #1c1206;
+  background: linear-gradient(95deg, #c3a06a 0%, #b08d52 52%, #97733f 100%);
+  outline: none;
+}
+
+@media (hover: hover) {
+  .visitAction:hover {
+    background-image: linear-gradient(95deg, #ccaa75 0%, #b9975c 52%, #a07d46 100%);
+  }
+
+  .callAction:hover {
+    background-image: linear-gradient(95deg, #2b5880 0%, #1d466a 52%, #102c46 100%);
+  }
+}
+
+@media (min-width: 768px) {
+  .actions {
+    width: min(720px, 100%);
+  }
+
+  .actions > a {
+    min-height: 60px;
+    padding: 10px 16px;
+  }
+
+  .actions span {
+    font-size: 23px;
+    letter-spacing: 0.18em;
+  }
+
+  .callAction span {
+    letter-spacing: 0.16em;
+  }
+}

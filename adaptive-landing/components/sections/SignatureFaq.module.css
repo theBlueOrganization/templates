@@ -1,0 +1,115 @@
+.section {
+  background: #fff;
+  padding: clamp(72px, 10vw, 128px) 7vw;
+}
+
+.heading {
+  max-width: 1180px;
+  margin: 0 auto 42px;
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: #214d78;
+}
+
+.heading h2 {
+  margin: 0 0 16px;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(32px, 4.6vw, 62px);
+  line-height: 1.32;
+  color: #0b1822;
+}
+
+.heading h2 em {
+  font-style: normal;
+  color: #214d78;
+}
+
+.desc {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #5a6670;
+}
+
+.list {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.list details {
+  border-top: 1px solid rgba(18, 35, 49, 0.15);
+}
+
+.list details:last-child {
+  border-bottom: 1px solid rgba(18, 35, 49, 0.15);
+}
+
+.list summary {
+  display: grid;
+  grid-template-columns: 34px 1fr auto;
+  align-items: start;
+  gap: 12px;
+  padding: 26px 4px;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.6;
+  list-style: none;
+  cursor: pointer;
+}
+
+.list summary::-webkit-details-marker {
+  display: none;
+}
+
+.list summary span {
+  padding-top: 3px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: #214d78;
+}
+
+.list summary b {
+  font-size: 20px;
+  font-weight: 300;
+  transition: transform 0.25s;
+}
+
+.list details[open] summary b {
+  transform: rotate(45deg);
+}
+
+.list details > p {
+  margin: 0;
+  padding: 0 8px 24px 46px;
+  color: #53616a;
+  line-height: 1.9;
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  .heading {
+    margin-bottom: 56px;
+  }
+
+  .desc {
+    font-size: 15px;
+    line-height: 1.9;
+  }
+
+  .list summary {
+    grid-template-columns: 56px 1fr auto;
+    gap: 18px;
+    font-size: 17px;
+  }
+
+  .list details > p {
+    padding: 0 40px 28px 78px;
+    font-size: 16px;
+  }
+}

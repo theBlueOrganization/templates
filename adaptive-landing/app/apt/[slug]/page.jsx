@@ -19,6 +19,27 @@ import SignatureClub from '../../../components/sections/SignatureClub'
 import SignatureClubSimple from '../../../components/sections/SignatureClubSimple'
 import SignatureClubZones from '../../../components/sections/SignatureClubZones'
 import SignatureVipForm from '../../../components/sections/SignatureVipForm'
+import SignatureHeaderGeomdan from '../../../components/ui/SignatureHeaderGeomdan'
+import SignatureFooterGeomdan from '../../../components/ui/SignatureFooterGeomdan'
+import SignatureHeroGeomdan from '../../../components/sections/SignatureHeroGeomdan'
+import SignatureVisitReservation from '../../../components/sections/SignatureVisitReservation'
+import SignatureOverviewGeomdan from '../../../components/sections/SignatureOverviewGeomdan'
+import SignatureSellingStory from '../../../components/sections/SignatureSellingStory'
+import SignaturePremiumDuo from '../../../components/sections/SignaturePremiumDuo'
+import SignatureInfrastructure from '../../../components/sections/SignatureInfrastructure'
+import SignatureValueBand from '../../../components/sections/SignatureValueBand'
+import SignatureLivingSpaces from '../../../components/sections/SignatureLivingSpaces'
+import SignatureSmartHome from '../../../components/sections/SignatureSmartHome'
+import SignatureFloorplansGeomdan from '../../../components/sections/SignatureFloorplansGeomdan'
+import SignatureSiteplanGeomdan from '../../../components/sections/SignatureSiteplanGeomdan'
+import SignatureEmodelHouse from '../../../components/sections/SignatureEmodelHouse'
+import SignatureLandscapeGeomdan from '../../../components/sections/SignatureLandscapeGeomdan'
+import SignatureCommunityGeomdan from '../../../components/sections/SignatureCommunityGeomdan'
+import SignatureNotice from '../../../components/sections/SignatureNotice'
+import SignatureFaq from '../../../components/sections/SignatureFaq'
+import SignatureLocationGeomdan from '../../../components/sections/SignatureLocationGeomdan'
+import SignatureFinalInterest from '../../../components/sections/SignatureFinalInterest'
+import SignatureBottomDockGeomdan from '../../../components/ui/SignatureBottomDockGeomdan'
 
 export const viewport = {
   width: 'device-width',
@@ -52,6 +73,47 @@ export default async function AptPage({ params }) {
   if (!site) notFound()
 
   const sig = site.signature
+
+  // 더샵 검단레이크파크(the-sharp-geomdan-lakepark) 전용 — 참고 사이트(apt-all.app)의 섹션 순서/구성이
+  // 기존 12섹션 고정 흐름과 완전히 달라 signature 필드 이름 자체가 다르므로(headerGeomdan 등),
+  // 이 필드가 있는 현장이면 여기서 전용 렌더 트리로 완전히 분기하고 이후의 기존 로직은 타지 않는다.
+  if (sig.headerGeomdan) {
+    return (
+      <div>
+        <SignatureHeaderGeomdan header={sig.headerGeomdan} telNumber={site.telNumber} />
+        <main>
+          <SignatureHeroGeomdan hero={sig.heroGeomdan} />
+          <SignatureVisitReservation visitReservation={sig.visitReservation} config={site} />
+          <SignatureOverviewGeomdan overview={sig.overviewGeomdan} />
+          <SignatureSellingStory story={sig.story} />
+          <SignaturePremiumDuo premiumDuo={sig.premiumDuo} />
+          <SignatureInfrastructure infrastructure={sig.infrastructure} />
+          <SignatureValueBand priceBand={sig.priceBand} telNumber={site.telNumber} />
+          <SignatureLivingSpaces spaces={sig.spaces} />
+          <SignatureSmartHome smarthome={sig.smarthome} />
+          <SignatureFloorplansGeomdan floorplans={sig.floorplans} />
+          <SignatureSiteplanGeomdan siteplan={sig.siteplan} />
+          <SignatureEmodelHouse emodelhouse={sig.emodelhouse} />
+          <SignatureLandscapeGeomdan landscape={sig.landscapeGeomdan} />
+          <SignatureCommunityGeomdan community={sig.community} />
+          <SignatureNotice notice={sig.notice} />
+          <SignatureFaq faq={sig.faq} />
+          <SignatureLocationGeomdan location={sig.locationGeomdan} />
+          <SignatureFinalInterest finalInterest={sig.finalInterest} config={site} />
+        </main>
+        <SignatureFooterGeomdan footer={sig.footerGeomdan} projectName={site.projectName} />
+        {sig.heroGeomdan.mobileBar && (
+          <SignatureBottomDockGeomdan
+            telNumber={site.telNumber}
+            visitTargetId={sig.visitReservation.id}
+            callLabel={sig.heroGeomdan.mobileBar.callLabel}
+            visitLabel={sig.heroGeomdan.mobileBar.visitLabel}
+          />
+        )}
+      </div>
+    )
+  }
+
   // header.gnb 순서와 1:1로 매칭되는 실제 섹션 id — club은 현장에 따라 통째로 뺄 수 있어 선택적으로 포함
   const sectionIds = [
     sig.summary.id,

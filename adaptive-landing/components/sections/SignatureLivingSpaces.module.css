@@ -1,0 +1,96 @@
+.section {
+  background: #fff;
+  padding: 56px 20px;
+}
+
+.heading {
+  max-width: 1180px;
+  margin: 0 auto 32px;
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: #214d78;
+}
+
+.heading h2 {
+  margin: 0 0 16px;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(28px, 8vw, 40px);
+  line-height: 1.32;
+  color: #0b1822;
+}
+
+.heading h2 em {
+  font-style: normal;
+  color: #214d78;
+}
+
+.desc {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.85;
+  color: #5a6670;
+}
+
+.grid {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  gap: 20px;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+}
+
+.card :global(img) {
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top;
+}
+
+.cardCopy {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 44px 22px 20px;
+  color: #fff;
+  background: linear-gradient(transparent, rgba(7, 26, 43, 0.86));
+}
+
+.cardCopy span {
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.cardCopy h3 {
+  margin: 6px 0 0;
+  font-size: 14px;
+}
+
+.disclaimer {
+  max-width: 1180px;
+  margin: 18px auto 0;
+  font-size: 11px;
+  line-height: 1.8;
+  color: #7f878c;
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding: 96px 7vw;
+  }
+
+  .heading h2 {
+    font-size: clamp(32px, 4.2vw, 54px);
+  }
+
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

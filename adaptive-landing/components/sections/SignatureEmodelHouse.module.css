@@ -1,0 +1,133 @@
+.section {
+  background: #f4f1ea;
+  padding: clamp(72px, 10vw, 128px) 7vw;
+}
+
+.heading {
+  max-width: 1180px;
+  margin: 0 auto 42px;
+}
+
+.eyebrow {
+  margin: 0 0 16px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: #214d78;
+}
+
+.heading h2 {
+  margin: 0 0 16px;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(32px, 4.6vw, 62px);
+  line-height: 1.32;
+  color: #0b1822;
+}
+
+.heading h2 em {
+  font-style: normal;
+  color: #214d78;
+}
+
+.desc {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #5a6670;
+}
+
+.emodel {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.tabs {
+  display: flex;
+  gap: 1px;
+  margin-bottom: 16px;
+  background: #d7d3c7;
+}
+
+.tabs button {
+  flex: 1;
+  padding: 16px 18px;
+  font-weight: 800;
+  color: #7a8087;
+  background: #fff;
+}
+
+.tabActive {
+  color: #fff !important;
+  background: #071a2b !important;
+}
+
+.stage {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #0b1822;
+  box-shadow: 0 22px 60px rgba(7, 26, 43, 0.11);
+}
+
+.launch {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 24px;
+  text-align: center;
+  color: #fff;
+  background-position: center;
+  background-size: cover;
+}
+
+.play {
+  display: grid;
+  place-items: center;
+  width: 66px;
+  height: 66px;
+  padding-left: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+}
+
+.launch strong {
+  font-size: clamp(16px, 2vw, 19px);
+  font-weight: 800;
+}
+
+.launch small {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.77);
+}
+
+.note {
+  max-width: 76ch;
+  margin-top: 18px;
+  font-size: 11px;
+  line-height: 1.8;
+  color: #6b757b;
+}
+
+@media (min-width: 768px) {
+  .heading {
+    margin: 0 auto 56px;
+  }
+
+  .eyebrow {
+    margin: 0 0 22px;
+  }
+
+  .desc {
+    font-size: 15px;
+    line-height: 1.9;
+  }
+
+  .stage {
+    aspect-ratio: 16 / 10;
+  }
+}

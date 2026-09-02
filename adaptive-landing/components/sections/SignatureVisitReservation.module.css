@@ -1,0 +1,246 @@
+.section {
+  background: linear-gradient(180deg, #f6efe2 0%, #f3ebdb 100%);
+  padding: 56px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: #7b2e3b;
+}
+
+.heading h2 {
+  margin: 0 0 16px;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(32px, 4.2vw, 58px);
+  line-height: 1.32;
+  letter-spacing: -0.01em;
+  color: #3a2f26;
+}
+
+.heading h2 em {
+  font-style: normal;
+  color: #9c4636;
+}
+
+.lead {
+  color: #6a6252;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.leadMark {
+  color: #9c4636;
+  font-size: 12px;
+}
+
+.panel {
+  position: relative;
+  background: radial-gradient(120% 80% at 50% 0, #fffdf7 0%, #fdf8ee 60%, #fbf4e6 100%);
+  border: 1px solid #e7dcc2;
+  border-radius: 18px;
+  padding: 24px 20px;
+  box-shadow: inset 0 1px #fffdf8, 0 2px 8px rgba(107, 75, 31, 0.08), 0 30px 74px rgba(107, 75, 31, 0.12);
+}
+
+.panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 18px 18px 0 0;
+  background: linear-gradient(90deg, #d8b877 0%, rgba(184, 147, 81, 0.5) 22%, #e7cf9d 50%, rgba(184, 147, 81, 0.5) 78%, #d8b877 100%);
+}
+
+.panelLabel {
+  position: relative;
+  margin: 0;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  color: #a24a3d;
+}
+
+.panelTitle {
+  position: relative;
+  margin: 10px 0;
+  font: 500 clamp(28px, 3.2vw, 38px) / 1.3 var(--font-serif);
+  color: #3a2f26;
+}
+
+.panelDesc {
+  position: relative;
+  display: block;
+  font-size: 12px;
+  color: #79705d;
+}
+
+.form {
+  position: relative;
+  margin-top: 22px;
+}
+
+.fields {
+  display: grid;
+  gap: 16px;
+}
+
+.fields label span {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #5c4e3c;
+}
+
+.fields label b {
+  color: #a24a3d;
+}
+
+.fields input:not([type='checkbox']),
+.fields select {
+  width: 100%;
+  height: 50px;
+  padding: 0 15px;
+  font: inherit;
+  color: #3a2f26;
+  background: #fffdf8;
+  border: 1px solid #dccfb2;
+  border-radius: 10px;
+  outline: none;
+}
+
+.fields input:focus,
+.fields select:focus {
+  border-color: #a9884e;
+  box-shadow: 0 0 0 3px rgba(169, 136, 78, 0.15);
+}
+
+.phoneRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.phoneInput {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+}
+
+.dateWrap {
+  position: relative;
+}
+
+.dateWrap svg {
+  position: absolute;
+  top: 16px;
+  left: 14px;
+  color: #a2895c;
+}
+
+.dateWrap input {
+  padding-left: 42px !important;
+}
+
+.privacy {
+  margin-top: 18px;
+  padding: 18px;
+  background: #f3ead8;
+  border-radius: 12px;
+}
+
+.privacyDetail summary {
+  cursor: pointer;
+  list-style: none;
+  font-size: 12px;
+  font-weight: 800;
+  color: #5c4e3c;
+}
+
+.privacyDetail summary::-webkit-details-marker {
+  display: none;
+}
+
+.privacy p {
+  margin-top: 10px;
+  font-size: 11px;
+  line-height: 1.8;
+  color: #79705d;
+  white-space: pre-line;
+}
+
+.privacy > label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.privacy input[type='checkbox'] {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  accent-color: #a24a3d;
+}
+
+.privacy > label span {
+  font-size: 11px;
+  color: #6a6252;
+}
+
+.form > button {
+  width: 100%;
+  height: 56px;
+  margin-top: 18px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  background: linear-gradient(#b8493c 0%, #9c352c 100%);
+  border: 0;
+  border-radius: 11px;
+  box-shadow: 0 10px 24px rgba(156, 53, 44, 0.24);
+}
+
+.form > button:disabled {
+  opacity: 0.55;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 72px 40px;
+  }
+
+  .fields {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .panel {
+    padding: 36px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    align-items: center;
+    min-height: 100vh;
+    padding: 96px 7vw;
+    gap: 6vw;
+    justify-content: center;
+  }
+
+  .panel {
+    padding: 46px;
+  }
+}

@@ -1,0 +1,122 @@
+.section {
+  background: #f4f1ea;
+  padding: 56px 20px;
+}
+
+.heading {
+  max-width: 1180px;
+  margin: 0 auto 36px;
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: #214d78;
+}
+
+.heading h2 {
+  margin: 0 0 16px;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(32px, 4.6vw, 62px);
+  line-height: 1.32;
+  letter-spacing: -0.01em;
+  color: #0b1822;
+}
+
+.heading h2 em {
+  font-style: normal;
+  color: #214d78;
+}
+
+.desc {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #5a6670;
+}
+
+.grid {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  gap: 36px;
+}
+
+.aerialCard {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 18px 44px rgba(33, 51, 68, 0.12);
+}
+
+.aerialCard :global(img) {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center 72%;
+}
+
+.aerialCard span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 40px 20px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: #fff;
+  background: linear-gradient(transparent 0%, rgba(7, 22, 37, 0.28) 45%, rgba(7, 22, 37, 0.82) 100%);
+}
+
+.factList {
+  display: grid;
+}
+
+.fact {
+  display: grid;
+  gap: 5px;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(11, 24, 34, 0.15);
+}
+
+.fact:first-child {
+  padding-top: 0;
+}
+
+.fact span {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #7b858c;
+}
+
+.fact strong {
+  font-size: 14.5px;
+  font-weight: 700;
+  line-height: 1.65;
+  color: #0b1822;
+}
+
+@media (min-width: 768px) {
+  .fact {
+    grid-template-columns: 132px 1fr;
+    align-items: baseline;
+    gap: 20px;
+    padding: 22px 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding: 96px 7vw;
+  }
+
+  .grid {
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+    gap: 6vw;
+  }
+}

@@ -1,0 +1,99 @@
+.section {
+  background: #071a2b;
+  color: #fff;
+  padding: 56px 20px;
+}
+
+.heading {
+  max-width: 1180px;
+  margin: 0 auto 32px;
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+}
+
+.heading h2 {
+  margin: 0 0 16px;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(32px, 4.6vw, 62px);
+  line-height: 1.32;
+  color: #fff;
+}
+
+.heading h2 em {
+  font-style: normal;
+  color: #9ad5e8;
+}
+
+.desc {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.grid {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  gap: 18px;
+}
+
+.card {
+  position: relative;
+  min-height: 420px;
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.cardInner {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+  color: #fff;
+}
+
+.cardInner svg {
+  color: #c7e3ec;
+}
+
+.cardInner span {
+  display: block;
+  margin: 14px 0 10px;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: #c7e3ec;
+}
+
+.cardInner h3 {
+  margin: 0 0 10px;
+  font-size: clamp(22px, 2.4vw, 27px);
+}
+
+.cardInner p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding: 96px 7vw;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card {
+    min-height: 520px;
+  }
+}

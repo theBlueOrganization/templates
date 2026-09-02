@@ -27,6 +27,31 @@
 //                   범용 components/ui/PopupBanner(popup.image)를 대신 써도 됨.
 //                   wonjongyeok-world-meridian-fore.js 참고)
 // 위 필드는 컴포넌트가 optional chaining 없이 그대로 읽으므로 전부 채워야 합니다.
+//
+// 예외: the-sharp-geomdan-lakepark.js는 참고 사이트(apt-all.app)의 섹션 순서/구성이 위
+// 12필드 고정 흐름과 완전히 달라서 signature 필드 이름 자체가 다릅니다(app/apt/[slug]/page.jsx의
+// `if (sig.headerGeomdan)` 분기 참고) — 새 필드 ↔ 컴포넌트 매핑:
+//   headerGeomdan     → components/ui/SignatureHeaderGeomdan
+//   heroGeomdan       → components/sections/SignatureHeroGeomdan
+//   visitReservation  → components/sections/SignatureVisitReservation ("use client")
+//   overviewGeomdan   → components/sections/SignatureOverviewGeomdan
+//   story             → components/sections/SignatureSellingStory
+//   premiumDuo        → components/sections/SignaturePremiumDuo
+//   infrastructure    → components/sections/SignatureInfrastructure
+//   priceBand         → components/sections/SignatureValueBand
+//   spaces            → components/sections/SignatureLivingSpaces
+//   smarthome         → components/sections/SignatureSmartHome
+//   floorplans        → components/sections/SignatureFloorplansGeomdan
+//   siteplan          → components/sections/SignatureSiteplanGeomdan ("use client", SignatureLightbox 재사용)
+//   emodelhouse       → components/sections/SignatureEmodelHouse ("use client", SignatureLightbox 재사용)
+//   landscapeGeomdan  → components/sections/SignatureLandscapeGeomdan
+//   community         → components/sections/SignatureCommunityGeomdan
+//   notice            → components/sections/SignatureNotice
+//   faq               → components/sections/SignatureFaq
+//   locationGeomdan   → components/sections/SignatureLocationGeomdan
+//   finalInterest     → components/sections/SignatureFinalInterest ("use client")
+//   footerGeomdan     → components/ui/SignatureFooterGeomdan
+// hero.mobileBar 자리는 components/ui/SignatureBottomDockGeomdan(항상 노출, 방문예약/전화 버튼)로 대체.
 // ────────────────────────────────────────────────────────────
 const config = {
   // URL이 됨: /apt/example-apt

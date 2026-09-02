@@ -1,0 +1,160 @@
+.section {
+  background: #f7f5ef;
+  padding: clamp(72px, 10vw, 128px) 7vw;
+}
+
+.heading {
+  max-width: 1180px;
+  margin: 0 auto 42px;
+}
+
+.eyebrow {
+  margin: 0 0 16px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: #214d78;
+}
+
+.heading h2 {
+  margin: 0 0 16px;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(32px, 4.6vw, 62px);
+  line-height: 1.32;
+  color: #0b1822;
+}
+
+.heading h2 em {
+  font-style: normal;
+  color: #214d78;
+}
+
+.desc {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #5a6670;
+}
+
+.mainFigure {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.mainFigure :global(img) {
+  width: 100%;
+  height: auto;
+  background: #fff;
+  border: 1px solid rgba(11, 24, 34, 0.15);
+}
+
+.mainFigure figcaption {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.mainFigure figcaption > span {
+  padding: 5px 11px;
+  font-size: 12px;
+  color: #fff;
+  background: #071a2b;
+}
+
+.mainFigure figcaption a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+  font-weight: 700;
+  color: #214d78;
+}
+
+.donghoGrid {
+  max-width: 1180px;
+  margin: 44px auto 0;
+  display: grid;
+  gap: 30px;
+}
+
+.donghoCard figcaption {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 12px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.donghoCard figcaption > span {
+  padding: 5px 11px;
+  font-size: 12px;
+  color: #fff;
+  background: #071a2b;
+}
+
+.donghoCard figcaption a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+  font-weight: 700;
+  color: #214d78;
+}
+
+.reveal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  padding: 24px;
+  text-align: center;
+  color: #5a6670;
+  font-weight: 800;
+  background: #eef0ec;
+  border: 1px dashed #adb3b0;
+}
+
+.reveal small {
+  font-size: 11px;
+  font-weight: 600;
+  color: #7a8087;
+}
+
+.note {
+  max-width: 1180px;
+  margin: 26px auto 0;
+  font-size: 11px;
+  line-height: 1.8;
+  color: #6b757b;
+}
+
+@media (min-width: 768px) {
+  .heading {
+    margin: 0 auto 56px;
+  }
+
+  .eyebrow {
+    margin: 0 0 22px;
+  }
+
+  .desc {
+    font-size: 15px;
+    line-height: 1.9;
+  }
+
+  .donghoGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .reveal {
+    aspect-ratio: 3 / 4;
+  }
+}

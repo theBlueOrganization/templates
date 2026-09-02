@@ -1,0 +1,257 @@
+.section {
+  background: #061723;
+  color: #fff;
+}
+
+.intro {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 56px 20px 0;
+}
+
+.introHead {
+  display: block;
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: #a9dcea;
+}
+
+.intro h2 {
+  margin: 0 0 18px;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(34px, 5vw, 74px);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.intro h2 em {
+  font-style: normal;
+  color: #9ad5e8;
+}
+
+.desc {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.numbers {
+  display: grid;
+  margin-top: 48px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.numberItem {
+  padding: 34px 20px;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.numberItem:first-child {
+  border-top: 0;
+}
+
+.numberItem strong {
+  display: block;
+  font: 500 clamp(34px, 4.6vw, 64px) / 1 var(--font-serif);
+  color: #b9e0eb;
+  font-variant-numeric: tabular-nums;
+}
+
+.numberItem span {
+  display: block;
+  margin-top: 12px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.scenes {
+  display: grid;
+  gap: 16px;
+  padding: 40px 20px;
+}
+
+.scene,
+.sceneWide {
+  position: relative;
+  min-height: 320px;
+  overflow: hidden;
+}
+
+.sceneMedia {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.scene::after,
+.sceneWide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent 38%, rgba(3, 18, 31, 0.92));
+}
+
+.sceneCopy {
+  position: absolute;
+  z-index: 1;
+  left: 20px;
+  right: 20px;
+  bottom: 22px;
+}
+
+.sceneCopy span {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  color: #a9dcea;
+}
+
+.sceneCopy h3 {
+  margin: 8px 0;
+  font: 500 clamp(22px, 2.4vw, 30px) / 1.3 var(--font-serif);
+}
+
+.sceneCopy p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.conversion {
+  text-align: center;
+  padding: 64px 20px 80px;
+  background: radial-gradient(circle, #184968 0%, #061723 58%);
+}
+
+.conversion > p {
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: #b8dce7;
+}
+
+.conversion h3 {
+  margin: 16px 0 28px;
+  font: 500 clamp(32px, 4.4vw, 62px) / 1.3 var(--font-serif);
+  letter-spacing: -0.01em;
+}
+
+.conversion > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.conversion a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  padding: 0 24px;
+  color: #071a2b;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  background: #fff;
+  border: 2px solid transparent;
+}
+
+.conversion a + a {
+  color: #fff;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.48);
+}
+
+@media (min-width: 768px) {
+  .intro {
+    padding: 96px 7vw 0;
+  }
+
+  .numbers {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .numberItem {
+    border-top: 0;
+    border-left: 1px solid rgba(255, 255, 255, 0.16);
+  }
+
+  .numberItem:first-child {
+    border-left: 0;
+  }
+
+  .scenes {
+    grid-template-columns: 1fr 1fr;
+    padding: 56px 7vw;
+  }
+
+  .sceneWide {
+    grid-column: 1 / -1;
+    min-height: 480px;
+  }
+
+  .scene {
+    min-height: 420px;
+  }
+
+  .conversion > div {
+    flex-direction: row;
+    justify-content: center;
+    max-width: none;
+  }
+
+  .conversion a {
+    min-width: 190px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    background: #061723;
+  }
+
+  .intro {
+    padding: 96px 7vw 0;
+  }
+
+  .introHead {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+    align-items: end;
+    column-gap: 6vw;
+  }
+
+  .introHead .eyebrow {
+    grid-column: 1 / -1;
+  }
+
+  .intro h2 {
+    margin: 0;
+  }
+
+  .desc {
+    align-self: end;
+  }
+
+  .numbers {
+    margin-top: 64px;
+  }
+
+  .scenes {
+    padding: 64px 7vw;
+  }
+}

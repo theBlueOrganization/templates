@@ -1,0 +1,143 @@
+.section {
+  background: #f7f5ef;
+  padding: 56px 20px;
+}
+
+.heading {
+  max-width: 1180px;
+  margin: 0 auto 32px;
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: #214d78;
+}
+
+.heading h2 {
+  margin: 0 0 16px;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(28px, 8vw, 40px);
+  line-height: 1.32;
+  color: #0b1822;
+}
+
+.heading h2 em {
+  font-style: normal;
+  color: #214d78;
+}
+
+.desc {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.85;
+  color: #5a6670;
+}
+
+.layout {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  gap: 32px;
+}
+
+.mapFigure {
+  margin: 0;
+  padding: 18px;
+  background: #fff;
+  box-shadow: 0 20px 60px rgba(7, 26, 43, 0.07);
+}
+
+.mapFigure img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.mapFigure figcaption {
+  padding: 14px 4px 0;
+  font-size: 11px;
+  line-height: 1.8;
+  color: #727c82;
+}
+
+.list {
+  border-top: 1px solid rgba(19, 35, 45, 0.17);
+}
+
+.list article {
+  padding: 22px 0;
+  border-bottom: 1px solid rgba(19, 35, 45, 0.17);
+}
+
+.list span {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  color: #214d78;
+}
+
+.list h3 {
+  margin: 9px 0 12px;
+  font: 500 clamp(22px, 2.3vw, 28px) / 1.35 var(--font-serif);
+  color: #0b1822;
+}
+
+.list p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.85;
+  color: #52616a;
+}
+
+.sourceNote {
+  max-width: 1180px;
+  margin: 24px auto 0;
+  font-size: 11px;
+  line-height: 1.8;
+  color: #727c82;
+}
+
+@media (min-width: 768px) {
+  .list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 0;
+  }
+
+  .list article {
+    padding: 22px 18px;
+    border-left: 1px solid rgba(19, 35, 45, 0.17);
+    border-bottom: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding: 96px 7vw;
+  }
+
+  .heading h2 {
+    font-size: clamp(32px, 4.2vw, 54px);
+  }
+
+  .layout {
+    grid-template-columns: minmax(0, 1.4fr) minmax(320px, 0.6fr);
+    align-items: start;
+    gap: 5vw;
+  }
+
+  .list {
+    display: block;
+    border-top: 1px solid rgba(19, 35, 45, 0.17);
+  }
+
+  .list article {
+    border-left: 0;
+    border-bottom: 1px solid rgba(19, 35, 45, 0.17);
+    padding: 26px 0;
+  }
+}

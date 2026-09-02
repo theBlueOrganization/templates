@@ -48,6 +48,12 @@
   object-fit: cover;
 }
 
+@media (max-width: 767px) {
+  .heroFigure :global(img) {
+    aspect-ratio: 16 / 10;
+  }
+}
+
 .heroFigure figcaption {
   margin-top: 12px;
   font-size: 11px;

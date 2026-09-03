@@ -3,8 +3,9 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import { splitHighlight } from '../../lib/utils'
+import { splitHighlight, isMobileUserAgent } from '../../lib/utils'
 import { useUtmSource } from '../../lib/useUtmSource'
+import SignaturePhoneModal from '../ui/SignaturePhoneModal'
 import styles from './SignatureHero.module.css'
 
 const EASE = [0.22, 1, 0.36, 1]
@@ -19,6 +20,7 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
   const descSegments = splitHighlight(hero.descLine1, hero.descLine1Accent)
   const mobileBar = hero.mobileBar
   const [announceIndex, setAnnounceIndex] = useState(0)
+  const [phoneModalOpen, setPhoneModalOpen] = useState(false)
   // telNumberByUtm에 등록된 utm_source로 들어온 경우에만 노출 전화번호를 덮어씀 (SignatureHeader/SignatureFooter와 동일 규칙)
   const utmSource = useUtmSource()
   const resolvedTelNumber = telNumberByUtm?.[utmSource] ?? telNumber
@@ -35,11 +37,36 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
     document.getElementById(visitTargetId)?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  // PC 브라우저로 좁은 화면을 보는 경우 tel: 링크가 통화로 안 이어지므로 번호 안내 팝업으로 대체
+  const handleCallClick = (e) => {
+    if (isMobileUserAgent()) return
+    e.preventDefault()
+    setPhoneModalOpen(true)
+  }
+
+  const heroStyle = {
+    ...(hero.bgColor && { '--hero-bg': hero.bgColor }),
+    ...(hero.textColor && { '--hero-title': hero.textColor, '--hero-desc': hero.textColor, '--hero-text-shadow': 'none' }),
+    ...(hero.fontFamily && { '--hero-font': hero.fontFamily }),
+  }
+
   return (
-    <section id="hero" className={styles.hero}>
+    <section id="hero" className={styles.hero} style={Object.keys(heroStyle).length ? heroStyle : undefined}>
       <div className={styles.bg}>
-        <Image src={hero.bgImage.src} alt={hero.bgImage.alt} fill priority sizes="100vw" className={styles.bgImage} />
-        <div className={styles.overlay} />
+        {hero.bgVideo ? (
+          <video
+            className={styles.bgImage}
+            src={hero.bgVideo.src}
+            poster={hero.bgImage?.src}
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+        ) : (
+          <Image src={hero.bgImage.src} alt={hero.bgImage.alt} fill priority sizes="100vw" className={styles.bgImage} />
+        )}
+        {hero.overlay !== false && <div className={styles.overlay} />}
       </div>
 
       <div className={styles.content}>
@@ -103,12 +130,35 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
             </div>
           </div>
 
-          {mobileBar.bubbleText && (
-            <span className={styles.promoBubble}>
-              <span className={styles.pulseDot} />
-              {mobileBar.bubbleText}
-              <span className={styles.bubbleTail} />
-            </span>
+          {mobileBar.bubbles ? (
+            <div className={styles.bubbleRow}>
+              {mobileBar.bubbles.map((b, i) =>
+                b.action === 'call' ? (
+                  <a
+                    key={i}
+                    href={`tel:${resolvedTelNumber}`}
+                    onClick={handleCallClick}
+                    className={styles.bubbleBtn}
+                  >
+                    <span className={styles.pulseDot} />
+                    {b.label}
+                  </a>
+                ) : (
+                  <button key={i} type="button" onClick={scrollToVisit} className={styles.bubbleBtn}>
+                    <span className={styles.pulseDot} />
+                    {b.label}
+                  </button>
+                )
+              )}
+            </div>
+          ) : (
+            mobileBar.bubbleText && (
+              <span className={styles.promoBubble}>
+                <span className={styles.pulseDot} />
+                {mobileBar.bubbleText}
+                <span className={styles.bubbleTail} />
+              </span>
+            )
           )}
 
           <div className={styles.actionButtons}>
@@ -135,6 +185,8 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
           </div>
         </motion.div>
       )}
+
+      <SignaturePhoneModal open={phoneModalOpen} onClose={() => setPhoneModalOpen(false)} telNumber={resolvedTelNumber} />
     </section>
   )
 }

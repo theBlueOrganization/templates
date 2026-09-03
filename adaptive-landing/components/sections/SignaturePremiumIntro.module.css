@@ -14,6 +14,98 @@
   inset: 0;
 }
 
+/* clean 변형 — 타이틀은 흰 배경, 사진은 아래 별도 블록(다크 그라디언트 + desc만 얹음) */
+.sectionClean {
+  background: #fff;
+}
+
+.cleanHead {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 56px 20px 32px;
+}
+
+.sectionClean .eyebrow {
+  text-shadow: none;
+}
+
+.cleanTitle {
+  margin: 16px 0 8px;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(28px, 5vw, 48px);
+  color: var(--navy, #06203e);
+  word-break: keep-all;
+}
+
+.cleanSubtitle {
+  margin: 0;
+  font-size: 15px;
+  color: #555;
+  word-break: keep-all;
+}
+
+.cleanSubtitle strong {
+  font-weight: 700;
+  color: var(--ink, #1a1a1a);
+}
+
+.cleanImageWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  min-height: 260px;
+}
+
+.cleanOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 20%, rgba(6, 15, 26, 0.82) 100%);
+}
+
+.cleanImageText {
+  position: absolute;
+  right: 6%;
+  bottom: 8%;
+  left: 6%;
+  z-index: 1;
+  text-align: right;
+}
+
+.cleanImageText p {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(20px, 5.5vw, 26px);
+  line-height: 1.5;
+  color: #fff;
+  word-break: keep-all;
+}
+
+@media (min-width: 768px) {
+  .cleanHead {
+    padding: 80px 40px 40px;
+  }
+
+  .cleanImageText p {
+    font-size: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cleanHead {
+    padding: 100px 60px 48px;
+  }
+
+  .cleanImageWrap {
+    aspect-ratio: 21 / 10;
+  }
+
+  .cleanImageText p {
+    font-size: 42px;
+  }
+}
+
 .bgImage {
   object-fit: cover;
 }
@@ -21,8 +113,13 @@
 .overlay {
   position: absolute;
   inset: 0;
-  /* 어떤 배경 사진이 오더라도 짙은 텍스트 가독성이 보장되도록 크림 톤 스크림을 얹음 */
-  background: linear-gradient(180deg, rgba(245, 245, 240, 0.55) 0%, rgba(245, 245, 240, 0.8) 100%);
+  /* 어떤 배경 사진이 오더라도 짙은 텍스트 가독성이 보장되도록 스크림을 얹음 — 현장 팔레트(--cream)를
+     그대로 써서 colorTheme이 있는 현장(예: 하늘색 톤)에서는 그 톤 그대로, 없는 현장은 기존 크림톤 그대로 */
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--cream, #f5f5f0) 55%, transparent) 0%,
+    color-mix(in srgb, var(--cream, #f5f5f0) 80%, transparent) 100%
+  );
 }
 
 @media (min-width: 1024px) {
@@ -66,20 +163,20 @@
 }
 
 .titleLine1 {
-  font-family: var(--font-sans);
+  font-family: var(--intro-font, var(--font-sans));
   font-weight: 300;
   font-size: 28px;
   letter-spacing: -0.03em;
-  color: var(--ink, #1a1a1a);
+  color: var(--intro-color, var(--ink, #1a1a1a));
   text-shadow: 0 1px 10px rgba(255, 255, 255, 0.75);
 }
 
 .titleLine2 {
-  font-family: var(--font-sans);
+  font-family: var(--intro-font, var(--font-sans));
   font-weight: 800;
   font-size: 32px;
   letter-spacing: -0.02em;
-  background: linear-gradient(116deg, var(--navy, #06203e) 0%, var(--navy, #082d57) 50%, var(--navy, #06203e) 100%);
+  background: var(--intro-color, linear-gradient(116deg, var(--navy, #06203e) 0%, var(--navy, #082d57) 50%, var(--navy, #06203e) 100%));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -92,6 +189,7 @@
   color: #555;
   max-width: 640px;
   white-space: pre-line;
+  word-break: keep-all;
   text-shadow: 0 1px 10px rgba(255, 255, 255, 0.75);
 }
 

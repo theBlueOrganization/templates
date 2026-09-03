@@ -80,6 +80,41 @@
   border-radius: 10px;
 }
 
+.columnRow {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.columnHead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding: 14px 18px;
+  background: var(--navy, #06203e);
+  border-radius: 6px;
+}
+
+.columnBadge {
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.columnLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+}
+
 .tabRow {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -159,5 +194,18 @@
   .tabBtn {
     font-size: 15px;
     padding: 14px 12px;
+  }
+
+  .columnRow {
+    flex-direction: row;
+    gap: 32px;
+  }
+
+  .columnBadge {
+    font-size: 17px;
+  }
+
+  .columnLabel {
+    font-size: 14px;
   }
 }

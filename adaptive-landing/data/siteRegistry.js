@@ -3,6 +3,7 @@ import eupseongPrugio from './sites/eupseong-prugio'
 import wonjongyeokWorldMeridianFore from './sites/wonjongyeok-world-meridian-fore'
 import theSharpSongdoGrandTerre from './sites/the-sharp-songdo-grand-terre'
 import theSharpGeomdanLakepark from './sites/the-sharp-geomdan-lakepark'
+import theSharpGeomdanLakepark2 from './sites/the-sharp-geomdan-lakepark-2'
 
 /**
  * 새 현장 추가 방법:
@@ -16,7 +17,14 @@ import theSharpGeomdanLakepark from './sites/the-sharp-geomdan-lakepark'
  *   import seoulforestApt from './sites/seoulforest-apt'
  *   const sites = [exampleApt, seoulforestApt]
  */
-const sites = [exampleApt, eupseongPrugio, wonjongyeokWorldMeridianFore, theSharpSongdoGrandTerre, theSharpGeomdanLakepark]
+const sites = [
+  exampleApt,
+  eupseongPrugio,
+  wonjongyeokWorldMeridianFore,
+  theSharpSongdoGrandTerre,
+  theSharpGeomdanLakepark,
+  theSharpGeomdanLakepark2,
+]
 
 // slug로 현장 하나를 찾음 (app/apt/[slug]/page.jsx에서 사용)
 export function getSiteBySlug(slug) {

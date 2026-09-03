@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   min-height: 100svh;
-  background: #06203e;
+  background: var(--hero-bg, #06203e);
   overflow: hidden;
   padding: 100px 20px 120px;
 }
@@ -15,6 +15,10 @@
 }
 
 .bgImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -38,7 +42,7 @@
   font-family: var(--font-serif);
   font-size: 13px;
   line-height: 1.6;
-  color: #b39258;
+  color: var(--hero-title, #b39258);
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.15em;
@@ -49,35 +53,35 @@
   display: inline-block;
   margin-top: 2px;
   font-weight: 600;
-  background: linear-gradient(125deg, #b39258 0%, #c5a46d 100%);
+  background: var(--hero-title, linear-gradient(125deg, #b39258 0%, #c5a46d 100%));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .title {
-  font-family: var(--font-sans);
+  font-family: var(--hero-font, var(--font-sans));
   font-weight: 600;
   font-size: 34px;
   line-height: 1.15;
-  color: #f4f4f4;
+  color: var(--hero-title, #f4f4f4);
   letter-spacing: -0.03em;
-  text-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+  text-shadow: var(--hero-text-shadow, 0 15px 30px rgba(0, 0, 0, 0.5));
   margin-bottom: 28px;
 }
 
 .desc {
-  font-family: var(--font-sans);
+  font-family: var(--hero-font, var(--font-sans));
   font-weight: 300;
   font-size: 13.5px;
   line-height: 1.9;
-  color: #a0a5aa;
-  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  color: var(--hero-desc, #a0a5aa);
+  text-shadow: var(--hero-text-shadow, 0 4px 10px rgba(0, 0, 0, 0.6));
 }
 
 .descAccent {
   font-weight: 400;
-  color: #f4f4f4;
+  color: var(--hero-title, #f4f4f4);
 }
 
 .scrollIndicator {
@@ -196,7 +200,7 @@
 .announceBar {
   position: relative;
   height: 40px;
-  background: #004c45;
+  background: var(--navy, #004c45);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   overflow: hidden;
 }
@@ -266,15 +270,61 @@
 }
 
 .callBtn {
-  background: #fff;
+  background: var(--cream, #fff);
   border-top-color: #e2e8f0;
-  color: #004c45;
+  color: var(--navy, #004c45);
 }
 
 .visitBtn {
-  background: #eae6da;
-  border-top-color: #eae6da;
-  color: #111;
+  background: var(--gold, #eae6da);
+  border-top-color: var(--gold, #eae6da);
+  color: var(--navy, #111);
+}
+
+/* 요청 반영 — 말풍선 2개(방문예약하기/문의하기)를 나란히, 각자 탭하면 바로 동작하는 버튼으로 */
+.bubbleRow {
+  position: absolute;
+  right: 14px;
+  left: 14px;
+  bottom: 100%;
+  margin-bottom: 14px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.bubbleBtn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--navy, #eae6da);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+  padding: 8px 14px 8px 12px;
+  box-shadow: 0 4px 7.5px rgba(0, 0, 0, 0.15);
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+}
+
+.bubbleBtn .pulseDot {
+  background: #fff;
+}
+
+.bubbleBtn::after {
+  content: '';
+  position: absolute;
+  right: 20px;
+  bottom: -5px;
+  width: 10px;
+  height: 10px;
+  background: var(--navy, #eae6da);
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  transform: rotate(45deg);
 }
 
 .promoBubble {

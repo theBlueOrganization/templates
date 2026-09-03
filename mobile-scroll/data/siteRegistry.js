@@ -76,6 +76,7 @@ const adaptiveLandingPointers = [
   { slug: "wonjongyeok-world-meridian-fore", subdomain: "원종역월드메르디앙포레", template: "adaptive-landing" },
   { slug: "the-sharp-songdo-grand-terre", subdomain: "더샵송도그란테르", template: "adaptive-landing" },
   { slug: "the-sharp-geomdan-lakepark", subdomain: "더샵검단레이크파크", template: "adaptive-landing" },
+  { slug: "the-sharp-geomdan-lakepark-2", subdomain: "더샵검단레이크파크T", template: "adaptive-landing" },
 ];
 
 const allSites = [...sites, ...adaptiveLandingPointers];

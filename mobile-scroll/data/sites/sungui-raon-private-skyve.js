@@ -14,19 +14,12 @@ const config = {
   sheetId:      "",
   sheetTab:     "숭의역라온프라이빗스카이브",
 
-  // utm_source=B를 제외한 모든 방문자(기본/직접접속, OK 포함)에게 팝업을 2개(순차 표시)로 기본 노출
+  // utm_source=B를 제외한 모든 방문자(기본/직접접속, OK 포함)에게 팝업 노출
   popup: [
     {
       enabled: true,
       image: {
         src: "/apt/sungui-raon-private-skyve/popup1.webp",
-        alt: "숭의역 라온프라이빗 스카이브 팝업",
-      },
-    },
-    {
-      enabled: true,
-      image: {
-        src: "/apt/sungui-raon-private-skyve/popup2.webp",
         alt: "숭의역 라온프라이빗 스카이브 팝업",
       },
     },
@@ -90,10 +83,10 @@ const config = {
   telNumberByUtm: {
     B: "1666-1352",
     SKT: "1666-1050",
-    SKT1: "1666-1050",
+    SKT1: "1666-1352",
     SKT2: "1666-1050",
     lpoint: "1800-2261",
-    Lpoint2: "1666-1050",
+    Lpoint2: "1666-1352",
     Lpoint3: "1522-8602",
     NA: "1522-8602",
     sh: "1800-2261",
@@ -115,6 +108,8 @@ const config = {
   adminPhonesByUtm: {
     B: ["01023537202"],
     NA: ["01071901052","01048787464","01083773101"],
+    SKT1: ["01048086474","01071901052"],
+    Lpoint2: ["01048086474","01071901052"],
   },
 
   // utm_source=B로 들어온 방문자에게만 히어로 문구를 다르게 표시 (subtitle은 기존 값 유지)

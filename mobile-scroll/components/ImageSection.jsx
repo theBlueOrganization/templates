@@ -41,6 +41,7 @@ export default function ImageSection({
   subtitle,
   specItems,
   images = [],
+  imagesByUtm,  // 있으면 { [utm_source]: images[] } — 해당 유입경로 방문자에게만 이 images로 교체(탭 없는 섹션 한정, 없으면 기존과 동일)
   tabs,         // 있으면 [{ label, images, specItems }] 탭 메뉴로 전환해서 보여줌 (없으면 기존과 동일하게 images/specItems 그대로 사용)
   gallery,      // 있으면 [{ src, alt, label? }] 2단 그리드 갤러리 노출 — 클릭하면 라이트박스로 크게 보임 (없으면 기존과 동일)
   galleryLightbox = true, // false면 갤러리를 그리드로만 보여주고 클릭 확대(라이트박스)를 비활성화 (미설정 시 기존과 동일)
@@ -71,11 +72,13 @@ export default function ImageSection({
   const subTabs    = currentTab?.subTabs;
   const hasSubTabs = subTabs && subTabs.length > 0;
 
+  const [utmImages, setUtmImages] = useState(null);
+  const baseImages = utmImages ?? images;
   const activeImages    = hasSubTabs
     ? subTabs[activeSubTab]?.images ?? []
     : hasTabs
     ? currentTab.images ?? []
-    : images;
+    : baseImages;
   const activeSpecItems = hasTabs ? currentTab.specItems : specItems;
 
   const hasSpec   = activeSpecItems && activeSpecItems.length > 0;
@@ -87,6 +90,9 @@ export default function ImageSection({
 
   useEffect(() => {
     const utm = new URLSearchParams(window.location.search).get("utm_source");
+    if (imagesByUtm && utm && imagesByUtm[utm]) {
+      setUtmImages(imagesByUtm[utm]);
+    }
     if (utmOnly) {
       setVisible(!!utm && utmOnly.includes(utm));
       return;
@@ -94,7 +100,7 @@ export default function ImageSection({
     if (utmExclude) {
       setVisible(!(utm && utmExclude.includes(utm)));
     }
-  }, [utmOnly, utmExclude]);
+  }, [utmOnly, utmExclude, imagesByUtm]);
 
   if ((utmOnly || utmExclude) && !visible) return null;
 

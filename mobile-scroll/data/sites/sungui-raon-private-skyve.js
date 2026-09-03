@@ -32,7 +32,9 @@ const config = {
     },
   ],
 
-  // utm_source=B/SKT1/Lpoint2만 popup1 1개로 다르게 노출 (다른 유입경로는 위 기본 popup 2개 그대로)
+  // utm_source=B는 popup1 1개로 다르게 노출 (다른 유입경로는 위 기본 popup 2개 그대로)
+  // utm_source=SKT1/Lpoint2는 popup3 1개로 노출 — 이미지 안에 그려진 "방문 예약 등록" 버튼 위치를
+  // cta 핫스폿(rect, % 기준)으로 덮어서 클릭 시 상담신청(방문예약) 섹션으로 스크롤 이동
   popupByUtm: {
     B: [
       {
@@ -42,14 +44,22 @@ const config = {
     ],
     SKT1: [
       {
-        src: "/apt/sungui-raon-private-skyve/popup1.webp",
+        src: "/apt/sungui-raon-private-skyve/popup3.webp",
         alt: "숭의역 라온프라이빗 스카이브 팝업",
+        cta: {
+          target: "#contact-section",
+          rect: { top: "83%", left: "1%", width: "97%", height: "8%" },
+        },
       },
     ],
     Lpoint2: [
       {
-        src: "/apt/sungui-raon-private-skyve/popup1.webp",
+        src: "/apt/sungui-raon-private-skyve/popup3.webp",
         alt: "숭의역 라온프라이빗 스카이브 팝업",
+        cta: {
+          target: "#contact-section",
+          rect: { top: "83%", left: "1%", width: "97%", height: "8%" },
+        },
       },
     ],
   },
@@ -186,6 +196,15 @@ const config = {
       images: [
         { src: "/apt/sungui-raon-private-skyve/1-5.webp", alt: "계약 조건 변경" },
       ],
+      // utm_source=SKT1/Lpoint2만 이 섹션 이미지를 popup3로 교체 (다른 유입경로/메인은 위 1-5.webp 그대로)
+      imagesByUtm: {
+        SKT1: [
+          { src: "/apt/sungui-raon-private-skyve/popup3.webp", alt: "계약 조건 변경" },
+        ],
+        Lpoint2: [
+          { src: "/apt/sungui-raon-private-skyve/popup3.webp", alt: "계약 조건 변경" },
+        ],
+      },
       utmExclude: ["B"],
       showHeader: false,
       sectionBg:  "#2A3746",

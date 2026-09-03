@@ -4,6 +4,7 @@ import wonjongyeokWorldMeridianFore from './sites/wonjongyeok-world-meridian-for
 import theSharpSongdoGrandTerre from './sites/the-sharp-songdo-grand-terre'
 import theSharpGeomdanLakepark from './sites/the-sharp-geomdan-lakepark'
 import theSharpGeomdanLakepark2 from './sites/the-sharp-geomdan-lakepark-2'
+import deoksoDoubleviewHangang from './sites/deokso-doubleview-hangang'
 
 /**
  * 새 현장 추가 방법:
@@ -24,6 +25,7 @@ const sites = [
   theSharpSongdoGrandTerre,
   theSharpGeomdanLakepark,
   theSharpGeomdanLakepark2,
+  deoksoDoubleviewHangang,
 ]
 
 // slug로 현장 하나를 찾음 (app/apt/[slug]/page.jsx에서 사용)

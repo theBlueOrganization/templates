@@ -18,7 +18,7 @@
 
 .heading h2 {
   margin: 0 0 16px;
-  font-family: var(--font-serif);
+  font-family: var(--community-heading-font, var(--font-serif));
   font-weight: 500;
   font-size: clamp(32px, 4.6vw, 62px);
   line-height: 1.32;
@@ -49,6 +49,12 @@
   overflow: hidden;
   color: #0b1822;
   background: #fff;
+}
+
+/* community.imageOnly: true — 텍스트(라벨/제목/시설군 목록) 없이 배치도 이미지만 */
+.cardImageOnly {
+  overflow: hidden;
+  border-radius: 4px;
 }
 
 .copy {
@@ -90,15 +96,12 @@
   margin: 0;
   display: grid;
   place-items: center;
-  padding: 20px;
   background: #edf0ee;
 }
 
 .plan :global(img) {
   width: 100%;
   height: auto;
-  object-fit: contain;
-  max-height: 680px;
 }
 
 .note {
@@ -127,5 +130,13 @@
 
   .plan {
     min-height: 520px;
+  }
+}
+
+/* 블록(22BL/23BL 등)이 2개일 때는 세로로 쌓지 않고 나란히 배치 — 3개 이상이면 좁아지는 걸 막기 위해
+   기존처럼 세로로 쌓임(자동, 별도 처리 불필요: grid-template-columns가 2개 트랙만 만들고 넘치면 다음 줄로) */
+@media (min-width: 1280px) {
+  .list {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

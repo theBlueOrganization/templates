@@ -20,12 +20,39 @@ function PanelHead({ eyebrow, titleLine1, titleLine2, desc, plainEyebrow, align 
   )
 }
 
-// donghoChart.tabs가 있으면(블록별로 동호수 배치표 이미지가 여러 장인 현장) 블록 선택 버튼을 그려서
-// 고른 블록의 이미지로 바꿔치기함 — 없는 현장은 기존처럼 donghoChart.image 하나만 보여줌
+// donghoChart.columns가 있으면(블록 2~3개를 탭 없이 한 번에 나란히 비교해서 보여주고 싶은 현장) 각
+// 블록을 항상 동시에 보여줌 — 블록이 많아서(4개 이상) 한 화면에 다 못 넣는 현장은 기존처럼
+// donghoChart.tabs로 블록 선택 버튼을 그려서 고른 블록의 이미지만 바꿔치기함
 function DonghoChart({ donghoChart }) {
-  const hasTabs = Array.isArray(donghoChart.tabs) && donghoChart.tabs.length > 0
+  const hasColumns = Array.isArray(donghoChart.columns) && donghoChart.columns.length > 0
+  const hasTabs = !hasColumns && Array.isArray(donghoChart.tabs) && donghoChart.tabs.length > 0
   const [activeTab, setActiveTab] = useState(0)
   const image = hasTabs ? donghoChart.tabs[activeTab].image : donghoChart.image
+
+  if (hasColumns) {
+    return (
+      <div className={styles.columnRow}>
+        {donghoChart.columns.map((col) => (
+          <div key={col.label} className={styles.column}>
+            <div className={styles.columnHead}>
+              <span className={styles.columnBadge}>{col.label}</span>
+              <span className={styles.columnLabel}>{col.sub}</span>
+            </div>
+            <Reveal delay={0.15} className={styles.imageBox}>
+              <Image
+                src={col.image.src}
+                alt={col.image.alt}
+                width={col.image.width}
+                height={col.image.height}
+                sizes="(min-width: 1024px) 50vw, calc(100vw - 40px)"
+                className={styles.image}
+              />
+            </Reveal>
+          </div>
+        ))}
+      </div>
+    )
+  }
 
   return (
     <>

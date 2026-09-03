@@ -269,86 +269,23 @@
     width: 100%;
   }
 
+  /* 항목 수(7개 초과 등)에 상관없이 항상 올바르게 3열로 흐르도록, tr 하나를 통째로 그리드 셀 하나로
+     취급 — 이전엔 th/td를 각각 nth-child(1)~(7)로 하드코딩해서 8번째 항목부터 자동배치와 뒤섞여
+     라벨/값이 서로 다른 항목끼리 밀리는 문제가 있었음(예: 8개 이상 항목을 채운 현장에서 깨짐) */
   .table {
+    display: block;
+  }
+
+  .table tbody {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     column-gap: 56px;
     row-gap: 16px;
   }
 
-  .table tbody,
   .table tr {
-    display: contents;
-  }
-
-  .table tr:nth-child(1) th {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
-  .table tr:nth-child(1) td {
-    grid-column: 1;
-    grid-row: 2;
-  }
-
-  .table tr:nth-child(2) th {
-    grid-column: 2;
-    grid-row: 1;
-  }
-
-  .table tr:nth-child(2) td {
-    grid-column: 2;
-    grid-row: 2;
-  }
-
-  .table tr:nth-child(3) th {
-    grid-column: 3;
-    grid-row: 1;
-  }
-
-  .table tr:nth-child(3) td {
-    grid-column: 3;
-    grid-row: 2;
-  }
-
-  .table tr:nth-child(4) th {
-    grid-column: 1;
-    grid-row: 3;
-  }
-
-  .table tr:nth-child(4) td {
-    grid-column: 1;
-    grid-row: 4;
-  }
-
-  .table tr:nth-child(5) th {
-    grid-column: 2;
-    grid-row: 3;
-  }
-
-  .table tr:nth-child(5) td {
-    grid-column: 2;
-    grid-row: 4;
-  }
-
-  .table tr:nth-child(6) th {
-    grid-column: 3;
-    grid-row: 3;
-  }
-
-  .table tr:nth-child(6) td {
-    grid-column: 3;
-    grid-row: 4;
-  }
-
-  .table tr:nth-child(7) th {
-    grid-column: 1;
-    grid-row: 5;
-  }
-
-  .table tr:nth-child(7) td {
-    grid-column: 1;
-    grid-row: 6;
+    display: flex;
+    flex-direction: column;
   }
 
   .table th {

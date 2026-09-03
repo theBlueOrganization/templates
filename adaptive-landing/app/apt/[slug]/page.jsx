@@ -12,6 +12,7 @@ import SignatureSummary from '../../../components/sections/SignatureSummary'
 import SignatureLocation from '../../../components/sections/SignatureLocation'
 import SignaturePremiumIntro from '../../../components/sections/SignaturePremiumIntro'
 import SignaturePremiumValue from '../../../components/sections/SignaturePremiumValue'
+import SignaturePremiumSplit from '../../../components/sections/SignaturePremiumSplit'
 import SignatureLandscape from '../../../components/sections/SignatureLandscape'
 import SignatureComplex from '../../../components/sections/SignatureComplex'
 import SignatureUnitPlan from '../../../components/sections/SignatureUnitPlan'
@@ -138,8 +139,18 @@ export default async function AptPage({ params }) {
       }
     : { '--navy': 'initial', '--ink': 'initial', '--cream': 'initial', '--gold': 'initial' }
 
+  // 선택 필드 — 현장 자체 웹폰트(CDN CSS + font-family 이름)를 쓰고 싶을 때만 지정. --font-sans를
+  // 이 값으로 덮어써서 본문 전반(대부분의 컴포넌트가 var(--font-sans) 참조)에 적용됨
+  if (site.webfont) {
+    themeStyle['--font-sans'] = site.webfont.family
+  }
+
   return (
     <div style={themeStyle}>
+      {site.webfont && <link rel="stylesheet" href={site.webfont.cssUrl} />}
+      {site.extraFontLinks?.map((href) => (
+        <link key={href} rel="stylesheet" href={href} />
+      ))}
       <SignatureHeader
         header={sig.header}
         sectionIds={sectionIds}
@@ -168,17 +179,24 @@ export default async function AptPage({ params }) {
         <SignatureLocation location={sig.location} />
         <SignaturePremiumIntro premiumIntro={sig.premiumIntro} />
         <SignaturePremiumValue premiumValue={sig.premiumValue} />
+        {sig.premiumSplits?.map((split, i) => (
+          <SignaturePremiumSplit key={i} split={split} />
+        ))}
         {sig.landscape && <SignatureLandscape landscape={sig.landscape} />}
         <SignatureComplex complex={sig.complex} />
         <SignatureUnitPlan unitPlan={sig.unitPlan} />
-        {sig.club &&
+        {sig.communityBlocks ? (
+          <SignatureCommunityGeomdan community={sig.communityBlocks} />
+        ) : (
+          sig.club &&
           (sig.club.variant === 'simple' ? (
             <SignatureClubSimple club={sig.club} />
           ) : sig.club.variant === 'zones' ? (
             <SignatureClubZones club={sig.club} />
           ) : (
             <SignatureClub club={sig.club} />
-          ))}
+          ))
+        )}
         <SignatureVipForm config={site} />
       </main>
       <SignatureFooter

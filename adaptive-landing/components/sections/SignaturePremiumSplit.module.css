@@ -1,0 +1,166 @@
+.section {
+  position: relative;
+  background: #fff;
+  padding: 56px 20px;
+  overflow: hidden;
+}
+
+.grid {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.textCol {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  word-break: keep-all;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--navy, #173a63);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(24px, 4vw, 32px);
+  line-height: 1.4;
+  color: var(--ink, #12233d);
+}
+
+.descList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.descList p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #555;
+}
+
+.badgeList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.badgeRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border: 1px solid #d8dee5;
+  border-radius: 999px;
+  font-size: 13px;
+}
+
+.badgeLine {
+  flex-shrink: 0;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  color: var(--navy, #173a63);
+  background: rgba(23, 58, 99, 0.08);
+}
+
+.badgeLineAccent {
+  color: #b8860b;
+  background: rgba(184, 134, 11, 0.1);
+}
+
+.badgeRoute {
+  flex: 1;
+  color: #333;
+}
+
+.badgeTime {
+  flex-shrink: 0;
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--navy, #173a63);
+}
+
+.badgeTimeAccent {
+  color: #b8860b;
+}
+
+.imageCol {
+  display: flex;
+  gap: 12px;
+}
+
+.imageBox {
+  position: relative;
+  flex: 1;
+  aspect-ratio: 3 / 4;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.ghost {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6%;
+  z-index: 0;
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(28px, 8vw, 64px);
+  line-height: 1.15;
+  color: var(--cream, #f2f5f8);
+  word-break: keep-all;
+  pointer-events: none;
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding: 100px 40px;
+  }
+
+  .grid {
+    flex-direction: row;
+    align-items: center;
+    gap: 60px;
+  }
+
+  .reverse {
+    flex-direction: row-reverse;
+  }
+
+  .textCol {
+    flex: 1;
+    gap: 20px;
+  }
+
+  .imageCol {
+    flex: 1;
+  }
+
+  .title {
+    font-size: clamp(32px, 3vw, 44px);
+  }
+
+  .descList p {
+    font-size: 16px;
+  }
+}

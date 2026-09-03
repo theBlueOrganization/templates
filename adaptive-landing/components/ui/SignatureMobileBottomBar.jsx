@@ -15,19 +15,18 @@ export default function SignatureMobileBottomBar({ telNumber, telNumberByUtm, vi
   const utmSource = useUtmSource()
   const resolvedTelNumber = telNumberByUtm?.[utmSource] ?? telNumber
 
+  // IntersectionObserver로 히어로가 뷰포트에서 완전히 벗어났는지 감지 — 모바일 브라우저에서 주소창이
+  // 접히고 펼쳐지며 실시간으로 바뀌는 100svh 때문에 getBoundingClientRect()를 scroll/resize에서 직접
+  // 계산하던 예전 방식은 그 오차만큼 히어로 자체 하단바(mobileBar)와 이 고정바가 잠깐 동시에 보이는
+  // 경우가 있었음 — Observer는 실제 교차 상태를 브라우저가 직접 추적해 이 오차가 없음
   useEffect(() => {
     const heroEl = document.getElementById('hero')
-    const update = () => {
-      if (!heroEl) return
-      setVisible(heroEl.getBoundingClientRect().bottom <= 0)
-    }
-    update()
-    window.addEventListener('scroll', update, { passive: true })
-    window.addEventListener('resize', update)
-    return () => {
-      window.removeEventListener('scroll', update)
-      window.removeEventListener('resize', update)
-    }
+    if (!heroEl) return
+    const observer = new IntersectionObserver(([entry]) => setVisible(!entry.isIntersecting && entry.boundingClientRect.bottom <= 0), {
+      threshold: 0,
+    })
+    observer.observe(heroEl)
+    return () => observer.disconnect()
   }, [])
 
   const handleCallClick = (e) => {

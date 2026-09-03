@@ -18,6 +18,7 @@
   font-size: 14px;
   letter-spacing: -0.01em;
   color: #333;
+  word-break: keep-all;
 }
 
 .title {
@@ -26,6 +27,7 @@
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--ink, #1a1a1a);
+  word-break: keep-all;
 }
 
 .title strong {
@@ -91,6 +93,46 @@
   border-color: var(--gold, #7c8560);
 }
 
+/* 사진이 있는 카드(card.image) — 상단 이미지 + 하단 텍스트, 보더/체스판 배색 없이 순백 카드로 통일 */
+.cardPhoto {
+  padding: 0;
+  overflow: hidden;
+  border: none;
+  background: #fff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+.cardPhoto:hover {
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+}
+
+.imageBox {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.cardPhoto .body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px 22px 24px;
+}
+
+.cardPhoto .num {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--navy, #214d78);
+}
+
 .icon {
   display: flex;
   width: 44px;
@@ -122,6 +164,7 @@
   font-weight: 700;
   color: var(--ink, #1a1a1a);
   letter-spacing: -0.03em;
+  word-break: keep-all;
 }
 
 .cardDesc {
@@ -132,6 +175,7 @@
   color: #555;
   line-height: 1.7;
   letter-spacing: -0.02em;
+  word-break: keep-all;
 }
 
 @media (min-width: 768px) {

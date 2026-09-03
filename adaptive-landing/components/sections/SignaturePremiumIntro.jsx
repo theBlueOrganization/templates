@@ -7,8 +7,45 @@ import styles from './SignaturePremiumIntro.module.css'
 export default function SignaturePremiumIntro({ premiumIntro }) {
   const descSegments = splitHighlight(premiumIntro.descLine1, premiumIntro.descLine1Accent)
 
+  // clean: true — 타이틀은 흰 배경 위에 깔끔하게, 배경 사진은 그 아래 별도 블록으로 분리하고
+  // desc만 사진 위(하단 그라디언트)에 얹는 레이아웃. 없으면 기존처럼 사진 전체에 텍스트를 오버레이.
+  if (premiumIntro.clean) {
+    return (
+      <section className={styles.sectionClean}>
+        <div className={styles.cleanHead}>
+          <p className={styles.eyebrow}>{premiumIntro.eyebrow}</p>
+          <h2 className={styles.cleanTitle}>{premiumIntro.titleLine1}</h2>
+          <p className={styles.cleanSubtitle}>{premiumIntro.titleLine2}</p>
+        </div>
+        <div className={styles.cleanImageWrap}>
+          <Image src={premiumIntro.bgImage.src} alt={premiumIntro.bgImage.alt} fill sizes="100vw" className={styles.bgImage} />
+          <div className={styles.cleanOverlay} />
+          <div className={styles.cleanImageText}>
+            <p>
+              {descSegments.map((seg, i) =>
+                seg.accent ? (
+                  <strong key={i} className={styles.descAccent}>
+                    {seg.text}
+                  </strong>
+                ) : (
+                  <span key={i}>{seg.text}</span>
+                )
+              )}
+            </p>
+            <p>{premiumIntro.descLine2}</p>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  const introStyle = {
+    ...(premiumIntro.fontFamily && { '--intro-font': premiumIntro.fontFamily }),
+    ...(premiumIntro.titleColor && { '--intro-color': premiumIntro.titleColor }),
+  }
+
   return (
-    <section className={styles.section}>
+    <section className={styles.section} style={Object.keys(introStyle).length ? introStyle : undefined}>
       <div className={styles.bg}>
         <Image src={premiumIntro.bgImage.src} alt={premiumIntro.bgImage.alt} fill sizes="100vw" className={styles.bgImage} />
         {premiumIntro.overlay !== false && <div className={styles.overlay} />}

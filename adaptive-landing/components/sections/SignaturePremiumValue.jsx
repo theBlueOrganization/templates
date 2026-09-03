@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Reveal from '../motion/Reveal'
 import { Stagger, StaggerItem } from '../motion/Stagger'
 import styles from './SignaturePremiumValue.module.css'
@@ -74,19 +75,29 @@ export default function SignaturePremiumValue({ premiumValue }) {
         {premiumValue.cards.map((card) => {
           const icon = ICONS[card.icon]
           return (
-            <StaggerItem key={card.num} className={`${styles.card} ${icon ? styles.cardBordered : ''}`}>
-              {icon && <span className={styles.icon}>{icon}</span>}
-              <span className={styles.num}>{card.num}</span>
-              <h3 className={styles.cardTitle}>
-                {card.title.map((line, j) => (
-                  <span key={j}>{line}</span>
-                ))}
-              </h3>
-              <p className={styles.cardDesc}>
-                {card.desc.map((line, j) => (
-                  <span key={j}>{line}</span>
-                ))}
-              </p>
+            <StaggerItem
+              key={card.num}
+              className={`${styles.card} ${icon ? styles.cardBordered : ''} ${card.image ? styles.cardPhoto : ''}`}
+            >
+              {card.image && (
+                <div className={styles.imageBox}>
+                  <Image src={card.image.src} alt={card.image.alt} fill sizes="(min-width: 1024px) 33vw, 90vw" className={styles.image} />
+                </div>
+              )}
+              <div className={card.image ? styles.body : undefined}>
+                {icon && <span className={styles.icon}>{icon}</span>}
+                <span className={styles.num}>{card.num}</span>
+                <h3 className={styles.cardTitle}>
+                  {card.title.map((line, j) => (
+                    <span key={j}>{line}</span>
+                  ))}
+                </h3>
+                <p className={styles.cardDesc}>
+                  {card.desc.map((line, j) => (
+                    <span key={j}>{line}</span>
+                  ))}
+                </p>
+              </div>
             </StaggerItem>
           )
         })}

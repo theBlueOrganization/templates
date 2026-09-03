@@ -32,8 +32,7 @@ const config = {
     },
   ],
 
-  // utm_source=B는 popup1 1개로 다르게 노출 (다른 유입경로는 위 기본 popup 2개 그대로)
-  // utm_source=SKT1/Lpoint2는 popup3(방문예약등록 버튼 포함) 1개로 노출 — 버튼 클릭 시 상담신청(방문예약) 섹션으로 스크롤 이동
+  // utm_source=B/SKT1/Lpoint2만 popup1 1개로 다르게 노출 (다른 유입경로는 위 기본 popup 2개 그대로)
   popupByUtm: {
     B: [
       {
@@ -43,26 +42,14 @@ const config = {
     ],
     SKT1: [
       {
-        src: "/apt/sungui-raon-private-skyve/popup3.webp",
+        src: "/apt/sungui-raon-private-skyve/popup1.webp",
         alt: "숭의역 라온프라이빗 스카이브 팝업",
-        actionButton: {
-          label: "방문예약등록",
-          target: "#contact-section",
-          background: "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 55%, #1e3a5f 100%)",
-          color: "#ffffff",
-        },
       },
     ],
     Lpoint2: [
       {
-        src: "/apt/sungui-raon-private-skyve/popup3.webp",
+        src: "/apt/sungui-raon-private-skyve/popup1.webp",
         alt: "숭의역 라온프라이빗 스카이브 팝업",
-        actionButton: {
-          label: "방문예약등록",
-          target: "#contact-section",
-          background: "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 55%, #1e3a5f 100%)",
-          color: "#ffffff",
-        },
       },
     ],
   },

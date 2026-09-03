@@ -12,7 +12,7 @@
 // 대표 전화번호도 공식 홈페이지 번호(1600-2857)가 아니라 이 현장 전용 상담 트래킹 번호를 쓴다.
 const config = {
   slug: 'the-sharp-geomdan-lakepark-2',
-  subdomain: '더샵검단레이크파크2',
+  subdomain: '더샵검단레이크파크T',
   projectName: '더샵 검단레이크파크2',
   shortName: '더샵 검단레이크파크2',
   telNumber: '1666-1050',

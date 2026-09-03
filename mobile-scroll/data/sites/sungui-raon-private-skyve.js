@@ -32,9 +32,21 @@ const config = {
     },
   ],
 
-  // utm_source=B만 popup1 1개로 다르게 노출 (다른 유입경로는 위 기본 popup 그대로)
+  // utm_source=B/SKT1/Lpoint2만 popup1 1개로 다르게 노출 (다른 유입경로는 위 기본 popup 2개 그대로)
   popupByUtm: {
     B: [
+      {
+        src: "/apt/sungui-raon-private-skyve/popup1.webp",
+        alt: "숭의역 라온프라이빗 스카이브 팝업",
+      },
+    ],
+    SKT1: [
+      {
+        src: "/apt/sungui-raon-private-skyve/popup1.webp",
+        alt: "숭의역 라온프라이빗 스카이브 팝업",
+      },
+    ],
+    Lpoint2: [
       {
         src: "/apt/sungui-raon-private-skyve/popup1.webp",
         alt: "숭의역 라온프라이빗 스카이브 팝업",
@@ -90,10 +102,10 @@ const config = {
   telNumberByUtm: {
     B: "1666-1352",
     SKT: "1666-1050",
-    SKT1: "1666-1050",
+    SKT1: "1666-1352",
     SKT2: "1666-1050",
     lpoint: "1800-2261",
-    Lpoint2: "1666-1050",
+    Lpoint2: "1666-1352",
     Lpoint3: "1522-8602",
     NA: "1522-8602",
     sh: "1800-2261",
@@ -115,6 +127,8 @@ const config = {
   adminPhonesByUtm: {
     B: ["01023537202"],
     NA: ["01071901052","01048787464","01083773101"],
+    SKT1: ["01048086474","01071901052"],
+    Lpoint2: ["01048086474","01071901052"],
   },
 
   // utm_source=B로 들어온 방문자에게만 히어로 문구를 다르게 표시 (subtitle은 기존 값 유지)

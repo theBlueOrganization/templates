@@ -196,6 +196,15 @@ const config = {
       images: [
         { src: "/apt/sungui-raon-private-skyve/1-5.webp", alt: "계약 조건 변경" },
       ],
+      // utm_source=SKT1/Lpoint2만 이 섹션 이미지를 popup3로 교체 (다른 유입경로/메인은 위 1-5.webp 그대로)
+      imagesByUtm: {
+        SKT1: [
+          { src: "/apt/sungui-raon-private-skyve/popup3.webp", alt: "계약 조건 변경" },
+        ],
+        Lpoint2: [
+          { src: "/apt/sungui-raon-private-skyve/popup3.webp", alt: "계약 조건 변경" },
+        ],
+      },
       utmExclude: ["B"],
       showHeader: false,
       sectionBg:  "#2A3746",

@@ -212,7 +212,7 @@ const config = {
     },
     // 상담 신청 버튼
     ContactForm_submitBtn: {
-      background: "linear-gradient(135deg, #CA705B, #ecab9c)",
+      background: "#CA705B",
       color:      "#ffffff",
       fontSize:   "1.15rem",
     },
@@ -223,7 +223,7 @@ const config = {
       color:      "#CA705B",
     },
     BottomBar_regBtn: {
-      background: "#FF6F47",
+      background: "#CA705B",
       color:      "#ffffff",
     },
   },

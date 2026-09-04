@@ -78,19 +78,22 @@
   animation: none;
   transition: none;
   opacity: 1;
-  background: linear-gradient(to bottom, #040049, #00000000);
 }
 
-/* 그라디언트 배경을 ::before로 분리 → opacity로 부드럽게 페이드인 */
-.textBlock.settled::before {
-  content: '';
+/* 이미지 전체를 덮는 어두운 오버레이 — 텍스트 뒤뿐 아니라 히어로 전체 높이에 적용
+   (theme.hero.textOverlay 미설정 시 기존과 동일한 기본값 유지) */
+.imageOverlay {
   position: absolute;
   inset: 0;
-  background: var(--text-overlay, linear-gradient(to bottom, hsl(180deg 5% 27% / 70%), #42494900));
+  z-index: 5;
+  background: var(--text-overlay, linear-gradient(to bottom, #040049 0%, hsl(180deg 5% 27% / 70%) 45%, #42494900 100%));
   opacity: 0;
-  animation: bg-fadein 0.9s ease 0.1s forwards;
+  transition: opacity 0.9s ease;
   pointer-events: none;
-  z-index: -1;
+}
+
+.imageOverlay.visible {
+  opacity: 1;
 }
 
 @keyframes bg-fadein {
@@ -449,6 +452,7 @@
   .textBlock.visible .accent         { animation: none !important; color: var(--accent-color) !important; }
   .textBlock.visible .accent::before { animation: none !important; display: none; }
   .badgeRow, .brand, .subtitle { animation: none !important; opacity: 1 !important; }
+  .imageOverlay          { transition: none !important; opacity: 1 !important; }
   .scrollHint.visible    { animation: none !important; opacity: 1 !important; }
   .badge.urgent          { animation: none !important; opacity: 1 !important; }
   .badge.urgent::after   { animation: none !important; }

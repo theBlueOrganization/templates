@@ -143,6 +143,12 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
         />
       )}
 
+      {/* 이미지 전체에 깔리는 어두운 오버레이 — theme.hero.textOverlay 미설정 시 기존과 동일한 기본값 유지 */}
+      <div
+        className={`${styles.imageOverlay} ${settled ? styles.visible : ""}`}
+        style={th.hero?.textOverlay ? { "--text-overlay": th.hero.textOverlay } : undefined}
+      />
+
       {/* 텍스트 */}
       <div
         className={[

@@ -50,12 +50,14 @@ export default function ImageSection({
   utmExclude,   // 있으면 이 utm_source 목록에 해당하는 방문자에게만 섹션을 숨김 (그 외에는 기본 노출, 없으면 기존과 동일)
   showHeader = true, // false면 제목/부제/구분선 헤더 블록 자체를 렌더링하지 않음 (없으면 기존과 동일)
   sectionBg,    // 있으면 이 섹션 전체 배경색 적용 (없으면 theme.ImageSection_background, 그것도 없으면 기존 CSS 기본값 #ffffff)
+  sectionBgByUtm, // 있으면 { [utm_source]: color } — 해당 유입경로 방문자에게만 섹션 배경색을 다르게 (imagesByUtm과 같은 방식, 없으면 기존과 동일)
   headerPaddingTop, // 있으면 이 섹션만 theme.ImageSection_spacing.headerPaddingTop 대신 이 값을 사용
 }) {
   const th = theme ?? {};
   // theme.ImageSection_background: 현장 전체 섹션 배경을 한 번에 지정(개별 섹션은 sectionBg로 예외 가능)
   // theme.ImageSection_dark: true면 제목/부제/탭/스펙표 텍스트를 어두운 배경에 맞게 밝은 톤으로 전환
-  const sectionBackground = sectionBg ?? th.ImageSection_background;
+  const [utmSectionBg, setUtmSectionBg] = useState(null);
+  const sectionBackground = utmSectionBg ?? sectionBg ?? th.ImageSection_background;
   const dark = Boolean(th.ImageSection_dark);
   const darkCx = (base) => (dark ? `${base} ${styles.dark}` : base);
   const hasTabs = tabs && tabs.length > 0;
@@ -93,6 +95,9 @@ export default function ImageSection({
     if (imagesByUtm && utm && imagesByUtm[utm]) {
       setUtmImages(imagesByUtm[utm]);
     }
+    if (sectionBgByUtm && utm && sectionBgByUtm[utm]) {
+      setUtmSectionBg(sectionBgByUtm[utm]);
+    }
     if (utmOnly) {
       setVisible(!!utm && utmOnly.includes(utm));
       return;
@@ -100,7 +105,7 @@ export default function ImageSection({
     if (utmExclude) {
       setVisible(!(utm && utmExclude.includes(utm)));
     }
-  }, [utmOnly, utmExclude, imagesByUtm]);
+  }, [utmOnly, utmExclude, imagesByUtm, sectionBgByUtm]);
 
   if ((utmOnly || utmExclude) && !visible) return null;
 

@@ -90,18 +90,20 @@ const config = {
     { label: "카카오",    value: "kakao" },
   ],
 
-  // utm_source=sh/channeltalk/channeltalk2/bc/nice로 들어온 상담만 문자 발송 시 현장명 뒤에
-  // "+신한"/"+채널톡"/"+채널톡2"/"+BC"/"+nice"를 붙여서 표시
+  // utm_source=sh/channeltalk/channeltalk2/bc/nice/SKT1/Lpoint2로 들어온 상담만 문자 발송 시 현장명 뒤에
+  // "+신한"/"+채널톡"/"+채널톡2"/"+BC"/"+nice"/"+SKT"/"+엘포"를 붙여서 표시
   smsProjectNameByUtm: {
     sh: "신한",
     channeltalk: "채널톡",
     channeltalk2: "채널톡2",
     bc: "BC",
     nice: "nice",
+    SKT1: "SKT",
+    Lpoint2: "엘포",
   },
 
   // utm_source가 아예 없는 접속(이 URL 그대로 접근)의 상담 문자 발송 시에만 현장명 뒤에 "+호갱1"을 붙여서 표시
-  // utm_source가 있는 접속(SKT1/Lpoint2/sh/B/OK 등)에는 절대 붙지 않음 — sh는 기존처럼 "+신한"만 표시
+  // utm_source가 있는 접속(sh/B/OK 등, SKT1/Lpoint2는 위 smsProjectNameByUtm으로 별도 처리)에는 붙지 않음
   smsProjectNameSuffix: "호갱1",
 
   // utm_source=B/SKT/SKT1/SKT2/lpoint/Lpoint2/Lpoint3/NA/sh/OK/channeltalk/channeltalk2/nice/bc/kakao로 들어온 방문자에게만 화면 문의처 번호를 다르게 표시 (문자 수신번호(adminPhones)는 영향 없음)
@@ -137,8 +139,8 @@ const config = {
   adminPhonesByUtm: {
     B: ["01023537202"],
     NA: ["01071901052","01048787464","01083773101"],
-    SKT1: ["01048086474","01071901052"],
-    Lpoint2: ["01048086474","01071901052"],
+    SKT1: ["01071901052","01023537202"],
+    Lpoint2: ["01071901052","01023537202"],
   },
 
   // utm_source=B로 들어온 방문자에게만 히어로 문구를 다르게 표시 (subtitle은 기존 값 유지)
@@ -196,18 +198,23 @@ const config = {
       images: [
         { src: "/apt/sungui-raon-private-skyve/1-5.webp", alt: "계약 조건 변경" },
       ],
-      // utm_source=SKT1/Lpoint2만 이 섹션 이미지를 popup3로 교체 (다른 유입경로/메인은 위 1-5.webp 그대로)
+      // utm_source=SKT1/Lpoint2만 이 섹션 이미지를 1-6으로 교체 (다른 유입경로/메인은 위 1-5.webp 그대로)
       imagesByUtm: {
         SKT1: [
-          { src: "/apt/sungui-raon-private-skyve/popup3.webp", alt: "계약 조건 변경" },
+          { src: "/apt/sungui-raon-private-skyve/1-6.webp", alt: "계약 조건 변경" },
         ],
         Lpoint2: [
-          { src: "/apt/sungui-raon-private-skyve/popup3.webp", alt: "계약 조건 변경" },
+          { src: "/apt/sungui-raon-private-skyve/1-6.webp", alt: "계약 조건 변경" },
         ],
       },
       utmExclude: ["B"],
       showHeader: false,
       sectionBg:  "#2A3746",
+      // utm_source=SKT1/Lpoint2는 위 1-6 이미지의 배경색(어두운 남색)에 맞춰 섹션 배경도 다르게
+      sectionBgByUtm: {
+        SKT1: "#061c35",
+        Lpoint2: "#061c35",
+      },
     },
     {
       id:       "overview",

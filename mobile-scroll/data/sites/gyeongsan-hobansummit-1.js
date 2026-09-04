@@ -68,8 +68,6 @@ const config = {
   ],
 
   hero: {
-    eyebrow:       "15만평 상방공원｜문화예술생활｜경산신주거타운",
-    eyebrowUrgent: 1,
     brand:         "경산 상방공원 호반써밋 1단지",
     title: "공원과 문화를 품은\n차별화된 특별한 주거\n수성구 생활권까지 가까이",
     subtitle:      "1·2단지 총 2,105세대 브랜드 대단지",
@@ -93,7 +91,7 @@ const config = {
       // theme.contactSection.background와 동일한 색으로 지정 (기본 흰색 대신)
       sectionBg:  "#1e293b",
       images: [
-        { src: "/apt/gyeongsan-hobansummit-1/1-3.webp", alt: "경산 상방공원 호반써밋 1단지" },
+        { src: "/apt/gyeongsan-hobansummit-1/1-3.webp?v=0904-2", alt: "경산 상방공원 호반써밋 1단지", scale: 1.15 },
       ],
     },
     {
@@ -174,6 +172,8 @@ const config = {
     // ── 히어로 커튼 색상 ──
     hero: {
       curtainColor: "#0e4081",  // 커튼 시작 색상 (원하는 색으로 변경)
+      // 히어로 텍스트 뒤 어둡게 깔리는 그라디언트 — 기본값보다 진하게 조정
+      textOverlay: "linear-gradient(to bottom, rgba(4,0,30,0.88), rgba(4,0,30,0))",
     },
 
     // 상단 메뉴바 활성 탭 색상
@@ -189,18 +189,6 @@ const config = {
       height:     "3px",
     },
 
-    // 히어로 배지 (eyebrow)
-    eyebrow: {
-      color:       "#ecab9c",
-      borderColor: "rgba(236,171,156,0.5)",
-      fontSize:    "1rem",
-    },
-    // 긴급 배지 (eyebrowUrgent)
-    eyebrowUrgent: {
-      color:       "#CA705B",
-      borderColor: "rgba(202,112,91,0.6)",
-    },
-
     // 히어로 브랜드명
     brand: {
       color:    "rgb(255, 255, 255)",
@@ -210,7 +198,7 @@ const config = {
     title: {
       color:       "#ffffff",
       fontSize:    "clamp(1.6rem,8vw,2.7rem)",
-      accentColor: "#ecab9c",
+      accentColor: "#f1836a",
     },
     // 히어로 서브타이틀
     subtitle: {
@@ -235,7 +223,7 @@ const config = {
       color:      "#CA705B",
     },
     BottomBar_regBtn: {
-      background: "#CA705B",
+      background: "#FF6F47",
       color:      "#ffffff",
     },
   },

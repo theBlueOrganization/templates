@@ -152,6 +152,7 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
           !isAccent && curtainOut       ? styles.curtainOut  : "",
           !isAccent && settled          ? styles.settled     : "",
         ].filter(Boolean).join(" ")}
+        style={th.hero?.textOverlay ? { "--text-overlay": th.hero.textOverlay } : undefined}
       >
         {badges.length > 0 && (
           <div className={styles.badgeRow}>

@@ -86,7 +86,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, hsl(180deg 5% 27% / 70%), #42494900);
+  background: var(--text-overlay, linear-gradient(to bottom, hsl(180deg 5% 27% / 70%), #42494900));
   opacity: 0;
   animation: bg-fadein 0.9s ease 0.1s forwards;
   pointer-events: none;

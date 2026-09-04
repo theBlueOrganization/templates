@@ -136,12 +136,6 @@
   white-space: nowrap;
 }
 
-/* 배지가 정확히 3개인 현장은 1번째 배지가 단독으로 한 줄을 차지하고, 나머지 2개가
-   다음 줄에 나란히 오도록 강제 — 배지 개수가 다른 현장은 이 선택자에 매칭되지 않아 영향 없음 */
-.badgeRow .badge:first-child:nth-last-child(3) {
-  flex-basis: 100%;
-}
-
 .badge.urgent {
   font-weight: 600;
   color: #ff6b6b;

@@ -137,8 +137,8 @@ const config = {
   adminPhonesByUtm: {
     B: ["01023537202"],
     NA: ["01071901052","01048787464","01083773101"],
-    SKT1: ["01048086474","01071901052"],
-    Lpoint2: ["01048086474","01071901052"],
+    SKT1: ["01071901052","01023537202"],
+    Lpoint2: ["01071901052","01023537202"],
   },
 
   // utm_source=B로 들어온 방문자에게만 히어로 문구를 다르게 표시 (subtitle은 기존 값 유지)
@@ -196,15 +196,6 @@ const config = {
       images: [
         { src: "/apt/sungui-raon-private-skyve/1-5.webp", alt: "계약 조건 변경" },
       ],
-      // utm_source=SKT1/Lpoint2만 이 섹션 이미지를 popup3로 교체 (다른 유입경로/메인은 위 1-5.webp 그대로)
-      imagesByUtm: {
-        SKT1: [
-          { src: "/apt/sungui-raon-private-skyve/popup3.webp", alt: "계약 조건 변경" },
-        ],
-        Lpoint2: [
-          { src: "/apt/sungui-raon-private-skyve/popup3.webp", alt: "계약 조건 변경" },
-        ],
-      },
       utmExclude: ["B"],
       showHeader: false,
       sectionBg:  "#2A3746",

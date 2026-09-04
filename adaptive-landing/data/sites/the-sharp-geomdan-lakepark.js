@@ -30,8 +30,7 @@ const config = {
   shortName: '더샵 검단레이크파크',
   telNumber: '1811-4166',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt2/apt/the-sharp-geomdan-lakepark/og.png',
-  // TODO: 실제 상담 접수 담당자 번호로 교체 (지금은 발송 실패를 막기 위한 임시 자리표시자)
-  adminPhones: ['01000000000'],
+  adminPhones: ['01044411561'],
   sheetId: '',
   sheetTab: '더샵검단레이크파크',
   showUtmInSms: true,

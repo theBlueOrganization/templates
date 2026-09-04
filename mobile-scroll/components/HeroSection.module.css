@@ -118,6 +118,7 @@
 /* ── 배지 행 ── */
 .badgeRow {
   display: flex;
+  flex-wrap: wrap;
   gap: 6px;
   margin-bottom: 16px;
   opacity: 0;
@@ -132,6 +133,7 @@
   border-radius: 3px;
   padding: 3px 9px;
   letter-spacing: 0.06em;
+  white-space: nowrap;
 }
 
 .badge.urgent {
@@ -217,6 +219,11 @@
 }
 .textBlock.visible .titleLine:nth-child(5) .titleInner {
   animation: hz-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.90s forwards;
+}
+
+/* 강조 키워드: 타이틀 라인이 다 올라온 직후 글로우 펄스 (accent 변형과 동일한 keyframe 재사용) */
+.textBlock.visible .accent {
+  animation: accent-keyword-glow 1.2s ease 1.15s forwards;
 }
 
 @keyframes hz-rise {
@@ -402,6 +409,7 @@
   .curtain.active        { animation: none !important; opacity: 0; }
   .textBlock.curtainOut  { animation: none !important; }
   .titleInner            { animation: none !important; transform: none !important; opacity: 1 !important; }
+  .textBlock.visible .accent { animation: none !important; }
   .badgeRow, .brand, .subtitle { animation: none !important; opacity: 1 !important; }
   .scrollHint.visible    { animation: none !important; opacity: 1 !important; }
   .badge.urgent          { animation: none !important; opacity: 1 !important; }

@@ -210,6 +210,11 @@ const config = {
       utmExclude: ["B"],
       showHeader: false,
       sectionBg:  "#2A3746",
+      // utm_source=SKT1/Lpoint2는 위 1-6 이미지의 배경색(어두운 남색)에 맞춰 섹션 배경도 다르게
+      sectionBgByUtm: {
+        SKT1: "#061c35",
+        Lpoint2: "#061c35",
+      },
     },
     {
       id:       "overview",

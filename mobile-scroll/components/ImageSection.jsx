@@ -248,7 +248,7 @@ export default function ImageSection({
                       width={800}
                       height={600}
                       className={styles.image}
-                      style={img.scale ? { transform: `scale(${img.scale})` } : undefined}
+                      style={img.scale ? { width: `${img.scale * 100}%`, maxWidth: `${img.scale * 100}%`, marginLeft: `${(1 - img.scale) * 50}%` } : undefined}
                     />
                   </a>
                 ) : (
@@ -258,7 +258,7 @@ export default function ImageSection({
                     width={800}
                     height={600}
                     className={styles.image}
-                    style={img.scale ? { transform: `scale(${img.scale})` } : undefined}
+                    style={img.scale ? { width: `${img.scale * 100}%`, maxWidth: `${img.scale * 100}%`, marginLeft: `${(1 - img.scale) * 50}%` } : undefined}
                   />
                 )}
               </div>

@@ -68,8 +68,6 @@ const config = {
   ],
 
   hero: {
-    eyebrow:       "15만평 상방공원｜문화예술생활｜경산신주거타운",
-    eyebrowUrgent: 1,
     brand:         "경산 상방공원 호반써밋 1단지",
     title: "공원과 문화를 품은\n차별화된 특별한 주거\n수성구 생활권까지 가까이",
     subtitle:      "1·2단지 총 2,105세대 브랜드 대단지",
@@ -187,18 +185,6 @@ const config = {
       background: "linear-gradient(90deg, #CA705B, #ecab9c)",
       width:      "40px",
       height:     "3px",
-    },
-
-    // 히어로 배지 (eyebrow)
-    eyebrow: {
-      color:       "#e0f931",
-      borderColor: "rgba(224,249,49,0.5)",
-      fontSize:    "1rem",
-    },
-    // 긴급 배지 (eyebrowUrgent)
-    eyebrowUrgent: {
-      color:       "#e0f931",
-      borderColor: "rgba(224,249,49,0.6)",
     },
 
     // 히어로 브랜드명

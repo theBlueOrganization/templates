@@ -118,6 +118,7 @@
 /* ── 배지 행 ── */
 .badgeRow {
   display: flex;
+  flex-wrap: wrap;
   gap: 6px;
   margin-bottom: 16px;
   opacity: 0;
@@ -132,6 +133,7 @@
   border-radius: 3px;
   padding: 3px 9px;
   letter-spacing: 0.06em;
+  white-space: nowrap;
 }
 
 .badge.urgent {
@@ -173,10 +175,29 @@
   animation: el-in 0.45s ease 0.22s forwards;
 }
 
-/* ── accent ── */
+/* ── accent 키워드: 색지가 왼쪽에서 오른쪽으로 지나가며 흰색 → accent색으로 채워짐 ── */
 .accent {
+  --accent-color: #f5c445;
+  display: inline-block;
   font-style: normal;
-  color: #f5c445;
+  position: relative;
+  /* overflow:hidden 대신 clip-path — inline-block의 baseline이 틀어지는 것을 방지 */
+  clip-path: inset(-4px 0);
+}
+
+.textBlock.visible .accent {
+  animation: accent-colorize 0.38s linear both;
+}
+
+/* 색지 바 — 왼쪽에서 진입 → 텍스트 위 통과 → 오른쪽으로 퇴장 */
+.textBlock.visible .accent::before {
+  content: '';
+  position: absolute;
+  top: -2px; bottom: -2px; left: 0; right: 0;
+  background: var(--accent-color);
+  transform: translateX(-110%);
+  z-index: 1;
+  animation: accent-bar-sweep 0.38s cubic-bezier(0.55, 0, 0.45, 1) both;
 }
 
 /* ── 타이틀 ── */
@@ -217,6 +238,29 @@
 }
 .textBlock.visible .titleLine:nth-child(5) .titleInner {
   animation: hz-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.90s forwards;
+}
+
+/* 강조 키워드 색칠 타이밍 — 해당 줄이 다 올라온 직후 재생되도록 라인별 순차 지연 */
+.textBlock.visible .titleLine:nth-child(1) .accent,
+.textBlock.visible .titleLine:nth-child(1) .accent::before { animation-delay: 1.05s; }
+.textBlock.visible .titleLine:nth-child(2) .accent,
+.textBlock.visible .titleLine:nth-child(2) .accent::before { animation-delay: 1.20s; }
+.textBlock.visible .titleLine:nth-child(3) .accent,
+.textBlock.visible .titleLine:nth-child(3) .accent::before { animation-delay: 1.35s; }
+.textBlock.visible .titleLine:nth-child(4) .accent,
+.textBlock.visible .titleLine:nth-child(4) .accent::before { animation-delay: 1.50s; }
+.textBlock.visible .titleLine:nth-child(5) .accent,
+.textBlock.visible .titleLine:nth-child(5) .accent::before { animation-delay: 1.65s; }
+
+@keyframes accent-colorize {
+  0%, 48%   { color: #ffffff; }
+  50%, 100% { color: var(--accent-color); }
+}
+
+@keyframes accent-bar-sweep {
+  0%   { transform: translateX(-110%); }
+  50%  { transform: translateX(0%); }
+  100% { transform: translateX(110%); }
 }
 
 @keyframes hz-rise {
@@ -402,6 +446,8 @@
   .curtain.active        { animation: none !important; opacity: 0; }
   .textBlock.curtainOut  { animation: none !important; }
   .titleInner            { animation: none !important; transform: none !important; opacity: 1 !important; }
+  .textBlock.visible .accent         { animation: none !important; color: var(--accent-color) !important; }
+  .textBlock.visible .accent::before { animation: none !important; display: none; }
   .badgeRow, .brand, .subtitle { animation: none !important; opacity: 1 !important; }
   .scrollHint.visible    { animation: none !important; opacity: 1 !important; }
   .badge.urgent          { animation: none !important; opacity: 1 !important; }

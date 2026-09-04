@@ -16,13 +16,37 @@ const config = {
   sheetId:      "",
   sheetTab:     "경산상방공원호반써밋1단지",
 
-  popup: {
-    enabled: true,
-    image: {
-      src: "/apt/gyeongsan-hobansummit-1/4.webp",
-      alt: "경산 상방공원 호반써밋 1단지 팝업",
+  // 히어로 다음 이미지 섹션("highlight") 바로 아래에 상담신청 폼을 하나 더 노출
+  // excludeUtmValues를 빈 배열로 두면 utm_source와 무관하게 모든 방문자에게 노출됨
+  extraContactFormExcludeUtm: [],
+  extraContactFormAfterSectionId: "highlight",
+
+  popup: [
+    {
+      enabled: true,
+      image: {
+        src: "/apt/gyeongsan-hobansummit-1/popup1.webp",
+        alt: "경산 상방공원 호반써밋 1단지 팝업",
+        cta: {
+          tel:  "1555-3167",
+          // 이미지 하단 전화번호("1555.3167") 영역만 클릭 핫스팟으로 지정
+          rect: { top: "82%", left: "0%", width: "100%", height: "18%" },
+        },
+      },
     },
-  },
+    {
+      enabled: true,
+      image: {
+        src: "/apt/gyeongsan-hobansummit-1/popup2.webp",
+        alt: "경산 상방공원 호반써밋 1단지 팝업",
+        cta: {
+          tel:  "1555-3167",
+          // 이미지 하단 "분양문의 1555-3167" 영역만 클릭 핫스팟으로 지정
+          rect: { top: "93%", left: "0%", width: "100%", height: "7%" },
+        },
+      },
+    },
+  ],
 
   company: {
     name:      "주식회사 더블루파트너스",
@@ -44,13 +68,13 @@ const config = {
   ],
 
   hero: {
-    eyebrow:       "토지거래허가제외｜숲세권｜학세권",
+    eyebrow:       "15만평 상방공원｜문화예술생활｜경산신주거타운",
     eyebrowUrgent: 1,
     brand:         "경산 상방공원 호반써밋 1단지",
-    title: "상방공원을 통째로 누리는\n경산 최고의 명품 공원특구\n다시 없을 4억대 찬스",
-    subtitle:      "총 1,004세대 브랜드 대단지",
+    title: "공원과 문화를 품은\n차별화된 특별한 주거\n수성구 생활권까지 가까이",
+    subtitle:      "1·2단지 총 2,105세대 브랜드 대단지",
     bgColor: "linear-gradient(to right, #5491d8, #3878cb, #1a5bb2)",
-    accentKeyword:  ["상방공원", "공원특구", "4억대"],
+    accentKeyword:  ["공원", "문화"],
     image: {
       src:    "/apt/gyeongsan-hobansummit-1/1.webp",
       alt:    "경산 상방공원 호반써밋 1단지 대표 이미지",
@@ -61,6 +85,14 @@ const config = {
   },
 
   sections: [
+    {
+      id:         "highlight",
+      type:       "image",
+      showHeader: false,
+      images: [
+        { src: "/apt/gyeongsan-hobansummit-1/1-3.webp", alt: "경산 상방공원 호반써밋 1단지" },
+      ],
+    },
     {
       id:       "overview",
       type:     "image-then-spec",
@@ -141,6 +173,12 @@ const config = {
       curtainColor: "#0e4081",  // 커튼 시작 색상 (원하는 색으로 변경)
     },
 
+    // 상단 메뉴바 활성 탭 색상
+    TopNav_active: {
+      color:       "#CA705B",
+      borderColor: "#CA705B",
+    },
+
     // 섹션 헤더 구분선
     ImageSection_divider: {
       background: "linear-gradient(90deg, #CA705B, #ecab9c)",
@@ -150,14 +188,14 @@ const config = {
 
     // 히어로 배지 (eyebrow)
     eyebrow: {
-      color:       "#ff6b6b",
-      borderColor: "rgba(255,107,107,0.5)",
+      color:       "#ecab9c",
+      borderColor: "rgba(236,171,156,0.5)",
       fontSize:    "1rem",
     },
     // 긴급 배지 (eyebrowUrgent)
     eyebrowUrgent: {
-      color:       "#ff6b6b",
-      borderColor: "rgba(255,107,107,0.5)",
+      color:       "#CA705B",
+      borderColor: "rgba(202,112,91,0.6)",
     },
 
     // 히어로 브랜드명
@@ -169,7 +207,7 @@ const config = {
     title: {
       color:       "#ffffff",
       fontSize:    "clamp(1.6rem,8vw,2.7rem)",
-      accentColor: "#e0f931",
+      accentColor: "#ecab9c",
     },
     // 히어로 서브타이틀
     subtitle: {
@@ -183,7 +221,7 @@ const config = {
     },
     // 상담 신청 버튼
     ContactForm_submitBtn: {
-      background: "linear-gradient(135deg, #3b82f6, #1d4ed8)",
+      background: "linear-gradient(135deg, #CA705B, #ecab9c)",
       color:      "#ffffff",
       fontSize:   "1.15rem",
     },
@@ -191,10 +229,10 @@ const config = {
     // 하단 고정 버튼바
     BottomBar_callBtn: {
       background: "#e2e8f0",
-      color:      "#1e293b",
+      color:      "#CA705B",
     },
     BottomBar_regBtn: {
-      background: "#1e3a5f",
+      background: "#CA705B",
       color:      "#ffffff",
     },
   },

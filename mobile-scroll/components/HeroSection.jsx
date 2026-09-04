@@ -162,7 +162,7 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
                   key={i}
                   className={`${styles.badge} ${isUrgent ? styles.urgent : ""}`}
                   style={isUrgent
-                    ? { color: th.eyebrowUrgent?.color, borderColor: th.eyebrowUrgent?.borderColor }
+                    ? { color: th.eyebrowUrgent?.color, borderColor: th.eyebrowUrgent?.borderColor, fontSize: th.eyebrowUrgent?.fontSize ?? th.eyebrow?.fontSize }
                     : { color: th.eyebrow?.color, borderColor: th.eyebrow?.borderColor, fontSize: th.eyebrow?.fontSize }
                   }
                 >
@@ -186,7 +186,7 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
                     .split(new RegExp(`(${keywords.map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})`))
                     .map((part, j) =>
                       keywords.includes(part) ? (
-                        <em key={j} className={styles.accent} style={{ color: th.title?.accentColor }}>
+                        <em key={j} className={styles.accent} style={{ "--accent-color": th.title?.accentColor }}>
                           {part}
                         </em>
                       ) : (

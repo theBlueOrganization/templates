@@ -93,7 +93,7 @@ const config = {
       // theme.contactSection.background와 동일한 색으로 지정 (기본 흰색 대신)
       sectionBg:  "#1e293b",
       images: [
-        { src: "/apt/gyeongsan-hobansummit-1/1-3.webp?v=0904-2", alt: "경산 상방공원 호반써밋 1단지" },
+        { src: "/apt/gyeongsan-hobansummit-1/1-3.webp?v=0904-2", alt: "경산 상방공원 호반써밋 1단지", scale: 1.15 },
       ],
     },
     {
@@ -191,14 +191,14 @@ const config = {
 
     // 히어로 배지 (eyebrow)
     eyebrow: {
-      color:       "#ecab9c",
-      borderColor: "rgba(236,171,156,0.5)",
+      color:       "#e0f931",
+      borderColor: "rgba(224,249,49,0.5)",
       fontSize:    "1rem",
     },
     // 긴급 배지 (eyebrowUrgent)
     eyebrowUrgent: {
-      color:       "#CA705B",
-      borderColor: "rgba(202,112,91,0.6)",
+      color:       "#e0f931",
+      borderColor: "rgba(224,249,49,0.6)",
     },
 
     // 히어로 브랜드명

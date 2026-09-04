@@ -248,6 +248,7 @@ export default function ImageSection({
                       width={800}
                       height={600}
                       className={styles.image}
+                      style={img.scale ? { transform: `scale(${img.scale})` } : undefined}
                     />
                   </a>
                 ) : (
@@ -257,6 +258,7 @@ export default function ImageSection({
                     width={800}
                     height={600}
                     className={styles.image}
+                    style={img.scale ? { transform: `scale(${img.scale})` } : undefined}
                   />
                 )}
               </div>

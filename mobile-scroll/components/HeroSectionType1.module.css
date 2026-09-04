@@ -25,6 +25,15 @@
   background-position: center bottom !important;
 }
 
+/* ── 이미지 전체를 덮는 어두운 오버레이 (theme.hero.textOverlay 미설정 시 기본값) ── */
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: var(--text-overlay, linear-gradient(to bottom, #040049 0%, hsl(180deg 5% 27% / 70%) 45%, #42494900 100%));
+  pointer-events: none;
+}
+
 /* ── 텍스트 블록: 커튼 없이 즉시 최종 위치 ── */
 .textBlock {
   position: absolute;

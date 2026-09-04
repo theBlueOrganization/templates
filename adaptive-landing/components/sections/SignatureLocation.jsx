@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Reveal from '../motion/Reveal'
 import { Stagger, StaggerItem } from '../motion/Stagger'
 import { splitHighlight } from '../../lib/utils'
+import MobileBreakText from '../ui/MobileBreakText'
 import styles from './SignatureLocation.module.css'
 
 // f.category와 매칭되는 원형 배지 아이콘 (교통/자연/교육/생활) — 해당 카테고리가 없으면 그냥 비워둠
@@ -42,11 +43,11 @@ function Highlighted({ text, accent, className, accentClassName }) {
   return splitHighlight(text, accent).map((seg, i) =>
     seg.accent ? (
       <strong key={i} className={accentClassName}>
-        {seg.text}
+        <MobileBreakText text={seg.text} breakClassName={styles.mobileBreak} />
       </strong>
     ) : (
       <span key={i} className={className}>
-        {seg.text}
+        <MobileBreakText text={seg.text} breakClassName={styles.mobileBreak} />
       </span>
     )
   )
@@ -72,7 +73,7 @@ export default function SignatureLocation({ location }) {
             {location.descBody2 && (
               <>
                 <br />
-                {location.descBody2}
+                <MobileBreakText text={location.descBody2} breakClassName={styles.mobileBreak} />
               </>
             )}
           </p>

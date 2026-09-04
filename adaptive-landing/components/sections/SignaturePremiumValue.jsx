@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Reveal from '../motion/Reveal'
 import { Stagger, StaggerItem } from '../motion/Stagger'
+import MobileBreakText from '../ui/MobileBreakText'
 import styles from './SignaturePremiumValue.module.css'
 
 // 카드에 icon 필드가 있을 때만 그리는 아웃라인 아이콘 세트 (없으면 기존 사이트처럼 아이콘 없이 렌더)
@@ -64,8 +65,10 @@ export default function SignaturePremiumValue({ premiumValue }) {
       <Reveal className={styles.header}>
         <p className={styles.eyebrow}>{premiumValue.eyebrow}</p>
         <h2 className={styles.title}>
-          {premiumValue.titlePlain}
-          <strong>{premiumValue.titleAccent}</strong>
+          <MobileBreakText text={premiumValue.titlePlain} breakClassName={styles.mobileBreak} />
+          <strong>
+            <MobileBreakText text={premiumValue.titleAccent} breakClassName={styles.mobileBreak} />
+          </strong>
         </h2>
         {premiumValue.subtitle && <p className={styles.subtitle}>{premiumValue.subtitle}</p>}
         {premiumValue.subtitleLight && <p className={styles.subtitleLight}>{premiumValue.subtitleLight}</p>}

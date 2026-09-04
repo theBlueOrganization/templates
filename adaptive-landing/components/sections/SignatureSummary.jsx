@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import Reveal from '../motion/Reveal'
 import { cn } from '../../lib/utils'
+import MobileBreakText from '../ui/MobileBreakText'
 import styles from './SignatureSummary.module.css'
 
 // 사업개요 — 오른쪽(데스크톱) 썸네일을 클릭하면 위쪽 대표 이미지가 바뀜
@@ -43,7 +44,9 @@ export default function SignatureSummary({ summary }) {
   return (
     <section id={summary.id} className={styles.section}>
       <Reveal className={styles.headingWrap}>
-        <h2 className={styles.heading}>{summary.title}</h2>
+        <h2 className={styles.heading}>
+          <MobileBreakText text={summary.title} breakClassName={styles.mobileBreak} />
+        </h2>
         {summary.subtitle && <p className={styles.subtitle}>{summary.subtitle}</p>}
       </Reveal>
 

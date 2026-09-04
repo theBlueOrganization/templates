@@ -63,6 +63,7 @@
   font-weight: 300;
   color: #555;
   line-height: 1.6;
+  word-break: keep-all;
 }
 
 .tabsLayout {

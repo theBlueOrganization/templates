@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import { splitHighlight, isMobileUserAgent } from '../../lib/utils'
 import { useUtmSource } from '../../lib/useUtmSource'
 import SignaturePhoneModal from '../ui/SignaturePhoneModal'
+import MobileBreakText from '../ui/MobileBreakText'
 import styles from './SignatureHero.module.css'
 
 const EASE = [0.22, 1, 0.36, 1]
@@ -93,9 +94,9 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
             )
           )}
           <br />
-          {hero.descLine2}
+          <MobileBreakText text={hero.descLine2} breakClassName={styles.mobileBreak} />
           <br />
-          {hero.descLine3}
+          <MobileBreakText text={hero.descLine3} breakClassName={styles.mobileBreak} />
         </motion.p>
       </div>
 

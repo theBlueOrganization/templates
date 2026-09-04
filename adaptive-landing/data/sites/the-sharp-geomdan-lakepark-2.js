@@ -15,7 +15,7 @@ const config = {
   subdomain: '더샵검단레이크파크T',
   projectName: '더샵 검단레이크파크2',
   shortName: '더샵 검단레이크파크2',
-  telNumber: '1666-1050',
+  telNumber: '1800-2261',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt2/apt/the-sharp-geomdan-lakepark-2/og.jpg',
   adminPhones: ['01048086474', '01071901052', '01090447402'],
   sheetId: '',
@@ -61,14 +61,31 @@ const config = {
       logo: { src: '/apt/the-sharp-geomdan-lakepark-2/logo-white.svg', alt: '더샵 검단레이크파크', width: 130, height: 28 },
       gnb: ['사업개요', '입지환경', '프리미엄', '단지안내', '세대안내', '커뮤니티', '상담신청 및 방문예약'],
       quickCtaLabel: '관심고객등록',
-      phone: '1666-1050',
+      phone: '1800-2261',
+    },
+
+    // 요청 반영 — 더샵 송도그란테르 현장과 동일한 구조: 선착순 분양오픈 안내 이미지 팝업(popup1.webp)이
+    // 먼저 뜨고, 닫히면 관심고객등록 팝업이 이어서 뜬다 (popup.order='imageFirst' → SignaturePopupSequence 참고)
+    popup: {
+      enabled: true,
+      order: 'imageFirst',
+      image: { src: '/apt/the-sharp-geomdan-lakepark-2/popup1.webp', alt: '더샵 검단레이크파크 선착순 분양오픈 안내', width: 1178, height: 1335 },
+      // 이미지 안에 이미 닫기(X) 표시가 그려져 있어 별도 "팝업닫기" 바 없이 이미지 탭으로 바로 닫히게 함
+      hideCloseBar: true,
+      interest: {
+        enabled: true,
+        eyebrow: 'INTEREST',
+        title: '관심고객등록',
+        desc: '간단한 정보를 입력해 주시면\n분양 정보를 가장 먼저 안내해드립니다.',
+        submitLabel: '관심고객 등록',
+      },
     },
 
     // 출처: 요청 반영 — 더샵 송도그란테르 현장과 동일한 PC(1024px 이상) 전용 우측 고정 퀵메뉴
     quickMenu: {
       brand: 'THE SHARP GEOMDAN LAKEPARK',
       phoneLabel: '분양문의',
-      phone: '1666-1050',
+      phone: '1800-2261',
       favoriteLabel: '관심고객',
       menuLabel: 'MENU',
       ctaTargetId: 'vip-reservation',
@@ -96,8 +113,9 @@ const config = {
       titleLine2: '2,857세대 수변 브랜드타운',
       descLine1: '민간분양 분양가상한제 적용단지',
       descLine1Accent: ['분양가상한제'],
-      descLine2: '나진포천 수변공원과 중앙호수공원을 가까이 둔 워터프론트 라이프',
-      descLine3: '22BL 1,454세대 · 23BL 1,403세대, 지하 3층~지상 29층 26개동',
+      // "\n" 지점은 모바일(768px 미만)에서만 줄바꿈되고 데스크톱에서는 한 줄로 이어짐 (요청 반영)
+      descLine2: '나진포천 수변공원과 중앙호수공원을\n가까이 둔 워터프론트 라이프',
+      descLine3: '22BL 1,454세대 · 23BL 1,403세대,\n지하 3층~지상 29층 26개동',
       bgImage: { src: '/apt/the-sharp-geomdan-lakepark-2/hero-bg.jpg', alt: '더샵 검단레이크파크 대표 조감도' },
       bgVideo: { src: '/apt/the-sharp-geomdan-lakepark-2/hero-bg.mp4' },
       mobileBar: {
@@ -135,7 +153,8 @@ const config = {
     summary: {
       id: 'overview',
       navLabel: 'overview',
-      title: '검단 첫 더샵, 2,857세대 더샵 브랜드타운',
+      // "\n" 지점은 모바일(768px 미만)에서만 줄바꿈되고 데스크톱에서는 한 줄로 이어짐 (요청 반영)
+      title: '검단 첫 더샵,\n2,857세대 더샵 브랜드타운',
       subtitle: '검단에 없던 빛나는 자부심을 선사하는 총 2,857세대 빅스케일 더샵 브랜드타운',
       photo: { src: '/apt/the-sharp-geomdan-lakepark-2/overview-photo.jpg', alt: '더샵 검단레이크파크 22BL·23BL 단지 조감도(주간)' },
       thumbs: [
@@ -167,9 +186,10 @@ const config = {
       eyebrowPlain: '더샵이 선택한 자리, ',
       eyebrowAccent: '검단의 정점',
       title: '검단의 정점이 되다',
-      descTitle: '나진포천 수변공원과 만수산을 가까이 둔 워터프론트 입지',
+      // "\n" 지점은 모바일(768px 미만)에서만 줄바꿈되고 데스크톱에서는 한 줄로 이어짐 (요청 반영)
+      descTitle: '나진포천 수변공원과 만수산을\n가까이 둔 워터프론트 입지',
       descTitleAccent: ['나진포천 수변공원', '만수산'],
-      descBody1: '검단 유일 지하철 1·2호선 더블역 생활권과 인천2호선·서울5호선 연장(예정), GTX-D(계획)까지,',
+      descBody1: '검단 유일 지하철 1·2호선 더블역 생활권과\n인천2호선·서울5호선 연장(예정), GTX-D(계획)까지,',
       descBody1Accent: ['더블역 생활권'],
       descBody2: '더샵 검단레이크파크가 검단의 새로운 기준을 완성합니다.',
       mapImage: { src: '/apt/the-sharp-geomdan-lakepark-2/location-map.jpg', alt: '더샵 검단레이크파크 주변 인프라 안내도' },
@@ -221,9 +241,10 @@ const config = {
       eyebrow: 'GEOMDAN LAKEPARK',
       titleLine1: '검단, 첫번째 더샵',
       titleLine2: '1군 브랜드 대단지를 소유할 마지막 기회',
-      descLine1: '기적의 도시 송도에서 그래왔던 것처럼, 더샵의 이름으로 높아질 검단의 위상',
+      // "\n" 지점은 모바일(768px 미만)에서만 줄바꿈되고 데스크톱에서는 한 줄로 이어짐 (요청 반영)
+      descLine1: '기적의 도시 송도에서 그래왔던 것처럼,\n더샵의 이름으로 높아질 검단의 위상',
       descLine1Accent: ['더샵'],
-      descLine2: '진정한 랜드마크의 자부심으로 검단의 클래스를 한 차원 더 높이다',
+      descLine2: '진정한 랜드마크의 자부심으로\n검단의 클래스를 한 차원 더 높이다',
       bgImage: { src: '/apt/the-sharp-geomdan-lakepark-2/hero-bg.jpg', alt: '더샵 검단레이크파크 단지 전경' },
     },
 
@@ -232,7 +253,8 @@ const config = {
       id: 'premium-value',
       navLabel: '프리미엄가치',
       eyebrow: 'PREMIUM 6',
-      titlePlain: '더샵 검단레이크파크가 더 특별한 ',
+      // "\n" 지점은 모바일(768px 미만)에서만 줄바꿈되고 데스크톱에서는 한 줄로 이어짐 (요청 반영)
+      titlePlain: '더샵 검단레이크파크가 더 특별한\n',
       titleAccent: '여섯 가지 이유',
       subtitle: '브랜드부터 수변, 교통, 교육, 커뮤니티까지',
       subtitleLight: '검단의 중심에서 누리는 가치를 한눈에 확인해보세요.',
@@ -400,7 +422,8 @@ const config = {
       eyebrow: 'COMMUNITY GUIDE',
       titlePlain: '블록별 커뮤니티',
       titleAccent: '한눈에 보기',
-      desc: '운동과 휴식, 교육과 교류까지 단지 안에서 이어지는 더샵만의 다채로운 커뮤니티 시설을 확인해보세요.',
+      // "\n" 지점은 모바일(768px 미만)에서만 줄바꿈되고 데스크톱에서는 한 줄로 이어짐 (요청 반영)
+      desc: '운동과 휴식, 교육과 교류까지 단지 안에서 이어지는\n더샵만의 다채로운 커뮤니티 시설을 확인해보세요.',
       // 요청 반영 — 블록별 텍스트(라벨/제목/시설군 목록) 없이 배치도 이미지만
       imageOnly: true,
       blocks: [
@@ -448,7 +471,7 @@ const config = {
     // 대행사(주식회사 더블루파트너스)로 표기 (원문의 ㈜넥스미디어는 공식 홈페이지 자체 운영대행사).
     footer: {
       logo: { src: '/apt/the-sharp-geomdan-lakepark-2/logo-white.svg', alt: '더샵 검단레이크파크', width: 160, height: 63 },
-      highlightText: '1666-1050',
+      highlightText: '1800-2261',
       agencySlogan: '분양완판 전문가 그룹, (주) 더블루파트너스',
       companyLines: [
         { label: '시행', value: '한국자산신탁(주)' },
@@ -462,7 +485,7 @@ const config = {
         '※ 본 홈페이지의 CG 및 이미지, 내용, 문구 등은 실제와 다를 수 있습니다.',
         '※ 세부 설계내용은 향후 인허가 과정에서 변동될 수 있습니다.',
       ],
-      csPhone: '1666-1050',
+      csPhone: '1800-2261',
       csHours: 'AM 09:00 ~ PM 19:00',
     },
   },

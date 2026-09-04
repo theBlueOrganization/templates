@@ -53,6 +53,7 @@
 .slogan {
   color: #888;
   font-size: 11px;
+  word-break: keep-all;
 }
 
 .hr {

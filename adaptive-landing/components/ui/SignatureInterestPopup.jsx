@@ -9,7 +9,7 @@ const PHONE_FIELDS = ['phone1', 'phone2', 'phone3']
 
 // 진입 시 가장 먼저 뜨는 "관심고객등록" 간이 신청 팝업 — 이름+연락처만 받아 /api/sms로 바로 전송.
 // 닫히면(제출 완료 또는 X 클릭) 부모(SignaturePopupSequence)가 이어서 기존 이미지 팝업을 띄운다.
-export default function SignatureInterestPopup({ interest, config, onClose }) {
+export default function SignatureInterestPopup({ interest, config, onClose, openDelayMs = 1500 }) {
   const [open, setOpen] = useState(false)
   const [name, setName] = useState('')
   const [service, setService] = useState('')
@@ -23,9 +23,9 @@ export default function SignatureInterestPopup({ interest, config, onClose }) {
 
   useEffect(() => {
     if (!interest?.enabled) return
-    const t = setTimeout(() => setOpen(true), 1500)
+    const t = setTimeout(() => setOpen(true), openDelayMs)
     return () => clearTimeout(t)
-  }, [interest?.enabled])
+  }, [interest?.enabled, openDelayMs])
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''

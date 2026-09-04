@@ -35,6 +35,10 @@
   color: var(--gold, #7c8560);
 }
 
+.mobileBreak {
+  display: inline;
+}
+
 .subtitle {
   font-family: var(--font-sans);
   font-size: 18px;
@@ -179,6 +183,10 @@
 }
 
 @media (min-width: 768px) {
+  .mobileBreak {
+    display: none;
+  }
+
   .title {
     font-size: 46px;
   }

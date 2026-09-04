@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Reveal from '../motion/Reveal'
+import MobileBreakText from '../ui/MobileBreakText'
 import styles from './SignatureCommunityGeomdan.module.css'
 
 // 커뮤니티(#community) — 22BL/23BL 블록별로 SPORTS/LIFESTYLE/EDUCATION 시설군 + 배치도
@@ -16,7 +17,9 @@ export default function SignatureCommunityGeomdan({ community }) {
           <br />
           <em>{community.titleAccent}</em>
         </h2>
-        <p className={styles.desc}>{community.desc}</p>
+        <p className={styles.desc}>
+          <MobileBreakText text={community.desc} breakClassName={styles.mobileBreak} />
+        </p>
       </Reveal>
 
       <div className={styles.list}>

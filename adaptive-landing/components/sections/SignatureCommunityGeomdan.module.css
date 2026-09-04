@@ -35,6 +35,11 @@
   font-size: 14px;
   line-height: 1.8;
   color: rgba(255, 255, 255, 0.7);
+  word-break: keep-all;
+}
+
+.mobileBreak {
+  display: inline;
 }
 
 .list {
@@ -113,6 +118,10 @@
 }
 
 @media (min-width: 768px) {
+  .mobileBreak {
+    display: none;
+  }
+
   .heading {
     margin-bottom: 56px;
   }

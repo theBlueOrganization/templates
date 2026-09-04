@@ -8,7 +8,9 @@ import styles from './SignaturePopupBanner.module.css'
 // 원종역 월드메르디앙 포레 전용 진입 팝업 — 디자인 완성본 이미지(popup.image) 아래에
 // 하단 "팝업닫기" 바만 코드로 얹음. 현장 데이터의 popup.enabled가 true일 때만 렌더링됨
 // (app/apt/[slug]/page.jsx에서 조건부 렌더).
-export default function SignaturePopupBanner({ popup, openDelayMs = 2900 }) {
+// popup.hideCloseBar: true인 현장은 이미지 자체에 닫기(X) 표시가 이미 그려져 있는 경우 —
+// 하단 바를 렌더하지 않고, 이미지를 포함한 카드 전체를 탭하면 바로 닫히게 한다.
+export default function SignaturePopupBanner({ popup, openDelayMs = 2900, onClose }) {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
@@ -24,6 +26,11 @@ export default function SignaturePopupBanner({ popup, openDelayMs = 2900 }) {
     }
   }, [open])
 
+  const handleClose = () => {
+    setOpen(false)
+    onClose?.()
+  }
+
   return (
     <AnimatePresence>
       {open && (
@@ -32,7 +39,7 @@ export default function SignaturePopupBanner({ popup, openDelayMs = 2900 }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          onClick={() => setOpen(false)}
+          onClick={handleClose}
         >
           <motion.div
             className={styles.card}
@@ -40,7 +47,7 @@ export default function SignaturePopupBanner({ popup, openDelayMs = 2900 }) {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.96, opacity: 0 }}
             transition={{ duration: 0.25 }}
-            onClick={(e) => e.stopPropagation()}
+            onClick={popup.hideCloseBar ? undefined : (e) => e.stopPropagation()}
           >
             <div className={styles.imageWrap}>
               <Image
@@ -50,12 +57,15 @@ export default function SignaturePopupBanner({ popup, openDelayMs = 2900 }) {
                 height={popup.image.height}
                 sizes="(min-width: 768px) 430px, 90vw"
                 className={styles.image}
+                style={popup.hideCloseBar ? { borderRadius: 8 } : undefined}
               />
             </div>
 
-            <button type="button" onClick={() => setOpen(false)} className={styles.closeBtn}>
-              {popup.closeLabel ?? '팝업닫기'} ✕
-            </button>
+            {!popup.hideCloseBar && (
+              <button type="button" onClick={handleClose} className={styles.closeBtn}>
+                {popup.closeLabel ?? '팝업닫기'} ✕
+              </button>
+            )}
           </motion.div>
         </motion.div>
       )}

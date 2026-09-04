@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Reveal from '../motion/Reveal'
 import { splitHighlight } from '../../lib/utils'
+import MobileBreakText from '../ui/MobileBreakText'
 import styles from './SignaturePremiumIntro.module.css'
 
 // 프리미엄 섹션 도입부 — 배경 고정(패럴랙스) 이미지 위에 큰 타이틀, 스크롤하면 아래 SIGNATURE 6 카드로 이어짐
@@ -62,14 +63,16 @@ export default function SignaturePremiumIntro({ premiumIntro }) {
           {descSegments.map((seg, i) =>
             seg.accent ? (
               <strong key={i} className={styles.descAccent}>
-                {seg.text}
+                <MobileBreakText text={seg.text} breakClassName={styles.mobileBreak} />
               </strong>
             ) : (
-              <span key={i}>{seg.text}</span>
+              <span key={i}>
+                <MobileBreakText text={seg.text} breakClassName={styles.mobileBreak} />
+              </span>
             )
           )}
           <br />
-          {premiumIntro.descLine2}
+          <MobileBreakText text={premiumIntro.descLine2} breakClassName={styles.mobileBreak} />
         </p>
       </Reveal>
 

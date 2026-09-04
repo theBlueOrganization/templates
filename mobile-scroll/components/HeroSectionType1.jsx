@@ -13,6 +13,11 @@ export default function HeroSectionType1({ image, eyebrow, eyebrowUrgent, brand,
     ? accentKeyword.filter(Boolean)
     : accentKeyword ? [accentKeyword] : [];
   const th = theme ?? {};
+  // 기본 히어로와 동일하게 theme.hero.height로 섹션 높이 오버라이드 지원(미설정 시 기존 100dvh 유지)
+  const heroHeight = th.hero?.height;
+  const heroStyle = heroHeight
+    ? { height: heroHeight, "--hero-half": `calc(${heroHeight} / 2)` }
+    : undefined;
 
   // 기본 히어로(HeroSection)와 동일한 3단계 커튼 인트로 연출(같은 타이밍값 사용)
   useEffect(() => {
@@ -23,7 +28,7 @@ export default function HeroSectionType1({ image, eyebrow, eyebrowUrgent, brand,
   }, []);
 
   return (
-    <section id="home" className={styles.hero}>
+    <section id="home" className={styles.hero} style={heroStyle}>
 
       {/* 배경 이미지 */}
       <div

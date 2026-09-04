@@ -210,7 +210,7 @@ const config = {
     title: {
       color:       "#ffffff",
       fontSize:    "clamp(1.6rem,8vw,2.7rem)",
-      accentColor: "#ecab9c",
+      accentColor: "#e0f931",
     },
     // 히어로 서브타이틀
     subtitle: {

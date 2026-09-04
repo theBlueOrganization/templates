@@ -61,6 +61,19 @@ const config = {
       callLabel: '1811-4166',
     },
 
+    popupNotice: {
+      enabled: true,
+      eyebrow: 'EVENT',
+      title: '방문상담 예약 혜택',
+      benefits: [
+        { label: '방문 고객', desc: '스타벅스 커피쿠폰', note: '(선착순 20명)' },
+        { label: '계약 고객', desc: '신세계상품권 20만원', note: '(선착순 10명)' },
+      ],
+      target: '본 문자 수신 후 방문 예약 및 상담 완료 고객',
+      period: '2026.9.17(목) ~ 소진 시까지',
+      ctaLabel: '방문예약 신청하기',
+    },
+
     heroGeomdan: {
       id: 'top',
       eyebrow: "GEOMDAN'S FIRST THE SHARP",

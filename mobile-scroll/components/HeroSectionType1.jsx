@@ -1,14 +1,22 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import styles from "./HeroSectionType1.module.css";
 
 export default function HeroSectionType1({ image, eyebrow, eyebrowUrgent, brand, title, subtitle, bgColor, accentKeyword, theme }) {
+  const [curtainOut, setCurtainOut] = useState(false);
   const titleLines = title?.split("\n") ?? [];
   const badges     = eyebrow?.split("｜").map((s) => s.trim()).filter(Boolean) ?? [];
   const keywords   = Array.isArray(accentKeyword)
     ? accentKeyword.filter(Boolean)
     : accentKeyword ? [accentKeyword] : [];
   const th = theme ?? {};
+
+  // 기본 히어로(HeroSection)와 동일하게 커튼이 덮여 있다가 걷히는 인트로 연출
+  useEffect(() => {
+    const t = setTimeout(() => setCurtainOut(true), 1700);
+    return () => clearTimeout(t);
+  }, []);
 
   return (
     <section id="home" className={styles.hero}>
@@ -25,7 +33,13 @@ export default function HeroSectionType1({ image, eyebrow, eyebrowUrgent, brand,
         style={th.hero?.textOverlay ? { "--text-overlay": th.hero.textOverlay } : undefined}
       />
 
-      {/* 텍스트 블록 — 인트로 없이 최종 위치 즉시 고정 */}
+      {/* 커튼 — 기본 히어로와 동일한 인트로 연출 */}
+      <div
+        className={`${styles.curtain} ${curtainOut ? styles.active : ""}`}
+        style={{ background: th.hero?.curtainColor ?? "#0f172a" }}
+      />
+
+      {/* 텍스트 블록 — 위치는 즉시 고정, 커튼 아래에서 각 요소가 순차적으로 리빌 */}
       <div className={styles.textBlock}>
 
         {badges.length > 0 && (

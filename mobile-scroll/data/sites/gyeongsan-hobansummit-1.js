@@ -7,7 +7,7 @@ const config = {
   slug:        "gyeongsan-hobansummit-1",
   projectName: "경산 상방공원 호반써밋 1단지",
   shortName:   "경산 상방공원 호반써밋 1단지",
-  ogImage:     "/apt/gyeongsan-hobansummit-1/og_img.png?v=0904",
+  ogImage:     "/apt/gyeongsan-hobansummit-1/og_img.png?v=0904-2",
   offices: [
     { id: "a", telNumber: "1555-3167",  adminPhones: ["01028643100"] },
     { id: "b", telNumber: "1866-0762",  adminPhones: ["01035022011"] },

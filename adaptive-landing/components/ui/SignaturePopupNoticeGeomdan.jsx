@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import styles from './SignaturePopupNoticeGeomdan.module.css'
 
@@ -52,11 +52,11 @@ export default function SignaturePopupNoticeGeomdan({ popup, visitTargetId, open
             {popup.eyebrow && <p className={styles.eyebrow}>{popup.eyebrow}</p>}
             {popup.title && <h2 className={styles.title}>{popup.title}</h2>}
 
-            <ul className={styles.benefitList}>
+            <div className={styles.benefitList}>
               {popup.benefits.map((b) => (
-                <li key={b.label} className={styles.benefitRow}>
-                  <span className={styles.benefitLabel}>{b.label}</span>
-                  <span className={styles.benefitDesc}>
+                <Fragment key={b.label}>
+                  <div className={styles.benefitLabel}>{b.label}</div>
+                  <div className={styles.benefitDesc}>
                     {b.desc}
                     {b.note && (
                       <>
@@ -64,10 +64,10 @@ export default function SignaturePopupNoticeGeomdan({ popup, visitTargetId, open
                         <span className={styles.benefitNote}>{b.note}</span>
                       </>
                     )}
-                  </span>
-                </li>
+                  </div>
+                </Fragment>
               ))}
-            </ul>
+            </div>
 
             <dl className={styles.infoList}>
               <div className={styles.infoRow}>

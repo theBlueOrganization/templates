@@ -69,7 +69,7 @@ const config = {
     popup: {
       enabled: true,
       order: 'imageFirst',
-      image: { src: '/apt/the-sharp-geomdan-lakepark-2/popup1.webp', alt: '더샵 검단레이크파크 선착순 분양오픈 안내', width: 1178, height: 1335 },
+      image: { src: '/apt/the-sharp-geomdan-lakepark-2/popup1.webp', alt: '더샵 검단레이크파크 선착순 분양오픈 안내', width: 1173, height: 1341 },
       // 이미지 안에 이미 닫기(X) 표시가 그려져 있어 별도 "팝업닫기" 바 없이 이미지 탭으로 바로 닫히게 함
       hideCloseBar: true,
       interest: {

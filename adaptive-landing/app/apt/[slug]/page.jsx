@@ -4,6 +4,7 @@ import SignatureHeader from '../../../components/ui/SignatureHeader'
 import SignatureFooter from '../../../components/ui/SignatureFooter'
 import SignatureQuickMenu from '../../../components/ui/SignatureQuickMenu'
 import SignaturePopupSequence from '../../../components/ui/SignaturePopupSequence'
+import SignaturePopupNoticeGeomdan from '../../../components/ui/SignaturePopupNoticeGeomdan'
 import SignatureMobileBottomBar from '../../../components/ui/SignatureMobileBottomBar'
 import SignatureHero from '../../../components/sections/SignatureHero'
 import SignatureHeroMinimal from '../../../components/sections/SignatureHeroMinimal'
@@ -82,6 +83,9 @@ export default async function AptPage({ params }) {
     return (
       <div>
         <SignatureHeaderGeomdan header={sig.headerGeomdan} telNumber={site.telNumber} />
+        {sig.popupNotice?.enabled && (
+          <SignaturePopupNoticeGeomdan popup={sig.popupNotice} visitTargetId={sig.visitReservation.id} />
+        )}
         <main>
           <SignatureHeroGeomdan hero={sig.heroGeomdan} />
           <SignatureVisitReservation visitReservation={sig.visitReservation} config={site} />

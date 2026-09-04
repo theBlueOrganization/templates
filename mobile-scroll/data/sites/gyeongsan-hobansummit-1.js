@@ -93,7 +93,7 @@ const config = {
       // theme.contactSection.background와 동일한 색으로 지정 (기본 흰색 대신)
       sectionBg:  "#1e293b",
       images: [
-        { src: "/apt/gyeongsan-hobansummit-1/1-3.webp", alt: "경산 상방공원 호반써밋 1단지" },
+        { src: "/apt/gyeongsan-hobansummit-1/1-3.webp?v=0904-2", alt: "경산 상방공원 호반써밋 1단지" },
       ],
     },
     {

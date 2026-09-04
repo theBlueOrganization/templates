@@ -173,7 +173,7 @@ const config = {
     hero: {
       curtainColor: "#0e4081",  // 커튼 시작 색상 (원하는 색으로 변경)
       // 히어로 텍스트 뒤 어둡게 깔리는 그라디언트 — 기본값보다 진하게 조정
-      textOverlay: "linear-gradient(to bottom, rgba(4,0,30,0.88), rgba(4,0,30,0))",
+      textOverlay: "linear-gradient(to bottom, rgba(4,0,30,0.88) 0%, rgba(4,0,30,0.3) 35%, rgba(4,0,30,0) 55%)",
     },
 
     // 상단 메뉴바 활성 탭 색상

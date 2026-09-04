@@ -74,7 +74,7 @@ const config = {
     title: "공원과 문화를 품은\n차별화된 특별한 주거\n수성구 생활권까지 가까이",
     subtitle:      "1·2단지 총 2,105세대 브랜드 대단지",
     bgColor: "linear-gradient(to right, #5491d8, #3878cb, #1a5bb2)",
-    accentKeyword:  ["공원", "문화"],
+    accentKeyword:  ["공원", "문화", "특별한", "수성구"],
     image: {
       src:    "/apt/gyeongsan-hobansummit-1/1.webp",
       alt:    "경산 상방공원 호반써밋 1단지 대표 이미지",

@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 import styles from "./HeroSectionType1.module.css";
 
 export default function HeroSectionType1({ image, eyebrow, eyebrowUrgent, brand, title, subtitle, bgColor, accentKeyword, theme }) {
+  const [visible,    setVisible]    = useState(false);
   const [curtainOut, setCurtainOut] = useState(false);
+  const [settled,    setSettled]    = useState(false);
   const titleLines = title?.split("\n") ?? [];
   const badges     = eyebrow?.split("｜").map((s) => s.trim()).filter(Boolean) ?? [];
   const keywords   = Array.isArray(accentKeyword)
@@ -12,10 +14,12 @@ export default function HeroSectionType1({ image, eyebrow, eyebrowUrgent, brand,
     : accentKeyword ? [accentKeyword] : [];
   const th = theme ?? {};
 
-  // 기본 히어로(HeroSection)와 동일하게 커튼이 덮여 있다가 걷히는 인트로 연출
+  // 기본 히어로(HeroSection)와 동일한 3단계 커튼 인트로 연출(같은 타이밍값 사용)
   useEffect(() => {
-    const t = setTimeout(() => setCurtainOut(true), 1700);
-    return () => clearTimeout(t);
+    const t1 = setTimeout(() => setVisible(true),    80);
+    const t2 = setTimeout(() => setCurtainOut(true), 1700);
+    const t3 = setTimeout(() => setSettled(true),    2850);
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
   }, []);
 
   return (
@@ -29,7 +33,7 @@ export default function HeroSectionType1({ image, eyebrow, eyebrowUrgent, brand,
 
       {/* 이미지 전체에 깔리는 어두운 오버레이 — theme.hero.textOverlay 미설정 시 기본 HeroSection과 동일한 기본값 유지 */}
       <div
-        className={styles.imageOverlay}
+        className={`${styles.imageOverlay} ${settled ? styles.visible : ""}`}
         style={th.hero?.textOverlay ? { "--text-overlay": th.hero.textOverlay } : undefined}
       />
 
@@ -39,8 +43,15 @@ export default function HeroSectionType1({ image, eyebrow, eyebrowUrgent, brand,
         style={{ background: th.hero?.curtainColor ?? "#0f172a" }}
       />
 
-      {/* 텍스트 블록 — 위치는 즉시 고정, 커튼 아래에서 각 요소가 순차적으로 리빌 */}
-      <div className={styles.textBlock}>
+      {/* 텍스트 블록 — 기본 히어로와 동일하게 중앙에서 최종 위치로 커튼과 함께 이동 */}
+      <div
+        className={[
+          styles.textBlock,
+          visible    ? styles.visible    : "",
+          curtainOut ? styles.curtainOut : "",
+          settled    ? styles.settled    : "",
+        ].filter(Boolean).join(" ")}
+      >
 
         {badges.length > 0 && (
           <div className={styles.badgeRow}>

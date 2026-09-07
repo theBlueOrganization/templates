@@ -64,7 +64,7 @@ const config = {
     popup: {
       enabled: true,
       images: [
-        { src: '/apt/dalseo-xi-genic/popup1.png', alt: '달서자이 제니크 9월 10일 선착순 동·호 지정 시작 안내', width: 1122, height: 1402 },
+        { src: '/apt/dalseo-xi-genic/popup1.png', alt: '달서자이 제니크 9월 10일 당일 계약 고객 전원 신세계상품권 100만원 즉시 지급', width: 1122, height: 1402 },
         { src: '/apt/dalseo-xi-genic/popup2.png', alt: '달서자이 제니크 SAMSUNG DAY 주말경품 이벤트', width: 750, height: 1024 },
         { src: '/apt/dalseo-xi-genic/popup3.png', alt: '달서자이 제니크 Apple DAY 주말경품 이벤트', width: 754, height: 1024 },
       ],

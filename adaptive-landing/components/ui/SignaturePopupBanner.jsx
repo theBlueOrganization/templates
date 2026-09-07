@@ -10,8 +10,14 @@ import styles from './SignaturePopupBanner.module.css'
 // (app/apt/[slug]/page.jsx에서 조건부 렌더).
 // popup.hideCloseBar: true인 현장은 이미지 자체에 닫기(X) 표시가 이미 그려져 있는 경우 —
 // 하단 바를 렌더하지 않고, 이미지를 포함한 카드 전체를 탭하면 바로 닫히게 한다.
+// popup.images(배열)가 있으면 popup.image 대신 그 순서대로 한 장씩 이어서 띄우고,
+// 마지막 장을 닫으면 전체가 닫힌다(달서자이 제니크처럼 이벤트 안내 팝업 여러 장을
+// 순차 노출해야 하는 현장용 — dalseo-xi-genic.js 참고).
 export default function SignaturePopupBanner({ popup, openDelayMs = 2900, onClose }) {
   const [open, setOpen] = useState(false)
+  const [index, setIndex] = useState(0)
+  const images = popup.images ?? [popup.image]
+  const current = images[index]
 
   useEffect(() => {
     if (!popup.enabled) return
@@ -27,6 +33,10 @@ export default function SignaturePopupBanner({ popup, openDelayMs = 2900, onClos
   }, [open])
 
   const handleClose = () => {
+    if (index < images.length - 1) {
+      setIndex(index + 1)
+      return
+    }
     setOpen(false)
     onClose?.()
   }
@@ -42,6 +52,7 @@ export default function SignaturePopupBanner({ popup, openDelayMs = 2900, onClos
           onClick={handleClose}
         >
           <motion.div
+            key={index}
             className={styles.card}
             initial={{ scale: 0.92, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -51,10 +62,10 @@ export default function SignaturePopupBanner({ popup, openDelayMs = 2900, onClos
           >
             <div className={styles.imageWrap}>
               <Image
-                src={popup.image.src}
-                alt={popup.image.alt}
-                width={popup.image.width}
-                height={popup.image.height}
+                src={current.src}
+                alt={current.alt}
+                width={current.width}
+                height={current.height}
                 sizes="(min-width: 768px) 430px, 90vw"
                 className={styles.image}
                 style={popup.hideCloseBar ? { borderRadius: 8 } : undefined}

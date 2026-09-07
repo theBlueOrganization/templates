@@ -1,5 +1,6 @@
 // 달서자이 제니크 — 대구광역시 달서구 본리동 661-9번지 일원, GS건설 Xi 브랜드 아파트(360세대)·오피스텔(78실)
-// 개발사업. 시행 (주)제이비스 / 시공 GS건설(주). 공식 사이트(https://www.xi.co.kr/DS, cmsMenuSeq 기반
+// 개발사업. 시행/시공 GS건설(주)(2026-09-07 현장 요청으로 시행사 (주)제이비스 → GS건설(주)로 정정 반영).
+// 공식 사이트(https://www.xi.co.kr/DS, cmsMenuSeq 기반
 // 서브페이지 29619~29726)에서 사업개요 스펙표·입지환경 지도·프리미엄 6대 가치·단지설계·단지배치도·
 // 동호수배치표·CLUB XIAN 시설·세대안내(84A/84B) 평면·분양일정 이미지를 직접 스크래핑해 채웠다
 // (2026-09-04, curl로 원본 HTML 확보 후 이미지 URL 추출 → 다운로드 → sharp로 그리드 이미지 크롭).
@@ -10,13 +11,13 @@
 //   지하 층수(5층 vs 6층 소스 불일치, 본 파일엔 미기재), 신탁사명, 설계사명, 정확한 분양가,
 //   84A/84B 동·라인 최종 확정(동호수배치표 기준으로는 101·102동 각 4,3,2,1라인=A,B,B,A로 반영함).
 //   총세대수(438)·시행/시공사·대지위치·연면적·공급규모·84A/84B 면적스펙·분양일정(8/6~9/9)·
-//   분양문의(1833-2330)는 공식 사이트에서 직접 확인된 값.
+//   분양문의는 공식 사이트에서 직접 확인된 값(053-760-4734, 2026-09-07 현장 요청으로 변경 반영).
 const config = {
   slug: 'dalseo-xi-genic',
   subdomain: '달서자이제니크',
   projectName: '달서자이 제니크',
   shortName: '달서자이 제니크',
-  telNumber: '1833-2330',
+  telNumber: '053-760-4734',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/dalseo-xi-genic/og.jpg',
   // 헤더·모바일 메뉴·퀵메뉴 등 공용 Signature* 컴포넌트가 var(--navy 등)로 참조하는 사이트 전역 색상.
   // 3색 팔레트 지정 — navy/ink(#002F47, 타이틀·버튼) / cream(#ffffff, 섹션 배경) / gold 역할(#006899, 포인트 액센트)
@@ -26,10 +27,12 @@ const config = {
     cream: '#ffffff',
     gold: '#006899',
   },
-  adminPhones: ['01094216962'],
+  adminPhones: ['01028643100'],
   sheetId: '',
   sheetTab: '달서자이제니크',
   showUtmInSms: true,
+  // 상담 접수 알림을 문자 대신 카카오 알림톡으로 발송(실패 시 SMS로 자동 폴백)
+  kakao: true,
 
   company: {
     name: '주식회사 더블루파트너스',
@@ -53,7 +56,19 @@ const config = {
       logo: { src: '/apt/dalseo-xi-genic/logo.svg', alt: '달서자이 제니크', width: 210, height: 47 },
       gnb: ['사업개요', '위치안내', '프리미엄가치', '단지소개', '세대안내', '커뮤니티', '상담신청 및 방문예약'],
       quickCtaLabel: '관심고객등록',
-      phone: '1833-2330',
+      phone: '053-760-4734',
+    },
+
+    // 진입 팝업 — 이벤트 안내 이미지 3장을 1→2→3 순서로 이어서 노출(한 장 닫으면 다음 장으로 넘어가고,
+    // 마지막 장을 닫으면 팝업 종료). SignaturePopupBanner의 popup.images 배열 지원 참고.
+    popup: {
+      enabled: true,
+      images: [
+        { src: '/apt/dalseo-xi-genic/popup1.png', alt: '달서자이 제니크 9월 10일 선착순 동·호 지정 시작 안내', width: 1122, height: 1402 },
+        { src: '/apt/dalseo-xi-genic/popup2.png', alt: '달서자이 제니크 SAMSUNG DAY 주말경품 이벤트', width: 750, height: 1024 },
+        { src: '/apt/dalseo-xi-genic/popup3.png', alt: '달서자이 제니크 Apple DAY 주말경품 이벤트', width: 754, height: 1024 },
+      ],
+      closeLabel: '팝업닫기',
     },
 
     // PC(1024px 이상) 전용 우측 고정 퀵메뉴 — components/ui/SignatureQuickMenu. 접힌 상태의
@@ -61,7 +76,7 @@ const config = {
     quickMenu: {
       brand: '달서자이 제니크',
       phoneLabel: '분양문의',
-      phone: '1833-2330',
+      phone: '053-760-4734',
       favoriteLabel: '관심고객',
       menuLabel: 'MENU',
       ctaTargetId: 'vip-reservation',
@@ -341,10 +356,10 @@ const config = {
 
     footer: {
       logo: { src: '/apt/dalseo-xi-genic/logo.svg', alt: '달서자이 제니크' },
-      highlightText: '분양문의 1833-2330',
+      highlightText: '분양문의 053-760-4734',
       agencySlogan: '분양완판 전문가 그룹, (주) 더블루파트너스',
       companyLines: [
-        { label: '시행', value: '(주)제이비스' },
+        { label: '시행', value: 'GS건설(주)' },
         { label: '시공', value: 'GS건설(주)' },
         { label: '온라인대행', value: '주식회사 더블루파트너스' },
         { label: '사업자등록번호', value: '789-81-03093' },
@@ -355,7 +370,7 @@ const config = {
         '※ 사업지 인근의 개발사업과 관련된 사항은 지자체, 개발주체 및 관계기관의 사정에 따라 변경될 수 있습니다.',
         '※ 제작, 편집, 인쇄과정상 오탈자 등의 오류가 있을 수 있으니, 계약 전 반드시 견본주택 관계자에게 문의하시기 바랍니다.',
       ],
-      csPhone: '1833-2330',
+      csPhone: '053-760-4734',
       csHours: 'AM 09:00 ~ PM 19:00',
     },
   },

@@ -7,6 +7,7 @@ import SignaturePopupSequence from '../../../components/ui/SignaturePopupSequenc
 import SignaturePopupNoticeGeomdan from '../../../components/ui/SignaturePopupNoticeGeomdan'
 import SignatureMobileBottomBar from '../../../components/ui/SignatureMobileBottomBar'
 import SignatureHero from '../../../components/sections/SignatureHero'
+import SignatureVideoSection from '../../../components/sections/SignatureVideoSection'
 import SignatureHeroMinimal from '../../../components/sections/SignatureHeroMinimal'
 import SignatureBenefits from '../../../components/sections/SignatureBenefits'
 import SignatureSummary from '../../../components/sections/SignatureSummary'
@@ -178,6 +179,7 @@ export default async function AptPage({ params }) {
             visitTargetId={sig.vipForm.id}
           />
         )}
+        {sig.videoSection && <SignatureVideoSection video={sig.videoSection} />}
         {sig.benefits && <SignatureBenefits benefits={sig.benefits} />}
         <SignatureSummary summary={sig.summary} />
         <SignatureLocation location={sig.location} />

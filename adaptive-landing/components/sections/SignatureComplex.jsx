@@ -86,7 +86,30 @@ function DonghoChart({ donghoChart }) {
 
 // 단지소개 — 타입별 세대수를 포함한 단지 배치도, 동호수 배치표 이미지 2장을 순서대로 보여줌
 // siteMap/donghoChart 각각에 titleLine1이 있으면 이미지마다 별도 타이틀을, 없으면 기존처럼 상단 공용 타이틀 하나를 보여줌
+// complex.singleImage가 있으면(보여줄 이미지가 한 장뿐인 현장) 2단 갤러리 대신 이미지 1장만 전체 폭으로 보여줌
 export default function SignatureComplex({ complex }) {
+  if (complex.singleImage) {
+    return (
+      <section id={complex.id} className={styles.section}>
+        <PanelHead eyebrow={complex.eyebrow} titleLine1={complex.titleLine1} titleLine2={complex.titleLine2} desc={complex.desc} />
+        <div className={styles.gallery}>
+          <div className={styles.panel}>
+            <Reveal delay={0.1} className={styles.imageBox}>
+              <Image
+                src={complex.singleImage.src}
+                alt={complex.singleImage.alt}
+                width={complex.singleImage.width}
+                height={complex.singleImage.height}
+                sizes="(min-width: 1024px) 1200px, calc(100vw - 40px)"
+                className={styles.image}
+              />
+            </Reveal>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   const perImageTitle = Boolean(complex.siteMap.titleLine1)
 
   return (

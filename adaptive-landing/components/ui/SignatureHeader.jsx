@@ -73,7 +73,10 @@ export default function SignatureHeader({
     >
       <div className={styles.inner}>
         <a href="#" className={styles.logo} style={logoStyle} onClick={(e) => e.preventDefault()}>
-          <Image src={header.logo.src} alt={header.logo.alt} width={header.logo.width} height={header.logo.height} priority />
+          {(() => {
+            const activeLogo = transparent && header.logoWhite ? header.logoWhite : header.logo
+            return <Image src={activeLogo.src} alt={activeLogo.alt} width={activeLogo.width} height={activeLogo.height} priority />
+          })()}
         </a>
 
         <nav className={styles.gnb} aria-label="주요 메뉴">

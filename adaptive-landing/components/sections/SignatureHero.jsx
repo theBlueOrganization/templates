@@ -61,6 +61,7 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
   const heroStyle = {
     ...(hero.bgColor && { '--hero-bg': hero.bgColor }),
     ...(hero.textColor && { '--hero-title': hero.textColor, '--hero-desc': hero.textColor, '--hero-text-shadow': 'none' }),
+    ...(hero.accentColor && { '--hero-accent': hero.accentColor }),
     ...(hero.fontFamily && { '--hero-font': hero.fontFamily }),
   }
 
@@ -111,15 +112,37 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
             </motion.div>
           </AnimatePresence>
         ) : hero.bgVideo ? (
-          <video
-            className={styles.bgImage}
-            src={hero.bgVideo.src}
-            poster={hero.bgImage?.src}
-            autoPlay
-            muted
-            loop
-            playsInline
-          />
+          hero.bgImageMobile ? (
+            <>
+              <Image
+                src={hero.bgImageMobile.src}
+                alt={hero.bgImageMobile.alt}
+                fill
+                priority
+                sizes="100vw"
+                className={`${styles.bgImage} ${styles.bgImageMobileOnly}`}
+              />
+              <video
+                className={`${styles.bgImage} ${styles.bgImageDesktopOnly}`}
+                src={hero.bgVideo.src}
+                poster={hero.bgImage?.src}
+                autoPlay
+                muted
+                loop
+                playsInline
+              />
+            </>
+          ) : (
+            <video
+              className={styles.bgImage}
+              src={hero.bgVideo.src}
+              poster={hero.bgImage?.src}
+              autoPlay
+              muted
+              loop
+              playsInline
+            />
+          )
         ) : hero.bgImageMobile ? (
           <>
             <Image
@@ -146,7 +169,7 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
       </div>
 
       {!hero.hideText && (
-        <div className={styles.content}>
+        <div className={hero.hideTextMobile ? `${styles.content} ${styles.contentDesktopOnly}` : styles.content}>
           <motion.p className={styles.eyebrow} custom={0.2} initial="hidden" animate="show" variants={lineVariants}>
             {hero.eyebrowLine1}
             <br />
@@ -157,6 +180,12 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
             {hero.titleLine1}
             <br />
             {hero.titleLine2}
+            {hero.titleLine3 && (
+              <>
+                <br />
+                {hero.titleLine3}
+              </>
+            )}
           </motion.h1>
 
           <motion.p className={styles.desc} custom={0.65} initial="hidden" animate="show" variants={lineVariants}>
@@ -169,8 +198,12 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
                 <span key={i}>{seg.text}</span>
               )
             )}
-            <br />
-            <MobileBreakText text={hero.descLine2} breakClassName={styles.mobileBreak} />
+            {hero.descLine2 && (
+              <>
+                <br />
+                <MobileBreakText text={hero.descLine2} breakClassName={styles.mobileBreak} />
+              </>
+            )}
             <br />
             <MobileBreakText text={hero.descLine3} breakClassName={styles.mobileBreak} />
           </motion.p>

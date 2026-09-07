@@ -56,6 +56,25 @@
   }
 }
 
+.contentDesktopOnly {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .contentDesktopOnly.contentDesktopOnly {
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+    margin-right: auto;
+    margin-left: 60px;
+    padding-left: 20px;
+  }
+
+  .contentDesktopOnly.contentDesktopOnly .eyebrow {
+    text-align: left;
+  }
+}
+
 .content {
   position: relative;
   z-index: 1;
@@ -82,7 +101,7 @@
   display: inline-block;
   margin-top: 2px;
   font-weight: 600;
-  background: var(--hero-title, linear-gradient(125deg, #b39258 0%, #c5a46d 100%));
+  background: var(--hero-accent, var(--hero-title, linear-gradient(125deg, #b39258 0%, #c5a46d 100%)));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -112,7 +131,7 @@
 
 .descAccent {
   font-weight: 400;
-  color: var(--hero-title, #f4f4f4);
+  color: var(--hero-accent, var(--hero-title, #f4f4f4));
 }
 
 /* brandLogo — 타이틀/설명 아래에 얹는 브랜드 로고 락업(선택 필드, hero.brandLogo가 있을 때만 렌더) */

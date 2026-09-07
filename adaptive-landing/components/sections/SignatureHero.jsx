@@ -174,6 +174,23 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
             <br />
             <MobileBreakText text={hero.descLine3} breakClassName={styles.mobileBreak} />
           </motion.p>
+
+          {hero.brandLogo && (
+            <motion.div
+              className={styles.brandLogo}
+              custom={0.85}
+              initial="hidden"
+              animate="show"
+              variants={lineVariants}
+            >
+              <Image
+                src={hero.brandLogo.src}
+                alt={hero.brandLogo.alt}
+                width={hero.brandLogo.width}
+                height={hero.brandLogo.height}
+              />
+            </motion.div>
+          )}
         </div>
       )}
 

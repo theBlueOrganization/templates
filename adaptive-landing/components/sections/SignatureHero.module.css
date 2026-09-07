@@ -115,6 +115,16 @@
   color: var(--hero-title, #f4f4f4);
 }
 
+/* brandLogo — 타이틀/설명 아래에 얹는 브랜드 로고 락업(선택 필드, hero.brandLogo가 있을 때만 렌더) */
+.brandLogo {
+  margin-top: 28px;
+}
+
+.brandLogo img {
+  height: 22px;
+  width: auto;
+}
+
 .scrollIndicator {
   /* 모바일은 하단이 mobileBar(안내바+버튼)로 채워지므로 스크롤 힌트는 데스크톱에서만 표시 */
   display: none;
@@ -213,6 +223,14 @@
 
   .desc {
     font-size: 17.6px;
+  }
+
+  .brandLogo {
+    margin-top: 36px;
+  }
+
+  .brandLogo img {
+    height: 30px;
   }
 
   .scrollIndicator {

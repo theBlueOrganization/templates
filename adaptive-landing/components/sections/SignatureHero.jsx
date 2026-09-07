@@ -64,8 +64,10 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
     ...(hero.fontFamily && { '--hero-font': hero.fontFamily }),
   }
 
+  const heroClassName = slides && slides.length > 1 ? `${styles.hero} ${styles.heroSlides}` : styles.hero
+
   return (
-    <section id="hero" className={styles.hero} style={Object.keys(heroStyle).length ? heroStyle : undefined}>
+    <section id="hero" className={heroClassName} style={Object.keys(heroStyle).length ? heroStyle : undefined}>
       <div className={styles.bg}>
         {slides && slides.length > 1 ? (
           <AnimatePresence>

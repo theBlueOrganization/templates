@@ -184,7 +184,12 @@ export async function POST(request) {
 
     // 유입경로별로 상담 접수 문자의 현장명 뒤에 "+매체명"을 붙여서 구분 (예: "더샵 검단레이크파크2 +신한")
     const utmProjectSuffix = siteConfig?.smsProjectNameByUtm?.[utmSource]
-    const smsProjectName = utmProjectSuffix ? `${projectName} +${utmProjectSuffix}` : projectName
+    const isNoUtm = !utmSource || utmSource === '직접유입'
+    const smsProjectName = utmProjectSuffix
+      ? `${projectName} +${utmProjectSuffix}`
+      : isNoUtm && siteConfig?.smsProjectNameSuffix
+        ? `${projectName} +${siteConfig.smsProjectNameSuffix}`
+        : projectName
 
     const adminMessage =
       `[${smsProjectName}] 신규 상담 신청\n` +

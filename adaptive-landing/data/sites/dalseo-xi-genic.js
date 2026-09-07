@@ -18,6 +18,14 @@ const config = {
   shortName: '달서자이 제니크',
   telNumber: '1833-2330',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/dalseo-xi-genic/og.jpg',
+  // 헤더·모바일 메뉴·퀵메뉴 등 공용 Signature* 컴포넌트가 var(--navy 등)로 참조하는 사이트 전역 색상.
+  // 3색 팔레트 지정 — navy/ink(#002F47, 타이틀·버튼) / cream(#ffffff, 섹션 배경) / gold 역할(#006899, 포인트 액센트)
+  colorTheme: {
+    navy: '#002F47',
+    ink: '#002F47',
+    cream: '#ffffff',
+    gold: '#006899',
+  },
   adminPhones: ['01094216962'],
   sheetId: '',
   sheetTab: '달서자이제니크',
@@ -42,10 +50,34 @@ const config = {
 
   signature: {
     header: {
-      logo: { src: '/apt/dalseo-xi-genic/logo.svg', alt: '달서자이 제니크', width: 210, height: 36 },
+      logo: { src: '/apt/dalseo-xi-genic/logo.svg', alt: '달서자이 제니크', width: 210, height: 47 },
       gnb: ['사업개요', '위치안내', '프리미엄가치', '단지소개', '세대안내', '커뮤니티', '상담신청 및 방문예약'],
       quickCtaLabel: '관심고객등록',
       phone: '1833-2330',
+    },
+
+    // PC(1024px 이상) 전용 우측 고정 퀵메뉴 — components/ui/SignatureQuickMenu. 접힌 상태의
+    // 세로 바(전화/관심고객/MENU)가 항상 떠 있고, MENU를 누르면 QUICK MENU 패널이 열림.
+    quickMenu: {
+      brand: '달서자이 제니크',
+      phoneLabel: '분양문의',
+      phone: '1833-2330',
+      favoriteLabel: '관심고객',
+      menuLabel: 'MENU',
+      ctaTargetId: 'vip-reservation',
+      deskText: '달서자이 제니크\n분양 상담을 도와드립니다.',
+      address: '대구광역시 달서구 본리동 661-9번지 일원',
+      tagline: 'THE HIGHEST PREMIUM',
+      items: [
+        { num: '01', label: 'MAIN', sub: '메인페이지', targetId: 'hero' },
+        { num: '02', label: 'OVERVIEW', sub: '사업개요', targetId: 'overview' },
+        { num: '03', label: 'LOCATION', sub: '위치안내', targetId: 'location' },
+        { num: '04', label: 'PREMIUM', sub: '프리미엄가치', targetId: 'premium-value' },
+        { num: '05', label: 'COMPLEX', sub: '단지소개', targetId: 'complex' },
+        { num: '06', label: 'UNIT', sub: '세대안내', targetId: 'unit-plan' },
+        { num: '07', label: 'COMMUNITY', sub: '커뮤니티', targetId: 'community' },
+        { num: '08', label: 'CONTACT', sub: '상담신청 및 방문예약', targetId: 'vip-reservation' },
+      ],
     },
 
     // 출처: 공식 사이트 프리미엄 페이지("본리네거리 중심 입지", "최고 49층 탁 트인 조망") +
@@ -59,7 +91,32 @@ const config = {
       descLine1Accent: ['본리네거리 중심입지'],
       descLine2: '남대구IC·중부내륙고속도로 지선과 가까운 직주근접 쾌속교통,',
       descLine3: '달서구 최초 IB 월드스쿨 인증 덕인초 도보통학까지',
-      bgImage: { src: '/apt/dalseo-xi-genic/hero-bg.jpg', alt: '달서자이 제니크 대표 조감도' },
+      // 공식 사이트 메인 슬라이드 순서 그대로(대표 조감도 → LOCATION → VIEW → TRAFFIC → EDUCATION) —
+      // 이미지 자체에 문구가 이미 포함돼 있어 hideText:true와 함께 사용
+      slides: [
+        {
+          bgImage: { src: '/apt/dalseo-xi-genic/hero-bg.jpg', alt: '달서자이 제니크 대표 조감도 — The Highest Premium' },
+          bgImageMobile: { src: '/apt/dalseo-xi-genic/hero-bg-mobile.jpg', alt: '달서자이 제니크 대표 조감도 — The Highest Premium' },
+        },
+        {
+          bgImage: { src: '/apt/dalseo-xi-genic/hero-slide-location.jpg', alt: 'LOCATION Premium — 본리네거리 중심 입지' },
+          bgImageMobile: { src: '/apt/dalseo-xi-genic/hero-slide-location-mobile.jpg', alt: 'LOCATION Premium — 본리네거리 중심 입지' },
+        },
+        {
+          bgImage: { src: '/apt/dalseo-xi-genic/hero-slide-view.jpg', alt: 'VIEW Premium — 최고 49층 탁 트인 조망' },
+          bgImageMobile: { src: '/apt/dalseo-xi-genic/hero-slide-view-mobile.jpg', alt: 'VIEW Premium — 최고 49층 탁 트인 조망' },
+        },
+        {
+          bgImage: { src: '/apt/dalseo-xi-genic/hero-slide-traffic.jpg', alt: 'TRAFFIC Premium — 직주근접 쾌속교통' },
+          bgImageMobile: { src: '/apt/dalseo-xi-genic/hero-slide-traffic-mobile.jpg', alt: 'TRAFFIC Premium — 직주근접 쾌속교통' },
+        },
+        {
+          bgImage: { src: '/apt/dalseo-xi-genic/hero-slide-education.jpg', alt: 'EDUCATION Premium — 안심 학세권' },
+          bgImageMobile: { src: '/apt/dalseo-xi-genic/hero-slide-education-mobile.jpg', alt: 'EDUCATION Premium — 안심 학세권' },
+        },
+      ],
+      overlay: false,
+      hideText: true,
       mobileBar: {
         announcements: [{ badge: '안내', textStrong: '달서자이 제니크', textLight: ' 공식 안내센터입니다.' }],
         bubbleText: '예약 후 상담만 해도 특별혜택 안내',
@@ -76,9 +133,8 @@ const config = {
       subtitle: '대구광역시 달서구 본리동, 본리네거리 중심의 자이 브랜드타운',
       photo: { src: '/apt/dalseo-xi-genic/overview-photo.jpg', alt: '달서자이 제니크 조감도' },
       thumbs: [
-        { src: '/apt/dalseo-xi-genic/overview-thumb-1.jpg', alt: '단지 내 포켓쉼터' },
-        { src: '/apt/dalseo-xi-genic/overview-thumb-2.jpg', alt: '단지 내 휴게정원' },
-        { src: '/apt/dalseo-xi-genic/overview-thumb-3.jpg', alt: 'CLUB XIAN 티하우스' },
+        { src: '/apt/dalseo-xi-genic/overview-photo-real.jpg', alt: '달서자이 제니크 현장 시공 전경' },
+        { src: '/apt/dalseo-xi-genic/overview-thumb-real-3.jpg', alt: '달서자이 제니크 현장 — 상단부 클로즈업' },
       ],
       notice: '※ 본 페이지에 사용된 CG, 이미지 및 내용은 소비자의 이해를 돕기 위한 사전홍보용으로 인·허가 과정 등에 따라 변경될 수 있고 실제와 다를 수 있습니다(면적 및 세대수 등 포함).',
       specItems: [
@@ -88,13 +144,6 @@ const config = {
         { label: '주택형', value: '아파트 전용 84㎡A·B / 오피스텔 전용 84㎡OT' },
         { label: '공급규모', value: '총 438세대 (아파트 360세대 / 오피스텔 78실)' },
         { label: '분양물 용도', value: ['공동주택 및 부대복리시설', '오피스텔 및 부대복리시설 / 근린생활시설'] },
-        { label: '규모', value: ['아파트 101·102동 — 지상 최고 49층', '오피스텔 103동 — 지상 최고 29층'] },
-        { label: '시행', value: '(주)제이비스' },
-        { label: '시공', value: 'GS건설(주)' },
-        {
-          label: '분양일정',
-          value: ['입주자모집공고 8/6(목)', '특별공급 8/18(화) · 일반공급 1순위 8/19(수) · 2순위 8/20(목)', '당첨자발표 8/26(수) · 정당계약 9/7(월)~9/9(수)'],
-        },
       ],
     },
 
@@ -108,9 +157,7 @@ const config = {
       title: '기대되는 변화의 중심',
       descTitle: '달서에 새로운 자부심을 세우다!',
       descTitleAccent: ['새로운 자부심'],
-      descBody1: '본리네거리 중심입지, 남대구IC·중부내륙고속도로 지선까지 인접한 직주근접 쾌속교통,',
-      descBody1Accent: ['본리네거리 중심입지', '직주근접 쾌속교통'],
-      descBody2: '달서구 최초 IB 월드스쿨 인증 덕인초 도보통학권까지 한자리에 품었습니다.',
+      bgColor: '#ffffff',
       mapImage: { src: '/apt/dalseo-xi-genic/location-map.jpg', alt: '달서자이 제니크 광역 위치 안내도' },
       features: [
         {
@@ -154,15 +201,15 @@ const config = {
         '※ 본 홈페이지의 위치도는 네이버 지도를 참조하여 소비자의 이해를 돕기 위해 제작된 것으로 실제와 다를 수 있습니다. 현황 및 개발 계획은 관계 기관의 발표를 참조해 작성된 것으로 사업계획 및 일정은 당사와 무관하며 추후 변경될 수 있습니다.',
     },
 
-    // 출처: 공식 사이트 단지설계(cmsMenuSeq=29695) 헤드라인·부제 원문 그대로.
+    // 출처: 공식 사이트 단지설계(cmsMenuSeq=29695) 페이지를 캡처한 이미지 그대로 사용 — 헤드라인부터
+    // 랜드마크디자인·경관특화·포켓쉼터·휴게정원까지 이미 이미지 안에 포함돼 있어 별도 HTML 오버레이 없음.
     premiumIntro: {
-      eyebrow: 'THE HIGHEST PREMIUM',
-      titleLine1: '높이를 넘어,',
-      titleLine2: '프리미엄의 정점에 오르다',
-      descLine1: '리듬감 있는 주동 패턴과 쾌적한 경관 설계로 완성한',
-      descLine1Accent: ['최고 49층 랜드마크'],
-      descLine2: '도시를 새롭게 대표할 달서자이 제니크의 스카이라인',
-      bgImage: { src: '/apt/dalseo-xi-genic/premium-intro-bg.jpg', alt: '달서자이 제니크 랜드마크 조감도' },
+      plainImage: {
+        src: '/apt/dalseo-xi-genic/complex-design-full.jpg',
+        alt: '달서자이 제니크 단지설계 — 높이를 넘어, 프리미엄의 정점에 오르다',
+        width: 1100,
+        height: 1559,
+      },
     },
 
     // 출처: 공식 사이트 프리미엄(cmsMenuSeq=29622) 6대 가치 카드 원문 그대로(제목·설명 인용).
@@ -213,24 +260,8 @@ const config = {
     },
 
     // 출처: 공식 사이트 단지설계 페이지 하단 "포켓쉼터"·"휴게정원" 소개 문구 원문 그대로.
-    landscape: {
-      panels: [
-        {
-          image: { src: '/apt/dalseo-xi-genic/landscape-1.jpg', alt: '단지 내 포켓쉼터' },
-          badge: 'POCKET SHELTER',
-          titlePlain: '자연의 풍경 속 ',
-          titleAccent: '포켓쉼터',
-          desc: '자연의 풍경 속에서 여유로운 시간을 누리는 휴식공간, 포켓쉼터에서 잠시 쉬어가실 수 있습니다.',
-        },
-        {
-          image: { src: '/apt/dalseo-xi-genic/landscape-2.jpg', alt: '단지 내 휴게정원' },
-          badge: 'REST GARDEN',
-          titlePlain: '계절을 느끼는 ',
-          titleAccent: '휴게정원',
-          desc: '계절의 변화를 느끼며 산책로를 즐기는 힐링공간, 휴게정원이 일상 속 여유를 선사합니다.',
-        },
-      ],
-    },
+    // landscape 섹션은 제거 — 포켓쉼터·휴게정원 내용이 premiumIntro.plainImage(단지설계 캡처) 안에
+    // 이미 포함돼 있어 중복 노출을 피함.
 
     // 출처: 공식 사이트 단지 배치도(29707)·동호수 배치도(29708) 원문 — 101·102동(84A·84B, 각 180세대),
     // 103동(오피스텔 84OT, 78실), 아파트 지상 최고 49층·오피스텔 최고 29층 그대로 반영.
@@ -278,61 +309,18 @@ const config = {
       ],
     },
 
-    // 출처: 공식 사이트 CLUB XIAN 페이지(cmsMenuSeq=29709) 3F·B1F 시설 구성·이미지 원문 그대로.
-    // 시설 규모가 단출해(3F 2실 + B1F 3실) 풀 규모 클럽하우스용 SignatureClub 대신
-    // SignatureClubSimple(아이콘+이미지 카드 그리드) 사용.
+    // 출처: 공식 사이트 CLUB XIAN 페이지(cmsMenuSeq=29709)를 캡처한 이미지 그대로 사용 — 3F·B1F
+    // 평면도, 시설 사진·라벨이 이미 이미지 안에 포함돼 있어 별도 카드 그리드 재구성 없음.
     club: {
       id: 'community',
       navLabel: '커뮤니티',
       variant: 'simple',
-      intro: {
-        watermark: 'CLUB XIAN',
-        titleLine1: '단지 안에서 누리는',
-        titleLine2: '프리미엄 라운지, CLUB XIAN',
-        desc: '작은도서관·티하우스부터 피트니스 클럽·스크린골프까지, 3F와 B1F에 알차게 채운 입주민 전용 커뮤니티입니다.',
+      plainImage: {
+        src: '/apt/dalseo-xi-genic/club-xian-full.jpg',
+        alt: '달서자이 제니크 CLUB XIAN — 3F·B1F 커뮤니티 시설 안내',
+        width: 1100,
+        height: 3267,
       },
-      facilities: [
-        {
-          key: 'golf',
-          image: { src: '/apt/dalseo-xi-genic/club-golf.jpg', alt: '스크린 골프연습장', width: 450, height: 300 },
-          icon: 'fitness',
-          labelEn: 'GOLF PRACTICE · B1F',
-          title: '스크린 골프연습장',
-          desc: '계절에 구애받지 않고 실전 감각을 익힐 수 있는 입주민 전용 스크린 골프연습장입니다.',
-        },
-        {
-          key: 'fitness',
-          image: { src: '/apt/dalseo-xi-genic/club-fitness.jpg', alt: '피트니스 클럽', width: 530, height: 172 },
-          icon: 'fitness',
-          labelEn: 'FITNESS CLUB · B1F',
-          title: '피트니스 클럽',
-          desc: '최신 유산소·웨이트 기구를 갖춘 피트니스 클럽에서 건강한 일상을 이어가실 수 있습니다.',
-        },
-        {
-          key: 'gx',
-          image: { src: '/apt/dalseo-xi-genic/club-gx.jpg', alt: 'G.X룸', width: 530, height: 300 },
-          icon: 'fitness',
-          labelEn: 'G.X ROOM · B1F',
-          title: 'G.X룸',
-          desc: '요가, 필라테스 등 다양한 그룹 액티비티를 즐길 수 있는 다목적 G.X룸입니다.',
-        },
-        {
-          key: 'library',
-          image: { src: '/apt/dalseo-xi-genic/club-library.jpg', alt: '작은도서관', width: 640, height: 330 },
-          icon: 'library',
-          labelEn: 'LIBRARY · 3F',
-          title: '작은도서관',
-          desc: '조용하고 아늑한 분위기 속에서 독서와 학업에 온전히 집중할 수 있는 작은도서관입니다.',
-        },
-        {
-          key: 'teahouse',
-          image: { src: '/apt/dalseo-xi-genic/club-teahouse.jpg', alt: '티하우스', width: 750, height: 390 },
-          icon: 'lounge',
-          labelEn: 'TEA HOUSE · 3F',
-          title: '티하우스',
-          desc: '이웃과 여유로운 담소를 나누며 차 한 잔의 여유를 즐길 수 있는 티하우스입니다.',
-        },
-      ],
     },
 
     vipForm: {

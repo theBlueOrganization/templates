@@ -56,7 +56,11 @@ function Highlighted({ text, accent, className, accentClassName }) {
 // 위치 안내 — 지도 이미지 + 4가지 입지 강점 카드
 export default function SignatureLocation({ location }) {
   return (
-    <section id={location.id} className={styles.section}>
+    <section
+      id={location.id}
+      className={styles.section}
+      style={location.bgColor ? { '--location-bg': location.bgColor } : undefined}
+    >
       <Reveal className={styles.header}>
         {location.label && <p className={styles.label}>{location.label}</p>}
         <p className={styles.eyebrow}>

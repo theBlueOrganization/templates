@@ -47,6 +47,36 @@ const ICONS = {
       <path d="M6 34h36" />
     </svg>
   ),
+  pin: (
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M24 6c-7.2 0-13 5.8-13 13 0 9.75 13 23 13 23s13-13.25 13-23c0-7.2-5.8-13-13-13z" />
+      <circle cx="24" cy="19" r="4.5" />
+    </svg>
+  ),
+  tower: (
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M13 40V22M24 40V8M35 40V16" />
+      <path d="M8 40h32" />
+    </svg>
+  ),
+  car: (
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M8 27l3.5-9A4 4 0 0 1 15.2 15h17.6a4 4 0 0 1 3.7 2.5l3.5 9.5" />
+      <rect x="6" y="27" width="36" height="9" rx="3" />
+      <circle cx="15" cy="36" r="3" />
+      <circle cx="33" cy="36" r="3" />
+    </svg>
+  ),
+  trophy: (
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M16 9h16v9a8 8 0 0 1-16 0V9z" />
+      <path d="M16 12h-5a6 6 0 0 0 6 8" />
+      <path d="M32 12h5a6 6 0 0 1-6 8" />
+      <path d="M24 26v6" />
+      <path d="M18 40h12" />
+      <path d="M20 36h8v4h-8z" />
+    </svg>
+  ),
   city: (
     <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
       <rect x="8" y="20" width="10" height="14" />
@@ -88,8 +118,11 @@ export default function SignaturePremiumValue({ premiumValue }) {
                 </div>
               )}
               <div className={card.image ? styles.body : undefined}>
-                {icon && <span className={styles.icon}>{icon}</span>}
-                <span className={styles.num}>{card.num}</span>
+                {icon ? (
+                  <span className={card.image ? styles.iconBadge : styles.icon}>{icon}</span>
+                ) : (
+                  <span className={styles.num}>{card.num}</span>
+                )}
                 <h3 className={styles.cardTitle}>
                   {card.title.map((line, j) => (
                     <span key={j}>{line}</span>

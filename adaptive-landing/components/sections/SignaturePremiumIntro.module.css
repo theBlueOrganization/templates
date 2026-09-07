@@ -9,6 +9,28 @@
   padding: 80px 20px;
 }
 
+/* plainImage — 공식 페이지 캡처 이미지를 자연 비율 그대로, 크롭·오버레이 없이 통짜로 노출.
+   원본이 1100px 폭이라 PC 와이드 화면에서 100vw로 늘리면 확대돼 보이므로 원본 폭으로 제한 */
+.sectionPlain {
+  display: block;
+  background: #fff;
+  padding: 0 20px;
+}
+
+.plainImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .sectionPlain {
+    padding: 40px 20px;
+  }
+}
+
 .bg {
   position: absolute;
   inset: 0;

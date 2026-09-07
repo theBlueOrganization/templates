@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="232" height="40" viewBox="0 0 232 40">
-  <path fill="#ffffff" d="M69.01.85c-13.05,0-27.5,4.94-41.25,14.24L15.94,5.45H3.8l16.93,14.82c-6.42,5.15-12.6,11.26-18.32,18.29h14.94c3.29-4.45,6.81-8.49,10.49-12.07l13.79,12.07h14.92l-22.01-17.95c8.98-7.08,18.59-11.52,27.91-12.86v30.81h11.11V.85h-4.55Z"/>
-  <text x="86" y="27" font-family="'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="21" font-weight="700" fill="#ffffff" letter-spacing="-0.5">달서자이 제니크</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="232" height="52" viewBox="0 0 232 52">
+  <g transform="translate(0,6)">
+    <path fill="#ffffff" d="M69.01.85c-13.05,0-27.5,4.94-41.25,14.24L15.94,5.45H3.8l16.93,14.82c-6.42,5.15-12.6,11.26-18.32,18.29h14.94c3.29-4.45,6.81-8.49,10.49-12.07l13.79,12.07h14.92l-22.01-17.95c8.98-7.08,18.59-11.52,27.91-12.86v30.81h11.11V.85h-4.55Z"/>
+    <text x="86" y="27" font-family="'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="21" font-weight="700" fill="#ffffff" letter-spacing="-0.5">달서자이 제니크</text>
+  </g>
 </svg>

@@ -182,8 +182,12 @@ export async function POST(request) {
     const resolvedTemplateId = siteConfig?.kakaoTemplateId || process.env.KAKAO_TEMPLATE_ID
     const useKakao = siteConfig?.kakao === true && Boolean(resolvedTemplateId)
 
+    // 유입경로별로 상담 접수 문자의 현장명 뒤에 "+매체명"을 붙여서 구분 (예: "더샵 검단레이크파크2 +신한")
+    const utmProjectSuffix = siteConfig?.smsProjectNameByUtm?.[utmSource]
+    const smsProjectName = utmProjectSuffix ? `${projectName} +${utmProjectSuffix}` : projectName
+
     const adminMessage =
-      `[${projectName}] 신규 상담 신청\n` +
+      `[${smsProjectName}] 신규 상담 신청\n` +
       `이름: ${name}\n` +
       `연락처: ${phone}\n` +
       `방문예약일: ${visit_date || '미입력'}\n` +
@@ -222,7 +226,7 @@ export async function POST(request) {
               to,
               templateId: resolvedTemplateId,
               variables: {
-                '#{현장명}': projectName ?? '',
+                '#{현장명}': smsProjectName ?? '',
                 '#{유입매체}': utmSource ?? '직접유입',
                 '#{이름}': name ?? '',
                 '#{연락처}': phone ?? '',

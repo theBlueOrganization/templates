@@ -26,10 +26,15 @@ const config = {
   // (SignatureHeader/SignatureHero/SignatureFooter 전화번호 공통 적용)
   telNumberByUtm: { 카카오: '010-8472-3570' },
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/hanyang-iclass-yangju/og.jpg',
-  adminPhones: ['01094216962'],
+  // 모든 상담신청 알림을 이 번호로 발송
+  adminPhones: ['01084723570'],
   sheetId: '',
   sheetTab: '한양아이클래스양주',
   showUtmInSms: true,
+  // 상담 접수 알림을 문자 대신 카카오 알림톡으로 발송(실패 시 SMS로 자동 폴백). 솔라피 콘솔에
+  // 등록된 공용 KAKAO_TEMPLATE_ID(.env.local)를 그대로 사용 — 이 현장 전용 템플릿이 따로
+  // 있다면 kakaoTemplateId 필드를 추가해서 덮어쓸 것
+  kakao: true,
 
   // 공식 사이트는 모노톤(회색·검정·흰색) 기조지만, gold는 여러 컴포넌트에서
   // "밝은 배경 + 짙은 navy 텍스트" 대비 용도로 쓰이므로(예: 모바일 하단바 방문예약 버튼)

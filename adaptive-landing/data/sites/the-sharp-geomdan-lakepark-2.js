@@ -23,6 +23,42 @@ const config = {
   showUtmInSms: true,
   kakao: true,
 
+  // 요청 반영 — 매체별 유입경로 4종(엘포인트/SKT×2/신한1). 신한(기존 링크)은 utm_source 없이
+  // 접속하는 링크라 아래 *ByUtm 오버라이드 대상이 아니고, smsProjectNameSuffix로만 별도 처리한다.
+  // SKT는 링크가 2개라 드롭다운에서 구분되도록 라벨에 번호를 붙임(SKT/SKT2) — sungui-raon-private-skyve.js와 동일 방식
+  utmSources: [
+    { label: '엘포인트', value: 'lpoint' },
+    { label: 'SKT', value: 'SKT' },
+    { label: 'SKT2', value: 'SKT2' },
+    { label: '신한1', value: 'sh1' },
+  ],
+  // utm_source=lpoint/SKT/SKT2/sh1로 들어온 방문자에게만 화면 문의처 번호를 다르게 표시
+  telNumberByUtm: {
+    lpoint: '1522-8602',
+    SKT: '1666-1050',
+    SKT2: '1800-2261',
+    sh1: '1666-1050',
+  },
+  // 상담 접수 문자의 현장명 뒤에 "+매체명"을 붙여서 유입경로별로 구분 (예: "[더샵 검단레이크파크2 +엘포인트] 신규 상담 신청")
+  // sh1(신한1)은 신한(기존 링크)과 같은 담당 매체라 문자 제목도 동일하게 "+신한"으로 통일
+  smsProjectNameByUtm: {
+    lpoint: '엘포인트',
+    SKT: 'SKT',
+    SKT2: 'SKT2',
+    sh1: '신한',
+  },
+  // 신한(기존 링크)은 utm_source가 아예 없는 접속(직접유입)이라 위 smsProjectNameByUtm으로는 잡히지 않음 —
+  // 이 필드가 그 경우에만 "+신한"을 붙여준다 (route.js의 isNoUtm 분기 참고)
+  smsProjectNameSuffix: '신한',
+  // 유입경로별 상담 접수 SMS 수신번호 — 엘포인트만 김나경 추가, 나머지(SKT/SKT2/신한1)는
+  // 최현정·이수지·진의원 3명 동일 (신한(기존 링크)은 utm_source가 없어 기본 adminPhones로 자동 적용됨)
+  adminPhonesByUtm: {
+    lpoint: ['01039492388', '01090447402', '01048086474', '01071901052'], // 김나경, 최현정, 이수지, 진의원
+    SKT: ['01090447402', '01048086474', '01071901052'], // 최현정, 이수지, 진의원
+    SKT2: ['01090447402', '01048086474', '01071901052'],
+    sh1: ['01090447402', '01048086474', '01071901052'],
+  },
+
   company: {
     name: '주식회사 더블루파트너스',
     bizNumber: '789-81-03093',

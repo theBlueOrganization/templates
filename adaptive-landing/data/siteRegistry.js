@@ -6,6 +6,7 @@ import theSharpGeomdanLakepark from './sites/the-sharp-geomdan-lakepark'
 import theSharpGeomdanLakepark2 from './sites/the-sharp-geomdan-lakepark-2'
 import deoksoDoubleviewHangang from './sites/deokso-doubleview-hangang'
 import dalseoXiGenic from './sites/dalseo-xi-genic'
+import hanyangIclassYangju from './sites/hanyang-iclass-yangju'
 
 /**
  * 새 현장 추가 방법:
@@ -28,6 +29,7 @@ const sites = [
   theSharpGeomdanLakepark2,
   deoksoDoubleviewHangang,
   dalseoXiGenic,
+  hanyangIclassYangju,
 ]
 
 // slug로 현장 하나를 찾음 (app/apt/[slug]/page.jsx에서 사용)

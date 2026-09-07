@@ -1,14 +1,20 @@
-/* 모바일은 원본 세로 이미지(640x835) 비율에 맞춰 높이를 잡음 — 공식 사이트 모바일처럼 100svh 꽉 채우는
-   대신 이미지 자체 비율만큼만 차지하고 자연스럽게 다음 섹션으로 이어짐. 데스크톱은 기존 100svh 유지 */
 .hero {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  aspect-ratio: 640 / 835;
+  min-height: 100svh;
   background: var(--hero-bg, #06203e);
   overflow: hidden;
   padding: 100px 20px 120px;
+}
+
+/* heroSlides — 스와이퍼(슬라이드 여러 장) 히어로 전용. 모바일은 원본 세로 이미지(640x835) 비율에
+   맞춰 높이를 잡아 100svh 꽉 채우는 대신 이미지 자체 비율만큼만 차지하고 자연스럽게 다음 섹션으로
+   이어짐. 다른 현장(단일 배경 이미지)은 기존 100svh 유지 */
+.heroSlides {
+  min-height: 0;
+  aspect-ratio: 640 / 835;
 }
 
 .bg {
@@ -178,7 +184,7 @@
 }
 
 @media (min-width: 768px) {
-  .hero {
+  .heroSlides {
     aspect-ratio: auto;
     min-height: 100svh;
   }

@@ -8,6 +8,24 @@ import styles from './SignaturePremiumIntro.module.css'
 export default function SignaturePremiumIntro({ premiumIntro }) {
   const descSegments = splitHighlight(premiumIntro.descLine1, premiumIntro.descLine1Accent)
 
+  // plainImage — 공식 사이트 페이지를 그대로 캡처한 이미지 한 장만 넣고 싶을 때(별도 타이틀/설명 HTML
+  // 오버레이 없이). 이미지 자체에 헤드라인 등이 이미 포함돼 있는 경우에 사용.
+  if (premiumIntro.plainImage) {
+    const img = premiumIntro.plainImage
+    return (
+      <section id={premiumIntro.id} className={styles.sectionPlain}>
+        <Image
+          src={img.src}
+          alt={img.alt}
+          width={img.width || 1100}
+          height={img.height || 1559}
+          sizes="100vw"
+          className={styles.plainImage}
+        />
+      </section>
+    )
+  }
+
   // clean: true — 타이틀은 흰 배경 위에 깔끔하게, 배경 사진은 그 아래 별도 블록으로 분리하고
   // desc만 사진 위(하단 그라디언트)에 얹는 레이아웃. 없으면 기존처럼 사진 전체에 텍스트를 오버레이.
   if (premiumIntro.clean) {

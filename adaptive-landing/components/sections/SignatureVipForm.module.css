@@ -29,7 +29,7 @@
   font-weight: 600;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--gold, #c8b693);
+  color: #fff;
 }
 
 .title {
@@ -45,7 +45,7 @@
 
 .title strong {
   font-weight: 700;
-  color: var(--gold, #c8b693);
+  color: #fff;
 }
 
 .desc {
@@ -63,7 +63,7 @@
 .groupTitle {
   font-size: 16px;
   font-weight: 600;
-  color: var(--gold, #c8b693);
+  color: #fff;
   margin-bottom: 16px;
 }
 
@@ -89,7 +89,7 @@
   align-items: center;
   gap: 10px;
   font-size: 14px;
-  color: var(--gold, #c8b693);
+  color: #fff;
 }
 
 .checkLabel input {
@@ -114,7 +114,7 @@
 .label {
   font-size: 14px;
   font-weight: 600;
-  color: var(--gold, #c8b693);
+  color: #fff;
 }
 
 .input,
@@ -192,7 +192,7 @@
   width: 100%;
   margin-top: 8px;
   background: var(--gold, #c8b693);
-  color: var(--navy, #06203e);
+  color: #fff;
   font-weight: 700;
   font-size: 16px;
   letter-spacing: 0.02em;

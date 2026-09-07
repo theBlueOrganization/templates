@@ -65,7 +65,7 @@
 .quickPhone {
   background: var(--navy, #06203e);
   border: 1px solid var(--gold, #d4a187);
-  color: var(--gold, #d4a187);
+  color: #fff;
   font-size: 18.5px;
   padding: 9px 12px;
   border-radius: 3px;

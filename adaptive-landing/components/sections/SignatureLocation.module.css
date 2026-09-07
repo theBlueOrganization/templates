@@ -1,5 +1,5 @@
 .section {
-  background: var(--cream, #fdfdfc);
+  background: var(--location-bg, var(--cream, #fdfdfc));
   padding: 60px 20px;
 }
 

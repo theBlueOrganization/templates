@@ -31,6 +31,24 @@ const ICONS = {
 }
 
 export default function SignatureClubSimple({ club }) {
+  // plainImage — 공식 사이트 CLUB XIAN 페이지를 그대로 캡처한 이미지 한 장만 넣고 싶을 때
+  // (평면도·시설 사진·라벨이 이미 이미지 안에 포함돼 있어 별도 카드 그리드 재구성 없이 사용)
+  if (club.plainImage) {
+    const img = club.plainImage
+    return (
+      <section id={club.id} className={styles.sectionPlain}>
+        <Image
+          src={img.src}
+          alt={img.alt}
+          width={img.width || 1100}
+          height={img.height || 3267}
+          sizes="100vw"
+          className={styles.plainImage}
+        />
+      </section>
+    )
+  }
+
   return (
     <section id={club.id} className={styles.section}>
       <div className={styles.watermark} aria-hidden="true">

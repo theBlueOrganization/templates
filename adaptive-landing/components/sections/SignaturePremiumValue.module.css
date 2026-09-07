@@ -153,6 +153,24 @@
   height: 100%;
 }
 
+/* 사진 카드용 아이콘 배지 — 사진 아래 텍스트 영역 맨 위에 오는 원형 배지(공식 사이트 SIGNATURE 6 참고) */
+.iconBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 4px;
+  border-radius: 50%;
+  background: var(--navy, #06203e);
+  color: #fff;
+}
+
+.iconBadge svg {
+  width: 24px;
+  height: 24px;
+}
+
 .num {
   font-family: var(--font-cormorant);
   font-weight: 500;

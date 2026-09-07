@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { splitHighlight, isMobileUserAgent } from '../../lib/utils'
 import { useUtmSource } from '../../lib/useUtmSource'
@@ -25,6 +25,19 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
   // telNumberByUtm에 등록된 utm_source로 들어온 경우에만 노출 전화번호를 덮어씀 (SignatureHeader/SignatureFooter와 동일 규칙)
   const utmSource = useUtmSource()
   const resolvedTelNumber = telNumberByUtm?.[utmSource] ?? telNumber
+
+  // slides — 배경 이미지가 여러 장이면 일정 간격으로 자동 전환되는 스와이퍼(공식 사이트 메인 슬라이드 참고).
+  // 각 슬라이드 이미지 자체에 문구가 이미 포함돼 있어 hero.hideText와 함께 쓰는 걸 전제로 함.
+  const slides = hero.slides
+  const [activeSlide, setActiveSlide] = useState(0)
+
+  useEffect(() => {
+    if (!slides || slides.length < 2) return
+    const timer = setInterval(() => {
+      setActiveSlide((i) => (i + 1) % slides.length)
+    }, 3500)
+    return () => clearInterval(timer)
+  }, [slides])
 
   useEffect(() => {
     if (!mobileBar || mobileBar.announcements.length < 2) return
@@ -54,7 +67,48 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
   return (
     <section id="hero" className={styles.hero} style={Object.keys(heroStyle).length ? heroStyle : undefined}>
       <div className={styles.bg}>
-        {hero.bgVideo ? (
+        {slides && slides.length > 1 ? (
+          <AnimatePresence>
+            <motion.div
+              key={activeSlide}
+              className={styles.bgImage}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1 }}
+            >
+              {slides[activeSlide].bgImageMobile ? (
+                <>
+                  <Image
+                    src={slides[activeSlide].bgImageMobile.src}
+                    alt={slides[activeSlide].bgImageMobile.alt}
+                    fill
+                    priority={activeSlide === 0}
+                    sizes="100vw"
+                    className={`${styles.bgImage} ${styles.bgImageMobileOnly}`}
+                  />
+                  <Image
+                    src={slides[activeSlide].bgImage.src}
+                    alt={slides[activeSlide].bgImage.alt}
+                    fill
+                    priority={activeSlide === 0}
+                    sizes="100vw"
+                    className={`${styles.bgImage} ${styles.bgImageDesktopOnly}`}
+                  />
+                </>
+              ) : (
+                <Image
+                  src={slides[activeSlide].bgImage.src}
+                  alt={slides[activeSlide].bgImage.alt}
+                  fill
+                  priority={activeSlide === 0}
+                  sizes="100vw"
+                  className={styles.bgImage}
+                />
+              )}
+            </motion.div>
+          </AnimatePresence>
+        ) : hero.bgVideo ? (
           <video
             className={styles.bgImage}
             src={hero.bgVideo.src}
@@ -64,41 +118,62 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
             loop
             playsInline
           />
+        ) : hero.bgImageMobile ? (
+          <>
+            <Image
+              src={hero.bgImageMobile.src}
+              alt={hero.bgImageMobile.alt}
+              fill
+              priority
+              sizes="100vw"
+              className={`${styles.bgImage} ${styles.bgImageMobileOnly}`}
+            />
+            <Image
+              src={hero.bgImage.src}
+              alt={hero.bgImage.alt}
+              fill
+              priority
+              sizes="100vw"
+              className={`${styles.bgImage} ${styles.bgImageDesktopOnly}`}
+            />
+          </>
         ) : (
           <Image src={hero.bgImage.src} alt={hero.bgImage.alt} fill priority sizes="100vw" className={styles.bgImage} />
         )}
         {hero.overlay !== false && <div className={styles.overlay} />}
       </div>
 
-      <div className={styles.content}>
-        <motion.p className={styles.eyebrow} custom={0.2} initial="hidden" animate="show" variants={lineVariants}>
-          {hero.eyebrowLine1}
-          <br />
-          <span className={styles.eyebrowAccent}>{hero.eyebrowLine2}</span>
-        </motion.p>
+      {!hero.hideText && (
+        <div className={styles.content}>
+          <motion.p className={styles.eyebrow} custom={0.2} initial="hidden" animate="show" variants={lineVariants}>
+            {hero.eyebrowLine1}
+            <br />
+            <span className={styles.eyebrowAccent}>{hero.eyebrowLine2}</span>
+          </motion.p>
 
-        <motion.h1 className={styles.title} custom={0.4} initial="hidden" animate="show" variants={lineVariants}>
-          {hero.titleLine1}
-          <br />
-          {hero.titleLine2}
-        </motion.h1>
+          <motion.h1 className={styles.title} custom={0.4} initial="hidden" animate="show" variants={lineVariants}>
+            {hero.titleLine1}
+            <br />
+            {hero.titleLine2}
+          </motion.h1>
 
-        <motion.p className={styles.desc} custom={0.65} initial="hidden" animate="show" variants={lineVariants}>
-          {descSegments.map((seg, i) =>
-            seg.accent ? (
-              <strong key={i} className={styles.descAccent}>
-                {seg.text}
-              </strong>
-            ) : (
-              <span key={i}>{seg.text}</span>
-            )
-          )}
-          <br />
-          <MobileBreakText text={hero.descLine2} breakClassName={styles.mobileBreak} />
-          <br />
-          <MobileBreakText text={hero.descLine3} breakClassName={styles.mobileBreak} />
-        </motion.p>
-      </div>
+          <motion.p className={styles.desc} custom={0.65} initial="hidden" animate="show" variants={lineVariants}>
+            {descSegments.map((seg, i) =>
+              seg.accent ? (
+                <strong key={i} className={styles.descAccent}>
+                  {seg.text}
+                </strong>
+              ) : (
+                <span key={i}>{seg.text}</span>
+              )
+            )}
+            <br />
+            <MobileBreakText text={hero.descLine2} breakClassName={styles.mobileBreak} />
+            <br />
+            <MobileBreakText text={hero.descLine3} breakClassName={styles.mobileBreak} />
+          </motion.p>
+        </div>
+      )}
 
       <motion.div
         className={styles.scrollIndicator}

@@ -1,9 +1,11 @@
+/* 모바일은 원본 세로 이미지(640x835) 비율에 맞춰 높이를 잡음 — 공식 사이트 모바일처럼 100svh 꽉 채우는
+   대신 이미지 자체 비율만큼만 차지하고 자연스럽게 다음 섹션으로 이어짐. 데스크톱은 기존 100svh 유지 */
 .hero {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100svh;
+  aspect-ratio: 640 / 835;
   background: var(--hero-bg, #06203e);
   overflow: hidden;
   padding: 100px 20px 120px;
@@ -26,6 +28,26 @@
   position: absolute;
   inset: 0;
   background: radial-gradient(circle at center, rgba(3, 21, 24, 0.3) 0%, rgba(0, 0, 0, 0.85) 100%);
+}
+
+/* bgImageMobile — 768px 미만은 세로형(모바일 크롭) 이미지, 그 이상은 기존 가로형 이미지.
+   화면 높이를 꽉 채워야 하므로 cover 유지 + object-position만 중앙으로 명시 */
+.bgImageMobileOnly {
+  object-position: center;
+}
+
+.bgImageDesktopOnly {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .bgImageMobileOnly {
+    display: none;
+  }
+
+  .bgImageDesktopOnly {
+    display: block;
+  }
 }
 
 .content {
@@ -152,6 +174,13 @@
 
   .desc {
     font-size: 15px;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero {
+    aspect-ratio: auto;
+    min-height: 100svh;
   }
 }
 

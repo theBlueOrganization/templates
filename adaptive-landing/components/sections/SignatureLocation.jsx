@@ -59,7 +59,10 @@ export default function SignatureLocation({ location }) {
     <section
       id={location.id}
       className={styles.section}
-      style={location.bgColor ? { '--location-bg': location.bgColor } : undefined}
+      style={{
+        ...(location.bgColor && { '--location-bg': location.bgColor }),
+        ...(location.titleFont && { '--location-title-font': location.titleFont }),
+      }}
     >
       <Reveal className={styles.header}>
         {location.label && <p className={styles.label}>{location.label}</p>}

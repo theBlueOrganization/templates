@@ -32,13 +32,19 @@ export default function SignatureSellingStory({ story }) {
 
       <div className={styles.scenes}>
         {story.scenes.map((scene) => (
-          <article key={scene.title} className={scene.type === 'video' ? styles.sceneWide : styles.scene}>
+          <article key={scene.title} className={scene.type === 'video' || scene.wide ? styles.sceneWide : styles.scene}>
             {scene.type === 'video' ? (
               <video className={styles.sceneMedia} autoPlay muted loop playsInline poster={scene.video.poster} aria-label={scene.ariaLabel}>
                 <source src={scene.video.src} type="video/mp4" />
               </video>
             ) : (
-              <Image src={scene.image.src} alt={scene.image.alt} fill sizes="(min-width: 768px) 50vw, 100vw" className={styles.sceneMedia} />
+              <Image
+                src={scene.image.src}
+                alt={scene.image.alt}
+                fill
+                sizes={scene.wide ? '100vw' : '(min-width: 768px) 50vw, 100vw'}
+                className={styles.sceneMedia}
+              />
             )}
             <div className={styles.sceneCopy}>
               <span>{scene.tag}</span>
@@ -49,21 +55,23 @@ export default function SignatureSellingStory({ story }) {
         ))}
       </div>
 
-      <div className={styles.conversion}>
-        <p>{story.conversion.eyebrow}</p>
-        <h3>
-          {story.conversion.titleLine1}
-          <br />
-          {story.conversion.titleLine2}
-        </h3>
-        <div>
-          {story.conversion.links.map((link) => (
-            <a key={link.targetId} href={`#${link.targetId}`}>
-              {link.label}
-            </a>
-          ))}
+      {story.conversion && (
+        <div className={styles.conversion}>
+          <p>{story.conversion.eyebrow}</p>
+          <h3>
+            {story.conversion.titleLine1}
+            <br />
+            {story.conversion.titleLine2}
+          </h3>
+          <div>
+            {story.conversion.links.map((link) => (
+              <a key={link.targetId} href={`#${link.targetId}`}>
+                {link.label}
+              </a>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </section>
   )
 }

@@ -5,9 +5,11 @@ import theSharpSongdoGrandTerre from './sites/the-sharp-songdo-grand-terre'
 import theSharpGeomdanLakepark from './sites/the-sharp-geomdan-lakepark'
 import theSharpGeomdanLakepark2 from './sites/the-sharp-geomdan-lakepark-2'
 import theSharpGeomdanLakepark3 from './sites/the-sharp-geomdan-lakepark-3'
+import theSharpGeomdanLakepark4 from './sites/the-sharp-geomdan-lakepark-4'
 import deoksoDoubleviewHangang from './sites/deokso-doubleview-hangang'
 import dalseoXiGenic from './sites/dalseo-xi-genic'
 import hanyangIclassYangju from './sites/hanyang-iclass-yangju'
+import hanyangIclassYangju2 from './sites/hanyang-iclass-yangju-2'
 
 /**
  * 새 현장 추가 방법:
@@ -29,9 +31,11 @@ const sites = [
   theSharpGeomdanLakepark,
   theSharpGeomdanLakepark2,
   theSharpGeomdanLakepark3,
+  theSharpGeomdanLakepark4,
   deoksoDoubleviewHangang,
   dalseoXiGenic,
   hanyangIclassYangju,
+  hanyangIclassYangju2,
 ]
 
 // slug로 현장 하나를 찾음 (app/apt/[slug]/page.jsx에서 사용)

@@ -48,24 +48,42 @@
   object-fit: cover;
 }
 
-@media (max-width: 767px) {
-  .heroFigure :global(img) {
-    aspect-ratio: 16 / 10;
-  }
-}
-
 .heroFigure figcaption {
   margin-top: 12px;
   font-size: 11px;
   color: #727c82;
 }
 
+/* 모바일 — 요청 반영: 히어로 이미지도 아래 카드 4장과 같은 크기·스타일의 "카드"로 보이게 해서
+   히어로+카드4장이 세로로 나열된 균일한 카드 5개처럼 보이게 함(데스크톱은 기존 큰 히어로 유지) */
+@media (max-width: 767px) {
+  .heroFigure {
+    background: #fff;
+    overflow: hidden;
+    box-shadow: 0 16px 44px rgba(7, 26, 43, 0.06);
+    margin-bottom: 10px;
+  }
+
+  .heroFigure :global(img) {
+    height: 160px !important;
+  }
+
+  .heroFigure figcaption {
+    margin: 0;
+    padding: 10px 12px 12px;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    color: #214d78;
+  }
+}
+
 .grid {
   max-width: 1180px;
-  margin: 44px auto 0;
+  margin: 10px auto 0;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 22px;
+  gap: 10px;
 }
 
 .card {
@@ -75,12 +93,13 @@
 }
 
 .card :global(img) {
-  aspect-ratio: 16 / 10;
+  width: 100%;
+  height: 140px !important;
   object-fit: cover;
 }
 
 .card > div {
-  padding: 24px 26px 28px;
+  padding: 14px 14px 16px;
 }
 
 .card span {
@@ -118,10 +137,29 @@
   }
 
   .heroFigure :global(img) {
-    aspect-ratio: 16 / 8;
+    height: 260px !important;
   }
 
   .grid {
     grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .card :global(img) {
+    height: 200px !important;
+  }
+
+  .card > div {
+    padding: 12px 14px 14px;
+  }
+
+  .card span {
+    font-size: 10px;
+  }
+
+  .card p {
+    font-size: 12.5px;
+    line-height: 1.6;
   }
 }

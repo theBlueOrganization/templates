@@ -63,9 +63,18 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
     ...(hero.textColor && { '--hero-title': hero.textColor, '--hero-desc': hero.textColor, '--hero-text-shadow': 'none' }),
     ...(hero.accentColor && { '--hero-accent': hero.accentColor }),
     ...(hero.fontFamily && { '--hero-font': hero.fontFamily }),
+    ...(hero.imageAspectRatio && { '--hero-image-ratio': hero.imageAspectRatio }),
+    ...(hero.descColorMobile && { '--hero-desc-mobile': hero.descColorMobile }),
   }
 
-  const heroClassName = slides && slides.length > 1 ? `${styles.hero} ${styles.heroSlides}` : styles.hero
+  const heroClassName = [
+    styles.hero,
+    slides && slides.length > 1 && styles.heroSlides,
+    !(slides && slides.length > 1) && hero.imageAspectRatio && styles.heroTallImage,
+    hero.contentTop && styles.heroContentTop,
+  ]
+    .filter(Boolean)
+    .join(' ')
 
   return (
     <section id="hero" className={heroClassName} style={Object.keys(heroStyle).length ? heroStyle : undefined}>

@@ -185,15 +185,19 @@ export default async function AptPage({ params }) {
         {sig.benefits && <SignatureBenefits benefits={sig.benefits} />}
         <SignatureSummary summary={sig.summary} />
         <SignatureLocation location={sig.location} />
+        {sig.story && <SignatureSellingStory story={sig.story} />}
         <SignaturePremiumIntro premiumIntro={sig.premiumIntro} />
         {sig.newsImage && <SignatureNewsImage image={sig.newsImage} />}
         <SignaturePremiumValue premiumValue={sig.premiumValue} />
         {sig.premiumSplits?.map((split, i) => (
           <SignaturePremiumSplit key={i} split={split} />
         ))}
+        {sig.infrastructure && <SignatureInfrastructure infrastructure={sig.infrastructure} />}
+        {sig.landscapeGeomdan && <SignatureLandscapeGeomdan landscape={sig.landscapeGeomdan} />}
         {sig.landscape && <SignatureLandscape landscape={sig.landscape} />}
         <SignatureComplex complex={sig.complex} />
         <SignatureUnitPlan unitPlan={sig.unitPlan} />
+        {sig.smarthome && <SignatureSmartHome smarthome={sig.smarthome} />}
         {sig.communityBlocks ? (
           <SignatureCommunityGeomdan community={sig.communityBlocks} />
         ) : (
@@ -206,6 +210,8 @@ export default async function AptPage({ params }) {
             <SignatureClub club={sig.club} />
           ))
         )}
+        {sig.notice && <SignatureNotice notice={sig.notice} />}
+        {sig.faq && <SignatureFaq faq={sig.faq} />}
         <SignatureVipForm config={site} />
       </main>
       <SignatureFooter

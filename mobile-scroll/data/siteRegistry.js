@@ -77,6 +77,7 @@ const adaptiveLandingPointers = [
   { slug: "the-sharp-songdo-grand-terre", subdomain: "더샵송도그란테르", template: "adaptive-landing" },
   { slug: "the-sharp-geomdan-lakepark", subdomain: "더샵검단레이크파크", template: "adaptive-landing" },
   { slug: "the-sharp-geomdan-lakepark-2", subdomain: "더샵검단레이크파크T", template: "adaptive-landing" },
+  { slug: "the-sharp-geomdan-lakepark-3", subdomain: "더샵검단레이크파크p", template: "adaptive-landing" },
   { slug: "dalseo-xi-genic", subdomain: "달서자이제니크", template: "adaptive-landing" },
   { slug: "deokso-doubleview-hangang", subdomain: "덕소역더블뷰한강", template: "adaptive-landing" },
   { slug: "hanyang-iclass-yangju", subdomain: "한양아이클래스양주", template: "adaptive-landing" },

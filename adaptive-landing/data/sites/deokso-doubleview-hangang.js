@@ -101,7 +101,7 @@ const config = {
       textColor: '#ffffff',
       mobileBar: {
         announcements: [{ badge: '안내', textStrong: '덕소역 더블뷰 한강', textLight: ' 공식 안내센터입니다.' }],
-        bubbleText: '방문예약 후 상담만 해도 안내',
+        bubbleText: '방문예약 바로가기',
         callLabel: '전화상담',
         visitLabel: '방문예약',
       },

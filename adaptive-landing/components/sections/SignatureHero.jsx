@@ -283,11 +283,11 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
             </div>
           ) : (
             mobileBar.bubbleText && (
-              <span className={styles.promoBubble}>
+              <button type="button" onClick={scrollToVisit} className={styles.promoBubble}>
                 <span className={styles.pulseDot} />
                 {mobileBar.bubbleText}
                 <span className={styles.bubbleTail} />
-              </span>
+              </button>
             )
           )}
 

@@ -65,6 +65,11 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
     ...(hero.fontFamily && { '--hero-font': hero.fontFamily }),
     ...(hero.imageAspectRatio && { '--hero-image-ratio': hero.imageAspectRatio }),
     ...(hero.descColorMobile && { '--hero-desc-mobile': hero.descColorMobile }),
+    ...(hero.titleSize && {
+      '--hero-title-size-base': `${hero.titleSize.base}px`,
+      '--hero-title-size-md': `${hero.titleSize.md}px`,
+      '--hero-title-size-lg': `${hero.titleSize.lg}px`,
+    }),
   }
 
   const heroClassName = [

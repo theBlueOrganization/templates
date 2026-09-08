@@ -63,6 +63,17 @@ export default function SignatureClubSimple({ club }) {
         <p className={styles.desc}>{club.intro.desc}</p>
       </Reveal>
 
+      {club.topImage && (
+        <Image
+          src={club.topImage.src}
+          alt={club.topImage.alt}
+          width={club.topImage.width}
+          height={club.topImage.height}
+          sizes="(min-width: 1024px) 1100px, 100vw"
+          className={styles.topImage}
+        />
+      )}
+
       <Stagger className={styles.grid}>
         {club.facilities.map((facility) => (
           <StaggerItem key={facility.key} className={styles.card}>

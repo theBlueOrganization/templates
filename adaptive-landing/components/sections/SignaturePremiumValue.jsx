@@ -86,6 +86,21 @@ const ICONS = {
       <path d="M23 17h2M23 22h2M23 27h2M11 24h3M11 29h3" />
     </svg>
   ),
+  cart: (
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M6 8h5l4 20h20l4-14H13" />
+      <circle cx="19" cy="38" r="2.4" fill="currentColor" stroke="none" />
+      <circle cx="33" cy="38" r="2.4" fill="currentColor" stroke="none" />
+    </svg>
+  ),
+  unitPlan: (
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="7" y="8" width="24" height="24" rx="2" />
+      <path d="M19 8v24M7 20h24" />
+      <circle cx="32" cy="32" r="7" />
+      <path d="M37 37l5 5" />
+    </svg>
+  ),
 }
 
 // PREMIUM 6 — 프리미엄 가치 카드 6개 그리드 (모바일 1열 → 데스크톱 3열)

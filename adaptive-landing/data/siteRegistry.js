@@ -4,6 +4,7 @@ import wonjongyeokWorldMeridianFore from './sites/wonjongyeok-world-meridian-for
 import theSharpSongdoGrandTerre from './sites/the-sharp-songdo-grand-terre'
 import theSharpGeomdanLakepark from './sites/the-sharp-geomdan-lakepark'
 import theSharpGeomdanLakepark2 from './sites/the-sharp-geomdan-lakepark-2'
+import theSharpGeomdanLakepark3 from './sites/the-sharp-geomdan-lakepark-3'
 import deoksoDoubleviewHangang from './sites/deokso-doubleview-hangang'
 import dalseoXiGenic from './sites/dalseo-xi-genic'
 import hanyangIclassYangju from './sites/hanyang-iclass-yangju'
@@ -27,6 +28,7 @@ const sites = [
   theSharpSongdoGrandTerre,
   theSharpGeomdanLakepark,
   theSharpGeomdanLakepark2,
+  theSharpGeomdanLakepark3,
   deoksoDoubleviewHangang,
   dalseoXiGenic,
   hanyangIclassYangju,

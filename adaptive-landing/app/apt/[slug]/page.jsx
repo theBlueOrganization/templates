@@ -120,14 +120,15 @@ export default async function AptPage({ params }) {
     )
   }
 
-  // header.gnb 순서와 1:1로 매칭되는 실제 섹션 id — club은 현장에 따라 통째로 뺄 수 있어 선택적으로 포함
+  // header.gnb 순서와 1:1로 매칭되는 실제 섹션 id — 커뮤니티 섹션(club 또는 communityBlocks)은
+  // 현장에 따라 통째로 뺄 수 있어 선택적으로 포함
   const sectionIds = [
     sig.summary.id,
     sig.location.id,
     sig.premiumValue.id,
     sig.complex.id,
     sig.unitPlan.id,
-    ...(sig.club ? [sig.club.id] : []),
+    ...(sig.club ? [sig.club.id] : sig.communityBlocks ? [sig.communityBlocks.id] : []),
     sig.vipForm.id,
   ]
 

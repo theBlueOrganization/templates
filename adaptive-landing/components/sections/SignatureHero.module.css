@@ -147,7 +147,7 @@
 .title {
   font-family: var(--hero-font, var(--font-sans));
   font-weight: 600;
-  font-size: clamp(24px, 8vw, 34px);
+  font-size: var(--hero-title-size-base, clamp(24px, 8vw, 34px));
   line-height: 1.15;
   color: var(--hero-title, #f4f4f4);
   letter-spacing: -0.03em;
@@ -248,7 +248,7 @@
   }
 
   .title {
-    font-size: 52px;
+    font-size: var(--hero-title-size-md, 52px);
   }
 
   .desc {
@@ -279,7 +279,7 @@
   }
 
   .title {
-    font-size: 80px;
+    font-size: var(--hero-title-size-lg, 80px);
     letter-spacing: -0.03em;
     margin-bottom: 18px;
   }

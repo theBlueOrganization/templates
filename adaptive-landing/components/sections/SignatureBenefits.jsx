@@ -26,7 +26,7 @@ export default function SignatureBenefits({ benefits }) {
         <Stagger className={styles.grid}>
           {benefits.items.map((item) => (
             <StaggerItem key={item.num} className={styles.card}>
-              <span className={styles.tag}>{item.tag}</span>
+              {item.tag && <span className={styles.tag}>{item.tag}</span>}
               <span className={styles.num}>{item.num}</span>
               <h3 className={styles.cardTitle}>
                 {item.title.map((line, i) => (

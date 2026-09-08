@@ -77,7 +77,7 @@ export default function SignatureClubSimple({ club }) {
               />
             </div>
             <div className={styles.labelRow}>
-              <span className={styles.icon}>{ICONS[facility.icon]}</span>
+              {!club.hideIcon && <span className={styles.icon}>{ICONS[facility.icon]}</span>}
               <span className={styles.labelEn}>{facility.labelEn}</span>
             </div>
             <h3 className={styles.cardTitle}>{facility.title}</h3>

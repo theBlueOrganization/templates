@@ -96,12 +96,12 @@ const config = {
       descLine2: '민간임대협동조합 방식, 임대의무기간 10년 후 우선 분양전환',
       descLine3: '지하 2층~지상 37층 3개동, 총 278세대',
       bgImage: { src: '/apt/deokso-doubleview-hangang/hero-bg.png', alt: '덕소역 더블뷰 한강 한강변 조감도' },
-      bgImageMobile: { src: '/apt/deokso-doubleview-hangang/mobile-image.png', alt: '덕소역 더블뷰 한강 민간임대 아파트 임대분양, 한강·산 더블 조망' },
+      bgImageMobile: { src: '/apt/deokso-doubleview-hangang/m-image.jpg', alt: '덕소역 더블뷰 한강 민간임대 아파트 임대분양, 한강·산 더블 조망' },
       hideTextMobile: true,
       textColor: '#ffffff',
       mobileBar: {
         announcements: [{ badge: '안내', textStrong: '덕소역 더블뷰 한강', textLight: ' 공식 안내센터입니다.' }],
-        bubbleText: '방문예약 후 상담만 해도 안내',
+        bubbleText: '방문예약 바로가기',
         callLabel: '전화상담',
         visitLabel: '방문예약',
       },
@@ -200,12 +200,20 @@ const config = {
     // 출처: 2026-09-07 수령한 공식 브리핑자료 PREMIUM 7 슬라이드 — 덕소뉴타운 개발(약 8,400세대 계획) 원문.
     premiumIntro: {
       eyebrow: 'DEOKSO NEWTOWN',
-      titleLine1: '덕소뉴타운 개발로',
-      titleLine2: '미래는 더 커지고, GTX-E·F로 교통은 더 빨라진다',
-      descLine1: '사업지 주변 19만여 평, 약 8,400세대 규모 재개발로 조성되는 명품 주거타운(예정)',
+      titleLine1: '덕소미시신도시개발로',
+      titleLine2: '미래는 더 커지고,\nGTX-E·F로 교통은 더 빨라진다',
+      descLine1: '사업지 주변 19만여 평,\n약 8,400세대 규모 재개발로 조성되는\r명품 주거타운(예정)',
       descLine1Accent: ['8,400세대'],
       descLine2: '덕소역 더블뷰 한강이 그 새로운 출발점이 됩니다',
       bgImage: { src: '/apt/deokso-doubleview-hangang/hero-bg.png', alt: '덕소역 더블뷰 한강 한강변 조감도' },
+    },
+
+    // 호반건설 시공참여(LOI 수령) 관련 언론보도 캡처 — premiumIntro 섹션 바로 다음에 노출.
+    newsImage: {
+      src: '/apt/deokso-doubleview-hangang/NEWS.jpg',
+      alt: '덕소역 더블뷰 한강, 호반건설 시공참여 사업참여의향서(LOI) 수령 관련 언론보도',
+      width: 1045,
+      height: 1488,
     },
 
     // 출처: 2026-09-07 수령한 공식 브리핑자료(덕소역 더블뷰 브리핑자료 박 팀장 8.19) "Premium 7" 슬라이드 원문 그대로.
@@ -342,6 +350,7 @@ const config = {
       id: 'community',
       navLabel: '커뮤니티',
       variant: 'simple',
+      hideIcon: true,
       intro: {
         watermark: 'COMMUNITY',
         titleLine1: 'Your Life, Your Vision –',

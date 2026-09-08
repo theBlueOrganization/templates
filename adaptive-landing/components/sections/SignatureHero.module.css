@@ -36,6 +36,16 @@
   background: radial-gradient(circle at center, rgba(3, 21, 24, 0.3) 0%, rgba(0, 0, 0, 0.85) 100%);
 }
 
+.overlayDesktopOnly {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .overlayDesktopOnly {
+    display: block;
+  }
+}
+
 /* bgImageMobile — 768px 미만은 세로형(모바일 크롭) 이미지, 그 이상은 기존 가로형 이미지.
    화면 높이를 꽉 채워야 하므로 cover 유지 + object-position만 중앙으로 명시 */
 .bgImageMobileOnly {
@@ -424,10 +434,12 @@
   padding: 8px 16px 8px 12px;
   box-shadow: 0 4px 7.5px rgba(0, 0, 0, 0.15);
   color: #111;
+  font-family: inherit;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: -0.5px;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 .pulseDot {

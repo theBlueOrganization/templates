@@ -8,6 +8,7 @@ import {
   Gaegu,
 } from 'next/font/google'
 import './globals.css'
+import GoogleAnalytics from '../components/GoogleAnalytics'
 
 const notoSansKR = Noto_Sans_KR({
   subsets: ['latin'],
@@ -80,6 +81,9 @@ export default function RootLayout({ children }) {
       lang="ko"
       className={`${notoSansKR.variable} ${notoSerifKR.variable} ${bebasNeue.variable} ${cormorantGaramond.variable} ${playfairDisplay.variable} ${montserrat.variable} ${gaegu.variable}`}
     >
+      <head>
+        <GoogleAnalytics />
+      </head>
       <body>{children}</body>
     </html>
   )

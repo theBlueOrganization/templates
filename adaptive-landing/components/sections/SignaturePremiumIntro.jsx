@@ -1,8 +1,24 @@
+import { Fragment } from 'react'
 import Image from 'next/image'
 import Reveal from '../motion/Reveal'
 import { splitHighlight } from '../../lib/utils'
 import MobileBreakText from '../ui/MobileBreakText'
 import styles from './SignaturePremiumIntro.module.css'
+
+// descLine1 안에서 "\n"은 PC·모바일 둘 다 항상 줄바꿈, "\r"은 모바일에서만 줄바꿈되도록 구분
+function renderDescBreaks(text) {
+  return text.split(/([\n\r])/).map((tok, i) => {
+    if (tok === '\n') return <br key={i} />
+    if (tok === '\r')
+      return (
+        <Fragment key={i}>
+          {' '}
+          <br className={styles.mobileBreak} />
+        </Fragment>
+      )
+    return tok
+  })
+}
 
 // 프리미엄 섹션 도입부 — 배경 고정(패럴랙스) 이미지 위에 큰 타이틀, 스크롤하면 아래 SIGNATURE 6 카드로 이어짐
 export default function SignaturePremiumIntro({ premiumIntro }) {
@@ -75,18 +91,18 @@ export default function SignaturePremiumIntro({ premiumIntro }) {
         <p className={styles.eyebrow}>{premiumIntro.eyebrow}</p>
         <h2 className={styles.title}>
           <span className={styles.titleLine1}>{premiumIntro.titleLine1}</span>
-          <span className={styles.titleLine2}>{premiumIntro.titleLine2}</span>
+          <span className={styles.titleLine2}>
+            <MobileBreakText text={premiumIntro.titleLine2} />
+          </span>
         </h2>
         <p className={styles.desc}>
           {descSegments.map((seg, i) =>
             seg.accent ? (
               <strong key={i} className={styles.descAccent}>
-                <MobileBreakText text={seg.text} breakClassName={styles.mobileBreak} />
+                {renderDescBreaks(seg.text)}
               </strong>
             ) : (
-              <span key={i}>
-                <MobileBreakText text={seg.text} breakClassName={styles.mobileBreak} />
-              </span>
+              <span key={i}>{renderDescBreaks(seg.text)}</span>
             )
           )}
           <br />

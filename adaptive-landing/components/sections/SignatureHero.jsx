@@ -165,7 +165,9 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
         ) : (
           <Image src={hero.bgImage.src} alt={hero.bgImage.alt} fill priority sizes="100vw" className={styles.bgImage} />
         )}
-        {hero.overlay !== false && <div className={styles.overlay} />}
+        {hero.overlay !== false && (
+          <div className={hero.overlayDesktopOnly ? `${styles.overlay} ${styles.overlayDesktopOnly}` : styles.overlay} />
+        )}
       </div>
 
       {!hero.hideText && (

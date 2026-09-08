@@ -13,6 +13,7 @@ import SignatureBenefits from '../../../components/sections/SignatureBenefits'
 import SignatureSummary from '../../../components/sections/SignatureSummary'
 import SignatureLocation from '../../../components/sections/SignatureLocation'
 import SignaturePremiumIntro from '../../../components/sections/SignaturePremiumIntro'
+import SignatureNewsImage from '../../../components/sections/SignatureNewsImage'
 import SignaturePremiumValue from '../../../components/sections/SignaturePremiumValue'
 import SignaturePremiumSplit from '../../../components/sections/SignaturePremiumSplit'
 import SignatureLandscape from '../../../components/sections/SignatureLandscape'
@@ -185,6 +186,7 @@ export default async function AptPage({ params }) {
         <SignatureSummary summary={sig.summary} />
         <SignatureLocation location={sig.location} />
         <SignaturePremiumIntro premiumIntro={sig.premiumIntro} />
+        {sig.newsImage && <SignatureNewsImage image={sig.newsImage} />}
         <SignaturePremiumValue premiumValue={sig.premiumValue} />
         {sig.premiumSplits?.map((split, i) => (
           <SignaturePremiumSplit key={i} split={split} />

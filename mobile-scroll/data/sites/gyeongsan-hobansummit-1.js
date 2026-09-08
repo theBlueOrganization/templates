@@ -13,6 +13,7 @@ const config = {
     { id: "b", telNumber: "1866-0762",  adminPhones: ["01035022011"] },
   ],
   kakao:        true,
+  kakaoTemplateId: "KA01TP260622093537285QA4EPtdxJyI",
   sheetId:      "",
   sheetTab:     "경산상방공원호반써밋1단지",
 

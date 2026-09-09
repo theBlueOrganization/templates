@@ -21,7 +21,13 @@ export default function SignatureQuickMenu({ quickMenu, telNumberByUtm }) {
   }
 
   return (
-    <div className={styles.root}>
+    <div
+      className={styles.root}
+      style={{
+        ...(quickMenu.menuBg && { '--quickmenu-menu-bg': quickMenu.menuBg }),
+        ...(quickMenu.menuColor && { '--quickmenu-menu-color': quickMenu.menuColor }),
+      }}
+    >
       <div className={styles.bar}>
         <button type="button" className={styles.barCall} onClick={() => setPhoneModalOpen(true)}>
           <svg width="20" height="20" viewBox="0 0 16 16" fill="none" aria-hidden="true">

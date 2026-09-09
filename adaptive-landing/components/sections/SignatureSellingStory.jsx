@@ -10,10 +10,20 @@ export default function SignatureSellingStory({ story }) {
       <div className={styles.intro}>
         <Reveal className={styles.introHead}>
           <p className={styles.eyebrow}>{story.eyebrow}</p>
-          <h2 id="story-title">
+          <h2
+            id="story-title"
+            style={{
+              ...(story.titleSize && { '--story-title-size': story.titleSize }),
+              ...(story.titleWeight && { '--story-title-weight': story.titleWeight }),
+            }}
+          >
             {story.titleLine1}
-            <br />
-            {story.titleLine2}
+            {story.titleLine2 && (
+              <>
+                <br />
+                {story.titleLine2}
+              </>
+            )}
             <br />
             <em>{story.titleAccent}</em>
           </h2>

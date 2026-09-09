@@ -64,8 +64,8 @@
 }
 
 .barMenu {
-  background: var(--gold, #e0cd9c);
-  color: #fff;
+  background: var(--quickmenu-menu-bg, var(--gold, #e0cd9c));
+  color: var(--quickmenu-menu-color, #fff);
   border: none;
 }
 
@@ -79,7 +79,7 @@
   display: block;
   width: 18px;
   height: 2px;
-  background: #fff;
+  background: var(--quickmenu-menu-color, #fff);
 }
 
 .barMenu > span:last-child {

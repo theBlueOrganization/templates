@@ -23,6 +23,8 @@ const config = {
   // 요청 반영 — projectName(메타데이터·title)만 "3"을 유지, 홈페이지 화면 문구는 전부 "더샵 검단레이크파크"로 표기
   projectName: '더샵 검단레이크파크3',
   shortName: '더샵 검단레이크파크',
+  // 요청 반영 — 카카오톡 등 공유 링크에는 "3"을 뺀 이름만 노출
+  metaTitle: '더샵 검단레이크파크',
   // 요청 반영 — 현장 전용 상담 트래킹 번호(단지번호)
   telNumber: '1811-4166',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/the-sharp-geomdan-lakepark-3/og.jpg',
@@ -71,9 +73,14 @@ const config = {
     // 전달받은 실제 메인 비주얼(석양 조감도, 단지 경계 하이라이트)로 교체.
     // 요청 반영 — 어두운 스크림을 없애고(overlay:false) 문구 색은 검은색으로 통일
     hero: {
-      overlay: false,
+      // 요청 반영 — PC는 스크림 없이 유지, 모바일만 흰 문구 가독성을 위해 상단→중단 그라데이션 스크림 추가
+      overlay: true,
+      overlayMobileOnly: true,
       textColor: '#000000',
       accentColor: '#000000',
+      // 요청 반영 — 모바일에서는 문구를 흰색으로(PC는 검은색 유지)
+      textColorMobile: '#ffffff',
+      descColorMobile: '#ffffff',
       fontFamily: 'var(--font-serif)',
       // 요청 반영 — 히어로 배경(세로로 긴 석양 조감도, 1600x2178)이 100svh로 크게 잘리지 않도록
       // 이 현장만 실제 이미지 비율만큼 섹션 높이를 늘림
@@ -91,7 +98,7 @@ const config = {
       bgImage: { src: '/apt/the-sharp-geomdan-lakepark-3/hero-bg.webp', alt: '더샵 검단레이크파크 대표 조감도' },
       mobileBar: {
         announcements: [{ badge: '안내', textStrong: '더샵 검단레이크파크', textLight: ' 공식 안내센터입니다.' }],
-        bubbleText: '생애최초·신혼부부 특별공급 청약자 100% 사은품 증정',
+        bubbleText: '24시간 상담신청 및 방문예약',
         callLabel: '전화상담',
         visitLabel: '방문예약',
       },
@@ -142,9 +149,11 @@ const config = {
       id: 'overview',
       navLabel: 'overview',
       title: '더샵 검단레이크파크',
-      subtitle: '2,857세대, 6월 오픈 예정 — 검단의 정점이 되는 더샵 브랜드타운',
-      photo: { src: '/apt/the-sharp-geomdan-lakepark-3/overview-photo.webp', alt: '더샵 검단레이크파크 단지 조감도' },
+      subtitle: '검단의 정점이 되는 더샵 브랜드타운',
+      photo: { src: '/apt/the-sharp-geomdan-lakepark-3/overview-thumb-5.webp', alt: '23BL 메인 투시도' },
       thumbs: [
+        { src: '/apt/the-sharp-geomdan-lakepark-3/overview-thumb-4.webp', alt: '22BL 메인 투시도' },
+        { src: '/apt/the-sharp-geomdan-lakepark-3/overview-photo.webp', alt: '더샵 검단레이크파크 단지 조감도' },
         { src: '/apt/the-sharp-geomdan-lakepark-3/overview-thumb-1.webp', alt: '23BL 단지 조감도' },
         { src: '/apt/the-sharp-geomdan-lakepark-3/overview-thumb-2.webp', alt: '액티브라운지 조경 전경' },
         { src: '/apt/the-sharp-geomdan-lakepark-3/overview-thumb-3.webp', alt: '플라워필드 조경 전경' },
@@ -174,11 +183,14 @@ const config = {
     location: {
       id: 'location',
       navLabel: '위치안내',
+      label: 'LOCATION',
       eyebrowPlain: '더샵이 선택한 자리, ',
       eyebrowAccent: '검단의 정점',
       title: '검단의 정점이 되다',
       // 요청 반영 — 다른 섹션 타이틀과 통일감 있게 산세리프로 변경(기본값은 Montserrat)
       titleFont: 'var(--font-sans)',
+      // 요청 반영 — 기본 폰트웨이트(300)가 너무 얇아 보여서 두껍게
+      titleWeight: 800,
       descTitle: '검단 유일의 1·2호선 더블역 생활권을 도보로 이용',
       descTitleAccent: ['1·2호선 더블역 생활권'],
       descBody1: '인천2호선연장(예정)·서울5호선연장(예정)·GTX-D(계획)까지,',
@@ -197,9 +209,12 @@ const config = {
     story: {
       id: 'story',
       eyebrow: 'THE ONE DEFINING VALUE',
-      titleLine1: '브랜드',
-      titleLine2: '·규모·수변,',
-      titleAccent: '세 가지 가치가 한곳에',
+      titleLine1: '브랜드·규모·수변,',
+      titleAccent: '더 특별한 주거의 기준',
+      // 요청 반영 — 문구가 길어져 기본 폰트 크기(최대 74px)로는 줄이 꺾여서 각 줄이 한 줄에 들어가도록 축소
+      titleSize: 'clamp(26px, 3.6vw, 46px)',
+      // 요청 반영 — 폰트가 얇아 보여서 두껍게
+      titleWeight: 800,
       desc: '검단 첫 번째 더샵이라는 상징성, 총 2,857세대의 대단지 규모, 나진포천과 중앙호수공원을 가까이 누리는 수변 입지가 하나의 브랜드타운으로 이어집니다.',
       numbers: [
         { value: 'FIRST', label: '검단 첫 번째 더샵' },
@@ -279,7 +294,7 @@ const config = {
           '신도시의 정점은 언제나 물(水)입니다.',
           '출·퇴근 시간의 여유를 넘어 두 개의 수변공원까지 더한 삶의 여유',
         ],
-        images: [{ src: '/apt/the-sharp-geomdan-lakepark-3/wide-view.webp', alt: '더샵 검단레이크파크 수변 워터프론트 조망' }],
+        images: [{ src: '/apt/the-sharp-geomdan-lakepark-3/waterfront-premium.jpg', alt: '더샵 검단레이크파크 나진포천·중앙호수공원 수변 산책로 조감도' }],
         ghostLine1: 'Waterfront',
         ghostLine2: 'Premium',
       },
@@ -313,6 +328,9 @@ const config = {
       desc: '22BL·23BL 지상에 조성되는 더샵 조경입니다. 잔디광장과 감성 정원, 놀이터, 사계절 테마 가로수길이 이어집니다.',
       heroImage: { src: '/apt/the-sharp-geomdan-lakepark-3/landscape-hero.webp', alt: '더샵 검단레이크파크 네이처 가든 조경 조감도' },
       heroCaption: '더샵 조경 · Nature Garden 조감 CG',
+      // 요청 반영 — 캡션 배경을 아래 카드들과 같은 흰색으로
+      heroCaptionBg: '#ffffff',
+      heroCaptionColor: '#0b1822',
       cards: [
         { image: { src: '/apt/the-sharp-geomdan-lakepark-3/garden-lawn.webp', alt: '더샵 검단레이크파크 잔디광장 · 네이처테라스' }, title: '잔디광장 · 네이처테라스', desc: '입주민의 휴식과 소통을 담은 탁 트인 초록 공간' },
         { image: { src: '/apt/the-sharp-geomdan-lakepark-3/garden-flower.webp', alt: '더샵 검단레이크파크 푸른꽃 정원 · 블루엣가든' }, title: '푸른꽃 정원 · 블루엣가든', desc: '푸른 색감의 청량감이 꽃피는 더샵 감성 정원' },
@@ -459,6 +477,9 @@ const config = {
 
     vipForm: {
       id: 'vip-reservation',
+      // 요청 반영 — 틀 배경색을 기본(바깥 남색·카드 반투명 흰색)에서 반대로(바깥 크림·카드 남색)
+      bgColor: 'var(--cream, #f3f1ec)',
+      cardBg: '#0a1a33',
       eyebrow: 'VIP Reservation',
       titleLine1: '더샵 검단레이크파크',
       titleLine2: '24시간 상담신청 및 방문예약',

@@ -112,6 +112,15 @@
   }
 }
 
+/* contentMobileOnly — hero.hideTextDesktop이 true인 현장 전용. 데스크톱 배경 이미지 자체에
+   문구가 이미 포함돼 있는 경우, 모바일에서만 문구 오버레이를 보여주고 데스크톱(bgImage가
+   전환되는 768px 이상)에서는 숨김 */
+@media (min-width: 768px) {
+  .contentMobileOnly {
+    display: none;
+  }
+}
+
 .content {
   position: relative;
   z-index: 1;

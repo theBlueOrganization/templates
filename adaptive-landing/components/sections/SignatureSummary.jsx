@@ -44,6 +44,7 @@ export default function SignatureSummary({ summary }) {
   return (
     <section id={summary.id} className={styles.section}>
       <Reveal className={styles.headingWrap}>
+        {summary.label && <p className={styles.label}>{summary.label}</p>}
         <h2 className={styles.heading}>
           <MobileBreakText text={summary.title} breakClassName={styles.mobileBreak} />
         </h2>

@@ -23,6 +23,7 @@
   font-size: clamp(32px, 4.6vw, 62px);
   line-height: 1.32;
   color: #fff;
+  word-break: keep-all;
 }
 
 .heading h2 em {

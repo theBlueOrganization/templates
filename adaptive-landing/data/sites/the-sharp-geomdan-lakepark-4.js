@@ -17,11 +17,13 @@ const config = {
   subdomain: '더샵검단레이크파크q',
   projectName: '더샵 검단레이크파크4',
   shortName: '더샵 검단레이크파크',
+  // 요청 반영 — 카카오톡 등 공유 링크에는 "4"를 뺀 이름만 노출
+  metaTitle: '검단레이크파크',
   // 요청 반영 — 현장 전용 상담 트래킹 번호(단지번호)
-  telNumber: '1800-0000',
-  ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/the-sharp-geomdan-lakepark-4/og.jpg',
+  telNumber: '1668-1888',
+  ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/the-sharp-geomdan-lakepark-4/main.jpg',
   // 요청 반영 — 상담 접수 알림을 받을 번호
-  adminPhones: ['01044411561'],
+  adminPhones: ['01029546182'],
   sheetId: '',
   sheetTab: '더샵검단레이크파크4',
   showUtmInSms: true,
@@ -58,7 +60,7 @@ const config = {
       logo: { src: '/apt/the-sharp-geomdan-lakepark-4/logo-white.svg', alt: '더샵 검단레이크파크', width: 130, height: 28 },
       gnb: ['사업개요', '입지환경', '프리미엄', '단지안내', '세대안내', '커뮤니티', '상담신청 및 방문예약'],
       quickCtaLabel: '관심고객등록',
-      phone: '1800-0000',
+      phone: '1668-1888',
     },
 
     // 출처: PDF 전단 메인 카피 "비교는 끝났다! 선택은 더샵!" 그대로 반영. bgImage는 요청 반영 —
@@ -72,7 +74,6 @@ const config = {
       // 요청 반영 — 히어로 배경(세로로 긴 석양 조감도, 1600x2178)이 100svh로 크게 잘리지 않도록
       // 이 현장만 실제 이미지 비율만큼 섹션 높이를 늘림
       imageAspectRatio: '1600 / 2178',
-      // 요청 반영 — 섹션 높이가 커진 만큼 문구가 화면 아래쪽에 치우치지 않도록 상단 배치
       contentTop: true,
       eyebrowLine1: '비교는 끝났다!',
       eyebrowLine2: '선택은 더샵!',
@@ -112,7 +113,7 @@ const config = {
     quickMenu: {
       brand: 'THE SHARP GEOMDAN LAKEPARK',
       phoneLabel: '분양문의',
-      phone: '1800-0000',
+      phone: '1668-1888',
       favoriteLabel: '관심고객',
       menuLabel: 'MENU',
       ctaTargetId: 'vip-reservation',
@@ -135,6 +136,7 @@ const config = {
     summary: {
       id: 'overview',
       navLabel: 'overview',
+      label: 'OVERVIEW',
       title: '더샵 검단레이크파크',
       subtitle: '2,857세대, 6월 오픈 예정 — 검단의 정점이 되는 더샵 브랜드타운',
       photo: { src: '/apt/the-sharp-geomdan-lakepark-4/overview-photo.webp', alt: '더샵 검단레이크파크 단지 조감도' },
@@ -168,6 +170,7 @@ const config = {
     location: {
       id: 'location',
       navLabel: '위치안내',
+      label: 'LOCATION',
       eyebrowPlain: '더샵이 선택한 자리, ',
       eyebrowAccent: '검단의 정점',
       title: '검단의 정점이 되다',
@@ -233,8 +236,8 @@ const config = {
     // 출처: PDF 문구 "비교는 끝났다! 선택은 더샵!" / "검단 그 변화의 정점에서 만나는 더샵"
     premiumIntro: {
       eyebrow: 'GEOMDAN LAKEPARK',
-      titleLine1: '비교는 끝났다!',
-      titleLine2: '선택은 더샵!',
+      titleLine1: '더샵이 선택한 자리,',
+      titleLine2: '검단의 정점이 되다.',
       descLine1: '검단 그 변화의 정점에서 만나는 더샵',
       descLine1Accent: ['더샵'],
       descLine2: '2025 브랜드 추천·브랜드 고객충성도 1위, 2,857세대 대단지 브랜드타운이 검단의 새로운 기준이 됩니다.',
@@ -249,14 +252,52 @@ const config = {
       navLabel: '프리미엄가치',
       eyebrow: 'PREMIUM VALUE',
       titlePlain: '더샵 검단레이크파크가 특별한 ',
-      titleAccent: '여섯 가지 이유',
+      titleAccent: '프리미엄6',
+      // 요청 반영 — 카드마다 어울리는 단지 이미지 추가(현장 내 기존 자산 재사용). 정확히 맞는
+      // 실사 자산이 없는 03·04·05·06은 가장 가까운 주제의 기존 이미지로 대체
       cards: [
-        { num: '01', icon: 'tower', title: ['검단 첫 번째', '더샵 브랜드타운'], desc: ['검단에 없던 빛나는 자부심을 선사하는 총 2,857세대 빅스케일 더샵 브랜드타운'] },
-        { num: '02', icon: 'forest', title: ['수변', '프리미엄'], desc: ['나진포천 수변공원, 중앙호수공원(예정), 워라밸파크(예정)와 인접한 검단 최고의 주거환경'] },
-        { num: '03', icon: 'train', title: ['더블역생활권', '(인천지하철 1·2호선)'], desc: ['완정역부터 검단호수공원역까지 인천 지하철 1·2호선을 모두 가깝게 누리는 특권'] },
-        { num: '04', icon: 'tunnel', title: ['서울까지 빠르게', '통하는 교통망'], desc: ['인천2호선 연장(예정), 서울5호선 연장(예정), GTX-D노선(계획) 등 쾌속 교통'] },
-        { num: '05', icon: 'school', title: ['단지 앞', '유치원·초·중교(예정)'], desc: ['걸어서 누리는 안심학세권, 가까이 누리는 완정역학원가 등'] },
-        { num: '06', icon: 'money', title: ['분양가', '상한제'], desc: ['합리적인 분양가로 향후 미래가치까지 기대되는 최적의 내 집마련 기회'] },
+        {
+          num: '01',
+          icon: 'tower',
+          title: ['검단 첫 번째', '더샵 브랜드타운'],
+          desc: ['검단에 없던 빛나는 자부심을 선사하는 총 2,857세대 빅스케일 더샵 브랜드타운'],
+          image: { src: '/apt/the-sharp-geomdan-lakepark-4/overview-thumb-1.webp', alt: '더샵 검단레이크파크 단지 조감도' },
+        },
+        {
+          num: '02',
+          icon: 'forest',
+          title: ['수변', '프리미엄'],
+          desc: ['나진포천 수변공원, 중앙호수공원(예정), 워라밸파크(예정)와 인접한 검단 최고의 주거환경'],
+          image: { src: '/apt/the-sharp-geomdan-lakepark-4/waterfront-premium.jpg', alt: '더샵 검단레이크파크 인근 중앙호수공원 조감 CG' },
+        },
+        {
+          num: '03',
+          icon: 'train',
+          title: ['더블역생활권', '(인천지하철 1·2호선)'],
+          desc: ['완정역부터 검단호수공원역까지 인천 지하철 1·2호선을 모두 가깝게 누리는 특권'],
+          image: { src: '/apt/the-sharp-geomdan-lakepark-4/역세권.png', alt: '더블역생활권 프리미엄 이미지' },
+        },
+        {
+          num: '04',
+          icon: 'tunnel',
+          title: ['서울까지 빠르게', '통하는 교통망'],
+          desc: ['인천2호선 연장(예정), 서울5호선 연장(예정), GTX-D노선(계획) 등 쾌속 교통'],
+          image: { src: '/apt/the-sharp-geomdan-lakepark-4/교통.jpg', alt: '쾌속 교통망 프리미엄 이미지' },
+        },
+        {
+          num: '05',
+          icon: 'school',
+          title: ['단지 앞', '유치원·초·중교(예정)'],
+          desc: ['걸어서 누리는 안심학세권, 가까이 누리는 완정역학원가 등'],
+          image: { src: '/apt/the-sharp-geomdan-lakepark-4/garden-playground.webp', alt: '더샵 검단레이크파크 어린이 놀이터' },
+        },
+        {
+          num: '06',
+          icon: 'money',
+          title: ['분양가', '상한제'],
+          desc: ['합리적인 분양가로 향후 미래가치까지 기대되는 최적의 내 집마련 기회'],
+          image: { src: '/apt/the-sharp-geomdan-lakepark-4/분양가상한.png', alt: '분양가상한제 프리미엄 이미지' },
+        },
       ],
     },
 
@@ -269,20 +310,14 @@ const config = {
     premiumSplits: [
       {
         eyebrow: 'Waterfront Premium',
-        title: ['송도 지나 청라 다음 검단,', '이제는 검단의 차례'],
+        title: ['송도 지나 청라 다음 검단,', '호수공원은 신도시 프리미엄의 지름길'],
         descLines: [
-          '호수공원은 신도시 프리미엄의 지름길',
           '나진포천 수변공원, 중앙호수공원 선(先)자리',
           '신도시의 정점은 언제나 물(水)입니다.',
           '출·퇴근 시간의 여유를 넘어 두 개의 수변공원까지 더한 삶의 여유',
           '청라·동탄 호수공원 인근 아파트는 입주 후 시세가 최대 147% 상승',
         ],
         images: [{ src: '/apt/the-sharp-geomdan-lakepark-4/waterfront-premium.jpg', alt: '더샵 검단레이크파크 인근 중앙호수공원 조감 CG' }],
-        badges: [
-          { line: '인천1호선', route: '검단호수공원역 → 여의도역', time: '30분대' },
-          { line: '인천1호선', route: '검단호수공원역 → 서울역', time: '40분대', accent: true },
-          { line: '인천2호선', route: '완정역 → 가산디지털단지역', time: '50분대' },
-        ],
         ghostLine1: 'Waterfront',
         ghostLine2: 'Premium',
       },
@@ -298,6 +333,12 @@ const config = {
       desc: '공식 홈페이지가 안내하는 철도 계획과 공원·문화·행정 인프라를 예정·계획 상태까지 구분해 확인하세요.',
       mapImage: { src: '/apt/the-sharp-geomdan-lakepark-4/official-location-map.webp', alt: '더샵 검단레이크파크 교통망과 주변 생활 인프라 공식 입지 안내도' },
       mapCaption: '공식 입지 안내도 · 노선 및 시설의 예정·계획 표기는 관계기관 계획에 따라 변경될 수 있습니다.',
+      // 요청 반영 — Waterfront Premium 섹션에 있던 노선 소요시간 배지를 입지 안내도 이미지 아래로 이동
+      badges: [
+        { line: '인천1호선', route: '검단호수공원역 → 여의도역', time: '30분대' },
+        { line: '인천1호선', route: '검단호수공원역 → 서울역', time: '40분대', accent: true },
+        { line: '인천2호선', route: '완정역 → 가산디지털단지역', time: '50분대' },
+      ],
       items: [
         { num: '01', category: '교통', title: '더블역 생활권', desc: '검단 유일의 지하철 1·2호선 더블역 생활권으로 소개되며, 인천1호선 검단호수공원역에서 여의도역까지 30분대·서울역까지 40분대, 인천2호선 완정역에서 가산디지털단지역까지 50분대로 안내됩니다. 인천2호선 연장·서울5호선 연장은 예정, GTX-D 노선은 계획입니다.' },
         { num: '02', category: '공원·문화', title: '완성되어 가는 생활환경', desc: '대형 녹지공원 U공원과 워라밸파크(예정), 박물관·도서관(예정) 등 휴식과 문화 인프라를 가까이 누리는 입지입니다.' },
@@ -312,16 +353,18 @@ const config = {
     landscapeGeomdan: {
       id: 'landscape',
       eyebrow: 'LANDSCAPE',
-      titlePlain: '검단의 자연과 어우러지는',
-      titleAccent: '네이처 가든',
+      titlePlain: '검단의 자연과\n어우러지는 품격 있는 정원',
+      titleAccent: '더샵 조경 Nature Garden',
       desc: '22BL·23BL 지상에 조성되는 더샵 조경입니다. 나진포천 조망과 함께 네이처테라스, 블루엣가든, 어린이놀이터가 이어지는 올인원 커뮤니티입니다.',
-      heroImage: { src: '/apt/the-sharp-geomdan-lakepark-4/landscape-hero.webp', alt: '더샵 검단레이크파크 나진포천 수변 산책로 조경 이미지' },
-      heroCaption: '더샵 조경 · 나진포천 수변 산책로',
+      heroImage: { src: '/apt/the-sharp-geomdan-lakepark-4/landscape-hero.webp', alt: '더샵 검단레이크파크 네이처 가든 조경 조감도' },
+      heroCaption: '더샵 조경 · Nature Garden',
+      // 요청 반영 — 카드를 이미지 위 뱃지(22BL/23BL)+하단 캡션 오버레이 스타일로 변경
+      overlayCards: true,
       cards: [
-        { image: { src: '/apt/the-sharp-geomdan-lakepark-4/garden-lawn.webp', alt: '더샵 검단레이크파크 22BL 네이처테라스' }, title: '22BL 네이처테라스', desc: '자연과 이웃이 함께하는 소통의 공간' },
-        { image: { src: '/apt/the-sharp-geomdan-lakepark-4/garden-flower.webp', alt: '더샵 검단레이크파크 블루엣가든' }, title: '푸른꽃 정원 · 블루엣가든', desc: '일상에 향기를 더하는 아름다운 자연 쉼터' },
-        { image: { src: '/apt/the-sharp-geomdan-lakepark-4/garden-playground.webp', alt: '더샵 검단레이크파크 어린이 놀이터' }, title: '어린이 놀이터', desc: '아이들의 하루가 더 특별해지는 놀이 공간' },
-        { image: { src: '/apt/the-sharp-geomdan-lakepark-4/garden-street.webp', alt: '더샵 검단레이크파크 23BL 네이처테라스' }, title: '23BL 네이처테라스', desc: '라이프스타일에 활기를 채우는 액티브 커뮤니티 공간' },
+        { image: { src: '/apt/the-sharp-geomdan-lakepark-4/garden-lawn.webp', alt: '더샵 검단레이크파크 22BL 네이처테라스' }, badge: '22BL', keyword: '네이처테라스', desc: '자연과 이웃이 함께하는 소통의 공간' },
+        { image: { src: '/apt/the-sharp-geomdan-lakepark-4/garden-street.webp', alt: '더샵 검단레이크파크 23BL 네이처테라스' }, badge: '23BL', keyword: '네이처테라스', desc: '라이프스타일에 활기를 채우는 액티브 커뮤니티 공간' },
+        { image: { src: '/apt/the-sharp-geomdan-lakepark-4/garden-playground.webp', alt: '더샵 검단레이크파크 어린이 놀이터' }, keyword: '어린이 놀이터', desc: '아이들의 하루가 더 특별해지는 놀이 공간' },
+        { image: { src: '/apt/the-sharp-geomdan-lakepark-4/garden-flower.webp', alt: '더샵 검단레이크파크 블루엣가든' }, keyword: '블루엣가든', desc: '일상에 향기를 더하는 아름다운 자연 쉼터' },
       ],
       sourceNote: '※ 상기 조경 이미지는 소비자의 이해를 돕기 위해 제작된 CG로 실제와 차이가 있을 수 있으며, 수목의 종류·규격·위치와 시설물은 인·허가 및 시공 과정에서 변경될 수 있습니다. 자세한 사항은 입주자 모집공고와 견본주택에서 확인하시기 바랍니다.',
     },
@@ -406,8 +449,8 @@ const config = {
     smarthome: {
       id: 'smarthome',
       eyebrow: 'AIQ SMART HOME',
-      titlePlain: '안전에서 안심까지,',
-      titleAccent: '더샵의 스마트홈',
+      titlePlain: '더샵 검단레이크파크만의',
+      titleAccent: '최첨단 인공지능(AI) 기술',
       desc: '포스코이앤씨의 지능적인 감각(IQ)과 더샵의 헤아림 감성(EQ)이 더해진 AiQ TECH 기반 스마트홈 시스템입니다.',
       items: [
         { icon: 'shield-check', title: '더샵 특화지키미', desc: '초음파 센서 주차유도, 200만 화소 IP CCTV, 승강기 내 이상행동 AI 감지, 세대현관 앞 서성임 감지·통보까지 안심 보안 시스템' },
@@ -417,26 +460,25 @@ const config = {
       sourceNote: '※ AiQ 특화 시스템 중 일부 품목은 유상옵션이며, 스마트폰 공동현관 문 열림·주차위치 확인 서비스는 전용 앱 설치와 블루투스·위치정보 사용 동의가 필요합니다. 적용 품목과 사양은 견본주택에서 확인하시기 바랍니다.',
     },
 
-    // 출처: 요청 반영 — 부동산브리핑북 PDF 9·10p의 실제 시설별 상세 커뮤니티 평면(다이닝라운지·
-    // 게스트하우스·에듀&비즈니스라운지·그린카페라운지·패밀리라이브러리·키즈존·실내골프연습장·
-    // 스크린골프룸·퍼팅그린 등 라벨 포함)으로 교체. SignatureCommunityGeomdan 재사용.
+    // 출처: 요청 반영 — 더샵검단레이크파크3과 동일한 블록별(22BL/23BL) 커뮤니티 시설
+    // 배치도 이미지로 교체. SignatureCommunityGeomdan 재사용.
     communityBlocks: {
       id: 'community',
       // 요청 반영 — 히어로와 통일감 있게 세리프 폰트로 변경
       headingFont: 'var(--font-serif)',
       eyebrow: 'COMMUNITY GUIDE',
-      titlePlain: '블록별 커뮤니티',
-      titleAccent: '한눈에 보기',
+      titlePlain: '나진포천 조망과 함께,',
+      titleAccent: '일상의 모든 순간이 이어지는 올인원 커뮤니티',
       desc: '운동과 휴식, 교육과 교류까지 단지 안에서 이어지는\n더샵만의 다채로운 커뮤니티 시설을 확인해보세요.',
       imageOnly: true,
       blocks: [
         {
           label: '22BL',
-          planImage: { src: '/apt/the-sharp-geomdan-lakepark-4/community-detail-1.jpg', alt: '더샵 검단레이크파크 22BL 6203·6204동 커뮤니티 상세 평면(게스트하우스·다이닝라운지·프라이빗스터디·에듀&비즈니스라운지·그린카페라운지·패밀리라이브러리·키즈존)' },
+          planImage: { src: '/apt/the-sharp-geomdan-lakepark-4/community-detail-1.jpg', alt: '더샵 검단레이크파크 22BL 커뮤니티 시설 배치도(6203·6204·6206동)' },
         },
         {
           label: '23BL',
-          planImage: { src: '/apt/the-sharp-geomdan-lakepark-4/community-detail-2.jpg', alt: '더샵 검단레이크파크 23BL 6303~4동 커뮤니티 상세 평면(게스트하우스·다이닝라운지·패밀리라이브러리·키즈존·실내골프연습장·스크린골프룸·퍼팅그린)' },
+          planImage: { src: '/apt/the-sharp-geomdan-lakepark-4/community-detail-2.jpg', alt: '더샵 검단레이크파크 23BL 커뮤니티 시설 배치도(6303~4동)' },
         },
       ],
       note: '※ 상기 이미지는 소비자의 이해를 돕기 위한 CG 및 계획도입니다. 커뮤니티 시설의 명칭, 위치, 규모와 운영 방식은 인허가 및 실제 시공 과정에서 변경될 수 있으므로 계약 전 공식 공급자료를 확인하시기 바랍니다.',
@@ -461,7 +503,7 @@ const config = {
         { q: '주변 자연환경의 특징은 무엇인가요?', a: '나진포천 수변공원과 중앙호수공원을 가까이 둔 수변 입지가 핵심입니다. 만수산 등 주변 자연환경도 함께 누릴 수 있습니다.' },
         { q: '교육환경은 어떻게 되나요?', a: '단지 앞 유치원·초등학교·중학교 예정 부지와 완정역 학원가 인접성이 주요 교육환경입니다. 학교 설립 일정은 관계기관 계획에 따라 달라질 수 있습니다.' },
         { q: '커뮤니티에는 어떤 시설이 계획되어 있나요?', a: '22BL·23BL에 피트니스, GX룸, 필라테스, 사우나, 실내골프연습장·스크린골프룸·퍼팅그린, 실내체육관, 게스트하우스, 다이닝·카페 라운지, 헬스케어 라운지, 키즈존, 패밀리 라이브러리, 프라이빗스터디, 에듀&비즈니스 라운지 등이 계획되어 있습니다. 블록별 위치와 구성은 홈페이지의 공식 커뮤니티 배치도에서 확인할 수 있습니다.' },
-        { q: '지금도 상담이나 방문이 가능한가요?', a: '가능합니다. 이 페이지 하단의 방문예약에서 희망 날짜·시간을 신청하거나 관심고객 등록을 남기면 담당자가 입력하신 연락처로 안내해 드립니다. 상담 대표번호는 1800-0000이며 방문 상담은 10:00~18:00에 1시간 단위로 예약할 수 있습니다.' },
+        { q: '지금도 상담이나 방문이 가능한가요?', a: '가능합니다. 이 페이지 하단의 방문예약에서 희망 날짜·시간을 신청하거나 관심고객 등록을 남기면 담당자가 입력하신 연락처로 안내해 드립니다. 상담 대표번호는 1668-1888이며 방문 상담은 10:00~18:00에 1시간 단위로 예약할 수 있습니다.' },
         { q: '특별공급 자격 조건이 완화됐다고 들었는데 어떻게 달라지나요?', a: '신혼부부 특별공급 공급물량이 기존 18%에서 23%로 확대되고(전용 85㎡ 이하), 무주택 요건도 모집공고일 기준 무주택 세대면 신청 가능하도록 완화되었습니다. 다자녀 특별공급은 기존 3자녀 이상에서 2자녀 이상으로, 신생아가 있는 가정의 우선공급 비율도 15%에서 25%로 확대되었습니다. 또한 혼인·출산으로 특별공급 당첨이력이 있어도 생애 1회 한해 추가로 신청할 수 있는 혼인특례·출산특례(2024년 6월 19일 이후 출생, 임신·입양 포함)가 신설되었습니다. 정확한 자격 요건은 입주자모집공고문을 통해 확인하시기 바랍니다.' },
         { q: '청약통장 가입기간이나 예치금 기준은 어떻게 되나요?', a: '전용 85㎡ 이하 기준 예치금은 인천광역시 250만원, 서울특별시 300만원, 경기도 200만원이며, 청약통장 가입기간 12개월 경과와 예치금을 모집공고 전일까지 충족해야 합니다. 1순위 청약 시 배우자의 청약통장 가입기간을 합산할 수 있고(최대 3점, 합산 시 17점 초과분은 인정되지 않음), 특별공급·1·2순위 모두 인천 50%·서울·경기 50%로 배정됩니다.' },
       ],
@@ -487,7 +529,7 @@ const config = {
 
     footer: {
       logo: { src: '/apt/the-sharp-geomdan-lakepark-4/logo-white.svg', alt: '더샵 검단레이크파크' },
-      highlightText: '1800-0000',
+      highlightText: '1668-1888',
       agencySlogan: '분양완판 전문가 그룹, (주) 더블루파트너스',
       companyLines: [
         { label: '시행', value: '한국자산신탁(주)' },
@@ -501,7 +543,7 @@ const config = {
         '※ 본 홈페이지의 CG 및 이미지, 내용, 문구 등은 실제와 다를 수 있습니다.',
         '※ 세부 설계내용은 향후 인허가 과정에서 변동될 수 있습니다.',
       ],
-      csPhone: '1800-0000',
+      csPhone: '1668-1888',
       csHours: 'AM 09:00 ~ PM 19:00',
     },
   },

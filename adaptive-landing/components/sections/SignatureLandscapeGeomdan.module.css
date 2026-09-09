@@ -23,6 +23,7 @@
   font-size: clamp(32px, 4.6vw, 62px);
   line-height: 1.32;
   color: #0b1822;
+  word-break: keep-all;
 }
 
 .heading h2 em {
@@ -37,44 +38,39 @@
   color: #5a6670;
 }
 
+/* 요청 반영 — 아래 4카드(overlayCards)와 통일감 있게, 캡션을 이미지 아래 별도 텍스트가 아니라
+   이미지 위 하단 오버레이로 표시 */
 .heroFigure {
+  position: relative;
   max-width: 1180px;
   margin: 0 auto;
+  overflow: hidden;
+  border-radius: 4px;
 }
 
 .heroFigure :global(img) {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+  display: block;
 }
 
 .heroFigure figcaption {
-  margin-top: 12px;
-  font-size: 11px;
-  color: #727c82;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 12px 14px 14px;
+  background: rgba(4, 12, 22, 0.72);
+  font-size: 15px;
+  line-height: 1.5;
+  color: #fff;
 }
 
-/* 모바일 — 요청 반영: 히어로 이미지도 아래 카드 4장과 같은 크기·스타일의 "카드"로 보이게 해서
-   히어로+카드4장이 세로로 나열된 균일한 카드 5개처럼 보이게 함(데스크톱은 기존 큰 히어로 유지) */
-@media (max-width: 767px) {
-  .heroFigure {
-    background: #fff;
-    overflow: hidden;
-    box-shadow: 0 16px 44px rgba(7, 26, 43, 0.06);
-    margin-bottom: 10px;
-  }
-
-  .heroFigure :global(img) {
-    height: 160px !important;
-  }
-
+@media (min-width: 1024px) {
   .heroFigure figcaption {
-    margin: 0;
-    padding: 10px 12px 12px;
-    font-size: 11px;
-    font-weight: 900;
-    letter-spacing: 0.1em;
-    color: #214d78;
+    font-size: 16px;
   }
 }
 
@@ -109,6 +105,54 @@
   font-weight: 900;
   letter-spacing: 0.1em;
   color: #214d78;
+}
+
+/* landscape.overlayCards: true — 이미지 위에 블록 뱃지(있는 경우)와 하단 캡션을 오버레이하는 스타일 */
+.cardOverlay {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.cardOverlay :global(img) {
+  width: 100%;
+  height: 200px !important;
+  object-fit: cover;
+  display: block;
+}
+
+.cardBadge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #0b2340;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  padding: 5px 12px;
+  border-radius: 4px;
+}
+
+.cardCaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 12px 14px 14px;
+  background: rgba(4, 12, 22, 0.72);
+}
+
+.cardCaption p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #fff;
+}
+
+.cardCaption strong {
+  font-weight: 700;
+  color: #7fd7ec;
 }
 
 .card p {
@@ -161,5 +205,13 @@
   .card p {
     font-size: 12.5px;
     line-height: 1.6;
+  }
+
+  .cardOverlay :global(img) {
+    height: 260px !important;
+  }
+
+  .cardCaption p {
+    font-size: 16px;
   }
 }

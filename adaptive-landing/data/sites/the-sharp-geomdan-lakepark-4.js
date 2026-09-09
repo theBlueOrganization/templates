@@ -17,9 +17,11 @@ const config = {
   subdomain: '더샵검단레이크파크q',
   projectName: '더샵 검단레이크파크4',
   shortName: '더샵 검단레이크파크',
+  // 요청 반영 — 카카오톡 등 공유 링크에는 "4"를 뺀 이름만 노출
+  metaTitle: '검단레이크파크',
   // 요청 반영 — 현장 전용 상담 트래킹 번호(단지번호)
   telNumber: '1668-1888',
-  ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/the-sharp-geomdan-lakepark-4/og.jpg',
+  ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/the-sharp-geomdan-lakepark-4/main.jpg',
   // 요청 반영 — 상담 접수 알림을 받을 번호
   adminPhones: ['01029546182'],
   sheetId: '',

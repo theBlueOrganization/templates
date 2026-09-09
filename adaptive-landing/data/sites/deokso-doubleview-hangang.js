@@ -87,14 +87,14 @@ const config = {
     // 출처: 공식 홈페이지 메인 카피("덕소역 역세권, 한강과 맞닿은 초 강변권 아파트", "4BAY 특화설계로
     // 365일 펼쳐지는 한강변 4계절 파노라마뷰") + 사업방식표(청약통장 불필요, 만 19세 이상 누구나)
     hero: {
-      eyebrowLine1: '탁트인 한강뷰,',
-      eyebrowLine2: '한강공원이 단지 바로 앞',
-      titleLine1: '덕소역 역세권,',
-      titleLine2: '한강과 맞닿은 초강변권 아파트',
+      eyebrowLine1: '4억원대로 시작하는',
+      eyebrowLine2: '내 집마련 프로젝트',
+      titleLine1: '덕소역 초역세권',
+      titleLine2: '초한강변 더블라이프 시작',
       titleLine3: '덕소역 더블뷰 한강',
       descLine1: '경의중앙선·KTX 덕소역 도보 5분, GTX-E·F 노선(예정)',
-      descLine2: '민간임대협동조합 방식, 임대의무기간 10년 후 우선 분양전환',
-      descLine3: '지하 2층~지상 37층 3개동, 총 278세대',
+      descLine2: '민간임대협동조합 방식,\n임대의무기간 10년 후 우선 분양전환',
+      descLine3: '세금부담없는 장기전세',
       bgImage: { src: '/apt/deokso-doubleview-hangang/hero-bg.png', alt: '덕소역 더블뷰 한강 한강변 조감도' },
       bgImageMobile: { src: '/apt/deokso-doubleview-hangang/m-image.jpg', alt: '덕소역 더블뷰 한강 민간임대 아파트 임대분양, 한강·산 더블 조망' },
       hideTextMobile: true,

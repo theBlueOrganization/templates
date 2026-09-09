@@ -186,7 +186,15 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
       </div>
 
       {!hero.hideText && (
-        <div className={hero.hideTextMobile ? `${styles.content} ${styles.contentDesktopOnly}` : styles.content}>
+        <div
+          className={[
+            styles.content,
+            hero.hideTextMobile && styles.contentDesktopOnly,
+            hero.hideTextDesktop && styles.contentMobileOnly,
+          ]
+            .filter(Boolean)
+            .join(' ')}
+        >
           <motion.p className={styles.eyebrow} custom={0.2} initial="hidden" animate="show" variants={lineVariants}>
             {hero.eyebrowLine1}
             <br />

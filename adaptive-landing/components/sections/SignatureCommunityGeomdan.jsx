@@ -1,7 +1,19 @@
+import { Fragment } from 'react'
 import Image from 'next/image'
 import Reveal from '../motion/Reveal'
 import MobileBreakText from '../ui/MobileBreakText'
 import styles from './SignatureCommunityGeomdan.module.css'
+
+// titlePlain/titleAccent 안의 "\n" 지점마다 항상(반응형 구분 없이) 줄바꿈되는 <br/>을 끼워 넣는다
+function renderTitleBreaks(text) {
+  const parts = text.split('\n')
+  return parts.map((part, i) => (
+    <Fragment key={i}>
+      {part}
+      {i < parts.length - 1 && <br />}
+    </Fragment>
+  ))
+}
 
 // 커뮤니티(#community) — 22BL/23BL 블록별로 SPORTS/LIFESTYLE/EDUCATION 시설군 + 배치도
 export default function SignatureCommunityGeomdan({ community }) {
@@ -13,9 +25,9 @@ export default function SignatureCommunityGeomdan({ community }) {
       >
         <p className={styles.eyebrow}>{community.eyebrow}</p>
         <h2 id="community-title">
-          {community.titlePlain}
+          {renderTitleBreaks(community.titlePlain)}
           <br />
-          <em>{community.titleAccent}</em>
+          <em>{renderTitleBreaks(community.titleAccent)}</em>
         </h2>
         <p className={styles.desc}>
           <MobileBreakText text={community.desc} breakClassName={styles.mobileBreak} />

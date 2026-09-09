@@ -64,6 +64,86 @@
   color: #727c82;
 }
 
+.badgeList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 16px 4px 0;
+}
+
+.badgeRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border: 1px solid #e2e6ea;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 13px;
+}
+
+.badgeIcon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #1b5fd6;
+  color: #fff;
+}
+
+.badgeIconLine2 {
+  background: #e0a930;
+}
+
+.badgeLine {
+  flex-shrink: 0;
+  font-weight: 800;
+  color: #12233d;
+}
+
+.badgeDivider {
+  flex-shrink: 0;
+  width: 1px;
+  height: 14px;
+  background: #d8dee5;
+}
+
+.badgeRoute {
+  flex: 1;
+  min-width: 0;
+  color: #555;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.badgeTime {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 2px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 20px;
+  color: #12233d;
+}
+
+.badgeTimeAccent {
+  color: #e2861f;
+}
+
+.badgeTimeMark {
+  margin-top: 2px;
+}
+
+.badgeTimeAccent {
+  color: #b8860b;
+}
+
 .list {
   border-top: 1px solid rgba(19, 35, 45, 0.17);
 }

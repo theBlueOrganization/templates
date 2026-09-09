@@ -67,9 +67,14 @@ const config = {
     // 전달받은 실제 메인 비주얼(석양 조감도, 단지 경계 하이라이트)로 교체.
     // 요청 반영 — 어두운 스크림을 없애고(overlay:false) 문구 색은 검은색으로 통일
     hero: {
-      overlay: false,
+      // 요청 반영 — PC는 스크림 없이 유지, 모바일만 흰 문구 가독성을 위해 상단→중단 그라데이션 스크림 추가
+      overlay: true,
+      overlayMobileOnly: true,
       textColor: '#000000',
       accentColor: '#000000',
+      // 요청 반영 — 모바일에서는 문구를 흰색으로(PC는 검은색 유지)
+      textColorMobile: '#ffffff',
+      descColorMobile: '#ffffff',
       fontFamily: 'var(--font-serif)',
       // 요청 반영 — 히어로 배경(세로로 긴 석양 조감도, 1600x2178)이 100svh로 크게 잘리지 않도록
       // 이 현장만 실제 이미지 비율만큼 섹션 높이를 늘림

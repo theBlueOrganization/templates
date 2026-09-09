@@ -1,7 +1,10 @@
-import { Fragment } from 'react'
+'use client'
+
+import { Fragment, useState } from 'react'
 import Image from 'next/image'
 import Reveal from '../motion/Reveal'
 import MobileBreakText from '../ui/MobileBreakText'
+import SignatureLightbox from '../ui/SignatureLightbox'
 import styles from './SignatureCommunityGeomdan.module.css'
 
 // titlePlain/titleAccent 안의 "\n" 지점마다 항상(반응형 구분 없이) 줄바꿈되는 <br/>을 끼워 넣는다
@@ -17,6 +20,8 @@ function renderTitleBreaks(text) {
 
 // 커뮤니티(#community) — 22BL/23BL 블록별로 SPORTS/LIFESTYLE/EDUCATION 시설군 + 배치도
 export default function SignatureCommunityGeomdan({ community }) {
+  const [openImage, setOpenImage] = useState(null)
+
   return (
     <section id={community.id} className={styles.section} aria-labelledby="community-title">
       <Reveal
@@ -50,13 +55,29 @@ export default function SignatureCommunityGeomdan({ community }) {
               </div>
             )}
             <figure className={styles.plan}>
-              <Image src={block.planImage.src} alt={block.planImage.alt} width={900} height={700} sizes={community.imageOnly ? '(min-width: 1024px) 45vw, 100vw' : '(min-width: 1024px) 55vw, 100vw'} />
+              <button
+                type="button"
+                className={styles.planZoomBtn}
+                onClick={() => setOpenImage(block.planImage)}
+                aria-label={`${block.planImage.alt} 확대 보기`}
+              >
+                <Image src={block.planImage.src} alt={block.planImage.alt} width={900} height={700} sizes={community.imageOnly ? '(min-width: 1024px) 45vw, 100vw' : '(min-width: 1024px) 55vw, 100vw'} />
+                <span className={styles.planZoomIcon} aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="11" cy="11" r="7" />
+                    <path d="m21 21-4.3-4.3" />
+                    <path d="M11 8v6M8 11h6" />
+                  </svg>
+                </span>
+              </button>
             </figure>
           </Reveal>
         ))}
       </div>
 
       <p className={styles.note}>{community.note}</p>
+
+      <SignatureLightbox image={openImage} onClose={() => setOpenImage(null)} />
     </section>
   )
 }

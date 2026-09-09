@@ -65,6 +65,8 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
     ...(hero.fontFamily && { '--hero-font': hero.fontFamily }),
     ...(hero.imageAspectRatio && { '--hero-image-ratio': hero.imageAspectRatio }),
     ...(hero.descColorMobile && { '--hero-desc-mobile': hero.descColorMobile }),
+    ...(hero.textColorMobile && { '--hero-title-mobile': hero.textColorMobile }),
+    ...(hero.accentColorMobile && { '--hero-accent-mobile': hero.accentColorMobile }),
     ...(hero.eyebrowGap != null && { '--hero-eyebrow-gap': `${hero.eyebrowGap}px` }),
     ...(hero.titleSize && {
       '--hero-title-size-base': `${hero.titleSize.base}px`,
@@ -181,7 +183,15 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
           <Image src={hero.bgImage.src} alt={hero.bgImage.alt} fill priority sizes="100vw" className={styles.bgImage} />
         )}
         {hero.overlay !== false && (
-          <div className={hero.overlayDesktopOnly ? `${styles.overlay} ${styles.overlayDesktopOnly}` : styles.overlay} />
+          <div
+            className={
+              hero.overlayMobileOnly
+                ? `${styles.overlay} ${styles.overlayMobileOnly}`
+                : hero.overlayDesktopOnly
+                  ? `${styles.overlay} ${styles.overlayDesktopOnly}`
+                  : styles.overlay
+            }
+          />
         )}
       </div>
 

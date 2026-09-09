@@ -62,6 +62,7 @@ export default function SignatureLocation({ location }) {
       style={{
         ...(location.bgColor && { '--location-bg': location.bgColor }),
         ...(location.titleFont && { '--location-title-font': location.titleFont }),
+        ...(location.titleWeight && { '--location-title-weight': location.titleWeight }),
       }}
     >
       <Reveal className={styles.header}>

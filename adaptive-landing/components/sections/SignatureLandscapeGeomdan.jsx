@@ -33,7 +33,14 @@ export default function SignatureLandscapeGeomdan({ landscape }) {
 
       <Reveal delay={0.05} className={styles.heroFigure}>
         <Image src={landscape.heroImage.src} alt={landscape.heroImage.alt} width={1600} height={800} sizes="(min-width: 1024px) 1180px, 100vw" />
-        <figcaption>{landscape.heroCaption}</figcaption>
+        <figcaption
+          style={{
+            ...(landscape.heroCaptionBg && { '--landscape-caption-bg': landscape.heroCaptionBg }),
+            ...(landscape.heroCaptionColor && { '--landscape-caption-color': landscape.heroCaptionColor }),
+          }}
+        >
+          {landscape.heroCaption}
+        </figcaption>
       </Reveal>
 
       <Stagger className={styles.grid}>

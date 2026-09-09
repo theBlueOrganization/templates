@@ -115,11 +115,17 @@
 .imageBox {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: var(--premium-image-ratio, 16 / 9);
 }
 
 .image {
   object-fit: cover;
+}
+
+/* card.imageFit === 'contain'인 카드 전용 — 평면도처럼 원본 비율을 그대로 보여줘야 하는
+   이미지가 16:9 박스에서 위아래가 잘리는 걸 막음(흰 배경 카드라 여백이 자연스럽게 이어짐) */
+.imageContain {
+  object-fit: contain;
 }
 
 .cardPhoto .body {

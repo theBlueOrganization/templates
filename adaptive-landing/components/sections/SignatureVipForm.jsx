@@ -88,7 +88,11 @@ export default function SignatureVipForm({ config }) {
   }
 
   return (
-    <section id={vipForm.id} className={styles.section}>
+    <section
+      id={vipForm.id}
+      className={styles.section}
+      style={vipForm.bgColor ? { '--vipform-bg': vipForm.bgColor } : undefined}
+    >
       <Reveal className={styles.card}>
         <form onSubmit={handleSubmit} noValidate>
           <div className={styles.header}>

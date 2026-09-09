@@ -58,12 +58,16 @@ export async function generateMetadata({ params }) {
   const { slug } = await params
   const site = getSiteBySlug(slug)
   if (!site) return {}
+  // metaTitle — 공유 링크(카카오톡 등)에 노출되는 이름만 따로 바꾸고 싶을 때(예: 내부 분양팀 구분용
+  // "...2"가 붙은 projectName은 SMS 알림 등에 그대로 쓰되, 고객에게 보이는 제목은 다르게) 지정.
+  // 없으면 기존처럼 projectName을 그대로 사용
+  const metaTitle = site.metaTitle ?? site.projectName
   return {
-    title: `${site.projectName} - 공식 분양 안내`,
-    description: `${site.projectName} 분양 정보 및 빠른 상담 신청`,
+    title: `${metaTitle} - 공식 분양 안내`,
+    description: `${metaTitle} 분양 정보 및 빠른 상담 신청`,
     openGraph: {
-      title: `${site.projectName} - 공식 분양 안내`,
-      description: `${site.projectName} 분양 정보 및 빠른 상담 신청`,
+      title: `${metaTitle} - 공식 분양 안내`,
+      description: `${metaTitle} 분양 정보 및 빠른 상담 신청`,
       images: [{ url: site.ogImage, width: 1200, height: 630 }],
       locale: 'ko_KR',
       type: 'website',

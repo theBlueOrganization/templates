@@ -1,5 +1,5 @@
 .section {
-  background: linear-gradient(135deg, var(--navy, #041325) 0%, var(--navy, #06203e) 100%);
+  background: var(--vipform-bg, linear-gradient(135deg, var(--navy, #041325) 0%, var(--navy, #06203e) 100%));
   padding: 60px 20px;
   display: flex;
   justify-content: center;

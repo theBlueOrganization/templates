@@ -130,7 +130,7 @@
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  margin-bottom: 20px;
+  margin-bottom: var(--hero-eyebrow-gap, 20px);
   word-break: keep-all;
 }
 
@@ -275,7 +275,7 @@
   .eyebrow {
     font-size: 18.4px;
     letter-spacing: 0.25em;
-    margin-bottom: 24px;
+    margin-bottom: var(--hero-eyebrow-gap, 24px);
   }
 
   .title {

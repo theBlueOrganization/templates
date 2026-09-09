@@ -29,6 +29,9 @@ const config = {
   // 이 신규 분양팀 사이트는 접두사 'H'를 붙여 구분
   subdomain: 'H한양아이클래스양주',
   projectName: '한양 아이클래스 양주2',
+  // 카카오톡 등에 공유될 때 보이는 제목 — projectName의 "2"는 내부적으로 분양팀을 구분하기 위한
+  // 표기라 SMS 알림 등에는 그대로 두고, 고객에게 노출되는 공유 링크 제목만 이걸로 대체
+  metaTitle: 'H한양아이클래스 양주',
   shortName: '한양 아이클래스 양주',
   telNumber: '1666-0775',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/hanyang-iclass-yangju-2/og.jpg',
@@ -49,8 +52,8 @@ const config = {
   colorTheme: {
     navy: '#0e133b',
     ink: '#333',
-    cream: '#f6f6f4',
-    gold: '#e2e2e2',
+    cream: '#f3f1ec',
+    gold: '#4d79bb',
   },
 
   // 유저가 공유한 히어로 캡처 이미지 서체(굵은 프리텐다드) 요청 반영 — --font-sans를 덮어써
@@ -112,20 +115,29 @@ const config = {
       ],
     },
 
-    // 방문 고객 이벤트(신세계 백화점 상품권 증정) 안내 이미지 팝업(popup1.png)
+    // 진입 팝업 2장 순차 노출(popup0 → popup1) — 특별공급 혜택 안내 다음에 방문 고객 이벤트 안내
     popup: {
       enabled: true,
-      image: {
-        src: '/apt/hanyang-iclass-yangju-2/popup1.png',
-        alt: '한양 아이클래스 양주 방문 고객 이벤트 - 신세계 백화점 상품권 증정',
-        width: 1052,
-        height: 1495,
-      },
+      images: [
+        {
+          src: '/apt/hanyang-iclass-yangju-2/popup0.png',
+          alt: '한양 아이클래스 양주 특별공급 프리미엄 7가지 혜택 안내',
+          width: 1022,
+          height: 1057,
+        },
+        {
+          src: '/apt/hanyang-iclass-yangju-2/popup1.png',
+          alt: '한양 아이클래스 양주 방문 고객 이벤트 - 신세계 백화점 상품권 증정',
+          width: 1052,
+          height: 1495,
+        },
+      ],
     },
 
     // 출처: 공식 사이트 메인 히어로(eyebrow "GTX-C(확정) 덕정역" + 대형 타이틀 "첫 프리미엄
     // 시범단지" + 하단 브랜드 로고 락업) — 실제 영상 배경(hero-video.mp4)과 포스터 이미지 그대로 사용
     hero: {
+      fontFamily: 'var(--font-serif)',
       eyebrowLine1: 'GTX-C(확정) 덕정역',
       eyebrowLine2: '',
       titleLine1: '양주파격조건 신규아파트',
@@ -138,7 +150,8 @@ const config = {
       // 흰색 텍스트, 타이틀 크기 축소
       overlay: false,
       textColor: '#fff',
-      titleSize: { base: 20, md: 40, lg: 60 },
+      titleSize: { base: 26, md: 40, lg: 60 },
+      eyebrowGap: 0,
       bgImage: { src: '/apt/hanyang-iclass-yangju-2/hero-bg.jpg', alt: '한양 아이클래스 양주 대표 조감도' },
       bgVideo: { src: '/apt/hanyang-iclass-yangju-2/hero-video.mp4' },
       brandLogo: { src: '/apt/hanyang-iclass-yangju-2/logo-white.png', alt: '한양 아이클래스 양주', width: 210, height: 21 },
@@ -198,6 +211,7 @@ const config = {
     location: {
       id: 'location',
       navLabel: '입지환경',
+      label: 'LOCATION',
       eyebrowPlain: '여유로운 집의 가치에 ',
       eyebrowAccent: '더 넓은 생활반경을 더하다',
       title: 'GTX-C 덕정역(확정)으로 이어지는 생활반경',
@@ -206,7 +220,7 @@ const config = {
       descBody1: '집은 조용하게, 이동은 경쾌하게.',
       descBody2: '멀게 느껴졌던 생활권을 더 편하게 연결하는 집.',
       mapImage: { src: '/apt/hanyang-iclass-yangju-2/location-map.jpg', alt: '한양 아이클래스 양주 광역 교통망 지도' },
-      subhead: { eyebrow: 'LOCATION', title: '더 넓어진 생활반경 4가지' },
+      subhead: { eyebrow: '', title: '더 넓어진 생활반경 4가지' },
       features: [
         {
           num: '01',
@@ -256,45 +270,57 @@ const config = {
     premiumValue: {
       id: 'premium-value',
       navLabel: '프리미엄',
+      imageAspectRatio: '3 / 2',
       eyebrow: 'PREMIUM VALUE',
       titlePlain: '한양 아이클래스 양주 ',
       titleAccent: 'PREMIUM 6',
+      // 카드별 image — 내용과 맞는 기존 스크래핑/보유 자산으로 매칭(신규 다운로드 없이 재사용):
+      // 01 GTX(철도)→premium-01(고속열차), 02 도로망→교통호재.jpg(고속도로 야간 트레일),
+      // 03 자연환경→premium-02(단지 조경), 04 직주근접 단지→직주근접.jpg(타운하우스형 주거),
+      // 05 생활인프라→근린생활시설.png(근린생활시설 건물), 06 타입구성→unit-84a(평면도)
       cards: [
         {
           num: '01',
           icon: 'train',
           title: ['단지 인근', 'GTX-C(예정) 덕정역'],
           desc: ['강남 20분대! 서울을 빠르게 잇는 쾌속교통'],
+          image: { src: '/apt/hanyang-iclass-yangju-2/premium-01.jpg', alt: 'GTX-C 노선 고속열차' },
         },
         {
           num: '02',
           icon: 'car',
           title: ['기대되는', '대형 교통 호재'],
           desc: ['수도권 제2순환고속도로, 서울~양주고속도로(계획) 등'],
+          image: { src: '/apt/hanyang-iclass-yangju-2/교통호재.jpg', alt: '단지 주변 고속도로 야경' },
         },
         {
           num: '03',
           icon: 'forest',
           title: ['도심 속', '청정 자연환경'],
           desc: ['단지 내 소공원(예정), 도락산, 불곡산 등'],
+          image: { src: '/apt/hanyang-iclass-yangju-2/premium-02.jpg', alt: '단지 내 조경 공원' },
         },
         {
           num: '04',
           icon: 'tower',
           title: ['여유로운', '직주근접 단지'],
           desc: ['검준 일반산업단지, 은남 일반산업단지 등'],
+          image: { src: '/apt/hanyang-iclass-yangju-2/직주근접.jpg', alt: '직주근접 타운하우스형 주거단지' },
         },
         {
           num: '05',
           icon: 'cart',
           title: ['가깝게 누리는', '양주 생활인프라'],
           desc: ['단지 인근 이마트, LF스퀘어몰, 관공서 등'],
+          image: { src: '/apt/hanyang-iclass-yangju-2/근린생활시설.png', alt: '단지 내 근린생활시설' },
         },
         {
           num: '06',
           icon: 'unitPlan',
           title: ['선호도 높은', '중소형 타입구성'],
           desc: ['실수요자 관심 높은 59㎡~84㎡ 타입 구성'],
+          image: { src: '/apt/hanyang-iclass-yangju-2/unit-84a.png', alt: '84A 타입 평면도' },
+          imageFit: 'contain',
         },
       ],
     },
@@ -409,62 +435,63 @@ const config = {
           labelEn: 'PLAYGROUND',
           title: '놀이터',
           desc: '아이들의 웃음이 가득한 실외 놀이 공간',
-          image: { src: '/apt/hanyang-iclass-yangju-2/facility-playground.jpg', alt: '놀이터', width: 1491, height: 903 },
+          image: { src: '/apt/hanyang-iclass-yangju-2/놀이터.png', alt: '놀이터', width: 1582, height: 1119 },
         },
         {
           key: 'library',
           labelEn: 'SMALL LIBRARY',
           title: '작은도서관',
           desc: '책과 여유를 함께 나누는 작은도서관',
-          image: { src: '/apt/hanyang-iclass-yangju-2/facility-library.jpg', alt: '작은도서관', width: 1491, height: 903 },
+          image: { src: '/apt/hanyang-iclass-yangju-2/작은도서관.png', alt: '작은도서관', width: 1694, height: 1085 },
         },
         {
           key: 'daycare',
           labelEn: 'DAYCARE CENTER',
           title: '어린이집',
           desc: '안심하고 맡길 수 있는 단지 내 어린이집',
-          image: { src: '/apt/hanyang-iclass-yangju-2/facility-daycare2.jpg', alt: '어린이집', width: 1491, height: 903 },
+          image: { src: '/apt/hanyang-iclass-yangju-2/어린이집.png', alt: '어린이집', width: 1629, height: 1152 },
         },
         {
           key: 'momstation',
           labelEn: "MOM'S STATION",
           title: '맘스테이션',
           desc: '아이 등하원을 더 편리하게, 맘스테이션',
-          image: { src: '/apt/hanyang-iclass-yangju-2/facility-momstation.jpg', alt: '맘스테이션', width: 1491, height: 903 },
+          image: { src: '/apt/hanyang-iclass-yangju-2/맘스테이션.png', alt: '맘스테이션', width: 1708, height: 1171 },
         },
         {
           key: 'fitness',
           labelEn: 'FITNESS CENTER',
           title: '휘트니스',
           desc: '최신 운동 기구를 갖춘 피트니스 센터',
-          image: { src: '/apt/hanyang-iclass-yangju-2/facility-fitness2.jpg', alt: '휘트니스', width: 1491, height: 903 },
+          image: { src: '/apt/hanyang-iclass-yangju-2/휘트니스.png', alt: '휘트니스', width: 1614, height: 1141 },
         },
         {
           key: 'outdoorFitness',
           labelEn: 'OUTDOOR FITNESS',
           title: '주민운동시설',
           desc: '단지 내에서 편하게 즐기는 실외 운동시설',
-          image: { src: '/apt/hanyang-iclass-yangju-2/facility-outdoor-fitness.jpg', alt: '주민운동시설', width: 1491, height: 903 },
+          image: { src: '/apt/hanyang-iclass-yangju-2/주민운동시설.png', alt: '주민운동시설', width: 1879, height: 1328 },
         },
         {
           key: 'senior',
           labelEn: 'SENIOR CENTER',
           title: '시니어센터',
           desc: '어르신들의 여가와 교류를 위한 시니어센터',
-          image: { src: '/apt/hanyang-iclass-yangju-2/facility-senior2.jpg', alt: '시니어센터', width: 1491, height: 903 },
+          image: { src: '/apt/hanyang-iclass-yangju-2/시니어센터.png', alt: '시니어센터', width: 1776, height: 1256 },
         },
         {
           key: 'neighborhood',
           labelEn: 'COMMUNITY FACILITY',
           title: '근린생활시설',
           desc: '생활 편의를 더하는 근린생활시설',
-          image: { src: '/apt/hanyang-iclass-yangju-2/facility-neighborhood.jpg', alt: '근린생활시설', width: 1491, height: 903 },
+          image: { src: '/apt/hanyang-iclass-yangju-2/근린생활시설.png', alt: '근린생활시설', width: 1686, height: 1192 },
         },
       ],
     },
 
     vipForm: {
       id: 'vip-reservation',
+      bgColor: '#333333',
       eyebrow: 'VIP Reservation',
       titleLine1: '한양 아이클래스 양주',
       titleLine2: '24시간 상담신청 및 방문예약',

@@ -106,7 +106,11 @@ const ICONS = {
 // PREMIUM 6 — 프리미엄 가치 카드 6개 그리드 (모바일 1열 → 데스크톱 3열)
 export default function SignaturePremiumValue({ premiumValue }) {
   return (
-    <section id={premiumValue.id} className={styles.section}>
+    <section
+      id={premiumValue.id}
+      className={styles.section}
+      style={premiumValue.imageAspectRatio ? { '--premium-image-ratio': premiumValue.imageAspectRatio } : undefined}
+    >
       <Reveal className={styles.header}>
         <p className={styles.eyebrow}>{premiumValue.eyebrow}</p>
         <h2 className={styles.title}>
@@ -129,7 +133,13 @@ export default function SignaturePremiumValue({ premiumValue }) {
             >
               {card.image && (
                 <div className={styles.imageBox}>
-                  <Image src={card.image.src} alt={card.image.alt} fill sizes="(min-width: 1024px) 33vw, 90vw" className={styles.image} />
+                  <Image
+                    src={card.image.src}
+                    alt={card.image.alt}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, 90vw"
+                    className={card.imageFit === 'contain' ? `${styles.image} ${styles.imageContain}` : styles.image}
+                  />
                 </div>
               )}
               <div className={card.image ? styles.body : undefined}>

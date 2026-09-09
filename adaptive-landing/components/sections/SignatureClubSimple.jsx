@@ -1,6 +1,10 @@
+'use client'
+
 import Image from 'next/image'
+import { useState } from 'react'
 import Reveal from '../motion/Reveal'
 import { Stagger, StaggerItem } from '../motion/Stagger'
+import SignatureLightbox from '../ui/SignatureLightbox'
 import styles from './SignatureClubSimple.module.css'
 
 // 커뮤니티 시설이 2~3개로 단출한 현장용 — 아이콘+이미지 카드 그리드로만 구성 (풀 규모 클럽하우스용 SignatureClub과 별도)
@@ -31,6 +35,8 @@ const ICONS = {
 }
 
 export default function SignatureClubSimple({ club }) {
+  const [zoomImage, setZoomImage] = useState(null)
+
   // plainImage — 공식 사이트 CLUB XIAN 페이지를 그대로 캡처한 이미지 한 장만 넣고 싶을 때
   // (평면도·시설 사진·라벨이 이미 이미지 안에 포함돼 있어 별도 카드 그리드 재구성 없이 사용)
   if (club.plainImage) {
@@ -64,29 +70,40 @@ export default function SignatureClubSimple({ club }) {
       </Reveal>
 
       {club.topImage && (
-        <Image
-          src={club.topImage.src}
-          alt={club.topImage.alt}
-          width={club.topImage.width}
-          height={club.topImage.height}
-          sizes="(min-width: 1024px) 1100px, 100vw"
-          className={styles.topImage}
-        />
+        <button
+          type="button"
+          className={styles.topImageTrigger}
+          onClick={() => setZoomImage({ ...club.topImage, caption: club.topImage.alt })}
+          aria-label={`${club.topImage.alt} 확대보기`}
+        >
+          <Image
+            src={club.topImage.src}
+            alt={club.topImage.alt}
+            width={club.topImage.width}
+            height={club.topImage.height}
+            sizes="(min-width: 1024px) 1100px, 100vw"
+            className={styles.topImage}
+          />
+        </button>
       )}
 
       <Stagger className={styles.grid}>
         {club.facilities.map((facility) => (
           <StaggerItem key={facility.key} className={styles.card}>
-            <div className={styles.imageWrap}>
+            <button
+              type="button"
+              className={styles.imageWrap}
+              onClick={() => setZoomImage({ ...facility.image, caption: facility.title })}
+              aria-label={`${facility.title} 확대보기`}
+            >
               <Image
                 src={facility.image.src}
                 alt={facility.image.alt}
-                width={facility.image.width}
-                height={facility.image.height}
+                fill
                 sizes="(min-width: 1024px) 33vw, 90vw"
                 className={styles.image}
               />
-            </div>
+            </button>
             <div className={styles.labelRow}>
               {!club.hideIcon && <span className={styles.icon}>{ICONS[facility.icon]}</span>}
               <span className={styles.labelEn}>{facility.labelEn}</span>
@@ -96,6 +113,8 @@ export default function SignatureClubSimple({ club }) {
           </StaggerItem>
         ))}
       </Stagger>
+
+      <SignatureLightbox image={zoomImage} onClose={() => setZoomImage(null)} />
     </section>
   )
 }

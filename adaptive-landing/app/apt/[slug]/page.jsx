@@ -169,6 +169,9 @@ export default async function AptPage({ params }) {
         telNumberByUtm={site.telNumberByUtm}
         transparentOverHero
       />
+      {sig.popupNotice?.enabled && (
+        <SignaturePopupNoticeGeomdan popup={sig.popupNotice} visitTargetId={sig.vipForm.id} />
+      )}
       <main>
         {sig.hero.variant === 'minimal' ? (
           <SignatureHeroMinimal

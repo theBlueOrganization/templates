@@ -83,6 +83,7 @@ const adaptiveLandingPointers = [
   { slug: "deokso-doubleview-hangang", subdomain: "덕소역더블뷰한강", template: "adaptive-landing" },
   { slug: "hanyang-iclass-yangju", subdomain: "한양아이클래스양주", template: "adaptive-landing" },
   { slug: "hanyang-iclass-yangju-2", subdomain: "H한양아이클래스양주", template: "adaptive-landing" },
+  { slug: "doosan-wevethezenith-bucheon", subdomain: "두산위브더제니스부천", template: "adaptive-landing" },
 ];
 
 const allSites = [...sites, ...adaptiveLandingPointers];

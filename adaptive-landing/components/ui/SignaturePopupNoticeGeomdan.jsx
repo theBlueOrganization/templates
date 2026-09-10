@@ -6,7 +6,7 @@ import styles from './SignaturePopupNoticeGeomdan.module.css'
 
 // 더샵 검단레이크파크 전용 진입 팝업 — 디자인 이미지 없이 텍스트(혜택/대상/기간)로 구성된
 // 공지 팝업. signature.popupNotice.enabled가 true일 때만 렌더링됨(app/apt/[slug]/page.jsx에서 조건부 렌더).
-export default function SignaturePopupNoticeGeomdan({ popup, visitTargetId, openDelayMs = 2900 }) {
+export default function SignaturePopupNoticeGeomdan({ popup, visitTargetId, openDelayMs = 800 }) {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {

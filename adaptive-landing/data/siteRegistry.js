@@ -10,6 +10,7 @@ import deoksoDoubleviewHangang from './sites/deokso-doubleview-hangang'
 import dalseoXiGenic from './sites/dalseo-xi-genic'
 import hanyangIclassYangju from './sites/hanyang-iclass-yangju'
 import hanyangIclassYangju2 from './sites/hanyang-iclass-yangju-2'
+import doosanWevethezenithBucheon from './sites/doosan-wevethezenith-bucheon'
 
 /**
  * 새 현장 추가 방법:
@@ -36,6 +37,7 @@ const sites = [
   dalseoXiGenic,
   hanyangIclassYangju,
   hanyangIclassYangju2,
+  doosanWevethezenithBucheon,
 ]
 
 // slug로 현장 하나를 찾음 (app/apt/[slug]/page.jsx에서 사용)

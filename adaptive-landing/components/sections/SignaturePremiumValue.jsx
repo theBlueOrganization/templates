@@ -103,8 +103,78 @@ const ICONS = {
   ),
 }
 
+// 번호+사진 카드 스타일(premiumValue.cardStyle === 'numbered') — 카드마다 "PREMIUM ── 01" 헤더 +
+// 중앙 정렬 타이틀/설명 + 하단 사진, 좌측에 필기체 사이드 라벨을 두는 레이아웃. 기존 아이콘/사진
+// 그리드 스타일과는 완전히 분리된 렌더 트리라 다른 현장에는 영향 없음.
+function NumberedPremiumValue({ premiumValue }) {
+  const { sideLabel } = premiumValue
+  return (
+    <section id={premiumValue.id} className={styles.section}>
+      <div className={styles.numberedLayout}>
+        {sideLabel && (
+          <div className={styles.sideLabel}>
+            <span className={styles.sideLabelScript}>
+              {sideLabel.scriptLine1}
+              <br />
+              {sideLabel.scriptLine2}
+            </span>
+            <span className={styles.sideLabelNumber}>{sideLabel.number}</span>
+          </div>
+        )}
+
+        <div className={styles.numberedMain}>
+          <Reveal className={styles.header}>
+            <p className={styles.eyebrow}>{premiumValue.eyebrow}</p>
+            <h2 className={styles.title}>
+              <MobileBreakText text={premiumValue.titlePlain} breakClassName={styles.mobileBreak} />
+              <strong>
+                <MobileBreakText text={premiumValue.titleAccent} breakClassName={styles.mobileBreak} />
+              </strong>
+            </h2>
+          </Reveal>
+
+          <Stagger className={`${styles.grid} ${styles.gridNumbered}`}>
+            {premiumValue.cards.map((card) => (
+              <StaggerItem key={card.num} className={styles.cardNumbered}>
+                <div className={styles.numberedHead}>
+                  <span className={styles.numberedHeadLabel}>PREMIUM</span>
+                  <span className={styles.numberedHeadLine} />
+                  <span className={styles.numberedHeadNum}>{card.num}</span>
+                </div>
+                <h3 className={styles.numberedTitle}>
+                  {card.title.map((line, j) => (
+                    <span key={j}>{line}</span>
+                  ))}
+                </h3>
+                <p className={styles.numberedDesc}>
+                  {card.desc.map((line, j) => (
+                    <span key={j}>{line}</span>
+                  ))}
+                </p>
+                {card.image && (
+                  <div className={styles.numberedImageBox}>
+                    <Image
+                      src={card.image.src}
+                      alt={card.image.alt}
+                      fill
+                      sizes="(min-width: 1024px) 33vw, 90vw"
+                      className={styles.image}
+                    />
+                  </div>
+                )}
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // PREMIUM 6 — 프리미엄 가치 카드 6개 그리드 (모바일 1열 → 데스크톱 3열)
 export default function SignaturePremiumValue({ premiumValue }) {
+  if (premiumValue.cardStyle === 'numbered') return <NumberedPremiumValue premiumValue={premiumValue} />
+
   return (
     <section
       id={premiumValue.id}

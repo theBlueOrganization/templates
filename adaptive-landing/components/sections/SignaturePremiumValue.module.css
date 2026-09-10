@@ -206,6 +206,182 @@
   word-break: keep-all;
 }
 
+/* ─────────────────────────────────────────────────────────
+   번호+사진 카드 스타일 (premiumValue.cardStyle === 'numbered')
+   ───────────────────────────────────────────────────────── */
+
+.numberedLayout {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sideLabel {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.sideLabelScript {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 22px;
+  line-height: 1.25;
+  color: var(--navy, #06203e);
+  font-style: italic;
+}
+
+.sideLabelNumber {
+  font-family: var(--font-cormorant);
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--gold, #b08d57);
+}
+
+.numberedMain {
+  min-width: 0;
+}
+
+.gridNumbered {
+  grid-template-columns: 1fr;
+}
+
+.cardNumbered {
+  background: var(--cream, #f7f1e6);
+  border: 1.5px solid var(--gold, #b08d57);
+  border-radius: 20px;
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: center;
+  transition:
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.cardNumbered:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.gridNumbered .cardNumbered:nth-child(3n + 2) {
+  border-color: var(--navy, #06203e);
+}
+
+.gridNumbered .cardNumbered:nth-child(3n + 2) .numberedHeadLabel,
+.gridNumbered .cardNumbered:nth-child(3n + 2) .numberedHeadNum,
+.gridNumbered .cardNumbered:nth-child(3n + 2) .numberedTitle {
+  color: var(--navy, #06203e);
+}
+
+.numberedHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.numberedHeadLabel {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--gold, #b08d57);
+}
+
+.numberedHeadLine {
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.35;
+  color: var(--gold, #b08d57);
+}
+
+.numberedHeadNum {
+  font-family: var(--font-cormorant);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.05em;
+  color: var(--gold, #b08d57);
+}
+
+.numberedTitle {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-sans);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--gold, #b08d57);
+  word-break: keep-all;
+}
+
+.numberedDesc {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  font-weight: 400;
+  color: #555;
+  line-height: 1.7;
+  letter-spacing: -0.02em;
+  word-break: keep-all;
+}
+
+.numberedImageBox {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: auto;
+}
+
+@media (min-width: 768px) {
+  .numberedLayout {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 32px;
+  }
+
+  .sideLabel {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    flex: 0 0 140px;
+    position: sticky;
+    top: 120px;
+  }
+
+  .gridNumbered {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .gridNumbered {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .sideLabelScript {
+    font-size: 26px;
+  }
+
+  .sideLabelNumber {
+    font-size: 64px;
+  }
+
+  .numberedTitle {
+    font-size: 22px;
+  }
+
+  .numberedDesc {
+    font-size: 14.5px;
+  }
+}
+
 @media (min-width: 768px) {
   .mobileBreak {
     display: none;

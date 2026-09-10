@@ -82,6 +82,11 @@ const config = {
       contentTop: true,
       eyebrowLine1: '비교는 끝났다!',
       eyebrowLine2: '선택은 더샵!',
+      // 요청 반영 — 검단레이크파크3 현장과 동일하게 모바일 서브타이틀/타이틀/내용 간격 축소, 서브타이틀은 모바일 한 줄로
+      eyebrowOneLineMobile: true,
+      eyebrowGapMobile: 10,
+      titleGapMobile: 8,
+      descLineHeightMobile: 1.6,
       titleLine1: '더샵',
       titleLine2: '검단레이크파크',
       descLine1: '2,857세대 대단지 브랜드타운, 6월 오픈 예정',

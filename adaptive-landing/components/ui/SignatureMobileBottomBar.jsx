@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { cn, isMobileUserAgent } from '../../lib/utils'
 import { useUtmSource } from '../../lib/useUtmSource'
 import SignaturePhoneModal from './SignaturePhoneModal'
@@ -14,6 +14,27 @@ export default function SignatureMobileBottomBar({ telNumber, telNumberByUtm, vi
   const [phoneModalOpen, setPhoneModalOpen] = useState(false)
   const utmSource = useUtmSource()
   const resolvedTelNumber = telNumberByUtm?.[utmSource] ?? telNumber
+  const barRef = useRef(null)
+
+  // 카카오톡 등 인앱 브라우저는 스크롤 중 자체 하단 툴바를 접었다 펼쳤다 하면서 visualViewport
+  // 높이가 실시간으로 바뀜 — position:fixed; bottom:0인 이 바가 그 툴바 애니메이션과 안 맞게
+  // 순간적으로 스냅되며 덜컹거려 보이므로, 그 차이만큼 bottom을 직접 보정해(transition으로
+  // 부드럽게) 스냅 대신 자연스럽게 따라가도록 함
+  useEffect(() => {
+    const vv = window.visualViewport
+    if (!vv) return
+    const updateInset = () => {
+      const inset = Math.max(0, window.innerHeight - vv.height - vv.offsetTop)
+      if (barRef.current) barRef.current.style.bottom = `${inset}px`
+    }
+    updateInset()
+    vv.addEventListener('resize', updateInset)
+    vv.addEventListener('scroll', updateInset)
+    return () => {
+      vv.removeEventListener('resize', updateInset)
+      vv.removeEventListener('scroll', updateInset)
+    }
+  }, [])
 
   // IntersectionObserver로 히어로가 뷰포트에서 완전히 벗어났는지 감지 — 모바일 브라우저에서 주소창이
   // 접히고 펼쳐지며 실시간으로 바뀌는 100svh 때문에 getBoundingClientRect()를 scroll/resize에서 직접
@@ -41,7 +62,7 @@ export default function SignatureMobileBottomBar({ telNumber, telNumberByUtm, vi
 
   return (
     <>
-      <div className={cn(styles.bar, visible && styles.visible)}>
+      <div ref={barRef} className={cn(styles.bar, visible && styles.visible)}>
         <a href={`tel:${resolvedTelNumber}`} className={styles.callBtn} onClick={handleCallClick}>
           <svg width="22" height="22" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path

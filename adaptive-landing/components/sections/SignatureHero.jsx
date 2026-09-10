@@ -68,6 +68,9 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
     ...(hero.textColorMobile && { '--hero-title-mobile': hero.textColorMobile }),
     ...(hero.accentColorMobile && { '--hero-accent-mobile': hero.accentColorMobile }),
     ...(hero.eyebrowGap != null && { '--hero-eyebrow-gap': `${hero.eyebrowGap}px` }),
+    ...(hero.eyebrowGapMobile != null && { '--hero-eyebrow-gap-mobile': `${hero.eyebrowGapMobile}px` }),
+    ...(hero.titleGapMobile != null && { '--hero-title-gap-mobile': `${hero.titleGapMobile}px` }),
+    ...(hero.descLineHeightMobile != null && { '--hero-desc-line-height-mobile': hero.descLineHeightMobile }),
     ...(hero.titleSize && {
       '--hero-title-size-base': `${hero.titleSize.base}px`,
       '--hero-title-size-md': `${hero.titleSize.md}px`,
@@ -207,7 +210,8 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
         >
           <motion.p className={styles.eyebrow} custom={0.2} initial="hidden" animate="show" variants={lineVariants}>
             {hero.eyebrowLine1}
-            <br />
+            <br className={hero.eyebrowOneLineMobile ? styles.eyebrowBreakHideMobile : undefined} />
+            {hero.eyebrowOneLineMobile ? ' ' : null}
             <span className={styles.eyebrowAccent}>{hero.eyebrowLine2}</span>
           </motion.p>
 

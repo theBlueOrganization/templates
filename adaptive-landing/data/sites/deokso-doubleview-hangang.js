@@ -22,7 +22,7 @@ const config = {
   shortName: '덕소역 더블뷰 한강',
   telNumber: '1566-7409',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/deokso-doubleview-hangang/hero-bg.png',
-  adminPhones: ['01094216962'],
+  adminPhones: ['01053080522'],
   sheetId: '',
   sheetTab: '덕소역더블뷰한강',
   showUtmInSms: true,

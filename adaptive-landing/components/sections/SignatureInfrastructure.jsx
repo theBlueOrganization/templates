@@ -1,6 +1,17 @@
+'use client'
+
+import { useState } from 'react'
 import Image from 'next/image'
 import Reveal from '../motion/Reveal'
+import SignatureLightbox from '../ui/SignatureLightbox'
 import styles from './SignatureInfrastructure.module.css'
+
+const MAGNIFIER_ICON = (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="11" cy="11" r="7" />
+    <path d="m21 21-4.3-4.3" />
+  </svg>
+)
 
 const TRAIN_ICON = (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -21,6 +32,8 @@ const CLOCK_ICON = (
 
 // 교통·입지(#infrastructure) — 공식 입지 안내도 + 번호가 매겨진 3항목 리스트
 export default function SignatureInfrastructure({ infrastructure }) {
+  const [zoomOpen, setZoomOpen] = useState(false)
+
   return (
     <section id={infrastructure.id} className={styles.section} aria-labelledby="infrastructure-title">
       <Reveal className={styles.heading}>
@@ -35,7 +48,15 @@ export default function SignatureInfrastructure({ infrastructure }) {
 
       <div className={styles.layout}>
         <Reveal delay={0.05} className={styles.mapFigure}>
-          <Image src={infrastructure.mapImage.src} alt={infrastructure.mapImage.alt} width={1200} height={827} sizes="(min-width: 1024px) 60vw, 100vw" />
+          <button
+            type="button"
+            className={styles.mapZoomTrigger}
+            onClick={() => setZoomOpen(true)}
+            aria-label="공식 입지 안내도 확대보기"
+          >
+            <Image src={infrastructure.mapImage.src} alt={infrastructure.mapImage.alt} width={1200} height={827} sizes="(min-width: 1024px) 60vw, 100vw" />
+            <span className={styles.mapZoomIcon}>{MAGNIFIER_ICON}</span>
+          </button>
           <figcaption>{infrastructure.mapCaption}</figcaption>
 
           {infrastructure.badges && (
@@ -70,6 +91,11 @@ export default function SignatureInfrastructure({ infrastructure }) {
       </div>
 
       <p className={styles.sourceNote}>{infrastructure.sourceNote}</p>
+
+      <SignatureLightbox
+        image={zoomOpen ? { ...infrastructure.mapImage, caption: infrastructure.mapCaption } : null}
+        onClose={() => setZoomOpen(false)}
+      />
     </section>
   )
 }

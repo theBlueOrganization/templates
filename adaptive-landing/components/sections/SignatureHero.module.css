@@ -187,10 +187,16 @@
   word-break: keep-all;
 }
 
+.descAccent {
+  font-weight: 400;
+  color: var(--hero-accent, var(--hero-title, #f4f4f4));
+}
+
 /* hero.descColorMobile/titleColorMobile이 있는 현장 전용 — 모바일에서만 문구 색을 다르게(PC는 기존 색 그대로 유지) */
 @media (max-width: 767px) {
   .desc {
     color: var(--hero-desc-mobile, var(--hero-desc, #a0a5aa));
+    line-height: var(--hero-desc-line-height-mobile, 1.9);
   }
 
   .eyebrow {
@@ -203,18 +209,22 @@
     background-clip: text;
   }
 
+  .eyebrowBreakHideMobile {
+    display: none;
+  }
+
+  .eyebrow {
+    margin-bottom: var(--hero-eyebrow-gap-mobile, var(--hero-eyebrow-gap, 20px));
+  }
+
   .title {
     color: var(--hero-title-mobile, var(--hero-title, #f4f4f4));
+    margin-bottom: var(--hero-title-gap-mobile, 12px);
   }
 
   .descAccent {
     color: var(--hero-accent-mobile, var(--hero-title-mobile, var(--hero-accent, var(--hero-title, #f4f4f4))));
   }
-}
-
-.descAccent {
-  font-weight: 400;
-  color: var(--hero-accent, var(--hero-title, #f4f4f4));
 }
 
 /* brandLogo — 타이틀/설명 아래에 얹는 브랜드 로고 락업(선택 필드, hero.brandLogo가 있을 때만 렌더) */

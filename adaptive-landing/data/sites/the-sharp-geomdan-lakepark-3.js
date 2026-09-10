@@ -89,9 +89,14 @@ const config = {
       contentTop: true,
       eyebrowLine1: '비교는 끝났다!',
       eyebrowLine2: '선택은 더샵!',
+      // 요청 반영 — 모바일에서 서브타이틀/타이틀/내용 간격이 넓어 보여 축소, 서브타이틀은 모바일에서만 한 줄로
+      eyebrowOneLineMobile: true,
+      eyebrowGapMobile: 10,
+      titleGapMobile: 8,
+      descLineHeightMobile: 1.6,
       titleLine1: '더샵',
       titleLine2: '검단레이크파크',
-      descLine1: '2,857세대 대단지 브랜드타운, 6월 오픈 예정',
+      descLine1: '2,857세대 대단지 브랜드타운',
       descLine1Accent: ['2,857세대'],
       descLine2: '검단 유일의 1·2호선 더블역 생활권,',
       descLine3: '분양가상한제가 적용되는 합리적인 선택.',
@@ -193,11 +198,12 @@ const config = {
       titleWeight: 800,
       descTitle: '검단 유일의 1·2호선 더블역 생활권을 도보로 이용',
       descTitleAccent: ['1·2호선 더블역 생활권'],
-      descBody1: '인천2호선연장(예정)·서울5호선연장(예정)·GTX-D(계획)까지,',
+      // 요청 반영 — "까지,"만 혼자 남는 어색한 줄바꿈 방지(모바일 전용, PC는 한 줄 그대로)
+      descBody1: '인천2호선연장(예정)·서울5호선연장(예정)·\nGTX-D(계획)까지,',
       descBody1Accent: ['인천2호선연장', '서울5호선연장', 'GTX-D'],
       descBody2: '더샵 검단레이크파크가 검단의 새로운 기준을 완성합니다.',
-      // 출처: 요청 반영 — 실제 위치 인포그래픽 지도 이미지로 교체
-      mapImage: { src: '/apt/the-sharp-geomdan-lakepark-3/location-map.jpg', alt: '더샵 검단레이크파크 주변 인프라 안내도' },
+      // 요청 반영 — 실제 위치 인포그래픽 지도 이미지로 교체
+      mapImage: { src: '/apt/the-sharp-geomdan-lakepark-3/location1.v1.jpg', alt: '더샵 검단레이크파크 주변 인프라 안내도' },
       // 요청 반영 — 입지분석 4칸 카드 섹션 삭제(아래 infrastructure 섹션의 지도+3항목 리스트로 대체됨)
       features: [],
       disclaimer:
@@ -308,7 +314,8 @@ const config = {
       titlePlain: '서울로 통하는 교통,',
       titleAccent: '가까이 누리는 생활',
       desc: '공식 홈페이지가 안내하는 철도 계획과 공원·문화·행정 인프라를 예정·계획 상태까지 구분해 확인하세요.',
-      mapImage: { src: '/apt/the-sharp-geomdan-lakepark-3/official-location-map.webp', alt: '더샵 검단레이크파크 교통망과 주변 생활 인프라 공식 입지 안내도' },
+      // 요청 반영 — 공급받은 위치도 이미지로 교체, 클릭하면 돋보기 아이콘으로 확대해서 볼 수 있음
+      mapImage: { src: '/apt/the-sharp-geomdan-lakepark-3/location1.v1.jpg', alt: '더샵 검단레이크파크 교통망과 주변 생활 인프라 공식 입지 안내도' },
       mapCaption: '공식 입지 안내도 · 노선 및 시설의 예정·계획 표기는 관계기관 계획에 따라 변경될 수 있습니다.',
       items: [
         { num: '01', category: '교통', title: '더블역 생활권', desc: '검단 유일의 지하철 1·2호선 더블역 생활권으로 소개되며, 인천2호선 연장·서울5호선 연장은 예정, GTX-D 노선은 계획으로 안내됩니다.' },

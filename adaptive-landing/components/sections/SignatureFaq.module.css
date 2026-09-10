@@ -23,6 +23,7 @@
   font-size: clamp(32px, 4.6vw, 62px);
   line-height: 1.32;
   color: #0b1822;
+  word-break: keep-all;
 }
 
 .heading h2 em {
@@ -35,6 +36,7 @@
   font-size: 14px;
   line-height: 1.8;
   color: #5a6670;
+  word-break: keep-all;
 }
 
 .list {
@@ -61,6 +63,7 @@
   line-height: 1.6;
   list-style: none;
   cursor: pointer;
+  word-break: keep-all;
 }
 
 .list summary::-webkit-details-marker {
@@ -90,6 +93,7 @@
   color: #53616a;
   line-height: 1.9;
   font-size: 14px;
+  word-break: keep-all;
 }
 
 @media (min-width: 768px) {

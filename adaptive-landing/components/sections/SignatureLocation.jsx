@@ -1,9 +1,70 @@
+'use client'
+
+import { useRef, useState } from 'react'
 import Image from 'next/image'
 import Reveal from '../motion/Reveal'
 import { Stagger, StaggerItem } from '../motion/Stagger'
 import { splitHighlight } from '../../lib/utils'
 import MobileBreakText from '../ui/MobileBreakText'
+import SignatureLightbox from '../ui/SignatureLightbox'
 import styles from './SignatureLocation.module.css'
+
+const MAGNIFIER_ICON = (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="11" cy="11" r="7" />
+    <path d="m21 21-4.3-4.3" />
+  </svg>
+)
+
+// 지도 위를 드래그(모바일)/마우스오버(PC)하면 그 지점을 확대해서 보여주는 돋보기 렌즈
+const LENS_SIZE = 132
+const LENS_ZOOM = 2.4
+
+function useMagnifierLens() {
+  const wrapRef = useRef(null)
+  const [lens, setLens] = useState(null)
+
+  const showLensAt = (clientX, clientY) => {
+    const rect = wrapRef.current?.getBoundingClientRect()
+    if (!rect) return
+    const x = Math.min(Math.max(clientX - rect.left, 0), rect.width)
+    const y = Math.min(Math.max(clientY - rect.top, 0), rect.height)
+    setLens({
+      left: x - LENS_SIZE / 2,
+      top: y - LENS_SIZE / 2,
+      backgroundSize: `${rect.width * LENS_ZOOM}px ${rect.height * LENS_ZOOM}px`,
+      backgroundPosition: `${-(x * LENS_ZOOM - LENS_SIZE / 2)}px ${-(y * LENS_ZOOM - LENS_SIZE / 2)}px`,
+    })
+  }
+
+  const hideLens = () => setLens(null)
+
+  const handlePointerDown = (e) => {
+    if (e.pointerType !== 'touch') return
+    e.currentTarget.setPointerCapture(e.pointerId)
+    showLensAt(e.clientX, e.clientY)
+  }
+
+  const handlePointerMove = (e) => {
+    if (e.pointerType === 'mouse') {
+      showLensAt(e.clientX, e.clientY)
+    } else if (e.pointerType === 'touch' && lens) {
+      showLensAt(e.clientX, e.clientY)
+    }
+  }
+
+  return {
+    wrapRef,
+    lens,
+    handlers: {
+      onPointerDown: handlePointerDown,
+      onPointerMove: handlePointerMove,
+      onPointerUp: hideLens,
+      onPointerCancel: hideLens,
+      onPointerLeave: hideLens,
+    },
+  }
+}
 
 // f.category와 매칭되는 원형 배지 아이콘 (교통/자연/교육/생활) — 해당 카테고리가 없으면 그냥 비워둠
 const CATEGORY_ICONS = {
@@ -55,6 +116,9 @@ function Highlighted({ text, accent, className, accentClassName }) {
 
 // 위치 안내 — 지도 이미지 + 4가지 입지 강점 카드
 export default function SignatureLocation({ location }) {
+  const [zoomOpen, setZoomOpen] = useState(false)
+  const { wrapRef, lens, handlers } = useMagnifierLens()
+
   return (
     <section
       id={location.id}
@@ -89,14 +153,37 @@ export default function SignatureLocation({ location }) {
       </Reveal>
 
       <Reveal delay={0.1} className={styles.mapWrap}>
-        <Image
-          src={location.mapImage.src}
-          alt={location.mapImage.alt}
-          width={1900}
-          height={1327}
-          sizes="100vw"
-          className={styles.mapImage}
-        />
+        <div ref={wrapRef} className={styles.mapZoomTrigger} {...handlers}>
+          <Image
+            src={location.mapImage.src}
+            alt={location.mapImage.alt}
+            width={1900}
+            height={1327}
+            sizes="100vw"
+            className={styles.mapImage}
+            draggable={false}
+          />
+          {lens && (
+            <span
+              className={styles.mapLens}
+              style={{
+                left: lens.left,
+                top: lens.top,
+                backgroundImage: `url(${location.mapImage.src})`,
+                backgroundSize: lens.backgroundSize,
+                backgroundPosition: lens.backgroundPosition,
+              }}
+            />
+          )}
+          <button
+            type="button"
+            className={styles.mapZoomIcon}
+            onClick={() => setZoomOpen(true)}
+            aria-label="위치 안내도 확대보기"
+          >
+            {MAGNIFIER_ICON}
+          </button>
+        </div>
       </Reveal>
 
       {location.subhead && (
@@ -164,6 +251,8 @@ export default function SignatureLocation({ location }) {
       </Stagger>
 
       <p className={styles.disclaimer}>{location.disclaimer}</p>
+
+      <SignatureLightbox image={zoomOpen ? location.mapImage : null} onClose={() => setZoomOpen(false)} />
     </section>
   )
 }

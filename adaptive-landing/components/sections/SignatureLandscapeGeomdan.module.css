@@ -64,14 +64,16 @@
   margin: 0;
   padding: 12px 14px 14px;
   background: var(--landscape-caption-bg, rgba(4, 12, 22, 0.72));
-  font-size: 15px;
+  font-size: 17px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
   line-height: 1.5;
   color: var(--landscape-caption-color, #fff);
 }
 
 @media (min-width: 1024px) {
   .heroFigure figcaption {
-    font-size: 16px;
+    font-size: 19px;
   }
 }
 

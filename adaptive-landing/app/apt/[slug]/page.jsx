@@ -18,6 +18,7 @@ import SignaturePremiumValue from '../../../components/sections/SignaturePremium
 import SignaturePremiumSplit from '../../../components/sections/SignaturePremiumSplit'
 import SignatureLandscape from '../../../components/sections/SignatureLandscape'
 import SignatureComplex from '../../../components/sections/SignatureComplex'
+import SignatureTransitDetail from '../../../components/sections/SignatureTransitDetail'
 import SignatureUnitPlan from '../../../components/sections/SignatureUnitPlan'
 import SignatureClub from '../../../components/sections/SignatureClub'
 import SignatureClubSimple from '../../../components/sections/SignatureClubSimple'
@@ -192,6 +193,7 @@ export default async function AptPage({ params }) {
         {sig.benefits && <SignatureBenefits benefits={sig.benefits} />}
         <SignatureSummary summary={sig.summary} />
         <SignatureLocation location={sig.location} />
+        {sig.transitDetail && <SignatureTransitDetail transit={sig.transitDetail} />}
         {sig.story && <SignatureSellingStory story={sig.story} />}
         <SignaturePremiumIntro premiumIntro={sig.premiumIntro} />
         {sig.newsImage && <SignatureNewsImage image={sig.newsImage} />}

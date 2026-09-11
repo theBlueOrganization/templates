@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import Reveal from '../motion/Reveal'
-import { cn } from '../../lib/utils'
+import { cn, splitHighlight } from '../../lib/utils'
 import styles from './SignatureComplex.module.css'
 
 function PanelHead({ eyebrow, titleLine1, titleLine2, desc, plainEyebrow, align }) {
@@ -90,23 +90,75 @@ function DonghoChart({ donghoChart }) {
 export default function SignatureComplex({ complex }) {
   if (complex.singleImage) {
     return (
-      <section id={complex.id} className={styles.section}>
-        <PanelHead eyebrow={complex.eyebrow} titleLine1={complex.titleLine1} titleLine2={complex.titleLine2} desc={complex.desc} />
-        <div className={styles.gallery}>
-          <div className={styles.panel}>
-            <Reveal delay={0.1} className={styles.imageBox}>
-              <Image
-                src={complex.singleImage.src}
-                alt={complex.singleImage.alt}
-                width={complex.singleImage.width}
-                height={complex.singleImage.height}
-                sizes="(min-width: 1024px) 1200px, calc(100vw - 40px)"
-                className={styles.image}
-              />
-            </Reveal>
+      <>
+        <section id={complex.id} className={styles.section}>
+          <PanelHead eyebrow={complex.eyebrow} titleLine1={complex.titleLine1} titleLine2={complex.titleLine2} desc={complex.desc} />
+          <div className={styles.gallery}>
+            <div className={styles.panel}>
+              <Reveal delay={0.1} className={styles.imageBox}>
+                <Image
+                  src={complex.singleImage.src}
+                  alt={complex.singleImage.alt}
+                  width={complex.singleImage.width}
+                  height={complex.singleImage.height}
+                  sizes="(min-width: 1024px) 1200px, calc(100vw - 40px)"
+                  className={styles.image}
+                />
+              </Reveal>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        {complex.gallery && (
+          <section id={complex.gallery.id} className={styles.gallerySection}>
+            <Reveal className={styles.galleryDark}>
+              <div className={styles.galleryHead}>
+                <h3 className={styles.galleryTitle}>
+                  <span>{complex.gallery.titleLine1}</span>
+                  <strong>
+                    {complex.gallery.titleLine2Accent
+                      ? splitHighlight(complex.gallery.titleLine2, complex.gallery.titleLine2Accent).map((seg, i) =>
+                          seg.accent ? (
+                            <span key={i} className={styles.galleryTitleAccent}>
+                              {seg.text}
+                            </span>
+                          ) : (
+                            <span key={i}>{seg.text}</span>
+                          )
+                        )
+                      : complex.gallery.titleLine2}
+                  </strong>
+                </h3>
+                <p className={styles.galleryDesc}>{complex.gallery.desc}</p>
+              </div>
+              <div className={styles.galleryGrid}>
+                {complex.gallery.items.map((item) => (
+                  <div key={item.label} className={styles.galleryItem}>
+                    <div className={styles.galleryImgWrap}>
+                      <Image
+                        src={item.image.src}
+                        alt={item.image.alt}
+                        fill
+                        sizes="(min-width: 1024px) 33vw, 90vw"
+                        className={styles.galleryImg}
+                      />
+                    </div>
+                    <span className={styles.galleryLabel}>{item.label}</span>
+                  </div>
+                ))}
+              </div>
+              {complex.gallery.viewMoreLabel && (
+                <a href={complex.gallery.viewMoreHref || '#'} className={styles.galleryViewMore}>
+                  {complex.gallery.viewMoreLabel}
+                  <svg width="20" height="10" viewBox="0 0 20 10" fill="none" aria-hidden="true">
+                    <path d="M0 5h18M13 1l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </a>
+              )}
+            </Reveal>
+          </section>
+        )}
+      </>
     )
   }
 

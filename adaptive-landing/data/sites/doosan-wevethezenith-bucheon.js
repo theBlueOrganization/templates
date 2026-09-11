@@ -7,12 +7,14 @@ const config = {
   subdomain: '두산위브더제니스부천',
   projectName: '두산위브더제니스 부천',
   shortName: '두산위브더제니스',
-  telNumber: '032-327-2008',
+  telNumber: '1800-0000',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/doosan-wevethezenith-bucheon/main.jpg',
   adminPhones: ['01071901052'],
   sheetId: '',
   sheetTab: '두산위브더제니스부천',
   showUtmInSms: true,
+
+  colorTheme: { navy: '#111111', ink: '#111111', cream: '#ffffff', gold: '#b49480' },
 
   company: {
     name: '주식회사 더블루파트너스',
@@ -33,22 +35,54 @@ const config = {
 
   signature: {
     header: {
-      logo: { src: '/apt/doosan-wevethezenith-bucheon/logo-white.svg', alt: '두산위브더제니스 부천', width: 260, height: 34 },
+      // 히어로에 어두운 오버레이가 없어 위(투명 상태)에서는 남색 로고가, 스크롤 후(불투명 배경)에는
+      // 흰색 로고가 보이도록 SignatureHeader의 logo/logoWhite 용도를 이 현장만 바꿔서 사용
+      logo: { src: '/apt/doosan-wevethezenith-bucheon/logo-white.png', alt: '두산위브더제니스 부천', width: 159, height: 19 },
+      logoWhite: { src: '/apt/doosan-wevethezenith-bucheon/logo.png', alt: '두산위브더제니스 부천', width: 204, height: 24 },
       gnb: ['사업개요', '입지환경', '프리미엄', '단지안내', '세대안내', '커뮤니티', '상담신청 및 방문예약'],
       quickCtaLabel: '관심고객등록',
-      phone: '032-327-2008',
+      phone: '1800-0000',
     },
 
     hero: {
-      eyebrowLine1: '49층 높이의 자부심부터 총 2,008세대 대단지의 가치,',
-      eyebrowLine2: '두산건설과 쌍용건설이 선보이는 하이엔드 라이프',
-      titleLine1: '두산위브더제니스',
-      titleLine2: '부천',
-      descLine1: '서울보다 서울을 더 가깝게 한 정거장',
-      descLine1Accent: ['서울보다 서울을 더 가깝게'],
-      descLine2: '소사역 더블 역세권과 GTX-B(예정)까지,',
-      descLine3: '최고 49층 스카이라인 랜드마크가 완성됩니다.',
-      bgImage: { src: '/apt/doosan-wevethezenith-bucheon/hero-bg.jpg', alt: '두산위브더제니스 부천 대표 조감도' },
+      eyebrowDivider: true,
+      // 공식 홈페이지에서 그대로 가져온 벡터 워드마크(SVG) — 슬라이드 3장 모두 공통으로 이 로고를 사용
+      titleImage: {
+        src: '/apt/doosan-wevethezenith-bucheon/title-gtx-premium.svg',
+        alt: 'GTX 프리미엄',
+        width: 497.86,
+        height: 69.208,
+      },
+      textColor: '#ffffff',
+      keepTextShadow: true,
+      overlay: false,
+      contentTop: true,
+      // 슬라이드별 문구도 공식 홈페이지 그대로 반영
+      slides: [
+        {
+          eyebrowLine1: '서울보다 서울을 더 가깝게',
+          eyebrowLine2: '한 정거장,',
+          bgImage: { src: '/apt/doosan-wevethezenith-bucheon/hero-bg.jpg', alt: '두산위브더제니스 부천 대표 조감도(주경)' },
+          bgImageMobile: { src: '/apt/doosan-wevethezenith-bucheon/m_visual-bg-new1.jpg', alt: '두산위브더제니스 부천 대표 조감도(주경)' },
+        },
+        {
+          eyebrowLine1: '최고 49층 스카이라인',
+          eyebrowLine2: '랜드마크.',
+          eyebrowColorMobile: '#ffffff',
+          titleImageMobile: { src: '/apt/doosan-wevethezenith-bucheon/title-gtx-premium-white.svg' },
+          bgImage: { src: '/apt/doosan-wevethezenith-bucheon/visual-bg-new2.jpg', alt: '두산위브더제니스 부천 대표 조감도(야경)' },
+          bgImageMobile: { src: '/apt/doosan-wevethezenith-bucheon/m_visual-bg-new2.jpg', alt: '두산위브더제니스 부천 대표 조감도(야경)' },
+        },
+        {
+          eyebrowLine1: '서울은 가깝게 규제는 가볍게',
+          eyebrowLine2: '비규제지역.',
+          bgImage: {
+            src: '/apt/doosan-wevethezenith-bucheon/두산건설_소사본1-1구역 재개발_광역조감도.jpg',
+            alt: '두산위브더제니스 부천 광역 조감도',
+          },
+          bgImageMobile: { src: '/apt/doosan-wevethezenith-bucheon/m_visual-bg-new3.jpg', alt: '두산위브더제니스 부천 광역 조감도' },
+        },
+      ],
       mobileBar: {
         announcements: [{ badge: '안내', textStrong: '두산위브더제니스 부천', textLight: ' 공식 안내센터입니다.' }],
         bubbleText: '지금 상담 신청하고 특별 혜택을 확인하세요',
@@ -63,11 +97,18 @@ const config = {
       navLabel: 'overview',
       title: '두산위브더제니스 부천',
       subtitle: '소사본1-1구역 재개발정비사업 · 최고 49층 하이엔드 브랜드타운',
-      photo: { src: '/apt/doosan-wevethezenith-bucheon/overview-photo.jpg', alt: '두산위브더제니스 부천 단지 조감도' },
+      variant: 'clean',
+      photo: { src: '/apt/doosan-wevethezenith-bucheon/hero-bg.jpg', alt: '두산위브더제니스 부천 대표 조감도(주경)' },
       thumbs: [
-        { src: '/apt/doosan-wevethezenith-bucheon/thumb-gate.jpg', alt: '두산위브더제니스 부천 문주 전경' },
-        { src: '/apt/doosan-wevethezenith-bucheon/thumb-plaza.jpg', alt: '두산위브더제니스 부천 공개공지 전경' },
-        { src: '/apt/doosan-wevethezenith-bucheon/thumb-playground.jpg', alt: '두산위브더제니스 부천 어린이놀이터 전경' },
+        { src: '/apt/doosan-wevethezenith-bucheon/visual-bg-new2.jpg', alt: '두산위브더제니스 부천 대표 조감도(야경)' },
+        {
+          src: '/apt/doosan-wevethezenith-bucheon/두산건설_소사본1-1구역 재개발_광역조감도.jpg',
+          alt: '두산위브더제니스 부천 광역 조감도',
+        },
+        {
+          src: '/apt/doosan-wevethezenith-bucheon/두산건설_소사본1-1구역 재개발_석경조감도.jpg',
+          alt: '두산위브더제니스 부천 석경 조감도',
+        },
       ],
       notice: '※ 본 페이지에 사용된 CG, 이미지 및 내용은 인·허가 과정 중 변경될 수 있습니다.',
       specItems: [
@@ -77,9 +118,6 @@ const config = {
         { label: '세대수', value: ['총 2,008세대(아파트 1,728세대 · 오피스텔 280실)', '일반분양 1,419세대(아파트 1,158세대 · 오피스텔 261실)'] },
         { label: '주택형', value: '39㎡(OA) · 45㎡(OA) · 59㎡ · 74㎡ · 84㎡' },
         { label: '부대시설', value: ['주민회의실, 키즈스테이션/주민카페, 주민운동시설', '어린이집, 작은도서관, 경로당, 어린이놀이터, 돌봄센터 등'] },
-        { label: '시행', value: '소사본1의1구역 재개발정비사업조합' },
-        { label: '시공', value: '두산건설(주) · 쌍용건설(주)' },
-        { label: '견본주택', value: '부천시 원미구 상동 529-3번지' },
       ],
     },
 
@@ -88,9 +126,10 @@ const config = {
       id: 'location',
       navLabel: '위치안내',
       label: 'LOCATION',
+      hideFeatureIcon: true,
       eyebrowPlain: '서울보다 서울이 더 가까운',
       eyebrowAccent: ' 더블 역세권',
-      title: '부천의 내일을 더 앞서 누리다',
+      title: '부천의 내일을\n더 앞서 누리다',
       descTitle: '소사역 더블 역세권과 GTX-B(예정)로 완성되는 광역 교통망',
       descTitleAccent: ['소사역 더블 역세권', 'GTX-B(예정)'],
       descBody1: '1호선으로 신도림 약 18분·용산 30분대, 서해선으로 김포공항역 약 12분,',
@@ -103,39 +142,72 @@ const config = {
           category: '교통',
           title: '더블 역세권 & GTX-B',
           desc: '수도권 1호선·서해선 소사역을 도보로 이용하고, 부천종합운동장역 GTX-B(예정)·소사역 KTX-이음(추진) 등 광역 교통 호재를 갖췄습니다.',
+          image: { src: '/apt/doosan-wevethezenith-bucheon/교통.png', alt: '더블 역세권 GTX-B 교통 이미지' },
         },
         {
           num: '02',
           category: '생활',
           title: '이미 다 갖춰진 상권',
           desc: '소사역 상권, 부천자유시장, 이마트 부천점을 가깝게 이용하고 스타필드시티 부천·롯데백화점·현대백화점은 차량 10분대입니다.',
+          image: { src: '/apt/doosan-wevethezenith-bucheon/shopping.jpg', alt: '이미 다 갖춰진 상권 이미지' },
         },
         {
           num: '03',
           category: '의료',
           title: '가까운 의료 인프라',
           desc: '부천세종병원, 가톨릭대학교 부천성모병원 등 대형 의료시설을 가까이 두어 안심할 수 있습니다.',
+          image: { src: '/apt/doosan-wevethezenith-bucheon/의료.jpg', alt: '가까운 의료 인프라 이미지' },
         },
         {
           num: '04',
           category: '교육',
           title: '도보 통학 교육환경',
           desc: '부원초 도보 통학과 서울신학대학교, 인근 다수의 중·고교로 안정적인 교육환경을 갖췄습니다.',
+          image: { src: '/apt/doosan-wevethezenith-bucheon/교육.avif', alt: '도보 통학 교육환경 이미지' },
         },
       ],
       disclaimer:
         '※ 상기 지역도는 실제와 다를 수 있으며, 지역도에 기재된 교통 및 각종 개발계획, 학군 배정 등은 사업주체나 해당기관의 사정에 따라 변경 또는 연기, 취소될 수 있으며 이는 시행사 및 시공사와 무관합니다.',
     },
 
+    // 위치안내(입지환경) 다음에 이어지는 광역교통망 상세 페이지 — 공식 홈페이지 레이아웃 그대로,
+    // 노선별 소요시간 다이어그램 3장 + 기차 일러스트(왼쪽) / 확대 지역도 + 소사역 플로팅 탭(오른쪽)
+    transitDetail: {
+      id: 'transit-detail',
+      titleLine1: '부천의 내일을',
+      titleLine2: '더 앞서 누리다!',
+      lines: [
+        { src: '/apt/doosan-wevethezenith-bucheon/map-line-01.png', alt: '소사역-서해선-GTX-B 서울 소요시간', width: 534, height: 100 },
+        { src: '/apt/doosan-wevethezenith-bucheon/map-line-02.png', alt: '소사역-서해선-5호선 마곡 소요시간', width: 534, height: 97 },
+        { src: '/apt/doosan-wevethezenith-bucheon/map-line-03.png', alt: '소사역-1호선-7호선 가산디지털단지 소요시간', width: 534, height: 96 },
+      ],
+      trainImage: { src: '/apt/doosan-wevethezenith-bucheon/map-train.png', alt: '', width: 746, height: 125 },
+      mapImage: {
+        src: '/apt/doosan-wevethezenith-bucheon/map-map.png',
+        alt: '두산위브더제니스 부천 소사역 기준 지역도',
+        width: 1105,
+        height: 745,
+      },
+      mapButtonLabel: '지역도 확대보기',
+      stationTab: { src: '/apt/doosan-wevethezenith-bucheon/map-subway.png', alt: '소사역 1호선 서해선', width: 93, height: 343 },
+    },
+
     // 출처: 공식 홈페이지 메인 인트로 카피("두산건설과 쌍용건설이 선보이는...") 및 브랜드 철학 문구 참고
     premiumIntro: {
       eyebrow: 'DOOSAN WE’VE THE ZENITH',
-      titleLine1: '서울보다 서울을 더 가깝게',
-      titleLine2: '한 정거장, 두산위브더제니스 부천',
+      align: 'left',
+      overlay: false,
+      fontFamily: 'var(--font-serif)',
+      titleLine1: '당신의 삶은',
+      titleLine2: '두산위브더제니스로부터\n새로운 차원으로 도약합니다',
       descLine1: '두산건설과 쌍용건설이 선보이는 부천 단 하나의 하이엔드 라이프',
       descLine1Accent: ['두산건설과 쌍용건설'],
       descLine2: '최고 49층, 총 2,008세대 대단지가 완성하는 부천의 새로운 랜드마크를 만나보세요.',
-      bgImage: { src: '/apt/doosan-wevethezenith-bucheon/premium-intro-bg.jpg', alt: '두산위브더제니스 부천 프리미엄 전경' },
+      descColor: '#ffffff',
+      bgImage: {
+        src: '/apt/doosan-wevethezenith-bucheon/두산건설_소사본1-1구역 재개발_와이드투시석경.jpg',
+        alt: '두산위브더제니스 부천 프리미엄 전경',
+      },
     },
 
     // 출처: 공식 홈페이지 프리미엄 페이지 8개 항목(Traffic/Vision/View/Life/Space/Design/Premium ECO/Brand)
@@ -145,7 +217,7 @@ const config = {
       navLabel: '프리미엄가치',
       eyebrow: 'PREMIUM VALUE',
       titlePlain: '두산위브더제니스 부천이 특별한 ',
-      titleAccent: '프리미엄 8',
+      titleAccent: 'Premium 8',
       cardStyle: 'numbered',
       sideLabel: { scriptLine1: 'High-end', scriptLine2: 'Premium', number: '8' },
       cards: [
@@ -210,9 +282,20 @@ const config = {
       desc: '건축미학이 돋보이는 외관 디자인은 기본, 디테일 하나까지 고려한 격이 다른 단지설계로 삶의 수준을 높입니다.',
       singleImage: {
         src: '/apt/doosan-wevethezenith-bucheon/complex-sitemap.jpg',
-        alt: '두산위브더제니스 부천 단지배치도(101~107동) 및 타입별 세대수, 문주·공개공지·어린이놀이터',
+        alt: '두산위브더제니스 부천 단지배치도(101~107동) 및 타입별 세대수 범례',
         width: 1200,
-        height: 2006,
+        height: 810,
+      },
+      gallery: {
+        titleLine1: '고품격 디자인에 편리함까지 설계하는',
+        titleLine2: '랜드마크 대단지의 남다른 품격에 반하다',
+        titleLine2Accent: ['남다른 품격에 반하다'],
+        desc: '건축미학이 돋보이는 외관 디자인은 기본,\n디테일 하나까지 고려한 격이 다른 단지설계로 삶의 수준을 높입니다.',
+        items: [
+          { label: '문주', image: { src: '/apt/doosan-wevethezenith-bucheon/thumb-gate.jpg', alt: '두산위브더제니스 부천 문주 전경' } },
+          { label: '공개공지', image: { src: '/apt/doosan-wevethezenith-bucheon/thumb-plaza.jpg', alt: '두산위브더제니스 부천 공개공지 전경' } },
+          { label: '어린이놀이터', image: { src: '/apt/doosan-wevethezenith-bucheon/thumb-playground.jpg', alt: '두산위브더제니스 부천 어린이놀이터 전경' } },
+        ],
       },
     },
 
@@ -223,7 +306,7 @@ const config = {
       watermark: 'THE ZENITH',
       titlePlain: 'UNIT ',
       titleAccent: 'PLAN',
-      subtitleLines: ['서울보다 서울을 더 가깝게 누리는', '두산위브더제니스 부천', '오피스텔 39·45㎡, 아파트 59·74·84㎡', '8가지 주거 타입을 만나보십시오.'],
+      subtitleLines: ['볼수록 품격이 넘치고', '살수록 자부심이 높아지는', '하이엔드 라이프를 누리는 주거 공간'],
       tabbedGroups: true,
       groups: [
         {
@@ -307,6 +390,8 @@ const config = {
       id: 'community',
       navLabel: '커뮤니티',
       variant: 'simple',
+      hideLabelRow: true,
+      cardDivider: true,
       intro: {
         watermark: 'COMMUNITY',
         eyebrow: 'COMMUNITY',
@@ -318,7 +403,7 @@ const config = {
         src: '/apt/doosan-wevethezenith-bucheon/community-sheet.jpg',
         alt: '두산위브더제니스 부천 커뮤니티 시설 배치도(주민카페·독서실·작은도서관·GX룸·피트니스·골프연습장)',
         width: 1200,
-        height: 3149,
+        height: 1890,
       },
       facilities: [
         {
@@ -432,8 +517,8 @@ const config = {
     },
 
     footer: {
-      logo: { src: '/apt/doosan-wevethezenith-bucheon/logo-white.svg', alt: '두산위브더제니스 부천' },
-      highlightText: '032-327-2008',
+      logo: { src: '/apt/doosan-wevethezenith-bucheon/footer-logo.png', alt: '두산위브더제니스 부천', width: 159, height: 19 },
+      highlightText: '1800-0000',
       agencySlogan: '분양완판 전문가 그룹, (주) 더블루파트너스',
       companyLines: [
         { label: '시행', value: '소사본1의1구역 재개발정비사업조합' },
@@ -447,7 +532,7 @@ const config = {
         '※ 사업지 인근의 개발사업과 관련된 사항은 지자체, 개발주체 및 관계기관의 사정에 따라 변경될 수 있습니다.',
         '※ 세부 설계내용은 시공 시 인허가 과정에서 변동될 수 있으니, 계약 전 반드시 분양관계자에게 문의하시기 바랍니다.',
       ],
-      csPhone: '032-327-2008',
+      csPhone: '1800-0000',
       csHours: 'AM 09:00 ~ PM 19:00',
     },
 
@@ -455,7 +540,7 @@ const config = {
     quickMenu: {
       brand: "DOOSAN WE'VE THE ZENITH BUCHEON",
       phoneLabel: '분양문의',
-      phone: '032-327-2008',
+      phone: '1800-0000',
       favoriteLabel: '관심고객',
       menuLabel: 'MENU',
       ctaTargetId: 'vip-reservation',

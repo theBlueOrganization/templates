@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import Reveal from '../motion/Reveal'
 import { Stagger, StaggerItem } from '../motion/Stagger'
+import { cn } from '../../lib/utils'
 import SignatureLightbox from '../ui/SignatureLightbox'
 import styles from './SignatureClubSimple.module.css'
 
@@ -89,7 +90,7 @@ export default function SignatureClubSimple({ club }) {
 
       <Stagger className={styles.grid}>
         {club.facilities.map((facility) => (
-          <StaggerItem key={facility.key} className={styles.card}>
+          <StaggerItem key={facility.key} className={cn(styles.card, club.cardDivider && styles.cardCentered)}>
             <button
               type="button"
               className={styles.imageWrap}
@@ -104,11 +105,13 @@ export default function SignatureClubSimple({ club }) {
                 className={styles.image}
               />
             </button>
-            <div className={styles.labelRow}>
-              {!club.hideIcon && <span className={styles.icon}>{ICONS[facility.icon]}</span>}
-              <span className={styles.labelEn}>{facility.labelEn}</span>
-            </div>
-            <h3 className={styles.cardTitle}>{facility.title}</h3>
+            {!club.hideLabelRow && (
+              <div className={styles.labelRow}>
+                {!club.hideIcon && <span className={styles.icon}>{ICONS[facility.icon]}</span>}
+                <span className={styles.labelEn}>{facility.labelEn}</span>
+              </div>
+            )}
+            <h3 className={cn(styles.cardTitle, club.cardDivider && styles.cardTitleDivider)}>{facility.title}</h3>
             <p className={styles.cardDesc}>{facility.desc}</p>
           </StaggerItem>
         ))}

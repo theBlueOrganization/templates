@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import Image from 'next/image'
 import Reveal from '../motion/Reveal'
-import { splitHighlight } from '../../lib/utils'
+import { cn, splitHighlight } from '../../lib/utils'
 import MobileBreakText from '../ui/MobileBreakText'
 import styles from './SignaturePremiumIntro.module.css'
 
@@ -77,16 +77,24 @@ export default function SignaturePremiumIntro({ premiumIntro }) {
   const introStyle = {
     ...(premiumIntro.fontFamily && { '--intro-font': premiumIntro.fontFamily }),
     ...(premiumIntro.titleColor && { '--intro-color': premiumIntro.titleColor }),
+    ...(premiumIntro.descColor && {
+      '--intro-desc-color': premiumIntro.descColor,
+      '--intro-desc-shadow': premiumIntro.descShadow || '0 2px 12px rgba(0, 0, 0, 0.65)',
+      '--intro-desc-accent-color': premiumIntro.descAccentColor || premiumIntro.descColor,
+    }),
   }
 
   return (
-    <section className={styles.section} style={Object.keys(introStyle).length ? introStyle : undefined}>
+    <section
+      className={cn(styles.section, premiumIntro.align === 'left' && styles.sectionLeft)}
+      style={Object.keys(introStyle).length ? introStyle : undefined}
+    >
       <div className={styles.bg}>
         <Image src={premiumIntro.bgImage.src} alt={premiumIntro.bgImage.alt} fill sizes="100vw" className={styles.bgImage} />
         {premiumIntro.overlay !== false && <div className={styles.overlay} />}
       </div>
 
-      <Reveal className={styles.content}>
+      <Reveal className={cn(styles.content, premiumIntro.align === 'left' && styles.contentLeft)}>
         <span className={styles.accentLine} />
         <p className={styles.eyebrow}>{premiumIntro.eyebrow}</p>
         <h2 className={styles.title}>

@@ -211,56 +211,75 @@
    ───────────────────────────────────────────────────────── */
 
 .numberedLayout {
-  max-width: 1300px;
+  max-width: 1360px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.sideLabel {
+/* cardSideLabel — "High-end/Premium/8" 카드. 고정 좌측 컬럼이 아니라 9개 그리드(3열 기준) 안의
+   정중앙(5번째) 자리를 채우는 카드 하나로 취급 */
+.cardSideLabel {
   display: flex;
-  align-items: baseline;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 10px;
+  background: var(--navy, #06203e);
+  border-radius: 20px;
+  min-height: 200px;
 }
 
 .sideLabelScript {
   font-family: 'Brush Script MT', cursive;
-  font-size: 22px;
+  font-size: 26px;
   line-height: 1.25;
-  color: var(--navy, #06203e);
+  text-align: center;
+  color: #fff;
   font-style: italic;
 }
 
 .sideLabelNumber {
   font-family: var(--font-cormorant);
-  font-size: 48px;
+  font-size: 56px;
   font-weight: 600;
   line-height: 1;
   color: transparent;
   -webkit-text-stroke: 1.5px var(--gold, #b08d57);
 }
 
-.numberedMain {
-  min-width: 0;
-}
-
 .gridNumbered {
   grid-template-columns: 1fr;
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  gap: 24px;
 }
 
+/* 모바일 — 이미지와 텍스트를 세로로 쌓는 대신 flex row로 나란히 배치해 카드가 가로로 길어지게 함.
+   768px 이상(태블릿/데스크톱)에서는 기존처럼 세로로 쌓고 중앙정렬 */
 .cardNumbered {
   background: var(--cream, #f7f1e6);
   border: 1.5px solid var(--gold, #b08d57);
   border-radius: 20px;
-  padding: 24px 22px;
+  padding: 18px;
   display: flex;
-  flex-direction: column;
-  gap: 14px;
-  text-align: center;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  text-align: left;
   transition:
     box-shadow 0.25s ease,
     transform 0.25s ease;
+}
+
+.numberedText {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
 }
 
 .cardNumbered:hover {
@@ -332,45 +351,57 @@
 
 .numberedImageBox {
   position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
+  flex: 0 0 38%;
+  aspect-ratio: 1 / 1;
   border-radius: 12px;
   overflow: hidden;
-  margin-top: auto;
 }
 
 @media (min-width: 768px) {
-  .numberedLayout {
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 32px;
-  }
-
-  .sideLabel {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-    flex: 0 0 140px;
-    position: sticky;
-    top: 120px;
-  }
-
   .gridNumbered {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cardNumbered {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 24px 20px;
+    text-align: center;
+  }
+
+  .numberedText {
+    gap: 14px;
+  }
+
+  .numberedHead {
+    justify-content: center;
+  }
+
+  .numberedImageBox {
+    flex: none;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin-top: auto;
   }
 }
 
 @media (min-width: 1024px) {
   .gridNumbered {
     grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .cardNumbered {
+    padding: 32px 28px;
+    gap: 18px;
   }
 
   .sideLabelScript {
-    font-size: 26px;
+    font-size: 30px;
   }
 
   .sideLabelNumber {
-    font-size: 64px;
+    font-size: 72px;
   }
 
   .numberedTitle {

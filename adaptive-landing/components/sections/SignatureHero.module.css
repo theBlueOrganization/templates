@@ -165,16 +165,150 @@
   color: transparent;
 }
 
+/* eyebrowDivider — hero.eyebrowDivider가 true인 현장 전용. 두 줄로 쌓는 대신 한 줄에
+   "평문 — 구분선 — 강조문구"를 나란히 배치(예: GTX 프리미엄 히어로) */
+.eyebrowDividerRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  font-family: var(--font-serif);
+  font-size: clamp(12px, 3.6vw, 14px);
+  line-height: 1.6;
+  color: var(--hero-title, #b39258);
+  text-align: center;
+  letter-spacing: 0.02em;
+  margin-bottom: var(--hero-eyebrow-gap, 20px);
+  word-break: keep-all;
+}
+
+.eyebrowDividerText {
+  white-space: nowrap;
+}
+
+.eyebrowDividerLine {
+  width: 32px;
+  height: 1px;
+  flex-shrink: 0;
+  background: currentColor;
+  opacity: 0.5;
+}
+
+/* slides[i].eyebrowColorMobile — 특정 슬라이드에서만 모바일 문구 색을 덮어씀(예: 야경 슬라이드에서
+   가독성 확보를 위해 흰색으로). --hero-eyebrow-mobile-active가 없는 슬라이드/데스크톱은 기존 색 유지 */
+@media (max-width: 1023px) {
+  .eyebrowDividerRow {
+    color: var(--hero-eyebrow-mobile-active, var(--hero-title, #b39258));
+  }
+
+  .eyebrowDividerRow .eyebrowAccent {
+    background: var(--hero-eyebrow-mobile-active, var(--hero-accent, var(--hero-title, linear-gradient(125deg, #b39258 0%, #c5a46d 100%))));
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+}
+
+@media (min-width: 1024px) {
+  .eyebrowDividerRow {
+    font-size: 19px;
+    gap: 22px;
+  }
+
+  .eyebrowDividerLine {
+    width: 72px;
+  }
+}
+
+/* badge — hero.badge가 있는 현장 전용. 배경 이미지 위에 얹는 점선 원형 뱃지(예: GRAND OPEN) */
+.badge {
+  position: absolute;
+  right: 6%;
+  /* 모바일에서 mobileBar/프로모 말풍선/slideNav와 겹치지 않도록 그 위쪽으로 배치 */
+  bottom: 230px;
+  z-index: 1;
+  width: 72px;
+  height: 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  border-radius: 50%;
+  border: 1px dashed rgba(11, 26, 66, 0.55);
+  background: rgba(255, 255, 255, 0.4);
+  color: #0b1a42;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .badge {
+    width: 108px;
+    height: 108px;
+    font-size: 15px;
+    right: 9%;
+    bottom: 16%;
+  }
+}
+
 .title {
   font-family: var(--hero-font, var(--font-sans));
   font-weight: 600;
   font-size: var(--hero-title-size-base, clamp(24px, 8vw, 34px));
   line-height: 1.15;
-  color: var(--hero-title, #f4f4f4);
+  color: var(--hero-title-only, var(--hero-title, #f4f4f4));
   letter-spacing: -0.03em;
   text-shadow: var(--hero-text-shadow, 0 15px 30px rgba(0, 0, 0, 0.5));
   margin-bottom: 12px;
   word-break: keep-all;
+}
+
+/* titleImage — hero.titleImage가 있는 현장 전용. 공식 홈페이지의 타이틀 SVG를 그대로 사용 */
+.titleImageWrap {
+  margin-bottom: 12px;
+}
+
+.titleImage {
+  width: auto;
+  height: 34px;
+}
+
+/* titleImageMobileOnly/DesktopOnly — slides[i].titleImageMobile가 있는 슬라이드 전용. 모바일에서만
+   다른 색상 버전(예: 야경 슬라이드의 흰색 로고)을 보여주고, 데스크톱은 기존 이미지 유지 */
+.titleImageDesktopOnly {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .titleImage {
+    height: 52px;
+  }
+
+  .titleImageMobileOnly {
+    display: none;
+  }
+
+  .titleImageDesktopOnly {
+    display: block;
+  }
+}
+
+@media (min-width: 1024px) {
+  .titleImageWrap {
+    margin-bottom: 18px;
+  }
+
+  .titleImage {
+    height: 80px;
+  }
+}
+
+/* titleAccent — hero.titleAccent(강조할 부분 문자열 배열)가 있는 현장 전용. 타이틀 안에서
+   특정 단어만 다른 색으로 (예: "GTX 프리미엄"에서 "GTX"만 남색) */
+.titleAccent {
+  color: var(--hero-title-accent, currentColor);
 }
 
 .desc {
@@ -235,6 +369,101 @@
 .brandLogo img {
   height: 22px;
   width: auto;
+}
+
+/* slideNav — hero.slides가 2장 이상인 현장 전용. 좌우 화살표 + 썸네일로 배경 이미지를 수동으로도
+   넘길 수 있게 함(자동 전환은 기존 3.5초 인터벌 그대로 유지) */
+/* 모바일 — 화면 오른쪽 가장자리에 세로로 쌓아 올리는 형태(화살표 위/아래 + 썸네일 세로 스택) */
+.slideNav {
+  position: absolute;
+  left: auto;
+  right: 12px;
+  bottom: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+}
+
+.slideArrow {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: #fff;
+  opacity: 0.8;
+  transform: rotate(90deg);
+}
+
+.slideThumbs {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow: visible;
+}
+
+.slideThumbBtn {
+  position: relative;
+  flex-shrink: 0;
+  width: 56px;
+  height: 38px;
+  overflow: hidden;
+  opacity: 0.7;
+  border: 2px solid var(--gold, #cbb489);
+  border-radius: 4px;
+  transition:
+    opacity 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.slideThumbBtnActive {
+  opacity: 1;
+  border-color: #fff;
+}
+
+.slideThumbImg {
+  object-fit: cover;
+}
+
+@media (min-width: 1024px) {
+  /* 데스크톱은 기존처럼 하단 가로 배치, 중앙 정렬 */
+  .slideNav {
+    flex-direction: row;
+    align-items: center;
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: 40px;
+    transform: none;
+    gap: 16px;
+    justify-content: center;
+    padding: 0 16px;
+  }
+
+  .slideArrow {
+    width: 28px;
+    height: 28px;
+    transform: none;
+  }
+
+  .slideThumbs {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .slideThumbBtn {
+    width: 84px;
+    height: 54px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+  }
 }
 
 .scrollIndicator {

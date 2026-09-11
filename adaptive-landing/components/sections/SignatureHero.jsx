@@ -2,8 +2,8 @@
 
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useEffect, useState } from 'react'
-import { splitHighlight, isMobileUserAgent } from '../../lib/utils'
+import { useEffect, useRef, useState } from 'react'
+import { cn, splitHighlight, isMobileUserAgent } from '../../lib/utils'
 import { useUtmSource } from '../../lib/useUtmSource'
 import SignaturePhoneModal from '../ui/SignaturePhoneModal'
 import MobileBreakText from '../ui/MobileBreakText'
@@ -18,7 +18,8 @@ const lineVariants = {
 
 // eupseong-prugio 첫 화면 히어로 — 로드 즉시 순차적으로 텍스트가 아래→위로 떠오르며 나타남
 export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTargetId }) {
-  const descSegments = splitHighlight(hero.descLine1, hero.descLine1Accent)
+  const descSegments = hero.descLine1 ? splitHighlight(hero.descLine1, hero.descLine1Accent) : []
+  const titleSegments = hero.titleAccent ? splitHighlight(hero.titleLine1, hero.titleAccent) : null
   const mobileBar = hero.mobileBar
   const [announceIndex, setAnnounceIndex] = useState(0)
   const [phoneModalOpen, setPhoneModalOpen] = useState(false)
@@ -30,14 +31,32 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
   // 각 슬라이드 이미지 자체에 문구가 이미 포함돼 있어 hero.hideText와 함께 쓰는 걸 전제로 함.
   const slides = hero.slides
   const [activeSlide, setActiveSlide] = useState(0)
+  const slideTimerRef = useRef(null)
+  // slides[i].eyebrowLine1/2가 있으면 슬라이드마다 문구를 바꾸고, 없으면 기존처럼 hero.eyebrowLine1/2 고정
+  const activeEyebrowLine1 = slides?.[activeSlide]?.eyebrowLine1 ?? hero.eyebrowLine1
+  const activeEyebrowLine2 = slides?.[activeSlide]?.eyebrowLine2 ?? hero.eyebrowLine2
 
-  useEffect(() => {
+  const restartSlideTimer = () => {
+    clearInterval(slideTimerRef.current)
     if (!slides || slides.length < 2) return
-    const timer = setInterval(() => {
+    slideTimerRef.current = setInterval(() => {
       setActiveSlide((i) => (i + 1) % slides.length)
     }, 3500)
-    return () => clearInterval(timer)
+  }
+
+  useEffect(() => {
+    restartSlideTimer()
+    return () => clearInterval(slideTimerRef.current)
   }, [slides])
+
+  // 화살표/썸네일로 수동 이동하면 자동 전환 타이머를 리셋해서, 고른 직후 바로 다음 슬라이드로
+  // 넘어가버리는 어색함을 방지
+  const goToSlide = (i) => {
+    setActiveSlide(i)
+    restartSlideTimer()
+  }
+  const prevSlide = () => goToSlide((activeSlide - 1 + slides.length) % slides.length)
+  const nextSlide = () => goToSlide((activeSlide + 1) % slides.length)
 
   useEffect(() => {
     if (!mobileBar || mobileBar.announcements.length < 2) return
@@ -58,10 +77,22 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
     setPhoneModalOpen(true)
   }
 
+  // slides[i].eyebrowColorMobile — 특정 슬라이드(예: 야경)에서만 모바일 문구 색을 다르게(가독성 확보)
+  const activeEyebrowColorMobile = slides?.[activeSlide]?.eyebrowColorMobile
+  // slides[i].titleImageMobile — 특정 슬라이드에서만 모바일 타이틀 이미지를 다른 색상 버전으로 교체
+  const activeTitleImageMobile = slides?.[activeSlide]?.titleImageMobile
+
   const heroStyle = {
     ...(hero.bgColor && { '--hero-bg': hero.bgColor }),
-    ...(hero.textColor && { '--hero-title': hero.textColor, '--hero-desc': hero.textColor, '--hero-text-shadow': 'none' }),
+    ...(activeEyebrowColorMobile && { '--hero-eyebrow-mobile-active': activeEyebrowColorMobile }),
+    ...(hero.textColor && {
+      '--hero-title': hero.textColor,
+      '--hero-desc': hero.textColor,
+      ...(!hero.keepTextShadow && { '--hero-text-shadow': 'none' }),
+    }),
     ...(hero.accentColor && { '--hero-accent': hero.accentColor }),
+    ...(hero.titleAccentColor && { '--hero-title-accent': hero.titleAccentColor }),
+    ...(hero.titleColor && { '--hero-title-only': hero.titleColor }),
     ...(hero.fontFamily && { '--hero-font': hero.fontFamily }),
     ...(hero.imageAspectRatio && { '--hero-image-ratio': hero.imageAspectRatio }),
     ...(hero.descColorMobile && { '--hero-desc-mobile': hero.descColorMobile }),
@@ -78,9 +109,11 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
     }),
   }
 
+  // heroSlides(이미지 비율만큼만 높이 차지)는 슬라이드 이미지 자체에 문구가 박혀있는(hideText) 현장
+  // 전용 — 문구를 별도로 얹는 현장(예: GTX 프리미엄 히어로)은 슬라이드가 있어도 100svh 풀스크린 유지
   const heroClassName = [
     styles.hero,
-    slides && slides.length > 1 && styles.heroSlides,
+    slides && slides.length > 1 && hero.hideText && styles.heroSlides,
     !(slides && slides.length > 1) && hero.imageAspectRatio && styles.heroTallImage,
     hero.contentTop && styles.heroContentTop,
   ]
@@ -196,6 +229,12 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
             }
           />
         )}
+        {hero.badge && (
+          <div className={styles.badge}>
+            <span className={styles.badgeLine1}>{hero.badge.line1}</span>
+            <span className={styles.badgeLine2}>{hero.badge.line2}</span>
+          </div>
+        )}
       </div>
 
       {!hero.hideText && (
@@ -208,44 +247,103 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
             .filter(Boolean)
             .join(' ')}
         >
-          <motion.p className={styles.eyebrow} custom={0.2} initial="hidden" animate="show" variants={lineVariants}>
-            {hero.eyebrowLine1}
-            <br className={hero.eyebrowOneLineMobile ? styles.eyebrowBreakHideMobile : undefined} />
-            {hero.eyebrowOneLineMobile ? ' ' : null}
-            <span className={styles.eyebrowAccent}>{hero.eyebrowLine2}</span>
-          </motion.p>
+          {hero.eyebrowDivider ? (
+            <motion.p className={styles.eyebrowDividerRow} custom={0.2} initial="hidden" animate="show" variants={lineVariants}>
+              <span className={styles.eyebrowDividerText}>{activeEyebrowLine1}</span>
+              <span className={styles.eyebrowDividerLine} />
+              <span className={styles.eyebrowAccent}>{activeEyebrowLine2}</span>
+            </motion.p>
+          ) : (
+            <motion.p className={styles.eyebrow} custom={0.2} initial="hidden" animate="show" variants={lineVariants}>
+              {activeEyebrowLine1}
+              <br className={hero.eyebrowOneLineMobile ? styles.eyebrowBreakHideMobile : undefined} />
+              {hero.eyebrowOneLineMobile ? ' ' : null}
+              <span className={styles.eyebrowAccent}>{activeEyebrowLine2}</span>
+            </motion.p>
+          )}
 
-          <motion.h1 className={styles.title} custom={0.4} initial="hidden" animate="show" variants={lineVariants}>
-            {hero.titleLine1}
-            <br />
-            {hero.titleLine2}
-            {hero.titleLine3 && (
-              <>
-                <br />
-                {hero.titleLine3}
-              </>
-            )}
-          </motion.h1>
-
-          <motion.p className={styles.desc} custom={0.65} initial="hidden" animate="show" variants={lineVariants}>
-            {descSegments.map((seg, i) =>
-              seg.accent ? (
-                <strong key={i} className={styles.descAccent}>
-                  {seg.text}
-                </strong>
+          {hero.titleImage ? (
+            <motion.div className={styles.titleImageWrap} custom={0.4} initial="hidden" animate="show" variants={lineVariants}>
+              {activeTitleImageMobile ? (
+                <>
+                  <Image
+                    src={activeTitleImageMobile.src}
+                    alt={hero.titleImage.alt}
+                    width={hero.titleImage.width}
+                    height={hero.titleImage.height}
+                    className={`${styles.titleImage} ${styles.titleImageMobileOnly}`}
+                  />
+                  <Image
+                    src={hero.titleImage.src}
+                    alt={hero.titleImage.alt}
+                    width={hero.titleImage.width}
+                    height={hero.titleImage.height}
+                    className={`${styles.titleImage} ${styles.titleImageDesktopOnly}`}
+                  />
+                </>
               ) : (
-                <span key={i}>{seg.text}</span>
-              )
-            )}
-            {hero.descLine2 && (
-              <>
-                <br />
-                <MobileBreakText text={hero.descLine2} breakClassName={styles.mobileBreak} />
-              </>
-            )}
-            <br />
-            <MobileBreakText text={hero.descLine3} breakClassName={styles.mobileBreak} />
-          </motion.p>
+                <Image
+                  src={hero.titleImage.src}
+                  alt={hero.titleImage.alt}
+                  width={hero.titleImage.width}
+                  height={hero.titleImage.height}
+                  className={styles.titleImage}
+                />
+              )}
+            </motion.div>
+          ) : (
+            <motion.h1 className={styles.title} custom={0.4} initial="hidden" animate="show" variants={lineVariants}>
+              {titleSegments
+                ? titleSegments.map((seg, i) =>
+                    seg.accent ? (
+                      <span key={i} className={styles.titleAccent}>
+                        {seg.text}
+                      </span>
+                    ) : (
+                      <span key={i}>{seg.text}</span>
+                    )
+                  )
+                : hero.titleLine1}
+              {hero.titleLine2 && (
+                <>
+                  <br />
+                  {hero.titleLine2}
+                </>
+              )}
+              {hero.titleLine3 && (
+                <>
+                  <br />
+                  {hero.titleLine3}
+                </>
+              )}
+            </motion.h1>
+          )}
+
+          {hero.descLine1 && (
+            <motion.p className={styles.desc} custom={0.65} initial="hidden" animate="show" variants={lineVariants}>
+              {descSegments.map((seg, i) =>
+                seg.accent ? (
+                  <strong key={i} className={styles.descAccent}>
+                    {seg.text}
+                  </strong>
+                ) : (
+                  <span key={i}>{seg.text}</span>
+                )
+              )}
+              {hero.descLine2 && (
+                <>
+                  <br />
+                  <MobileBreakText text={hero.descLine2} breakClassName={styles.mobileBreak} />
+                </>
+              )}
+              {hero.descLine3 && (
+                <>
+                  <br />
+                  <MobileBreakText text={hero.descLine3} breakClassName={styles.mobileBreak} />
+                </>
+              )}
+            </motion.p>
+          )}
 
           {hero.brandLogo && (
             <motion.div
@@ -266,15 +364,53 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
         </div>
       )}
 
-      <motion.div
-        className={styles.scrollIndicator}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 1.1 }}
-      >
-        <span className={styles.scrollText}>Discover</span>
-        <span className={styles.scrollLine} />
-      </motion.div>
+      {slides && slides.length > 1 && (
+        <motion.div
+          className={styles.slideNav}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 1.1 }}
+        >
+          <button type="button" className={styles.slideArrow} onClick={prevSlide} aria-label="이전 배경 이미지">
+            <svg width="8" height="14" viewBox="0 0 8 14" fill="none" aria-hidden="true">
+              <path d="M7 1L1 7L7 13" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+
+          <ul className={styles.slideThumbs}>
+            {slides.map((slide, i) => (
+              <li key={i}>
+                <button
+                  type="button"
+                  className={cn(styles.slideThumbBtn, i === activeSlide && styles.slideThumbBtnActive)}
+                  onClick={() => goToSlide(i)}
+                  aria-label={`${i + 1}번째 배경 이미지로 보기`}
+                >
+                  <Image src={slide.bgImage.src} alt="" fill sizes="120px" className={styles.slideThumbImg} />
+                </button>
+              </li>
+            ))}
+          </ul>
+
+          <button type="button" className={styles.slideArrow} onClick={nextSlide} aria-label="다음 배경 이미지">
+            <svg width="8" height="14" viewBox="0 0 8 14" fill="none" aria-hidden="true">
+              <path d="M1 1L7 7L1 13" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+        </motion.div>
+      )}
+
+      {!(slides && slides.length > 1) && (
+        <motion.div
+          className={styles.scrollIndicator}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 1.1 }}
+        >
+          <span className={styles.scrollText}>Discover</span>
+          <span className={styles.scrollLine} />
+        </motion.div>
+      )}
 
       {mobileBar && (
         <motion.div

@@ -135,7 +135,9 @@ export default function SignatureLocation({ location }) {
           {location.eyebrowPlain}
           <strong>{location.eyebrowAccent}</strong>
         </p>
-        <h2 className={location.subhead ? styles.titleBold : styles.title}>{location.title}</h2>
+        <h2 className={location.subhead ? styles.titleBold : styles.title}>
+          <MobileBreakText text={location.title} />
+        </h2>
         <p className={location.subhead ? styles.descTitleLight : styles.descTitle}>
           <Highlighted text={location.descTitle} accent={location.descTitleAccent} accentClassName={styles.descAccent} />
         </p>
@@ -193,7 +195,9 @@ export default function SignatureLocation({ location }) {
         </Reveal>
       )}
 
-      <Stagger className={`${styles.grid} ${location.subhead ? (location.features[0]?.image ? styles.gridPhoto : styles.gridNum) : ''}`}>
+      <Stagger
+        className={`${styles.grid} ${location.features[0]?.image ? styles.gridPhoto : location.features[0]?.num ? styles.gridNum : ''}`}
+      >
         {location.features.map((f) =>
           f.num && f.image ? (
             <StaggerItem key={f.num} className={styles.photoCard}>
@@ -215,7 +219,9 @@ export default function SignatureLocation({ location }) {
                   </p>
                 ) : (
                   <>
-                    {CATEGORY_ICONS[f.category] && <span className={styles.photoCardIcon}>{CATEGORY_ICONS[f.category]}</span>}
+                    {!location.hideFeatureIcon && CATEGORY_ICONS[f.category] && (
+                      <span className={styles.photoCardIcon}>{CATEGORY_ICONS[f.category]}</span>
+                    )}
                     <p className={styles.photoCardCategory}>{f.category}</p>
                   </>
                 )}

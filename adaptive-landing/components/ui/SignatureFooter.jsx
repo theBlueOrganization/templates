@@ -29,7 +29,7 @@ export default function SignatureFooter({ footer, telNumber, telNumberByUtm, pro
 
         <div className={styles.bottomRow}>
           <div className={styles.logo}>
-            <Image src={footer.logo.src} alt={footer.logo.alt} width={130} height={39} />
+            <Image src={footer.logo.src} alt={footer.logo.alt} width={footer.logo.width || 130} height={footer.logo.height || 39} />
           </div>
           <div className={styles.vr} />
           <div className={styles.info}>

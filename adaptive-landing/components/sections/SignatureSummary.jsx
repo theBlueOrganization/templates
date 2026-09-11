@@ -90,7 +90,7 @@ export default function SignatureSummary({ summary }) {
           {summary.notice && <p className={styles.notice}>{summary.notice}</p>}
 
           <Reveal delay={0.15} className={styles.tableWrap}>
-            <table className={styles.table}>
+            <table className={cn(styles.table, summary.variant === 'clean' && styles.tableClean)}>
               <tbody>
                 {specItems.map((item) => (
                   <tr key={item.label}>

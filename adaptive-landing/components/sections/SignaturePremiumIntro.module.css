@@ -159,6 +159,26 @@
   text-align: center;
 }
 
+/* premiumIntro.align === 'left' 전용 — 중앙 정렬 대신 텍스트를 왼쪽 정렬하고, 섹션 안에서도
+   가운데가 아니라 왼쪽으로 붙임(auto 오른쪽 마진으로 flex 컨테이너 안에서 왼쪽으로 밀림) */
+.contentLeft {
+  align-items: flex-start;
+  text-align: left;
+  margin-right: auto;
+  max-width: 640px;
+}
+
+.sectionLeft {
+  justify-content: flex-start;
+  padding-left: 24px;
+}
+
+@media (min-width: 1024px) {
+  .sectionLeft {
+    padding-left: 100px;
+  }
+}
+
 .accentLine {
   width: 48px;
   height: 2px;
@@ -208,16 +228,16 @@
   font-family: var(--font-sans);
   font-size: 14px;
   line-height: 1.8;
-  color: #555;
+  color: var(--intro-desc-color, #555);
   max-width: 640px;
   white-space: pre-line;
   word-break: keep-all;
-  text-shadow: 0 1px 10px rgba(255, 255, 255, 0.75);
+  text-shadow: var(--intro-desc-shadow, 0 1px 10px rgba(255, 255, 255, 0.75));
 }
 
 .descAccent {
   font-weight: 800;
-  color: var(--navy, #06203e);
+  color: var(--intro-desc-accent-color, var(--navy, #06203e));
 }
 
 .mobileBreak {
@@ -330,5 +350,58 @@
 
   .scrollLine {
     height: 60px;
+  }
+}
+
+/* align:'left' 전용 최종 오버라이드 — 위쪽 규칙들(특히 1024px 미디어쿼리)이 나중에 선언돼 있어
+   캐스케이드상 이겨버리므로, 파일 맨 끝에서 다시 덮어써서 왼쪽 여백/폰트 크기/자간이 항상
+   적용되게 함(예: 두산위브더제니스 부천 — 세리프 폰트로 바꾸면서 커진 크기 보정) */
+.sectionLeft {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.contentLeft .title {
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.contentLeft .titleLine1 {
+  font-size: 22px;
+  letter-spacing: -0.04em;
+}
+
+.contentLeft .titleLine2 {
+  font-size: 26px;
+  letter-spacing: -0.04em;
+  line-height: 1.35;
+}
+
+@media (min-width: 768px) {
+  .contentLeft .titleLine1 {
+    font-size: 30px;
+  }
+
+  .contentLeft .titleLine2 {
+    font-size: 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sectionLeft {
+    padding-left: 100px;
+    padding-right: 60px;
+  }
+
+  .contentLeft .title {
+    gap: 18px;
+  }
+
+  .contentLeft .titleLine1 {
+    font-size: 38px;
+  }
+
+  .contentLeft .titleLine2 {
+    font-size: 52px;
   }
 }

@@ -108,49 +108,55 @@ const ICONS = {
 // 그리드 스타일과는 완전히 분리된 렌더 트리라 다른 현장에는 영향 없음.
 function NumberedPremiumValue({ premiumValue }) {
   const { sideLabel } = premiumValue
+  // sideLabel(High-end/Premium/8)을 고정 좌측 컬럼이 아니라, 카드 8개 한가운데(9개 그리드의 5번째,
+  // 3열 기준 정중앙)에 끼워 넣는 카드 하나로 취급 — 3열일 때만 정확히 정중앙에 옴
+  const items = sideLabel
+    ? [...premiumValue.cards.slice(0, 4), { sideLabel: true, ...sideLabel }, ...premiumValue.cards.slice(4)]
+    : premiumValue.cards
+
   return (
     <section id={premiumValue.id} className={styles.section}>
       <div className={styles.numberedLayout}>
-        {sideLabel && (
-          <div className={styles.sideLabel}>
-            <span className={styles.sideLabelScript}>
-              {sideLabel.scriptLine1}
-              <br />
-              {sideLabel.scriptLine2}
-            </span>
-            <span className={styles.sideLabelNumber}>{sideLabel.number}</span>
-          </div>
-        )}
+        <Reveal className={styles.header}>
+          <p className={styles.eyebrow}>{premiumValue.eyebrow}</p>
+          <h2 className={styles.title}>
+            <MobileBreakText text={premiumValue.titlePlain} breakClassName={styles.mobileBreak} />
+            <strong>
+              <MobileBreakText text={premiumValue.titleAccent} breakClassName={styles.mobileBreak} />
+            </strong>
+          </h2>
+        </Reveal>
 
-        <div className={styles.numberedMain}>
-          <Reveal className={styles.header}>
-            <p className={styles.eyebrow}>{premiumValue.eyebrow}</p>
-            <h2 className={styles.title}>
-              <MobileBreakText text={premiumValue.titlePlain} breakClassName={styles.mobileBreak} />
-              <strong>
-                <MobileBreakText text={premiumValue.titleAccent} breakClassName={styles.mobileBreak} />
-              </strong>
-            </h2>
-          </Reveal>
-
-          <Stagger className={`${styles.grid} ${styles.gridNumbered}`}>
-            {premiumValue.cards.map((card) => (
-              <StaggerItem key={card.num} className={styles.cardNumbered}>
-                <div className={styles.numberedHead}>
-                  <span className={styles.numberedHeadLabel}>PREMIUM</span>
-                  <span className={styles.numberedHeadLine} />
-                  <span className={styles.numberedHeadNum}>{card.num}</span>
+        <Stagger className={`${styles.grid} ${styles.gridNumbered}`}>
+          {items.map((card, i) =>
+            card.sideLabel ? (
+              <StaggerItem key="side-label" className={styles.cardSideLabel}>
+                <span className={styles.sideLabelScript}>
+                  {card.scriptLine1}
+                  <br />
+                  {card.scriptLine2}
+                </span>
+                <span className={styles.sideLabelNumber}>{card.number}</span>
+              </StaggerItem>
+            ) : (
+              <StaggerItem key={card.num ?? i} className={styles.cardNumbered}>
+                <div className={styles.numberedText}>
+                  <div className={styles.numberedHead}>
+                    <span className={styles.numberedHeadLabel}>PREMIUM</span>
+                    <span className={styles.numberedHeadLine} />
+                    <span className={styles.numberedHeadNum}>{card.num}</span>
+                  </div>
+                  <h3 className={styles.numberedTitle}>
+                    {card.title.map((line, j) => (
+                      <span key={j}>{line}</span>
+                    ))}
+                  </h3>
+                  <p className={styles.numberedDesc}>
+                    {card.desc.map((line, j) => (
+                      <span key={j}>{line}</span>
+                    ))}
+                  </p>
                 </div>
-                <h3 className={styles.numberedTitle}>
-                  {card.title.map((line, j) => (
-                    <span key={j}>{line}</span>
-                  ))}
-                </h3>
-                <p className={styles.numberedDesc}>
-                  {card.desc.map((line, j) => (
-                    <span key={j}>{line}</span>
-                  ))}
-                </p>
                 {card.image && (
                   <div className={styles.numberedImageBox}>
                     <Image
@@ -163,9 +169,9 @@ function NumberedPremiumValue({ premiumValue }) {
                   </div>
                 )}
               </StaggerItem>
-            ))}
-          </Stagger>
-        </div>
+            )
+          )}
+        </Stagger>
       </div>
     </section>
   )

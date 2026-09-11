@@ -6,6 +6,24 @@
   align-items: center;
 }
 
+/* complex.gallery — 문주/공개공지/어린이놀이터 등 포인트 조경을 별도 섹션으로 분리. 회색 여백 없이
+   남색이 화면 끝까지 꽉 차도록(full-bleed) 섹션 배경 자체를 남색으로 */
+.gallerySection {
+  min-height: 100svh;
+  background: #14153f;
+  padding: 60px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 1024px) {
+  .gallerySection {
+    /* 오른쪽 고정 퀵메뉴(96px + right:24px)와 겹치지 않도록 우측 여백 확보 */
+    padding: 100px 140px 100px 40px;
+  }
+}
+
 .head {
   display: flex;
   flex-direction: column;
@@ -67,6 +85,128 @@
   gap: 24px;
   width: 100%;
   max-width: 1200px;
+}
+
+/* complex.gallery — 단지배치도 다음에 이어지는 문주/공개공지/어린이놀이터 등 포인트 조경 3장.
+   공식 홈페이지 참고 — 남색 배경 박스 안에 타이틀(좌)/설명(우) 헤더 + 3분할 사진 그리드 */
+.galleryDark {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1600px;
+  padding: 32px 20px;
+  background: #14153f;
+  color: #fff;
+}
+
+.galleryHead {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.galleryTitle {
+  display: flex;
+  flex-direction: column;
+  font-size: 26px;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  color: #fff;
+  word-break: keep-all;
+}
+
+.galleryTitle strong {
+  margin-top: 4px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.galleryTitleAccent {
+  color: var(--gold, #cbb489);
+}
+
+.galleryViewMore {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  align-self: flex-end;
+  margin-top: 24px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #fff;
+}
+
+.galleryDesc {
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.65);
+  white-space: pre-line;
+  word-break: keep-all;
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+.galleryItem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.galleryImgWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 517 / 366;
+  overflow: hidden;
+}
+
+.galleryImg {
+  object-fit: cover;
+}
+
+.galleryLabel {
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+@media (min-width: 768px) {
+  .galleryGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .galleryDark {
+    padding: 48px 40px;
+  }
+
+  .galleryHead {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .galleryTitle {
+    font-size: 44px;
+  }
+
+  .galleryDesc {
+    max-width: 360px;
+    font-size: 18px;
+    text-align: right;
+  }
+
+  .galleryGrid {
+    gap: 36px;
+  }
 }
 
 .panel {

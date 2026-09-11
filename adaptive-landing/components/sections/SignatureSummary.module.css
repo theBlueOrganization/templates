@@ -118,6 +118,45 @@
   display: block;
 }
 
+/* tableClean — summary.variant가 'clean'인 현장 전용. 라벨/값을 중앙정렬 표 대신 좌측정렬로
+   라벨 아래 값을 쌓고, 라벨 바로 밑에만 얇은 구분선을 둔다(예: 더샵검단레이크파크3 참고 디자인) */
+.table.tableClean {
+  display: block;
+}
+
+.tableClean tbody {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 28px;
+}
+
+.tableClean tr {
+  display: flex;
+  flex-direction: column;
+}
+
+.tableClean th,
+.tableClean td {
+  text-align: left;
+  padding: 0;
+  white-space: normal;
+}
+
+.tableClean th {
+  width: auto;
+  font-weight: 700;
+  color: #b49480;
+  background: none;
+  border-bottom: 1px solid #e8e8e8;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.tableClean td {
+  color: #111;
+  border-bottom: none;
+}
+
 .notice {
   margin: 16px 0;
   font-size: 12px;
@@ -343,5 +382,29 @@
 
   .disclaimers li {
     font-size: 13px;
+  }
+}
+
+/* tableClean 전용 데스크톱 오버라이드 — 위 1024px 블록(3열/중앙정렬 표)이 .table 기준 규칙이라
+   캐스케이드 순서상 나중에 이겨버리므로, 파일 맨 끝에 다시 덮어써서 좌측정렬 2열 + 골드 라벨
+   색/구분선이 항상 적용되게 함 */
+@media (min-width: 1024px) {
+  .tableClean tbody {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 40px;
+  }
+
+  .tableClean th {
+    font-size: 22px;
+    color: #b49480;
+    border-bottom: 1px solid #e8e8e8;
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+  }
+
+  .tableClean td {
+    font-size: 17px;
+    color: #111;
+    padding-bottom: 0;
   }
 }

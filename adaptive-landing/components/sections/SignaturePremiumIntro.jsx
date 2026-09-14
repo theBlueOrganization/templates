@@ -76,7 +76,14 @@ export default function SignaturePremiumIntro({ premiumIntro }) {
 
   const introStyle = {
     ...(premiumIntro.fontFamily && { '--intro-font': premiumIntro.fontFamily }),
-    ...(premiumIntro.titleColor && { '--intro-color': premiumIntro.titleColor }),
+    ...(premiumIntro.titleColor && {
+      '--intro-color': premiumIntro.titleColor,
+      '--intro-title-shadow': premiumIntro.titleShadow || '0 2px 16px rgba(0, 0, 0, 0.55)',
+    }),
+    ...(premiumIntro.eyebrowColor && {
+      '--intro-eyebrow-color': premiumIntro.eyebrowColor,
+      '--intro-eyebrow-shadow': premiumIntro.eyebrowShadow || 'none',
+    }),
     ...(premiumIntro.descColor && {
       '--intro-desc-color': premiumIntro.descColor,
       '--intro-desc-shadow': premiumIntro.descShadow || '0 2px 12px rgba(0, 0, 0, 0.65)',
@@ -94,29 +101,47 @@ export default function SignaturePremiumIntro({ premiumIntro }) {
         {premiumIntro.overlay !== false && <div className={styles.overlay} />}
       </div>
 
-      <Reveal className={cn(styles.content, premiumIntro.align === 'left' && styles.contentLeft)}>
-        <span className={styles.accentLine} />
-        <p className={styles.eyebrow}>{premiumIntro.eyebrow}</p>
-        <h2 className={styles.title}>
-          <span className={styles.titleLine1}>{premiumIntro.titleLine1}</span>
-          <span className={styles.titleLine2}>
-            <MobileBreakText text={premiumIntro.titleLine2} />
-          </span>
-        </h2>
-        <p className={styles.desc}>
-          {descSegments.map((seg, i) =>
-            seg.accent ? (
-              <strong key={i} className={styles.descAccent}>
-                {renderDescBreaks(seg.text)}
-              </strong>
-            ) : (
-              <span key={i}>{renderDescBreaks(seg.text)}</span>
-            )
+      {(premiumIntro.eyebrow || premiumIntro.introBox || premiumIntro.titleLine1 || premiumIntro.descLine1) && (
+        <Reveal className={cn(styles.content, premiumIntro.align === 'left' && styles.contentLeft)}>
+          {premiumIntro.introBox && (
+            <div className={styles.introBox}>
+              <p>{premiumIntro.introBox.line1}</p>
+              <p>
+                <strong>{premiumIntro.introBox.line2}</strong>
+              </p>
+            </div>
           )}
-          <br />
-          <MobileBreakText text={premiumIntro.descLine2} breakClassName={styles.mobileBreak} />
-        </p>
-      </Reveal>
+          <span className={styles.accentLine} />
+          {premiumIntro.eyebrow && <p className={styles.eyebrow}>{premiumIntro.eyebrow}</p>}
+          {premiumIntro.titleLine1 && (
+            <h2 className={cn(styles.title, premiumIntro.titleUnderline && styles.titleUnderline)}>
+              <span className={styles.titleLine1}>{premiumIntro.titleLine1}</span>
+              {premiumIntro.titleLine2 && (
+                <span className={styles.titleLine2}>
+                  <MobileBreakText text={premiumIntro.titleLine2} />
+                </span>
+              )}
+            </h2>
+          )}
+          {premiumIntro.descLine1 && (
+            <p className={styles.desc}>
+              {descSegments.map((seg, i) =>
+                seg.accent ? (
+                  <strong key={i} className={styles.descAccent}>
+                    {renderDescBreaks(seg.text)}
+                  </strong>
+                ) : (
+                  <span key={i}>{renderDescBreaks(seg.text)}</span>
+                )
+              )}
+              <br />
+              <MobileBreakText text={premiumIntro.descLine2} breakClassName={styles.mobileBreak} />
+            </p>
+          )}
+        </Reveal>
+      )}
+
+      {premiumIntro.footnote && <p className={styles.footnote}>{premiumIntro.footnote}</p>}
 
       <div className={styles.scrollIndicator}>
         <span className={styles.scrollText}>Scroll</span>

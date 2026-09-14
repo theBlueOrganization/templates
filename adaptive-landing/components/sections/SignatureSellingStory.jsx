@@ -6,7 +6,12 @@ import styles from './SignatureSellingStory.module.css'
 // 핵심가치(#story) — 통계 3개 + 씬 3개(영상 1 + 이미지 2) + 전환 CTA 스트립
 export default function SignatureSellingStory({ story }) {
   return (
-    <section id={story.id} className={styles.section} aria-labelledby="story-title">
+    <section
+      id={story.id}
+      className={styles.section}
+      aria-labelledby="story-title"
+      style={story.sceneGapDesktop ? { '--story-gap-desktop': `${story.sceneGapDesktop}px` } : undefined}
+    >
       <div className={styles.intro}>
         <Reveal className={styles.introHead}>
           <p className={styles.eyebrow}>{story.eyebrow}</p>
@@ -42,11 +47,24 @@ export default function SignatureSellingStory({ story }) {
 
       <div className={styles.scenes}>
         {story.scenes.map((scene) => (
-          <article key={scene.title} className={scene.type === 'video' || scene.wide ? styles.sceneWide : styles.scene}>
+          <article
+            key={scene.title}
+            className={(scene.wide ?? scene.type === 'video') ? styles.sceneWide : styles.scene}
+          >
+
             {scene.type === 'video' ? (
-              <video className={styles.sceneMedia} autoPlay muted loop playsInline poster={scene.video.poster} aria-label={scene.ariaLabel}>
-                <source src={scene.video.src} type="video/mp4" />
-              </video>
+              scene.youtubeId ? (
+                <iframe
+                  className={styles.sceneMedia}
+                  src={`https://www.youtube-nocookie.com/embed/${scene.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${scene.youtubeId}&controls=0&playsinline=1&rel=0`}
+                  title={scene.ariaLabel}
+                  allow="autoplay; encrypted-media"
+                />
+              ) : (
+                <video className={styles.sceneMedia} autoPlay muted loop playsInline poster={scene.video.poster} aria-label={scene.ariaLabel}>
+                  <source src={scene.video.src} type="video/mp4" />
+                </video>
+              )
             ) : (
               <Image
                 src={scene.image.src}

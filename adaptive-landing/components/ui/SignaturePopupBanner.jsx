@@ -63,7 +63,19 @@ export default function SignaturePopupBanner({ popup, openDelayMs = 2900, onClos
             transition={{ duration: 0.25 }}
             onClick={popup.hideCloseBar ? undefined : (e) => e.stopPropagation()}
           >
-            <div className={styles.imageWrap} onClick={current.link ? (e) => e.stopPropagation() : undefined}>
+            <div
+              className={styles.imageWrap}
+              onClick={
+                current.link
+                  ? (e) => {
+                      e.stopPropagation()
+                      // #section 앵커 링크는(전화 링크와 달리) 클릭 즉시 팝업을 닫아 스크롤 이동한
+                      // 섹션이 바로 보이게 함
+                      if (current.link.startsWith('#')) handleClose()
+                    }
+                  : undefined
+              }
+            >
               {current.link ? (
                 <a href={current.link} aria-label={current.linkLabel ?? '전화 문의'}>
                   <Image

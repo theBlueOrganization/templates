@@ -78,7 +78,7 @@
 
 .scenes {
   display: grid;
-  gap: 16px;
+  gap: var(--story-gap, 16px);
   padding: 40px 20px;
 }
 
@@ -95,6 +95,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border: 0;
 }
 
 .scene::after,
@@ -228,6 +229,10 @@
 @media (min-width: 1024px) {
   .section {
     background: #061723;
+  }
+
+  .scenes {
+    gap: var(--story-gap-desktop, var(--story-gap, 16px));
   }
 
   .intro {

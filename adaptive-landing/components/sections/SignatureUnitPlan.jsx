@@ -28,8 +28,18 @@ export default function SignatureUnitPlan({ unitPlan }) {
     setTypeIndex(ti)
   }
 
+  // circleImageMax/circleImagePct — 원형 스테이지 안 평면도 이미지가 기본값(570px/75%)보다
+  // 작아 보이는 현장에서 크기를 키우고 싶을 때 지정 (없으면 기존 기본값 그대로)
+  const circleStyle =
+    unitPlan.circleImageMax || unitPlan.circleImagePct
+      ? {
+          ...(unitPlan.circleImageMax && { '--circle-image-max': `${unitPlan.circleImageMax}px` }),
+          ...(unitPlan.circleImagePct && { '--circle-image-pct': unitPlan.circleImagePct }),
+        }
+      : undefined
+
   return (
-    <section id={unitPlan.id} className={styles.section}>
+    <section id={unitPlan.id} className={styles.section} style={circleStyle}>
       <div className={styles.watermark} aria-hidden="true">
         {unitPlan.watermark}
       </div>

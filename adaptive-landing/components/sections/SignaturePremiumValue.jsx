@@ -218,7 +218,13 @@ export default function SignaturePremiumValue({ premiumValue }) {
                   />
                 </div>
               )}
-              <div className={card.image ? styles.body : undefined}>
+              <div
+                className={
+                  card.image
+                    ? `${styles.body} ${premiumValue.cardTextAlign === 'center' ? styles.bodyCentered : ''}`
+                    : undefined
+                }
+              >
                 {icon ? (
                   <span className={card.image ? styles.iconBadge : styles.icon}>{icon}</span>
                 ) : (

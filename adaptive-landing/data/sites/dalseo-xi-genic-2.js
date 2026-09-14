@@ -69,6 +69,14 @@ const config = {
     popup: {
       enabled: true,
       images: [
+        {
+          src: '/apt/dalseo-xi-genic-2/popup1.png',
+          alt: '달서자이 제니크 모델하우스 문의하기',
+          width: 1254,
+          height: 1254,
+          link: 'tel:053-760-4747',
+          linkLabel: '달서자이 제니크 모델하우스 전화 문의',
+        },
         { src: '/apt/dalseo-xi-genic-2/popup3.png', alt: '달서자이 제니크 Apple DAY 주말경품 이벤트', width: 754, height: 1024 },
       ],
       closeLabel: '팝업닫기',
@@ -346,6 +354,9 @@ const config = {
 
     vipForm: {
       id: 'vip-reservation',
+      // 히어로 -> 단지 개요 다음 3번째 섹션에도 상담신청 폼을 한 번 더 노출(2026-09-14 현장 요청).
+      // 기존 페이지 최하단 폼(id: vip-reservation)은 그대로 유지 — 헤더/퀵메뉴 CTA는 계속 이 하단 폼을 가리킴.
+      showAfterSummary: true,
       eyebrow: 'VIP Reservation',
       titleLine1: '달서자이 제니크',
       titleLine2: '24시간 상담신청 및 방문예약',

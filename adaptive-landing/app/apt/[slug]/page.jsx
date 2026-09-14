@@ -201,6 +201,9 @@ export default async function AptPage({ params }) {
         {sig.benefits && <SignatureBenefits benefits={sig.benefits} />}
         {sig.visitReservation && <SignatureVisitReservation visitReservation={sig.visitReservation} config={site} />}
         <SignatureSummary summary={sig.summary} />
+        {sig.vipForm.showAfterSummary && (
+          <SignatureVipForm config={site} sectionId={`${sig.vipForm.id}-early`} />
+        )}
         <SignatureLocation location={sig.location} />
         {sig.transitDetail && <SignatureTransitDetail transit={sig.transitDetail} />}
         {sig.story && <SignatureSellingStory story={sig.story} />}

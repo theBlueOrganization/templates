@@ -13,6 +13,9 @@ import styles from './SignaturePopupBanner.module.css'
 // popup.images(배열)가 있으면 popup.image 대신 그 순서대로 한 장씩 이어서 띄우고,
 // 마지막 장을 닫으면 전체가 닫힌다(달서자이 제니크처럼 이벤트 안내 팝업 여러 장을
 // 순차 노출해야 하는 현장용 — dalseo-xi-genic.js 참고).
+// 개별 이미지에 link(예: tel:053-xxx-xxxx)를 지정하면 이미지 전체가 그 링크로 감싸져,
+// 이미지 안에 그려진 "모델하우스 문의하기" 같은 CTA를 탭했을 때 바로 전화 연결되도록 한다
+// (다음 장으로 넘기거나 닫는 동작과는 분리됨).
 export default function SignaturePopupBanner({ popup, openDelayMs = 2900, onClose }) {
   const [open, setOpen] = useState(false)
   const [index, setIndex] = useState(0)
@@ -60,16 +63,30 @@ export default function SignaturePopupBanner({ popup, openDelayMs = 2900, onClos
             transition={{ duration: 0.25 }}
             onClick={popup.hideCloseBar ? undefined : (e) => e.stopPropagation()}
           >
-            <div className={styles.imageWrap}>
-              <Image
-                src={current.src}
-                alt={current.alt}
-                width={current.width}
-                height={current.height}
-                sizes="(min-width: 768px) 430px, 90vw"
-                className={styles.image}
-                style={popup.hideCloseBar ? { borderRadius: 8 } : undefined}
-              />
+            <div className={styles.imageWrap} onClick={current.link ? (e) => e.stopPropagation() : undefined}>
+              {current.link ? (
+                <a href={current.link} aria-label={current.linkLabel ?? '전화 문의'}>
+                  <Image
+                    src={current.src}
+                    alt={current.alt}
+                    width={current.width}
+                    height={current.height}
+                    sizes="(min-width: 768px) 430px, 90vw"
+                    className={styles.image}
+                    style={popup.hideCloseBar ? { borderRadius: 8 } : undefined}
+                  />
+                </a>
+              ) : (
+                <Image
+                  src={current.src}
+                  alt={current.alt}
+                  width={current.width}
+                  height={current.height}
+                  sizes="(min-width: 768px) 430px, 90vw"
+                  className={styles.image}
+                  style={popup.hideCloseBar ? { borderRadius: 8 } : undefined}
+                />
+              )}
             </div>
 
             {!popup.hideCloseBar && (

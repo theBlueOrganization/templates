@@ -121,7 +121,7 @@ export default function SignatureInterestPopup({ interest, config, onClose, open
               </button>
             </div>
 
-            <p className={styles.eyebrow}>{interest?.eyebrow ?? 'INTEREST'}</p>
+            <p className={cn(styles.eyebrow, light && styles.eyebrowLight)}>{interest?.eyebrow ?? 'INTEREST'}</p>
             <h2 className={cn(styles.title, light && styles.titleLight)}>{interest?.title ?? '관심고객등록'}</h2>
             <p className={cn(styles.desc, light && styles.descLight)}>
               {interest?.desc ?? '간단한 정보를 입력해 주시면\n분양 정보를 가장 먼저 안내해드립니다.'}
@@ -207,7 +207,7 @@ export default function SignatureInterestPopup({ interest, config, onClose, open
                 개인정보 수집 및 이용에 동의합니다. (필수)
               </label>
 
-              <button type="submit" disabled={submitting} className={styles.submitBtn}>
+              <button type="submit" disabled={submitting} className={cn(styles.submitBtn, light && styles.submitBtnLight)}>
                 {submitting ? '전송 중...' : interest?.submitLabel ?? '관심고객 등록'}
               </button>
             </form>

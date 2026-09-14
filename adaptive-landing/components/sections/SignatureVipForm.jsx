@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react'
 import Reveal from '../motion/Reveal'
 import { useUtmSource } from '../../lib/useUtmSource'
+import { cn } from '../../lib/utils'
 import styles from './SignatureVipForm.module.css'
 
 const initialForm = {
@@ -21,6 +22,9 @@ const PHONE_FIELDS = ['phone1', 'phone2', 'phone3']
 export default function SignatureVipForm({ config }) {
   const { vipForm } = config.signature
   const { slug, projectName, visitTimeOptions, adminPhones, adminPhonesByUtm, sheetId, sheetTab, showUtmInSms } = config
+  // 요청 반영 — 히어로 다음 관심고객등록 섹션/팝업과 폰트(세리프 제목·굵기·자간)를 통일하는 옵션.
+  // 다른 현장은 vipForm.fontVariant를 안 쓰므로 기존 스타일 그대로 유지됨
+  const serif = vipForm.fontVariant === 'serif'
 
   const [form, setForm] = useState(initialForm)
   const [submitting, setSubmitting] = useState(false)
@@ -99,8 +103,8 @@ export default function SignatureVipForm({ config }) {
       <Reveal className={styles.card}>
         <form onSubmit={handleSubmit} noValidate>
           <div className={styles.header}>
-            <p className={styles.eyebrow}>{vipForm.eyebrow}</p>
-            <h2 className={styles.title}>
+            <p className={cn(styles.eyebrow, serif && styles.eyebrowSerif)}>{vipForm.eyebrow}</p>
+            <h2 className={cn(styles.title, serif && styles.titleSerif)}>
               <span>{vipForm.titleLine1}</span>
               <strong>{vipForm.titleLine2}</strong>
             </h2>
@@ -122,7 +126,7 @@ export default function SignatureVipForm({ config }) {
             <h3 className={styles.groupTitle}>고객 정보 입력</h3>
 
             <div className={styles.row}>
-              <span className={styles.label}>이름</span>
+              <span className={cn(styles.label, serif && styles.labelSerif)}>이름</span>
               <input
                 type="text"
                 name="name"
@@ -135,7 +139,7 @@ export default function SignatureVipForm({ config }) {
             </div>
 
             <div className={styles.row}>
-              <span className={styles.label}>휴대폰</span>
+              <span className={cn(styles.label, serif && styles.labelSerif)}>휴대폰</span>
               <div className={styles.phoneRow}>
                 {PHONE_FIELDS.map((field, i) => (
                   <input
@@ -154,7 +158,7 @@ export default function SignatureVipForm({ config }) {
             </div>
 
             <div className={styles.row}>
-              <span className={styles.label}>원하시는 서비스</span>
+              <span className={cn(styles.label, serif && styles.labelSerif)}>원하시는 서비스</span>
               <div className={styles.radioWrap}>
                 {vipForm.serviceOptions.map((opt) => (
                   <label key={opt} className={styles.radioLabel}>
@@ -166,7 +170,7 @@ export default function SignatureVipForm({ config }) {
             </div>
 
             <div className={styles.row}>
-              <span className={styles.label}>원하시는 일시</span>
+              <span className={cn(styles.label, serif && styles.labelSerif)}>원하시는 일시</span>
               <div className={styles.datetimeRow}>
                 <input type="date" name="visit_date" value={form.visit_date} onChange={handleChange} className={styles.dateInput} />
                 <select name="visit_time" value={form.visit_time} onChange={handleChange} className={styles.selectInput}>
@@ -181,7 +185,7 @@ export default function SignatureVipForm({ config }) {
             </div>
 
             <div className={styles.row}>
-              <span className={styles.label}>연령대</span>
+              <span className={cn(styles.label, serif && styles.labelSerif)}>연령대</span>
               <div className={styles.radioWrap}>
                 {vipForm.ageOptions.map((opt) => (
                   <label key={opt} className={styles.radioLabel}>
@@ -193,7 +197,7 @@ export default function SignatureVipForm({ config }) {
             </div>
           </div>
 
-          <button type="submit" disabled={submitting} className={styles.submitBtn}>
+          <button type="submit" disabled={submitting} className={cn(styles.submitBtn, serif && styles.submitBtnSerif)}>
             {submitting ? '전송 중...' : '예약완료'}
           </button>
         </form>

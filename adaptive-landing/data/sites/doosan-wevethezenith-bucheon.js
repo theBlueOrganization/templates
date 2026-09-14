@@ -552,6 +552,8 @@ const config = {
 
     vipForm: {
       id: 'vip-reservation',
+      // 히어로 다음 관심고객등록 섹션/팝업과 폰트(세리프 제목·굵기·자간)를 통일
+      fontVariant: 'serif',
       eyebrow: 'VIP Reservation',
       titleLine1: '두산위브더제니스 부천',
       titleLine2: '24시간 상담신청 및 방문예약',

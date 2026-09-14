@@ -287,6 +287,7 @@
 
 .fieldLabelLight {
   color: var(--ink, #5c4e3c);
+  font-weight: 800;
 }
 
 .radioLabelLight,
@@ -298,4 +299,16 @@
   background: var(--cream, #fffdf8);
   border-color: var(--gold, #dccfb2);
   color: var(--ink, #3a2f26);
+}
+
+/* SignatureVisitReservation의 .eyebrow/.form>button과 폰트 굵기·자간을 통일 */
+.eyebrowLight {
+  font-weight: 800;
+  letter-spacing: 0.2em;
+}
+
+.submitBtnLight {
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.1em;
 }

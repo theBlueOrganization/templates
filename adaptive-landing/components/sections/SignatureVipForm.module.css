@@ -245,3 +245,31 @@
     font-size: 16px;
   }
 }
+
+/* 요청 반영 — 히어로 다음 관심고객등록 섹션/팝업(SignatureVisitReservation·SignatureInterestPopup의
+   light variant)과 폰트(세리프 제목·굵기·자간)를 통일하는 옵션(vipForm.fontVariant === 'serif').
+   다른 현장은 안 쓰므로 위 기본 스타일 그대로 유지됨 */
+.eyebrowSerif {
+  font-weight: 800;
+  letter-spacing: 0.2em;
+}
+
+.titleSerif {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.titleSerif strong {
+  font-weight: 500;
+  color: var(--gold, #fff);
+}
+
+.labelSerif {
+  font-weight: 800;
+}
+
+.submitBtnSerif {
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}

@@ -260,3 +260,42 @@
     font-size: 26px;
   }
 }
+
+/* 요청 반영 — 히어로 다음 관심고객등록 섹션(SignatureVisitReservation)과 같은 크림+골드 라이트
+   무드로 보이게 하는 옵션(interest.variant === 'light'). 다른 현장은 안 쓰므로 위 다크 네이비
+   카드 스타일에 영향 없음 */
+.cardLight {
+  background: radial-gradient(120% 80% at 50% 0, var(--cream, #fffdf7) 0%, var(--cream, #fdf8ee) 60%, var(--cream, #fbf4e6) 100%);
+  border: 1px solid var(--gold, #e7dcc2);
+  box-shadow: inset 0 1px #fffdf8, 0 2px 8px rgba(107, 75, 31, 0.08), 0 30px 74px rgba(107, 75, 31, 0.16);
+}
+
+.closeIconLight {
+  color: var(--ink, #3a2f26);
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.titleLight {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  color: var(--ink, #3a2f26);
+}
+
+.descLight {
+  color: #79705d;
+}
+
+.fieldLabelLight {
+  color: var(--ink, #5c4e3c);
+}
+
+.radioLabelLight,
+.checkLabelLight {
+  color: #6a6252;
+}
+
+.inputLight {
+  background: var(--cream, #fffdf8);
+  border-color: var(--gold, #dccfb2);
+  color: var(--ink, #3a2f26);
+}

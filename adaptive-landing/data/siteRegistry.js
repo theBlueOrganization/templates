@@ -8,6 +8,7 @@ import theSharpGeomdanLakepark3 from './sites/the-sharp-geomdan-lakepark-3'
 import theSharpGeomdanLakepark4 from './sites/the-sharp-geomdan-lakepark-4'
 import deoksoDoubleviewHangang from './sites/deokso-doubleview-hangang'
 import dalseoXiGenic from './sites/dalseo-xi-genic'
+import dalseoXiGenic2 from './sites/dalseo-xi-genic-2'
 import hanyangIclassYangju from './sites/hanyang-iclass-yangju'
 import hanyangIclassYangju2 from './sites/hanyang-iclass-yangju-2'
 import doosanWevethezenithBucheon from './sites/doosan-wevethezenith-bucheon'
@@ -35,6 +36,7 @@ const sites = [
   theSharpGeomdanLakepark4,
   deoksoDoubleviewHangang,
   dalseoXiGenic,
+  dalseoXiGenic2,
   hanyangIclassYangju,
   hanyangIclassYangju2,
   doosanWevethezenithBucheon,

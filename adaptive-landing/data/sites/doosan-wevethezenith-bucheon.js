@@ -46,8 +46,9 @@ const config = {
   signature: {
     header: {
       // 히어로에 어두운 오버레이가 없어 위(투명 상태)에서는 남색 로고가, 스크롤 후(불투명 배경)에는
-      // 흰색 로고가 보이도록 SignatureHeader의 logo/logoWhite 용도를 이 현장만 바꿔서 사용
-      logo: { src: '/apt/doosan-wevethezenith-bucheon/logo-white.png', alt: '두산위브더제니스 부천', width: 159, height: 19 },
+      // 흰색 로고가 보이도록 SignatureHeader의 logo/logoWhite 용도를 이 현장만 바꿔서 사용.
+      // 화이트 로고는 푸터와 동일한 고해상도 파일(footer-logo.png)로 통일
+      logo: { src: '/apt/doosan-wevethezenith-bucheon/footer-logo.png', alt: '두산위브더제니스 부천', width: 511, height: 60 },
       logoWhite: { src: '/apt/doosan-wevethezenith-bucheon/logo.png', alt: '두산위브더제니스 부천', width: 204, height: 24 },
       gnb: ['사업개요', '입지환경', '프리미엄', '단지안내', '세대안내', '커뮤니티', '상담신청 및 방문예약'],
       quickCtaLabel: '관심고객등록',
@@ -67,9 +68,9 @@ const config = {
       keepTextShadow: true,
       overlay: false,
       contentTop: true,
-      // 요청 반영 — 히어로 문구(타이틀 이미지) 아래에 추가로 표시하는 로고. 헤더의 투명(히어로 위) 상태와
-      // 동일한 배경이라 같은 흰색 워드마크(logo-white.png)를 재사용
-      brandLogo: { src: '/apt/doosan-wevethezenith-bucheon/logo-white.png', alt: '두산위브더제니스 부천', width: 159, height: 19 },
+      // 요청 반영 — 히어로 문구(타이틀 이미지) 아래에 추가로 표시하는 로고. 푸터에 쓰는 고해상도
+      // 화이트 로고(footer-logo.png)를 재사용
+      brandLogo: { src: '/apt/doosan-wevethezenith-bucheon/footer-logo.png', alt: '두산위브더제니스 부천', width: 511, height: 60 },
       // 슬라이드별 문구도 공식 홈페이지 그대로 반영
       slides: [
         {
@@ -571,7 +572,7 @@ const config = {
     },
 
     footer: {
-      logo: { src: '/apt/doosan-wevethezenith-bucheon/footer-logo.png', alt: '두산위브더제니스 부천', width: 159, height: 19 },
+      logo: { src: '/apt/doosan-wevethezenith-bucheon/footer-logo.png', alt: '두산위브더제니스 부천', width: 511, height: 60 },
       highlightText: '1533-6480',
       agencySlogan: '분양완판 전문가 그룹, (주) 더블루파트너스',
       companyLines: [

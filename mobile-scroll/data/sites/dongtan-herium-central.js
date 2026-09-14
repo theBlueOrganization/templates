@@ -30,6 +30,10 @@ const config = {
     },
   },
 
+  // 선착순 파격 할인 분양(sub-visual) 섹션 다음에 관심고객등록(상담신청) 폼을 하나 더 노출 (하단 상담신청 섹션과 합쳐 총 2개)
+  extraContactFormExcludeUtm: [],
+  extraContactFormAfterSectionId: "sub-visual",
+
   company: {
     name:      "주식회사 더블루파트너스",
     bizNumber: "789-81-03093",
@@ -70,6 +74,7 @@ const config = {
       id:         "sub-visual",
       type:       "image",
       showHeader: false,
+      sectionBg:  "#010A27",
       images: [
         { src: "/apt/dongtan-herium-central/sub-main.webp", alt: "동탄헤리움센트럴 서브 메인 이미지" },
       ],

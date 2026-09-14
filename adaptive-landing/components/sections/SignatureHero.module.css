@@ -667,6 +667,13 @@
   height: 60px;
 }
 
+/* hero.mobileBar.hideActionButtons인 현장 전용 — 버튼을 안 보이게만 하고 높이는 그대로 남겨서,
+   바로 위 promoBubble(bottom:100% 기준)의 위치 계산이 밀리지 않게 함 */
+.actionButtonsHidden {
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .callBtn,
 .visitBtn {
   flex: 1;

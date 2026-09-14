@@ -470,8 +470,12 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
             )
           )}
 
-          {!mobileBar.hideActionButtons && (
-            <div className={styles.actionButtons}>
+          {
+            // hideActionButtons여도 실제로 렌더는 계속 하되 visibility:hidden만 줌 — promoBubble이
+            // bottom:100%로 이 영역(actionButtons) 위에 붙는 위치 계산을 하기 때문에, 아예 안 그리면
+            // 그만큼 mobileBar 전체 높이가 줄어들어 말풍선이 아래로 밀려 안내바와 겹쳐 보였음(요청 반영)
+          }
+          <div className={cn(styles.actionButtons, mobileBar.hideActionButtons && styles.actionButtonsHidden)}>
               <a href={`tel:${resolvedTelNumber}`} className={styles.callBtn}>
                 <svg width="22" height="22" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                   <path
@@ -493,7 +497,6 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
                 {mobileBar.visitLabel}
               </button>
             </div>
-          )}
         </motion.div>
       )}
 

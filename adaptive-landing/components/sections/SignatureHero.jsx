@@ -470,8 +470,7 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
             )
           )}
 
-          {!mobileBar.hideActionButtons && (
-            <div className={styles.actionButtons}>
+          <div className={cn(styles.actionButtons, mobileBar.hideActionButtons && styles.actionButtonsHidden)}>
               <a href={`tel:${resolvedTelNumber}`} className={styles.callBtn}>
                 <svg width="22" height="22" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                   <path
@@ -493,7 +492,6 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
                 {mobileBar.visitLabel}
               </button>
             </div>
-          )}
         </motion.div>
       )}
 

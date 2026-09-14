@@ -667,6 +667,15 @@
   height: 60px;
 }
 
+/* hero.mobileBar.hideActionButtons인 현장 전용 — 버튼은 안 보이되 DOM에는 남겨서 레이아웃이
+   흔들리지 않게 함(높이는 0이라 promoBubble/안내바 위치에는 영향 없음, margin-bottom:14px 덕분에
+   안내바와 겹치지도 않음) */
+.actionButtonsHidden {
+  visibility: hidden;
+  pointer-events: none;
+  height: 0;
+}
+
 .callBtn,
 .visitBtn {
   flex: 1;

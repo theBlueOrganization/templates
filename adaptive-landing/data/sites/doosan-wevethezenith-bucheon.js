@@ -10,19 +10,22 @@ const config = {
   telNumber: '1533-6480',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/doosan-wevethezenith-bucheon/main.jpg',
   adminPhones: ['01071901052', '01049851470'],
+  // 엘포인트(?utm_source=lpoint) 유입만 상담 접수 SMS 수신번호를 이 4개로 덮어씀
+  adminPhonesByUtm: {
+    lpoint: ['01049851470', '01071901052', '01075737002', '01046743499'],
+  },
   sheetId: '',
   sheetTab: '두산위브더제니스부천',
   showUtmInSms: true,
   // 유입경로 없이(직접유입) 들어오면 항상 "+롯데온"이 붙고, ?utm_source=lpoint로 들어오면
   // 아래 smsProjectNameByUtm이 우선 적용되어 "+엘포인트"로 구분된다 (route.js 분기 참고)
   smsProjectNameSuffix: '롯데온',
-  // 요청 반영 — 엘포인트 유입경로 링크 1종 추가. 실제 링크는
-  // https://두산위브더제니스부천.addupapt.kr?utm_source=lpoint
-  utmSources: [{ label: '엘포인트', value: 'lpoint' }],
   // 상담 접수 문자 제목에 "현장명 +엘포인트"로 표시 (예: "[두산위브더제니스 부천 +엘포인트] 신규 상담 신청")
   smsProjectNameByUtm: {
     lpoint: '엘포인트',
   },
+  // 구글시트는 직접유입일 때만 "현장명 +롯데온"으로 기록하고, 엘포인트 유입은 접미사 없이 현장명 그대로 기록
+  sheetProjectNameSuffix: '롯데온',
 
   colorTheme: { navy: '#111111', ink: '#111111', cream: '#ffffff', gold: '#b49480' },
 
@@ -105,34 +108,7 @@ const config = {
       },
     },
 
-    // 요청 반영 — 히어로 바로 다음에 배치하는 "관심고객등록" 섹션. 하단 상담신청(vipForm)과 필드
-    // 구성은 동일(SignatureVisitReservation 재사용)하되 id/문구/serviceType을 분리해 두 신청 지점을
-    // 구글시트·문자에서 구분할 수 있게 함
-    visitReservation: {
-      id: 'quick-interest',
-      eyebrow: 'INTEREST',
-      titlePlain: '두산위브더제니스 부천',
-      titleAccent: '관심고객등록',
-      leadLines: ['간단한 정보를 남겨주시면 담당자가 빠르게 안내해 드립니다.', '분양 정보와 특별 혜택을 가장 먼저 받아보세요.'],
-      panelLabel: 'INTEREST REGISTER',
-      panelTitle: '관심고객등록',
-      panelDesc: '원하는 방문 날짜와 시간을 선택해 주세요.',
-      privacySummary: '개인정보 수집·이용 및 처리 위탁에 관한 동의 (더보기)',
-      privacyText: `본 분양사업과 관련된 상담을 수행하는 상담사(이하 "개인정보처리자")는 아래와 같이 귀하의 개인정보를 수집, 이용하고자 합니다.
-수집된 개인정보는 명시된 목적 외의 용도로 이용되지 않으며, 「개인정보 보호법」 등 관계 법령을 준수하여 안전하게 처리됩니다.
-
-1. 개인정보의 처리 목적 : 두산위브더제니스 부천 분양 관련 정보 제공, 방문예약 접수 및 상담 진행, 고객 문의 응대
-2. 처리하는 개인정보의 항목 : 성명, 휴대전화번호, 방문/상담 희망일시
-3. 개인정보의 처리 및 보유 기간 : 두산위브더제니스 부천 분양 완료 시까지
-4. 동의 거부 권리 및 거부 시 불이익 : 동의를 거부할 경우 방문예약 및 상담 접수가 불가합니다.
-5. 개인정보 처리 위탁 : 홈페이지 운영·관리 대행사 주식회사 더블루파트너스 (addup@addup.kr)`,
-      consentLabel: '개인정보 수집 및 이용에 동의합니다.',
-      submitLabel: '관심고객 등록',
-      serviceType: '관심고객등록',
-    },
-
     // 요청 반영 — 진입 시 가장 먼저 뜨는 "관심고객등록" 팝업(이름+연락처만 받아 바로 접수).
-    // variant: 'light'로 히어로 다음 관심고객등록 섹션(visitReservation)과 같은 크림+골드 무드로 통일
     popup: {
       interest: {
         enabled: true,

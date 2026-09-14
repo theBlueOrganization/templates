@@ -191,6 +191,9 @@ export async function POST(request) {
         ? `${projectName} +${siteConfig.smsProjectNameSuffix}`
         : projectName
 
+    // 구글시트는 직접유입(utm 없음)일 때만 "+롯데온" 표기 — 엘포인트 등 utm 유입은 접미사 없이 그대로 기록
+    const sheetProjectName = isNoUtm && siteConfig?.sheetProjectNameSuffix ? `${projectName} +${siteConfig.sheetProjectNameSuffix}` : projectName
+
     const adminMessage =
       `[${smsProjectName}] 신규 상담 신청\n` +
       `이름: ${name}\n` +
@@ -210,7 +213,7 @@ export async function POST(request) {
       visit_time,
       gift_check,
       privacy_agree,
-      projectName,
+      projectName: sheetProjectName,
       sheetId,
       sheetTab,
       utmSource,

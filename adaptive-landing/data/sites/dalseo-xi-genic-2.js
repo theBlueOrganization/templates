@@ -1,24 +1,29 @@
-// 달서자이 제니크 — 대구광역시 달서구 본리동 661-9번지 일원, GS건설 Xi 브랜드 아파트(360세대)·오피스텔(78실)
-// 개발사업. 시행/시공 GS건설(주)(2026-09-07 현장 요청으로 시행사 (주)제이비스 → GS건설(주)로 정정 반영).
-// 공식 사이트(https://www.xi.co.kr/DS, cmsMenuSeq 기반
-// 서브페이지 29619~29726)에서 사업개요 스펙표·입지환경 지도·프리미엄 6대 가치·단지설계·단지배치도·
-// 동호수배치표·CLUB XIAN 시설·세대안내(84A/84B) 평면·분양일정 이미지를 직접 스크래핑해 채웠다
-// (2026-09-04, curl로 원본 HTML 확보 후 이미지 URL 추출 → 다운로드 → sharp로 그리드 이미지 크롭).
-// 온라인 분양대행 정식 계약 현장(더블루파트너스 확인) — 공식 사이트에 "유사 홈페이지 주의" 팝업이
-// 있으므로 향후 문구·이미지 변경 시 반드시 공식 사이트 최신본과 대조할 것.
+// 달서자이 제니크(2차 분양팀용) — dalseo-xi-genic.js를 복제한 신규 분양팀 사이트.
+// hanyang-iclass-yangju-2/the-sharp-geomdan-lakepark-2 등과 같은 방식으로, subdomain은 이 팀
+// 전용 도메인('달서xi제니크')을 쓰고 대표번호도 이 팀 전용 번호(053-760-4747)로 교체했다.
+// 콘텐츠·이미지는 원본(dalseo-xi-genic)과 동일 — 원본 상단 주석 참고.
 //
-// ⚠️ 확인 필요 항목(2차 소스만 존재, 공식 사이트에서 직접 확인 못함 — 게재 시 재검증 권장):
-//   지하 층수(5층 vs 6층 소스 불일치, 본 파일엔 미기재), 신탁사명, 설계사명, 정확한 분양가,
-//   84A/84B 동·라인 최종 확정(동호수배치표 기준으로는 101·102동 각 4,3,2,1라인=A,B,B,A로 반영함).
-//   총세대수(438)·시행/시공사·대지위치·연면적·공급규모·84A/84B 면적스펙·분양일정(8/6~9/9)·
-//   분양문의는 공식 사이트에서 직접 확인된 값(053-760-4734, 2026-09-07 현장 요청으로 변경 반영).
+// 이 사이트만의 차이점:
+//   - subdomain: 달서xi제니크.addupapt.kr (2026-09-14 현장 요청 반영)
+//   - telNumber/header.phone/quickMenu.phone/footer.highlightText·csPhone: 053-760-4747
+//   - adminPhones: 이 팀 전용 카카오 알림톡 수신번호(010-7990-9005)로 교체
+//   - footer.companyLines: 현장 요청으로 시행사 정보를 (주)제이비스 기준으로 표기
+//     (시행 제이비스(주) / 시행사 대표자 한성민 / 시행사업자번호 240-86-00562, 2026-09-14 반영)
+//   - popup: 9/10 상품권 혜택, 9/13 SAMSUNG DAY 경품이벤트 팝업은 행사 종료로 삭제(원본과 동일)
+//   - metaTitle: 두 현장 모두 카카오톡 등 공유 시 "달서자이 제니크"로 동일하게 노출되도록
+//     projectName(2가 붙은 내부용)과 분리 지정(원본은 projectName 자체가 이미 "달서자이 제니크"라
+//     별도 지정 없이도 동일하게 노출됨)
 const config = {
-  slug: 'dalseo-xi-genic',
-  subdomain: '달서자이제니크',
-  projectName: '달서자이 제니크',
+  slug: 'dalseo-xi-genic-2',
+  // 이 팀 전용 서브도메인 — 원본(달서자이제니크)과 겹치지 않는 별도 도메인으로 지정
+  subdomain: '달서xi제니크',
+  // "...2"가 붙은 projectName은 SMS/카카오 알림톡 등에 그대로 쓰되, 고객에게 보이는 제목(metaTitle)은
+  // 원래 이름 그대로 유지
+  projectName: '달서자이 제니크2',
+  metaTitle: '달서자이 제니크',
   shortName: '달서자이 제니크',
-  telNumber: '053-760-4734',
-  ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/dalseo-xi-genic/og.jpg',
+  telNumber: '053-760-4747',
+  ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/dalseo-xi-genic-2/og.jpg',
   // 헤더·모바일 메뉴·퀵메뉴 등 공용 Signature* 컴포넌트가 var(--navy 등)로 참조하는 사이트 전역 색상.
   // 3색 팔레트 지정 — navy/ink(#002F47, 타이틀·버튼) / cream(#ffffff, 섹션 배경) / gold 역할(#006899, 포인트 액센트)
   colorTheme: {
@@ -27,9 +32,9 @@ const config = {
     cream: '#ffffff',
     gold: '#006899',
   },
-  adminPhones: ['01028643100'],
+  adminPhones: ['01079909005'],
   sheetId: '',
-  sheetTab: '달서자이제니크',
+  sheetTab: '달서자이제니크2',
   showUtmInSms: true,
   // 상담 접수 알림을 문자 대신 카카오 알림톡으로 발송(실패 시 SMS로 자동 폴백)
   kakao: true,
@@ -53,10 +58,10 @@ const config = {
 
   signature: {
     header: {
-      logo: { src: '/apt/dalseo-xi-genic/logo.svg', alt: '달서자이 제니크', width: 210, height: 47 },
+      logo: { src: '/apt/dalseo-xi-genic-2/logo.svg', alt: '달서자이 제니크', width: 210, height: 47 },
       gnb: ['사업개요', '위치안내', '프리미엄가치', '단지소개', '세대안내', '커뮤니티', '상담신청 및 방문예약'],
       quickCtaLabel: '관심고객등록',
-      phone: '053-760-4734',
+      phone: '053-760-4747',
     },
 
     // 진입 팝업 — 9/10 상품권 혜택 팝업, 9/13 SAMSUNG DAY 경품이벤트 팝업은 행사 종료로 삭제(2026-09-14).
@@ -64,7 +69,7 @@ const config = {
     popup: {
       enabled: true,
       images: [
-        { src: '/apt/dalseo-xi-genic/popup3.png', alt: '달서자이 제니크 Apple DAY 주말경품 이벤트', width: 754, height: 1024 },
+        { src: '/apt/dalseo-xi-genic-2/popup3.png', alt: '달서자이 제니크 Apple DAY 주말경품 이벤트', width: 754, height: 1024 },
       ],
       closeLabel: '팝업닫기',
     },
@@ -74,7 +79,7 @@ const config = {
     quickMenu: {
       brand: '달서자이 제니크',
       phoneLabel: '분양문의',
-      phone: '053-760-4734',
+      phone: '053-760-4747',
       favoriteLabel: '관심고객',
       menuLabel: 'MENU',
       ctaTargetId: 'vip-reservation',
@@ -108,24 +113,24 @@ const config = {
       // 이미지 자체에 문구가 이미 포함돼 있어 hideText:true와 함께 사용
       slides: [
         {
-          bgImage: { src: '/apt/dalseo-xi-genic/hero-bg.jpg', alt: '달서자이 제니크 대표 조감도 — The Highest Premium' },
-          bgImageMobile: { src: '/apt/dalseo-xi-genic/hero-bg-mobile.jpg', alt: '달서자이 제니크 대표 조감도 — The Highest Premium' },
+          bgImage: { src: '/apt/dalseo-xi-genic-2/hero-bg.jpg', alt: '달서자이 제니크 대표 조감도 — The Highest Premium' },
+          bgImageMobile: { src: '/apt/dalseo-xi-genic-2/hero-bg-mobile.jpg', alt: '달서자이 제니크 대표 조감도 — The Highest Premium' },
         },
         {
-          bgImage: { src: '/apt/dalseo-xi-genic/hero-slide-location.jpg', alt: 'LOCATION Premium — 본리네거리 중심 입지' },
-          bgImageMobile: { src: '/apt/dalseo-xi-genic/hero-slide-location-mobile.jpg', alt: 'LOCATION Premium — 본리네거리 중심 입지' },
+          bgImage: { src: '/apt/dalseo-xi-genic-2/hero-slide-location.jpg', alt: 'LOCATION Premium — 본리네거리 중심 입지' },
+          bgImageMobile: { src: '/apt/dalseo-xi-genic-2/hero-slide-location-mobile.jpg', alt: 'LOCATION Premium — 본리네거리 중심 입지' },
         },
         {
-          bgImage: { src: '/apt/dalseo-xi-genic/hero-slide-view.jpg', alt: 'VIEW Premium — 최고 49층 탁 트인 조망' },
-          bgImageMobile: { src: '/apt/dalseo-xi-genic/hero-slide-view-mobile.jpg', alt: 'VIEW Premium — 최고 49층 탁 트인 조망' },
+          bgImage: { src: '/apt/dalseo-xi-genic-2/hero-slide-view.jpg', alt: 'VIEW Premium — 최고 49층 탁 트인 조망' },
+          bgImageMobile: { src: '/apt/dalseo-xi-genic-2/hero-slide-view-mobile.jpg', alt: 'VIEW Premium — 최고 49층 탁 트인 조망' },
         },
         {
-          bgImage: { src: '/apt/dalseo-xi-genic/hero-slide-traffic.jpg', alt: 'TRAFFIC Premium — 직주근접 쾌속교통' },
-          bgImageMobile: { src: '/apt/dalseo-xi-genic/hero-slide-traffic-mobile.jpg', alt: 'TRAFFIC Premium — 직주근접 쾌속교통' },
+          bgImage: { src: '/apt/dalseo-xi-genic-2/hero-slide-traffic.jpg', alt: 'TRAFFIC Premium — 직주근접 쾌속교통' },
+          bgImageMobile: { src: '/apt/dalseo-xi-genic-2/hero-slide-traffic-mobile.jpg', alt: 'TRAFFIC Premium — 직주근접 쾌속교통' },
         },
         {
-          bgImage: { src: '/apt/dalseo-xi-genic/hero-slide-education.jpg', alt: 'EDUCATION Premium — 안심 학세권' },
-          bgImageMobile: { src: '/apt/dalseo-xi-genic/hero-slide-education-mobile.jpg', alt: 'EDUCATION Premium — 안심 학세권' },
+          bgImage: { src: '/apt/dalseo-xi-genic-2/hero-slide-education.jpg', alt: 'EDUCATION Premium — 안심 학세권' },
+          bgImageMobile: { src: '/apt/dalseo-xi-genic-2/hero-slide-education-mobile.jpg', alt: 'EDUCATION Premium — 안심 학세권' },
         },
       ],
       overlay: false,
@@ -144,10 +149,10 @@ const config = {
       navLabel: 'overview',
       title: '달서자이 제니크',
       subtitle: '대구광역시 달서구 본리동, 본리네거리 중심의 자이 브랜드타운',
-      photo: { src: '/apt/dalseo-xi-genic/overview-photo.jpg', alt: '달서자이 제니크 조감도' },
+      photo: { src: '/apt/dalseo-xi-genic-2/overview-photo.jpg', alt: '달서자이 제니크 조감도' },
       thumbs: [
-        { src: '/apt/dalseo-xi-genic/overview-photo-real.jpg', alt: '달서자이 제니크 현장 시공 전경' },
-        { src: '/apt/dalseo-xi-genic/overview-thumb-real-3.jpg', alt: '달서자이 제니크 현장 — 상단부 클로즈업' },
+        { src: '/apt/dalseo-xi-genic-2/overview-photo-real.jpg', alt: '달서자이 제니크 현장 시공 전경' },
+        { src: '/apt/dalseo-xi-genic-2/overview-thumb-real-3.jpg', alt: '달서자이 제니크 현장 — 상단부 클로즈업' },
       ],
       notice: '※ 본 페이지에 사용된 CG, 이미지 및 내용은 소비자의 이해를 돕기 위한 사전홍보용으로 인·허가 과정 등에 따라 변경될 수 있고 실제와 다를 수 있습니다(면적 및 세대수 등 포함).',
       specItems: [
@@ -171,14 +176,14 @@ const config = {
       descTitle: '달서에 새로운 자부심을 세우다!',
       descTitleAccent: ['새로운 자부심'],
       bgColor: '#ffffff',
-      mapImage: { src: '/apt/dalseo-xi-genic/location-map.jpg', alt: '달서자이 제니크 광역 위치 안내도' },
+      mapImage: { src: '/apt/dalseo-xi-genic-2/location-map.jpg', alt: '달서자이 제니크 광역 위치 안내도' },
       features: [
         {
           titlePrefix: '',
           titleStrong: '본리네거리 중심 입지',
           titleSuffix: '',
           tag: 'CENTER',
-          image: { src: '/apt/dalseo-xi-genic/feature-location.jpg', alt: '본리네거리 중심 입지' },
+          image: { src: '/apt/dalseo-xi-genic-2/feature-location.jpg', alt: '본리네거리 중심 입지' },
           descStrong: '',
           descRest: '본리네거리의 편의시설과 죽전네거리를 가깝게 누리는 중심 생활권',
         },
@@ -187,7 +192,7 @@ const config = {
           titleStrong: '직주근접 쾌속교통',
           titleSuffix: '',
           tag: 'TRAFFIC',
-          image: { src: '/apt/dalseo-xi-genic/feature-traffic.jpg', alt: '직주근접 쾌속교통' },
+          image: { src: '/apt/dalseo-xi-genic-2/feature-traffic.jpg', alt: '직주근접 쾌속교통' },
           descStrong: '',
           descRest: '대구 최대 성서산업단지로의 빠른 출퇴근, 달구벌대로·와룡로·남대구IC 인접',
         },
@@ -196,7 +201,7 @@ const config = {
           titleStrong: '안심 학세권',
           titleSuffix: '',
           tag: 'EDUCATION',
-          image: { src: '/apt/dalseo-xi-genic/feature-education.jpg', alt: '안심 학세권' },
+          image: { src: '/apt/dalseo-xi-genic-2/feature-education.jpg', alt: '안심 학세권' },
           descStrong: '',
           descRest: '달서구 최초 IB 월드스쿨 인증받은 덕인초를 걸어서 누리는 안심 등굣길',
         },
@@ -205,7 +210,7 @@ const config = {
           titleStrong: '눈부신 미래가치',
           titleSuffix: '',
           tag: 'FUTURE',
-          image: { src: '/apt/dalseo-xi-genic/feature-future.jpg', alt: '눈부신 미래가치' },
+          image: { src: '/apt/dalseo-xi-genic-2/feature-future.jpg', alt: '눈부신 미래가치' },
           descStrong: '',
           descRest: "대구광역시청 신청사('30년 예정), 서대구역 복합환승센터(예정) 개발로 더 기대되는 비전",
         },
@@ -218,7 +223,7 @@ const config = {
     // 랜드마크디자인·경관특화·포켓쉼터·휴게정원까지 이미 이미지 안에 포함돼 있어 별도 HTML 오버레이 없음.
     premiumIntro: {
       plainImage: {
-        src: '/apt/dalseo-xi-genic/complex-design-full.jpg',
+        src: '/apt/dalseo-xi-genic-2/complex-design-full.jpg',
         alt: '달서자이 제니크 단지설계 — 높이를 넘어, 프리미엄의 정점에 오르다',
         width: 1100,
         height: 1559,
@@ -237,37 +242,37 @@ const config = {
           num: '01',
           title: ['본리네거리', '중심 입지'],
           desc: ['본리네거리의 편의시설과', '죽전네거리를 가깝게 누리는 중심 생활권'],
-          image: { src: '/apt/dalseo-xi-genic/premium-01.jpg', alt: '본리네거리 중심 입지' },
+          image: { src: '/apt/dalseo-xi-genic-2/premium-01.jpg', alt: '본리네거리 중심 입지' },
         },
         {
           num: '02',
           title: ['최고 49층', '탁 트인 조망'],
           desc: ['도심을 한눈에 내려다보는 탁 트인 조망', '시선을 압도하는 스카이라인'],
-          image: { src: '/apt/dalseo-xi-genic/premium-02.jpg', alt: '최고 49층 탁 트인 조망' },
+          image: { src: '/apt/dalseo-xi-genic-2/premium-02.jpg', alt: '최고 49층 탁 트인 조망' },
         },
         {
           num: '03',
           title: ['직주근접', '쾌속교통'],
           desc: ['대구 최대 성서산업단지로의 빠른 출퇴근', '달구벌대로, 와룡로, 남대구IC 인접'],
-          image: { src: '/apt/dalseo-xi-genic/premium-03.jpg', alt: '직주근접 쾌속교통' },
+          image: { src: '/apt/dalseo-xi-genic-2/premium-03.jpg', alt: '직주근접 쾌속교통' },
         },
         {
           num: '04',
           title: ['안심', '학세권'],
           desc: ['달서구 최초 IB 월드스쿨 인증받은 덕인초를', '걸어서 누리는 안심 등굣길'],
-          image: { src: '/apt/dalseo-xi-genic/premium-04.jpg', alt: '안심 학세권' },
+          image: { src: '/apt/dalseo-xi-genic-2/premium-04.jpg', alt: '안심 학세권' },
         },
         {
           num: '05',
           title: ['눈부신', '미래가치'],
           desc: ["대구광역시청 신청사('30년 예정)", '서대구역 복합환승센터(예정) 개발로 더 기대되는 비전'],
-          image: { src: '/apt/dalseo-xi-genic/premium-05.jpg', alt: '눈부신 미래가치' },
+          image: { src: '/apt/dalseo-xi-genic-2/premium-05.jpg', alt: '눈부신 미래가치' },
         },
         {
           num: '06',
           title: ['자이', '브랜드 프리미엄'],
           desc: ['대구에서 그 가치를 증명한 자이 브랜드', '달서에서도 새롭게 이어갈 프리미엄'],
-          image: { src: '/apt/dalseo-xi-genic/premium-06.jpg', alt: '자이 브랜드 프리미엄' },
+          image: { src: '/apt/dalseo-xi-genic-2/premium-06.jpg', alt: '자이 브랜드 프리미엄' },
         },
       ],
     },
@@ -285,10 +290,10 @@ const config = {
       titleLine2: '리듬감 있는 스카이라인의 랜드마크 단지',
       desc: 'CLUB XIAN, 포켓쉼터부터 스쿨버스존까지 — 동 배치와 세대 라인 구성을 한눈에 확인해보세요.',
       siteMap: {
-        image: { src: '/apt/dalseo-xi-genic/complex-sitemap.jpg', alt: '달서자이 제니크 단지 배치도', width: 1100, height: 506 },
+        image: { src: '/apt/dalseo-xi-genic-2/complex-sitemap.jpg', alt: '달서자이 제니크 단지 배치도', width: 1100, height: 506 },
       },
       donghoChart: {
-        image: { src: '/apt/dalseo-xi-genic/complex-dongho-chart.jpg', alt: '달서자이 제니크 101동·102동·103동 동호수 배치표', width: 1100, height: 1031 },
+        image: { src: '/apt/dalseo-xi-genic-2/complex-dongho-chart.jpg', alt: '달서자이 제니크 101동·102동·103동 동호수 배치표', width: 1100, height: 1031 },
       },
     },
 
@@ -308,13 +313,13 @@ const config = {
             {
               letter: 'A',
               countText: '180세대 (확장기본형)',
-              image: { src: '/apt/dalseo-xi-genic/unit-84a.jpg', alt: '달서자이 제니크 84㎡A 타입 평면도' },
+              image: { src: '/apt/dalseo-xi-genic-2/unit-84a.jpg', alt: '달서자이 제니크 84㎡A 타입 평면도' },
               specs: { exclusive: '84.7506', common: '31.5968', supply: '116.3474', otherCommon: '62.6699', contract: '179.0173' },
             },
             {
               letter: 'B',
               countText: '180세대 (확장기본형)',
-              image: { src: '/apt/dalseo-xi-genic/unit-84b.jpg', alt: '달서자이 제니크 84㎡B 타입 평면도' },
+              image: { src: '/apt/dalseo-xi-genic-2/unit-84b.jpg', alt: '달서자이 제니크 84㎡B 타입 평면도' },
               specs: { exclusive: '84.8664', common: '32.1234', supply: '116.9898', otherCommon: '62.7555', contract: '179.7453' },
             },
           ],
@@ -329,7 +334,7 @@ const config = {
       navLabel: '커뮤니티',
       variant: 'simple',
       plainImage: {
-        src: '/apt/dalseo-xi-genic/club-xian-full.jpg',
+        src: '/apt/dalseo-xi-genic-2/club-xian-full.jpg',
         alt: '달서자이 제니크 CLUB XIAN — 3F·B1F 커뮤니티 시설 안내',
         width: 1100,
         height: 3267,
@@ -353,11 +358,13 @@ const config = {
     },
 
     footer: {
-      logo: { src: '/apt/dalseo-xi-genic/logo.svg', alt: '달서자이 제니크' },
-      highlightText: '분양문의 053-760-4734',
+      logo: { src: '/apt/dalseo-xi-genic-2/logo.svg', alt: '달서자이 제니크' },
+      highlightText: '분양문의 053-760-4747',
       agencySlogan: '분양완판 전문가 그룹, (주) 더블루파트너스',
       companyLines: [
-        { label: '시행', value: 'GS건설(주)' },
+        { label: '시행', value: '제이비스(주)' },
+        { label: '시행사 대표자', value: '한성민' },
+        { label: '시행사업자번호', value: '240-86-00562' },
         { label: '시공', value: 'GS건설(주)' },
         { label: '온라인대행', value: '주식회사 더블루파트너스' },
         { label: '사업자등록번호', value: '789-81-03093' },
@@ -368,7 +375,7 @@ const config = {
         '※ 사업지 인근의 개발사업과 관련된 사항은 지자체, 개발주체 및 관계기관의 사정에 따라 변경될 수 있습니다.',
         '※ 제작, 편집, 인쇄과정상 오탈자 등의 오류가 있을 수 있으니, 계약 전 반드시 견본주택 관계자에게 문의하시기 바랍니다.',
       ],
-      csPhone: '053-760-4734',
+      csPhone: '053-760-4747',
       csHours: 'AM 09:00 ~ PM 19:00',
     },
   },

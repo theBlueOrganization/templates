@@ -363,7 +363,7 @@
 
 /* brandLogo — 타이틀/설명 아래에 얹는 브랜드 로고 락업(선택 필드, hero.brandLogo가 있을 때만 렌더) */
 .brandLogo {
-  margin-top: 28px;
+  margin-top: 14px;
 }
 
 .brandLogo img {
@@ -567,7 +567,7 @@
   }
 
   .brandLogo {
-    margin-top: 36px;
+    margin-top: 18px;
   }
 
   .brandLogo img {

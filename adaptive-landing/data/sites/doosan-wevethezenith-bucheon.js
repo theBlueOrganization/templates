@@ -7,12 +7,22 @@ const config = {
   subdomain: '두산위브더제니스부천',
   projectName: '두산위브더제니스 부천',
   shortName: '두산위브더제니스',
-  telNumber: '1800-0000',
+  telNumber: '1533-6480',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/doosan-wevethezenith-bucheon/main.jpg',
-  adminPhones: ['01071901052'],
+  adminPhones: ['01071901052', '01049851470'],
   sheetId: '',
   sheetTab: '두산위브더제니스부천',
   showUtmInSms: true,
+  // 유입경로 없이(직접유입) 들어오면 항상 "+롯데온"이 붙고, ?utm_source=lpoint로 들어오면
+  // 아래 smsProjectNameByUtm이 우선 적용되어 "+엘포인트"로 구분된다 (route.js 분기 참고)
+  smsProjectNameSuffix: '롯데온',
+  // 요청 반영 — 엘포인트 유입경로 링크 1종 추가. 실제 링크는
+  // https://두산위브더제니스부천.addupapt.kr?utm_source=lpoint
+  utmSources: [{ label: '엘포인트', value: 'lpoint' }],
+  // 상담 접수 문자 제목에 "현장명 +엘포인트"로 표시 (예: "[두산위브더제니스 부천 +엘포인트] 신규 상담 신청")
+  smsProjectNameByUtm: {
+    lpoint: '엘포인트',
+  },
 
   colorTheme: { navy: '#111111', ink: '#111111', cream: '#ffffff', gold: '#b49480' },
 
@@ -41,7 +51,7 @@ const config = {
       logoWhite: { src: '/apt/doosan-wevethezenith-bucheon/logo.png', alt: '두산위브더제니스 부천', width: 204, height: 24 },
       gnb: ['사업개요', '입지환경', '프리미엄', '단지안내', '세대안내', '커뮤니티', '상담신청 및 방문예약'],
       quickCtaLabel: '관심고객등록',
-      phone: '1800-0000',
+      phone: '1533-6480',
     },
 
     hero: {
@@ -57,6 +67,9 @@ const config = {
       keepTextShadow: true,
       overlay: false,
       contentTop: true,
+      // 요청 반영 — 히어로 문구(타이틀 이미지) 아래에 추가로 표시하는 로고. 헤더의 투명(히어로 위) 상태와
+      // 동일한 배경이라 같은 흰색 워드마크(logo-white.png)를 재사용
+      brandLogo: { src: '/apt/doosan-wevethezenith-bucheon/logo-white.png', alt: '두산위브더제니스 부천', width: 159, height: 19 },
       // 슬라이드별 문구도 공식 홈페이지 그대로 반영
       slides: [
         {
@@ -88,6 +101,45 @@ const config = {
         bubbleText: '지금 상담 신청하고 특별 혜택을 확인하세요',
         callLabel: '전화상담',
         visitLabel: '방문예약',
+      },
+    },
+
+    // 요청 반영 — 히어로 바로 다음에 배치하는 "관심고객등록" 섹션. 하단 상담신청(vipForm)과 필드
+    // 구성은 동일(SignatureVisitReservation 재사용)하되 id/문구/serviceType을 분리해 두 신청 지점을
+    // 구글시트·문자에서 구분할 수 있게 함
+    visitReservation: {
+      id: 'quick-interest',
+      eyebrow: 'INTEREST',
+      titlePlain: '두산위브더제니스 부천',
+      titleAccent: '관심고객등록',
+      leadLines: ['간단한 정보를 남겨주시면 담당자가 빠르게 안내해 드립니다.', '분양 정보와 특별 혜택을 가장 먼저 받아보세요.'],
+      panelLabel: 'INTEREST REGISTER',
+      panelTitle: '관심고객등록',
+      panelDesc: '원하는 방문 날짜와 시간을 선택해 주세요.',
+      privacySummary: '개인정보 수집·이용 및 처리 위탁에 관한 동의 (더보기)',
+      privacyText: `본 분양사업과 관련된 상담을 수행하는 상담사(이하 "개인정보처리자")는 아래와 같이 귀하의 개인정보를 수집, 이용하고자 합니다.
+수집된 개인정보는 명시된 목적 외의 용도로 이용되지 않으며, 「개인정보 보호법」 등 관계 법령을 준수하여 안전하게 처리됩니다.
+
+1. 개인정보의 처리 목적 : 두산위브더제니스 부천 분양 관련 정보 제공, 방문예약 접수 및 상담 진행, 고객 문의 응대
+2. 처리하는 개인정보의 항목 : 성명, 휴대전화번호, 방문/상담 희망일시
+3. 개인정보의 처리 및 보유 기간 : 두산위브더제니스 부천 분양 완료 시까지
+4. 동의 거부 권리 및 거부 시 불이익 : 동의를 거부할 경우 방문예약 및 상담 접수가 불가합니다.
+5. 개인정보 처리 위탁 : 홈페이지 운영·관리 대행사 주식회사 더블루파트너스 (addup@addup.kr)`,
+      consentLabel: '개인정보 수집 및 이용에 동의합니다.',
+      submitLabel: '관심고객 등록',
+      serviceType: '관심고객등록',
+    },
+
+    // 요청 반영 — 진입 시 가장 먼저 뜨는 "관심고객등록" 팝업(이름+연락처만 받아 바로 접수).
+    // variant: 'light'로 히어로 다음 관심고객등록 섹션(visitReservation)과 같은 크림+골드 무드로 통일
+    popup: {
+      interest: {
+        enabled: true,
+        variant: 'light',
+        eyebrow: 'INTEREST',
+        title: '관심고객등록',
+        desc: '간단한 정보를 입력해 주시면\n분양 정보를 가장 먼저 안내해드립니다.',
+        submitLabel: '관심고객 등록',
       },
     },
 
@@ -500,6 +552,8 @@ const config = {
 
     vipForm: {
       id: 'vip-reservation',
+      // 히어로 다음 관심고객등록 섹션/팝업과 폰트(세리프 제목·굵기·자간)를 통일
+      fontVariant: 'serif',
       eyebrow: 'VIP Reservation',
       titleLine1: '두산위브더제니스 부천',
       titleLine2: '24시간 상담신청 및 방문예약',
@@ -518,7 +572,7 @@ const config = {
 
     footer: {
       logo: { src: '/apt/doosan-wevethezenith-bucheon/footer-logo.png', alt: '두산위브더제니스 부천', width: 159, height: 19 },
-      highlightText: '1800-0000',
+      highlightText: '1533-6480',
       agencySlogan: '분양완판 전문가 그룹, (주) 더블루파트너스',
       companyLines: [
         { label: '시행', value: '소사본1의1구역 재개발정비사업조합' },
@@ -532,7 +586,7 @@ const config = {
         '※ 사업지 인근의 개발사업과 관련된 사항은 지자체, 개발주체 및 관계기관의 사정에 따라 변경될 수 있습니다.',
         '※ 세부 설계내용은 시공 시 인허가 과정에서 변동될 수 있으니, 계약 전 반드시 분양관계자에게 문의하시기 바랍니다.',
       ],
-      csPhone: '1800-0000',
+      csPhone: '1533-6480',
       csHours: 'AM 09:00 ~ PM 19:00',
     },
 
@@ -540,7 +594,7 @@ const config = {
     quickMenu: {
       brand: "DOOSAN WE'VE THE ZENITH BUCHEON",
       phoneLabel: '분양문의',
-      phone: '1800-0000',
+      phone: '1533-6480',
       favoriteLabel: '관심고객',
       menuLabel: 'MENU',
       ctaTargetId: 'vip-reservation',

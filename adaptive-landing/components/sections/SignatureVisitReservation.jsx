@@ -22,6 +22,18 @@ export default function SignatureVisitReservation({ visitReservation, config }) 
   const resolvedAdminPhones = adminPhonesByUtm?.[utmSource] ?? adminPhones
   const phoneRefs = useRef(PHONE_FIELDS.map(() => ({ current: null }))).current
 
+  // 이 컴포넌트는 headerGeomdan 분기(전역 colorTheme 스타일을 안 씌우는 렌더 트리)에서도 쓰이므로,
+  // 전역 :root 기본값(원종역 색상)이 새어 들어오지 않도록 여기서 직접 config.colorTheme 유무에 따라
+  // --navy/--ink/--cream/--gold를 지정하거나 'initial'로 무효화(page.jsx의 themeStyle과 동일 패턴)
+  const themeVars = config.colorTheme
+    ? {
+        '--navy': config.colorTheme.navy,
+        '--ink': config.colorTheme.ink,
+        '--cream': config.colorTheme.cream,
+        '--gold': config.colorTheme.gold,
+      }
+    : { '--navy': 'initial', '--ink': 'initial', '--cream': 'initial', '--gold': 'initial' }
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target
     setForm((prev) => ({ ...prev, [name]: type === 'checkbox' ? checked : value }))
@@ -45,7 +57,7 @@ export default function SignatureVisitReservation({ visitReservation, config }) 
           visit_date: form.visitDate,
           visit_time: form.visitTime,
           privacy_agree: form.consent,
-          serviceType: '방문예약',
+          serviceType: visitReservation.serviceType ?? '방문예약',
           projectName,
           adminPhones: resolvedAdminPhones,
           sheetId,
@@ -73,7 +85,7 @@ export default function SignatureVisitReservation({ visitReservation, config }) 
   }
 
   return (
-    <section id={visitReservation.id} className={styles.section} aria-labelledby="visit-reservation-title">
+    <section id={visitReservation.id} className={styles.section} style={themeVars} aria-labelledby="visit-reservation-title">
       <Reveal className={styles.heading}>
         <p className={styles.eyebrow}>{visitReservation.eyebrow}</p>
         <h2 id="visit-reservation-title">

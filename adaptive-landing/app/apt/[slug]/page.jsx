@@ -191,6 +191,7 @@ export default async function AptPage({ params }) {
         )}
         {sig.videoSection && <SignatureVideoSection video={sig.videoSection} />}
         {sig.benefits && <SignatureBenefits benefits={sig.benefits} />}
+        {sig.visitReservation && <SignatureVisitReservation visitReservation={sig.visitReservation} config={site} />}
         <SignatureSummary summary={sig.summary} />
         <SignatureLocation location={sig.location} />
         {sig.transitDetail && <SignatureTransitDetail transit={sig.transitDetail} />}

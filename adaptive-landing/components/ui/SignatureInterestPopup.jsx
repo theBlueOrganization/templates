@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useUtmSource } from '../../lib/useUtmSource'
+import { cn } from '../../lib/utils'
 import styles from './SignatureInterestPopup.module.css'
 
 const PHONE_FIELDS = ['phone1', 'phone2', 'phone3']
@@ -20,6 +21,10 @@ export default function SignatureInterestPopup({ interest, config, onClose, open
   const phoneRefs = useRef(PHONE_FIELDS.map(() => ({ current: null }))).current
   const utmSource = useUtmSource() ?? '직접유입'
   const serviceOptions = config.signature?.vipForm?.serviceOptions ?? []
+  // 요청 반영 — 히어로 다음 관심고객등록 섹션(SignatureVisitReservation)과 같은 크림+골드
+  // 라이트 무드로 보이게 하는 옵션. 다른 현장은 interest.variant를 안 쓰므로 기존 다크 네이비
+  // 카드 그대로 유지됨
+  const light = interest?.variant === 'light'
 
   useEffect(() => {
     if (!interest?.enabled) return
@@ -98,7 +103,7 @@ export default function SignatureInterestPopup({ interest, config, onClose, open
           onClick={handleClose}
         >
           <motion.div
-            className={styles.card}
+            className={cn(styles.card, light && styles.cardLight)}
             initial={{ scale: 0.92, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.96, opacity: 0 }}
@@ -106,27 +111,34 @@ export default function SignatureInterestPopup({ interest, config, onClose, open
             onClick={(e) => e.stopPropagation()}
           >
             <div className={styles.closeBtnWrap}>
-              <button type="button" onClick={handleClose} aria-label="팝업 닫기" className={styles.closeIcon}>
+              <button
+                type="button"
+                onClick={handleClose}
+                aria-label="팝업 닫기"
+                className={cn(styles.closeIcon, light && styles.closeIconLight)}
+              >
                 ✕
               </button>
             </div>
 
-            <p className={styles.eyebrow}>{interest?.eyebrow ?? 'INTEREST'}</p>
-            <h2 className={styles.title}>{interest?.title ?? '관심고객등록'}</h2>
-            <p className={styles.desc}>{interest?.desc ?? '간단한 정보를 입력해 주시면\n분양 정보를 가장 먼저 안내해드립니다.'}</p>
+            <p className={cn(styles.eyebrow, light && styles.eyebrowLight)}>{interest?.eyebrow ?? 'INTEREST'}</p>
+            <h2 className={cn(styles.title, light && styles.titleLight)}>{interest?.title ?? '관심고객등록'}</h2>
+            <p className={cn(styles.desc, light && styles.descLight)}>
+              {interest?.desc ?? '간단한 정보를 입력해 주시면\n분양 정보를 가장 먼저 안내해드립니다.'}
+            </p>
 
             <form onSubmit={handleSubmit} noValidate className={styles.form}>
-              <span className={styles.fieldLabel}>이름</span>
+              <span className={cn(styles.fieldLabel, light && styles.fieldLabelLight)}>이름</span>
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
                 placeholder="이름을 입력해주세요"
-                className={styles.input}
+                className={cn(styles.input, light && styles.inputLight)}
               />
 
-              <span className={styles.fieldLabel}>휴대폰</span>
+              <span className={cn(styles.fieldLabel, light && styles.fieldLabelLight)}>휴대폰</span>
               <div className={styles.phoneRow}>
                 {PHONE_FIELDS.map((field, i) => (
                   <input
@@ -138,17 +150,17 @@ export default function SignatureInterestPopup({ interest, config, onClose, open
                     autoComplete="off"
                     maxLength={i === 0 ? 3 : 4}
                     required
-                    className={styles.phoneInput}
+                    className={cn(styles.phoneInput, light && styles.inputLight)}
                   />
                 ))}
               </div>
 
               {serviceOptions.length > 0 && (
                 <>
-                  <span className={styles.fieldLabel}>원하시는 서비스</span>
+                  <span className={cn(styles.fieldLabel, light && styles.fieldLabelLight)}>원하시는 서비스</span>
                   <div className={styles.radioWrap}>
                     {serviceOptions.map((opt) => (
-                      <label key={opt} className={styles.radioLabel}>
+                      <label key={opt} className={cn(styles.radioLabel, light && styles.radioLabelLight)}>
                         <input
                           type="radio"
                           name="service"
@@ -163,15 +175,19 @@ export default function SignatureInterestPopup({ interest, config, onClose, open
                 </>
               )}
 
-              <span className={styles.fieldLabel}>방문 희망일시</span>
+              <span className={cn(styles.fieldLabel, light && styles.fieldLabelLight)}>방문 희망일시</span>
               <div className={styles.datetimeRow}>
                 <input
                   type="date"
                   value={visitDate}
                   onChange={(e) => setVisitDate(e.target.value)}
-                  className={styles.dateInput}
+                  className={cn(styles.dateInput, light && styles.inputLight)}
                 />
-                <select value={visitTime} onChange={(e) => setVisitTime(e.target.value)} className={styles.selectInput}>
+                <select
+                  value={visitTime}
+                  onChange={(e) => setVisitTime(e.target.value)}
+                  className={cn(styles.selectInput, light && styles.inputLight)}
+                >
                   <option value="">희망시간</option>
                   {(config.visitTimeOptions ?? []).map((t) => (
                     <option key={t} value={t}>
@@ -181,7 +197,7 @@ export default function SignatureInterestPopup({ interest, config, onClose, open
                 </select>
               </div>
 
-              <label className={styles.checkLabel}>
+              <label className={cn(styles.checkLabel, light && styles.checkLabelLight)}>
                 <input
                   type="checkbox"
                   checked={privacyAgree}
@@ -191,7 +207,7 @@ export default function SignatureInterestPopup({ interest, config, onClose, open
                 개인정보 수집 및 이용에 동의합니다. (필수)
               </label>
 
-              <button type="submit" disabled={submitting} className={styles.submitBtn}>
+              <button type="submit" disabled={submitting} className={cn(styles.submitBtn, light && styles.submitBtnLight)}>
                 {submitting ? '전송 중...' : interest?.submitLabel ?? '관심고객 등록'}
               </button>
             </form>

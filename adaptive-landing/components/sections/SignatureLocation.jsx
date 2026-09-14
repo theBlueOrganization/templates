@@ -131,16 +131,22 @@ export default function SignatureLocation({ location }) {
     >
       <Reveal className={styles.header}>
         {location.label && <p className={styles.label}>{location.label}</p>}
-        <p className={styles.eyebrow}>
-          {location.eyebrowPlain}
-          <strong>{location.eyebrowAccent}</strong>
-        </p>
-        <h2 className={location.subhead ? styles.titleBold : styles.title}>
-          <MobileBreakText text={location.title} />
-        </h2>
-        <p className={location.subhead ? styles.descTitleLight : styles.descTitle}>
-          <Highlighted text={location.descTitle} accent={location.descTitleAccent} accentClassName={styles.descAccent} />
-        </p>
+        {(location.eyebrowPlain || location.eyebrowAccent) && (
+          <p className={styles.eyebrow}>
+            {location.eyebrowPlain}
+            <strong>{location.eyebrowAccent}</strong>
+          </p>
+        )}
+        {location.title && (
+          <h2 className={location.subhead ? styles.titleBold : styles.title}>
+            <MobileBreakText text={location.title} />
+          </h2>
+        )}
+        {location.descTitle && (
+          <p className={location.subhead ? styles.descTitleLight : styles.descTitle}>
+            <Highlighted text={location.descTitle} accent={location.descTitleAccent} accentClassName={styles.descAccent} />
+          </p>
+        )}
         {location.descBody1 && (
           <p className={styles.descBody}>
             <Highlighted text={location.descBody1} accent={location.descBody1Accent} accentClassName={styles.descBodyAccent} />

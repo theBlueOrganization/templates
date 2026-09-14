@@ -373,7 +373,7 @@
   }
 
   .planImageWrap {
-    max-width: min(570px, 75%);
+    max-width: min(var(--circle-image-max, 570px), var(--circle-image-pct, 75%));
     margin-bottom: 30px;
   }
 

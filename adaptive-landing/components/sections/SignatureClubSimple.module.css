@@ -27,6 +27,66 @@
   }
 }
 
+/* plainImageGroups — 그룹(예: CLUB XIAN/CLUB CLOUD)마다 제목 + 1BL/2BL(/특화) 탭 버튼 + 이미지 1장 */
+.plainGroup + .plainGroup {
+  margin-top: 48px;
+}
+
+.plainGroupTitle {
+  max-width: 1100px;
+  margin: 0 auto 16px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink, #1f2c35);
+  text-align: center;
+}
+
+.tabRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  max-width: 1100px;
+  margin: 0 auto 20px;
+}
+
+.tabBtn {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink, #111);
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.tabBtnActive {
+  background: var(--navy, #263241);
+  color: #fff;
+  border-color: var(--navy, #263241);
+}
+
+@media (min-width: 1024px) {
+  .plainGroup + .plainGroup {
+    margin-top: 64px;
+  }
+
+  .plainGroupTitle {
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
+
+  .tabBtn {
+    padding: 12px 26px;
+    font-size: 15px;
+  }
+}
+
 .watermark {
   position: absolute;
   right: -10px;

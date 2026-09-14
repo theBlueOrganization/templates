@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { useUtmSource } from '../../lib/useUtmSource'
+import { cn } from '../../lib/utils'
 import styles from './SignatureFooter.module.css'
 
 // 전 현장 공용 푸터 — 시행/시공/온라인대행 등 다중 회사정보 라인 포함
@@ -28,7 +29,7 @@ export default function SignatureFooter({ footer, telNumber, telNumberByUtm, pro
         <div className={styles.hr} />
 
         <div className={styles.bottomRow}>
-          <div className={styles.logo}>
+          <div className={cn(styles.logo, footer.logoAlign === 'center' && styles.logoCentered)}>
             <Image src={footer.logo.src} alt={footer.logo.alt} width={footer.logo.width || 130} height={footer.logo.height || 39} />
           </div>
           <div className={styles.vr} />

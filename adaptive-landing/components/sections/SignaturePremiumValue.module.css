@@ -135,6 +135,12 @@
   padding: 20px 22px 24px;
 }
 
+/* premiumValue.cardTextAlign === 'center'인 현장 전용 — 아이콘 배지·제목·설명을 카드 중앙에 정렬 */
+.bodyCentered {
+  align-items: center;
+  text-align: center;
+}
+
 .cardPhoto .num {
   font-family: var(--font-sans);
   font-weight: 700;

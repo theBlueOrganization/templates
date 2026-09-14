@@ -49,18 +49,33 @@ export default function SignatureVideoSection({ video }) {
   }
 
   return (
-    <section className={styles.section}>
-      <video
-        ref={videoRef}
-        className={styles.video}
-        src={video.src}
-        poster={video.poster}
-        muted
-        loop
-        playsInline
-        webkit-playsinline="true"
-      />
-      {needsTap && (
+    <section
+      className={styles.section}
+      style={video.maxWidth ? { '--video-max-width': `${video.maxWidth}px` } : undefined}
+    >
+      {video.youtubeId ? (
+        <div className={styles.iframeWrap}>
+          <iframe
+            className={styles.iframe}
+            src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${video.youtubeId}&controls=1&playsinline=1&rel=0`}
+            title={video.title ?? '홍보 영상'}
+            allow="autoplay; encrypted-media; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+      ) : (
+        <video
+          ref={videoRef}
+          className={styles.video}
+          src={video.src}
+          poster={video.poster}
+          muted
+          loop
+          playsInline
+          webkit-playsinline="true"
+        />
+      )}
+      {!video.youtubeId && needsTap && (
         <button type="button" className={styles.tapButton} onClick={handleTap} aria-label="영상 재생">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M8 5v14l11-7z" />

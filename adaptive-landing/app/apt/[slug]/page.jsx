@@ -208,7 +208,7 @@ export default async function AptPage({ params }) {
         {sig.transitDetail && <SignatureTransitDetail transit={sig.transitDetail} />}
         {sig.story && <SignatureSellingStory story={sig.story} />}
         <SignaturePremiumIntro premiumIntro={sig.premiumIntro} />
-        {sig.newsImage && <SignatureNewsImage image={sig.newsImage} />}
+        {sig.newsImage && <SignatureNewsImage image={sig.newsImage} maxWidth={sig.newsImage.maxWidth} />}
         <SignaturePremiumValue premiumValue={sig.premiumValue} />
         {sig.premiumSplits?.map((split, i) => (
           <SignaturePremiumSplit key={i} split={split} />
@@ -233,6 +233,9 @@ export default async function AptPage({ params }) {
         )}
         {sig.notice && <SignatureNotice notice={sig.notice} />}
         {sig.faq && <SignatureFaq faq={sig.faq} />}
+        {sig.eventImage && (
+          <SignatureNewsImage id={sig.eventImage.id} image={sig.eventImage} title={sig.eventImage.title} maxWidth={sig.eventImage.maxWidth} />
+        )}
         <SignatureVipForm config={site} />
       </main>
       <SignatureFooter

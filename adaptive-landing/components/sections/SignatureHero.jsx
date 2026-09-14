@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import { cn, splitHighlight, isMobileUserAgent } from '../../lib/utils'
 import { useUtmSource } from '../../lib/useUtmSource'
@@ -84,6 +84,7 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
 
   const heroStyle = {
     ...(hero.bgColor && { '--hero-bg': hero.bgColor }),
+    ...(hero.mobileHeight && { '--hero-mobile-min-height': hero.mobileHeight }),
     ...(activeEyebrowColorMobile && { '--hero-eyebrow-mobile-active': activeEyebrowColorMobile }),
     ...(hero.textColor && {
       '--hero-title': hero.textColor,
@@ -110,10 +111,13 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
   }
 
   // heroSlides(이미지 비율만큼만 높이 차지)는 슬라이드 이미지 자체에 문구가 박혀있는(hideText) 현장
-  // 전용 — 문구를 별도로 얹는 현장(예: GTX 프리미엄 히어로)은 슬라이드가 있어도 100svh 풀스크린 유지
+  // 전용 — 문구를 별도로 얹는 현장(예: GTX 프리미엄 히어로)은 슬라이드가 있어도 100svh 풀스크린 유지.
+  // hero.fullHeightSlides가 true인 현장(모바일 슬라이드 이미지 비율이 heroSlides의 고정 640/835
+  // 비율과 달라 히어로가 너무 낮아 보이는 경우)은 hideText+slides여도 heroSlides를 적용하지 않고
+  // 기존 100svh 풀스크린을 유지 — object-fit:cover로 크롭되는 건 단일 이미지 히어로와 동일
   const heroClassName = [
     styles.hero,
-    slides && slides.length > 1 && hero.hideText && styles.heroSlides,
+    slides && slides.length > 1 && hero.hideText && !hero.fullHeightSlides && styles.heroSlides,
     !(slides && slides.length > 1) && hero.imageAspectRatio && styles.heroTallImage,
     hero.contentTop && styles.heroContentTop,
   ]
@@ -124,46 +128,48 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
     <section id="hero" className={heroClassName} style={Object.keys(heroStyle).length ? heroStyle : undefined}>
       <div className={styles.bg}>
         {slides && slides.length > 1 ? (
-          <AnimatePresence>
-            <motion.div
-              key={activeSlide}
+          // 슬라이드마다 매번 새로 마운트/언마운트하면 전환되는 순간에야 이미지를 요청하게 돼
+          // 잠깐 빈 화면 → 갑자기 툭 튀어나오는 "덜컹거림" 현상이 생김(특히 모바일 데이터에서
+          // 눈에 띔) — 모든 슬라이드를 처음부터 같이 마운트해두고 opacity만 크로스페이드시켜서
+          // 전환 시점엔 이미 캐시된 이미지가 바로 보이게 함
+          slides.map((slide, i) => (
+            <div
+              key={i}
               className={styles.bgImage}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1 }}
+              style={{ opacity: i === activeSlide ? 1 : 0, transition: 'opacity 1s ease', zIndex: i === activeSlide ? 1 : 0 }}
+              aria-hidden={i === activeSlide ? undefined : true}
             >
-              {slides[activeSlide].bgImageMobile ? (
+              {slide.bgImageMobile ? (
                 <>
                   <Image
-                    src={slides[activeSlide].bgImageMobile.src}
-                    alt={slides[activeSlide].bgImageMobile.alt}
+                    src={slide.bgImageMobile.src}
+                    alt={slide.bgImageMobile.alt}
                     fill
-                    priority={activeSlide === 0}
+                    priority={i === 0}
                     sizes="100vw"
                     className={`${styles.bgImage} ${styles.bgImageMobileOnly}`}
                   />
                   <Image
-                    src={slides[activeSlide].bgImage.src}
-                    alt={slides[activeSlide].bgImage.alt}
+                    src={slide.bgImage.src}
+                    alt={slide.bgImage.alt}
                     fill
-                    priority={activeSlide === 0}
+                    priority={i === 0}
                     sizes="100vw"
                     className={`${styles.bgImage} ${styles.bgImageDesktopOnly}`}
                   />
                 </>
               ) : (
                 <Image
-                  src={slides[activeSlide].bgImage.src}
-                  alt={slides[activeSlide].bgImage.alt}
+                  src={slide.bgImage.src}
+                  alt={slide.bgImage.alt}
                   fill
-                  priority={activeSlide === 0}
+                  priority={i === 0}
                   sizes="100vw"
                   className={styles.bgImage}
                 />
               )}
-            </motion.div>
-          </AnimatePresence>
+            </div>
+          ))
         ) : hero.bgVideo ? (
           hero.bgImageMobile ? (
             <>
@@ -464,28 +470,30 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
             )
           )}
 
-          <div className={styles.actionButtons}>
-            <a href={`tel:${resolvedTelNumber}`} className={styles.callBtn}>
-              <svg width="22" height="22" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path
-                  d="M14.6667 11.28V13.28C14.6674 13.4657 14.6294 13.6494 14.555 13.8196C14.4806 13.9897 14.3715 14.1424 14.2347 14.2679C14.0979 14.3934 13.9364 14.489 13.7605 14.5485C13.5846 14.608 13.3982 14.63 13.2133 14.6133C11.1619 14.3904 9.19133 13.6894 7.46 12.5667C5.84922 11.5431 4.48356 10.1774 3.46 8.56667C2.33332 6.82747 1.63216 4.84733 1.41333 2.78667C1.39667 2.60231 1.41858 2.41651 1.47767 2.24108C1.53675 2.06566 1.63171 1.90446 1.75651 1.76775C1.88131 1.63104 2.0332 1.52181 2.20253 1.44701C2.37185 1.37222 2.55489 1.33351 2.74 1.33333H4.74C5.06354 1.33015 5.37719 1.44472 5.62251 1.65569C5.86782 1.86666 6.02805 2.15963 6.07333 2.48C6.15775 3.12004 6.3143 3.74848 6.54 4.35333C6.6297 4.59195 6.64911 4.85128 6.59594 5.10059C6.54277 5.3499 6.41924 5.57874 6.24 5.76L5.39333 6.60667C6.34237 8.2757 7.7243 9.65763 9.39333 10.6067L10.24 9.76C10.4213 9.58076 10.6501 9.45723 10.8994 9.40406C11.1487 9.35089 11.4081 9.3703 11.6467 9.46C12.2515 9.6857 12.88 9.84225 13.52 9.92667C13.8438 9.97235 14.1396 10.1355 14.351 10.385C14.5624 10.6345 14.6748 10.9531 14.6667 11.28Z"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              {mobileBar.callLabel}
-            </a>
-            <button type="button" className={styles.visitBtn} onClick={scrollToVisit}>
-              <svg width="22" height="22" viewBox="0 0 15 14.0625" fill="none" aria-hidden="true">
-                <path
-                  d="M12.1875 1.75781H11.6016V0.585938H10.4297V1.75781H4.57031V0.585938H3.39844V1.75781H2.8125C2.16797 1.75781 1.64062 2.28516 1.64062 2.92969V12.3047C1.64062 12.9492 2.16797 13.4766 2.8125 13.4766H12.1875C12.832 13.4766 13.3594 12.9492 13.3594 12.3047V2.92969C13.3594 2.28516 12.832 1.75781 12.1875 1.75781ZM12.1875 12.3047H2.8125V4.6875H12.1875V12.3047Z"
-                  fill="currentColor"
-                />
-              </svg>
-              {mobileBar.visitLabel}
-            </button>
-          </div>
+          {!mobileBar.hideActionButtons && (
+            <div className={styles.actionButtons}>
+              <a href={`tel:${resolvedTelNumber}`} className={styles.callBtn}>
+                <svg width="22" height="22" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path
+                    d="M14.6667 11.28V13.28C14.6674 13.4657 14.6294 13.6494 14.555 13.8196C14.4806 13.9897 14.3715 14.1424 14.2347 14.2679C14.0979 14.3934 13.9364 14.489 13.7605 14.5485C13.5846 14.608 13.3982 14.63 13.2133 14.6133C11.1619 14.3904 9.19133 13.6894 7.46 12.5667C5.84922 11.5431 4.48356 10.1774 3.46 8.56667C2.33332 6.82747 1.63216 4.84733 1.41333 2.78667C1.39667 2.60231 1.41858 2.41651 1.47767 2.24108C1.53675 2.06566 1.63171 1.90446 1.75651 1.76775C1.88131 1.63104 2.0332 1.52181 2.20253 1.44701C2.37185 1.37222 2.55489 1.33351 2.74 1.33333H4.74C5.06354 1.33015 5.37719 1.44472 5.62251 1.65569C5.86782 1.86666 6.02805 2.15963 6.07333 2.48C6.15775 3.12004 6.3143 3.74848 6.54 4.35333C6.6297 4.59195 6.64911 4.85128 6.59594 5.10059C6.54277 5.3499 6.41924 5.57874 6.24 5.76L5.39333 6.60667C6.34237 8.2757 7.7243 9.65763 9.39333 10.6067L10.24 9.76C10.4213 9.58076 10.6501 9.45723 10.8994 9.40406C11.1487 9.35089 11.4081 9.3703 11.6467 9.46C12.2515 9.6857 12.88 9.84225 13.52 9.92667C13.8438 9.97235 14.1396 10.1355 14.351 10.385C14.5624 10.6345 14.6748 10.9531 14.6667 11.28Z"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                {mobileBar.callLabel}
+              </a>
+              <button type="button" className={styles.visitBtn} onClick={scrollToVisit}>
+                <svg width="22" height="22" viewBox="0 0 15 14.0625" fill="none" aria-hidden="true">
+                  <path
+                    d="M12.1875 1.75781H11.6016V0.585938H10.4297V1.75781H4.57031V0.585938H3.39844V1.75781H2.8125C2.16797 1.75781 1.64062 2.28516 1.64062 2.92969V12.3047C1.64062 12.9492 2.16797 13.4766 2.8125 13.4766H12.1875C12.832 13.4766 13.3594 12.9492 13.3594 12.3047V2.92969C13.3594 2.28516 12.832 1.75781 12.1875 1.75781ZM12.1875 12.3047H2.8125V4.6875H12.1875V12.3047Z"
+                    fill="currentColor"
+                  />
+                </svg>
+                {mobileBar.visitLabel}
+              </button>
+            </div>
+          )}
         </motion.div>
       )}
 

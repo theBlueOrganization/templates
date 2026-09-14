@@ -1,4 +1,4 @@
-이 폴더에 실제 이미지 파일을 추가해야 합니다 (data/sites/osan-heritage-xi.js에서 참조하는 파일명 그대로):
+이 폴더에 실제 이미지 파일을 추가해야 합니다 (data/sites/osan-heritage-xi-x.js에서 참조하는 파일명 그대로):
 
 logo.svg, footer-logo.png
 hero-bg.jpg, hero-bg-mobile.jpg

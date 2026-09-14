@@ -9,6 +9,7 @@ import SignatureMobileBottomBar from '../../../components/ui/SignatureMobileBott
 import SignatureHero from '../../../components/sections/SignatureHero'
 import SignatureVideoSection from '../../../components/sections/SignatureVideoSection'
 import SignatureHeroMinimal from '../../../components/sections/SignatureHeroMinimal'
+import SignatureHeroLegacy from '../../../components/sections/SignatureHeroLegacy'
 import SignatureBenefits from '../../../components/sections/SignatureBenefits'
 import SignatureSummary from '../../../components/sections/SignatureSummary'
 import SignatureLocation from '../../../components/sections/SignatureLocation'
@@ -176,6 +177,13 @@ export default async function AptPage({ params }) {
       <main>
         {sig.hero.variant === 'minimal' ? (
           <SignatureHeroMinimal
+            hero={sig.hero}
+            telNumber={site.telNumber}
+            telNumberByUtm={site.telNumberByUtm}
+            visitTargetId={sig.vipForm.id}
+          />
+        ) : sig.hero.variant === 'legacy' ? (
+          <SignatureHeroLegacy
             hero={sig.hero}
             telNumber={site.telNumber}
             telNumberByUtm={site.telNumberByUtm}

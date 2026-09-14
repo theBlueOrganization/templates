@@ -85,6 +85,9 @@ const adaptiveLandingPointers = [
   { slug: "hanyang-iclass-yangju", subdomain: "한양아이클래스양주", template: "adaptive-landing" },
   { slug: "hanyang-iclass-yangju-2", subdomain: "H한양아이클래스양주", template: "adaptive-landing" },
   { slug: "doosan-wevethezenith-bucheon", subdomain: "두산위브더제니스부천", template: "adaptive-landing" },
+  // 기존 mobile-scroll의 osan-heritage-xi(/-2/-3)와 slug·서브도메인 충돌을 피하기 위해 'x' 접미사
+  // 사용(2026-09-14 사용자 확인) — adaptive-landing 쪽 metaTitle은 접미사 없이 '오산헤리티지자이'
+  { slug: "osan-heritage-xi-x", subdomain: "오산헤리티지자이x", template: "adaptive-landing" },
 ];
 
 const allSites = [...sites, ...adaptiveLandingPointers];

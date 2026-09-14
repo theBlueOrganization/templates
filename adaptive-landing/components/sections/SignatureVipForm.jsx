@@ -19,7 +19,7 @@ const PHONE_FIELDS = ['phone1', 'phone2', 'phone3']
 
 // VIP 24시간 온라인예약센터 — 기존 ContactForm과 필드 구성이 달라(서비스 종류/연령대 라디오)
 // 별도 컴포넌트로 만들고, /api/sms에 serviceType/ageRange 필드를 추가로 실어 보낸다.
-export default function SignatureVipForm({ config }) {
+export default function SignatureVipForm({ config, sectionId }) {
   const { vipForm } = config.signature
   const { slug, projectName, visitTimeOptions, adminPhones, adminPhonesByUtm, sheetId, sheetTab, showUtmInSms } = config
   // 요청 반영 — 히어로 다음 관심고객등록 섹션/팝업과 폰트(세리프 제목·굵기·자간)를 통일하는 옵션.
@@ -93,7 +93,7 @@ export default function SignatureVipForm({ config }) {
 
   return (
     <section
-      id={vipForm.id}
+      id={sectionId ?? vipForm.id}
       className={styles.section}
       style={{
         ...(vipForm.bgColor && { '--vipform-bg': vipForm.bgColor }),

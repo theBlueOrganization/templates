@@ -12,6 +12,7 @@ import dalseoXiGenic2 from './sites/dalseo-xi-genic-2'
 import hanyangIclassYangju from './sites/hanyang-iclass-yangju'
 import hanyangIclassYangju2 from './sites/hanyang-iclass-yangju-2'
 import doosanWevethezenithBucheon from './sites/doosan-wevethezenith-bucheon'
+import osanHeritageXi from './sites/osan-heritage-xi'
 
 /**
  * 새 현장 추가 방법:
@@ -40,6 +41,7 @@ const sites = [
   hanyangIclassYangju,
   hanyangIclassYangju2,
   doosanWevethezenithBucheon,
+  osanHeritageXi,
 ]
 
 // slug로 현장 하나를 찾음 (app/apt/[slug]/page.jsx에서 사용)

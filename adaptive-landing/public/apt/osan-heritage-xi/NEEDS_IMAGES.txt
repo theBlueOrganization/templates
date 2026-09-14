@@ -1,0 +1,13 @@
+이 폴더에 실제 이미지 파일을 추가해야 합니다 (data/sites/osan-heritage-xi.js에서 참조하는 파일명 그대로):
+
+logo.svg, footer-logo.png
+hero-bg.jpg, hero-bg-mobile.jpg
+overview-photo.jpg, overview-thumb-1.jpg, overview-thumb-2.jpg
+location-map.jpg, feature-traffic.jpg, feature-life.jpg, feature-community.jpg, feature-brand.jpg
+premium-intro-bg.jpg
+complex-sitemap.jpg, complex-dongho-chart.jpg
+unit-59a.jpg, unit-84a.jpg
+club-xian-cloud-full.jpg
+og.jpg
+
+이미지 추가 후 이 파일은 삭제하세요.

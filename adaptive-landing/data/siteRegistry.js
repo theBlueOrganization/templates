@@ -13,6 +13,7 @@ import hanyangIclassYangju from './sites/hanyang-iclass-yangju'
 import hanyangIclassYangju2 from './sites/hanyang-iclass-yangju-2'
 import doosanWevethezenithBucheon from './sites/doosan-wevethezenith-bucheon'
 import osanHeritageXiX from './sites/osan-heritage-xi-x'
+import cheongnaArkonePrugio from './sites/cheongna-arkone-prugio'
 
 /**
  * 새 현장 추가 방법:
@@ -42,6 +43,7 @@ const sites = [
   hanyangIclassYangju2,
   doosanWevethezenithBucheon,
   osanHeritageXiX,
+  cheongnaArkonePrugio,
 ]
 
 // slug로 현장 하나를 찾음 (app/apt/[slug]/page.jsx에서 사용)

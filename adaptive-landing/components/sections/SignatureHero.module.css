@@ -42,6 +42,67 @@
   align-items: flex-start;
 }
 
+/* heroLeft — hero.align === 'left'인 현장 전용. 문구 블록 전체를 가운데 대신 좌측으로 배치
+   (배경 사진 위에서 문구가 잘 보이도록 좌측정렬 요청 반영). 요청 반영 — 큰 글씨가 화면 가장자리에
+   바짝 붙어 보인다는 피드백으로 좌측 여백을 한 번 더 넉넉하게 키움
+   (모바일 40px → 태블릿 72px → 데스크톱 120px).
+   ⚠️ 아래쪽 "@media (min-width: 1024px) { .hero { padding: 120px 20px 140px; } }"(기존 전체
+   히어로 공용 규칙)이 이 파일 더 뒤에 나와서, 단일 클래스 .heroLeft와 특이도가 같으면 소스
+   순서상 그 규칙이 이겨서 데스크톱에서 padding-left가 20px로 되돌아가 버렸음(실제 확인된 버그).
+   .hero.heroLeft처럼 두 클래스를 겹쳐서 특이도를 높여 순서와 무관하게 항상 이기도록 고침 */
+.hero.heroLeft {
+  justify-content: flex-start;
+  padding-left: 40px;
+}
+
+.heroLeft .content {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.heroLeft .eyebrow {
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .hero.heroLeft {
+    padding-left: 72px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero.heroLeft {
+    padding-left: 120px;
+  }
+}
+
+/* heroRight — hero.align === 'right'인 현장 전용. heroLeft와 대칭(문구 블록을 우측으로 배치) */
+.hero.heroRight {
+  justify-content: flex-end;
+  padding-right: 40px;
+}
+
+.heroRight .content {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.heroRight .eyebrow {
+  text-align: right;
+}
+
+@media (min-width: 768px) {
+  .hero.heroRight {
+    padding-right: 72px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero.heroRight {
+    padding-right: 120px;
+  }
+}
+
 /* 모바일에서는 기본 padding-top(100px)이 남겨두는 여백이 상대적으로 커서 문구가 아래로 처져
    보이므로, 이 구간만 여백을 줄여 문구를 헤더 바로 아래까지 끌어올림 */
 @media (max-width: 767px) {
@@ -256,6 +317,126 @@
     font-size: 15px;
     right: 9%;
     bottom: 16%;
+  }
+}
+
+/* posterTitle 등 — hero.contentVariant === 'poster' 전용. 큰 3줄 영문 헤드라인 → 국문 서브타이틀 →
+   스파클 구분선 → 작은 소제목 → 이니셜 강조 태그라인 → 하단 안내 카피 순서의 포스터형 레이아웃 */
+.posterTitle {
+  font-family: var(--hero-font, var(--font-sans));
+  font-weight: 800;
+  font-size: clamp(38px, 11vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--hero-title-only, var(--hero-title, #fff));
+  text-shadow: var(--hero-text-shadow, 0 15px 30px rgba(0, 0, 0, 0.5));
+  margin-bottom: 18px;
+  word-break: keep-all;
+}
+
+.posterSubtitleKr {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(18px, 5.5vw, 22px);
+  color: var(--hero-title, #fff);
+  margin-bottom: 24px;
+  word-break: keep-all;
+}
+
+.posterDivider {
+  display: flex;
+  color: var(--hero-title, #fff);
+  margin-bottom: 20px;
+}
+
+.posterDivider svg {
+  width: 18px;
+  height: 18px;
+}
+
+.posterTaglineLabel {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--hero-title, #fff);
+  margin-bottom: 6px;
+  word-break: keep-all;
+}
+
+.posterTagline {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  color: var(--hero-title, #fff);
+  margin-bottom: 26px;
+}
+
+.posterTaglineBig {
+  font-size: 1.3em;
+  font-weight: 800;
+}
+
+.posterFooterLine {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--hero-desc, var(--hero-title, rgba(255, 255, 255, 0.92)));
+  word-break: keep-all;
+}
+
+@media (min-width: 768px) {
+  .posterTitle {
+    font-size: clamp(56px, 8.5vw, 72px);
+    margin-bottom: 24px;
+  }
+
+  .posterSubtitleKr {
+    font-size: 26px;
+    margin-bottom: 30px;
+  }
+
+  .posterTaglineLabel {
+    font-size: 17px;
+  }
+
+  .posterTagline {
+    font-size: 15px;
+  }
+
+  .posterFooterLine {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .posterTitle {
+    font-size: 84px;
+    margin-bottom: 28px;
+  }
+
+  .posterSubtitleKr {
+    font-size: 30px;
+    margin-bottom: 34px;
+  }
+
+  .posterDivider svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .posterTaglineLabel {
+    font-size: 19px;
+  }
+
+  .posterTagline {
+    font-size: 17px;
+  }
+
+  .posterFooterLine {
+    font-size: 17.6px;
   }
 }
 

@@ -16,6 +16,13 @@ const lineVariants = {
   show: (delay) => ({ opacity: 1, y: 0, transition: { duration: 0.9, delay, ease: EASE } }),
 }
 
+// hero.contentVariant === 'poster' 전용 — 큰 헤드라인 아래 구분용 반짝임(스파클) 아이콘
+const SPARKLE_ICON = (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M12 2c.6 3.4 1.4 5.6 2.6 7.4 1.2 1.8 3 3 6.4 3.6-3.4.6-5.2 1.8-6.4 3.6-1.2 1.8-2 4-2.6 7.4-.6-3.4-1.4-5.6-2.6-7.4-1.2-1.8-3-3-6.4-3.6 3.4-.6 5.2-1.8 6.4-3.6C10.6 7.6 11.4 5.4 12 2z" />
+  </svg>
+)
+
 // eupseong-prugio 첫 화면 히어로 — 로드 즉시 순차적으로 텍스트가 아래→위로 떠오르며 나타남
 export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTargetId }) {
   const descSegments = hero.descLine1 ? splitHighlight(hero.descLine1, hero.descLine1Accent) : []
@@ -121,6 +128,8 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
     slides && slides.length > 1 && hero.hideText && !hero.fullHeightSlides && styles.heroSlides,
     !(slides && slides.length > 1) && hero.imageAspectRatio && styles.heroTallImage,
     hero.contentTop && styles.heroContentTop,
+    hero.align === 'left' && styles.heroLeft,
+    hero.align === 'right' && styles.heroRight,
   ]
     .filter(Boolean)
     .join(' ')
@@ -254,119 +263,179 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
             .filter(Boolean)
             .join(' ')}
         >
-          {hero.eyebrowDivider ? (
-            <motion.p className={styles.eyebrowDividerRow} custom={0.2} initial="hidden" animate="show" variants={lineVariants}>
-              <span className={styles.eyebrowDividerText}>{activeEyebrowLine1}</span>
-              <span className={styles.eyebrowDividerLine} />
-              <span className={styles.eyebrowAccent}>{activeEyebrowLine2}</span>
-            </motion.p>
-          ) : (
-            <motion.p className={styles.eyebrow} custom={0.2} initial="hidden" animate="show" variants={lineVariants}>
-              {activeEyebrowLine1}
-              <br className={hero.eyebrowOneLineMobile ? styles.eyebrowBreakHideMobile : undefined} />
-              {hero.eyebrowOneLineMobile ? ' ' : null}
-              <span className={styles.eyebrowAccent}>{activeEyebrowLine2}</span>
-            </motion.p>
-          )}
+          {hero.contentVariant === 'poster' ? (
+            <>
+              <motion.h1 className={styles.posterTitle} custom={0.2} initial="hidden" animate="show" variants={lineVariants}>
+                {hero.titleLine1}
+                {hero.titleLine2 && (
+                  <>
+                    <br />
+                    {hero.titleLine2}
+                  </>
+                )}
+                {hero.titleLine3 && (
+                  <>
+                    <br />
+                    {hero.titleLine3}
+                  </>
+                )}
+              </motion.h1>
 
-          {hero.titleImage ? (
-            <motion.div className={styles.titleImageWrap} custom={0.4} initial="hidden" animate="show" variants={lineVariants}>
-              {activeTitleImageMobile ? (
-                <>
-                  <Image
-                    src={activeTitleImageMobile.src}
-                    alt={hero.titleImage.alt}
-                    width={hero.titleImage.width}
-                    height={hero.titleImage.height}
-                    className={`${styles.titleImage} ${styles.titleImageMobileOnly}`}
-                  />
-                  <Image
-                    src={hero.titleImage.src}
-                    alt={hero.titleImage.alt}
-                    width={hero.titleImage.width}
-                    height={hero.titleImage.height}
-                    className={`${styles.titleImage} ${styles.titleImageDesktopOnly}`}
-                  />
-                </>
-              ) : (
-                <Image
-                  src={hero.titleImage.src}
-                  alt={hero.titleImage.alt}
-                  width={hero.titleImage.width}
-                  height={hero.titleImage.height}
-                  className={styles.titleImage}
-                />
+              {hero.subtitleKr && (
+                <motion.p className={styles.posterSubtitleKr} custom={0.32} initial="hidden" animate="show" variants={lineVariants}>
+                  {hero.subtitleKr}
+                </motion.p>
               )}
-            </motion.div>
+
+              <motion.div className={styles.posterDivider} custom={0.42} initial="hidden" animate="show" variants={lineVariants} aria-hidden="true">
+                {SPARKLE_ICON}
+              </motion.div>
+
+              {hero.taglineLabel && (
+                <motion.p className={styles.posterTaglineLabel} custom={0.5} initial="hidden" animate="show" variants={lineVariants}>
+                  {hero.taglineLabel}
+                </motion.p>
+              )}
+
+              {hero.tagline && (
+                <motion.p className={styles.posterTagline} custom={0.58} initial="hidden" animate="show" variants={lineVariants}>
+                  {hero.tagline.map((seg, i) => (
+                    <span key={i} className={seg.big ? styles.posterTaglineBig : undefined}>
+                      {seg.text}
+                    </span>
+                  ))}
+                </motion.p>
+              )}
+
+              {hero.eyebrowLine1 && (
+                <motion.p className={styles.posterFooterLine} custom={0.68} initial="hidden" animate="show" variants={lineVariants}>
+                  {hero.eyebrowLine1}
+                  {hero.eyebrowLine2 && (
+                    <>
+                      <br />
+                      {hero.eyebrowLine2}
+                    </>
+                  )}
+                </motion.p>
+              )}
+            </>
           ) : (
-            <motion.h1 className={styles.title} custom={0.4} initial="hidden" animate="show" variants={lineVariants}>
-              {titleSegments
-                ? titleSegments.map((seg, i) =>
+            <>
+              {hero.eyebrowDivider ? (
+                <motion.p className={styles.eyebrowDividerRow} custom={0.2} initial="hidden" animate="show" variants={lineVariants}>
+                  <span className={styles.eyebrowDividerText}>{activeEyebrowLine1}</span>
+                  <span className={styles.eyebrowDividerLine} />
+                  <span className={styles.eyebrowAccent}>{activeEyebrowLine2}</span>
+                </motion.p>
+              ) : (
+                <motion.p className={styles.eyebrow} custom={0.2} initial="hidden" animate="show" variants={lineVariants}>
+                  {activeEyebrowLine1}
+                  <br className={hero.eyebrowOneLineMobile ? styles.eyebrowBreakHideMobile : undefined} />
+                  {hero.eyebrowOneLineMobile ? ' ' : null}
+                  <span className={styles.eyebrowAccent}>{activeEyebrowLine2}</span>
+                </motion.p>
+              )}
+
+              {hero.titleImage ? (
+                <motion.div className={styles.titleImageWrap} custom={0.4} initial="hidden" animate="show" variants={lineVariants}>
+                  {activeTitleImageMobile ? (
+                    <>
+                      <Image
+                        src={activeTitleImageMobile.src}
+                        alt={hero.titleImage.alt}
+                        width={hero.titleImage.width}
+                        height={hero.titleImage.height}
+                        className={`${styles.titleImage} ${styles.titleImageMobileOnly}`}
+                      />
+                      <Image
+                        src={hero.titleImage.src}
+                        alt={hero.titleImage.alt}
+                        width={hero.titleImage.width}
+                        height={hero.titleImage.height}
+                        className={`${styles.titleImage} ${styles.titleImageDesktopOnly}`}
+                      />
+                    </>
+                  ) : (
+                    <Image
+                      src={hero.titleImage.src}
+                      alt={hero.titleImage.alt}
+                      width={hero.titleImage.width}
+                      height={hero.titleImage.height}
+                      className={styles.titleImage}
+                    />
+                  )}
+                </motion.div>
+              ) : (
+                <motion.h1 className={styles.title} custom={0.4} initial="hidden" animate="show" variants={lineVariants}>
+                  {titleSegments
+                    ? titleSegments.map((seg, i) =>
+                        seg.accent ? (
+                          <span key={i} className={styles.titleAccent}>
+                            {seg.text}
+                          </span>
+                        ) : (
+                          <span key={i}>{seg.text}</span>
+                        )
+                      )
+                    : hero.titleLine1}
+                  {hero.titleLine2 && (
+                    <>
+                      <br />
+                      {hero.titleLine2}
+                    </>
+                  )}
+                  {hero.titleLine3 && (
+                    <>
+                      <br />
+                      {hero.titleLine3}
+                    </>
+                  )}
+                </motion.h1>
+              )}
+
+              {hero.descLine1 && (
+                <motion.p className={styles.desc} custom={0.65} initial="hidden" animate="show" variants={lineVariants}>
+                  {descSegments.map((seg, i) =>
                     seg.accent ? (
-                      <span key={i} className={styles.titleAccent}>
+                      <strong key={i} className={styles.descAccent}>
                         {seg.text}
-                      </span>
+                      </strong>
                     ) : (
                       <span key={i}>{seg.text}</span>
                     )
-                  )
-                : hero.titleLine1}
-              {hero.titleLine2 && (
-                <>
-                  <br />
-                  {hero.titleLine2}
-                </>
+                  )}
+                  {hero.descLine2 && (
+                    <>
+                      <br />
+                      <MobileBreakText text={hero.descLine2} breakClassName={styles.mobileBreak} />
+                    </>
+                  )}
+                  {hero.descLine3 && (
+                    <>
+                      <br />
+                      <MobileBreakText text={hero.descLine3} breakClassName={styles.mobileBreak} />
+                    </>
+                  )}
+                </motion.p>
               )}
-              {hero.titleLine3 && (
-                <>
-                  <br />
-                  {hero.titleLine3}
-                </>
-              )}
-            </motion.h1>
-          )}
 
-          {hero.descLine1 && (
-            <motion.p className={styles.desc} custom={0.65} initial="hidden" animate="show" variants={lineVariants}>
-              {descSegments.map((seg, i) =>
-                seg.accent ? (
-                  <strong key={i} className={styles.descAccent}>
-                    {seg.text}
-                  </strong>
-                ) : (
-                  <span key={i}>{seg.text}</span>
-                )
+              {hero.brandLogo && (
+                <motion.div
+                  className={styles.brandLogo}
+                  custom={0.85}
+                  initial="hidden"
+                  animate="show"
+                  variants={lineVariants}
+                >
+                  <Image
+                    src={hero.brandLogo.src}
+                    alt={hero.brandLogo.alt}
+                    width={hero.brandLogo.width}
+                    height={hero.brandLogo.height}
+                  />
+                </motion.div>
               )}
-              {hero.descLine2 && (
-                <>
-                  <br />
-                  <MobileBreakText text={hero.descLine2} breakClassName={styles.mobileBreak} />
-                </>
-              )}
-              {hero.descLine3 && (
-                <>
-                  <br />
-                  <MobileBreakText text={hero.descLine3} breakClassName={styles.mobileBreak} />
-                </>
-              )}
-            </motion.p>
-          )}
-
-          {hero.brandLogo && (
-            <motion.div
-              className={styles.brandLogo}
-              custom={0.85}
-              initial="hidden"
-              animate="show"
-              variants={lineVariants}
-            >
-              <Image
-                src={hero.brandLogo.src}
-                alt={hero.brandLogo.alt}
-                width={hero.brandLogo.width}
-                height={hero.brandLogo.height}
-              />
-            </motion.div>
+            </>
           )}
         </div>
       )}

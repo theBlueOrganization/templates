@@ -85,6 +85,7 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
   const heroStyle = {
     ...(hero.bgColor && { '--hero-bg': hero.bgColor }),
     ...(hero.mobileHeight && { '--hero-mobile-min-height': hero.mobileHeight }),
+    ...(mobileBar?.offsetY != null && { '--mobile-bar-offset': `${mobileBar.offsetY}px`, '--hero-overflow': 'visible' }),
     ...(activeEyebrowColorMobile && { '--hero-eyebrow-mobile-active': activeEyebrowColorMobile }),
     ...(hero.textColor && {
       '--hero-title': hero.textColor,

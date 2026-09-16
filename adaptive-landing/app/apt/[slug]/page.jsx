@@ -149,6 +149,7 @@ export default async function AptPage({ params }) {
         '--ink': site.colorTheme.ink,
         '--cream': site.colorTheme.cream,
         '--gold': site.colorTheme.gold,
+        ...(site.colorTheme.visitBtnColor && { '--visit-btn-color': site.colorTheme.visitBtnColor }),
       }
     : { '--navy': 'initial', '--ink': 'initial', '--cream': 'initial', '--gold': 'initial' }
 
@@ -198,6 +199,9 @@ export default async function AptPage({ params }) {
           />
         )}
         {sig.videoSection && <SignatureVideoSection video={sig.videoSection} />}
+        {sig.vipForm.showAfterVideo && (
+          <SignatureVipForm config={site} sectionId={`${sig.vipForm.id}-early`} />
+        )}
         {sig.benefits && <SignatureBenefits benefits={sig.benefits} />}
         {sig.visitReservation && <SignatureVisitReservation visitReservation={sig.visitReservation} config={site} />}
         <SignatureSummary summary={sig.summary} />

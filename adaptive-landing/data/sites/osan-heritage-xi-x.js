@@ -33,6 +33,9 @@ const config = {
     ink: '#283444',
     cream: '#ffffff',
     gold: '#006899',
+    // 요청 반영 — 하단 고정 모바일 액션바 "방문예약" 버튼(파란 배경)의 기본 텍스트색이 --navy라
+    // 배경과 대비가 약해 보여서 흰색으로 교체(다른 현장은 이 값이 없으면 기존 --navy 그대로 유지)
+    visitBtnColor: '#ffffff',
   },
   adminPhones: ['01032662158'],
   sheetId: '',
@@ -145,6 +148,9 @@ const config = {
         // 요청 반영 — 히어로 구간에서는 전화상담/방문예약 버튼을 숨김(스크롤 후 나오는 하단 고정
         // SignatureMobileBottomBar에는 영향 없음, 그대로 유지됨)
         hideActionButtons: true,
+        // 요청 반영 — 모바일 안내 배너(안내바)가 히어로 맨 아래(다음 영상 섹션 시작 지점)에
+        // 딱 붙어 있어서 살짝 더 아래로 내림
+        offsetY: 8,
       },
     },
 
@@ -576,6 +582,7 @@ const config = {
 
     vipForm: {
       id: 'vip-reservation',
+      showAfterVideo: true,
       eyebrow: 'VIP Reservation',
       titleLine1: '오산헤리티지자이',
       titleLine2: '24시간 상담신청 및 방문예약',
@@ -618,26 +625,20 @@ const config = {
       csHours: 'AM 09:00 ~ PM 19:00',
     },
 
-    // 출처: 사용자 전달 진입 팝업 이미지 2장(2026-09-14) — 주말 경품 이벤트 → 선착순 동호 지정 계약중
-    // 안내 순서로 이어서 노출(둘 다 이미지 안에 자체 CTA/문구가 포함돼 있어 별도 텍스트 오버레이 없음)
+    // 요청 반영 — 기존 진입 팝업 2장(주말 경품 이벤트/선착순 동호 지정 계약중) 삭제, 계약금 5%
+    // 파격조건변경 팝업 1장으로 교체(사이트 내 주말 경품 이벤트 섹션(#event)은 그대로 유지, 팝업만 삭제).
+    // 이미지 안에 그려진 "모델하우스 방문/예약" 버튼 클릭 시 관심고객등록 섹션(#vip-reservation)으로
+    // 스크롤 이동 + 팝업 닫힘
     popup: {
       enabled: true,
       images: [
         {
-          src: '/apt/osan-heritage-xi-x/popup-weekend-event.jpg',
-          alt: '오산헤리티지자이 주말 경품 EVENT — 견본주택 방문 고객 대상',
-          width: 350,
-          height: 470,
-          // 요청 반영 — 팝업 이미지 자체에 그려진 "이벤트 바로가기" 버튼 클릭 시 페이지 내
-          // 주말 경품 이벤트 섹션(#event)으로 스크롤 이동 + 팝업 닫힘
-          link: '#event',
-          linkLabel: '주말 경품 이벤트 바로가기',
-        },
-        {
-          src: '/apt/osan-heritage-xi-x/popup-contract-notice.jpg',
-          alt: '오산헤리티지자이 선착순 동·호 지정 계약중 안내',
-          width: 350,
-          height: 470,
+          src: '/apt/osan-heritage-xi-x/popup1.png',
+          alt: '오산헤리티지자이 계약금 5% 파격조건변경 — 선착순 동·호 지정 계약중',
+          width: 1086,
+          height: 1448,
+          link: '#vip-reservation',
+          linkLabel: '모델하우스 방문/예약',
         },
       ],
     },

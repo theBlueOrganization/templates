@@ -12,10 +12,13 @@ const config = {
   subdomain:   "동탄헤리움센트럴",
   projectName: "동탄헤리움센트럴",
   shortName:   "동탄헤리움센트럴",
-  telNumber:   "1800-4336",
+  telNumber:   "1666-0680",
   ogImage:     "/apt/dongtan-herium-central/share_img3.png",
   favicon:     "/apt/dongtan-herium-central/favicon.ico",
-  adminPhones:  ["01064603622"],
+  adminPhones:  ["01055009506"],
+  // 상담 접수 알림은 SMS 대신 카카오 알림톡으로 발송 (기존 승인 템플릿ID 공용 사용)
+  kakao:        true,
+  kakaoTemplateId: "KA01TP260622093537285QA4EPtdxJyI",
   sheetId:      "",
   sheetTab:     "동탄헤리움센트럴",
 

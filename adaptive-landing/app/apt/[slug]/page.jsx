@@ -149,6 +149,7 @@ export default async function AptPage({ params }) {
         '--ink': site.colorTheme.ink,
         '--cream': site.colorTheme.cream,
         '--gold': site.colorTheme.gold,
+        ...(site.colorTheme.visitBtnColor && { '--visit-btn-color': site.colorTheme.visitBtnColor }),
       }
     : { '--navy': 'initial', '--ink': 'initial', '--cream': 'initial', '--gold': 'initial' }
 

@@ -33,6 +33,9 @@ const config = {
     ink: '#283444',
     cream: '#ffffff',
     gold: '#006899',
+    // 요청 반영 — 하단 고정 모바일 액션바 "방문예약" 버튼(파란 배경)의 기본 텍스트색이 --navy라
+    // 배경과 대비가 약해 보여서 흰색으로 교체(다른 현장은 이 값이 없으면 기존 --navy 그대로 유지)
+    visitBtnColor: '#ffffff',
   },
   adminPhones: ['01032662158'],
   sheetId: '',
@@ -145,6 +148,9 @@ const config = {
         // 요청 반영 — 히어로 구간에서는 전화상담/방문예약 버튼을 숨김(스크롤 후 나오는 하단 고정
         // SignatureMobileBottomBar에는 영향 없음, 그대로 유지됨)
         hideActionButtons: true,
+        // 요청 반영 — 모바일 안내 배너(안내바)가 히어로 맨 아래(다음 영상 섹션 시작 지점)에
+        // 딱 붙어 있어서 살짝 더 아래로 내림
+        offsetY: 8,
       },
     },
 

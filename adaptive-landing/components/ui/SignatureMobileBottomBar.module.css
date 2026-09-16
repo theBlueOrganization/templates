@@ -33,7 +33,7 @@
 
 .visitBtn {
   background: var(--gold, #e0cd9c);
-  color: var(--navy, #263241);
+  color: var(--visit-btn-color, var(--navy, #263241));
 }
 
 @media (min-width: 1024px) {

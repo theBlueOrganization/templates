@@ -4,7 +4,7 @@ import { useRef, useState } from 'react'
 import Image from 'next/image'
 import Reveal from '../motion/Reveal'
 import { Stagger, StaggerItem } from '../motion/Stagger'
-import { splitHighlight } from '../../lib/utils'
+import { cn, splitHighlight } from '../../lib/utils'
 import MobileBreakText from '../ui/MobileBreakText'
 import SignatureLightbox from '../ui/SignatureLightbox'
 import styles from './SignatureLocation.module.css'
@@ -98,6 +98,22 @@ const CATEGORY_ICONS = {
       <path d="M17 20v-4M22 20v-4M27 20v-4" />
     </svg>
   ),
+  // 다이아몬드/개발가치 카드용 아이콘(icon-only 카드에서 사용, 위 4개는 지도 사진카드용 카테고리 아이콘)
+  diamond: (
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M10 18h28L24 40 10 18z" />
+      <path d="M10 18 17 8h14l7 10" />
+      <path d="M17 8 24 18 31 8" />
+      <path d="M24 18v22" />
+    </svg>
+  ),
+  book: (
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M24 14c-3-3-8-4-14-4v24c6 0 11 1 14 4" />
+      <path d="M24 14c3-3 8-4 14-4v24c-6 0-11 1-14 4" />
+      <path d="M24 14v24" />
+    </svg>
+  ),
 }
 
 function Highlighted({ text, accent, className, accentClassName }) {
@@ -129,7 +145,7 @@ export default function SignatureLocation({ location }) {
         ...(location.titleWeight && { '--location-title-weight': location.titleWeight }),
       }}
     >
-      <Reveal className={styles.header}>
+      <Reveal className={cn(styles.header, location.titleAlign === 'left' && styles.headerLeft)}>
         {location.label && <p className={styles.label}>{location.label}</p>}
         {(location.eyebrowPlain || location.eyebrowAccent) && (
           <p className={styles.eyebrow}>
@@ -202,10 +218,18 @@ export default function SignatureLocation({ location }) {
       )}
 
       <Stagger
-        className={`${styles.grid} ${location.features[0]?.image ? styles.gridPhoto : location.features[0]?.num ? styles.gridNum : ''}`}
+        className={`${styles.grid} ${location.features[0]?.image ? styles.gridPhoto : location.features[0]?.num ? styles.gridNum : location.features[0]?.icon ? styles.gridIcon : ''}`}
       >
         {location.features.map((f) =>
-          f.num && f.image ? (
+          f.icon ? (
+            <StaggerItem key={f.title} className={styles.iconCard}>
+              <span className={cn(styles.iconCardBadge, f.badgeVariant === 'gold' && styles.iconCardBadgeGold)}>
+                {CATEGORY_ICONS[f.icon]}
+              </span>
+              <h3 className={styles.iconCardTitle}>{f.title}</h3>
+              <p className={styles.iconCardDesc}>{f.desc}</p>
+            </StaggerItem>
+          ) : f.num && f.image ? (
             <StaggerItem key={f.num} className={styles.photoCard}>
               <div className={styles.photoCardImageBox}>
                 <Image

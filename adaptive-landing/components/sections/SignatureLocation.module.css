@@ -144,6 +144,12 @@
   pointer-events: none;
 }
 
+.headerLeft {
+  align-items: flex-start;
+  text-align: left;
+  max-width: 100%;
+}
+
 .subhead {
   display: flex;
   flex-direction: column;
@@ -221,6 +227,60 @@
 
 .gridPhoto {
   gap: 20px;
+}
+
+.gridIcon {
+  gap: 20px;
+}
+
+.iconCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 36px 24px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  text-align: center;
+}
+
+.iconCardBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--navy, #263241);
+  color: #fff;
+}
+
+.iconCardBadge svg {
+  width: 30px;
+  height: 30px;
+}
+
+.iconCardBadgeGold {
+  background: var(--gold, #e0cd9c);
+}
+
+.iconCardTitle {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--ink, #111);
+  letter-spacing: -0.02em;
+  word-break: keep-all;
+  line-height: 1.4;
+}
+
+.iconCardDesc {
+  font-size: 13.5px;
+  font-weight: 400;
+  color: #666;
+  line-height: 1.65;
+  word-break: keep-all;
 }
 
 .photoCard {
@@ -500,6 +560,33 @@
   .gridPhoto {
     grid-template-columns: repeat(2, 1fr);
     gap: 32px;
+  }
+
+  .gridIcon {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+
+  .iconCard {
+    padding: 48px 32px;
+  }
+
+  .iconCardBadge {
+    width: 80px;
+    height: 80px;
+  }
+
+  .iconCardBadge svg {
+    width: 38px;
+    height: 38px;
+  }
+
+  .iconCardTitle {
+    font-size: 20px;
+  }
+
+  .iconCardDesc {
+    font-size: 15px;
   }
 
   .photoCard {

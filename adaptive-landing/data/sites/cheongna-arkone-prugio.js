@@ -75,6 +75,9 @@ const config = {
       // 출처: 공식 사이트 공용 워드마크(/resources/img/common/logotype.svg, 원본 161x26 black) —
       // 헤더 배경이 스크롤 여부와 무관하게 항상 --navy(딥그린 #004B45)라 흰색 버전만 사용
       logo: { src: '/apt/cheongna-arkone-prugio/logo-white.svg', alt: '청라 아크원 푸르지오', width: 161, height: 26 },
+      // 요청 반영 — 기본 로고 폭(140/190/220px)이 가로로 긴 워드마크(161x26, 약 6.2:1) 특성상
+      // 너무 넓고 커 보여서 축소
+      logoSize: { base: 96, lg: 130, xl: 150 },
       gnb: ['사업개요', '입지환경', '프리미엄', '단지안내', '세대안내', '관심고객등록'],
       quickCtaLabel: '관심고객등록',
       phone: '1551-6881',
@@ -104,19 +107,45 @@ const config = {
     },
 
     hero: {
+      // 요청 반영 — 기본 오버레이(radial-gradient로 가장자리를 85% 검게 덮는 비네트)가 사진을
+      // 거의 검은 배경처럼 보이게 만들어서 완전히 끔. 공식 사이트 메인 비주얼도 사진 위에 별도
+      // 어두운 스크림 없이 워드마크만 얹는 방식이라 실제 디자인에도 더 가까움
+      overlay: false,
+      // 요청 반영 — 문구를 가운데 대신 좌측정렬로 배치
+      align: 'left',
+      // 요청 반영(참고 화면 캡처) — 문구를 세로 중앙 대신 상단(하늘 배경 위)에 배치
+      contentTop: true,
+      // 요청 반영(참고 화면 캡처) — 큰 3줄 영문 헤드라인 → 국문 서브타이틀 → 스파클 구분선 → 작은
+      // 소제목 → 이니셜(A·R·K·O) 강조 태그라인 → 하단 안내 카피 순서의 포스터형 레이아웃.
+      // SignatureHero에 이 순서를 그리는 전용 분기(contentVariant: 'poster')를 새로 추가함
+      contentVariant: 'poster',
+      // 참고 화면 문구 전부 흰색이라 순백색으로 통일(오버레이를 껐으니 사진 위 가독성 확보를 위해
+      // 텍스트 그림자는 keepTextShadow로 유지)
+      textColor: '#FFFFFF',
+      keepTextShadow: true,
+      titleLine1: 'CHEONG NA',
+      titleLine2: 'ARK-ONE',
+      titleLine3: 'PRUGIO',
+      subtitleKr: '청라 아크원 푸르지오',
+      taglineLabel: '아크원(ARK-ONE)이란?',
+      // "ABSOLUTE REMARKABLE ONE"에서 ARK-ONE을 이루는 이니셜(A·R·K·O)만 크게 강조
+      tagline: [
+        { text: 'A', big: true },
+        { text: 'bsolute ' },
+        { text: 'R', big: true },
+        { text: 'emar' },
+        { text: 'K', big: true },
+        { text: 'able ' },
+        { text: 'O', big: true },
+        { text: 'ne' },
+      ],
       eyebrowLine1: '청라의 절대적 기준이 될',
-      eyebrowLine2: '단 하나의 주거명작',
-      titleLine1: '청라 아크원 푸르지오',
-      // 출처: 공식 사이트 메인 비주얼 워드마크 원본(/resources/img/main/main_visual_name_img.v3.svg,
-      // white, 540x303, 2026-09-16) — "ABSOLUTE REMARKABLE ONE" 표기가 이미지 안에 포함돼 있어
-      // titleLine1/2 텍스트 대신 이 이미지를 그대로 사용
-      titleImage: { src: '/apt/cheongna-arkone-prugio/hero-title.svg', alt: '청라 아크원 푸르지오 — ABSOLUTE REMARKABLE ONE', width: 540, height: 303 },
-      descLine1: '지하 5층~지상 49층 총 6개동 1,855가구',
-      descLine1Accent: ['1,855가구'],
-      descLine2: '청라국제도시 주상복합용지 M5BL,',
-      descLine3: '국제업무단지의 센트럴 라이프가 시작됩니다.',
+      eyebrowLine2: '단 하나의 주거명작을 상징',
       // 출처: 공식 사이트 메인 비주얼 원본(/resources/img/main/main_visual_img.v3.jpg, 2026-09-16)
       bgImage: { src: '/apt/cheongna-arkone-prugio/hero-bg.webp', alt: '청라 아크원 푸르지오 대표 조감도 — ABSOLUTE REMARKABLE ONE' },
+      // 출처: 사용자 전달 모바일 전용 세로형 이미지(main_visual_img_m.v3.jpg → hero-bg-mobile.webp,
+      // 750x1380, 2026-09-16) — 768px 미만에서는 이 세로형 크롭을, 그 이상은 기존 가로형 bgImage를 사용
+      bgImageMobile: { src: '/apt/cheongna-arkone-prugio/hero-bg-mobile.webp', alt: '청라 아크원 푸르지오 대표 조감도(모바일) — ABSOLUTE REMARKABLE ONE' },
       mobileBar: {
         announcements: [{ badge: '안내', textStrong: '청라 아크원 푸르지오', textLight: ' 공식 안내센터입니다.' }],
         bubbleText: '관심고객등록 시 분양소식을 가장 먼저 안내드립니다',
@@ -159,7 +188,8 @@ const config = {
     location: {
       id: 'location',
       navLabel: '입지환경',
-      title: 'CENTRAL LOCATION\nPRUGIO',
+      // 요청 반영 — 2줄로 나누지 않고 한 줄로
+      title: 'CENTRAL LOCATION PRUGIO',
       titleAlign: 'left',
       titleWeight: 700,
       // 출처: 공식 사이트 위치안내도 원본(/resources/img/sub/location_map_img.v3.jpg)
@@ -197,14 +227,19 @@ const config = {
     premiumIntro: {
       bgImage: { src: '/apt/cheongna-arkone-prugio/premium-intro-bg.webp', alt: '청라 아크원 푸르지오 프리미엄 전경' },
       titleLine1: '공간의 특별함도 자부심의 높이도',
-      titleLine2: '정점을 넘어 완성된 라이프로, 청라 아크원 푸르지오',
+      // 요청 반영 — "정점을 넘어 완성된 라이프로"와 "청라 아크원 푸르지오"를 한 줄로 잇지 않고
+      // 별도 줄로 분리(공식 사이트 프리미엄 페이지 원문 줄바꿈과 동일)
+      titleLine2: '정점을 넘어 완성된 라이프로\n청라 아크원 푸르지오',
       descLine1: '총 2,911가구(청라 피크원 푸르지오 포함) 규모의',
       descLine1Accent: ['2,911가구'],
       descLine2: '청라를 대표하는 푸르지오 대규모 브랜드타운을 완성합니다.',
     },
 
-    // 출처: 공식 사이트 /pages/premium PREMIUM 01~05 원문 그대로(2026-09-16). 카드 이미지는 각
-    // 항목의 공식 이미지컷 1번을 그대로 사용
+    // 출처: 공식 사이트 /pages/premium(2026-09-16). 공식 페이지 실제 구조를 다시 확인해보니 카드
+    // 그리드가 아니라 "PREMIUM 01~05" 각 항목이 텍스트+사진 좌우 분할로 지그재그(홀/짝수마다 좌우
+    // 반전)로 이어지는 구성이었음 — premiumSplits(SignaturePremiumSplit)로 교체해서 원본에 더
+    // 가깝게 재구성. premiumValue는 이 템플릿에서 필수 섹션이라 뺄 수 없어, 아래 premiumSplits와
+    // 내용이 겹치지 않도록 사진 없이 숫자+제목만 있는 짧은 인덱스 스트립으로 축소
     premiumValue: {
       id: 'premium-value',
       navLabel: '프리미엄',
@@ -213,43 +248,62 @@ const config = {
       titleAccent: 'PREMIUM 5',
       cardTextAlign: 'center',
       cards: [
-        {
-          num: '01',
-          icon: 'city',
-          title: ['총 2,911가구', '푸르지오 브랜드타운'],
-          desc: ['최고 49층 총 2,911가구(청라 피크원 푸르지오 포함)로', '청라를 대표하는 푸르지오 대규모 브랜드타운'],
-          image: { src: '/apt/cheongna-arkone-prugio/premium-photo-01.webp', alt: '청라 아크원 푸르지오 야경 이미지컷' },
-        },
-        {
-          num: '02',
-          icon: 'tower',
-          title: ['국제업무단지의', '센트럴 라이프'],
-          desc: ['청라의 중심으로 완성되는', '국제업무단지의 특별한 주거 가치'],
-          image: { src: '/apt/cheongna-arkone-prugio/premium-photo-02.webp', alt: '청라 아크원 푸르지오 도심 전경 이미지컷' },
-        },
-        {
-          num: '03',
-          icon: 'pin',
-          title: ['오션 · 시티뷰', '조망 특화'],
-          desc: ['오션 · 시티뷰를 동시에 누리는', '2면 or 3면 개방구조(일부세대)'],
-          image: { src: '/apt/cheongna-arkone-prugio/premium-photo-03.webp', alt: '청라 아크원 푸르지오 오션뷰 이미지컷' },
-        },
-        {
-          num: '04',
-          icon: 'money',
-          title: ['높은 희소가치와', '합리적 분양가'],
-          desc: ['청라가 기다려온 신규공급,', '2017년 이후 10년만의 분양가 상한제 공급 아파트'],
-          image: { src: '/apt/cheongna-arkone-prugio/premium-photo-04.webp', alt: '청라 아크원 푸르지오 실내 이미지컷' },
-        },
-        {
-          num: '05',
-          icon: 'unitPlan',
-          title: ['멀티', '라이프 플랫폼'],
-          desc: ['팬트리 2개소 이상 제공,', '다양한 공간 활용의 멀티 발코니(OT)'],
-          image: { src: '/apt/cheongna-arkone-prugio/premium-photo-05.webp', alt: '청라 아크원 푸르지오 발코니 이미지컷' },
-        },
+        { num: '01', title: ['총 2,911가구', '브랜드타운'], desc: ['청라를 대표하는', '푸르지오 대규모 타운'] },
+        { num: '02', title: ['국제업무단지', '센트럴 라이프'], desc: ['청라의 중심으로', '완성되는 주거 가치'] },
+        { num: '03', title: ['오션 · 시티뷰', '조망 특화'], desc: ['2면 or 3면 개방구조', '(일부세대)'] },
+        { num: '04', title: ['높은 희소가치', '합리적 분양가'], desc: ['2017년 이후 10년만의', '분양가 상한제 공급'] },
+        { num: '05', title: ['멀티', '라이프 플랫폼'], desc: ['팬트리 2개소 이상,', '멀티 발코니(OT)'] },
       ],
     },
+
+    // 출처: 공식 사이트 /pages/premium PREMIUM 01~05 원문/이미지 그대로(2026-09-16) — 텍스트+사진
+    // 좌우 분할, 짝수 항목은 reverse:true로 좌우를 바꿔 지그재그 구성(공식 페이지와 동일)
+    premiumSplits: [
+      {
+        eyebrow: 'PREMIUM 01',
+        title: ['총 2,911가구', '푸르지오 브랜드타운'],
+        descLines: ['최고 49층 총 2,911가구(청라 피크원 푸르지오 포함)로', '청라를 대표하는 푸르지오 대규모 브랜드타운'],
+        images: [
+          { src: '/apt/cheongna-arkone-prugio/premium-photo-01.webp', alt: '청라 아크원 푸르지오 야경 이미지컷 1' },
+          { src: '/apt/cheongna-arkone-prugio/premium-photo-01b.webp', alt: '청라 아크원 푸르지오 야경 이미지컷 2' },
+        ],
+      },
+      {
+        reverse: true,
+        eyebrow: 'PREMIUM 02',
+        title: ['국제업무단지의', '센트럴 라이프'],
+        descLines: ['청라의 중심으로 완성되는', '국제업무단지의 특별한 주거 가치'],
+        images: [{ src: '/apt/cheongna-arkone-prugio/premium-photo-02.webp', alt: '청라 아크원 푸르지오 도심 전경 이미지컷' }],
+      },
+      {
+        eyebrow: 'PREMIUM 03',
+        title: ['오션 · 시티뷰', '조망 특화'],
+        descLines: ['오션 · 시티뷰를 동시에 누리는', '2면 or 3면 개방구조(일부세대)'],
+        images: [
+          { src: '/apt/cheongna-arkone-prugio/premium-photo-03.webp', alt: '청라 아크원 푸르지오 오션뷰 이미지컷 1' },
+          { src: '/apt/cheongna-arkone-prugio/premium-photo-03b.webp', alt: '청라 아크원 푸르지오 오션뷰 이미지컷 2' },
+        ],
+      },
+      {
+        reverse: true,
+        eyebrow: 'PREMIUM 04',
+        title: ['높은 희소가치와', '합리적 분양가'],
+        descLines: ['청라가 기다려온 신규공급,', "2017년 이후 10년만의 분양가 상한제 공급 아파트"],
+        images: [
+          { src: '/apt/cheongna-arkone-prugio/premium-photo-04.webp', alt: '청라 아크원 푸르지오 실내 이미지컷 1' },
+          { src: '/apt/cheongna-arkone-prugio/premium-photo-04b.webp', alt: '청라 아크원 푸르지오 실내 이미지컷 2' },
+        ],
+      },
+      {
+        eyebrow: 'PREMIUM 05',
+        title: ['멀티', '라이프 플랫폼'],
+        descLines: ['팬트리 2개소 이상 제공,', '다양한 공간 활용의 멀티 발코니(OT)'],
+        images: [
+          { src: '/apt/cheongna-arkone-prugio/premium-photo-05.webp', alt: '청라 아크원 푸르지오 발코니 이미지컷 1' },
+          { src: '/apt/cheongna-arkone-prugio/premium-photo-05b.webp', alt: '청라 아크원 푸르지오 발코니 이미지컷 2' },
+        ],
+      },
+    ],
 
     // ⚠️ 공식 사이트에 단지 배치도·동호수 배치표가 아직 공개되지 않아(사전 홍보 단계) 실제 이미지 대신
     // "공개 예정" 플레이스홀더 이미지 사용 — 공개되면 교체 필요
@@ -356,7 +410,7 @@ const config = {
     // 출처: 공식 사이트 /pages/contact 회사정보 원문 그대로(2026-09-16). 온라인대행은 공식 사이트의
     // (주)넥스미디어·(주)나인야드 대신, 이 랜딩페이지를 운영하는 더블루파트너스로 표기(다른 현장과 동일 컨벤션)
     footer: {
-      logo: { src: '/apt/cheongna-arkone-prugio/logo-white.svg', alt: '청라 아크원 푸르지오', width: 161, height: 26 },
+      logo: { src: '/apt/cheongna-arkone-prugio/logo-white.svg', alt: '청라 아크원 푸르지오', width: 130, height: 21 },
       logoAlign: 'center',
       highlightText: '분양문의 1551-6881',
       agencySlogan: '분양완판 전문가 그룹, (주) 더블루파트너스',
@@ -376,6 +430,21 @@ const config = {
       ],
       csPhone: '1551-6881',
       csHours: 'AM 09:00 ~ PM 19:00',
+    },
+
+    // 요청 반영 — 진입 시 관심고객등록 팝업 노출. 이름+연락처+서비스+희망일시만 받는 간이 신청
+    // 폼(SignatureInterestPopup, 다른 현장에서도 쓰는 공용 컴포넌트)으로, 제출 시 vipForm과 동일한
+    // /api/sms로 바로 전송됨. variant:'light'는 크림+골드 톤(우리 브랜드 컬러)으로 보이게 하는
+    // 옵션 — 기본값(다크 네이비 카드) 대신 사용
+    popup: {
+      interest: {
+        enabled: true,
+        variant: 'light',
+        eyebrow: 'INTEREST',
+        title: '관심고객등록',
+        desc: '간단한 정보를 입력해 주시면\n청라 아크원 푸르지오의 분양 일정을 가장 먼저 안내해드립니다.',
+        submitLabel: '관심고객 등록',
+      },
     },
   },
 }

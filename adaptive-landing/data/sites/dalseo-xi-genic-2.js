@@ -6,7 +6,8 @@
 // 이 사이트만의 차이점:
 //   - subdomain: 달서xi제니크.addupapt.kr (2026-09-14 현장 요청 반영)
 //   - telNumber/header.phone/quickMenu.phone/footer.highlightText·csPhone: 053-760-4747
-//   - adminPhones: 이 팀 전용 카카오 알림톡 수신번호(010-7990-9005)로 교체
+//   - adminPhones: 이 팀 전용 수신번호(010-7990-9005)로 교체, kakao: false로 카카오 알림톡
+//     대신 문자(SMS)로 수신(2026-09-18 현장 요청)
 //   - footer.companyLines: 현장 요청으로 시행사 정보를 (주)제이비스 기준으로 표기
 //     (시행 제이비스(주) / 시행사 대표자 한성민 / 시행사업자번호 240-86-00562, 2026-09-14 반영)
 //   - popup: 9/10 상품권 혜택, 9/13 SAMSUNG DAY 경품이벤트 팝업은 행사 종료로 삭제(원본과 동일)
@@ -36,8 +37,8 @@ const config = {
   sheetId: '',
   sheetTab: '달서자이제니크2',
   showUtmInSms: true,
-  // 상담 접수 알림을 문자 대신 카카오 알림톡으로 발송(실패 시 SMS로 자동 폴백)
-  kakao: true,
+  // 2026-09-18 현장 요청으로 카카오 알림톡 대신 문자(SMS)로 수신하도록 변경
+  kakao: false,
 
   company: {
     name: '주식회사 더블루파트너스',

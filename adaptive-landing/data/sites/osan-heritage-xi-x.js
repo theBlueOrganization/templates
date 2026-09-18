@@ -615,6 +615,9 @@ const config = {
         { label: '시행사업자번호', value: '434-88-02873' },
         { label: '시공', value: 'GS건설(주)' },
         { label: '이메일', value: 'addup@addup.kr' },
+        { label: '담당회사', value: '주식회사 더블루파트너스' },
+        { label: '사업자 등록번호', value: '789-81-03093' },
+        { label: '전화번호', value: '1666-1755' },
       ],
       disclaimers: [
         '※ 본 사이트에 사용된 이미지들은 소비자의 이해를 돕기 위해 제작된 것으로 실제와 다를 수 있습니다.',

@@ -36,7 +36,7 @@ export default function SignatureFooter({ footer, telNumber, telNumberByUtm, pro
           <div className={styles.info}>
             <div className={styles.companyLines}>
               {footer.companyLines.map((line) => (
-                <span key={line.label} className={styles.companyLine}>
+                <span key={line.label} className={cn(styles.companyLine, line.newLine && styles.companyLineBreak)}>
                   <strong>{line.label}</strong> {line.value}
                 </span>
               ))}

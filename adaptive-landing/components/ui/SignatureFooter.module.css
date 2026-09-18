@@ -111,6 +111,11 @@
   font-weight: 300;
 }
 
+/* line.newLine === true인 항목은 flex-wrap 컨테이너에서 항상 새 줄로 강제 줄바꿈 */
+.companyLineBreak {
+  flex-basis: 100%;
+}
+
 .disclaimers {
   display: flex;
   flex-direction: column;

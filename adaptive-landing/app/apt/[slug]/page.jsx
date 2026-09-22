@@ -46,6 +46,7 @@ import SignatureFaq from '../../../components/sections/SignatureFaq'
 import SignatureLocationGeomdan from '../../../components/sections/SignatureLocationGeomdan'
 import SignatureFinalInterest from '../../../components/sections/SignatureFinalInterest'
 import SignatureBottomDockGeomdan from '../../../components/ui/SignatureBottomDockGeomdan'
+import SignatureArkoneImmersive from '../../../components/sections/SignatureArkoneImmersive'
 
 export const viewport = {
   width: 'device-width',
@@ -83,6 +84,38 @@ export default async function AptPage({ params }) {
   if (!site) notFound()
 
   const sig = site.signature
+
+  // 청라 아크원 푸르지오(cheongna-arkone-prugio) 전용 — 참고 시안(풀페이지 스크롤 스냅 + 인트로)이
+  // 기존 12섹션 고정 흐름과 완전히 다른 구조라, headerGeomdan과 같은 방식으로 여기서 전용 렌더
+  // 트리로 완전히 분기하고 이후의 기존 로직은 타지 않는다. Solapi/구글시트 등 site 최상위 설정은
+  // 그대로 두고, 디자인만 이 전용 컴포넌트가 담당한다.
+  if (sig.arkoneImmersive) {
+    // 이 페이지는 telNumber/adminPhones/sheetId 등 라우팅용 설정과, 재사용하는 개인정보
+    // 동의문·회사정보 몇 개만 필요 — site 전체를 그대로 넘기면 안 쓰는 legacy signature.*
+    // 콘텐츠(hero/summary/premiumSplits/unitPlan 등)까지 클라이언트 페이로드로 직렬화돼
+    // 불필요하게 커지므로, 실제로 쓰는 값만 추려서 넘긴다.
+    const immersiveSite = {
+      slug: site.slug,
+      telNumber: site.telNumber,
+      projectName: site.projectName,
+      adminPhones: site.adminPhones,
+      adminPhonesByUtm: site.adminPhonesByUtm,
+      sheetId: site.sheetId,
+      sheetTab: site.sheetTab,
+      showUtmInSms: site.showUtmInSms,
+      visitTimeOptions: site.visitTimeOptions,
+      company: { email: site.company.email },
+      signature: {
+        footer: {
+          companyLines: sig.footer.companyLines,
+          disclaimers: sig.footer.disclaimers,
+          csHours: sig.footer.csHours,
+        },
+        vipForm: { privacyText: sig.vipForm.privacyText },
+      },
+    }
+    return <SignatureArkoneImmersive site={immersiveSite} />
+  }
 
   // 더샵 검단레이크파크(the-sharp-geomdan-lakepark) 전용 — 참고 사이트(apt-all.app)의 섹션 순서/구성이
   // 기존 12섹션 고정 흐름과 완전히 달라 signature 필드 이름 자체가 다르므로(headerGeomdan 등),

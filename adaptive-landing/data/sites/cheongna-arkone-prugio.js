@@ -71,6 +71,14 @@ const config = {
   ],
 
   signature: {
+    // 요청 반영(2026-09-22) — 참고 시안(cheongna-arkone-prugio-v2-2-mobile-first-standalone.html)의
+    // 풀페이지 스크롤 디자인·이미지를 그대로 반영한 전용 컴포넌트(SignatureArkoneImmersive)로 교체.
+    // true인 동안 app/apt/[slug]/page.jsx가 아래 header/hero/summary/... 필드를 쓰는 기존 렌더
+    // 트리 대신 이 컴포넌트로 완전히 분기한다 — 기존 필드는 되돌릴 수 있도록 그대로 남겨둠.
+    // 참고 시안에 있던 가짜 실시간 접속자 수, 무작위 가짜 방문예약 알림, "AI 분양비서"(실제 AI
+    // 상담 없이 폼만 접수), SEO 조작용 가짜 FAQ 150개·검색어 200개 스터핑은 실제 고객을 속이는
+    // 조작된 신뢰지표라 이 전용 컴포넌트에 반영하지 않았음(표시광고법 등 문제 소지).
+    arkoneImmersive: true,
     header: {
       // 출처: 공식 사이트 공용 워드마크(/resources/img/common/logotype.svg, 원본 161x26 black) —
       // 헤더 배경이 스크롤 여부와 무관하게 항상 --navy(딥그린 #004B45)라 흰색 버전만 사용
@@ -419,8 +427,14 @@ const config = {
         { label: '시행사업자번호', value: '866-88-02497' },
         { label: '시공', value: '(주)대우건설' },
         { label: '시공사업자번호', value: '104-81-58180' },
-        { label: '온라인대행', value: '주식회사 더블루파트너스' },
-        { label: '사업자등록번호', value: '789-81-03093' },
+        // 요청 반영(2026-09-22) — 광고 운영·관리 대행사 표기(osan-heritage-xi-x와 동일 컨벤션).
+        // 이 현장은 온라인대행사(더블루파트너스)와 광고 운영·관리 대행사가 동일 회사라 위 "온라인대행"
+        // 항목을 따로 안 두고(이름·사업자번호 중복 표기 방지) 이 블록 하나로 통합 표기.
+        // 이메일(addup@addup.kr)도 청라스마트시티/대우건설이 아니라 더블루파트너스 소유라 시행/시공
+        // 그룹이 아닌 이 담당회사 그룹으로 옮김
+        { label: '담당회사', value: '주식회사 더블루파트너스', newLine: true },
+        { label: '사업자 등록번호', value: '789-81-03093' },
+        { label: '전화번호', value: '1666-1755' },
         { label: '이메일', value: 'addup@addup.kr' },
       ],
       disclaimers: [

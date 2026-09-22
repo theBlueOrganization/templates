@@ -41,6 +41,10 @@ const config = {
   sheetId: '',
   sheetTab: '오산헤리티지자이x',
   showUtmInSms: true,
+  // 요청 반영 — 010-3266-2158로 가는 상담 접수 알림을 카카오 알림톡으로 발송(실패 시 SMS 자동 폴백)하고,
+  // 현장명 뒤에 "+네이버"를 붙여 유입 매체를 구분(유입경로 utm 없이 들어온 직접유입 기준)
+  kakao: true,
+  smsProjectNameSuffix: '네이버',
 
   company: {
     name: '주식회사 더블루파트너스',

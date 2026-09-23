@@ -426,6 +426,8 @@ export default function SignatureArkoneImmersive({ site }) {
       serviceType,
       projectName: site.projectName,
       adminPhones: resolvedAdminPhones,
+      adminPhoneNames: site.adminPhoneNames,
+      smsMediaLabel: site.smsMediaLabel,
       sheetId: site.sheetId,
       sheetTab: site.sheetTab,
       utmSource,

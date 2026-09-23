@@ -100,6 +100,8 @@ export default async function AptPage({ params }) {
       projectName: site.projectName,
       adminPhones: site.adminPhones,
       adminPhonesByUtm: site.adminPhonesByUtm,
+      adminPhoneNames: site.adminPhoneNames,
+      smsMediaLabel: site.smsMediaLabel,
       sheetId: site.sheetId,
       sheetTab: site.sheetTab,
       showUtmInSms: site.showUtmInSms,

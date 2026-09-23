@@ -90,6 +90,7 @@ const adaptiveLandingPointers = [
   { slug: "osan-heritage-xi-x", subdomain: "오산헤리티지자이x", template: "adaptive-landing" },
   { slug: "cheongna-arkone-prugio", subdomain: "청라아크원푸르지오", template: "adaptive-landing" },
   { slug: "cheongna-arkone-prugio-2", subdomain: "청라아크원푸르지오2", template: "adaptive-landing" },
+  { slug: "forena-incheon-hagik", subdomain: "포레나인천학익", template: "adaptive-landing" },
 ];
 
 const allSites = [...sites, ...adaptiveLandingPointers];

@@ -15,6 +15,7 @@ import doosanWevethezenithBucheon from './sites/doosan-wevethezenith-bucheon'
 import osanHeritageXiX from './sites/osan-heritage-xi-x'
 import cheongnaArkonePrugio from './sites/cheongna-arkone-prugio'
 import cheongnaArkonePrugio2 from './sites/cheongna-arkone-prugio-2'
+import forenaIncheonHagik from './sites/forena-incheon-hagik'
 
 /**
  * 새 현장 추가 방법:
@@ -46,6 +47,7 @@ const sites = [
   osanHeritageXiX,
   cheongnaArkonePrugio,
   cheongnaArkonePrugio2,
+  forenaIncheonHagik,
 ]
 
 // slug로 현장 하나를 찾음 (app/apt/[slug]/page.jsx에서 사용)

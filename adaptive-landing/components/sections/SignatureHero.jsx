@@ -100,6 +100,7 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
       ...(!hero.keepTextShadow && { '--hero-text-shadow': 'none' }),
     }),
     ...(hero.accentColor && { '--hero-accent': hero.accentColor }),
+    ...(hero.badge?.borderColor && { '--hero-badge-border': hero.badge.borderColor }),
     ...(hero.titleAccentColor && { '--hero-title-accent': hero.titleAccentColor }),
     ...(hero.titleColor && { '--hero-title-only': hero.titleColor }),
     ...(hero.fontFamily && { '--hero-font': hero.fontFamily }),
@@ -247,8 +248,17 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
         )}
         {hero.badge && (
           <div className={styles.badge}>
-            <span className={styles.badgeLine1}>{hero.badge.line1}</span>
-            <span className={styles.badgeLine2}>{hero.badge.line2}</span>
+            {hero.badge.small && <span className={styles.badgeSmall}>{hero.badge.small}</span>}
+            {hero.badge.lines && (
+              <span className={styles.badgeMain}>
+                {hero.badge.lines.map((line, i) => (
+                  <span key={i}>
+                    {i > 0 && <br />}
+                    {line}
+                  </span>
+                ))}
+              </span>
+            )}
           </div>
         )}
       </div>

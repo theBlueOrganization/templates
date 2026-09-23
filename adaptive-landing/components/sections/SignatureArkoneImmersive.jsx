@@ -234,14 +234,19 @@ export default function SignatureArkoneImmersive({ site }) {
     return () => { cancelAnimationFrame(raf); clearTimeout(t) }
   }, [])
 
-  // 인트로가 끝나면(공지 팝업을 오늘 이미 닫지 않았다면) 안내 팝업 표시
+  // 인트로가 끝나면 안내 팝업을 띄우고, 닫으면 이어서 방문예약 다이얼로그를 띄움
+  // (요청 반영 — 별도 디자인의 "관심고객등록" 팝업 대신, 이미 있는 방문예약 다이얼로그를 그대로 재사용).
+  // 세션 내 재노출 억제 없이 매번(새로고침해도) 노출
   useEffect(() => {
     if (!introDone) return
-    const t = setTimeout(() => {
-      if (sessionStorage.getItem('arkoneNoticeHide') !== '1') setNoticeOpen(true)
-    }, 700)
+    const t = setTimeout(() => setNoticeOpen(true), 700)
     return () => clearTimeout(t)
   }, [introDone])
+
+  const closeNotice = () => {
+    setNoticeOpen(false)
+    setTimeout(() => openDialog(visitDialogRef), 300)
+  }
 
   const blockingOverlay = () => noticeOpen || openDialogCountRef.current > 0
 
@@ -474,7 +479,7 @@ export default function SignatureArkoneImmersive({ site }) {
       <header className={styles.siteHeader}>
         <div className={styles.headerLeft}>
           <button type="button" className={styles.headerLogo} onClick={() => navigateTo('hero')} aria-label="맨 위로">
-            <Image src="/apt/cheongna-arkone-prugio/logo-white.svg" alt="PRUGIO" width={66} height={22} />
+            <Image src="/apt/cheongna-arkone-prugio/logo-white.svg" alt="PRUGIO" width={105} height={17} />
           </button>
           <strong className={styles.headerProject}>청라 아크원</strong>
         </div>
@@ -515,7 +520,7 @@ export default function SignatureArkoneImmersive({ site }) {
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>ABSOLUTE · REMARKABLE · ONE</p>
               <h1 className={styles.sectionTitle}>청라의 정점을<br /><span className={styles.gradientText}>빛내는 단 하나</span></h1>
-              <p className={styles.sectionDesc}>{site.projectName}</p>
+              <p className={styles.sectionDesc}>CHEONGNA ARK-ONE PRUGIO</p>
             </header>
           </div>
           <div className={styles.scrollCue}><i /><span>SCROLL</span></div>
@@ -526,7 +531,7 @@ export default function SignatureArkoneImmersive({ site }) {
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>아크원 이야기</p>
-              <h2 className={styles.sectionTitle}>청라에 세워질 <span className={styles.gradientText}>하나의 기준</span></h2>
+              <h2 className={styles.sectionTitle}>청라에 세워질<br className={styles.titleBreak} /><span className={styles.gradientText}>하나의 기준</span></h2>
               <p className={styles.sectionDesc}>ARK-ONE은 청라의 절대적 기준이 될 단 하나의 주거명작을 상징합니다.</p>
             </header>
             <div className={styles.brandLayout}>
@@ -550,7 +555,7 @@ export default function SignatureArkoneImmersive({ site }) {
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>방문예약</p>
-              <h2 className={styles.sectionTitle}>기다림 없이 <span className={styles.gradientText}>여유로운 상담</span></h2>
+              <h2 className={styles.sectionTitle}>기다림 없이<br className={styles.titleBreak} /><span className={styles.gradientText}>여유로운 상담</span></h2>
               <p className={styles.sectionDesc}>방문 희망일과 시간을 먼저 선택하면 전담 상담사가 일정 확인 후 안내드립니다.</p>
             </header>
             <div className={styles.visual}>
@@ -596,7 +601,7 @@ export default function SignatureArkoneImmersive({ site }) {
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>미래 교통 계획</p>
-              <h2 className={styles.sectionTitle}>서울을 향한 <span className={styles.gradientText}>다섯 개의 축</span></h2>
+              <h2 className={styles.sectionTitle}>서울을 향한<br className={styles.titleBreak} /><span className={styles.gradientText}>다섯 개의 축</span></h2>
               <p className={styles.sectionDesc}>확정 노선과 건의·검토 단계 계획을 구분해 공공자료 기준으로 정리했습니다.</p>
             </header>
             <div className={styles.networkList}>
@@ -614,15 +619,17 @@ export default function SignatureArkoneImmersive({ site }) {
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>입지환경</p>
-              <h2 className={styles.sectionTitle}>청라의 변화가 <span className={styles.gradientText}>한곳에 모이다</span></h2>
+              <h2 className={styles.sectionTitle}>청라의 변화가<br className={styles.titleBreak} /><span className={styles.gradientText}>한곳에 모이다</span></h2>
               <p className={styles.sectionDesc}>문화·의료·금융·교통이 연결되는 청라국제업무단지의 중심.</p>
             </header>
             <div className={styles.visual} role="button" tabIndex={0} onClick={() => openDialog(mapDialogRef)} onKeyDown={(e) => e.key === 'Enter' && openDialog(mapDialogRef)}>
-              <Image src={ASSET('location-cta.webp')} alt="청라 국제업무단지 입지환경 이미지컷" fill sizes="100vw" />
-              <div className={styles.mapPins}>
-                <span>스타필드 청라</span><span>서울아산청라병원</span><span>하나드림타운</span><span>광역 교통망</span>
-              </div>
+              <Image src="/apt/cheongna-arkone-prugio/location-map.webp" alt="청라 아크원 푸르지오 위치 안내도" fill sizes="100vw" />
               <button type="button" className={styles.mapZoom} onClick={(e) => { e.stopPropagation(); openDialog(mapDialogRef) }}>＋ 지도 확대</button>
+            </div>
+            {/* 요청 반영 — 지도 이미지 하단에 겹쳐 놓으면 지도 자체의 지명 라벨과 겹쳐 보여서
+                이미지 밖 별도 목록으로 분리 */}
+            <div className={styles.mapPins}>
+              <span>스타필드 청라</span><span>서울아산청라병원</span><span>하나드림타운</span><span>광역 교통망</span>
             </div>
           </div>
         </section>
@@ -632,7 +639,7 @@ export default function SignatureArkoneImmersive({ site }) {
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>주거공간</p>
-              <h2 className={styles.sectionTitle}>다양한 생활을 담는 <span className={styles.gradientText}>유연한 공간</span></h2>
+              <h2 className={styles.sectionTitle}>다양한 생활을 담는<br className={styles.titleBreak} /><span className={styles.gradientText}>유연한 공간</span></h2>
               <p className={styles.sectionDesc}>다양한 라이프스타일을 상상하는 유니트 프리뷰입니다.</p>
             </header>
             <div className={styles.unitArea}>
@@ -656,7 +663,7 @@ export default function SignatureArkoneImmersive({ site }) {
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>단지배치</p>
-              <h2 className={styles.sectionTitle}>도시와 바다를 향한 <span className={styles.gradientText}>열린 배치</span></h2>
+              <h2 className={styles.sectionTitle}>도시와 바다를 향한<br className={styles.titleBreak} /><span className={styles.gradientText}>열린 배치</span></h2>
               <p className={styles.sectionDesc}>최고 49층 스카이라인과 일부 2·3면 개방구조가 만드는 오션·시티뷰.</p>
             </header>
             <div className={styles.visual}>
@@ -671,7 +678,7 @@ export default function SignatureArkoneImmersive({ site }) {
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>커뮤니티와 조경</p>
-              <h2 className={styles.sectionTitle}>일상의 여백을 <span className={styles.gradientText}>더 풍요롭게</span></h2>
+              <h2 className={styles.sectionTitle}>일상의 여백을<br className={styles.titleBreak} /><span className={styles.gradientText}>더 풍요롭게</span></h2>
               <p className={styles.sectionDesc}>휴식·건강·교류를 하나의 흐름으로 연결하는 커뮤니티와 조경 콘셉트.</p>
             </header>
             <div className={styles.communityGrid}>
@@ -690,7 +697,7 @@ export default function SignatureArkoneImmersive({ site }) {
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>프리미엄 01—05</p>
-              <h2 className={styles.sectionTitle}>청라 생활을 넓히는 <span className={styles.gradientText}>다섯 가지 가치</span></h2>
+              <h2 className={styles.sectionTitle}>청라 생활을 넓히는<br className={styles.titleBreak} /><span className={styles.gradientText}>다섯 가지 가치</span></h2>
             </header>
             <div className={styles.premiumBrand}>
               <Image className={styles.premiumSymbol} src={ASSET('prugio-symbol.svg')} alt="푸르지오 심볼" width={38} height={38} />
@@ -722,7 +729,7 @@ export default function SignatureArkoneImmersive({ site }) {
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>청라의 연혁</p>
-              <h2 className={styles.sectionTitle}>시간이 증명한 <span className={styles.gradientText}>청라의 미래가치</span></h2>
+              <h2 className={styles.sectionTitle}>시간이 증명한<br className={styles.titleBreak} /><span className={styles.gradientText}>청라의 미래가치</span></h2>
               <p className={styles.sectionDesc}>자동 이동·드래그·화살표로 살펴보는 청라의 변화.</p>
             </header>
             <div className={styles.historyViewport} ref={historyViewportRef}>
@@ -752,7 +759,7 @@ export default function SignatureArkoneImmersive({ site }) {
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>{site.projectName}</p>
-              <h2 className={styles.sectionTitle}>관심 있는 정보를 <span className={styles.gradientText}>상담받아보세요</span></h2>
+              <h2 className={styles.sectionTitle}>관심 있는 정보를<br className={styles.titleBreak} /><span className={styles.gradientText}>상담받아보세요</span></h2>
               <p className={styles.sectionDesc}>상담 유형을 선택하면 입력 화면이 즉시 전환됩니다.</p>
             </header>
             <div className={styles.contactLayout}>
@@ -873,7 +880,7 @@ export default function SignatureArkoneImmersive({ site }) {
       <dialog ref={mapDialogRef} className={cn(styles.dialog, styles.mapDialog)} onClick={(e) => e.target === e.currentTarget && closeDialog(mapDialogRef)}>
         <div className={styles.modal}>
           <button type="button" className={styles.modalClose} aria-label="닫기" onClick={() => closeDialog(mapDialogRef)}>×</button>
-          <Image src={ASSET('location-cta.webp')} alt="청라 국제업무단지 입지환경 이미지컷 확대" fill sizes="96vw" />
+          <Image src="/apt/cheongna-arkone-prugio/location-map.webp" alt="청라 아크원 푸르지오 위치 안내도 확대" fill sizes="96vw" />
         </div>
       </dialog>
 
@@ -910,15 +917,14 @@ export default function SignatureArkoneImmersive({ site }) {
         <div className={cn(styles.popupOverlay, styles.isOpen)} role="dialog" aria-modal="true" aria-label="주요 안내">
           <div className={styles.popupShell}>
             <article className={styles.noticeCard}>
-              <button type="button" className={styles.noticeX} aria-label="닫기" onClick={() => setNoticeOpen(false)}>×</button>
+              <button type="button" className={styles.noticeX} aria-label="닫기" onClick={closeNotice}>×</button>
               <div className={styles.noticeImageWrap}>
                 <Image src={ASSET('notice-popup.webp')} alt="" fill sizes="440px" />
               </div>
               <h3>{site.projectName}</h3>
               <p>관심고객등록 시 분양 일정과 주요 소식을 가장 먼저 안내해 드립니다.</p>
               <div className={styles.noticeActions}>
-                <button type="button" onClick={() => { sessionStorage.setItem('arkoneNoticeHide', '1'); setNoticeOpen(false) }}>오늘 하루 보지 않기</button>
-                <button type="button" className={styles.close} onClick={() => setNoticeOpen(false)}>닫기</button>
+                <button type="button" className={styles.close} onClick={closeNotice}>닫기</button>
               </div>
             </article>
           </div>

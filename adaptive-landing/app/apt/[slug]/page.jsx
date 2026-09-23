@@ -102,6 +102,7 @@ export default async function AptPage({ params }) {
       adminPhonesByUtm: site.adminPhonesByUtm,
       adminPhoneNames: site.adminPhoneNames,
       smsMediaLabel: site.smsMediaLabel,
+      colorTheme: site.colorTheme,
       sheetId: site.sheetId,
       sheetTab: site.sheetTab,
       showUtmInSms: site.showUtmInSms,
@@ -113,7 +114,8 @@ export default async function AptPage({ params }) {
           disclaimers: sig.footer.disclaimers,
           csHours: sig.footer.csHours,
         },
-        vipForm: { privacyText: sig.vipForm.privacyText },
+        vipForm: { privacyText: sig.vipForm.privacyText, serviceOptions: sig.vipForm.serviceOptions },
+        popup: sig.popup,
       },
     }
     return <SignatureArkoneImmersive site={immersiveSite} />

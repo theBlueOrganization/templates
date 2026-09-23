@@ -459,8 +459,9 @@ const config = {
 
     // 요청 반영 — 진입 시 관심고객등록 팝업 노출. 이름+연락처+서비스+희망일시만 받는 간이 신청
     // 폼(SignatureInterestPopup, 다른 현장에서도 쓰는 공용 컴포넌트)으로, 제출 시 vipForm과 동일한
-    // /api/sms로 바로 전송됨. variant:'light'는 크림+골드 톤(우리 브랜드 컬러)으로 보이게 하는
-    // 옵션 — 기본값(다크 네이비 카드) 대신 사용
+    // /api/sms로 바로 전송됨. 요청 반영(2026-09-23) — 다크 그린 카드가 버튼 등이 잘 안 보인다는
+    // 피드백으로 흰 배경(variant:'light') + 초록 포인트(아래 wrapper의 --gold를 --green으로 주입)
+    // 조합으로 변경
     popup: {
       interest: {
         enabled: true,

@@ -26,8 +26,10 @@
 }
 
 /* :where()로 감싸 이 리셋의 특이도를 낮춤 — 그래야 아래 개별 버튼 클래스(.submitButton 등
-   단일 클래스 규칙)가 소스 순서와 무관하게 항상 이 리셋을 이길 수 있음 */
-.root :where(button) {
+   단일 클래스 규칙)가 소스 순서와 무관하게 항상 이 리셋을 이길 수 있음.
+   :not(...)도 :where()로 한 번 더 감싸서(특이도 그대로 유지) 이 안에서 재사용하는 다른
+   공용 컴포넌트(SignatureInterestPopup 등)의 버튼까지 리셋이 새 나가 배경색이 사라지는 걸 방지 */
+.root :where(button):where(:not([class*='SignatureInterestPopup'])) {
   border: 0;
   background: none;
   font: inherit;
@@ -50,16 +52,21 @@
   color: #fff;
 }
 .headerLeft, .headerRight { display: flex; align-items: center; min-width: 0; }
-.headerLeft { gap: 8px; }
-.headerLogo { width: 66px; height: 22px; flex: none; padding: 0; }
+.headerLeft { gap: 5px; }
+.headerLogo { width: 105px; height: 17px; flex: none; padding: 0; }
 .headerLogo :global(img) { filter: brightness(0) invert(1); object-fit: contain; }
 .headerProject {
   min-width: 0; padding-left: 8px; border-left: 1px solid rgba(255, 255, 255, 0.28);
-  font-size: 13px; font-weight: 760; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-size: 11px; font-weight: 760; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .headerMenu { display: none; }
 .headerRight { justify-content: flex-end; gap: 6px; }
-.headerPhone { height: 38px; display: flex; align-items: center; font-size: 16px; font-weight: 900; letter-spacing: -0.04em; }
+.headerPhone {
+  height: 40px; display: flex; align-items: center; flex: none; padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.26); border-radius: 999px;
+  background: rgba(4, 72, 61, 0.62); color: #fff;
+  font-size: 15px; font-weight: 900; letter-spacing: -0.02em;
+}
 .menuToggle {
   position: relative; width: 40px; height: 40px; flex: none;
   border: 1px solid rgba(255, 255, 255, 0.26) !important; border-radius: 50%;
@@ -173,10 +180,11 @@
 .capBadge small { font-size: 10px; color: #d9f391; }
 .capBadge b { display: block; margin-top: 4px; font-size: 13.5px; line-height: 1.25; }
 .scrollCue {
-  position: absolute; z-index: 4; right: 5vw; bottom: calc(var(--bottom) + 2vh);
-  display: flex; gap: 7px; align-items: center; font-size: 7px; letter-spacing: 0.2em; color: #fff;
+  position: absolute; z-index: 4; left: 50%; bottom: 14px; transform: translateX(-50%);
+  display: flex; flex-direction: column; gap: 7px; align-items: center; font-size: 7px; letter-spacing: 0.2em; color: #fff;
 }
-.scrollCue i { width: 22px; height: 1px; background: #fff; }
+.scrollCue i { width: 1px; height: 22px; background: #fff; }
+.scrollCue span { writing-mode: vertical-rl; }
 
 /* 아크원 이야기 */
 .brandLayout { display: grid; grid-template-rows: auto 1fr; min-height: 0; flex: 1; margin-top: 16px; gap: 10px; }
@@ -187,9 +195,9 @@
 .brandOverview dd { margin: 3px 0 0; font-size: 13px; font-weight: 800; }
 .brandOverview small { display: block; margin-top: 2px; font-size: 8px; font-weight: 500; color: #71817b; }
 .brandWords { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
-.brandWords article { display: flex; flex-direction: column; justify-content: flex-end; padding: 10px; border-radius: 13px; background: var(--green); color: #fff; min-height: 90px; }
+.brandWords article { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 10px; border-radius: 13px; background: var(--green); color: #fff; min-height: 90px; }
 .brandWords b { font-family: Georgia, serif; font-size: 22px; color: var(--lime); }
-.brandWords span { font-size: 8px; line-height: 1.35; color: #d7ece6; margin-top: 4px; }
+.brandWords span { font-size: 11px; line-height: 1.35; color: #d7ece6; margin-top: 4px; }
 
 /* 공용 비주얼 이미지 블록 */
 .visual { position: relative; min-height: 0; flex: 1; margin-top: 16px; border-radius: 16px; overflow: hidden; }
@@ -253,9 +261,10 @@
 .route b { font-size: 14px; }
 .route span { font-size: 10px; color: #425852; }
 
-/* 입지환경 */
-.mapPins { position: absolute; z-index: 2; inset: 12px; display: grid; grid-template-columns: repeat(2, 1fr); align-content: end; gap: 6px; }
-.mapPins span { padding: 7px; border-radius: 9px; background: rgba(255, 255, 255, 0.92); font-size: 9px; font-weight: 800; }
+/* 입지환경 — 지도 이미지 위에 겹쳐두면 지도 자체 지명 라벨과 충돌해 보여서 이미지 아래
+   별도 목록으로 분리(요청 반영) */
+.mapPins { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 10px; flex: none; }
+.mapPins span { display: block; padding: 10px 12px; border-radius: 9px; background: #fff; border: 1px solid var(--line); color: var(--ink); font-size: 13px; font-weight: 800; }
 .mapZoom {
   position: absolute; z-index: 4; right: 12px; top: 12px; height: 32px; padding: 0 12px;
   border-radius: 999px; background: var(--green); color: #fff; font-size: 9px;
@@ -287,7 +296,7 @@
 
 /* 단지배치 */
 .planPoints { position: absolute; z-index: 3; left: 12px; bottom: 12px; display: flex; gap: 6px; flex-wrap: wrap; }
-.planPoints span { padding: 6px 9px; border-radius: 999px; background: rgba(3, 65, 55, 0.9); color: #fff; font-size: 8px; }
+.planPoints span { padding: 7px 11px; border-radius: 999px; background: rgba(3, 65, 55, 0.9); color: #fff; font-size: 11px; }
 
 /* 커뮤니티 */
 .communityGrid { display: grid; grid-template-rows: repeat(3, 1fr); min-height: 0; flex: 1; margin-top: 16px; gap: 8px; }
@@ -454,7 +463,7 @@
 .noticeCard h3 { margin: 14px 0 6px; font-family: Georgia, 'Noto Serif KR', serif; font-size: 26px; }
 .noticeCard > p { margin: 0; font-size: 11px; color: #62716d; }
 .noticeX { position: absolute; z-index: 2; right: 10px; top: 10px; width: 34px; height: 34px; border-radius: 50%; background: #edf0ee; font-size: 18px; }
-.noticeActions { margin-top: 16px; display: flex; justify-content: space-between; align-items: center; }
+.noticeActions { margin-top: 16px; display: flex; justify-content: center; align-items: center; }
 .noticeActions button { font-size: 10px; }
 .noticeActions .close { height: 34px; padding: 0 16px; border-radius: 8px; background: var(--green); color: #fff; }
 
@@ -593,11 +602,12 @@
   /* 데스크톱에서 nav가 보이면 자식이 3개(headerLeft/headerMenu/headerRight)가 되는데
      grid-template-columns가 2열뿐이면 headerMenu가 다음 줄로 밀려 헤더가 두 줄이 되고
      전화번호가 아래로 넘치는 버그가 생기므로 3열로 늘려서 한 줄에 고정 */
-  .siteHeader { grid-template-columns: auto 1fr auto; padding-left: 30px; padding-right: 30px; }
-  .headerLeft { gap: 13px; }
-  .headerLogo { width: 92px; height: 28px; }
+  .siteHeader { grid-template-columns: auto 1fr auto; gap: 28px; padding-left: 30px; padding-right: 30px; }
+  .headerLeft { gap: 8px; }
+  .headerLogo { width: 248px; height: 40px; }
   .headerProject { font-size: 16px; }
   .headerMenu { display: flex; justify-content: center; gap: 22px; font-size: 15px; font-weight: 700; white-space: nowrap; }
+  .headerRight { gap: 14px; }
   .headerPhone { font-size: 19px; }
   .headerVisit {
     display: block; height: 42px; padding: 0 18px; border: 1px solid rgba(215, 241, 123, 0.55) !important;
@@ -608,6 +618,8 @@
 
   .sectionShell { top: calc(var(--header) + 5vh); bottom: 5vh; }
   .sectionTitle { font-size: clamp(45px, 4.7vw, 76px); }
+  /* 모바일에서만 강제로 두 줄로 끊은 타이틀들 — PC는 폭이 넉넉해 한 줄로 표시 */
+  .titleBreak { display: none; }
   .sectionDesc { font-size: 14px; }
   .eyebrow { font-size: 12px; margin-bottom: 8px; }
   .visual { margin-top: 20px; border-radius: 26px; }
@@ -633,10 +645,14 @@
   .brandOverview small { font-size: 9px; }
   .brandWords article { padding: 18px; }
   .brandWords b { font-size: 38px; }
-  .brandWords span { font-size: 10px; }
+  .brandWords span { font-size: 13px; }
 
   .landmark .sectionShell { display: grid; grid-template-columns: 0.76fr 1.55fr; gap: 30px; }
   .landmark .sectionHead { align-self: start; }
+  /* 좁아진 좌측 칼럼(0.76fr) 안에서 기본 sectionTitle 폰트(clamp 45~76px)가 너무 커서
+     "하나금융그룹 본사"가 칼럼 폭에 안 맞아 단어 중간에서 줄바꿈되며 이상하게 끊겨 보이던 문제 —
+     이 칼럼 폭에 맞는 별도 크기로 축소 */
+  .landmark .sectionTitle { font-size: clamp(32px, 3.2vw, 52px); }
   .landmark .visual { margin-top: 0; }
   .contentCard { left: 5vw; right: auto; width: min(420px, 48%); bottom: 18px; padding: 20px; }
   .contentCard h3 { font-size: 30px; }
@@ -651,6 +667,10 @@
   .route span { font-size: 12px; }
 
   .locationPanel .sectionTitle { font-size: clamp(42px, 4.4vw, 72px); }
+  .mapPins { grid-template-columns: repeat(4, 1fr); }
+  .mapPins span { padding: 12px 14px; font-size: 15px; text-align: center; }
+
+  .planPoints span { padding: 9px 14px; font-size: 13px; }
 
   .unitArea { grid-template-columns: 150px 1fr; gap: 14px; margin-top: 20px; }
   .unitTab { font-size: 12px; }

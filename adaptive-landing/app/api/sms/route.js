@@ -125,6 +125,8 @@ export async function POST(request) {
       privacy_agree,
       projectName,
       adminPhones,
+      adminPhoneNames,
+      smsMediaLabel,
       sheetId,
       sheetTab,
       utmSource,
@@ -206,6 +208,19 @@ export async function POST(request) {
       `\n개인정보동의: ${privacy_agree ? '동의함' : '미동의'}` +
       utmLine
 
+    // 수신자별로 "매체+담당자" 표기(예: "현대+진의원")를 붙여서, 같은 번호로 여러 현장 문자를
+    // 받는 담당자가 어느 현장 문의인지 한눈에 구분할 수 있게 함 (adminPhoneNames 설정된 현장만
+    // 적용, 없으면 기존과 동일한 문자 그대로 발송). smsMediaLabel(예: "현대")은 직접유입(utm 없음)
+    // 일 때만 쓰는 고정 라벨이고, 추후 실제 utm_source 유입경로(예: 엘포인트)가 생기면 그 값을
+    // 그대로 매체명으로 써서 "엘포인트+진의원"처럼 자동으로 구분되게 한다 — smsProjectNameSuffix가
+    // isNoUtm일 때만 적용되는 것과 동일한 패턴
+    const buildMessage = (to) => {
+      const recipientName = adminPhoneNames?.[to]
+      if (!recipientName) return adminMessage
+      const mediaLabel = isNoUtm ? smsMediaLabel || '직접유입' : utmSource
+      return `${adminMessage}\n수신: ${mediaLabel}+${recipientName}`
+    }
+
     const sheetPromise = saveToSheet({
       name,
       phone,
@@ -249,7 +264,7 @@ export async function POST(request) {
             console.warn(`[카카오] 실패 → SMS 폴백: ${to}`, kakaoError.message)
           }
         }
-        await sendSms({ to, text: adminMessage })
+        await sendSms({ to, text: buildMessage(to) })
       })
     )
 

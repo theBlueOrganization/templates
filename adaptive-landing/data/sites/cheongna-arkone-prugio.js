@@ -26,14 +26,16 @@
 // 이 값을 그대로 navy=primary-500 / ink=primary-900 / gold=secondary-500 / cream=secondary-100에
 // 매핑(기존 기본 남색/골드 대신 실제 공식 브랜드 컬러 사용)
 //
-// ⚠️ adminPhones/sheetTab은 담당자 실제 연락처가 정해지면 반드시 교체 필요(현재 예시 값)
+// 요청 반영(2026-09-23) — 대표번호를 1533-6480으로 변경, 상담 접수 알림은 진의원·최용호 2명에게
+// 발송하고 문자 본문에 "유입매체+담당자" 표기(예: "현대+진의원")가 보이도록 adminPhoneNames 추가
+// (route.js가 이 맵으로 수신자별 메시지에 태그를 붙임)
 const config = {
   slug: 'cheongna-arkone-prugio',
   subdomain: '청라아크원푸르지오',
   projectName: '청라 아크원 푸르지오',
   shortName: '청라 아크원 푸르지오',
-  // 출처: 공식 사이트 대표 문의전화 원문(2026-09-16)
-  telNumber: '1551-6881',
+  // 요청 반영(2026-09-23) — 대표 문의전화 변경
+  telNumber: '1533-6480',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/cheongna-arkone-prugio/og.jpg',
   // 출처: 공식 사이트 token.css 원문(2026-09-16) — primary-500/primary-900/secondary-500/secondary-100
   colorTheme: {
@@ -47,8 +49,17 @@ const config = {
     family: "'SUIT', 'Pretendard', var(--font-noto-sans-kr, 'Noto Sans KR'), sans-serif",
     cssUrl: 'https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css',
   },
-  // TODO: 담당자 실제 연락처로 교체
-  adminPhones: ['01000000000'],
+  // 요청 반영(2026-09-23) — 진의원·최용호
+  adminPhones: ['01071901052', '01049851470'],
+  // 문자 본문에 "매체+담당자" 표기(예: "현대+진의원")를 붙이기 위한 수신번호→담당자명 매핑
+  adminPhoneNames: {
+    '01071901052': '진의원',
+    '01049851470': '최용호',
+  },
+  // 위 표기의 "매체" 부분 — 직접유입(utm_source 없음)일 때만 "현대"로 고정 표시.
+  // 추후 이 현장에 실제 유입경로(예: ?utm_source=lpoint)가 생기면 그 값이 자동으로 매체명이 되어
+  // "엘포인트+진의원"처럼 구분되고, 이 "현대" 값은 직접유입 몫으로만 그대로 남아 서로 꼬이지 않음
+  smsMediaLabel: '현대',
   sheetId: '',
   sheetTab: '청라아크원푸르지오',
   showUtmInSms: true,
@@ -88,7 +99,7 @@ const config = {
       logoSize: { base: 96, lg: 130, xl: 150 },
       gnb: ['사업개요', '입지환경', '프리미엄', '단지안내', '세대안내', '관심고객등록'],
       quickCtaLabel: '관심고객등록',
-      phone: '1551-6881',
+      phone: '1533-6480',
     },
 
     // PC 우측 고정 사이드 퀵메뉴 — 공식 사이트가 fullPage.js 기반 풀스크린 스크롤 구조라 화면
@@ -96,7 +107,7 @@ const config = {
     quickMenu: {
       brand: '청라 아크원 푸르지오',
       phoneLabel: '분양문의',
-      phone: '1551-6881',
+      phone: '1533-6480',
       favoriteLabel: '관심고객',
       menuLabel: 'MENU',
       ctaTargetId: 'vip-reservation',
@@ -420,7 +431,7 @@ const config = {
     footer: {
       logo: { src: '/apt/cheongna-arkone-prugio/logo-white.svg', alt: '청라 아크원 푸르지오', width: 130, height: 21 },
       logoAlign: 'center',
-      highlightText: '분양문의 1551-6881',
+      highlightText: '분양문의 1533-6480',
       agencySlogan: '분양완판 전문가 그룹, (주) 더블루파트너스',
       companyLines: [
         { label: '시행', value: '(주)청라스마트시티' },
@@ -442,7 +453,7 @@ const config = {
         '※ 사업지 인근의 개발사업과 관련된 사항은 지자체, 개발주체 및 관계기관의 사정에 따라 변경될 수 있습니다.',
         '※ 제작, 편집, 인쇄과정상 오탈자 등의 오류가 있을 수 있으니, 계약 전 반드시 견본주택 관계자에게 문의하시기 바랍니다.',
       ],
-      csPhone: '1551-6881',
+      csPhone: '1533-6480',
       csHours: 'AM 09:00 ~ PM 19:00',
     },
 

@@ -292,11 +292,12 @@
    colorTheme(--navy/--gold)을 따라가 사이트마다 자연스럽게 색이 맞춰짐 */
 .badge {
   position: absolute;
-  /* 청라 아크원 푸르지오 capBadge와 동일하게 헤더 바로 아래 우측 상단에 배치(모바일: 헤더 높이(64px)
-     + 10vh, 데스크톱: 17vh) — 모바일에서도 slideNav 썸네일 세로 스트립(top:50%, right:12px)이나
-     하단 mobileBar와 겹치지 않는 높이 */
+  /* 요청 반영 — 모바일에서 뱃지를 헤더(64px) 바로 아래까지 최대한 끌어올림. 헤더가 z-index:100으로
+     떠 있어서 이보다 더 올리면(top을 64px보다 작게) 뱃지가 헤더 뒤에 가려짐 — 이게 실질적 최대 높이.
+     모바일에서도 slideNav 썸네일 세로 스트립(top:50%, right:12px)이나 하단 mobileBar와는 안 겹침.
+     데스크톱은 청라 아크원 푸르지오 capBadge와 동일하게 17vh */
   right: 4vw;
-  top: calc(64px + 10vh);
+  top: calc(64px + 4px);
   z-index: 1;
   width: 104px;
   height: 104px;

@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { useUtmSource } from '../../lib/useUtmSource'
 import { cn } from '../../lib/utils'
-import SignatureInterestPopup from '../ui/SignatureInterestPopup'
 import styles from './SignatureArkoneImmersive.module.css'
 
 // 청라 아크원 푸르지오 전용 풀페이지 몰입형 랜딩 — 참고 시안(cheongna-arkone-prugio-v2-2-mobile-first-standalone.html)의
@@ -189,7 +188,6 @@ export default function SignatureArkoneImmersive({ site }) {
   const [unitKey, setUnitKey] = useState(UNIT_TABS[0].key)
   const [contactTab, setContactTab] = useState('visit')
   const [noticeOpen, setNoticeOpen] = useState(false)
-  const [interestOpen, setInterestOpen] = useState(false)
   const [sourceInfo, setSourceInfo] = useState(null)
   const [faqIndex, setFaqIndex] = useState(0)
   const [toast, setToast] = useState('')
@@ -236,8 +234,9 @@ export default function SignatureArkoneImmersive({ site }) {
     return () => { cancelAnimationFrame(raf); clearTimeout(t) }
   }, [])
 
-  // 인트로가 끝나면 팝업 2개를 순서대로 띄움 — 1번째: 안내 팝업, 2번째: 관심고객등록 팝업
-  // (안내 팝업이 닫히자마자 이어서). 세션 내 재노출 억제 없이 매번(새로고침해도) 두 팝업 모두 노출
+  // 인트로가 끝나면 안내 팝업을 띄우고, 닫으면 이어서 방문예약 다이얼로그를 띄움
+  // (요청 반영 — 별도 디자인의 "관심고객등록" 팝업 대신, 이미 있는 방문예약 다이얼로그를 그대로 재사용).
+  // 세션 내 재노출 억제 없이 매번(새로고침해도) 노출
   useEffect(() => {
     if (!introDone) return
     const t = setTimeout(() => setNoticeOpen(true), 700)
@@ -246,14 +245,10 @@ export default function SignatureArkoneImmersive({ site }) {
 
   const closeNotice = () => {
     setNoticeOpen(false)
-    setTimeout(() => setInterestOpen(true), 300)
+    setTimeout(() => openDialog(visitDialogRef), 300)
   }
 
-  const closeInterest = () => {
-    setInterestOpen(false)
-  }
-
-  const blockingOverlay = () => noticeOpen || interestOpen || openDialogCountRef.current > 0
+  const blockingOverlay = () => noticeOpen || openDialogCountRef.current > 0
 
   const setPanels = (next) => {
     const clamped = Math.max(0, Math.min(PANEL_ORDER.length - 1, next))
@@ -340,7 +335,7 @@ export default function SignatureArkoneImmersive({ site }) {
       window.removeEventListener('touchend', onTouchEnd)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index, introDone, noticeOpen, interestOpen, premiumIndex])
+  }, [index, introDone, noticeOpen, premiumIndex])
 
   // 히스토리 타임라인 자동 스크롤 + 드래그
   useEffect(() => {
@@ -933,31 +928,6 @@ export default function SignatureArkoneImmersive({ site }) {
               </div>
             </article>
           </div>
-        </div>
-      )}
-
-      {/* 2번째 팝업 — 안내 팝업이 닫히면 이어서 뜨는 관심고객등록 폼(다른 현장과 공용인
-          SignatureInterestPopup 재사용, 이름+연락처만 받아 /api/sms로 바로 전송).
-          이 컴포넌트는 --navy/--gold/--cream/--ink 전역 CSS 변수로 색을 입히는데, 이 몰입형
-          다크 카드에서는 버튼/포인트 색이 잘 안 보인다는 피드백으로, 흰 배경(variant:'light')에
-          이 페이지의 실제 그린(--green)을 포인트·버튼 색으로 주입해서 홈페이지 톤을 유지.
-          --font-serif도 이 컴포넌트의 제목(.titleLight)에만 쓰이는데, 이 페이지는 전부
-          산세리프(Pretendard/Noto Sans KR)라 제목만 세리프로 튀어서 같은 폰트로 맞춤 */}
-      {interestOpen && sig.popup?.interest && (
-        <div
-          style={{
-            '--ink': 'var(--ink)',
-            '--cream': '#ffffff',
-            '--gold': 'var(--green)',
-            '--font-serif': "Pretendard, 'Noto Sans KR', Arial, sans-serif",
-          }}
-        >
-          <SignatureInterestPopup
-            interest={sig.popup.interest}
-            config={site}
-            onClose={closeInterest}
-            openDelayMs={0}
-          />
         </div>
       )}
 

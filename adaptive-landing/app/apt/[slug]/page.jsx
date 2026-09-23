@@ -114,8 +114,7 @@ export default async function AptPage({ params }) {
           disclaimers: sig.footer.disclaimers,
           csHours: sig.footer.csHours,
         },
-        vipForm: { privacyText: sig.vipForm.privacyText, serviceOptions: sig.vipForm.serviceOptions },
-        popup: sig.popup,
+        vipForm: { privacyText: sig.vipForm.privacyText },
       },
     }
     return <SignatureArkoneImmersive site={immersiveSite} />

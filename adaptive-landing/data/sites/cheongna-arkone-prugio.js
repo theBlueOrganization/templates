@@ -456,22 +456,6 @@ const config = {
       csPhone: '1533-6480',
       csHours: 'AM 09:00 ~ PM 19:00',
     },
-
-    // 요청 반영 — 진입 시 관심고객등록 팝업 노출. 이름+연락처+서비스+희망일시만 받는 간이 신청
-    // 폼(SignatureInterestPopup, 다른 현장에서도 쓰는 공용 컴포넌트)으로, 제출 시 vipForm과 동일한
-    // /api/sms로 바로 전송됨. 요청 반영(2026-09-23) — 다크 그린 카드가 버튼 등이 잘 안 보인다는
-    // 피드백으로 흰 배경(variant:'light') + 초록 포인트(아래 wrapper의 --gold를 --green으로 주입)
-    // 조합으로 변경
-    popup: {
-      interest: {
-        enabled: true,
-        variant: 'light',
-        eyebrow: 'INTEREST',
-        title: '관심고객등록',
-        desc: '간단한 정보를 입력해 주시면\n청라 아크원 푸르지오의 분양 일정을 가장 먼저 안내해드립니다.',
-        submitLabel: '관심고객 등록',
-      },
-    },
   },
 }
 

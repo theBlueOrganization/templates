@@ -441,8 +441,13 @@
   border-radius: 50%; background: #edf0ee; font-size: 18px;
 }
 .mapDialog { width: 96vw; max-width: 1100px; height: 80svh; }
-.mapDialog .modal { height: 100%; padding: 0; position: relative; }
-.mapDialog .modal :global(img) { object-fit: cover; }
+/* 요청 반영 — object-fit:cover가 세로로 긴 다이얼로그 박스에 지도를 억지로 채우면서
+   지도 좌우가 크게 잘려나가 중요한 지명이 안 보이던 문제 — contain으로 지도 전체가
+   항상 다 보이게 하고, 확대해서 자세히 보고 싶을 땐 손가락 핀치줌·스크롤로 볼 수 있게
+   overflow:auto로 둠(다이얼로그 안에서 시작한 터치는 풀페이지 스와이프에 안 막히도록
+   이미 처리돼 있어 핀치줌·팬 모두 정상 동작) */
+.mapDialog .modal { height: 100%; padding: 0; position: relative; overflow: auto; touch-action: pinch-zoom pan-x pan-y; }
+.mapDialog .modal :global(img) { object-fit: contain; }
 .sourceMeta { font-size: 10px; color: #6a7773; margin: -4px 0 10px; }
 .sourceBody { margin-top: 4px; padding: 14px; border-radius: 12px; background: #eef3f0; font-size: 11px; line-height: 1.65; }
 .sourceLinks { display: grid; gap: 7px; margin-top: 10px; }

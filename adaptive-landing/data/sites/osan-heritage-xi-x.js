@@ -139,6 +139,13 @@ const config = {
       ],
       overlay: false,
       hideText: true,
+      // 요청 반영 — 청라 아크원 푸르지오 현장(SignatureArkoneImmersive의 capBadge)에 있던 원형
+      // 뱃지 디자인을 공용 SignatureHero(hero.badge)로 재사용해 적용
+      badge: {
+        lines: ['GS건설', '하이브랜드 대단지'],
+        // 요청 반영 — 기본 테두리(--gold=#006899)가 남색 배경에 묻혀 보여서 더 밝은 하늘색으로 교체
+        borderColor: '#5AC8FA',
+      },
       // 요청 반영 — 모바일 슬라이드 이미지(640x1000)가 heroSlides 기본 비율(640/835)보다 세로로 길어
       // 히어로 높이가 낮아 보이던 문제 — 이미지 비율에 맞추는 대신 기존 100svh 풀스크린으로 고정
       fullHeightSlides: true,
@@ -640,7 +647,7 @@ const config = {
       enabled: true,
       images: [
         {
-          src: '/apt/osan-heritage-xi-x/popup1.png',
+          src: '/apt/osan-heritage-xi-x/popup2.png',
           alt: '오산헤리티지자이 계약금 5% 파격조건변경 — 선착순 동·호 지정 계약중',
           width: 1086,
           height: 1448,

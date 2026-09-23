@@ -286,37 +286,61 @@
   }
 }
 
-/* badge — hero.badge가 있는 현장 전용. 배경 이미지 위에 얹는 점선 원형 뱃지(예: GRAND OPEN) */
+/* badge — hero.badge가 있는 현장 전용. 배경 이미지 위에 얹는 원형 뱃지(청라 아크원 푸르지오
+   SignatureArkoneImmersive의 capBadge 디자인을 공용 SignatureHero로 재사용 가능하게 이식 — 채운
+   원형 배경 + 상단 작은 캡션(badgeSmall) + 하단 굵은 여러 줄 본문(badgeMain)). 배경/보더는 현장별
+   colorTheme(--navy/--gold)을 따라가 사이트마다 자연스럽게 색이 맞춰짐 */
 .badge {
   position: absolute;
-  right: 6%;
-  /* 모바일에서 mobileBar/프로모 말풍선/slideNav와 겹치지 않도록 그 위쪽으로 배치 */
-  bottom: 230px;
+  /* 청라 아크원 푸르지오 capBadge와 동일하게 헤더 바로 아래 우측 상단에 배치(모바일: 헤더 높이(64px)
+     + 10vh, 데스크톱: 17vh) — 모바일에서도 slideNav 썸네일 세로 스트립(top:50%, right:12px)이나
+     하단 mobileBar와 겹치지 않는 높이 */
+  right: 4vw;
+  top: calc(64px + 10vh);
   z-index: 1;
-  width: 72px;
-  height: 72px;
+  width: 104px;
+  height: 104px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1px;
+  gap: 4px;
   border-radius: 50%;
-  border: 1px dashed rgba(11, 26, 66, 0.55);
-  background: rgba(255, 255, 255, 0.4);
-  color: #0b1a42;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.04em;
+  border: 1px solid var(--hero-badge-border, var(--gold, rgba(255, 255, 255, 0.75)));
+  background: color-mix(in srgb, var(--navy, #0b1a42) 82%, transparent);
+  color: #fff;
   text-align: center;
+}
+
+.badgeSmall {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--gold, #d9f391);
+}
+
+.badgeMain {
+  font-size: 10.5px;
+  font-weight: 700;
+  line-height: 1.3;
+  white-space: nowrap;
 }
 
 @media (min-width: 1024px) {
   .badge {
-    width: 108px;
-    height: 108px;
-    font-size: 15px;
-    right: 9%;
-    bottom: 16%;
+    width: 142px;
+    height: 142px;
+    right: 7vw;
+    top: 17vh;
+    gap: 6px;
+  }
+
+  .badgeSmall {
+    font-size: 11px;
+  }
+
+  .badgeMain {
+    font-size: 16px;
   }
 }
 

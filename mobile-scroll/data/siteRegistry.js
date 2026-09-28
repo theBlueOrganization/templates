@@ -93,6 +93,7 @@ const adaptiveLandingPointers = [
   { slug: "cheongna-arkone-prugio-3", subdomain: "청라아크원푸르지오c", template: "adaptive-landing" },
   { slug: "forena-incheon-hagik", subdomain: "포레나인천학익", template: "adaptive-landing" },
   { slug: "city-ociel-9", subdomain: "시티오씨엘9단지", template: "adaptive-landing" },
+  { slug: "city-ociel-9-2", subdomain: "시티오씨엘9단지2", template: "adaptive-landing" },
 ];
 
 const allSites = [...sites, ...adaptiveLandingPointers];

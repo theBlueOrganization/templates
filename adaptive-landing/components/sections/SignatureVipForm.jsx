@@ -189,17 +189,20 @@ export default function SignatureVipForm({ config, sectionId }) {
               </div>
             </div>
 
-            <div className={styles.row}>
-              <span className={cn(styles.label, serif && styles.labelSerif)}>연령대</span>
-              <div className={styles.radioWrap}>
-                {vipForm.ageOptions.map((opt) => (
-                  <label key={opt} className={styles.radioLabel}>
-                    <input type="radio" name="age" value={opt} checked={form.age === opt} onChange={handleChange} />
-                    {opt}
-                  </label>
-                ))}
+            {/* ageOptions가 없는 현장은 연령대 행 자체를 숨김(문자에도 "연령대" 줄이 안 붙음) */}
+            {vipForm.ageOptions?.length > 0 && (
+              <div className={styles.row}>
+                <span className={cn(styles.label, serif && styles.labelSerif)}>연령대</span>
+                <div className={styles.radioWrap}>
+                  {vipForm.ageOptions.map((opt) => (
+                    <label key={opt} className={styles.radioLabel}>
+                      <input type="radio" name="age" value={opt} checked={form.age === opt} onChange={handleChange} />
+                      {opt}
+                    </label>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           <button type="submit" disabled={submitting} className={cn(styles.submitBtn, serif && styles.submitBtnSerif)}>

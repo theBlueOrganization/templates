@@ -10,6 +10,7 @@ import SignatureHero from '../../../components/sections/SignatureHero'
 import SignatureVideoSection from '../../../components/sections/SignatureVideoSection'
 import SignatureHeroMinimal from '../../../components/sections/SignatureHeroMinimal'
 import SignatureHeroLegacy from '../../../components/sections/SignatureHeroLegacy'
+import SignatureHeroOciel from '../../../components/sections/SignatureHeroOciel'
 import SignatureBenefits from '../../../components/sections/SignatureBenefits'
 import SignatureSummary from '../../../components/sections/SignatureSummary'
 import SignatureLocation from '../../../components/sections/SignatureLocation'
@@ -22,6 +23,7 @@ import SignatureComplex from '../../../components/sections/SignatureComplex'
 import SignatureComplexIntro from '../../../components/sections/SignatureComplexIntro'
 import SignatureTransitDetail from '../../../components/sections/SignatureTransitDetail'
 import SignatureUnitPlan from '../../../components/sections/SignatureUnitPlan'
+import SignatureUnitPlanTabs from '../../../components/sections/SignatureUnitPlanTabs'
 import SignatureClub from '../../../components/sections/SignatureClub'
 import SignatureClubSimple from '../../../components/sections/SignatureClubSimple'
 import SignatureClubZones from '../../../components/sections/SignatureClubZones'
@@ -234,6 +236,9 @@ export default async function AptPage({ params }) {
       <main>
         {sig.hero.variant === 'arkone' ? (
           <SignatureHeroArkone hero={sig.hero} />
+        ) : sig.hero.variant === 'ociel' ? (
+          // 시티오씨엘 9단지 — 공식 사이트 인트로(원 드로잉 → 원이 열리며 메인 슬라이드) 재구성
+          <SignatureHeroOciel hero={sig.hero} />
         ) : sig.hero.variant === 'minimal' ? (
           <SignatureHeroMinimal
             hero={sig.hero}
@@ -282,8 +287,18 @@ export default async function AptPage({ params }) {
         {sig.landscapeGeomdan && <SignatureLandscapeGeomdan landscape={sig.landscapeGeomdan} />}
         {sig.landscape && <SignatureLandscape landscape={sig.landscape} />}
         {sig.complexIntro && <SignatureComplexIntro complexIntro={sig.complexIntro} />}
-        {sig.complex && <SignatureComplex complex={sig.complex} />}
-        {sig.unitPlan && <SignatureUnitPlan unitPlan={sig.unitPlan} />}
+        {sig.complex &&
+          (sig.complex.variant === 'imageTabs' ? (
+            <SignatureUnitPlanTabs unitPlan={sig.complex} />
+          ) : (
+            <SignatureComplex complex={sig.complex} />
+          ))}
+        {sig.unitPlan &&
+          (sig.unitPlan.variant === 'imageTabs' ? (
+            <SignatureUnitPlanTabs unitPlan={sig.unitPlan} />
+          ) : (
+            <SignatureUnitPlan unitPlan={sig.unitPlan} />
+          ))}
         {sig.smarthome && <SignatureSmartHome smarthome={sig.smarthome} />}
         {sig.communityBlocks ? (
           <SignatureCommunityGeomdan community={sig.communityBlocks} />

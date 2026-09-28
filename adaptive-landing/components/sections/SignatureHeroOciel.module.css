@@ -1,0 +1,546 @@
+/* 시티오씨엘 9단지 전용 인트로 히어로 — 타이밍은 공식 사이트(cityociel9.com) 메인 인트로와 동일하게 맞춤.
+   0~1.8s 원 2개 드로잉 → 1.25s~ 로고 페이드인 → 2.8~4.2s 원이 비껴나며 사라짐 → 3.5s~ 원 안 배경 →
+   5s 원이 화면 전체로 열림(1.2s) → 6s 메인 슬라이드 페이드인 → 8s 원형 뱃지·스크롤 안내 */
+
+.section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background: #1f2023;
+  color: #fff;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.pcOnly {
+  display: none;
+}
+
+.mobileOnly {
+  display: block;
+}
+
+/* ---------- 메인 슬라이드 ---------- */
+.slider {
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  opacity: 0;
+  transition: opacity 0.75s 6s;
+}
+
+.open .slider {
+  opacity: 1;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.slideActive {
+  opacity: 1;
+  z-index: 1;
+}
+
+.slideBg {
+  position: absolute;
+  inset: 0;
+  transform: scale(1.3);
+  transition: transform 3s ease;
+}
+
+.slideActive .slideBg {
+  transform: scale(1);
+}
+
+.bgImg {
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+.slogan {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 30%;
+  width: 56%;
+  max-width: 280px;
+  transform: translateX(-50%);
+  opacity: 0;
+}
+
+.slogan img {
+  width: 100%;
+  height: auto;
+}
+
+.slideActive .slogan {
+  animation: fadeIn 1s 1s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---------- 인트로 레이어 ---------- */
+.mainbg {
+  position: absolute;
+  inset: 0;
+  background: #000;
+}
+
+.cirWrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 70vw;
+  height: 70vw;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.open .cirWrap {
+  visibility: hidden;
+  transition: visibility 0s linear 4.2s;
+}
+
+.cir {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.cirA {
+  left: -8%;
+  top: 8%;
+}
+
+.cirB {
+  left: 8%;
+  top: 0;
+}
+
+.cir svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.cir svg circle {
+  stroke-dasharray: 1571;
+  stroke-dashoffset: 1571;
+}
+
+.cirB svg circle {
+  transform: rotate(180deg);
+  transform-origin: 250px 250px;
+}
+
+.open .cirA {
+  animation: moveA 4.2s ease forwards;
+}
+
+.open .cirB {
+  animation: moveB 4.2s ease forwards;
+}
+
+.open .cir svg circle {
+  animation: draw 4.2s ease forwards;
+}
+
+@keyframes draw {
+  0% {
+    stroke-dashoffset: 1571;
+  }
+  43%,
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes moveA {
+  0%,
+  67% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(8%, -4%);
+    opacity: 0;
+  }
+}
+
+@keyframes moveB {
+  0%,
+  67% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-8%, 4%);
+    opacity: 0;
+  }
+}
+
+.logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 46%;
+  max-width: 260px;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 3s 1.25s;
+}
+
+.logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.open .logo {
+  opacity: 1;
+  animation: logoUp 1.5s cubic-bezier(0.4, 0, 0.2, 1) 5s forwards;
+}
+
+@keyframes logoUp {
+  to {
+    top: 18%;
+    transform: translate(-50%, 0);
+  }
+}
+
+.clip {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  clip-path: circle(33vw at 50% calc(50% + 2vw));
+  transition: clip-path 1.2s 5s;
+}
+
+.open .clip {
+  clip-path: circle(75% at 50% calc(50% + 2vw));
+}
+
+.clip span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #000 center / cover no-repeat;
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 1.5s 3.5s, transform 1.5s 3.5s;
+}
+
+.open .clip span {
+  opacity: 0.85;
+  transform: scale(1);
+}
+
+/* ---------- 원형 회전 뱃지 (GRAND OPEN) ---------- */
+.badge {
+  position: absolute;
+  right: 2.5%;
+  top: 9%;
+  z-index: 50;
+  width: 96px;
+  height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+}
+
+.open .badge {
+  animation: fadeIn 1s 8s forwards;
+}
+
+.badgeRing {
+  position: absolute;
+  inset: 0;
+  animation: rotate 10s linear infinite;
+}
+
+.badgeRing svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.badgeRing text {
+  font-size: 10px;
+  font-weight: 300;
+  fill: #fff;
+  opacity: 0.8;
+  letter-spacing: 2px;
+}
+
+.badgeText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  text-align: center;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- 스크롤 안내 ---------- */
+.scr {
+  position: absolute;
+  left: 50%;
+  bottom: 15%;
+  z-index: 11;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.8s 8.5s;
+}
+
+.open .scr {
+  opacity: 1;
+}
+
+.scr::before {
+  content: 'SCROLL';
+  font-size: 10px;
+  letter-spacing: 0.4px;
+}
+
+.scr span {
+  position: relative;
+  display: block;
+  width: 26px;
+  height: 42px;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  border-radius: 13px;
+}
+
+.scr span::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  width: 4px;
+  height: 8px;
+  margin-left: -2px;
+  border-radius: 2px;
+  background: #fff;
+  animation: scrollDot 1.6s ease-in-out infinite;
+}
+
+@keyframes scrollDot {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(14px);
+    opacity: 0;
+  }
+}
+
+/* ---------- SKIP ---------- */
+.skipBtn {
+  position: fixed;
+  right: 20px;
+  bottom: 25px;
+  z-index: 9999;
+  padding: 12px 26px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.skipCursor {
+  display: none;
+}
+
+/* SKIP 시: 모든 요소를 애니메이션 없이 최종 상태로 스냅 */
+.skip .slider,
+.skip .mainbg,
+.skip .cirWrap,
+.skip .clip,
+.skip .clip span,
+.skip .logo,
+.skip .scr,
+.skip .badge {
+  transition: none !important;
+  animation: none !important;
+}
+
+.skip .slider,
+.skip .scr,
+.skip .badge {
+  opacity: 1;
+}
+
+.skip .cirWrap {
+  visibility: hidden;
+}
+
+.skip .clip {
+  clip-path: circle(75% at 50% 50%);
+}
+
+.skip .logo {
+  opacity: 0;
+}
+
+.skip .badgeRing {
+  animation: rotate 10s linear infinite !important;
+}
+
+/* ---------- PC ---------- */
+@media (min-width: 768px) {
+  .pcOnly {
+    display: block;
+  }
+
+  .mobileOnly {
+    display: none;
+  }
+
+  .cirWrap {
+    width: 36vw;
+    height: 36vw;
+  }
+
+  .clip {
+    clip-path: circle(18.13vw at 50% calc(50% + 1.2vw));
+  }
+
+  .open .clip {
+    clip-path: circle(75% at 50% calc(50% + 1.2vw));
+  }
+
+  .logo {
+    width: 17.5%;
+    max-width: none;
+  }
+
+  @keyframes logoUp {
+    to {
+      top: calc(12.5% + 90px);
+      transform: translate(-50%, 0);
+      width: 25%;
+    }
+  }
+
+  .slogan {
+    left: 6%;
+    top: 22%;
+    width: 42%;
+    max-width: 700px;
+    transform: none;
+  }
+
+  .sloganCenter {
+    left: 50%;
+    top: 28%;
+    transform: translateX(-50%);
+  }
+
+  .badge {
+    right: 9.5%;
+    top: 13.5%;
+    width: 150px;
+    height: 150px;
+  }
+
+  .badgeRing text {
+    font-size: 12px;
+  }
+
+  .badgeText {
+    font-size: 22px;
+  }
+
+  .scr {
+    bottom: 5%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    cursor: none;
+  }
+
+  .ended.section {
+    cursor: auto;
+  }
+
+  .skipBtn {
+    display: none;
+  }
+
+  .skipCursor {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 9999;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    font-size: 12px;
+    letter-spacing: 2px;
+    pointer-events: none;
+    mix-blend-mode: difference;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.7);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  .skipCursorOn {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badgeRing,
+  .scr span::after {
+    animation: none;
+  }
+}

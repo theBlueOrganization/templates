@@ -113,6 +113,8 @@ const config = {
       keepTextShadow: true,
       overlay: false,
       contentTop: true,
+      // 요청 반영 — PC(1024px 이상)에서만 문구를 좌측 정렬(모바일/태블릿은 기존 중앙 정렬 유지)
+      alignDesktop: 'left',
       brandLogo: { src: '/apt/forena-incheon-hagik/hero-brand-logo.png', alt: '포레나 인천학익', width: 642, height: 189 },
       brandLogoSize: { base: 44, lg: 64 },
       // 요청 반영 — 모바일 히어로 이미지 3장을 살짝 위로 올림
@@ -121,14 +123,16 @@ const config = {
         {
           eyebrowLine1: '약 5,000세대 브랜드타운의',
           eyebrowLine2: '중심입지.',
-          bgImage: { src: '/apt/forena-incheon-hagik/hero-bg.png', alt: '포레나 인천학익 투시도(주경)' },
+          // PC 배경 — 사용자 제공 "제목 없음-4.png"(2166x1000, 기존 hero-bg.png보다 세로가 긴 컷)으로 교체
+          bgImage: { src: '/apt/forena-incheon-hagik/hero-bg-pc-1.png', alt: '포레나 인천학익 투시도(주경)' },
           // 모바일(768px 미만) 전용 세로형 컷 — 사용자 제공 "제목 없음-2.png"(750x1053)
           bgImageMobile: { src: '/apt/forena-incheon-hagik/hero-bg-mobile-1.png', alt: '포레나 인천학익 투시도(주경)' },
         },
         {
           eyebrowLine1: '문학IC·인하대역 더블교통망',
           eyebrowLine2: '빠른 교통.',
-          bgImage: { src: '/apt/forena-incheon-hagik/premium-intro-bg.png', alt: '포레나 인천학익 101동 투시도' },
+          // PC 배경 — 사용자 제공 "제목 없음-3.png"(2166x1000)으로 교체(프리미엄 인트로 섹션은 기존 premium-intro-bg.png 유지)
+          bgImage: { src: '/apt/forena-incheon-hagik/hero-bg-pc-2.png', alt: '포레나 인천학익 101동 투시도' },
           // 모바일 전용 — 사용자 제공 "그룹 1.png"(750x1055)
           bgImageMobile: { src: '/apt/forena-incheon-hagik/hero-bg-mobile-2.png', alt: '포레나 인천학익 101동 투시도' },
         },

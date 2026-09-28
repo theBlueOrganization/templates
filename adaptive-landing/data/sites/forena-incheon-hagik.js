@@ -449,14 +449,19 @@ const config = {
     },
 
     footer: {
-      logo: { src: '/apt/forena-incheon-hagik/footer-logo.png', alt: '포레나 인천학익', width: 140, height: 80 },
-      highlightText: '학익새도시의 중심, 포레나 인천학익',
+      // 요청 반영 — 여백 없는 로고로 교체해 가운데 정렬 + 크게(170px), 하이라이트 문구는 "학익새도시의 중심," 뒤에서 줄바꿈
+      logo: { src: '/apt/forena-incheon-hagik/hero-brand-logo.png', alt: '포레나 인천학익', width: 642, height: 189 },
+      logoAlign: 'center',
+      logoWidth: 170,
+      highlightText: '학익새도시의 중심,\n포레나 인천학익',
       agencySlogan: '분양완판 전문가 그룹, (주) 더블루파트너스',
       companyLines: [
         { label: '시행', value: '학익4주택재개발정비사업조합' },
         { label: '시공', value: '(주)한화/건설' },
         { label: '분양대행', value: '(주)루트이앤씨' },
-        { label: '온라인대행', value: '주식회사 더블루파트너스' },
+        // 요청 반영 — 대행사 정보는 구분선 아래 새 줄에서 시작(dividerBefore), 라벨/문구 변경 및 대행사 전화번호 추가
+        { label: '광고 운영·관리 대행사', value: '더블루파트너스', dividerBefore: true },
+        { label: '전화번호', value: '1666-1755' },
         { label: '사업자등록번호', value: '789-81-03093' },
         { label: '이메일', value: 'addup@addup.kr' },
       ],

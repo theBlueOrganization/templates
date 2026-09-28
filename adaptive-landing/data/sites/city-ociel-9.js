@@ -23,13 +23,14 @@ const config = {
   // 요청 반영(2026-09-28) — 홈페이지 전체 색을 실버·아이보리 톤으로. navy(헤더·폼 배경·강조 글자)=실버 그레이,
   // cream(섹션 배경)=아이보리, gold(강조 글자)=진한 베이지, 방문예약 버튼=베이지 rgb(211, 198, 185) 바탕+진회색 글자
   colorTheme: {
-    navy: '#6f7378',
-    ink: '#34363a',
+    // 요청 반영 — 회색(#6f7378 / #34363a) 대신 #1f2023(공식 사이트 메인 비주얼 배경색)
+    navy: '#1f2023',
+    ink: '#1f2023',
     cream: '#f8f5ee',
     // 강조 글자용 — rgb(211, 198, 185)는 흰/아이보리 배경 위 글자로는 너무 연해서 같은 계열로 한 톤 진하게
     gold: '#a8967f',
     visitBtnBg: '#d3c6b9',
-    visitBtnColor: '#34363a',
+    visitBtnColor: '#1f2023',
   },
 
   company: {
@@ -113,7 +114,7 @@ const config = {
       ],
       mobileBar: {
         announcements: [{ badge: '안내', textStrong: '시티오씨엘 9단지', textLight: ' 공식 안내센터입니다.' }],
-        announceBg: '#6f7378',
+        announceBg: '#1f2023',
         bubbleText: '방문예약하기',
         callLabel: '전화상담',
         visitLabel: '방문예약',

@@ -139,6 +139,8 @@ const config = {
       ],
       mobileBar: {
         announcements: [{ badge: '안내', textStrong: '포레나 인천학익', textLight: ' 공식 안내센터입니다.' }],
+        // colorTheme 미지정 현장이라 안내바가 CSS 폴백 녹색(#004c45)으로 나와 헤더와 같은 네이비로 지정
+        announceBg: '#06203e',
         bubbleText: '관심고객등록 시 분양 일정을 가장 빠르게 안내드립니다',
         callLabel: '전화상담',
         visitLabel: '방문예약',

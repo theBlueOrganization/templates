@@ -514,7 +514,7 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.1 }}
         >
-          <div className={styles.announceBar}>
+          <div className={styles.announceBar} style={mobileBar.announceBg ? { background: mobileBar.announceBg } : undefined}>
             <div className={styles.announceTrack} style={{ transform: `translateY(-${announceIndex * 100}%)` }}>
               {mobileBar.announcements.map((a, i) => (
                 <div key={i} className={styles.announceItem}>

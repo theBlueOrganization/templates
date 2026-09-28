@@ -10,7 +10,8 @@
 //     대신 문자(SMS)로 수신(2026-09-18 현장 요청)
 //   - footer.companyLines: 현장 요청으로 시행사 정보를 (주)제이비스 기준으로 표기
 //     (시행 제이비스(주) / 시행사 대표자 한성민 / 시행사업자번호 240-86-00562, 2026-09-14 반영)
-//   - popup: 9/10 상품권 혜택, 9/13 SAMSUNG DAY 경품이벤트 팝업은 행사 종료로 삭제(원본과 동일)
+//   - popup: 9/10 상품권 혜택, 9/13 SAMSUNG DAY 경품이벤트 팝업은 행사 종료로 삭제(원본과 동일).
+//     2026-09-28 커피쿠폰 팝업(popup0, 관심고객 섹션 이동)을 맨 앞에 추가하고 Apple DAY 경품 팝업(popup3) 삭제
 //   - metaTitle: 두 현장 모두 카카오톡 등 공유 시 "달서자이 제니크"로 동일하게 노출되도록
 //     projectName(2가 붙은 내부용)과 분리 지정(원본은 projectName 자체가 이미 "달서자이 제니크"라
 //     별도 지정 없이도 동일하게 노출됨)
@@ -66,10 +67,19 @@ const config = {
     },
 
     // 진입 팝업 — 9/10 상품권 혜택 팝업, 9/13 SAMSUNG DAY 경품이벤트 팝업은 행사 종료로 삭제(2026-09-14).
-    // 남은 Apple DAY 팝업(9/20 예정)만 노출.
+    // 2026-09-28 현장 요청: 커피쿠폰(모델하우스 예약 방문) 팝업을 맨 앞에 추가 — "예약하러 가기" 클릭 시
+    // 관심고객(vip-reservation) 섹션으로 이동. Apple DAY 경품이벤트 팝업(popup3)은 삭제.
     popup: {
       enabled: true,
       images: [
+        {
+          src: '/apt/dalseo-xi-genic-2/popup0.png',
+          alt: '달서자이 제니크 모델하우스 예약 방문 고객 100% 1만원 커피쿠폰 제공',
+          width: 1122,
+          height: 1402,
+          link: '#vip-reservation',
+          linkLabel: '모델하우스 예약하러 가기',
+        },
         {
           src: '/apt/dalseo-xi-genic-2/popup1.png',
           alt: '달서자이 제니크 모델하우스 문의하기',
@@ -78,7 +88,6 @@ const config = {
           link: 'tel:053-760-4747',
           linkLabel: '달서자이 제니크 모델하우스 전화 문의',
         },
-        { src: '/apt/dalseo-xi-genic-2/popup3.png', alt: '달서자이 제니크 Apple DAY 주말경품 이벤트', width: 754, height: 1024 },
       ],
       closeLabel: '팝업닫기',
     },

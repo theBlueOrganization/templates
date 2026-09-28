@@ -15,6 +15,7 @@ import doosanWevethezenithBucheon from './sites/doosan-wevethezenith-bucheon'
 import osanHeritageXiX from './sites/osan-heritage-xi-x'
 import cheongnaArkonePrugio from './sites/cheongna-arkone-prugio'
 import cheongnaArkonePrugio2 from './sites/cheongna-arkone-prugio-2'
+import cheongnaArkonePrugio3 from './sites/cheongna-arkone-prugio-3'
 import forenaIncheonHagik from './sites/forena-incheon-hagik'
 
 /**
@@ -47,6 +48,7 @@ const sites = [
   osanHeritageXiX,
   cheongnaArkonePrugio,
   cheongnaArkonePrugio2,
+  cheongnaArkonePrugio3,
   forenaIncheonHagik,
 ]
 

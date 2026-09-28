@@ -281,114 +281,92 @@ const config = {
       ],
     },
 
-    // PREMIUM 상세 — 텍스트+사진 좌우 분할(짝수 reverse). 교육자료 Chapter.3 각 페이지의 헤드카피 원문
+    // PREMIUM 상세 — 요청 반영(2026-09-28): 공식 사이트 프리미엄 페이지(cityociel9.com/intro/premium.asp)의
+    // 8개 항목(LANDSCAPE~SYNERGY) 문구·이미지컷(sub_premium_img_01~08.jpg → webp)을 그대로. 텍스트+사진 좌우 분할(짝수 reverse),
+    // 이미지가 가로형(720x426)이라 imageAspect로 원본 비율 유지
     premiumSplits: [
       {
-        eyebrow: 'PREMIUM 01 · 02',
-        title: ['1만 3,149세대 브랜드타운,', '시티오씨엘 內 단일 최대 규모'],
+        eyebrow: 'PREMIUM 01 · LANDSCAPE',
+        title: '파크뷰와 오션뷰를 모두 소유하는 자리',
         descLines: [
-          'HDC현대산업개발 · 현대건설 · 포스코이앤씨 1군 브랜드 컨소시엄이 조성하는 미니 신도시급 도시개발사업.',
-          '도시개발사업 총 13,149세대 中 시티오씨엘 9단지 오션파크뷰(1,949세대)는 시티오씨엘 內 단일 최대 규모 단지이자 그랜드파크 최인접 단지로, 향후 대장단지로 자리매김합니다.',
+          '도심 속 공원 조망과 서해 바다 조망을 모두 갖춘 독보적 입지(일부세대 제외)',
         ],
-        images: [
-          { src: '/apt/city-ociel-9/intro-slide-2.webp', alt: '시티오씨엘 9단지 오션파크뷰 단지 전경 투시도' },
-          { src: '/apt/city-ociel-9/city-aerial.webp', alt: '시티오씨엘 도시개발사업 조감도' },
-        ],
+        imageAspect: '720 / 426',
+        images: [{ src: '/apt/city-ociel-9/premium8-landscape.webp', alt: '파크뷰·오션뷰 조망 이미지컷' }],
       },
       {
         reverse: true,
-        eyebrow: 'PREMIUM 03',
-        title: ['최고 49층 랜드마크,', 'OCEAN · PARK View'],
+        eyebrow: 'PREMIUM 02 · REFRESH',
+        title: '자연과 어우러진 그랜드 에코라이프',
         descLines: [
-          '인천 신규분양 아파트(40층~42층) 대비 높은 층수, 시티오씨엘 단지 중 최고 층수.',
-          '그랜드파크를 바라보는 공원 조망과 서해바다 · 인천대교 조망이 가능한 독보적 조망단지(일부세대 제외).',
+          '단지 앞에 위치한 그랜드파크(예정), 공원형 녹지를 갖춘 쾌적한 단지,',
+          '인근 남항근린공원, 갯골유수지 등 자연으로 둘러싸인 청정 주거환경',
         ],
-        images: [
-          { src: '/apt/city-ociel-9/hero-bg-2.webp', alt: '시티오씨엘 9단지 최고 49층 투시도' },
-          { src: '/apt/city-ociel-9/view-ocean-park.webp', alt: '파크뷰·오션뷰 조망' },
-        ],
+        imageAspect: '720 / 426',
+        images: [{ src: '/apt/city-ociel-9/premium8-refresh.webp', alt: '그랜드 에코라이프 이미지컷' }],
       },
       {
-        eyebrow: 'PREMIUM 04',
-        title: ['도보권 초 · 중학교 "개교 확정",', '고교 "계획"으로 안심 통학'],
+        eyebrow: 'PREMIUM 03 · MOVEMENT',
+        title: '일상의 시간을 앞당기는 광역 교통망',
         descLines: [
-          '초교(\'27.03 개교예정)·초교(\'29.03 개교예정)·중학교(\'29.03 개교예정)·고교(계획)가 도보권에 위치하여 통학걱정 없는 안심 단지.',
-          '반경 1.5km 內 용현·학익 학원가와 다수의 초·중·고교 밀집, 학세권 프리미엄을 누립니다.',
+          '학익역(예정)과 KTX송도역(예정), GTX-B청학역(예정),',
+          '능해IC-제2경인고속도로 등 출퇴근 시간을 단축하는 쾌속 교통망',
         ],
-        images: [
-          { src: '/apt/city-ociel-9/premium-school-walk.webp', alt: '도보로 등교하는 아이들 이미지컷' },
-          { src: '/apt/city-ociel-9/premium-school-kids.webp', alt: '함께 등교하는 아이들 이미지컷' },
-        ],
+        imageAspect: '720 / 426',
+        images: [{ src: '/apt/city-ociel-9/premium8-movement.webp', alt: '광역 교통망 이미지컷' }],
       },
       {
         reverse: true,
-        eyebrow: 'PREMIUM 05',
-        title: ['학익역(예정) 도보 약 11분,', '서울 및 수도권 접근성 대폭 향상'],
+        eyebrow: 'PREMIUM 04 · SCHOOL',
+        title: '초·중·고가 모인 안심 교육환경',
         descLines: [
-          '\'28년 수인분당선 학익역(예정) 개통 시 GBD 1시간 40분대, KTX송도역(\'26.12 예정)까지 1정거장.',
-          'GTX-B 인천시청역(예정, \'31년), 수도권 제2순환고속도로 인천-안산 구간(\'35년 개통예정)까지 쾌속 · 광역 교통망이 완성됩니다.',
+          '초등학교(예정), 중학교(예정), 고등학교(계획)가',
+          '모두 가까이 위치한 안정적인 통학환경',
         ],
-        badges: [
-          { line: '수인분당', route: '학익역(예정) → 송도역', time: '2분', accent: true },
-          { line: '수인분당', route: '학익역(예정) → 수원역', time: '1시간 7분' },
-          { line: '수인분당', route: '학익역(예정) → 강남구청역', time: '1시간 42분' },
-          { line: '수인분당', route: '학익역(예정) → 청량리역', time: '1시간 45분' },
-          { line: 'KTX', route: '송도역(예정) → 부산역', time: '2시간 29분(예상)', accent: true },
-        ],
-        images: [
-          { src: '/apt/city-ociel-9/photo-train.webp', alt: '수인분당선 열차' },
-          { src: '/apt/city-ociel-9/premium-ktx.webp', alt: 'KTX 열차 이미지컷' },
-        ],
+        imageAspect: '720 / 426',
+        images: [{ src: '/apt/city-ociel-9/premium8-school.webp', alt: '안심 교육환경 이미지컷' }],
       },
       {
-        eyebrow: 'PREMIUM 06',
-        title: ['PJT "바로 앞"', '10만여평 그랜드파크(예정)'],
+        eyebrow: 'PREMIUM 05 · PLAN',
+        title: '다양한 삶을 수용하는 평면 구성',
         descLines: [
-          '도심속 힐링이 가능한 내 집 앞 풍부한 녹지여건 · 보행가로(링크오씨엘) 예정.',
-          '유원지 333,643㎡(약 10.1만평) 규모 — 축구장(2)·야구장(1)·농구장(3)·족구장(3)·테니스장(4)·배드민턴장(7)·게이트볼장(2)·체력단련장(4), 산책로 및 녹지시설 등. 송도 센트럴파크(약 11.2만평)에 버금가는 새로운 랜드마크로 부상이 기대됩니다.',
+          '라이프스타일과 가족의 형태에 따라',
+          '선택할 수 있는 다채로운 평형 제공',
         ],
-        images: [
-          { src: '/apt/city-ociel-9/photo-grandpark.webp', alt: '그랜드파크(예정) 이미지컷' },
-          { src: '/apt/city-ociel-9/premium-park-jogging.webp', alt: '공원 산책로 이미지컷' },
-        ],
+        imageAspect: '720 / 426',
+        images: [{ src: '/apt/city-ociel-9/premium8-plan.webp', alt: '평면 구성 이미지컷' }],
       },
       {
         reverse: true,
-        eyebrow: 'PREMIUM 07',
-        title: ['대지면적 2만 7천여평,', '건폐율 7.87%의 압도적 쾌적성'],
+        eyebrow: 'PREMIUM 06 · SIGNATURE',
+        title: '1만 3천여 세대 시티오씨엘 최대 단지',
         descLines: [
-          '인천권역 신규 아파트 평균 건폐율 15.74% 대비 절반 수준인 7.87%(부대시설 제외).',
-          '넓은 동간거리와 단지 내 산책로 · 폰드 등 대규모 공원형 녹지를 품은 주거 쾌적성을 확보했습니다.',
+          '1만 3천여 세대 명품복합도시, 시티오씨엘 내 최대',
+          '1,949세대 규모로 완성되는 압도적 대단지',
         ],
-        images: [
-          { src: '/apt/city-ociel-9/premium-green-walk.webp', alt: '공원형 단지 산책로 이미지컷' },
-          { src: '/apt/city-ociel-9/premium-landscape-aerial.webp', alt: '시티오씨엘 9단지 조경 투시도(단지 중앙 녹지)' },
-        ],
+        imageAspect: '720 / 426',
+        images: [{ src: '/apt/city-ociel-9/premium8-signature.webp', alt: '시티오씨엘 최대 단지 이미지컷' }],
       },
       {
-        eyebrow: 'PREMIUM 08',
-        title: ['단지 인근에서 누리는', '"One Stop 생활인프라"'],
+        eyebrow: 'PREMIUM 07 · INFRA',
+        title: '편리하고 풍부하게 누리는 생활인프라',
         descLines: [
-          '반경 1km 內 인하대역 상권·용현시장·인하대병원·CGV·송암미술관 등 생활편의시설과 신흥상권(스타오씨엘) 형성 예정.',
-          '도보권 1.2만여평 규모의 복합 문화시설 "인천 뮤지엄파크"(예정 — 시립박물관·시립미술관·예술공원·콘텐츠빌리지·콘텐츠플라자, 약 1km/도보 약 13분).',
+          '1만 3천여 세대 미니신도시 상권 및 인천뮤지엄파크(예정),',
+          '인하대병원 등 완벽에 가까운 생활환경',
         ],
-        images: [
-          { src: '/apt/city-ociel-9/photo-museum-park.webp', alt: '인천 뮤지엄파크(예정) 조감도' },
-          { src: '/apt/city-ociel-9/premium-shopping.webp', alt: '쇼핑·생활 인프라 이미지컷' },
-        ],
+        imageAspect: '720 / 426',
+        images: [{ src: '/apt/city-ociel-9/premium8-infra.webp', alt: '생활인프라 이미지컷' }],
       },
       {
         reverse: true,
-        eyebrow: 'PREMIUM 09',
-        title: ['4Bay 판상(맞통풍) +', '알파룸 · 광폭 드레스룸 특화설계'],
+        eyebrow: 'PREMIUM 08 · SYNERGY',
+        title: '메이저 3사 공동 시공',
         descLines: [
-          '주력 84A(984세대, 50.5%) — 4Bay 판상 · 맞통풍 · 알파룸 · 광폭 드레스룸 · ㄷ자형 주방 · 현관팬트리.',
-          '59㎡ 슬라이딩 도어(유상옵션), 75㎡ 알파룸, 84B 더블팬트리, 95·101B 알파룸 1·2, 110 3면개방형, 최상층 PENT(133P·136P) 침실4 + 알파룸 / 외부 테라스 5개.',
+          'IPARK현대산업개발, 현대건설, 포스코이앤씨까지',
+          '국내 대표 건설 3사의 기술력과 노하우가 집약된 프리미엄 주거 단지',
         ],
-        images: [
-          { src: '/apt/city-ociel-9/premium-interior.webp', alt: '광폭 드레스룸·수납공간 이미지컷' },
-          { src: '/apt/city-ociel-9/premium-design.webp', alt: '특화설계 이미지컷' },
-        ],
+        imageAspect: '720 / 426',
+        images: [{ src: '/apt/city-ociel-9/premium8-synergy.webp', alt: '메이저 3사 공동 시공 이미지컷' }],
       },
     ],
 
@@ -459,6 +437,8 @@ const config = {
     },
 
     footer: {
+      // 요청 반영 — 푸터 배경을 네이비 오버레이 없이 #1f2023 단색으로
+      bgColor: '#1f2023',
       logo: { src: '/apt/city-ociel-9/logo-white.png', alt: '시티오씨엘 9단지 오션파크뷰', width: 1033, height: 371 },
       logoAlign: 'center',
       logoWidth: 170,

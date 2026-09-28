@@ -99,11 +99,14 @@ const config = {
     // 브랜드 로고는 logo-white.png의 투명 여백을 잘라낸 hero-brand-logo.png(2줄 락업)를 사용
     hero: {
       eyebrowDivider: true,
-      // 요청 반영 — 타이틀 문구를 현장명으로, 세리프체(Noto Serif KR)로 변경. 세리프는 300/400만 로드돼 있어
-      // 기본 600을 쓰면 브라우저 가짜 볼드가 생기므로 실제 로드된 400으로 지정
+      // 요청 반영 — 타이틀 문구를 현장명으로, 세리프체(Noto Serif KR)로 변경. 이후 요청으로 굵게 —
+      // 가짜 볼드가 생기지 않도록 app/layout.jsx에서 Noto Serif KR 700을 추가 로드하고 700으로 지정
       titleLine1: '포레나 인천학익',
       fontFamily: 'var(--font-serif)',
-      titleWeight: 400,
+      titleWeight: 700,
+      // 요청 반영 — 히어로 글자가 전반적으로 작아 보여 기본값(타이틀 34/52/80, 상단 문구 14/19)보다 키움
+      titleSize: { base: 40, md: 60, lg: 92 },
+      eyebrowSize: { base: 15, lg: 22 },
       // 요청 반영 — 세리프 타이틀 자간이 넓어 보여 기본(-0.03em)보다 좁힘
       titleLetterSpacing: '-0.08em',
       textColor: '#ffffff',

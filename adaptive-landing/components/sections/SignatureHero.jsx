@@ -126,6 +126,11 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
       '--hero-title-size-md': `${hero.titleSize.md}px`,
       '--hero-title-size-lg': `${hero.titleSize.lg}px`,
     }),
+    // hero.eyebrowSize — { base, lg }(px)로 eyebrowDivider 문구(슬라이드 상단 한 줄 카피) 크기를 현장별로 덮어씀
+    ...(hero.eyebrowSize && {
+      '--hero-eyebrow-divider-size': `${hero.eyebrowSize.base}px`,
+      '--hero-eyebrow-divider-size-lg': `${hero.eyebrowSize.lg}px`,
+    }),
   }
 
   // heroSlides(이미지 비율만큼만 높이 차지)는 슬라이드 이미지 자체에 문구가 박혀있는(hideText) 현장

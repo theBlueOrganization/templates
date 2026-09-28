@@ -249,7 +249,7 @@ img.bgImageMobileOnly {
   justify-content: center;
   gap: 14px;
   font-family: var(--font-serif);
-  font-size: clamp(12px, 3.6vw, 14px);
+  font-size: var(--hero-eyebrow-divider-size, clamp(12px, 3.6vw, 14px));
   line-height: 1.6;
   color: var(--hero-title, #b39258);
   text-align: center;
@@ -286,7 +286,7 @@ img.bgImageMobileOnly {
 
 @media (min-width: 1024px) {
   .eyebrowDividerRow {
-    font-size: 19px;
+    font-size: var(--hero-eyebrow-divider-size-lg, 19px);
     gap: 22px;
   }
 

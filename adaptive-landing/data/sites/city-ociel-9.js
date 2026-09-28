@@ -42,9 +42,10 @@ const config = {
 
   signature: {
     header: {
-      // 요청 반영 — 2줄 락업 대신 가로 한 줄 로고(logo-horizontal-white.png: 사용자 제공 logo-w.png의 CITY O CIEL
+      // 요청 반영 — 2줄 락업 대신 가로 한 줄 로고(logo-horizontal-*.png: 사용자 제공 logo-w.png의 CITY O CIEL
       // 워드마크와 '시티오씨엘 9단지 오션파크뷰'를 잘라 구분선과 함께 가로로 배치)
-      logo: { src: '/apt/city-ociel-9/logo-horizontal-white.png', alt: '시티오씨엘 9단지 오션파크뷰', width: 1841, height: 208 },
+      // 요청 반영 — 로고 색을 흰색 대신 베이지 rgb(211, 198, 185)(#d3c6b9)로
+      logo: { src: '/apt/city-ociel-9/logo-horizontal-beige.png', alt: '시티오씨엘 9단지 오션파크뷰', width: 1841, height: 208 },
       logoSize: { base: 220, lg: 240, xl: 300 },
       gnb: ['사업안내', '위치안내', '프리미엄', '단지안내', '세대안내', '상담신청 및 방문예약'],
       quickCtaLabel: '방문예약',

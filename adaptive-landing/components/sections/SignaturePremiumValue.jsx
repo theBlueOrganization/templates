@@ -205,7 +205,7 @@ export default function SignaturePremiumValue({ premiumValue }) {
           return (
             <StaggerItem
               key={card.num}
-              className={`${styles.card} ${icon ? styles.cardBordered : ''} ${card.image ? styles.cardPhoto : ''}`}
+              className={`${styles.card} ${icon ? styles.cardBordered : ''} ${card.image ? styles.cardPhoto : ''} ${premiumValue.cardBorder === 'gradient' ? styles.cardGradient : ''}`}
             >
               {card.image && (
                 <div className={styles.imageBox}>

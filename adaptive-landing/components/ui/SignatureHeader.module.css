@@ -52,8 +52,9 @@
 }
 
 .quickCta {
-  background: #fff;
-  color: var(--navy, #06203e);
+  /* --visit-btn-bg/--visit-btn-bg-text: colorTheme.visitBtnBg를 지정한 현장만 CTA 버튼을 그라데이션으로 */
+  background: var(--visit-btn-bg, #fff);
+  color: var(--visit-btn-bg-text, var(--navy, #06203e));
   font-weight: 700;
   font-size: 14.5px;
   letter-spacing: -0.5px;
@@ -120,8 +121,8 @@
 
 .mobileMenuCta {
   margin-top: 16px;
-  background: var(--cream, #eae6da);
-  color: var(--navy, #06203e);
+  background: var(--visit-btn-bg, var(--cream, #eae6da));
+  color: var(--visit-btn-bg-text, var(--navy, #06203e));
   font-weight: 700;
   font-size: 14px;
   padding: 14px;

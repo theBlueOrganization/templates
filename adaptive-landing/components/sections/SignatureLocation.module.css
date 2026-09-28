@@ -482,6 +482,14 @@
     padding: 100px 40px;
   }
 
+  .header.headerOneLineDesktop {
+    max-width: 1300px;
+  }
+
+  .headerOneLineDesktop .title {
+    white-space: nowrap;
+  }
+
   .header {
     max-width: 850px;
   }

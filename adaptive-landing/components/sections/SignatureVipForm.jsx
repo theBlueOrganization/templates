@@ -21,7 +21,9 @@ const PHONE_FIELDS = ['phone1', 'phone2', 'phone3']
 // 별도 컴포넌트로 만들고, /api/sms에 serviceType/ageRange 필드를 추가로 실어 보낸다.
 export default function SignatureVipForm({ config, sectionId }) {
   const { vipForm } = config.signature
-  const { slug, projectName, visitTimeOptions, adminPhones, adminPhonesByUtm, sheetId, sheetTab, showUtmInSms } = config
+  // adminPhoneNames/smsMediaLabel — 문자 본문 "매체+담당자"(예: "현대+진의원") 표기용. 설정 안 한 현장은
+  // undefined로 전송돼 route.js가 기존과 동일한 문자를 보냄
+  const { slug, projectName, visitTimeOptions, adminPhones, adminPhonesByUtm, adminPhoneNames, smsMediaLabel, sheetId, sheetTab, showUtmInSms } = config
   // 요청 반영 — 히어로 다음 관심고객등록 섹션/팝업과 폰트(세리프 제목·굵기·자간)를 통일하는 옵션.
   // 다른 현장은 vipForm.fontVariant를 안 쓰므로 기존 스타일 그대로 유지됨
   const serif = vipForm.fontVariant === 'serif'
@@ -68,6 +70,8 @@ export default function SignatureVipForm({ config, sectionId }) {
           ageRange: form.age,
           projectName,
           adminPhones: resolvedAdminPhones,
+          adminPhoneNames,
+          smsMediaLabel,
           sheetId,
           sheetTab,
           utmSource,
@@ -94,7 +98,8 @@ export default function SignatureVipForm({ config, sectionId }) {
   return (
     <section
       id={sectionId ?? vipForm.id}
-      className={styles.section}
+      // tone: 'light' — 밝은 배경(bgColor)을 쓰는 현장용. 흰색 고정 글자를 어두운 색으로 바꿔 가독성 확보
+      className={cn(styles.section, vipForm.tone === 'light' && styles.light)}
       style={{
         ...(vipForm.bgColor && { '--vipform-bg': vipForm.bgColor }),
         ...(vipForm.cardBg && { '--vipform-card-bg': vipForm.cardBg }),
@@ -184,17 +189,20 @@ export default function SignatureVipForm({ config, sectionId }) {
               </div>
             </div>
 
-            <div className={styles.row}>
-              <span className={cn(styles.label, serif && styles.labelSerif)}>연령대</span>
-              <div className={styles.radioWrap}>
-                {vipForm.ageOptions.map((opt) => (
-                  <label key={opt} className={styles.radioLabel}>
-                    <input type="radio" name="age" value={opt} checked={form.age === opt} onChange={handleChange} />
-                    {opt}
-                  </label>
-                ))}
+            {/* ageOptions가 없는 현장은 연령대 행 자체를 숨김(문자에도 "연령대" 줄이 안 붙음) */}
+            {vipForm.ageOptions?.length > 0 && (
+              <div className={styles.row}>
+                <span className={cn(styles.label, serif && styles.labelSerif)}>연령대</span>
+                <div className={styles.radioWrap}>
+                  {vipForm.ageOptions.map((opt) => (
+                    <label key={opt} className={styles.radioLabel}>
+                      <input type="radio" name="age" value={opt} checked={form.age === opt} onChange={handleChange} />
+                      {opt}
+                    </label>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           <button type="submit" disabled={submitting} className={cn(styles.submitBtn, serif && styles.submitBtnSerif)}>

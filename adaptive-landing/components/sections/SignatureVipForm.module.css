@@ -192,8 +192,9 @@
 .submitBtn {
   width: 100%;
   margin-top: 8px;
-  background: var(--gold, #c8b693);
-  color: #fff;
+  /* colorTheme.visitBtnBg를 지정한 현장만 그라데이션 */
+  background: var(--visit-btn-bg, var(--gold, #c8b693));
+  color: var(--visit-btn-bg-text, #fff);
   font-weight: 700;
   font-size: 16px;
   letter-spacing: 0.02em;
@@ -273,3 +274,24 @@
   font-weight: 800;
   letter-spacing: 0.1em;
 }
+
+/* tone: 'light' — 밝은 배경(vipForm.bgColor)용. 흰색 고정 글자/테두리를 어두운 초록 톤으로 교체 */
+.light .card {
+  border-color: rgba(7, 89, 77, 0.16);
+  box-shadow: 0 20px 40px rgba(7, 89, 77, 0.08);
+}
+.light .group { border-top-color: rgba(7, 89, 77, 0.16); }
+.light .row { border-bottom-color: rgba(7, 89, 77, 0.12); }
+.light .eyebrow { color: #07594d; }
+.light .title,
+.light .title strong,
+.light .groupTitle,
+.light .checkLabel,
+.light .label { color: #09241f; }
+.light .desc,
+.light .radioLabel { color: #52645f; }
+.light .privacyBox { border-color: rgba(7, 89, 77, 0.16); }
+.light .input,
+.light .dateInput,
+.light .selectInput,
+.light .phoneInput { border: 1px solid #cdd7d3; }

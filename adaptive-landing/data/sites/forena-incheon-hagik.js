@@ -113,8 +113,6 @@ const config = {
       keepTextShadow: true,
       overlay: false,
       contentTop: true,
-      // 요청 반영 — PC(1024px 이상)에서만 문구를 좌측 정렬(모바일/태블릿은 기존 중앙 정렬 유지)
-      alignDesktop: 'left',
       brandLogo: { src: '/apt/forena-incheon-hagik/hero-brand-logo.png', alt: '포레나 인천학익', width: 642, height: 189 },
       brandLogoSize: { base: 44, lg: 64 },
       // 요청 반영 — 모바일 히어로 이미지 3장을 살짝 위로 올림

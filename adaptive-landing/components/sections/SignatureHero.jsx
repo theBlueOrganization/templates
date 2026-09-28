@@ -145,7 +145,6 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
     hero.contentTop && styles.heroContentTop,
     hero.align === 'left' && styles.heroLeft,
     hero.align === 'right' && styles.heroRight,
-    hero.alignDesktop === 'left' && styles.heroLeftDesktop,
   ]
     .filter(Boolean)
     .join(' ')

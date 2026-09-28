@@ -1017,26 +1017,3 @@ img.bgImageMobileOnly {
     opacity: 0.4;
   }
 }
-
-/* heroLeftDesktop — hero.alignDesktop === 'left'인 현장 전용. 모바일/태블릿은 기존 중앙 정렬을 그대로
-   두고 PC(1024px 이상)에서만 문구 블록(구분선 문구·타이틀·브랜드 로고)을 좌측으로 배치.
-   파일 맨 끝에 두고 .hero.heroLeftDesktop으로 특이도를 높여 위쪽 공용 .hero 패딩 규칙보다 항상 이기게 함 */
-@media (min-width: 1024px) {
-  .hero.heroLeftDesktop {
-    justify-content: flex-start;
-    padding-left: 120px;
-  }
-
-  .heroLeftDesktop .content {
-    align-items: flex-start;
-    text-align: left;
-  }
-
-  .heroLeftDesktop .eyebrow {
-    text-align: left;
-  }
-
-  .heroLeftDesktop .eyebrowDividerRow {
-    justify-content: flex-start;
-  }
-}

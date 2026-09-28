@@ -22,32 +22,18 @@ const config = {
   extraContactFormExcludeUtm: [],
   extraContactFormAfterSectionId: "highlight",
 
-  popup: [
-    {
-      enabled: true,
-      image: {
-        src: "/apt/gyeongsan-hobansummit-1/popup1.webp",
-        alt: "경산 상방공원 호반써밋 1단지 팝업",
-        cta: {
-          tel:  "1555-3167",
-          // 이미지 하단 전화번호("1555.3167") 영역만 클릭 핫스팟으로 지정
-          rect: { top: "82%", left: "0%", width: "100%", height: "18%" },
-        },
+  popup: {
+    enabled: true,
+    image: {
+      src: "/apt/gyeongsan-hobansummit-1/popup0.webp",
+      alt: "경산 호반써밋 선착순 동·호 지정중 팝업",
+      cta: {
+        target: "#contact-section",
+        // 이미지 하단 "모델하우스 방문예약하기" 버튼 영역만 클릭 핫스팟으로 지정
+        rect: { top: "87%", left: "13%", width: "74%", height: "10%" },
       },
     },
-    {
-      enabled: true,
-      image: {
-        src: "/apt/gyeongsan-hobansummit-1/popup2.webp",
-        alt: "경산 상방공원 호반써밋 1단지 팝업",
-        cta: {
-          tel:  "1555-3167",
-          // 이미지 하단 "분양문의 1555-3167" 영역만 클릭 핫스팟으로 지정
-          rect: { top: "93%", left: "0%", width: "100%", height: "7%" },
-        },
-      },
-    },
-  ],
+  },
 
   company: {
     name:      "주식회사 더블루파트너스",

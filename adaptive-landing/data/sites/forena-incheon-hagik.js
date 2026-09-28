@@ -139,7 +139,8 @@ const config = {
         {
           eyebrowLine1: '판상형 100%·남향 위주 배치',
           eyebrowLine2: '혁신설계.',
-          bgImage: { src: '/apt/forena-incheon-hagik/overview-photo.png', alt: '포레나 인천학익 조감도' },
+          // PC 배경 — 사용자 제공 "제목 없음-5.png"(2166x1000)으로 교체(사업개요 섹션은 기존 overview-photo.png 유지)
+          bgImage: { src: '/apt/forena-incheon-hagik/hero-bg-pc-3.png', alt: '포레나 인천학익 조감도' },
           // 모바일 전용 — 사용자 제공 "그룹 2.png"(750x942)
           bgImageMobile: { src: '/apt/forena-incheon-hagik/hero-bg-mobile-3.png', alt: '포레나 인천학익 조감도' },
         },

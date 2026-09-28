@@ -788,8 +788,9 @@ export default function SignatureArkoneImmersive({ site }) {
         <section className={cn(panelClass('footer'), styles.footerPanel)} id="footer">
           <footer className={styles.siteFooter}>
             <div className={styles.footerLogos}>
-              <Image src="/apt/cheongna-arkone-prugio/logo-white.svg" alt="PRUGIO" width={108} height={18} />
-              <Image src="/apt/cheongna-arkone-prugio/logo-daewoo.svg" alt="대우건설" width={84} height={20} />
+              {/* 요청 반영(2026-09-28) — 로고 확대 + 가운데 정렬(cheongna-arkone-prugio-3 푸터와 동일 방향) */}
+              <Image src="/apt/cheongna-arkone-prugio/logo-white.svg" alt="PRUGIO" width={170} height={28} />
+              <Image src="/apt/cheongna-arkone-prugio/logo-daewoo.svg" alt="대우건설" width={126} height={30} />
             </div>
             <a className={styles.footerMainPhone} href={`tel:${telNumber}`}>
               <small>대표번호</small>{telNumber}
@@ -841,7 +842,7 @@ export default function SignatureArkoneImmersive({ site }) {
           <h2>방문예약</h2>
           <p>모델하우스 관람가능시간 10:00~18:00 (담당자와 조율가능)</p>
           <LeadForm
-            kind="visit" idPrefix="visitDialog" site={site}
+            kind="visit" idPrefix="visitDialog" site={site} showTerms={false}
             onSubmit={async (kind, form) => { const ok = await submitLead(kind, form); if (ok) closeDialog(visitDialogRef); return ok }}
           />
         </div>
@@ -853,7 +854,7 @@ export default function SignatureArkoneImmersive({ site }) {
           <h2>자료요청</h2>
           <p>원하시는 자료를 선택하시면 담당자가 확인 후 보내드립니다.</p>
           <LeadForm
-            kind="request" idPrefix="requestDialog" site={site}
+            kind="request" idPrefix="requestDialog" site={site} showTerms={false}
             onSubmit={async (kind, form) => { const ok = await submitLead(kind, form); if (ok) closeDialog(requestDialogRef); return ok }}
           />
         </div>
@@ -923,8 +924,10 @@ export default function SignatureArkoneImmersive({ site }) {
               </div>
               <h3>{site.projectName}</h3>
               <p>관심고객등록 시 분양 일정과 주요 소식을 가장 먼저 안내해 드립니다.</p>
-              <div className={styles.noticeActions}>
-                <button type="button" className={styles.close} onClick={closeNotice}>닫기</button>
+              {/* 요청 반영(2026-09-28) — cheongna-arkone-prugio-3과 동일: 혜택 안내 추가, 하단 "닫기" 버튼 삭제(× 버튼만 유지) */}
+              <div className={styles.noticeBenefit}>
+                <b>[혜택]</b>
+                <span>{'사전예약 후 방문 상담 고객님들께\n「7만원 상당 고급 와인」 증정!\n(선착순 100명)'}</span>
               </div>
             </article>
           </div>
@@ -995,7 +998,9 @@ function IntroOverlay({ onSkip, ready }) {
   )
 }
 
-function LeadForm({ kind, idPrefix, site, onSubmit }) {
+// showTerms — 팝업(방문예약/자료요청 다이얼로그)에서는 "개인정보 처리방침 전문 보기"를 숨김(요청 반영 2026-09-28,
+// cheongna-arkone-prugio-3과 동일). 페이지 안 상담 섹션 폼은 전문 보기 유지
+function LeadForm({ kind, idPrefix, site, onSubmit, showTerms = true }) {
   const [submitting, setSubmitting] = useState(false)
   const checks = kind === 'visit' ? CONSULT_CHECKS : REQUEST_CHECKS
   const visitTimeOptions = site.visitTimeOptions
@@ -1043,10 +1048,12 @@ function LeadForm({ kind, idPrefix, site, onSubmit }) {
           <label key={label}><input type="checkbox" name={label} />{label}</label>
         ))}
       </div>
-      <details className={styles.terms}>
-        <summary>개인정보 처리방침 전문 보기</summary>
-        <div>{privacyText}</div>
-      </details>
+      {showTerms && (
+        <details className={styles.terms}>
+          <summary>개인정보 처리방침 전문 보기</summary>
+          <div>{privacyText}</div>
+        </details>
+      )}
       <label className={styles.agree}>
         <input type="checkbox" name="privacy_agree" required />
         <span>개인정보 수집 및 이용에 동의합니다. (필수)</span>

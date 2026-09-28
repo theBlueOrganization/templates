@@ -1,61 +1,22 @@
-// 청라 아크원 푸르지오(2차 분양팀용) — cheongna-arkone-prugio.js를 복제한 신규 분양팀 사이트.
-// dalseo-xi-genic-2/hanyang-iclass-yangju-2 등과 같은 방식으로, subdomain은 이 팀 전용 도메인을
-// 쓰고 대표번호도 이 팀 전용 번호(1811-4166)로 교체했다. 콘텐츠·이미지는 원본(cheongna-arkone-prugio)과
-// 동일 — 원본 상단 주석 참고.
-//
-// 이 사이트만의 차이점:
-//   - subdomain: 청라아크원푸르지오2.addupapt.kr
-//   - telNumber/header.phone/quickMenu.phone/footer.highlightText·csPhone: 1811-4166
-//   - projectName: 내부(SMS/카카오 알림톡 등) 구분용으로 "2"를 붙임
-//   - metaTitle: 카카오톡 등 공유 시 노출되는 제목은 원본과 동일하게 "청라 아크원 푸르지오"로 고정
-//     (projectName과 분리 지정)
-//   - sheetTab: 청라아크원푸르지오2
-//
-// 아래는 원본(cheongna-arkone-prugio.js) 상단 주석 원문:
-//
-// 출처: 공식 사이트(https://arkone-prugio.com, 2026-09-16 확인)의 하위 페이지 원문 그대로 반영
-//   - /pages/overview(사업개요), /pages/brand(브랜드), /pages/location(입지안내),
-//     /pages/premium(프리미엄), /pages/contact(문의)
-// 확인 시점 기준 공식 사이트는 청약 이전 "관심고객등록"만 받는 사전 홍보 단계라 커뮤니티 시설,
-// 단지 배치도, 동호수 배치표, 세대 평면도가 아직 공개되지 않음(사이트맵에 해당 하위페이지 자체가 없음).
-// 그래서 이 템플릿에서:
-//   - club(커뮤니티)은 선택 필드라 통째로 생략
-//   - complex(단지소개)·unitPlan(세대안내)은 이 템플릿에서 필수 섹션이라 뺄 수 없어, 실제 이미지 대신
-//     "공개 예정" 안내 플레이스홀더 이미지(스크립트로 직접 생성, public/apt/cheongna-arkone-prugio-2/
-//     complex-sitemap.webp·complex-dongho-chart.webp·unit-*.webp)를 임시로 넣어둠 — 공식 사이트에
-//     배치도/동호수표/평면도가 올라오면 실제 이미지로 교체 필요
-// 히어로·사업개요·프리미엄5종·위치안내 이미지는 공식 사이트 원본을 그대로 받아 webp로 변환해 사용.
-// 히어로 타이틀도 공식 메인 비주얼의 워드마크 SVG 원본(main_visual_name_img.v3.svg, white, 540x303)을
-// 그대로 받아 hero.titleImage로 사용 — "ABSOLUTE REMARKABLE ONE" 표기가 이미지 안에 포함돼 있음.
-//
-// colorTheme/webfont — 공식 사이트는 Referer 헤더 없이 직접 접속하면 핫링크 방지로 CSS가 막히지만,
-// Referer를 붙여 받으면 실제 CSS 사슬(temp_header.v3.css → common.css → token.css/font.css)을
-// 그대로 읽을 수 있었음(2026-09-16 확인). token.css의 실제 디자인 토큰 원문 그대로 반영:
-//   --primary-500: #004B45(딥그린, 브랜드 프라이머리) / --primary-900: #002521
-//   --secondary-500: #8B7F71(웜톤 그레이지, 브랜드 세컨더리) / --secondary-100: #F3F0EC
-//   --font-base: "SUIT", "Pretendard", sans-serif (SUIT 원본 CDN: cdn.jsdelivr.net/gh/sunn-us/SUIT)
-// 이 값을 그대로 navy=primary-500 / ink=primary-900 / gold=secondary-500 / cream=secondary-100에
-// 매핑(기존 기본 남색/골드 대신 실제 공식 브랜드 컬러 사용)
-//
+// 청라 아크원 푸르지오2 (청라아크원푸르지오2.addupapt.kr) — 원본(cheongna-arkone-prugio)을 복제한 2차 분양팀 사이트.
+// 대표번호 1811-4166, 상담 알림 010-8874-8525. 카톡 공유 제목(metaTitle)은 원본과 같은 "청라 아크원 푸르지오".
+// 콘텐츠·이미지·브랜드 컬러/폰트: 공식 사이트 arkone-prugio.com(2026-09-16). 배치도·동호수표·평면도는
+// 미공개라 "공개 예정" 이미지 사용(공개되면 교체).
 const config = {
   slug: 'cheongna-arkone-prugio-2',
-  // 이 팀 전용 서브도메인 — 원본(청라아크원푸르지오)과 겹치지 않는 별도 도메인으로 지정
   subdomain: '청라아크원푸르지오2',
-  // "2"가 붙은 projectName은 SMS/카카오 알림톡 등에 그대로 쓰되, 고객에게 보이는 제목(metaTitle)은
-  // 원래 이름 그대로 유지
   projectName: '청라 아크원 푸르지오2',
+  // 카톡 등 공유 제목 — projectName("...2", 문자 구분용)과 분리
   metaTitle: '청라 아크원 푸르지오',
   shortName: '청라 아크원 푸르지오',
   telNumber: '1811-4166',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/cheongna-arkone-prugio-2/og.jpg',
-  // 출처: 공식 사이트 token.css 원문(2026-09-16) — primary-500/primary-900/secondary-500/secondary-100
   colorTheme: {
     navy: '#004B45',
     ink: '#002521',
     cream: '#F3F0EC',
     gold: '#8B7F71',
   },
-  // 출처: 공식 사이트 font.css/token.css 원문(2026-09-16) — --font-base: "SUIT", "Pretendard", sans-serif
   webfont: {
     family: "'SUIT', 'Pretendard', var(--font-noto-sans-kr, 'Noto Sans KR'), sans-serif",
     cssUrl: 'https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css',
@@ -84,19 +45,13 @@ const config = {
 
   signature: {
     header: {
-      // 출처: 공식 사이트 공용 워드마크(/resources/img/common/logotype.svg, 원본 161x26 black) —
-      // 헤더 배경이 스크롤 여부와 무관하게 항상 --navy(딥그린 #004B45)라 흰색 버전만 사용
       logo: { src: '/apt/cheongna-arkone-prugio-2/logo-white.svg', alt: '청라 아크원 푸르지오', width: 161, height: 26 },
-      // 요청 반영 — 기본 로고 폭(140/190/220px)이 가로로 긴 워드마크(161x26, 약 6.2:1) 특성상
-      // 너무 넓고 커 보여서 축소
       logoSize: { base: 96, lg: 130, xl: 150 },
       gnb: ['사업개요', '입지환경', '프리미엄', '단지안내', '세대안내', '관심고객등록'],
       quickCtaLabel: '관심고객등록',
       phone: '1811-4166',
     },
 
-    // PC 우측 고정 사이드 퀵메뉴 — 공식 사이트가 fullPage.js 기반 풀스크린 스크롤 구조라 화면
-    // 우측에 항상 떠 있는 섹션 내비게이션을 쓰는 것을 참고해 추가(osan-heritage-xi-x와 동일 컴포넌트)
     quickMenu: {
       brand: '청라 아크원 푸르지오',
       phoneLabel: '분양문의',
@@ -119,20 +74,10 @@ const config = {
     },
 
     hero: {
-      // 요청 반영 — 기본 오버레이(radial-gradient로 가장자리를 85% 검게 덮는 비네트)가 사진을
-      // 거의 검은 배경처럼 보이게 만들어서 완전히 끔. 공식 사이트 메인 비주얼도 사진 위에 별도
-      // 어두운 스크림 없이 워드마크만 얹는 방식이라 실제 디자인에도 더 가까움
       overlay: false,
-      // 요청 반영 — 문구를 가운데 대신 좌측정렬로 배치
       align: 'left',
-      // 요청 반영(참고 화면 캡처) — 문구를 세로 중앙 대신 상단(하늘 배경 위)에 배치
       contentTop: true,
-      // 요청 반영(참고 화면 캡처) — 큰 3줄 영문 헤드라인 → 국문 서브타이틀 → 스파클 구분선 → 작은
-      // 소제목 → 이니셜(A·R·K·O) 강조 태그라인 → 하단 안내 카피 순서의 포스터형 레이아웃.
-      // SignatureHero에 이 순서를 그리는 전용 분기(contentVariant: 'poster')를 새로 추가함
       contentVariant: 'poster',
-      // 참고 화면 문구 전부 흰색이라 순백색으로 통일(오버레이를 껐으니 사진 위 가독성 확보를 위해
-      // 텍스트 그림자는 keepTextShadow로 유지)
       textColor: '#FFFFFF',
       keepTextShadow: true,
       titleLine1: 'CHEONG NA',
@@ -140,7 +85,6 @@ const config = {
       titleLine3: 'PRUGIO',
       subtitleKr: '청라 아크원 푸르지오',
       taglineLabel: '아크원(ARK-ONE)이란?',
-      // "ABSOLUTE REMARKABLE ONE"에서 ARK-ONE을 이루는 이니셜(A·R·K·O)만 크게 강조
       tagline: [
         { text: 'A', big: true },
         { text: 'bsolute ' },
@@ -153,10 +97,7 @@ const config = {
       ],
       eyebrowLine1: '청라의 절대적 기준이 될',
       eyebrowLine2: '단 하나의 주거명작을 상징',
-      // 출처: 공식 사이트 메인 비주얼 원본(/resources/img/main/main_visual_img.v3.jpg, 2026-09-16)
       bgImage: { src: '/apt/cheongna-arkone-prugio-2/hero-bg.webp', alt: '청라 아크원 푸르지오 대표 조감도 — ABSOLUTE REMARKABLE ONE' },
-      // 출처: 사용자 전달 모바일 전용 세로형 이미지(main_visual_img_m.v3.jpg → hero-bg-mobile.webp,
-      // 750x1380, 2026-09-16) — 768px 미만에서는 이 세로형 크롭을, 그 이상은 기존 가로형 bgImage를 사용
       bgImageMobile: { src: '/apt/cheongna-arkone-prugio-2/hero-bg-mobile.webp', alt: '청라 아크원 푸르지오 대표 조감도(모바일) — ABSOLUTE REMARKABLE ONE' },
       mobileBar: {
         announcements: [{ badge: '안내', textStrong: '청라 아크원 푸르지오', textLight: ' 공식 안내센터입니다.' }],
@@ -166,7 +107,6 @@ const config = {
       },
     },
 
-    // 출처: 공식 사이트 /pages/overview 원문 그대로(2026-09-16)
     summary: {
       id: 'overview',
       navLabel: 'overview',
@@ -193,18 +133,12 @@ const config = {
       ],
     },
 
-    // 출처: 공식 사이트 /pages/location 원문 그대로(2026-09-16). 사용자 제공 참고 화면(원형 아이콘
-    // 배지 + 좌측정렬 대형 타이틀 "CENTRAL LOCATION / PRUGIO" + 2열 화이트 카드) 참고 요청 반영 —
-    // SignatureLocation에 icon 전용 카드 변형(iconCard)을 새로 추가해서 구성(사진/번호 없이 원형
-    // 아이콘 배지만 사용, navy/gold 배지색이 카드 순서대로 교차)
     location: {
       id: 'location',
       navLabel: '입지환경',
-      // 요청 반영 — 2줄로 나누지 않고 한 줄로
       title: 'CENTRAL LOCATION PRUGIO',
       titleAlign: 'left',
       titleWeight: 700,
-      // 출처: 공식 사이트 위치안내도 원본(/resources/img/sub/location_map_img.v3.jpg)
       mapImage: { src: '/apt/cheongna-arkone-prugio-2/location-map.webp', alt: '청라 아크원 푸르지오 위치 안내도 — 청라국제도시 주변 교통 및 생활 인프라' },
       features: [
         {
@@ -234,24 +168,16 @@ const config = {
         '※ 본 홈페이지의 위치도는 소비자의 이해를 돕기 위해 제작된 것으로 실제와 다를 수 있습니다. 현황 및 개발 계획은 관계 기관의 발표를 참조해 작성된 것으로 사업계획 및 일정은 당사와 무관하며 추후 변경될 수 있습니다.',
     },
 
-    // 출처: 공식 사이트 /pages/premium 대표 카피 그대로(2026-09-16), 배경은 프리미엄 03(오션뷰) 사진과
-    // 결이 비슷한 메인 비주얼을 재사용
     premiumIntro: {
       bgImage: { src: '/apt/cheongna-arkone-prugio-2/premium-intro-bg.webp', alt: '청라 아크원 푸르지오 프리미엄 전경' },
       titleLine1: '공간의 특별함도 자부심의 높이도',
-      // 요청 반영 — "정점을 넘어 완성된 라이프로"와 "청라 아크원 푸르지오"를 한 줄로 잇지 않고
-      // 별도 줄로 분리(공식 사이트 프리미엄 페이지 원문 줄바꿈과 동일)
       titleLine2: '정점을 넘어 완성된 라이프로\n청라 아크원 푸르지오',
       descLine1: '총 2,911가구(청라 피크원 푸르지오 포함) 규모의',
       descLine1Accent: ['2,911가구'],
       descLine2: '청라를 대표하는 푸르지오 대규모 브랜드타운을 완성합니다.',
     },
 
-    // 출처: 공식 사이트 /pages/premium(2026-09-16). 공식 페이지 실제 구조를 다시 확인해보니 카드
-    // 그리드가 아니라 "PREMIUM 01~05" 각 항목이 텍스트+사진 좌우 분할로 지그재그(홀/짝수마다 좌우
-    // 반전)로 이어지는 구성이었음 — premiumSplits(SignaturePremiumSplit)로 교체해서 원본에 더
-    // 가깝게 재구성. premiumValue는 이 템플릿에서 필수 섹션이라 뺄 수 없어, 아래 premiumSplits와
-    // 내용이 겹치지 않도록 사진 없이 숫자+제목만 있는 짧은 인덱스 스트립으로 축소
+    // 짧은 인덱스(숫자+제목) — 상세는 아래 premiumSplits
     premiumValue: {
       id: 'premium-value',
       navLabel: '프리미엄',
@@ -268,8 +194,7 @@ const config = {
       ],
     },
 
-    // 출처: 공식 사이트 /pages/premium PREMIUM 01~05 원문/이미지 그대로(2026-09-16) — 텍스트+사진
-    // 좌우 분할, 짝수 항목은 reverse:true로 좌우를 바꿔 지그재그 구성(공식 페이지와 동일)
+    // PREMIUM 01~05 텍스트+사진 좌우 분할(짝수 reverse)
     premiumSplits: [
       {
         eyebrow: 'PREMIUM 01',
@@ -317,8 +242,7 @@ const config = {
       },
     ],
 
-    // ⚠️ 공식 사이트에 단지 배치도·동호수 배치표가 아직 공개되지 않아(사전 홍보 단계) 실제 이미지 대신
-    // "공개 예정" 플레이스홀더 이미지 사용 — 공개되면 교체 필요
+    // ⚠️ 배치도·동호수표 미공개 — "공개 예정" 플레이스홀더
     complex: {
       id: 'complex',
       eyebrow: 'COMPLEX PLAN',
@@ -333,9 +257,7 @@ const config = {
       },
     },
 
-    // ⚠️ 공식 사이트에 평형별 평면도가 아직 공개되지 않아(사전 홍보 단계) 실제 도면 대신 "공개 예정"
-    // 플레이스홀더 이미지 사용 — 공개되면 교체 필요. exclusive 값은 공식 사이트 사업개요에 기재된
-    // 공급 주택형(APT 84/103㎡, OT 105/121/136㎡)의 명목 전용면적만 반영(세부 소수점 값 미공개)
+    // ⚠️ 평면도 미공개 — "공개 예정" 플레이스홀더
     unitPlan: {
       id: 'unit-plan',
       navLabel: '세대안내',
@@ -402,7 +324,6 @@ const config = {
       ],
     },
 
-    // 공식 사이트가 아직 청약 전 "관심고객등록" 단계라 모델하우스 방문예약 대신 사전등록 문구로 구성
     vipForm: {
       id: 'vip-reservation',
       eyebrow: 'VIP Reservation',
@@ -419,8 +340,6 @@ const config = {
 4. 동의 거부권 및 미동의 시 불이익 - 귀하는 위와 같은 개인정보 수집 및 이용에 대한 동의를 거부할 권리가 있습니다. 단, 필수 항목 수집에 동의하지 않으실 경우, 관심고객 등록 및 분양 정보 수신 등의 서비스 제공이 제한될 수 있습니다.`,
     },
 
-    // 출처: 공식 사이트 /pages/contact 회사정보 원문 그대로(2026-09-16). 온라인대행은 공식 사이트의
-    // (주)넥스미디어·(주)나인야드 대신, 이 랜딩페이지를 운영하는 더블루파트너스로 표기(다른 현장과 동일 컨벤션)
     footer: {
       logo: { src: '/apt/cheongna-arkone-prugio-2/logo-white.svg', alt: '청라 아크원 푸르지오', width: 130, height: 21 },
       logoAlign: 'center',
@@ -444,10 +363,6 @@ const config = {
       csHours: 'AM 09:00 ~ PM 19:00',
     },
 
-    // 요청 반영 — 진입 시 관심고객등록 팝업 노출. 이름+연락처+서비스+희망일시만 받는 간이 신청
-    // 폼(SignatureInterestPopup, 다른 현장에서도 쓰는 공용 컴포넌트)으로, 제출 시 vipForm과 동일한
-    // /api/sms로 바로 전송됨. variant:'light'는 크림+골드 톤(우리 브랜드 컬러)으로 보이게 하는
-    // 옵션 — 기본값(다크 네이비 카드) 대신 사용
     popup: {
       interest: {
         enabled: true,

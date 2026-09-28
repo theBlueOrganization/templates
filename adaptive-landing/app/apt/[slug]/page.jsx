@@ -174,12 +174,13 @@ export default async function AptPage({ params }) {
 
   // header.gnb 순서와 1:1로 매칭되는 실제 섹션 id — 커뮤니티 섹션(club 또는 communityBlocks)은
   // 현장에 따라 통째로 뺄 수 있어 선택적으로 포함
-  const sectionIds = [
-    // 사업개요(summary)·단지안내(complex)·세대안내(unitPlan)도 현장에 따라 뺄 수 있음(예: cheongna-arkone-prugio-3) —
+  // 사업개요(summary)·단지안내(complex)·세대안내(unitPlan)도 현장에 따라 뺄 수 있음 — 뺀 현장은 gnb에서도
+  // 해당 라벨을 빼야 순서가 맞음. header.gnbTargetIds가 있으면 이 기본 순서 대신 그 id 목록을 그대로 사용
+  // (예: cheongna-arkone-prugio-3 — 청라핵심/교통호재처럼 기본 목록에 없는 섹션을 메뉴에 넣을 때)
+  const sectionIds = sig.header.gnbTargetIds ?? [
     ...(sig.summary ? [sig.summary.id] : []),
     sig.location.id,
     sig.premiumValue.id,
-    // 뺀 현장은 gnb에서도 해당 라벨을 빼야 순서가 맞음
     ...(sig.complex ? [sig.complex.id] : []),
     ...(sig.unitPlan ? [sig.unitPlan.id] : []),
     ...(sig.club ? [sig.club.id] : sig.communityBlocks ? [sig.communityBlocks.id] : []),

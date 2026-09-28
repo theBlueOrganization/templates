@@ -1,34 +1,10 @@
-// 청라 아크원 푸르지오 — 인천광역시 서구 청라동 86-1번지, 청라국제도시 주상복합용지 M5BL.
-// 지하 5층~지상 49층 총 6개동 1,855가구(APT 868세대·전용 84/103㎡, OT 987실·전용 105/121/136㎡) +
-// 근린생활시설(1~2층). 시행 (주)청라스마트시티, 시공 (주)대우건설(PRUGIO).
+// 청라 아크원 푸르지오 — 인천 서구 청라동 86-1(청라국제도시 M5BL), 지하5~지상49층 6개동
+// APT 868세대(84/103㎡) + OT 987실(105/121/136㎡). 시행 (주)청라스마트시티, 시공 (주)대우건설.
 //
-// 출처: 공식 사이트(https://arkone-prugio.com, 2026-09-16 확인)의 하위 페이지 원문 그대로 반영
-//   - /pages/overview(사업개요), /pages/brand(브랜드), /pages/location(입지안내),
-//     /pages/premium(프리미엄), /pages/contact(문의)
-// 확인 시점 기준 공식 사이트는 청약 이전 "관심고객등록"만 받는 사전 홍보 단계라 커뮤니티 시설,
-// 단지 배치도, 동호수 배치표, 세대 평면도가 아직 공개되지 않음(사이트맵에 해당 하위페이지 자체가 없음).
-// 그래서 이 템플릿에서:
-//   - club(커뮤니티)은 선택 필드라 통째로 생략
-//   - complex(단지소개)·unitPlan(세대안내)은 이 템플릿에서 필수 섹션이라 뺄 수 없어, 실제 이미지 대신
-//     "공개 예정" 안내 플레이스홀더 이미지(스크립트로 직접 생성, public/apt/cheongna-arkone-prugio/
-//     complex-sitemap.webp·complex-dongho-chart.webp·unit-*.webp)를 임시로 넣어둠 — 공식 사이트에
-//     배치도/동호수표/평면도가 올라오면 실제 이미지로 교체 필요
-// 히어로·사업개요·프리미엄5종·위치안내 이미지는 공식 사이트 원본을 그대로 받아 webp로 변환해 사용.
-// 히어로 타이틀도 공식 메인 비주얼의 워드마크 SVG 원본(main_visual_name_img.v3.svg, white, 540x303)을
-// 그대로 받아 hero.titleImage로 사용 — "ABSOLUTE REMARKABLE ONE" 표기가 이미지 안에 포함돼 있음.
-//
-// colorTheme/webfont — 공식 사이트는 Referer 헤더 없이 직접 접속하면 핫링크 방지로 CSS가 막히지만,
-// Referer를 붙여 받으면 실제 CSS 사슬(temp_header.v3.css → common.css → token.css/font.css)을
-// 그대로 읽을 수 있었음(2026-09-16 확인). token.css의 실제 디자인 토큰 원문 그대로 반영:
-//   --primary-500: #004B45(딥그린, 브랜드 프라이머리) / --primary-900: #002521
-//   --secondary-500: #8B7F71(웜톤 그레이지, 브랜드 세컨더리) / --secondary-100: #F3F0EC
-//   --font-base: "SUIT", "Pretendard", sans-serif (SUIT 원본 CDN: cdn.jsdelivr.net/gh/sunn-us/SUIT)
-// 이 값을 그대로 navy=primary-500 / ink=primary-900 / gold=secondary-500 / cream=secondary-100에
-// 매핑(기존 기본 남색/골드 대신 실제 공식 브랜드 컬러 사용)
-//
-// 요청 반영(2026-09-23) — 대표번호를 1533-6480으로 변경, 상담 접수 알림은 진의원·최용호 2명에게
-// 발송하고 문자 본문에 "유입매체+담당자" 표기(예: "현대+진의원")가 보이도록 adminPhoneNames 추가
-// (route.js가 이 맵으로 수신자별 메시지에 태그를 붙임)
+// - 화면: signature.arkoneImmersive=true → SignatureArkoneImmersive(풀페이지 몰입형) 전용 렌더.
+//   아래 hero/summary 등 기존 signature 필드는 되돌릴 때를 위해 남겨둔 것(현재 화면엔 안 쓰임)
+// - 콘텐츠·이미지·브랜드 컬러(token.css)/폰트(SUIT): 공식 사이트 arkone-prugio.com 원문(2026-09-16)
+// - 연락처: 대표번호 1533-6480, 상담 알림은 진의원·최용호에게 "매체+담당자"(예: 현대+진의원) 표기로 발송
 const config = {
   slug: 'cheongna-arkone-prugio',
   subdomain: '청라아크원푸르지오',
@@ -82,13 +58,9 @@ const config = {
   ],
 
   signature: {
-    // 요청 반영(2026-09-22) — 참고 시안(cheongna-arkone-prugio-v2-2-mobile-first-standalone.html)의
-    // 풀페이지 스크롤 디자인·이미지를 그대로 반영한 전용 컴포넌트(SignatureArkoneImmersive)로 교체.
-    // true인 동안 app/apt/[slug]/page.jsx가 아래 header/hero/summary/... 필드를 쓰는 기존 렌더
-    // 트리 대신 이 컴포넌트로 완전히 분기한다 — 기존 필드는 되돌릴 수 있도록 그대로 남겨둠.
-    // 참고 시안에 있던 가짜 실시간 접속자 수, 무작위 가짜 방문예약 알림, "AI 분양비서"(실제 AI
-    // 상담 없이 폼만 접수), SEO 조작용 가짜 FAQ 150개·검색어 200개 스터핑은 실제 고객을 속이는
-    // 조작된 신뢰지표라 이 전용 컴포넌트에 반영하지 않았음(표시광고법 등 문제 소지).
+    // 풀페이지 몰입형 전용 화면(SignatureArkoneImmersive, 참고 시안 v2-2 기반, 2026-09-22).
+    // true면 아래 기존 필드 대신 이 컴포넌트로 렌더. 시안의 가짜 접속자 수·가짜 예약 알림·
+    // "AI 분양비서"·SEO용 가짜 FAQ/검색어는 고객 기만 소지가 있어 제외함
     arkoneImmersive: true,
     header: {
       // 출처: 공식 사이트 공용 워드마크(/resources/img/common/logotype.svg, 원본 161x26 black) —
@@ -438,14 +410,11 @@ const config = {
         { label: '시행사업자번호', value: '866-88-02497' },
         { label: '시공', value: '(주)대우건설' },
         { label: '시공사업자번호', value: '104-81-58180' },
-        // 요청 반영(2026-09-22) — 광고 운영·관리 대행사 표기(osan-heritage-xi-x와 동일 컨벤션).
-        // 이 현장은 온라인대행사(더블루파트너스)와 광고 운영·관리 대행사가 동일 회사라 위 "온라인대행"
-        // 항목을 따로 안 두고(이름·사업자번호 중복 표기 방지) 이 블록 하나로 통합 표기.
-        // 이메일(addup@addup.kr)도 청라스마트시티/대우건설이 아니라 더블루파트너스 소유라 시행/시공
-        // 그룹이 아닌 이 담당회사 그룹으로 옮김
-        { label: '담당회사', value: '주식회사 더블루파트너스', newLine: true },
-        { label: '사업자 등록번호', value: '789-81-03093' },
+        // 대행사 블록 — newLine으로 구분선 아래 새 줄에서 시작해 시행/시공과 구분.
+        // 요청 반영(2026-09-28): cheongna-arkone-prugio-3 푸터와 동일한 표기·순서로 통일
+        { label: '광고 운영·관리 대행사', value: '더블루파트너스', newLine: true },
         { label: '전화번호', value: '1666-1755' },
+        { label: '사업자등록번호', value: '789-81-03093' },
         { label: '이메일', value: 'addup@addup.kr' },
       ],
       disclaimers: [

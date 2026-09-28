@@ -104,6 +104,8 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
     ...(hero.titleAccentColor && { '--hero-title-accent': hero.titleAccentColor }),
     ...(hero.titleColor && { '--hero-title-only': hero.titleColor }),
     ...(hero.fontFamily && { '--hero-font': hero.fontFamily }),
+    ...(hero.titleWeight != null && { '--hero-title-weight': hero.titleWeight }),
+    ...(hero.titleLetterSpacing && { '--hero-title-letter-spacing': hero.titleLetterSpacing }),
     ...(hero.imageAspectRatio && { '--hero-image-ratio': hero.imageAspectRatio }),
     ...(hero.descColorMobile && { '--hero-desc-mobile': hero.descColorMobile }),
     ...(hero.textColorMobile && { '--hero-title-mobile': hero.textColorMobile }),
@@ -112,6 +114,13 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
     ...(hero.eyebrowGapMobile != null && { '--hero-eyebrow-gap-mobile': `${hero.eyebrowGapMobile}px` }),
     ...(hero.titleGapMobile != null && { '--hero-title-gap-mobile': `${hero.titleGapMobile}px` }),
     ...(hero.descLineHeightMobile != null && { '--hero-desc-line-height-mobile': hero.descLineHeightMobile }),
+    // hero.mobileBgShiftUp — 모바일 전용 배경 이미지(bgImageMobile)를 위로 끌어올릴 거리(px)
+    ...(hero.mobileBgShiftUp != null && { '--hero-mobile-bg-shift': `${hero.mobileBgShiftUp}px` }),
+    // hero.brandLogoSize —{ base, lg }(px)로 brandLogo 표시 높이를 현장별로 덮어씀 (2줄 락업 로고 등)
+    ...(hero.brandLogoSize && {
+      '--hero-brand-logo-h': `${hero.brandLogoSize.base}px`,
+      '--hero-brand-logo-h-lg': `${hero.brandLogoSize.lg}px`,
+    }),
     ...(hero.titleSize && {
       '--hero-title-size-base': `${hero.titleSize.base}px`,
       '--hero-title-size-md': `${hero.titleSize.md}px`,

@@ -30,6 +30,8 @@
   font-size: 20px;
   font-weight: 800;
   letter-spacing: -0.5px;
+  /* highlightText 안의 \n을 줄바꿈으로 표시 (\n이 없는 현장은 기존과 동일) */
+  white-space: pre-line;
 }
 
 .callBtn {
@@ -69,7 +71,7 @@
 
 .logo {
   opacity: 0.8;
-  width: 110px;
+  width: var(--footer-logo-w, 110px);
 }
 
 /* footer.logoAlign === 'center'인 현장 전용 — 모바일(세로 스택)에서 로고를 가운데 정렬 */
@@ -114,6 +116,14 @@
 /* line.newLine === true인 항목은 flex-wrap 컨테이너에서 항상 새 줄로 강제 줄바꿈 */
 .companyLineBreak {
   flex-basis: 100%;
+}
+
+/* line.dividerBefore === true인 항목 앞 가로 구분선 — 한 줄 전체를 차지해 다음 항목이 새 줄에서 시작 */
+.companyDivider {
+  flex-basis: 100%;
+  height: 1px;
+  margin: 6px 0;
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .disclaimers {

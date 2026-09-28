@@ -19,11 +19,13 @@ import SignaturePremiumValue from '../../../components/sections/SignaturePremium
 import SignaturePremiumSplit from '../../../components/sections/SignaturePremiumSplit'
 import SignatureLandscape from '../../../components/sections/SignatureLandscape'
 import SignatureComplex from '../../../components/sections/SignatureComplex'
+import SignatureComplexIntro from '../../../components/sections/SignatureComplexIntro'
 import SignatureTransitDetail from '../../../components/sections/SignatureTransitDetail'
 import SignatureUnitPlan from '../../../components/sections/SignatureUnitPlan'
 import SignatureClub from '../../../components/sections/SignatureClub'
 import SignatureClubSimple from '../../../components/sections/SignatureClubSimple'
 import SignatureClubZones from '../../../components/sections/SignatureClubZones'
+import SignatureClubFloors from '../../../components/sections/SignatureClubFloors'
 import SignatureVipForm from '../../../components/sections/SignatureVipForm'
 import SignatureHeaderGeomdan from '../../../components/ui/SignatureHeaderGeomdan'
 import SignatureFooterGeomdan from '../../../components/ui/SignatureFooterGeomdan'
@@ -256,6 +258,7 @@ export default async function AptPage({ params }) {
         {sig.infrastructure && <SignatureInfrastructure infrastructure={sig.infrastructure} />}
         {sig.landscapeGeomdan && <SignatureLandscapeGeomdan landscape={sig.landscapeGeomdan} />}
         {sig.landscape && <SignatureLandscape landscape={sig.landscape} />}
+        {sig.complexIntro && <SignatureComplexIntro complexIntro={sig.complexIntro} />}
         <SignatureComplex complex={sig.complex} />
         <SignatureUnitPlan unitPlan={sig.unitPlan} />
         {sig.smarthome && <SignatureSmartHome smarthome={sig.smarthome} />}
@@ -265,6 +268,8 @@ export default async function AptPage({ params }) {
           sig.club &&
           (sig.club.variant === 'simple' ? (
             <SignatureClubSimple club={sig.club} />
+          ) : sig.club.variant === 'floors' ? (
+            <SignatureClubFloors club={sig.club} />
           ) : sig.club.variant === 'zones' ? (
             <SignatureClubZones club={sig.club} />
           ) : (

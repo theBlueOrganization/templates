@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { Fragment } from 'react'
 import { useUtmSource } from '../../lib/useUtmSource'
 import { cn } from '../../lib/utils'
 import styles from './SignatureFooter.module.css'
@@ -29,16 +30,24 @@ export default function SignatureFooter({ footer, telNumber, telNumberByUtm, pro
         <div className={styles.hr} />
 
         <div className={styles.bottomRow}>
-          <div className={cn(styles.logo, footer.logoAlign === 'center' && styles.logoCentered)}>
+          {/* footer.logoWidth(px) — 현장별 로고 표시 폭 (없으면 CSS 기본 110px) */}
+          <div
+            className={cn(styles.logo, footer.logoAlign === 'center' && styles.logoCentered)}
+            style={footer.logoWidth ? { '--footer-logo-w': `${footer.logoWidth}px` } : undefined}
+          >
             <Image src={footer.logo.src} alt={footer.logo.alt} width={footer.logo.width || 130} height={footer.logo.height || 39} />
           </div>
           <div className={styles.vr} />
           <div className={styles.info}>
             <div className={styles.companyLines}>
+              {/* line.dividerBefore — 그 항목 앞에 가로 구분선을 그어 위 그룹(시행/시공 등)과 나눔 (새 줄에서 시작) */}
               {footer.companyLines.map((line) => (
-                <span key={line.label} className={cn(styles.companyLine, line.newLine && styles.companyLineBreak)}>
-                  <strong>{line.label}</strong> {line.value}
-                </span>
+                <Fragment key={line.label}>
+                  {line.dividerBefore && <span className={styles.companyDivider} aria-hidden="true" />}
+                  <span className={cn(styles.companyLine, line.newLine && styles.companyLineBreak)}>
+                    <strong>{line.label}</strong> {line.value}
+                  </span>
+                </Fragment>
               ))}
             </div>
             <div className={styles.disclaimers}>

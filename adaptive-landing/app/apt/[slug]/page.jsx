@@ -10,6 +10,7 @@ import SignatureHero from '../../../components/sections/SignatureHero'
 import SignatureVideoSection from '../../../components/sections/SignatureVideoSection'
 import SignatureHeroMinimal from '../../../components/sections/SignatureHeroMinimal'
 import SignatureHeroLegacy from '../../../components/sections/SignatureHeroLegacy'
+import SignatureHeroOciel from '../../../components/sections/SignatureHeroOciel'
 import SignatureBenefits from '../../../components/sections/SignatureBenefits'
 import SignatureSummary from '../../../components/sections/SignatureSummary'
 import SignatureLocation from '../../../components/sections/SignatureLocation'
@@ -234,6 +235,9 @@ export default async function AptPage({ params }) {
       <main>
         {sig.hero.variant === 'arkone' ? (
           <SignatureHeroArkone hero={sig.hero} />
+        ) : sig.hero.variant === 'ociel' ? (
+          // 시티오씨엘 9단지 — 공식 사이트 인트로(원 드로잉 → 원이 열리며 메인 슬라이드) 재구성
+          <SignatureHeroOciel hero={sig.hero} />
         ) : sig.hero.variant === 'minimal' ? (
           <SignatureHeroMinimal
             hero={sig.hero}

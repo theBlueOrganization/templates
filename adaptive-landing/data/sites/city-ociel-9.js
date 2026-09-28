@@ -51,10 +51,9 @@ const config = {
 
   signature: {
     header: {
-      // 요청 반영 — 2줄 락업 대신 가로 한 줄 로고(logo-horizontal-white.png: 사용자 제공 logo-w.png의 CITY O CIEL
-      // 워드마크와 '시티오씨엘 9단지 오션파크뷰'를 잘라 구분선과 함께 가로로 배치)
-      logo: { src: '/apt/city-ociel-9/logo-horizontal-white.png', alt: '시티오씨엘 9단지 오션파크뷰', width: 1841, height: 208 },
-      logoSize: { base: 220, lg: 240, xl: 300 },
+      // 요청 반영 — 가로 한 줄 흰색 로고(intro-slogan-1.png, '시티오씨엘 9단지 오션파크뷰' — 공식 사이트 메인 슬로건)
+      logo: { src: '/apt/city-ociel-9/intro-slogan-1.png', alt: '시티오씨엘 9단지 오션파크뷰', width: 701, height: 98 },
+      logoSize: { base: 190, lg: 230, xl: 270 },
       gnb: ['사업안내', '위치안내', '프리미엄', '단지안내', '세대안내', '상담신청 및 방문예약'],
       quickCtaLabel: '방문예약',
       phone: '1599-6643',
@@ -231,7 +230,7 @@ const config = {
         {
           num: '02',
           icon: 'tower',
-          image: { src: '/apt/city-ociel-9/hero-bg-3.webp', alt: '시티오씨엘 단지 야경 조감도' },
+          image: { src: '/apt/city-ociel-9/intro-slide-2.webp', alt: '시티오씨엘 9단지 오션파크뷰 단지 전경 투시도' },
           title: ['단일', '최대규모 단지'],
           desc: ['시티오씨엘 단일 최대규모(1,949세대)', '라이프스타일에 맞춘 다양한 평면 구성(59~136㎡)'],
         },
@@ -245,14 +244,14 @@ const config = {
         {
           num: '04',
           icon: 'school',
-          image: { src: '/apt/city-ociel-9/premium-school-map.webp', alt: '도보권 통학 학군 지도' },
+          image: { src: '/apt/city-ociel-9/premium-school-kids.webp', alt: '함께 등교하는 아이들 이미지컷' },
           title: ['도보권', '안심 통학'],
           desc: ['도보통학 가능(약 300m) 초교(개교확정)', '중학교(개교확정), 고교(계획) 등 반경 1.5km 학군 형성'],
         },
         {
           num: '05',
           icon: 'train',
-          image: { src: '/apt/city-ociel-9/photo-train.webp', alt: '수인분당선 열차' },
+          image: { src: '/apt/city-ociel-9/premium-ktx.webp', alt: 'KTX 열차 이미지컷' },
           title: ['쾌속 · 광역', '교통망'],
           desc: ['GTX-B(인천시청역 예정), KTX송도역(예정), 수인분당(학익역 예정)', '제2경인고속도로, 수도권제2순환고속도로(개통예정)'],
         },
@@ -266,7 +265,7 @@ const config = {
         {
           num: '07',
           icon: 'tower',
-          image: { src: '/apt/city-ociel-9/hero-bg-2.webp', alt: '시티오씨엘 9단지 투시도' },
+          image: { src: '/apt/city-ociel-9/premium-green-walk.webp', alt: '공원형 단지 산책로 이미지컷' },
           title: ['압도적인', '단지 쾌적성'],
           desc: ['대규모 공원형 녹지를 품은 단지(단지내 산책로, 폰드)', '넓은 동간거리 / 건폐율 7.87%(부대복리시설 제외)'],
         },
@@ -280,8 +279,7 @@ const config = {
         {
           num: '09',
           icon: 'unitPlan',
-          image: { src: '/apt/city-ociel-9/unit-84a.webp', alt: '84㎡A 타입 평면도' },
-          imageFit: 'contain',
+          image: { src: '/apt/city-ociel-9/premium-interior.webp', alt: '광폭 드레스룸·수납공간 이미지컷' },
           title: ['우수한 상품성', '· 특화설계'],
           desc: ['공간 활용도를 극대화하는 평면설계 · 특화 공간', '주거품격을 높여 줄 고급스러운 내부 마감재'],
         },
@@ -298,7 +296,7 @@ const config = {
           '도시개발사업 총 13,149세대 中 시티오씨엘 9단지 오션파크뷰(1,949세대)는 시티오씨엘 內 단일 최대 규모 단지이자 그랜드파크 최인접 단지로, 향후 대장단지로 자리매김합니다.',
         ],
         images: [
-          { src: '/apt/city-ociel-9/hero-bg-3.webp', alt: '시티오씨엘 단지 야경 조감도' },
+          { src: '/apt/city-ociel-9/intro-slide-2.webp', alt: '시티오씨엘 9단지 오션파크뷰 단지 전경 투시도' },
           { src: '/apt/city-ociel-9/city-aerial.webp', alt: '시티오씨엘 도시개발사업 조감도' },
         ],
       },
@@ -322,7 +320,10 @@ const config = {
           '초교(\'27.03 개교예정)·초교(\'29.03 개교예정)·중학교(\'29.03 개교예정)·고교(계획)가 도보권에 위치하여 통학걱정 없는 안심 단지.',
           '반경 1.5km 內 용현·학익 학원가와 다수의 초·중·고교 밀집, 학세권 프리미엄을 누립니다.',
         ],
-        images: [{ src: '/apt/city-ociel-9/location-detail-map.webp', alt: '시티오씨엘 9단지 세부 입지 및 학교 위치도' }],
+        images: [
+          { src: '/apt/city-ociel-9/premium-school-walk.webp', alt: '도보로 등교하는 아이들 이미지컷' },
+          { src: '/apt/city-ociel-9/premium-school-kids.webp', alt: '함께 등교하는 아이들 이미지컷' },
+        ],
       },
       {
         reverse: true,
@@ -339,7 +340,10 @@ const config = {
           { line: '수인분당', route: '학익역(예정) → 청량리역', time: '1시간 45분' },
           { line: 'KTX', route: '송도역(예정) → 부산역', time: '2시간 29분(예상)', accent: true },
         ],
-        images: [{ src: '/apt/city-ociel-9/photo-train.webp', alt: '수인분당선 열차' }],
+        images: [
+          { src: '/apt/city-ociel-9/photo-train.webp', alt: '수인분당선 열차' },
+          { src: '/apt/city-ociel-9/premium-ktx.webp', alt: 'KTX 열차 이미지컷' },
+        ],
       },
       {
         eyebrow: 'PREMIUM 06',
@@ -350,7 +354,7 @@ const config = {
         ],
         images: [
           { src: '/apt/city-ociel-9/photo-grandpark.webp', alt: '그랜드파크(예정) 이미지컷' },
-          { src: '/apt/city-ociel-9/photo-namhang-park.webp', alt: '남항근린공원' },
+          { src: '/apt/city-ociel-9/premium-park-jogging.webp', alt: '공원 산책로 이미지컷' },
         ],
       },
       {
@@ -361,7 +365,10 @@ const config = {
           '인천권역 신규 아파트 평균 건폐율 15.74% 대비 절반 수준인 7.87%(부대시설 제외).',
           '넓은 동간거리와 단지 내 산책로 · 폰드 등 대규모 공원형 녹지를 품은 주거 쾌적성을 확보했습니다.',
         ],
-        images: [{ src: '/apt/city-ociel-9/hero-bg-1.webp', alt: '시티오씨엘 9단지 투시도' }],
+        images: [
+          { src: '/apt/city-ociel-9/premium-green-walk.webp', alt: '공원형 단지 산책로 이미지컷' },
+          { src: '/apt/city-ociel-9/premium-landscape-aerial.webp', alt: '시티오씨엘 9단지 조경 투시도(단지 중앙 녹지)' },
+        ],
       },
       {
         eyebrow: 'PREMIUM 08',
@@ -372,7 +379,20 @@ const config = {
         ],
         images: [
           { src: '/apt/city-ociel-9/photo-museum-park.webp', alt: '인천 뮤지엄파크(예정) 조감도' },
-          { src: '/apt/city-ociel-9/photo-cgv.webp', alt: 'CGV 인천학익점' },
+          { src: '/apt/city-ociel-9/premium-shopping.webp', alt: '쇼핑·생활 인프라 이미지컷' },
+        ],
+      },
+      {
+        reverse: true,
+        eyebrow: 'PREMIUM 09',
+        title: ['4Bay 판상(맞통풍) +', '알파룸 · 광폭 드레스룸 특화설계'],
+        descLines: [
+          '주력 84A(984세대, 50.5%) — 4Bay 판상 · 맞통풍 · 알파룸 · 광폭 드레스룸 · ㄷ자형 주방 · 현관팬트리.',
+          '59㎡ 슬라이딩 도어(유상옵션), 75㎡ 알파룸, 84B 더블팬트리, 95·101B 알파룸 1·2, 110 3면개방형, 최상층 PENT(133P·136P) 침실4 + 알파룸 / 외부 테라스 5개.',
+        ],
+        images: [
+          { src: '/apt/city-ociel-9/premium-interior.webp', alt: '광폭 드레스룸·수납공간 이미지컷' },
+          { src: '/apt/city-ociel-9/premium-design.webp', alt: '특화설계 이미지컷' },
         ],
       },
     ],

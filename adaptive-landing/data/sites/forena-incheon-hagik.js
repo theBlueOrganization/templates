@@ -50,7 +50,7 @@ const config = {
       logo: { src: '/apt/forena-incheon-hagik/hero-brand-logo.png', alt: '포레나 인천학익', width: 642, height: 189 },
       logoSize: { base: 92, lg: 120, xl: 138 },
       gnb: ['사업안내', '위치안내', '프리미엄', '단지안내', '세대안내', '커뮤니티', '상담신청 및 방문예약'],
-      quickCtaLabel: '관심고객등록',
+      quickCtaLabel: '방문예약',
       phone: '1877-3569',
     },
 
@@ -69,13 +69,13 @@ const config = {
     },
 
     // PC(1024px 이상) 전용 우측 고정 사이드 퀵메뉴 — components/ui/SignatureQuickMenu.
-    // 두산위브더제니스 부천과 동일한 구성(분양문의/관심고객/MENU 세로 바 + QUICK MENU 패널)으로,
+    // 두산위브더제니스 부천과 동일한 구성(분양문의/방문예약/MENU 세로 바 + QUICK MENU 패널)으로,
     // targetId는 이 현장의 실제 섹션 id(overview/location/premium-value/complex/unit-plan/community)에 맞춤
     quickMenu: {
       brand: 'FORENA INCHEON HAGIK',
       phoneLabel: '분양문의',
       phone: '1877-3569',
-      favoriteLabel: '관심고객',
+      favoriteLabel: '방문예약',
       menuLabel: 'MENU',
       ctaTargetId: 'vip-reservation',
       deskText: '포레나 인천학익\n분양 상담을 도와드립니다.',
@@ -89,7 +89,7 @@ const config = {
         { num: '05', label: 'COMPLEX', sub: '단지안내', targetId: 'complex' },
         { num: '06', label: 'UNIT', sub: '세대안내', targetId: 'unit-plan' },
         { num: '07', label: 'COMMUNITY', sub: '커뮤니티', targetId: 'community' },
-        { num: '08', label: 'CONTACT', sub: '관심고객등록', targetId: 'vip-reservation' },
+        { num: '08', label: 'CONTACT', sub: '방문예약', targetId: 'vip-reservation' },
       ],
     },
 
@@ -141,7 +141,7 @@ const config = {
         announcements: [{ badge: '안내', textStrong: '포레나 인천학익', textLight: ' 공식 안내센터입니다.' }],
         // colorTheme 미지정 현장이라 안내바가 CSS 폴백 녹색(#004c45)으로 나와 헤더와 같은 네이비로 지정
         announceBg: '#06203e',
-        bubbleText: '관심고객등록 시 분양 일정을 가장 빠르게 안내드립니다',
+        bubbleText: '방문예약하기',
         callLabel: '전화상담',
         visitLabel: '방문예약',
       },
@@ -431,14 +431,14 @@ const config = {
       ],
     },
 
-    // 상담신청/관심고객등록 폼 — vipForm.showAfterVideo가 true라 히어로 섹션 바로 다음에
+    // 상담신청/방문예약 폼 — vipForm.showAfterVideo가 true라 히어로 섹션 바로 다음에
     // 이 섹션이 한 번 더 렌더링되고(id: `${id}-early`), 기존과 동일하게 페이지 맨 아래에도 렌더링됨
     vipForm: {
       id: 'vip-reservation',
       showAfterVideo: true,
-      eyebrow: 'INTEREST REGISTRATION',
+      eyebrow: 'VISIT RESERVATION',
       titleLine1: '포레나 인천학익',
-      titleLine2: '관심고객등록',
+      titleLine2: '방문예약',
       desc: '간단한 정보를 남겨주시면 학익 4구역 재개발사업 「포레나 인천학익」의 분양 일정과 상세 안내를 가장 빠르게 전해드립니다.',
       serviceOptions: ['모델하우스 방문예약', '원하는시간 전화예약'],
       ageOptions: ['20대 이하', '30대', '40대', '50대', '60대 이상'],

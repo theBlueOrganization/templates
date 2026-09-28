@@ -42,9 +42,10 @@ const config = {
 
   signature: {
     header: {
-      // 교육자료 표지의 흰색 CITY O CIEL 락업(smask 알파 합성 후 여백 트림)
-      logo: { src: '/apt/city-ociel-9/logo-white.png', alt: '시티오씨엘 9단지 오션파크뷰', width: 1033, height: 371 },
-      logoSize: { base: 92, lg: 120, xl: 138 },
+      // 요청 반영 — 2줄 락업 대신 가로 한 줄 로고(logo-horizontal-white.png: 사용자 제공 logo-w.png의 CITY O CIEL
+      // 워드마크와 '시티오씨엘 9단지 오션파크뷰'를 잘라 구분선과 함께 가로로 배치)
+      logo: { src: '/apt/city-ociel-9/logo-horizontal-white.png', alt: '시티오씨엘 9단지 오션파크뷰', width: 1841, height: 208 },
+      logoSize: { base: 220, lg: 240, xl: 300 },
       gnb: ['사업안내', '위치안내', '프리미엄', '단지안내', '세대안내', '상담신청 및 방문예약'],
       quickCtaLabel: '방문예약',
       phone: '1599-6643',
@@ -369,7 +370,7 @@ const config = {
 
     // 단지안내 — 요청 반영(2026-09-28): 사용자가 넣어준 공식 사이트 단지안내 완성 이미지(danji_design/danji_layout/
     // dong_layout/landscape/community.jpg → webp 변환)를 세대안내와 같은 탭+이미지 구성(SignatureUnitPlanTabs)으로 노출.
-    // 교육자료의 도시개발계획(5개 O ciel 그룹)·공급개요(분양면적표)는 뒤쪽 탭으로 유지. 동호배치도는 글자가 작아 탭하면 원본 보기
+    // 교육자료의 도시개발계획(5개 O ciel 그룹)은 마지막 탭으로 유지(공급개요 탭은 요청으로 제외). 동호배치도는 글자가 작아 탭하면 원본 보기
     complex: {
       id: 'complex',
       variant: 'imageTabs',
@@ -377,8 +378,10 @@ const config = {
       titlePlain: '단지',
       titleAccent: '안내',
       subtitle: '최고 49층 9개동 총 1,949세대, 시티오씨엘 단일 최대 규모 단지를 만나보십시오.',
-      tabColumns: 7,
-      tabColumnsMobile: 4,
+      // 요청 반영 — PC에서는 탭을 왼쪽 세로 목록으로(모바일은 가로 4개씩)
+      tabLayout: 'side',
+      tabColumns: 6,
+      tabColumnsMobile: 3,
       tabs: [
         { label: '단지설계', image: { src: '/apt/city-ociel-9/complex-design.webp', alt: '단지설계 — 시티오씨엘의 한계를 넘어서다', width: 1100, height: 1848 } },
         { label: '단지배치도', image: { src: '/apt/city-ociel-9/complex-layout.webp', alt: '단지배치도 및 타입별 세대수(총 1,949세대)', width: 1100, height: 1234 }, zoomable: true },
@@ -386,7 +389,6 @@ const config = {
         { label: '조경', image: { src: '/apt/city-ociel-9/complex-landscape.webp', alt: '조경 — 도심 속의 공원형 단지', width: 1100, height: 2179 } },
         { label: '커뮤니티', image: { src: '/apt/city-ociel-9/complex-community.webp', alt: '커뮤니티 — 피트니스·다목적체육관·실내골프연습장·사우나·독서실 등', width: 1100, height: 2530 } },
         { label: '개발계획', image: { src: '/apt/city-ociel-9/complex-masterplan.webp', alt: '시티오씨엘 도시개발사업 계획도(5개 O ciel 그룹)', width: 2254, height: 1132 }, zoomable: true },
-        { label: '공급개요', image: { src: '/apt/city-ociel-9/complex-supply.webp', alt: '시티오씨엘 9단지 분양면적표 및 타입별 공급비율', width: 2254, height: 1120 }, zoomable: true },
       ],
     },
 

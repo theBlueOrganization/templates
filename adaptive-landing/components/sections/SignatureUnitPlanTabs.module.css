@@ -154,3 +154,43 @@
     font-size: 19px;
   }
 }
+
+/* 탭 세로 배치(tabLayout: 'side') — PC에서 왼쪽 세로 탭(스크롤 고정) + 오른쪽 이미지 */
+@media (min-width: 1024px) {
+  .side {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1100px);
+    gap: 56px;
+    align-items: start;
+    max-width: 1356px;
+  }
+
+  .side .tabs {
+    position: sticky;
+    top: 130px;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    border-top: 2px solid var(--navy, #06203e);
+  }
+
+  .side .tab {
+    padding: 20px 4px 19px 20px;
+    font-size: 18px;
+    text-align: left;
+    transition: color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .side .tabActive {
+    background: #f7f5f3;
+  }
+
+  .side .tabActive::after {
+    left: 0;
+    right: auto;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    height: auto;
+  }
+}

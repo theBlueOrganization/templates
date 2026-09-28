@@ -524,3 +524,11 @@
     font-size: 15.2px;
   }
 }
+
+/* premiumValue.cardBorder === 'gradient' — 카드 배경색 없이(흰색) 테두리만 그라데이션 선으로
+   (예: cheongna-arkone-prugio-3, 하단바 CTA와 같은 #cfea77→#9bd3bd). hover 시 기본 남색 테두리로 안 바뀌게 고정 */
+.cardGradient,
+.card.cardGradient:hover {
+  border: 2px solid transparent;
+  background: linear-gradient(#fff, #fff) padding-box, linear-gradient(90deg, #cfea77, #9bd3bd) border-box;
+}

@@ -32,7 +32,11 @@ export default function SignatureFooter({ footer, telNumber, telNumberByUtm, pro
         <div className={styles.bottomRow}>
           {/* footer.logoWidth(px) — 현장별 로고 표시 폭 (없으면 CSS 기본 110px) */}
           <div
-            className={cn(styles.logo, footer.logoAlign === 'center' && styles.logoCentered)}
+            className={cn(
+              styles.logo,
+              footer.logoAlign === 'center' && styles.logoCentered,
+              footer.logoAlignDesktop === 'center' && styles.logoCenteredDesktop,
+            )}
             style={footer.logoWidth ? { '--footer-logo-w': `${footer.logoWidth}px` } : undefined}
           >
             <Image src={footer.logo.src} alt={footer.logo.alt} width={footer.logo.width || 130} height={footer.logo.height || 39} />

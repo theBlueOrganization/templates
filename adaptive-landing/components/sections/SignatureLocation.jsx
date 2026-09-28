@@ -145,7 +145,14 @@ export default function SignatureLocation({ location }) {
         ...(location.titleWeight && { '--location-title-weight': location.titleWeight }),
       }}
     >
-      <Reveal className={cn(styles.header, location.titleAlign === 'left' && styles.headerLeft)}>
+      {/* location.titleOneLineDesktop — PC(1024px~)에서 제목을 한 줄로(헤더 폭 제한 해제 + 줄바꿈 금지) */}
+      <Reveal
+        className={cn(
+          styles.header,
+          location.titleAlign === 'left' && styles.headerLeft,
+          location.titleOneLineDesktop && styles.headerOneLineDesktop,
+        )}
+      >
         {location.label && <p className={styles.label}>{location.label}</p>}
         {(location.eyebrowPlain || location.eyebrowAccent) && (
           <p className={styles.eyebrow}>

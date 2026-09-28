@@ -94,7 +94,8 @@ export default function SignatureVipForm({ config, sectionId }) {
   return (
     <section
       id={sectionId ?? vipForm.id}
-      className={styles.section}
+      // tone: 'light' — 밝은 배경(bgColor)을 쓰는 현장용. 흰색 고정 글자를 어두운 색으로 바꿔 가독성 확보
+      className={cn(styles.section, vipForm.tone === 'light' && styles.light)}
       style={{
         ...(vipForm.bgColor && { '--vipform-bg': vipForm.bgColor }),
         ...(vipForm.cardBg && { '--vipform-card-bg': vipForm.cardBg }),

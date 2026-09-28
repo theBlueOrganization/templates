@@ -32,7 +32,8 @@
 }
 
 .visitBtn {
-  background: var(--gold, #e0cd9c);
+  /* --visit-btn-bg: 현장별로 버튼 배경만 따로(그라데이션 등) 지정할 때 — colorTheme.visitBtnBg */
+  background: var(--visit-btn-bg, var(--gold, #e0cd9c));
   color: var(--visit-btn-color, var(--navy, #263241));
 }
 

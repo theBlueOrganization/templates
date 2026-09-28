@@ -115,7 +115,7 @@ export default function SignaturePremiumIntro({ premiumIntro }) {
           {premiumIntro.eyebrow && <p className={styles.eyebrow}>{premiumIntro.eyebrow}</p>}
           {premiumIntro.titleLine1 && (
             <h2 className={cn(styles.title, premiumIntro.titleUnderline && styles.titleUnderline)}>
-              <span className={styles.titleLine1}>{premiumIntro.titleLine1}</span>
+              <span className={styles.titleLine1}>{renderDescBreaks(premiumIntro.titleLine1)}</span>
               {premiumIntro.titleLine2 && (
                 <span className={styles.titleLine2}>
                   <MobileBreakText text={premiumIntro.titleLine2} />

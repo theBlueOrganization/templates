@@ -49,6 +49,13 @@ import SignatureLocationGeomdan from '../../../components/sections/SignatureLoca
 import SignatureFinalInterest from '../../../components/sections/SignatureFinalInterest'
 import SignatureBottomDockGeomdan from '../../../components/ui/SignatureBottomDockGeomdan'
 import SignatureArkoneImmersive from '../../../components/sections/SignatureArkoneImmersive'
+import {
+  SignatureArkoneIntro,
+  SignatureHeroArkone,
+  SignatureArkoneLandmarks,
+  SignatureArkoneNetwork,
+  SignatureArkonePopups,
+} from '../../../components/sections/SignatureArkoneHighlights'
 
 export const viewport = {
   width: 'device-width',
@@ -168,11 +175,13 @@ export default async function AptPage({ params }) {
   // header.gnb 순서와 1:1로 매칭되는 실제 섹션 id — 커뮤니티 섹션(club 또는 communityBlocks)은
   // 현장에 따라 통째로 뺄 수 있어 선택적으로 포함
   const sectionIds = [
-    sig.summary.id,
+    // 사업개요(summary)·단지안내(complex)·세대안내(unitPlan)도 현장에 따라 뺄 수 있음(예: cheongna-arkone-prugio-3) —
+    ...(sig.summary ? [sig.summary.id] : []),
     sig.location.id,
     sig.premiumValue.id,
-    sig.complex.id,
-    sig.unitPlan.id,
+    // 뺀 현장은 gnb에서도 해당 라벨을 빼야 순서가 맞음
+    ...(sig.complex ? [sig.complex.id] : []),
+    ...(sig.unitPlan ? [sig.unitPlan.id] : []),
     ...(sig.club ? [sig.club.id] : sig.communityBlocks ? [sig.communityBlocks.id] : []),
     sig.vipForm.id,
   ]
@@ -188,6 +197,12 @@ export default async function AptPage({ params }) {
         '--cream': site.colorTheme.cream,
         '--gold': site.colorTheme.gold,
         ...(site.colorTheme.visitBtnColor && { '--visit-btn-color': site.colorTheme.visitBtnColor }),
+        // visitBtnBg — 방문예약/관심고객 CTA 버튼들(하단바·헤더·퀵메뉴·vipForm 제출)의 배경. 지정한 현장만
+        // 글자색도 visitBtnColor로 함께 바꿈(--visit-btn-bg-text) — 미지정 현장은 기존 색 그대로
+        ...(site.colorTheme.visitBtnBg && {
+          '--visit-btn-bg': site.colorTheme.visitBtnBg,
+          ...(site.colorTheme.visitBtnColor && { '--visit-btn-bg-text': site.colorTheme.visitBtnColor }),
+        }),
       }
     : { '--navy': 'initial', '--ink': 'initial', '--cream': 'initial', '--gold': 'initial' }
 
@@ -213,8 +228,12 @@ export default async function AptPage({ params }) {
       {sig.popupNotice?.enabled && (
         <SignaturePopupNoticeGeomdan popup={sig.popupNotice} visitTargetId={sig.vipForm.id} />
       )}
+      {/* 청라 아크원 푸르지오 원본의 인트로(5.6초 전체화면 오버레이)를 일반 템플릿 현장에서 쓸 때 */}
+      {sig.arkoneIntro && <SignatureArkoneIntro intro={sig.arkoneIntro} />}
       <main>
-        {sig.hero.variant === 'minimal' ? (
+        {sig.hero.variant === 'arkone' ? (
+          <SignatureHeroArkone hero={sig.hero} />
+        ) : sig.hero.variant === 'minimal' ? (
           <SignatureHeroMinimal
             hero={sig.hero}
             telNumber={site.telNumber}
@@ -236,13 +255,16 @@ export default async function AptPage({ params }) {
             visitTargetId={sig.vipForm.id}
           />
         )}
+        {/* 청라 아크원 푸르지오 원본의 청라 핵심 3종(스타필드/아산병원/하나금융) + 미래 교통 계획 */}
+        {sig.arkoneLandmarks && <SignatureArkoneLandmarks landmarks={sig.arkoneLandmarks} />}
+        {sig.arkoneNetwork && <SignatureArkoneNetwork network={sig.arkoneNetwork} />}
         {sig.videoSection && <SignatureVideoSection video={sig.videoSection} />}
         {sig.vipForm.showAfterVideo && (
           <SignatureVipForm config={site} sectionId={`${sig.vipForm.id}-early`} />
         )}
         {sig.benefits && <SignatureBenefits benefits={sig.benefits} />}
         {sig.visitReservation && <SignatureVisitReservation visitReservation={sig.visitReservation} config={site} />}
-        <SignatureSummary summary={sig.summary} />
+        {sig.summary && <SignatureSummary summary={sig.summary} />}
         {sig.vipForm.showAfterSummary && (
           <SignatureVipForm config={site} sectionId={`${sig.vipForm.id}-early`} />
         )}
@@ -259,8 +281,8 @@ export default async function AptPage({ params }) {
         {sig.landscapeGeomdan && <SignatureLandscapeGeomdan landscape={sig.landscapeGeomdan} />}
         {sig.landscape && <SignatureLandscape landscape={sig.landscape} />}
         {sig.complexIntro && <SignatureComplexIntro complexIntro={sig.complexIntro} />}
-        <SignatureComplex complex={sig.complex} />
-        <SignatureUnitPlan unitPlan={sig.unitPlan} />
+        {sig.complex && <SignatureComplex complex={sig.complex} />}
+        {sig.unitPlan && <SignatureUnitPlan unitPlan={sig.unitPlan} />}
         {sig.smarthome && <SignatureSmartHome smarthome={sig.smarthome} />}
         {sig.communityBlocks ? (
           <SignatureCommunityGeomdan community={sig.communityBlocks} />
@@ -291,6 +313,8 @@ export default async function AptPage({ params }) {
       />
       {sig.quickMenu && <SignatureQuickMenu quickMenu={sig.quickMenu} telNumberByUtm={site.telNumberByUtm} />}
       <SignaturePopupSequence popup={sig.popup} config={site} />
+      {/* 청라 아크원 푸르지오 원본의 진입 팝업(안내 팝업 → 닫으면 방문예약 다이얼로그) */}
+      {sig.arkonePopups && <SignatureArkonePopups popups={sig.arkonePopups} config={site} />}
       {sig.hero.mobileBar && (
         <SignatureMobileBottomBar
           telNumber={site.telNumber}

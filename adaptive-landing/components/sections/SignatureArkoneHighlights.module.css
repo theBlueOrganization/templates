@@ -1,0 +1,318 @@
+/* 청라 아크원 푸르지오 원본(SignatureArkoneImmersive.module.css)의 인트로·히어로·랜드마크·교통 스타일을
+   일반 스크롤 페이지용으로 옮긴 것 — 풀페이지 패널(absolute/fixed) 대신 100svh 높이의 일반 섹션으로 배치.
+   색·타이포·모션 값은 원본 그대로. */
+
+.intro, .hero, .landmark, .network, .dialog {
+  --ink: #09241f;
+  --green: #07594d;
+  --lime: #d7f17b;
+  --line: rgba(5, 72, 61, 0.16);
+  --ease: cubic-bezier(0.2, 0.72, 0.2, 1);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.lockScroll { overflow: hidden !important; height: 100%; overscroll-behavior: none; }
+
+/* 공용 */
+.shell {
+  position: relative; z-index: 2;
+  width: 90vw; max-width: 1480px; margin: 0 auto; height: 100%;
+  /* padding이 height:100%에 더해져 섹션보다 커지면서 히어로 문구가 아래로 밀려 하단바에 가려지던 문제 방지 */
+  box-sizing: border-box;
+  display: flex; flex-direction: column;
+}
+.sectionHead { flex: none; opacity: 0; transform: translate3d(0, 18px, 0); }
+.isVisible .sectionHead { animation: headRise 0.75s 0.22s var(--ease) both; }
+.isVisible .motionLeft { animation-name: headLeft; }
+.isVisible .motionClip { animation-name: headClip; }
+.isVisible .motionScale { animation-name: headScale; }
+.isVisible .motionSoft { animation-name: headSoft; }
+@keyframes headRise { to { opacity: 1; transform: none; } }
+@keyframes headLeft { from { opacity: 0; transform: translate3d(-30px, 0, 0); } to { opacity: 1; transform: none; } }
+@keyframes headClip { from { opacity: 0; clip-path: inset(0 100% 0 0); } to { opacity: 1; clip-path: inset(0); } }
+@keyframes headScale { from { opacity: 0; transform: scale(0.94); transform-origin: left bottom; } to { opacity: 1; transform: scale(1); } }
+@keyframes headSoft { from { opacity: 0; filter: blur(8px); transform: translateY(10px); } to { opacity: 1; filter: none; transform: none; } }
+
+.eyebrow { margin: 0; font-size: 11px; font-weight: 800; letter-spacing: 0.14em; color: var(--green); }
+.sectionTitle { margin: 8px 0 0; font-size: clamp(26px, 8vw, 38px); line-height: 1.18; font-weight: 800; color: var(--ink); }
+.sectionDesc { margin: 10px 0 0; font-size: 13px; line-height: 1.5; color: #52645f; }
+.gradientText {
+  background-image: linear-gradient(90deg, #07594d, #26725e, #647b22, #07594d);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.hero .gradientText, .landmark .gradientText {
+  background-image: linear-gradient(90deg, #d7f17b, #bfe8da, #fff4bd, #d7f17b);
+}
+
+/* 히어로 */
+.hero {
+  position: relative; height: 100svh; min-height: 560px; overflow: hidden;
+  background: #041f1b; color: #fff;
+}
+/* 모바일(~1023px)은 SignatureHeader가 sticky라 64px 자리를 차지해서, 히어로(100svh)가 그만큼 아래로 밀려
+   화면보다 길어 보이던 문제 — 헤더 높이만큼 끌어올려 원본처럼 투명 헤더 뒤로 영상이 화면을 꽉 채우게 함
+   (PC는 헤더가 fixed라 자리를 차지하지 않으므로 그대로) */
+@media (max-width: 1023px) {
+  .hero { margin-top: -64px; }
+}
+.heroVideo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero::after {
+  content: ''; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg, rgba(1, 24, 20, 0.2), rgba(1, 24, 20, 0.68));
+}
+.heroOne {
+  position: absolute; z-index: 1; right: -17vw; top: 11vh;
+  font-family: Georgia, serif; font-size: 42vw; line-height: 0.7; color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.22); transform: rotate(-10deg); opacity: 0.7;
+  pointer-events: none;
+}
+.hero .shell { justify-content: flex-end; padding-bottom: calc(96px + var(--safe-bottom)); }
+.hero .eyebrow { color: #d6eddf; }
+.hero .sectionTitle { color: #fff; font-size: clamp(38px, 12vw, 60px); }
+.hero .sectionDesc { color: #fff; font-size: 11px; letter-spacing: 0.12em; }
+.capBadge {
+  position: absolute; z-index: 4; right: 4vw; top: calc(72px + 10vh);
+  width: 104px; height: 104px; display: grid; place-items: center; text-align: center;
+  border: 1px solid rgba(215, 241, 123, 0.75); border-radius: 50%; background: rgba(3, 73, 61, 0.72); color: #fff;
+}
+.capBadge small { font-size: 10px; color: #d9f391; }
+.capBadge b { display: block; margin-top: 4px; font-size: 13.5px; line-height: 1.25; }
+.scrollCue {
+  position: absolute; z-index: 4; left: 50%; bottom: calc(24px + var(--safe-bottom)); transform: translateX(-50%);
+  display: flex; flex-direction: column; gap: 7px; align-items: center; font-size: 7px; letter-spacing: 0.2em; color: #fff;
+}
+.scrollCue i { width: 1px; height: 22px; background: #fff; }
+.scrollCue span { writing-mode: vertical-rl; }
+
+/* 청라 핵심(랜드마크) — 사진이 섹션 전체 배경 */
+.landmark {
+  position: relative; min-height: 100svh; overflow: hidden;
+  background: #082f29; color: #fff;
+}
+.landmarkVisual { position: absolute; inset: 0; z-index: 0; }
+.landmarkVisual :global(img) { object-fit: cover; transition: transform 1.2s var(--ease); }
+.landmark.isVisible .landmarkVisual :global(img) { transform: scale(1.02); }
+.landmarkVisual::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(1, 25, 21, 0.76) 0, rgba(1, 25, 21, 0.34) 46%, rgba(1, 25, 21, 0.08) 78%),
+    linear-gradient(180deg, rgba(1, 25, 21, 0.2), rgba(1, 25, 21, 0.12) 48%, rgba(1, 25, 21, 0.58));
+}
+.landmarkShell {
+  min-height: 100svh; justify-content: space-between; gap: 28px;
+  padding: 104px 0 calc(88px + var(--safe-bottom));
+}
+.landmark .sectionTitle { color: #fff; text-shadow: 0 3px 22px rgba(0, 0, 0, 0.5); }
+.landmark .eyebrow { color: var(--lime); text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6); }
+.landmark .sectionDesc { color: #f5fbf8; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.72); }
+.contentCard { padding: 16px; border-radius: 14px; background: #fff; color: var(--ink); }
+.contentCard h3 { margin: 0; font-size: 20px; }
+.contentCard p { margin: 6px 0 0; font-size: 13px; line-height: 1.5; color: #52645f; }
+/* 요청 반영 — 수치 글씨 확대. 양끝 배치(space-between)는 두 수치 사이가 너무 벌어져서 고정 간격으로 */
+.stats { display: flex; justify-content: center; gap: 36px; margin-top: 14px; text-align: center; }
+.stats strong { display: block; font-size: 42px; line-height: 1.1; font-weight: 800; color: var(--green); }
+.stats span { font-size: 12px; color: #6a7974; }
+.sourceButton {
+  /* 요청 반영 — 카드 폭 전체(width 100%)로 */
+  display: block; width: 100%; margin-top: 14px; height: 42px; padding: 0 14px; border: 2px solid transparent; border-radius: 999px;
+  /* 요청 반영 — 테두리를 하단바 버튼과 같은 그라데이션(#cfea77→#9bd3bd) 선으로 */
+  background: linear-gradient(#fff, #fff) padding-box, linear-gradient(90deg, #cfea77, #9bd3bd) border-box;
+  color: inherit; font: inherit; font-size: 12px; font-weight: 700; cursor: pointer;
+}
+
+/* 미래 교통 계획 */
+.network { position: relative; background: #e7efe8; padding: 96px 0 88px; color: var(--ink); }
+/* 요청 반영 — 설명 문구와 노선 박스 사이 간격 확대 */
+.networkList { margin-top: 32px; display: grid; gap: 8px; }
+.route {
+  position: relative; min-height: 68px; display: grid; grid-template-columns: 78px 1fr; align-items: center; padding: 0 14px;
+  border: 1px solid rgba(7, 89, 77, 0.14); border-radius: 13px; background: rgba(255, 255, 255, 0.72);
+  text-align: left; overflow: hidden; font: inherit; color: inherit; cursor: pointer;
+}
+.route::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--route) 20%, white), color-mix(in srgb, var(--route) 8%, white));
+  opacity: 0.6;
+}
+.route b, .route span { position: relative; z-index: 1; }
+.route b { font-size: 14px; }
+.route span { font-size: 11px; color: #425852; }
+.disclaimer { margin: 14px 0 0; font-size: 11px; line-height: 1.5; color: #6a7974; }
+
+/* 공공자료 다이얼로그 */
+.dialog {
+  position: fixed; inset: 0; margin: auto;
+  width: min(94vw, 520px); max-height: calc(100svh - 18px); padding: 0; border: 0; border-radius: 18px;
+  background: #fff; color: var(--ink); box-shadow: 0 28px 90px rgba(0, 0, 0, 0.32); overflow: hidden;
+}
+.dialog::backdrop { background: rgba(1, 19, 16, 0.72); backdrop-filter: blur(7px); }
+.modal { position: relative; padding: 20px; max-height: calc(100svh - 18px); overflow-y: auto; }
+.modal h2 { margin: 0 42px 6px 0; font-size: 22px; }
+.modalClose {
+  position: absolute; z-index: 2; right: 12px; top: 12px; width: 34px; height: 34px;
+  border: 0; border-radius: 50%; background: #edf0ee; font-size: 18px; cursor: pointer;
+}
+.sourceMeta { font-size: 12px; color: #6a7773; margin: -2px 0 10px; }
+.sourceBody { margin-top: 4px; padding: 14px; border-radius: 12px; background: #eef3f0; font-size: 13px; line-height: 1.65; }
+.sourceLinks { display: grid; gap: 7px; margin-top: 10px; }
+.sourceLinks a { padding-bottom: 4px; border-bottom: 1px solid var(--line); font-size: 12px; color: var(--green); text-decoration: none; }
+
+/* 인트로 — 원본 타이밍/구조 그대로: 1단계(3분할 이미지+태그라인) 4s 뒤 2단계(링 펄스+브랜드 임팩트), 5.6s 종료 */
+.intro {
+  position: fixed; inset: 0; z-index: 800; background: var(--green); color: #fff; overflow: hidden;
+}
+.introStage { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
+.intro.ready .introOne { animation: stageOne 4s linear both; }
+.intro.ready .introTwo { animation: stageTwo 1.6s 4s linear both; }
+.introOne { background: radial-gradient(circle at 50% 35%, #198575 0, #07594d 48%, #032f29 100%); }
+.introOne::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(130deg, transparent 20%, rgba(255, 255, 255, 0.12) 48%, transparent 62%);
+  transform: translateX(-130%);
+}
+.intro.ready .introOne::after { animation: introSweep 3.8s 0.1s var(--ease) both; }
+.introScenes { position: absolute; z-index: 2; inset: 6.5% 6% 18%; display: grid; grid-template-rows: repeat(3, 1fr); gap: 7px; }
+.introScene { position: relative; margin: 0; min-height: 0; overflow: hidden; opacity: 0; transform: translate3d(0, 22px, 0) scale(0.985); }
+.introScene :global(img) { object-fit: cover; object-position: center; }
+.introScene::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(1, 31, 26, 0.78), transparent 65%); }
+.intro.ready .introScene:nth-child(1) { animation: sceneIn 0.58s 0.18s var(--ease) both; }
+.intro.ready .introScene:nth-child(2) { animation: sceneIn 0.58s 0.62s var(--ease) both; }
+.intro.ready .introScene:nth-child(3) { animation: sceneIn 0.58s 1.06s var(--ease) both; }
+.introScene figcaption { position: absolute; z-index: 2; left: 12px; bottom: 10px; display: flex; flex-direction: column; }
+.introScene small { font-size: 9px; letter-spacing: 0.2em; color: var(--lime); }
+.introScene strong { margin-top: 3px; font-size: 15px; letter-spacing: -0.04em; }
+.introCopy {
+  position: absolute; z-index: 3; left: 6%; right: 6%; bottom: 5%;
+  display: flex; align-items: flex-end; justify-content: space-between; opacity: 0;
+}
+.intro.ready .introCopy { animation: copyIn 0.6s 1.5s var(--ease) both; }
+.introCopy span { font-size: 9px; letter-spacing: 0.2em; }
+.introCopy b { font-family: Georgia, serif; font-size: 26px; font-weight: 400; line-height: 0.9; }
+.introTwo { display: grid; place-items: center; background: radial-gradient(circle at center, #0f7a6a, #07594d 42%, #03372f 100%); }
+.introRing { position: absolute; width: 38vmax; height: 38vmax; border: 1px solid rgba(215, 241, 123, 0.4); border-radius: 50%; opacity: 0; }
+.intro.ready .introTwo .ringA { animation: ringPulse 1.25s 4.08s var(--ease) both; }
+.intro.ready .introTwo .ringB { animation: ringPulse 1.25s 4.28s var(--ease) both; }
+.introBrand {
+  position: relative; z-index: 2; width: min(74vw, 340px); display: grid; justify-items: center;
+  opacity: 0; transform: scale(0.3);
+}
+.introBrand .mark { width: min(43vw, 190px); height: auto; filter: brightness(0) invert(1); }
+.introBrand .word { width: min(66vw, 290px); height: auto; margin-top: 16px; filter: brightness(0) invert(1); }
+.introBrand p { margin: 13px 0 0; font-size: 10px; letter-spacing: 0.24em; color: #d8f2e9; }
+.intro.ready .introBrand { animation: brandImpact 1.45s 4.04s var(--ease) both; }
+.introSkip {
+  position: absolute; z-index: 5; right: 16px; bottom: calc(16px + var(--safe-bottom)); color: #fff; font: inherit; font-size: 10px;
+  padding: 8px 14px; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 999px; background: rgba(2, 42, 35, 0.38); cursor: pointer;
+}
+@keyframes stageOne { 0%, 96% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes stageTwo { 0% { opacity: 0; } 8%, 90% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes sceneIn { 0% { opacity: 0; transform: translate3d(0, 22px, 0) scale(0.985); } 100% { opacity: 1; transform: none; } }
+@keyframes copyIn { to { opacity: 1; } }
+@keyframes introSweep { to { transform: translateX(130%); } }
+@keyframes ringPulse { 0% { opacity: 0; transform: scale(0.2); } 45% { opacity: 0.8; } 100% { opacity: 0; transform: scale(2.4); } }
+@keyframes brandImpact {
+  0% { opacity: 0; transform: scale(0.28); }
+  46% { opacity: 1; transform: scale(1.12); }
+  68% { transform: scale(0.88); }
+  82% { transform: scale(1.02); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sectionHead { animation: none !important; opacity: 1 !important; transform: none !important; }
+  .landmarkVisual :global(img) { transition: none !important; transform: none !important; }
+}
+
+/* 데스크톱(1024px 이상) — 원본 데스크톱 블록 값 그대로 */
+@media (min-width: 1024px) {
+  .sectionTitle { font-size: clamp(45px, 4.7vw, 76px); }
+  .titleBreak { display: none; }
+  .sectionDesc { font-size: 14px; }
+  .eyebrow { font-size: 12px; margin-bottom: 8px; }
+
+  .hero .shell { padding-bottom: 11vh; }
+  .hero .sectionTitle { font-size: clamp(70px, 7vw, 118px); }
+  .heroOne { right: -3vw; top: 7vh; font-size: 28vw; }
+  .capBadge { width: 142px; height: 142px; right: 7vw; top: 17vh; }
+  .capBadge b { font-size: 19px; }
+
+  .introScenes { inset: 14% 7% 19%; grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr; gap: 12px; }
+  .introScene:nth-child(2) { transform: translateY(24px); }
+  .introScene strong { font-size: 24px; }
+  .introCopy b { font-size: 54px; }
+  .introCopy span { font-size: 12px; }
+
+  .landmarkShell { padding: 130px 0 60px; }
+  .landmark .sectionHead { max-width: 560px; }
+  .landmark .sectionTitle { font-size: clamp(32px, 3.2vw, 52px); }
+  .contentCard { width: min(420px, 48%); padding: 20px; }
+  .contentCard h3 { font-size: 33px; }
+  .contentCard p { font-size: 13px; }
+  .stats strong { font-size: 52px; }
+
+  .network { padding: 130px 0 110px; }
+  .networkList { margin-top: 44px; gap: 10px; }
+  .route { min-height: 88px; grid-template-columns: 130px 1fr; padding: 0 24px; }
+  .route b { font-size: 20px; }
+  .route span { font-size: 13px; }
+}
+
+/* 진입 안내 팝업 — 원본 .popupOverlay/.noticeCard 그대로 */
+.popupOverlay {
+  --ink: #09241f; --green: #07594d;
+  position: fixed; z-index: 700; inset: 0; display: grid; place-items: center; padding: 12px;
+  background: rgba(1, 18, 15, 0.7); backdrop-filter: blur(8px);
+}
+.noticeCard {
+  position: relative; width: min(100%, 420px); max-height: min(600px, calc(100svh - 24px)); padding: 16px;
+  border-radius: 18px; background: #fff; color: var(--ink); display: flex; flex-direction: column;
+  /* 요청 반영 — 현장명·안내문·혜택 문구 가운데 정렬 */
+  text-align: center;
+}
+.noticeImageWrap { position: relative; height: 160px; border-radius: 12px; overflow: hidden; }
+.noticeImageWrap :global(img) { object-fit: cover; }
+.noticeCard h3 { margin: 14px 0 6px; font-family: Georgia, 'Noto Serif KR', serif; font-size: 26px; }
+.noticeCard > p { margin: 0; font-size: 11px; color: #62716d; }
+.noticeX {
+  position: absolute; z-index: 2; right: 10px; top: 10px; width: 34px; height: 34px;
+  border: 0; border-radius: 50%; background: #edf0ee; font-size: 18px; cursor: pointer;
+}
+.noticeBenefit {
+  margin-top: 12px; padding: 11px 13px; border-radius: 10px;
+  /* 요청 반영 — 테두리를 그라데이션(#cfea77→#9bd3bd) 선으로, 안쪽은 기존 연한 초록 배경 유지 */
+  border: 2px solid transparent;
+  background: linear-gradient(#edf8f2, #edf8f2) padding-box, linear-gradient(90deg, #cfea77, #9bd3bd) border-box;
+  display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 16px; font-weight: 600; line-height: 1.5; color: var(--ink);
+}
+.noticeBenefit b { color: var(--green); font-weight: 800; }
+.noticeBenefit span { white-space: pre-line; }
+
+/* 방문예약 폼 — 원본 LeadForm 스타일 그대로 */
+.modalDesc { margin: 0 0 12px; font-size: 11px; color: #6a7773; }
+.leadForm { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 12px; margin-top: 10px; padding-right: 2px; }
+.field { display: flex; flex-direction: column; gap: 5px; }
+.full { grid-column: 1 / -1; }
+.field label, .field > span { font-size: 13px; font-weight: 750; }
+.input { width: 100%; height: 42px; padding: 0 12px; border: 1px solid #cdd7d3; border-radius: 8px; background: #fff; font-size: 14px; color: var(--ink); }
+.phoneGrid { display: grid; grid-template-columns: 60px 1fr 1fr; gap: 6px; }
+.consultGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.consultGrid label {
+  min-height: 44px; display: flex; align-items: center; gap: 6px; padding: 8px;
+  border: 1px solid #d6dedb; border-radius: 9px; background: #fff; font-size: 11.5px; font-weight: 600; line-height: 1.3;
+  white-space: nowrap; overflow: hidden;
+}
+.consultGrid label input { width: 16px; height: 16px; flex: none; accent-color: var(--green); }
+.consultGrid label:has(input:checked) { border-color: #087565; background: #edf8f2; font-weight: 700; }
+.consultTitle { grid-column: 1 / -1; margin: 4px 0 -2px; font-size: 13px; font-weight: 800; }
+.agree { grid-column: 1 / -1; display: grid; grid-template-columns: 18px 1fr; align-items: start; gap: 8px; font-size: 13px; font-weight: 600; line-height: 1.4; }
+.agree input { width: 18px; height: 18px; margin: 0; accent-color: var(--green); }
+.submitButton {
+  grid-column: 1 / -1; height: 46px; border: 0; border-radius: 9px;
+  background: linear-gradient(90deg, #cfea77, #9bd3bd); color: #073a32; font: inherit; font-size: 15px; font-weight: 900; cursor: pointer;
+}
+.submitButton:disabled { opacity: 0.5; cursor: not-allowed; }
+.toast {
+  position: fixed; z-index: 1200; left: 50%; bottom: calc(80px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%);
+  max-width: 88vw; padding: 11px 16px; border-radius: 999px; background: #092f29; color: #fff; font-size: 12px;
+}

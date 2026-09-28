@@ -47,8 +47,9 @@
 }
 
 .barFavorite {
-  background: var(--navy, #263241);
-  color: #fff;
+  /* colorTheme.visitBtnBg를 지정한 현장만 그라데이션 */
+  background: var(--visit-btn-bg, var(--navy, #263241));
+  color: var(--visit-btn-bg-text, #fff);
   border: none;
 }
 

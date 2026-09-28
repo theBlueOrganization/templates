@@ -205,6 +205,12 @@
     flex-shrink: 0;
   }
 
+  /* footer.logoAlignDesktop === 'center' 현장 전용 — 데스크톱(가로 배치)에서도 로고를 왼쪽 칸 안에서 세로 가운데로 */
+  .logoCenteredDesktop {
+    margin: 0;
+    align-self: center;
+  }
+
   .info {
     flex: 1;
   }

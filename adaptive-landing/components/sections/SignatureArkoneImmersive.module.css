@@ -8,6 +8,8 @@
   --mint: #bfe8da;
   --lime: #d7f17b;
   --line: rgba(5, 72, 61, 0.16);
+  /* 방문예약/자료요청 등 CTA 버튼 공통 그라데이션(cheongna-arkone-prugio-3과 동일) */
+  --cta-gradient: linear-gradient(90deg, #cfea77, #9bd3bd);
   --header: 58px;
   --bottom: 58px;
   --ease: cubic-bezier(0.2, 0.72, 0.2, 1);
@@ -212,7 +214,8 @@
 .visitHours strong { font-size: 12px; }
 .visitHours button {
   height: 36px; padding: 0 14px; border-radius: 9px; font-size: 10px; font-weight: 900;
-  background: linear-gradient(90deg, var(--lime), #9ed6bf); color: #073a32;
+  /* 요청 반영(2026-09-28) — CTA 그라데이션을 cheongna-arkone-prugio-3과 같은 --cta-gradient로 통일 */
+  background: var(--cta-gradient); color: #073a32;
 }
 
 /* 랜드마크 3종 — 사진이 패널 전체 배경 */
@@ -235,18 +238,22 @@
   position: absolute; z-index: 2; left: 5vw; right: 5vw; bottom: calc(var(--bottom) + var(--safe-bottom) + 3.2svh);
   padding: 16px; border-radius: 14px; background: #fff; color: var(--ink);
 }
-.contentCard h3 { margin: 0; font-size: 17px; }
+/* 요청 반영(2026-09-28) — cheongna-arkone-prugio-3과 동일: 카드 제목·수치 확대, 수치 가운데 정렬(고정 간격),
+   출처 버튼 전체폭 + 그라데이션 테두리 */
+.contentCard h3 { margin: 0; font-size: 20px; }
 .contentCard p { margin: 6px 0 0; font-size: 13px; line-height: 1.5; color: #52645f; }
-.stats { display: flex; gap: 22px; margin-top: 12px; }
-.stats strong { display: block; font-size: 24px; color: var(--green); }
-.stats span { font-size: 11px; color: #6a7974; }
+.stats { display: flex; justify-content: center; gap: 36px; margin-top: 14px; text-align: center; }
+.stats strong { display: block; font-size: 42px; line-height: 1.1; font-weight: 800; color: var(--green); }
+.stats span { font-size: 12px; color: #6a7974; }
 .sourceButton {
-  margin-top: 12px; height: 36px; padding: 0 14px; border: 1px solid var(--line); border-radius: 999px;
+  display: block; width: 100%; margin-top: 14px; height: 42px; padding: 0 14px;
+  border: 2px solid transparent; border-radius: 999px;
+  background: linear-gradient(#fff, #fff) padding-box, var(--cta-gradient) border-box;
   font-size: 12px; font-weight: 700;
 }
 
-/* 미래 교통 계획 */
-.networkList { position: relative; flex: 1; min-height: 0; margin-top: 16px; display: grid; grid-template-rows: repeat(5, 1fr); gap: 7px; }
+/* 미래 교통 계획 — 요청 반영(2026-09-28): 설명 문구와 노선 박스 사이 간격 확대 */
+.networkList { position: relative; flex: 1; min-height: 0; margin-top: 32px; display: grid; grid-template-rows: repeat(5, 1fr); gap: 7px; }
 .route {
   position: relative; display: grid; grid-template-columns: 78px 1fr; align-items: center; padding: 0 14px;
   border: 1px solid rgba(7, 89, 77, 0.14); border-radius: 13px; background: rgba(255, 255, 255, 0.72);
@@ -379,7 +386,7 @@
 .agree input { width: 18px; height: 18px; margin: 0; accent-color: var(--green); }
 .leadForm .submitButton { grid-column: 1 / -1; height: 46px; }
 .submitButton {
-  border: 0; border-radius: 9px; background: linear-gradient(90deg, var(--lime), #9ed6bf); color: #073a32;
+  border: 0; border-radius: 9px; background: var(--cta-gradient); color: #073a32;
   font-size: 15px; font-weight: 900;
 }
 .submitButton:disabled { opacity: 0.5; cursor: not-allowed; }
@@ -390,7 +397,8 @@
   position: absolute; left: 5vw; right: 5vw; top: calc(var(--header) + var(--safe-top) + 4vh);
   bottom: calc(var(--bottom) + var(--safe-bottom) + 4vh); display: flex; flex-direction: column; justify-content: center;
 }
-.footerLogos { display: flex; align-items: center; gap: 18px; }
+/* 요청 반영(2026-09-28) — 로고 확대(JSX width 170/126) + 가운데 정렬 */
+.footerLogos { display: flex; align-items: center; justify-content: center; gap: 24px; }
 .footerLogos :global(img) { filter: brightness(0) invert(1); object-fit: contain; }
 /* 대표번호 — 푸터에서 가장 먼저, 가장 강조되게(굵고 큰 라임 컬러) */
 .footerMainPhone {
@@ -416,7 +424,7 @@
 }
 .mobileBar.isVisible { opacity: 1; transform: none; pointer-events: auto; }
 .mobileBar a, .mobileBar button { display: grid; place-items: center; border-right: 1px solid rgba(255, 255, 255, 0.12); font-size: 14px; font-weight: 850; }
-.mobileBar button:last-child { background: linear-gradient(90deg, #cfea77, #9bd3bd); color: #073a32; }
+.mobileBar button:last-child { background: var(--cta-gradient); color: #073a32; }
 @media (min-width: 1024px) { .mobileBar { display: none; } }
 
 .mobileTop {
@@ -462,15 +470,24 @@
 .noticeCard {
   position: relative; width: 100%; max-height: min(600px, calc(100svh - 24px)); padding: 16px;
   border-radius: 18px; background: #fff; display: flex; flex-direction: column;
+  /* 요청 반영(2026-09-28) — 현장명·안내문·혜택 가운데 정렬 */
+  text-align: center;
 }
 .noticeImageWrap { position: relative; height: 160px; border-radius: 12px; overflow: hidden; }
 .noticeImageWrap :global(img) { object-fit: cover; }
 .noticeCard h3 { margin: 14px 0 6px; font-family: Georgia, 'Noto Serif KR', serif; font-size: 26px; }
 .noticeCard > p { margin: 0; font-size: 11px; color: #62716d; }
+/* 요청 반영(2026-09-28) — 혜택 안내 박스(그라데이션 테두리, 가운데 정렬, 16px) — cheongna-arkone-prugio-3과 동일 */
+.noticeBenefit {
+  margin-top: 12px; padding: 11px 13px; border-radius: 10px;
+  border: 2px solid transparent;
+  background: linear-gradient(#edf8f2, #edf8f2) padding-box, var(--cta-gradient) border-box;
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  font-size: 16px; font-weight: 600; line-height: 1.5; color: var(--ink);
+}
+.noticeBenefit b { color: var(--green); font-weight: 800; }
+.noticeBenefit span { white-space: pre-line; }
 .noticeX { position: absolute; z-index: 2; right: 10px; top: 10px; width: 34px; height: 34px; border-radius: 50%; background: #edf0ee; font-size: 18px; }
-.noticeActions { margin-top: 16px; display: flex; justify-content: center; align-items: center; }
-.noticeActions button { font-size: 10px; }
-.noticeActions .close { height: 34px; padding: 0 16px; border-radius: 8px; background: var(--green); color: #fff; }
 
 /* 토스트 */
 .toast {
@@ -563,7 +580,7 @@
 .pcFloat button:last-child { border-bottom: 0; }
 .pcFloat button > * { position: relative; z-index: 2; }
 .pcFloat button:first-child {
-  background: linear-gradient(100deg, var(--lime), #9bd7c0, var(--lime)); background-size: 220% 100%;
+  background: linear-gradient(100deg, #cfea77, #9bd3bd, #cfea77); background-size: 220% 100%;
   color: #07372f; animation: gradientMove 4s linear infinite;
 }
 .pcFloat button:first-child::after {
@@ -571,7 +588,7 @@
   background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.7) 48%, transparent 61%);
   transform: translateX(-120%); animation: ctaSweep 2.6s ease-in-out infinite;
 }
-.pcFloat button:hover { background: linear-gradient(90deg, var(--lime), #95d4bb); color: #07372f; }
+.pcFloat button:hover { background: var(--cta-gradient); color: #07372f; }
 @keyframes gradientMove { to { background-position: 260% 0; } }
 @keyframes ctaSweep { 0%, 30% { transform: translateX(-120%); } 65%, 100% { transform: translateX(120%); } }
 
@@ -660,13 +677,13 @@
   .landmark .sectionTitle { font-size: clamp(32px, 3.2vw, 52px); }
   .landmark .visual { margin-top: 0; }
   .contentCard { left: 5vw; right: auto; width: min(420px, 48%); bottom: 18px; padding: 20px; }
-  .contentCard h3 { font-size: 30px; }
+  .contentCard h3 { font-size: 33px; }
   .contentCard p { font-size: 12px; }
-  .stats strong { font-size: 26px; }
-  .stats span { font-size: 10px; }
-  .sourceButton { height: 34px; font-size: 10px; }
+  .stats strong { font-size: 52px; }
+  .stats span { font-size: 12px; }
+  .sourceButton { height: 42px; font-size: 12px; }
 
-  .networkList { margin-top: 20px; }
+  .networkList { margin-top: 44px; }
   .route { grid-template-columns: 130px 1fr; padding: 0 24px; }
   .route b { font-size: 20px; }
   .route span { font-size: 12px; }

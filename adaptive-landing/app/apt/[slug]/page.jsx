@@ -287,7 +287,12 @@ export default async function AptPage({ params }) {
         {sig.landscapeGeomdan && <SignatureLandscapeGeomdan landscape={sig.landscapeGeomdan} />}
         {sig.landscape && <SignatureLandscape landscape={sig.landscape} />}
         {sig.complexIntro && <SignatureComplexIntro complexIntro={sig.complexIntro} />}
-        {sig.complex && <SignatureComplex complex={sig.complex} />}
+        {sig.complex &&
+          (sig.complex.variant === 'imageTabs' ? (
+            <SignatureUnitPlanTabs unitPlan={sig.complex} />
+          ) : (
+            <SignatureComplex complex={sig.complex} />
+          ))}
         {sig.unitPlan &&
           (sig.unitPlan.variant === 'imageTabs' ? (
             <SignatureUnitPlanTabs unitPlan={sig.unitPlan} />

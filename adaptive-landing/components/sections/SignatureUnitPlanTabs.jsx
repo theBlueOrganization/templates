@@ -7,15 +7,35 @@ import Reveal from '../motion/Reveal'
 import { cn } from '../../lib/utils'
 import styles from './SignatureUnitPlanTabs.module.css'
 
-// 세대안내 — 타입 탭 그리드(한 줄 5개) + 선택한 타입의 평면 안내 이미지 1장(unitPlan.variant === 'imageTabs').
-// 시티오씨엘 9단지처럼 면적표·동 위치 키맵·기본형/확장형 평면이 한 장에 합쳐진 완성 이미지를 그대로 보여줄 때 사용
+// 탭 그리드 + 선택한 탭의 완성 이미지 1장 — 세대안내(unitPlan.variant === 'imageTabs')와 단지안내(complex.variant ===
+// 'imageTabs')에서 공용. 시티오씨엘 9단지처럼 면적표·평면·배치도 등이 한 장에 합쳐진 완성 이미지를 그대로 보여줄 때 사용.
+// tabColumns / tabColumnsMobile로 한 줄 탭 개수, tab.zoomable이면 이미지를 누를 때 원본을 새 창으로 열어 크게 보기
+function PanelImage({ image }) {
+  return (
+    <Image
+      src={image.src}
+      alt={image.alt}
+      width={image.width}
+      height={image.height}
+      sizes="(min-width: 1100px) 1100px, 100vw"
+      className={styles.image}
+    />
+  )
+}
+
 export default function SignatureUnitPlanTabs({ unitPlan }) {
+  const cols = unitPlan.tabColumns ?? 5
   const [index, setIndex] = useState(0)
   const tab = unitPlan.tabs[index]
 
   return (
-    <section id={unitPlan.id} className={styles.section}>
+    <section
+      id={unitPlan.id}
+      className={styles.section}
+      style={{ '--tab-cols': cols, '--tab-cols-mobile': unitPlan.tabColumnsMobile ?? cols }}
+    >
       <Reveal className={styles.head}>
+        {unitPlan.eyebrow && <p className={styles.eyebrow}>{unitPlan.eyebrow}</p>}
         <h2 className={styles.title}>
           {unitPlan.titlePlain}
           <strong>{unitPlan.titleAccent}</strong>
@@ -49,14 +69,14 @@ export default function SignatureUnitPlanTabs({ unitPlan }) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
           >
-            <Image
-              src={tab.image.src}
-              alt={tab.image.alt}
-              width={tab.image.width}
-              height={tab.image.height}
-              sizes="(min-width: 1100px) 1100px, 100vw"
-              className={styles.image}
-            />
+            {tab.zoomable ? (
+              <a href={tab.image.src} target="_blank" rel="noopener noreferrer" className={styles.zoomLink}>
+                <PanelImage image={tab.image} />
+                <span className={styles.zoomHint}>이미지를 누르면 크게 볼 수 있습니다</span>
+              </a>
+            ) : (
+              <PanelImage image={tab.image} />
+            )}
           </motion.div>
         </AnimatePresence>
       </div>

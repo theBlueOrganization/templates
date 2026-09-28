@@ -20,8 +20,17 @@ const config = {
   sheetTab: '시티오씨엘9단지',
   showUtmInSms: true,
 
-  // 교육자료 표지·헤더의 딥 플럼(#2e2233) + "마침내 정점." 베이지 포인트
-  colorTheme: { navy: '#2e2233', ink: '#1f1724', cream: '#ffffff', gold: '#b9a58d' },
+  // 요청 반영(2026-09-28) — 홈페이지 전체 색을 실버·아이보리 톤으로. navy(헤더·폼 배경·강조 글자)=실버 그레이,
+  // cream(섹션 배경)=아이보리, gold(강조 글자)=진한 베이지, 방문예약 버튼=베이지 rgb(211, 198, 185) 바탕+진회색 글자
+  colorTheme: {
+    navy: '#6f7378',
+    ink: '#34363a',
+    cream: '#f8f5ee',
+    // 강조 글자용 — rgb(211, 198, 185)는 흰/아이보리 배경 위 글자로는 너무 연해서 같은 계열로 한 톤 진하게
+    gold: '#a8967f',
+    visitBtnBg: '#d3c6b9',
+    visitBtnColor: '#34363a',
+  },
 
   company: {
     name: '주식회사 더블루파트너스',
@@ -42,10 +51,9 @@ const config = {
 
   signature: {
     header: {
-      // 요청 반영 — 2줄 락업 대신 가로 한 줄 로고(logo-horizontal-*.png: 사용자 제공 logo-w.png의 CITY O CIEL
+      // 요청 반영 — 2줄 락업 대신 가로 한 줄 로고(logo-horizontal-white.png: 사용자 제공 logo-w.png의 CITY O CIEL
       // 워드마크와 '시티오씨엘 9단지 오션파크뷰'를 잘라 구분선과 함께 가로로 배치)
-      // 요청 반영 — 로고 색을 흰색 대신 베이지 rgb(211, 198, 185)(#d3c6b9)로
-      logo: { src: '/apt/city-ociel-9/logo-horizontal-beige.png', alt: '시티오씨엘 9단지 오션파크뷰', width: 1841, height: 208 },
+      logo: { src: '/apt/city-ociel-9/logo-horizontal-white.png', alt: '시티오씨엘 9단지 오션파크뷰', width: 1841, height: 208 },
       logoSize: { base: 220, lg: 240, xl: 300 },
       gnb: ['사업안내', '위치안내', '프리미엄', '단지안내', '세대안내', '상담신청 및 방문예약'],
       quickCtaLabel: '방문예약',
@@ -106,7 +114,7 @@ const config = {
       ],
       mobileBar: {
         announcements: [{ badge: '안내', textStrong: '시티오씨엘 9단지', textLight: ' 공식 안내센터입니다.' }],
-        announceBg: '#2e2233',
+        announceBg: '#6f7378',
         bubbleText: '방문예약하기',
         callLabel: '전화상담',
         visitLabel: '방문예약',

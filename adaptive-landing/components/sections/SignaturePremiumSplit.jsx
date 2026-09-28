@@ -5,6 +5,7 @@ import { cn } from '../../lib/utils'
 
 // 프리미엄 2단 구성(#premium-split) — 텍스트 컬럼(제목+본문+선택적 노선 배지)과 이미지 컬럼(1~2장)이
 // split.reverse에 따라 좌우 순서를 바꿔가며 배치되고, 뒤로는 큰 고스트 타이포가 흐리게 깔림
+// split.imageAspect(예: '720 / 426')를 주면 이미지 박스 비율을 기본 3:4 세로형 대신 그 비율로 표시
 export default function SignaturePremiumSplit({ split }) {
   return (
     <section className={styles.section}>
@@ -42,8 +43,8 @@ export default function SignaturePremiumSplit({ split }) {
 
         <Reveal className={styles.imageCol}>
           {split.images.map((img, i) => (
-            <div key={i} className={styles.imageBox}>
-              <Image src={img.src} alt={img.alt} fill sizes="(min-width: 1024px) 25vw, 45vw" className={styles.image} />
+            <div key={i} className={styles.imageBox} style={split.imageAspect ? { aspectRatio: split.imageAspect } : undefined}>
+              <Image src={img.src} alt={img.alt} fill sizes={split.images.length === 1 ? '(min-width: 1024px) 50vw, 90vw' : '(min-width: 1024px) 25vw, 45vw'} className={styles.image} />
             </div>
           ))}
         </Reveal>

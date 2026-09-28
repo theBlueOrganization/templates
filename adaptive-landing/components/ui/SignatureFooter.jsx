@@ -13,7 +13,8 @@ export default function SignatureFooter({ footer, telNumber, telNumberByUtm, pro
   const resolvedTelNumber = telNumberByUtm?.[utmSource] ?? telNumber
 
   return (
-    <footer className={styles.footer}>
+    // footer.bgColor가 있으면 기본 네이비 오버레이 없이 그 단색으로 배경을 칠함(없는 현장은 기존 그대로)
+    <footer className={styles.footer} style={footer.bgColor ? { background: footer.bgColor } : undefined}>
       <div className={styles.container}>
         <div className={styles.topRow}>
           <div className={styles.gnbWrap}>

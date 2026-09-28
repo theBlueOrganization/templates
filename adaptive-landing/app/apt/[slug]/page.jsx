@@ -23,6 +23,7 @@ import SignatureComplex from '../../../components/sections/SignatureComplex'
 import SignatureComplexIntro from '../../../components/sections/SignatureComplexIntro'
 import SignatureTransitDetail from '../../../components/sections/SignatureTransitDetail'
 import SignatureUnitPlan from '../../../components/sections/SignatureUnitPlan'
+import SignatureUnitPlanTabs from '../../../components/sections/SignatureUnitPlanTabs'
 import SignatureClub from '../../../components/sections/SignatureClub'
 import SignatureClubSimple from '../../../components/sections/SignatureClubSimple'
 import SignatureClubZones from '../../../components/sections/SignatureClubZones'
@@ -287,7 +288,12 @@ export default async function AptPage({ params }) {
         {sig.landscape && <SignatureLandscape landscape={sig.landscape} />}
         {sig.complexIntro && <SignatureComplexIntro complexIntro={sig.complexIntro} />}
         {sig.complex && <SignatureComplex complex={sig.complex} />}
-        {sig.unitPlan && <SignatureUnitPlan unitPlan={sig.unitPlan} />}
+        {sig.unitPlan &&
+          (sig.unitPlan.variant === 'imageTabs' ? (
+            <SignatureUnitPlanTabs unitPlan={sig.unitPlan} />
+          ) : (
+            <SignatureUnitPlan unitPlan={sig.unitPlan} />
+          ))}
         {sig.smarthome && <SignatureSmartHome smarthome={sig.smarthome} />}
         {sig.communityBlocks ? (
           <SignatureCommunityGeomdan community={sig.communityBlocks} />

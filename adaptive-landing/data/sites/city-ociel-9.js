@@ -390,111 +390,27 @@ const config = {
       },
     },
 
-    // 세대안내 — 10개 타입(교육자료 p.52~56). 면적대가 많아 tabbedGroups(면적대 → 타입 2단 탭)
+    // 세대안내 — 요청 반영(2026-09-28): 공식 사이트(cityociel9.com/type/type_info.asp)와 같은 구성으로 변경.
+    // 타입 탭 10개(한 줄 5개) + 타입별 완성 이미지(면적 5종·동 위치 키맵·기본형/확장형(별도계약) 평면·유의사항)를
+    // 공식 사이트 원본(type_*.jpg, 1100px) 그대로 사용 — SignatureUnitPlanTabs(variant: 'imageTabs')
     unitPlan: {
       id: 'unit-plan',
       navLabel: '세대안내',
-      watermark: 'CITY OCIEL 9',
+      variant: 'imageTabs',
       titlePlain: 'UNIT ',
       titleAccent: 'PLAN',
-      subtitleLines: ['라이프스타일에 맞춘 다양한 평면 구성', '시티오씨엘 9단지 오션파크뷰', '4Bay 판상(맞통풍) + 알파룸 등', '우수한 공간활용의 특화설계를 만나보십시오.'],
-      tabbedGroups: true,
-      groups: [
-        {
-          area: '59㎡',
-          types: [
-            {
-              letter: 'TYPE',
-              countText: '총 1,949세대 중 189세대(9.7%) · 침실2 슬라이딩 도어(유상옵션)',
-              image: { src: '/apt/city-ociel-9/unit-59.webp', alt: '59㎡ 타입 평면도', width: 940, height: 730 },
-              specs: { exclusive: '59.9801', common: '24.5974', supply: '84.5775' },
-            },
-          ],
-        },
-        {
-          area: '75㎡',
-          types: [
-            {
-              letter: 'TYPE',
-              countText: '총 1,949세대 중 137세대(7.0%) · 알파룸 제공',
-              image: { src: '/apt/city-ociel-9/unit-75.webp', alt: '75㎡ 타입 평면도', width: 968, height: 574 },
-              specs: { exclusive: '75.9096', common: '28.7933', supply: '104.7029' },
-            },
-          ],
-        },
-        {
-          area: '84㎡',
-          types: [
-            {
-              letter: 'A',
-              countText: '총 1,949세대 중 984세대(50.5%) · 4Bay 판상 · 알파룸 · 광폭 드레스룸',
-              image: { src: '/apt/city-ociel-9/unit-84a.webp', alt: '84㎡A 타입 평면도', width: 920, height: 626 },
-              specs: { exclusive: '84.9771', common: '31.6613', supply: '116.6384' },
-            },
-            {
-              letter: 'B',
-              countText: '총 1,949세대 중 366세대(18.8%) · 4Bay 판상 · 더블팬트리',
-              image: { src: '/apt/city-ociel-9/unit-84b.webp', alt: '84㎡B 타입 평면도', width: 812, height: 640 },
-              specs: { exclusive: '84.8878', common: '32.0525', supply: '116.9403' },
-            },
-          ],
-        },
-        {
-          area: '95㎡',
-          types: [
-            {
-              letter: 'TYPE',
-              countText: '총 1,949세대 중 80세대(4.1%) · 알파룸 1·2',
-              image: { src: '/apt/city-ociel-9/unit-95.webp', alt: '95㎡ 타입 평면도', width: 940, height: 584 },
-              specs: { exclusive: '95.3740', common: '34.8484', supply: '130.2224' },
-            },
-          ],
-        },
-        {
-          area: '101㎡',
-          types: [
-            {
-              letter: 'A',
-              countText: '총 1,949세대 중 45세대(2.3%)',
-              image: { src: '/apt/city-ociel-9/unit-101a.webp', alt: '101㎡A 타입 평면도', width: 898, height: 620 },
-              specs: { exclusive: '101.9303', common: '36.6296', supply: '138.5599' },
-            },
-            {
-              letter: 'B',
-              countText: '총 1,949세대 중 97세대(5.0%) · 랜드마크 타워동 · 알파룸 1·2',
-              image: { src: '/apt/city-ociel-9/unit-101b.webp', alt: '101㎡B 타입 평면도', width: 954, height: 588 },
-              specs: { exclusive: '101.9535', common: '36.7122', supply: '138.6657' },
-            },
-          ],
-        },
-        {
-          area: '110㎡',
-          types: [
-            {
-              letter: 'TYPE',
-              countText: '총 1,949세대 중 49세대(2.5%) · 랜드마크 타워동 · 3면개방형',
-              image: { src: '/apt/city-ociel-9/unit-110.webp', alt: '110㎡ 타입 평면도', width: 968, height: 578 },
-              specs: { exclusive: '110.0371', common: '40.9008', supply: '150.9379' },
-            },
-          ],
-        },
-        {
-          area: 'PENT',
-          types: [
-            {
-              letter: '133P',
-              countText: '총 1,949세대 중 1세대(0.1%) · 최상층 침실4 + 알파룸 / 외부 테라스 5개',
-              image: { src: '/apt/city-ociel-9/unit-133p.webp', alt: '133㎡P 펜트하우스 평면도', width: 1084, height: 380 },
-              specs: { exclusive: '133.7832', common: '53.3296', supply: '187.1128' },
-            },
-            {
-              letter: '136P',
-              countText: '총 1,949세대 중 1세대(0.1%) · 최상층 침실4 + 알파룸 / 외부 테라스 5개',
-              image: { src: '/apt/city-ociel-9/unit-136p.webp', alt: '136㎡P 펜트하우스 평면도', width: 1108, height: 380 },
-              specs: { exclusive: '136.2904', common: '54.3583', supply: '190.6487' },
-            },
-          ],
-        },
+      subtitle: '라이프스타일에 맞춘 다양한 평면 구성, 시티오씨엘 9단지 오션파크뷰의 세대안내입니다.',
+      tabs: [
+        { label: '59㎡', image: { src: '/apt/city-ociel-9/unit-type-59.webp', alt: '59㎡ 타입 평면 안내(면적표·동 위치·기본형/확장형 평면도)', width: 1100, height: 1909 } },
+        { label: '75㎡', image: { src: '/apt/city-ociel-9/unit-type-75.webp', alt: '75㎡ 타입 평면 안내(면적표·동 위치·기본형/확장형 평면도)', width: 1100, height: 1811 } },
+        { label: '84㎡A', image: { src: '/apt/city-ociel-9/unit-type-84a.webp', alt: '84㎡A 타입 평면 안내(면적표·동 위치·기본형/확장형 평면도)', width: 1100, height: 1838 } },
+        { label: '84㎡B', image: { src: '/apt/city-ociel-9/unit-type-84b.webp', alt: '84㎡B 타입 평면 안내(면적표·동 위치·기본형/확장형 평면도)', width: 1100, height: 1875 } },
+        { label: '95㎡', image: { src: '/apt/city-ociel-9/unit-type-95.webp', alt: '95㎡ 타입 평면 안내(면적표·동 위치·기본형/확장형 평면도)', width: 1100, height: 1795 } },
+        { label: '101㎡A', image: { src: '/apt/city-ociel-9/unit-type-101a.webp', alt: '101㎡A 타입 평면 안내(면적표·동 위치·기본형/확장형 평면도)', width: 1100, height: 1807 } },
+        { label: '101㎡B', image: { src: '/apt/city-ociel-9/unit-type-101b.webp', alt: '101㎡B 타입 평면 안내(면적표·동 위치·기본형/확장형 평면도)', width: 1100, height: 1820 } },
+        { label: '110㎡', image: { src: '/apt/city-ociel-9/unit-type-110.webp', alt: '110㎡ 타입 평면 안내(면적표·동 위치·기본형/확장형 평면도)', width: 1100, height: 1809 } },
+        { label: '133㎡P', image: { src: '/apt/city-ociel-9/unit-type-133p.webp', alt: '133㎡P 타입 평면 안내(면적표·동 위치·기본형/확장형 평면도)', width: 1100, height: 2025 } },
+        { label: '136㎡P', image: { src: '/apt/city-ociel-9/unit-type-136p.webp', alt: '136㎡P 타입 평면 안내(면적표·동 위치·기본형/확장형 평면도)', width: 1100, height: 2052 } },
       ],
     },
 

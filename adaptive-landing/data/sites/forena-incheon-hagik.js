@@ -50,7 +50,7 @@ const config = {
       logo: { src: '/apt/forena-incheon-hagik/hero-brand-logo.png', alt: '포레나 인천학익', width: 642, height: 189 },
       logoSize: { base: 92, lg: 120, xl: 138 },
       gnb: ['사업안내', '위치안내', '프리미엄', '단지안내', '세대안내', '커뮤니티', '상담신청 및 방문예약'],
-      quickCtaLabel: '관심고객등록',
+      quickCtaLabel: '방문예약',
       phone: '1877-3569',
     },
 
@@ -69,13 +69,13 @@ const config = {
     },
 
     // PC(1024px 이상) 전용 우측 고정 사이드 퀵메뉴 — components/ui/SignatureQuickMenu.
-    // 두산위브더제니스 부천과 동일한 구성(분양문의/관심고객/MENU 세로 바 + QUICK MENU 패널)으로,
+    // 두산위브더제니스 부천과 동일한 구성(분양문의/방문예약/MENU 세로 바 + QUICK MENU 패널)으로,
     // targetId는 이 현장의 실제 섹션 id(overview/location/premium-value/complex/unit-plan/community)에 맞춤
     quickMenu: {
       brand: 'FORENA INCHEON HAGIK',
       phoneLabel: '분양문의',
       phone: '1877-3569',
-      favoriteLabel: '관심고객',
+      favoriteLabel: '방문예약',
       menuLabel: 'MENU',
       ctaTargetId: 'vip-reservation',
       deskText: '포레나 인천학익\n분양 상담을 도와드립니다.',
@@ -89,7 +89,7 @@ const config = {
         { num: '05', label: 'COMPLEX', sub: '단지안내', targetId: 'complex' },
         { num: '06', label: 'UNIT', sub: '세대안내', targetId: 'unit-plan' },
         { num: '07', label: 'COMMUNITY', sub: '커뮤니티', targetId: 'community' },
-        { num: '08', label: 'CONTACT', sub: '관심고객등록', targetId: 'vip-reservation' },
+        { num: '08', label: 'CONTACT', sub: '방문예약', targetId: 'vip-reservation' },
       ],
     },
 
@@ -99,11 +99,14 @@ const config = {
     // 브랜드 로고는 logo-white.png의 투명 여백을 잘라낸 hero-brand-logo.png(2줄 락업)를 사용
     hero: {
       eyebrowDivider: true,
-      // 요청 반영 — 타이틀 문구를 현장명으로, 세리프체(Noto Serif KR)로 변경. 세리프는 300/400만 로드돼 있어
-      // 기본 600을 쓰면 브라우저 가짜 볼드가 생기므로 실제 로드된 400으로 지정
+      // 요청 반영 — 타이틀 문구를 현장명으로, 세리프체(Noto Serif KR)로 변경. 이후 요청으로 굵게 —
+      // 가짜 볼드가 생기지 않도록 app/layout.jsx에서 Noto Serif KR 700을 추가 로드하고 700으로 지정
       titleLine1: '포레나 인천학익',
       fontFamily: 'var(--font-serif)',
-      titleWeight: 400,
+      titleWeight: 700,
+      // 요청 반영 — 히어로 글자가 전반적으로 작아 보여 기본값(타이틀 34/52/80, 상단 문구 14/19)보다 키움
+      titleSize: { base: 40, md: 60, lg: 92 },
+      eyebrowSize: { base: 15, lg: 22 },
       // 요청 반영 — 세리프 타이틀 자간이 넓어 보여 기본(-0.03em)보다 좁힘
       titleLetterSpacing: '-0.08em',
       textColor: '#ffffff',
@@ -118,28 +121,33 @@ const config = {
         {
           eyebrowLine1: '약 5,000세대 브랜드타운의',
           eyebrowLine2: '중심입지.',
-          bgImage: { src: '/apt/forena-incheon-hagik/hero-bg.png', alt: '포레나 인천학익 투시도(주경)' },
+          // PC 배경 — 사용자 제공 "제목 없음-4.png"(2166x1000, 기존 hero-bg.png보다 세로가 긴 컷)으로 교체
+          bgImage: { src: '/apt/forena-incheon-hagik/hero-bg-pc-1.png', alt: '포레나 인천학익 투시도(주경)' },
           // 모바일(768px 미만) 전용 세로형 컷 — 사용자 제공 "제목 없음-2.png"(750x1053)
           bgImageMobile: { src: '/apt/forena-incheon-hagik/hero-bg-mobile-1.png', alt: '포레나 인천학익 투시도(주경)' },
         },
         {
           eyebrowLine1: '문학IC·인하대역 더블교통망',
           eyebrowLine2: '빠른 교통.',
-          bgImage: { src: '/apt/forena-incheon-hagik/premium-intro-bg.png', alt: '포레나 인천학익 101동 투시도' },
+          // PC 배경 — 사용자 제공 "제목 없음-3.png"(2166x1000)으로 교체(프리미엄 인트로 섹션은 기존 premium-intro-bg.png 유지)
+          bgImage: { src: '/apt/forena-incheon-hagik/hero-bg-pc-2.png', alt: '포레나 인천학익 101동 투시도' },
           // 모바일 전용 — 사용자 제공 "그룹 1.png"(750x1055)
           bgImageMobile: { src: '/apt/forena-incheon-hagik/hero-bg-mobile-2.png', alt: '포레나 인천학익 101동 투시도' },
         },
         {
           eyebrowLine1: '판상형 100%·남향 위주 배치',
           eyebrowLine2: '혁신설계.',
-          bgImage: { src: '/apt/forena-incheon-hagik/overview-photo.png', alt: '포레나 인천학익 조감도' },
+          // PC 배경 — 사용자 제공 "제목 없음-5.png"(2166x1000)으로 교체(사업개요 섹션은 기존 overview-photo.png 유지)
+          bgImage: { src: '/apt/forena-incheon-hagik/hero-bg-pc-3.png', alt: '포레나 인천학익 조감도' },
           // 모바일 전용 — 사용자 제공 "그룹 2.png"(750x942)
           bgImageMobile: { src: '/apt/forena-incheon-hagik/hero-bg-mobile-3.png', alt: '포레나 인천학익 조감도' },
         },
       ],
       mobileBar: {
         announcements: [{ badge: '안내', textStrong: '포레나 인천학익', textLight: ' 공식 안내센터입니다.' }],
-        bubbleText: '관심고객등록 시 분양 일정을 가장 빠르게 안내드립니다',
+        // colorTheme 미지정 현장이라 안내바가 CSS 폴백 녹색(#004c45)으로 나와 헤더와 같은 네이비로 지정
+        announceBg: '#06203e',
+        bubbleText: '방문예약하기',
         callLabel: '전화상담',
         visitLabel: '방문예약',
       },
@@ -429,14 +437,14 @@ const config = {
       ],
     },
 
-    // 상담신청/관심고객등록 폼 — vipForm.showAfterVideo가 true라 히어로 섹션 바로 다음에
+    // 상담신청/방문예약 폼 — vipForm.showAfterVideo가 true라 히어로 섹션 바로 다음에
     // 이 섹션이 한 번 더 렌더링되고(id: `${id}-early`), 기존과 동일하게 페이지 맨 아래에도 렌더링됨
     vipForm: {
       id: 'vip-reservation',
       showAfterVideo: true,
-      eyebrow: 'INTEREST REGISTRATION',
+      eyebrow: 'VISIT RESERVATION',
       titleLine1: '포레나 인천학익',
-      titleLine2: '관심고객등록',
+      titleLine2: '방문예약',
       desc: '간단한 정보를 남겨주시면 학익 4구역 재개발사업 「포레나 인천학익」의 분양 일정과 상세 안내를 가장 빠르게 전해드립니다.',
       serviceOptions: ['모델하우스 방문예약', '원하는시간 전화예약'],
       ageOptions: ['20대 이하', '30대', '40대', '50대', '60대 이상'],

@@ -1,12 +1,10 @@
-// 시티오씨엘 9단지 오션파크뷰2 (시티오씨엘9단지2.addupapt.kr) — 원본(city-ociel-9)을 복제한 2차 분양팀 사이트.
-// 대표번호 1666-0390, 상담 알림 010-7745-0504 (2026-09-28 사용자 전달값). 카톡 공유 제목(metaTitle)은
-// 원본과 같은 "시티오씨엘 9단지 오션파크뷰". 콘텐츠·이미지는 원본과 동일 — 출처는 city-ociel-9.js 상단 주석 참고.
+// 시티오씨엘 9단지 오션파크뷰 (시티오씨엘9단지2.addupapt.kr) — 원본(city-ociel-9)을 복제한 2차 분양팀 사이트.
+// 대표번호 1666-0390, 상담 알림 010-7745-0504 (2026-09-28 사용자 전달값). 현장명은 요청에 따라 원본과 동일하게
+// "시티오씨엘 9단지 오션파크뷰"(2 없이). 콘텐츠·이미지는 원본과 동일 — 출처는 city-ociel-9.js 상단 주석 참고.
 const config = {
   slug: 'city-ociel-9-2',
   subdomain: '시티오씨엘9단지2',
-  projectName: '시티오씨엘 9단지 오션파크뷰2',
-  // 카톡 등 공유 제목 — projectName("...2", 문자 구분용)과 분리
-  metaTitle: '시티오씨엘 9단지 오션파크뷰',
+  projectName: '시티오씨엘 9단지 오션파크뷰',
   shortName: '시티오씨엘 9단지',
   telNumber: '1666-0390',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/city-ociel-9-2/og.jpg',

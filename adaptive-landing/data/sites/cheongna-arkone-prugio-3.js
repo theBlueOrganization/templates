@@ -1,11 +1,11 @@
 // 청라 아크원(3차 분양팀용) — cheongna-arkone-prugio-2.js를 그대로 복제한 신규 분양팀 사이트.
 // dalseo-xi-genic-2/hanyang-iclass-yangju-2 등과 같은 방식으로, subdomain은 이 팀 전용 도메인을
-// 쓰고 대표번호도 이 팀 전용 번호(1811-4166)로 교체했다. 콘텐츠·이미지는 원본(cheongna-arkone-prugio)과
+// 썼다(대표번호는 2026-09-28 요청으로 원본과 동일한 1533-6480으로 변경). 콘텐츠·이미지는 원본(cheongna-arkone-prugio)과
 // 동일 — 원본 상단 주석 참고.
 //
 // 이 사이트만의 차이점:
 //   - subdomain: 청라아크원푸르지오c.addupapt.kr
-//   - telNumber/header.phone/quickMenu.phone/footer.highlightText·csPhone: 1811-4166
+//   - telNumber/header.phone/quickMenu.phone/footer.highlightText·csPhone: 1533-6480 (2026-09-28 원본과 동일 번호로 변경)
 //   - projectName: 내부(SMS/카카오 알림톡 등) 구분용으로 "3"을 붙임
 //   - metaTitle: 카카오톡 등 공유 시 노출되는 제목은 원본과 동일하게 "청라 아크원 푸르지오"로 고정
 //     (projectName과 분리 지정)
@@ -49,7 +49,7 @@ const config = {
   projectName: '청라 아크원 푸르지오3',
   metaTitle: '청라 아크원 푸르지오',
   shortName: '청라 아크원 푸르지오',
-  telNumber: '1811-4166',
+  telNumber: '1533-6480',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/cheongna-arkone-prugio-3/og.jpg',
   // 출처: 공식 사이트 token.css 원문(2026-09-16) — primary-500/primary-900/secondary-500/secondary-100
   colorTheme: {
@@ -66,7 +66,18 @@ const config = {
     family: "'SUIT', 'Pretendard', var(--font-noto-sans-kr, 'Noto Sans KR'), sans-serif",
     cssUrl: 'https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css',
   },
-  adminPhones: ['01088748525'],
+  // 요청 반영(2026-09-28) — 원본(cheongna-arkone-prugio)과 동일하게 대표번호 1533-6480, 상담 접수 알림은
+  // 진의원·최용호 2명에게 발송하고 문자 본문에 "유입매체+담당자" 표기(예: "현대+진의원")
+  adminPhones: ['01071901052', '01049851470'],
+  // 문자 본문에 "매체+담당자" 표기(예: "현대+진의원")를 붙이기 위한 수신번호→담당자명 매핑
+  adminPhoneNames: {
+    '01071901052': '진의원',
+    '01049851470': '최용호',
+  },
+  // 위 표기의 "매체" 부분 — 직접유입(utm_source 없음)일 때만 "현대"로 고정 표시.
+  // 추후 이 현장에 실제 유입경로(예: ?utm_source=lpoint)가 생기면 그 값이 자동으로 매체명이 되어
+  // "엘포인트+진의원"처럼 구분되고, 이 "현대" 값은 직접유입 몫으로만 그대로 남아 서로 꼬이지 않음
+  smsMediaLabel: '현대',
   sheetId: '',
   sheetTab: '청라아크원',
   showUtmInSms: true,
@@ -99,7 +110,7 @@ const config = {
       // 요청 반영(2026-09-28) — 사업개요·단지안내(단지배치도·동호수배치도)·세대안내(UNIT PLAN) 섹션 삭제에 맞춰 메뉴에서도 제거
       gnb: ['입지환경', '프리미엄', '관심고객등록'],
       quickCtaLabel: '관심고객등록',
-      phone: '1811-4166',
+      phone: '1533-6480',
     },
 
     // PC 우측 고정 사이드 퀵메뉴 — 공식 사이트가 fullPage.js 기반 풀스크린 스크롤 구조라 화면
@@ -107,7 +118,7 @@ const config = {
     quickMenu: {
       brand: '청라 아크원 푸르지오',
       phoneLabel: '분양문의',
-      phone: '1811-4166',
+      phone: '1533-6480',
       favoriteLabel: '관심고객',
       menuLabel: 'MENU',
       ctaTargetId: 'vip-reservation',
@@ -414,7 +425,7 @@ const config = {
       // 요청 반영(2026-09-28) — 로고가 작아 보여서 확대(기본 110px → 170px), 데스크톱에서도 가운데 정렬
       logoWidth: 170,
       logoAlignDesktop: 'center',
-      highlightText: '분양문의 1811-4166',
+      highlightText: '분양문의 1533-6480',
       agencySlogan: '분양완판 전문가 그룹, (주) 더블루파트너스',
       companyLines: [
         { label: '시행', value: '(주)청라스마트시티' },
@@ -433,7 +444,7 @@ const config = {
         '※ 사업지 인근의 개발사업과 관련된 사항은 지자체, 개발주체 및 관계기관의 사정에 따라 변경될 수 있습니다.',
         '※ 제작, 편집, 인쇄과정상 오탈자 등의 오류가 있을 수 있으니, 계약 전 반드시 견본주택 관계자에게 문의하시기 바랍니다.',
       ],
-      csPhone: '1811-4166',
+      csPhone: '1533-6480',
       csHours: 'AM 09:00 ~ PM 19:00',
     },
 

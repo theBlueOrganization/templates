@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import { getSiteBySlug, getAllSlugs } from '../../../data/siteRegistry'
+import MetaPixel from '../../../components/MetaPixel'
 import SignatureHeader from '../../../components/ui/SignatureHeader'
 import SignatureFooter from '../../../components/ui/SignatureFooter'
 import SignatureQuickMenu from '../../../components/ui/SignatureQuickMenu'
@@ -222,6 +223,8 @@ export default async function AptPage({ params }) {
 
   return (
     <div style={themeStyle}>
+      {/* 선택 필드 — metaPixelId를 지정한 현장에서만 Meta 픽셀 로드 */}
+      {site.metaPixelId && <MetaPixel pixelId={site.metaPixelId} />}
       {site.webfont && <link rel="stylesheet" href={site.webfont.cssUrl} />}
       {site.extraFontLinks?.map((href) => (
         <link key={href} rel="stylesheet" href={href} />

@@ -10,7 +10,7 @@
 //   위 PDF에는 없는 자료) 이미지를 그대로 받아 사용.
 // 출처3: 사용자가 직접 전달한 고화질 원본 컷(워터마크·페이지 여백 없는 완성본) — 히어로
 //   배경(hero-bg.png), 위치도(location-map.png), 프리미엄 인트로 배경(premium-intro-bg.png),
-//   49/59A·B·C/74A·B 평면도(unit-*.png), 진입 팝업 완성 디자인(popup.png)을 그대로 받아 교체.
+//   49/59A·B·C/74A·B 평면도(unit-*.png), 진입 팝업 완성 디자인(popup-visit.png)을 그대로 받아 교체.
 // 대표번호 1877-3569, 상담 알림 문자 수신번호(adminPhones) 010-2918-3185 — 2026-09-28 사용자 전달값으로 반영.
 const config = {
   slug: 'forena-incheon-hagik',
@@ -54,17 +54,19 @@ const config = {
       phone: '1877-3569',
     },
 
-    // 진입 팝업 — 완성된 디자인 이미지(popup.png) 그대로 노출, 이미지 전체를 탭하면
-    // link(tel:)로 바로 전화 연결되고, 하단 "팝업닫기" 바를 탭하면 닫힘 (SignaturePopupBanner)
+    // 진입 팝업 — 완성된 디자인 이미지(popup-visit.png) 그대로 노출, 이미지 안에 그려진 하단
+    // "모델하우스 방문/예약" 버튼 위치(hotspots, 1186×1326 원본 기준 %)만 탭하면 팝업이 닫히며
+    // 방문예약 섹션(#vip-reservation)으로 이동하고, 하단 "팝업닫기" 바를 탭하면 닫힘 (SignaturePopupBanner)
     popup: {
       enabled: true,
       image: {
-        src: '/apt/forena-incheon-hagik/popup.png',
-        alt: '포레나 인천학익 특별분양 - 1차 계약금 0원, 즉시 입주, 마지막 기회 상담문의',
-        width: 1374,
-        height: 1145,
-        link: 'tel:1877-3569',
-        linkLabel: '상담 전화 연결',
+        src: '/apt/forena-incheon-hagik/popup-visit.png',
+        alt: '포레나 인천학익 특별분양 - 1차 계약금 0원, 즉시 입주, 예약 방문 후 계약시 신세계상품권 50만원 증정, 모델하우스 방문/예약',
+        width: 1186,
+        height: 1326,
+        hotspots: [
+          { link: '#vip-reservation', label: '모델하우스 방문예약 섹션으로 이동', left: 5.5, top: 86.5, width: 89, height: 8.5 },
+        ],
       },
     },
 

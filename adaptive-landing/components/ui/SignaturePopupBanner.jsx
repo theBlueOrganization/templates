@@ -16,6 +16,9 @@ import styles from './SignaturePopupBanner.module.css'
 // 개별 이미지에 link(예: tel:053-xxx-xxxx)를 지정하면 이미지 전체가 그 링크로 감싸져,
 // 이미지 안에 그려진 "모델하우스 문의하기" 같은 CTA를 탭했을 때 바로 전화 연결되도록 한다
 // (다음 장으로 넘기거나 닫는 동작과는 분리됨).
+// 이미지 전체가 아니라 이미지 안에 그려진 버튼 위치만 눌리게 하려면 link 대신 hotspots
+// 배열({ link, label, left, top, width, height } — 이미지 대비 % 값)을 지정한다. 해당 영역에만
+// 투명 링크가 얹히고, 나머지 이미지 부분은 탭해도 아무 동작이 없다(포레나 인천학익 참고).
 export default function SignaturePopupBanner({ popup, openDelayMs = 2900, onClose }) {
   const [open, setOpen] = useState(false)
   const [index, setIndex] = useState(0)
@@ -88,6 +91,31 @@ export default function SignaturePopupBanner({ popup, openDelayMs = 2900, onClos
                     style={popup.hideCloseBar ? { borderRadius: 8 } : undefined}
                   />
                 </a>
+              ) : current.hotspots ? (
+                <>
+                  <Image
+                    src={current.src}
+                    alt={current.alt}
+                    width={current.width}
+                    height={current.height}
+                    sizes="(min-width: 768px) 430px, 90vw"
+                    className={styles.image}
+                    style={popup.hideCloseBar ? { borderRadius: 8 } : undefined}
+                  />
+                  {current.hotspots.map((spot) => (
+                    <a
+                      key={spot.link}
+                      href={spot.link}
+                      aria-label={spot.label}
+                      className={styles.hotspot}
+                      style={{ left: `${spot.left}%`, top: `${spot.top}%`, width: `${spot.width}%`, height: `${spot.height}%` }}
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        if (spot.link.startsWith('#')) handleClose()
+                      }}
+                    />
+                  ))}
+                </>
               ) : (
                 <Image
                   src={current.src}

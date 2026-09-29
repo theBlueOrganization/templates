@@ -45,6 +45,8 @@ const config = {
   // 현장명 뒤에 "+네이버"를 붙여 유입 매체를 구분(유입경로 utm 없이 들어온 직접유입 기준)
   kakao: true,
   smsProjectNameSuffix: '네이버',
+  // 요청 반영(2026-09-30) — Meta(페이스북) 광고 유입 추적용 픽셀. 이 현장 페이지에서만 로드됨(components/MetaPixel.jsx)
+  metaPixelId: '1091536060049580',
 
   company: {
     name: '주식회사 더블루파트너스',

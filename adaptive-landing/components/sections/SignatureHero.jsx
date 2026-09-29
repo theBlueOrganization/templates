@@ -277,12 +277,50 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
         )}
       </div>
 
+      {/* hero.desktopCopy — PC(1024px 이상) 전용 우측 문구 블록(eyebrow → 제목 → 포인트 줄 → 로고) + 좌상단 원형 배지.
+          지정하면 PC에서는 기본 문구(content) 대신 이 블록만 보이고, 모바일은 기존 문구 그대로 (예: 호반써밋 첨단3지구) */}
+      {hero.desktopCopy && (
+        <>
+          {hero.desktopCopy.badge && (
+            <div className={styles.dcBadge}>
+              <img src={hero.desktopCopy.badge.ringSrc} alt="" className={styles.dcBadgeRing} />
+              <p className={styles.dcBadgeText}>
+                {hero.desktopCopy.badge.lines.map((line, i) => (
+                  <span key={i} className={i === hero.desktopCopy.badge.lines.length - 1 ? styles.dcBadgeLast : undefined}>
+                    {line}
+                  </span>
+                ))}
+              </p>
+            </div>
+          )}
+          <motion.div className={styles.dcCopy} initial="hidden" animate="show">
+            <motion.p className={styles.dcEyebrow} custom={0.2} variants={lineVariants}>
+              {hero.desktopCopy.eyebrow}
+            </motion.p>
+            <motion.h1 className={styles.dcTitle} custom={0.4} variants={lineVariants}>
+              {hero.desktopCopy.title}
+              <span className={styles.dcAccent}>{hero.desktopCopy.accent}</span>
+            </motion.h1>
+            {hero.desktopCopy.logo && (
+              <motion.img
+                src={hero.desktopCopy.logo.src}
+                alt={hero.desktopCopy.logo.alt}
+                className={styles.dcLogo}
+                custom={0.6}
+                variants={lineVariants}
+              />
+            )}
+          </motion.div>
+        </>
+      )}
+
       {!hero.hideText && (
         <div
           className={[
             styles.content,
             hero.hideTextMobile && styles.contentDesktopOnly,
             hero.hideTextDesktop && styles.contentMobileOnly,
+            hero.desktopCopy && styles.contentBelowLg,
           ]
             .filter(Boolean)
             .join(' ')}

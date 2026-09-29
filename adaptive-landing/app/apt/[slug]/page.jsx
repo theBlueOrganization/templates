@@ -13,13 +13,16 @@ import SignatureHeroLegacy from '../../../components/sections/SignatureHeroLegac
 import SignatureHeroOciel from '../../../components/sections/SignatureHeroOciel'
 import SignatureBenefits from '../../../components/sections/SignatureBenefits'
 import SignatureSummary from '../../../components/sections/SignatureSummary'
+import SignatureSummaryTabs from '../../../components/sections/SignatureSummaryTabs'
 import SignatureLocation from '../../../components/sections/SignatureLocation'
+import SignatureLocationVision from '../../../components/sections/SignatureLocationVision'
 import SignaturePremiumIntro from '../../../components/sections/SignaturePremiumIntro'
 import SignatureNewsImage from '../../../components/sections/SignatureNewsImage'
 import SignaturePremiumValue from '../../../components/sections/SignaturePremiumValue'
 import SignaturePremiumSplit from '../../../components/sections/SignaturePremiumSplit'
 import SignatureLandscape from '../../../components/sections/SignatureLandscape'
 import SignatureComplex from '../../../components/sections/SignatureComplex'
+import SignatureComplexBlocks from '../../../components/sections/SignatureComplexBlocks'
 import SignatureComplexIntro from '../../../components/sections/SignatureComplexIntro'
 import SignatureTransitDetail from '../../../components/sections/SignatureTransitDetail'
 import SignatureUnitPlan from '../../../components/sections/SignatureUnitPlan'
@@ -213,6 +216,8 @@ export default async function AptPage({ params }) {
   // 이 값으로 덮어써서 본문 전반(대부분의 컴포넌트가 var(--font-sans) 참조)에 적용됨
   if (site.webfont) {
     themeStyle['--font-sans'] = site.webfont.family
+    // webfont.serifFamily — 제목용 명조 계열(var(--font-serif))까지 현장 폰트로 바꾸고 싶을 때만 지정
+    if (site.webfont.serifFamily) themeStyle['--font-serif'] = site.webfont.serifFamily
   }
 
   return (
@@ -270,11 +275,20 @@ export default async function AptPage({ params }) {
         )}
         {sig.benefits && <SignatureBenefits benefits={sig.benefits} />}
         {sig.visitReservation && <SignatureVisitReservation visitReservation={sig.visitReservation} config={site} />}
-        {sig.summary && <SignatureSummary summary={sig.summary} />}
+        {sig.summary &&
+          (sig.summary.variant === 'tabs' ? (
+            <SignatureSummaryTabs summary={sig.summary} />
+          ) : (
+            <SignatureSummary summary={sig.summary} />
+          ))}
         {sig.vipForm.showAfterSummary && (
           <SignatureVipForm config={site} sectionId={`${sig.vipForm.id}-early`} />
         )}
-        <SignatureLocation location={sig.location} />
+        {sig.location.variant === 'vision' ? (
+          <SignatureLocationVision location={sig.location} />
+        ) : (
+          <SignatureLocation location={sig.location} />
+        )}
         {sig.transitDetail && <SignatureTransitDetail transit={sig.transitDetail} />}
         {sig.story && <SignatureSellingStory story={sig.story} />}
         <SignaturePremiumIntro premiumIntro={sig.premiumIntro} />
@@ -290,6 +304,8 @@ export default async function AptPage({ params }) {
         {sig.complex &&
           (sig.complex.variant === 'imageTabs' ? (
             <SignatureUnitPlanTabs unitPlan={sig.complex} />
+          ) : sig.complex.variant === 'blockTabs' ? (
+            <SignatureComplexBlocks complex={sig.complex} />
           ) : (
             <SignatureComplex complex={sig.complex} />
           ))}

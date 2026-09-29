@@ -1,0 +1,282 @@
+.section {
+  position: relative;
+  padding: 56px 12px 64px;
+  background: linear-gradient(180deg, #faf6f2 0%, #f4ede6 100%);
+  overflow: hidden;
+}
+
+.head {
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto 28px;
+  text-align: center;
+}
+
+.sideEyebrow {
+  display: none;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.rule {
+  display: none;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+}
+
+.titleLead {
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  letter-spacing: -0.02em;
+}
+
+.titleMain {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  font-family: var(--font-montserrat);
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  color: #1c1c1c;
+  line-height: 1;
+}
+
+.titleMain em {
+  margin-left: 4px;
+  font-style: normal;
+  font-size: 58px;
+  font-weight: 800;
+  letter-spacing: 0;
+  color: var(--visit-btn-bg, var(--gold));
+}
+
+.script {
+  margin: 12px 0 0;
+  /* 한글 손글씨 — 현장 extraFontLinks로 Nanum Pen Script(Google Fonts)를 불러옴 */
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: 28px;
+  color: var(--visit-btn-bg, var(--gold));
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #ece4dc;
+}
+
+.photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 413 / 200;
+  overflow: hidden;
+}
+
+.img {
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.card:hover .img {
+  transform: scale(1.05);
+}
+
+.icon {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin-top: -26px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: var(--visit-btn-bg, var(--gold));
+  color: #fff;
+}
+
+.iconDark {
+  background: #4a4644;
+}
+
+.icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.body {
+  padding: 8px 6px 16px;
+  text-align: center;
+}
+
+.num {
+  margin: 0;
+  font-family: var(--font-cormorant, var(--font-serif));
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  font-variant-numeric: lining-nums;
+  color: #555;
+}
+
+.lead {
+  margin: 4px 0 0;
+  font-size: 11.5px;
+  color: #444;
+  letter-spacing: -0.03em;
+  word-break: keep-all;
+}
+
+.strong {
+  margin: 4px 0 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--visit-btn-bg, var(--gold));
+  letter-spacing: -0.03em;
+  word-break: keep-all;
+}
+
+.strongDark {
+  color: #1c1c1c;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 72px 24px 80px;
+  }
+
+  .titleMain {
+    font-size: 40px;
+  }
+
+  .titleMain em {
+    font-size: 78px;
+  }
+
+  .lead {
+    font-size: 14px;
+  }
+
+  .strong {
+    font-size: 21px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding: 64px 40px 96px;
+  }
+
+  .head {
+    margin-bottom: 30px;
+  }
+
+  .sideEyebrow {
+    position: absolute;
+    top: 38px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 0;
+    font-family: var(--font-cormorant, var(--font-serif));
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--visit-btn-bg, var(--gold));
+    text-align: left;
+  }
+
+  .rule {
+    display: block;
+    width: min(12vw, 200px);
+    height: 1px;
+    margin-top: 40px;
+    background: var(--gold);
+    opacity: 0.6;
+  }
+
+  .titleRow {
+    gap: 36px;
+  }
+
+  .titleLead {
+    font-size: 21px;
+  }
+
+  .titleMain {
+    font-size: 52px;
+  }
+
+  .titleMain em {
+    font-size: 104px;
+  }
+
+  .script {
+    position: absolute;
+    top: 104px;
+    right: 24px;
+    margin: 0;
+    font-size: 40px;
+    transform: rotate(-3deg);
+  }
+
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .icon {
+    width: 84px;
+    height: 84px;
+    margin-top: -42px;
+    border-width: 4px;
+  }
+
+  .icon svg {
+    width: 44px;
+    height: 44px;
+  }
+
+  .body {
+    padding: 14px 10px 22px;
+  }
+
+  .num {
+    font-size: 17px;
+  }
+
+  .lead {
+    margin-top: 8px;
+    font-size: 17px;
+  }
+
+  .strong {
+    margin-top: 6px;
+    font-size: 28px;
+  }
+}

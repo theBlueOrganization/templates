@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import SignaturePremiumEight from './SignaturePremiumEight'
 import Reveal from '../motion/Reveal'
 import { Stagger, StaggerItem } from '../motion/Stagger'
 import MobileBreakText from '../ui/MobileBreakText'
@@ -180,6 +181,7 @@ function NumberedPremiumValue({ premiumValue }) {
 // PREMIUM 6 — 프리미엄 가치 카드 6개 그리드 (모바일 1열 → 데스크톱 3열)
 export default function SignaturePremiumValue({ premiumValue }) {
   if (premiumValue.cardStyle === 'numbered') return <NumberedPremiumValue premiumValue={premiumValue} />
+  if (premiumValue.cardStyle === 'premium8') return <SignaturePremiumEight premiumValue={premiumValue} />
 
   return (
     <section

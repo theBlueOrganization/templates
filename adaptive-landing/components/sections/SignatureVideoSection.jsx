@@ -53,7 +53,19 @@ export default function SignatureVideoSection({ video }) {
       className={styles.section}
       style={video.maxWidth ? { '--video-max-width': `${video.maxWidth}px` } : undefined}
     >
-      {video.youtubeId ? (
+      {video.vimeoId ? (
+        // video.vimeoId — 공식 홈페이지가 Vimeo로 올린 홍보영상을 그대로 퍼옴(배경 영상처럼 자동재생·음소거·반복).
+        // background=1이면 컨트롤이 숨겨지므로, 소리를 켜고 보고 싶은 현장은 vimeoControls: true로 지정
+        <div className={styles.iframeWrap}>
+          <iframe
+            className={styles.iframe}
+            src={`https://player.vimeo.com/video/${video.vimeoId}?autoplay=1&muted=1&loop=1&autopause=0&playsinline=1&dnt=1${video.vimeoControls ? '' : '&background=1'}`}
+            title={video.title ?? '홍보 영상'}
+            allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
+            allowFullScreen
+          />
+        </div>
+      ) : video.youtubeId ? (
         <div className={styles.iframeWrap}>
           <iframe
             className={styles.iframe}
@@ -75,7 +87,7 @@ export default function SignatureVideoSection({ video }) {
           webkit-playsinline="true"
         />
       )}
-      {!video.youtubeId && needsTap && (
+      {!video.youtubeId && !video.vimeoId && needsTap && (
         <button type="button" className={styles.tapButton} onClick={handleTap} aria-label="영상 재생">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M8 5v14l11-7z" />

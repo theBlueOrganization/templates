@@ -95,6 +95,7 @@ const adaptiveLandingPointers = [
   { slug: "city-ociel-9", subdomain: "시티오씨엘9단지", template: "adaptive-landing" },
   { slug: "city-ociel-9-2", subdomain: "c시티오씨엘9단지", template: "adaptive-landing" },
   { slug: "pungmu-sujain-gracent-2", subdomain: "풍무수자인그라센트2차", template: "adaptive-landing" },
+  { slug: "chumdan3-hoban-summit", subdomain: "첨단3지구호반써밋", template: "adaptive-landing" },
 ];
 
 const allSites = [...sites, ...adaptiveLandingPointers];

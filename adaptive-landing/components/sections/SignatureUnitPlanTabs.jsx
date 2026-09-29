@@ -49,7 +49,8 @@ export default function SignatureUnitPlanTabs({ unitPlan }) {
         {unitPlan.subtitle && <p className={styles.subtitle}>{unitPlan.subtitle}</p>}
       </Reveal>
 
-      <div className={cn(styles.inner, unitPlan.tabLayout === 'side' && styles.side)}>
+      {/* tabStyle: 'circle' — 탭을 원형 썸네일(tab.thumb) + 라벨로, 가운데 정렬 */}
+      <div className={cn(styles.inner, unitPlan.tabLayout === 'side' && styles.side, unitPlan.tabStyle === 'circle' && styles.circle)}>
         <ul className={styles.tabs} role="tablist">
           {unitPlan.tabs.map((t, i) => (
             <li key={t.label}>
@@ -60,7 +61,12 @@ export default function SignatureUnitPlanTabs({ unitPlan }) {
                 className={cn(styles.tab, i === index && styles.tabActive)}
                 onClick={() => setIndex(i)}
               >
-                {t.label}
+                {unitPlan.tabStyle === 'circle' && t.thumb && (
+                  <span className={styles.circleThumb}>
+                    <Image src={t.thumb} alt="" fill sizes="120px" className={styles.circleImg} />
+                  </span>
+                )}
+                <span className={styles.tabLabel}>{t.label}</span>
               </button>
             </li>
           ))}

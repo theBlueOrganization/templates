@@ -194,3 +194,74 @@
     height: auto;
   }
 }
+
+/* 원형 썸네일 탭(tabStyle: 'circle') — 가운데 정렬, 선택 탭은 링 + 진한 라벨 */
+/* 모바일은 3개씩 두 줄(그리드), PC는 한 줄 가운데 정렬(flex) */
+.circle .tabs {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: center;
+  gap: 18px 22px;
+  margin: 0 0 36px;
+  border-top: 0;
+}
+
+.circle .tabs li {
+  border-bottom: 0;
+}
+
+.circle .tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: auto;
+  padding: 0;
+  font-size: 13px;
+}
+
+.circle .tabActive::after {
+  content: none;
+}
+
+.circleThumb {
+  position: relative;
+  display: block;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px #e5e5e5;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.circleImg {
+  object-fit: cover;
+}
+
+.circle .tab:hover .circleThumb {
+  transform: translateY(-2px);
+}
+
+.circle .tabActive .circleThumb {
+  box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--navy, #06203e);
+}
+
+@media (min-width: 768px) {
+  .circle .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    margin-bottom: 56px;
+  }
+
+  .circle .tab {
+    gap: 14px;
+    font-size: 17px;
+  }
+
+  .circleThumb {
+    width: 110px;
+    height: 110px;
+  }
+}

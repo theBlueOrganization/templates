@@ -265,3 +265,43 @@
     height: 110px;
   }
 }
+
+/* zoomLightbox — 이미지 전체가 확대 버튼, 돋보기는 세로로 긴 이미지에서도 바로 보이게 오른쪽 위 */
+.zoomTrigger {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
+.zoomIcon {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(11, 24, 34, 0.65);
+  color: #fff;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.zoomTrigger:hover .zoomIcon {
+  transform: scale(1.08);
+  background: rgba(11, 24, 34, 0.85);
+}
+
+@media (min-width: 768px) {
+  .zoomIcon {
+    right: 18px;
+    top: 18px;
+    width: 52px;
+    height: 52px;
+  }
+}

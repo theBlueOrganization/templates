@@ -378,6 +378,8 @@ const config = {
     complex: {
       id: 'complex',
       variant: 'imageTabs',
+      // 요청 반영(2026-09-29) — 모든 탭 이미지에 돋보기 버튼, 누르면 확대 모달
+      zoomLightbox: true,
       eyebrow: 'COMPLEX',
       titlePlain: '단지',
       titleAccent: '안내',

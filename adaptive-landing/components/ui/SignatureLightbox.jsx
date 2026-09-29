@@ -31,8 +31,8 @@ export default function SignatureLightbox({ image, onClose }) {
             <Image
               src={image.src}
               alt={image.alt}
-              width={1400}
-              height={933}
+              width={image.width || 1400}
+              height={image.height || 933}
               sizes="90vw"
               className={styles.image}
             />

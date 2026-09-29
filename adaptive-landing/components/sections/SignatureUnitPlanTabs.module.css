@@ -5,7 +5,7 @@
 
 .head {
   padding: 0 20px;
-  margin-bottom: 28px;
+  margin-bottom: var(--head-gap-m, 28px);
   text-align: center;
 }
 
@@ -115,7 +115,7 @@
   }
 
   .head {
-    margin-bottom: 44px;
+    margin-bottom: var(--head-gap, 44px);
   }
 
   .title {

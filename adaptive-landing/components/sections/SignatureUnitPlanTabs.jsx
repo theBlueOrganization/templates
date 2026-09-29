@@ -33,7 +33,12 @@ export default function SignatureUnitPlanTabs({ unitPlan }) {
     <section
       id={unitPlan.id}
       className={styles.section}
-      style={{ '--tab-cols': cols, '--tab-cols-mobile': unitPlan.tabColumnsMobile ?? cols }}
+      style={{
+        '--tab-cols': cols,
+        '--tab-cols-mobile': unitPlan.tabColumnsMobile ?? cols,
+        // headGap — 타이틀 블록과 탭/이미지 사이 여백(px) 현장별 조정. [모바일, PC]
+        ...(unitPlan.headGap && { '--head-gap-m': `${unitPlan.headGap[0]}px`, '--head-gap': `${unitPlan.headGap[1]}px` }),
+      }}
     >
       <Reveal className={styles.head}>
         {unitPlan.eyebrow && <p className={styles.eyebrow}>{unitPlan.eyebrow}</p>}

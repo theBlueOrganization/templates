@@ -464,7 +464,7 @@
 
   .slogan {
     left: 6%;
-    top: 22%;
+    top: 17%; /* 요청 반영 — 슬로건이 건물 상단과 겹쳐 살짝 위로(22% → 17%) */
     width: 42%;
     max-width: 700px;
     transform: none;

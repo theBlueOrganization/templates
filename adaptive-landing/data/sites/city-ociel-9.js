@@ -195,15 +195,17 @@ const config = {
         '※ 상기 이미지는 소비자의 이해를 돕기 위한 것으로 실제와 다를 수 있으며, 개발계획 및 학교 등 예정사항은 향후 관계기관의 사정에 따라 변경될 수 있으니 참고용으로만 활용하시기 바랍니다.',
     },
 
-    // 프리미엄 인트로 — 전환용 섹션 (교육자료 p.4 사업개요)
+    // 프리미엄 인트로 — 왼쪽 이미지컷 + 오른쪽 세로 카피(split). paragraphs는 줄 단위로 끊어 PC·모바일 동일 줄바꿈
     premiumIntro: {
-      eyebrow: 'THE FINEST CITY',
-      titleLine1: '총 46만평, 계획인구 약 1.3만세대의',
-      titleLine2: '미니 신도시급 대규모 도시개발',
-      descLine1: 'HDC현대산업개발 · 현대건설 · 포스코이앤씨 1군 브랜드 컨소시엄 시티오씨엘 13,149세대',
-      descLine1Accent: ['13,149세대'],
-      descLine2: '자급자족이 가능한 5개의 O ciel 그룹(큐브·라이브·스타·파크·링크)으로 구분, 하나의 생활권으로 연결됩니다.',
-      bgImage: { src: '/apt/city-ociel-9/city-aerial.webp', alt: '시티오씨엘 도시개발사업 조감도' },
+      split: true,
+      eyebrow: 'ABOVE PRIDES',
+      titleLine1: '시티오씨엘의 한계를 넘어서다',
+      paragraphs: [
+        ['세상이 말하는', '차이를 넘어', '차원이 다른'],
+        ['시티오씨엘을', '넘어선', '시티오씨엘이 옵니다'],
+      ],
+      imageBadge: '이미지컷',
+      bgImage: { src: '/apt/city-ociel-9/이미지1.png', alt: '시티오씨엘 이미지컷' },
     },
 
     // PREMIUM 9 (교육자료 p.22) — 카피 원문 그대로, 카드 사진은 각 프리미엄 상세 페이지의 원본 이미지
@@ -376,12 +378,16 @@ const config = {
     complex: {
       id: 'complex',
       variant: 'imageTabs',
+      // 요청 반영(2026-09-29) — 모든 탭 이미지에 돋보기 버튼, 누르면 확대 모달
+      zoomLightbox: true,
       eyebrow: 'COMPLEX',
       titlePlain: '단지',
       titleAccent: '안내',
       subtitle: '최고 49층 9개동 총 1,949세대, 시티오씨엘 단일 최대 규모 단지를 만나보십시오.',
       // 요청 반영 — PC에서는 탭을 왼쪽 세로 목록으로(모바일은 가로 4개씩)
       tabLayout: 'side',
+      // 요청 반영 — 타이틀·부제와 탭/이미지가 너무 붙어 보여 여백 확대 [모바일, PC]
+      headGap: [48, 88],
       tabColumns: 6,
       tabColumnsMobile: 3,
       tabs: [

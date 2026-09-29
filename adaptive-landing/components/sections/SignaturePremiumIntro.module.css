@@ -452,3 +452,117 @@
     font-size: 52px;
   }
 }
+
+/* split 변형 — 왼쪽 이미지컷 + 오른쪽 세로 카피 (시티오씨엘 ABOVE PRIDES) */
+.sectionSplit {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding: 0 0 56px;
+}
+
+.splitImageWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+}
+
+.splitBadge {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  padding: 3px 8px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.splitText {
+  padding: 36px 24px 0;
+  word-break: keep-all;
+}
+
+.splitEyebrow {
+  margin: 0 0 10px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: -0.03em;
+  color: #a8927a;
+}
+
+.splitTitle {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 19px;
+  letter-spacing: -0.04em;
+  color: #222;
+}
+
+.splitLine {
+  display: block;
+  width: 1px;
+  height: 56px;
+  margin: 18px 0 20px;
+  background: #555;
+}
+
+.splitPara {
+  margin: 0 0 20px;
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.9;
+  letter-spacing: -0.03em;
+  color: #444;
+}
+
+.splitPara:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 1024px) {
+  .sectionSplit {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0 0 24px; /* 요청 반영 — 위 섹션과 이미지 사이 틈 제거 */
+  }
+
+  .splitImageWrap {
+    flex: 0 0 64%;
+    aspect-ratio: 1118 / 694;
+  }
+
+  .splitBadge {
+    right: 10px;
+    bottom: 10px;
+    font-size: 12px;
+  }
+
+  .splitText {
+    flex: 1;
+    padding: 80px 40px 0 100px;
+  }
+
+  .splitEyebrow {
+    font-size: 24px;
+    margin-bottom: 14px;
+  }
+
+  .splitTitle {
+    font-size: 24px;
+  }
+
+  .splitLine {
+    height: 80px;
+    margin: 18px 0 22px;
+  }
+
+  .splitPara {
+    font-size: 19px;
+    margin-bottom: 26px;
+  }
+}

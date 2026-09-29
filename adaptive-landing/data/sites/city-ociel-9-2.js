@@ -189,15 +189,17 @@ const config = {
         '※ 상기 이미지는 소비자의 이해를 돕기 위한 것으로 실제와 다를 수 있으며, 개발계획 및 학교 등 예정사항은 향후 관계기관의 사정에 따라 변경될 수 있으니 참고용으로만 활용하시기 바랍니다.',
     },
 
-    // 프리미엄 인트로 — 전환용 섹션 (교육자료 p.4 사업개요)
+    // 프리미엄 인트로 — 왼쪽 이미지컷 + 오른쪽 세로 카피(split). paragraphs는 줄 단위로 끊어 PC·모바일 동일 줄바꿈
     premiumIntro: {
-      eyebrow: 'THE FINEST CITY',
-      titleLine1: '총 46만평, 계획인구 약 1.3만세대의',
-      titleLine2: '미니 신도시급 대규모 도시개발',
-      descLine1: 'HDC현대산업개발 · 현대건설 · 포스코이앤씨 1군 브랜드 컨소시엄 시티오씨엘 13,149세대',
-      descLine1Accent: ['13,149세대'],
-      descLine2: '자급자족이 가능한 5개의 O ciel 그룹(큐브·라이브·스타·파크·링크)으로 구분, 하나의 생활권으로 연결됩니다.',
-      bgImage: { src: '/apt/city-ociel-9-2/city-aerial.webp', alt: '시티오씨엘 도시개발사업 조감도' },
+      split: true,
+      eyebrow: 'ABOVE PRIDES',
+      titleLine1: '시티오씨엘의 한계를 넘어서다',
+      paragraphs: [
+        ['세상이 말하는', '차이를 넘어', '차원이 다른'],
+        ['시티오씨엘을', '넘어선', '시티오씨엘이 옵니다'],
+      ],
+      imageBadge: '이미지컷',
+      bgImage: { src: '/apt/city-ociel-9-2/이미지1.png', alt: '시티오씨엘 이미지컷' },
     },
 
     // PREMIUM 9 (교육자료 p.22) — 카피 원문 그대로, 카드 사진은 각 프리미엄 상세 페이지의 원본 이미지
@@ -278,88 +280,97 @@ const config = {
     // PREMIUM 상세 — 요청 반영(2026-09-28): 공식 사이트 프리미엄 페이지(cityociel9.com/intro/premium.asp)의
     // 8개 항목(LANDSCAPE~SYNERGY) 문구·이미지컷(sub_premium_img_01~08.jpg → webp)을 그대로. 텍스트+사진 좌우 분할(짝수 reverse),
     // 이미지가 가로형(720x426)이라 imageAspect로 원본 비율 유지
+    // 요청 반영(2026-09-29) — 9-2만 공식 사이트(cityociel9.com) 메인 feature 섹션처럼(style: 'feature', 영문 키워드 + 라인 오브젝트)
     premiumSplits: [
       {
-        eyebrow: 'PREMIUM 01 · LANDSCAPE',
+        style: 'feature',
+        object: { src: '/apt/city-ociel-9-2/feature-obj-01.png', width: 426, height: 1069 },
+        eyebrow: 'LANDSCAPE',
         title: '파크뷰와 오션뷰를 모두 소유하는 자리',
         descLines: [
           '도심 속 공원 조망과 서해 바다 조망을 모두 갖춘 독보적 입지(일부세대 제외)',
         ],
-        imageAspect: '720 / 426',
         images: [{ src: '/apt/city-ociel-9-2/premium8-landscape.webp', alt: '파크뷰·오션뷰 조망 이미지컷' }],
       },
       {
+        style: 'feature',
+        object: { src: '/apt/city-ociel-9-2/feature-obj-02.png', width: 1053, height: 1243 },
         reverse: true,
-        eyebrow: 'PREMIUM 02 · REFRESH',
+        eyebrow: 'REFRESH',
         title: '자연과 어우러진 그랜드 에코라이프',
         descLines: [
           '단지 앞에 위치한 그랜드파크(예정), 공원형 녹지를 갖춘 쾌적한 단지,',
           '인근 남항근린공원, 갯골유수지 등 자연으로 둘러싸인 청정 주거환경',
         ],
-        imageAspect: '720 / 426',
         images: [{ src: '/apt/city-ociel-9-2/premium8-refresh.webp', alt: '그랜드 에코라이프 이미지컷' }],
       },
       {
-        eyebrow: 'PREMIUM 03 · MOVEMENT',
+        style: 'feature',
+        object: { src: '/apt/city-ociel-9-2/feature-obj-01.png', width: 426, height: 1069 },
+        eyebrow: 'MOVEMENT',
         title: '일상의 시간을 앞당기는 광역 교통망',
         descLines: [
           '학익역(예정)과 KTX송도역(예정), GTX-B청학역(예정),',
           '능해IC-제2경인고속도로 등 출퇴근 시간을 단축하는 쾌속 교통망',
         ],
-        imageAspect: '720 / 426',
         images: [{ src: '/apt/city-ociel-9-2/premium8-movement.webp', alt: '광역 교통망 이미지컷' }],
       },
       {
+        style: 'feature',
+        object: { src: '/apt/city-ociel-9-2/feature-obj-02.png', width: 1053, height: 1243 },
         reverse: true,
-        eyebrow: 'PREMIUM 04 · SCHOOL',
+        eyebrow: 'SCHOOL',
         title: '초·중·고가 모인 안심 교육환경',
         descLines: [
           '초등학교(예정), 중학교(예정), 고등학교(계획)가',
           '모두 가까이 위치한 안정적인 통학환경',
         ],
-        imageAspect: '720 / 426',
         images: [{ src: '/apt/city-ociel-9-2/premium8-school.webp', alt: '안심 교육환경 이미지컷' }],
       },
       {
-        eyebrow: 'PREMIUM 05 · PLAN',
+        style: 'feature',
+        object: { src: '/apt/city-ociel-9-2/feature-obj-01.png', width: 426, height: 1069 },
+        eyebrow: 'PLAN',
         title: '다양한 삶을 수용하는 평면 구성',
         descLines: [
           '라이프스타일과 가족의 형태에 따라',
           '선택할 수 있는 다채로운 평형 제공',
         ],
-        imageAspect: '720 / 426',
         images: [{ src: '/apt/city-ociel-9-2/premium8-plan.webp', alt: '평면 구성 이미지컷' }],
       },
       {
+        style: 'feature',
+        object: { src: '/apt/city-ociel-9-2/feature-obj-02.png', width: 1053, height: 1243 },
         reverse: true,
-        eyebrow: 'PREMIUM 06 · SIGNATURE',
+        eyebrow: 'SIGNATURE',
         title: '1만 3천여 세대 시티오씨엘 최대 단지',
         descLines: [
           '1만 3천여 세대 명품복합도시, 시티오씨엘 내 최대',
           '1,949세대 규모로 완성되는 압도적 대단지',
         ],
-        imageAspect: '720 / 426',
         images: [{ src: '/apt/city-ociel-9-2/premium8-signature.webp', alt: '시티오씨엘 최대 단지 이미지컷' }],
       },
       {
-        eyebrow: 'PREMIUM 07 · INFRA',
+        style: 'feature',
+        object: { src: '/apt/city-ociel-9-2/feature-obj-01.png', width: 426, height: 1069 },
+        eyebrow: 'INFRA',
         title: '편리하고 풍부하게 누리는 생활인프라',
         descLines: [
           '1만 3천여 세대 미니신도시 상권 및 인천뮤지엄파크(예정),',
           '인하대병원 등 완벽에 가까운 생활환경',
         ],
-        imageAspect: '720 / 426',
         images: [{ src: '/apt/city-ociel-9-2/premium8-infra.webp', alt: '생활인프라 이미지컷' }],
       },
       {
+        style: 'feature',
+        object: { src: '/apt/city-ociel-9-2/feature-obj-02.png', width: 1053, height: 1243 },
         reverse: true,
-        eyebrow: 'PREMIUM 08 · SYNERGY',
+        eyebrow: 'SYNERGY',
         title: '메이저 3사 공동 시공',
         descLines: [
           'IPARK현대산업개발, 현대건설, 포스코이앤씨까지',
           '국내 대표 건설 3사의 기술력과 노하우가 집약된 프리미엄 주거 단지',
         ],
-        imageAspect: '720 / 426',
         images: [{ src: '/apt/city-ociel-9-2/premium8-synergy.webp', alt: '메이저 3사 공동 시공 이미지컷' }],
       },
     ],
@@ -370,21 +381,25 @@ const config = {
     complex: {
       id: 'complex',
       variant: 'imageTabs',
+      // 요청 반영(2026-09-29) — 모든 탭 이미지에 돋보기 버튼, 누르면 확대 모달
+      zoomLightbox: true,
       eyebrow: 'COMPLEX',
       titlePlain: '단지',
       titleAccent: '안내',
       subtitle: '최고 49층 9개동 총 1,949세대, 시티오씨엘 단일 최대 규모 단지를 만나보십시오.',
-      // 요청 반영 — PC에서는 탭을 왼쪽 세로 목록으로(모바일은 가로 4개씩)
-      tabLayout: 'side',
+      // 요청 반영(2026-09-29) — 탭을 원형 썸네일로, 왼쪽 세로 목록 대신 가운데 정렬
+      tabStyle: 'circle',
+      // 요청 반영 — 타이틀·부제와 탭/이미지가 너무 붙어 보여 여백 확대 [모바일, PC]
+      headGap: [48, 88],
       tabColumns: 6,
       tabColumnsMobile: 3,
       tabs: [
-        { label: '단지설계', image: { src: '/apt/city-ociel-9-2/complex-design.webp', alt: '단지설계 — 시티오씨엘의 한계를 넘어서다', width: 1100, height: 1848 } },
-        { label: '단지배치도', image: { src: '/apt/city-ociel-9-2/complex-layout.webp', alt: '단지배치도 및 타입별 세대수(총 1,949세대)', width: 1100, height: 1234 }, zoomable: true },
-        { label: '동호배치도', image: { src: '/apt/city-ociel-9-2/complex-dongho.webp', alt: '동호배치도(901~909동)', width: 1100, height: 1652 }, zoomable: true },
-        { label: '조경', image: { src: '/apt/city-ociel-9-2/complex-landscape.webp', alt: '조경 — 도심 속의 공원형 단지', width: 1100, height: 2179 } },
-        { label: '커뮤니티', image: { src: '/apt/city-ociel-9-2/complex-community.webp', alt: '커뮤니티 — 피트니스·다목적체육관·실내골프연습장·사우나·독서실 등', width: 1100, height: 2530 } },
-        { label: '개발계획', image: { src: '/apt/city-ociel-9-2/complex-masterplan.webp', alt: '시티오씨엘 도시개발사업 계획도(5개 O ciel 그룹)', width: 2254, height: 1132 }, zoomable: true },
+        { label: '단지설계', thumb: '/apt/city-ociel-9-2/hero-bg-1.webp', image: { src: '/apt/city-ociel-9-2/complex-design.webp', alt: '단지설계 — 시티오씨엘의 한계를 넘어서다', width: 1100, height: 1848 } },
+        { label: '단지배치도', thumb: '/apt/city-ociel-9-2/premium-landscape-aerial.webp', image: { src: '/apt/city-ociel-9-2/complex-layout.webp', alt: '단지배치도 및 타입별 세대수(총 1,949세대)', width: 1100, height: 1234 }, zoomable: true },
+        { label: '동호배치도', thumb: '/apt/city-ociel-9-2/hero-bg-3.webp', image: { src: '/apt/city-ociel-9-2/complex-dongho.webp', alt: '동호배치도(901~909동)', width: 1100, height: 1652 }, zoomable: true },
+        { label: '조경', thumb: '/apt/city-ociel-9-2/premium8-signature.webp', image: { src: '/apt/city-ociel-9-2/complex-landscape.webp', alt: '조경 — 도심 속의 공원형 단지', width: 1100, height: 2179 } },
+        { label: '커뮤니티', thumb: '/apt/city-ociel-9-2/premium-design.webp', image: { src: '/apt/city-ociel-9-2/complex-community.webp', alt: '커뮤니티 — 피트니스·다목적체육관·실내골프연습장·사우나·독서실 등', width: 1100, height: 2530 } },
+        { label: '개발계획', thumb: '/apt/city-ociel-9-2/city-aerial.webp', image: { src: '/apt/city-ociel-9-2/complex-masterplan.webp', alt: '시티오씨엘 도시개발사업 계획도(5개 O ciel 그룹)', width: 2254, height: 1132 }, zoomable: true },
       ],
     },
 

@@ -223,8 +223,11 @@ export default async function AptPage({ params }) {
 
   return (
     <div style={themeStyle}>
-      {/* 선택 필드 — metaPixelId를 지정한 현장에서만 Meta 픽셀 로드 */}
-      {site.metaPixelId && <MetaPixel pixelId={site.metaPixelId} />}
+      {/* 선택 필드 — metaPixelId를 지정한 현장에서만, 그 현장 한글 도메인(subdomain.addupapt.kr)으로 접속했을 때만
+          Meta 픽셀 로드. 호스트는 mobile-scroll middleware와 같은 방식(new URL)으로 퓨니코드 변환 */}
+      {site.metaPixelId && (
+        <MetaPixel pixelId={site.metaPixelId} host={new URL(`https://${site.subdomain}.addupapt.kr`).hostname} />
+      )}
       {site.webfont && <link rel="stylesheet" href={site.webfont.cssUrl} />}
       {site.extraFontLinks?.map((href) => (
         <link key={href} rel="stylesheet" href={href} />

@@ -19,7 +19,7 @@ import cheongnaArkonePrugio3 from './sites/cheongna-arkone-prugio-3'
 import forenaIncheonHagik from './sites/forena-incheon-hagik'
 import cityOciel9 from './sites/city-ociel-9'
 import cityOciel92 from './sites/city-ociel-9-2'
-import pungmuSujainGracent1 from './sites/pungmu-sujain-gracent-1'
+import pungmuSujainGracent2 from './sites/pungmu-sujain-gracent-2'
 
 /**
  * 새 현장 추가 방법:
@@ -55,7 +55,7 @@ const sites = [
   forenaIncheonHagik,
   cityOciel9,
   cityOciel92,
-  pungmuSujainGracent1,
+  pungmuSujainGracent2,
 ]
 
 // slug로 현장 하나를 찾음 (app/apt/[slug]/page.jsx에서 사용)

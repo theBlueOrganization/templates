@@ -50,12 +50,14 @@
   inset: 0;
   overflow: hidden;
   opacity: 0;
-  transition: opacity 1s ease;
+  /* 나가는 슬라이드는 새 슬라이드가 다 덮은 뒤(1s) 사라지게 — 둘이 동시에 반투명해지면 뒤의 인트로 로고가 비침 */
+  transition: opacity 0s 1s;
 }
 
 .slideActive {
   opacity: 1;
   z-index: 1;
+  transition: opacity 1s ease;
 }
 
 .slideBg {
@@ -420,6 +422,14 @@
 
 .skip .logo {
   opacity: 0;
+}
+
+/* 인트로가 끝나면(헤더 노출 시점) 슬라이더 뒤 인트로 레이어를 아예 숨겨, 슬라이드 전환 중에 로고가 비치지 않게 */
+.ended .mainbg,
+.ended .cirWrap,
+.ended .clip,
+.ended .logo {
+  visibility: hidden;
 }
 
 .skip .badgeRing {

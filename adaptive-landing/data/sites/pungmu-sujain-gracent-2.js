@@ -1,22 +1,22 @@
-// 풍무역세권 수자인 그라센트 1차 — 경기도 김포시 사우동 173-1번지 일원(풍무역세권 도시개발사업 B2블럭).
+// 풍무역세권 수자인 그라센트 2차 — (요청 반영 2026-09-29: 현장명·도메인·slug만 1차→2차로 변경, 아래 내용은 1차 상담북 기준 그대로) 경기도 김포시 사우동 173-1번지 일원(풍무역세권 도시개발사업 B2블럭).
 // 시공 BS한양. 지하 2층~지상 29층, 10개동 공동주택 1,071세대(59A 261 / 59B 60 / 84 750, 전세대 4Bay 판상형).
 // 출처: 「풍무역세권 수자인 그라센트 상담북(안)_최종본_ver3」PDF(251105, 82p) — 사업개요(p3)·세부입지(p5)·
 //   투시도/조감도(p10~12)·단지배치도(p13)·동호수배치도(p15~16)·커뮤니티(p17)·승강기/주차(p19)·단지외부(p20~22)·
-//   59A/59B/84 평면(p23/28/33)·프리미엄 8종(p73) 페이지를 pdftoppm으로 렌더링 후 크롭해 사용(public/apt/pungmu-sujain-gracent-1/).
+//   59A/59B/84 평면(p23/28/33)·프리미엄 8종(p73) 페이지를 pdftoppm으로 렌더링 후 크롭해 사용(public/apt/pungmu-sujain-gracent-2/).
 //   헤더/푸터 로고는 표지(p1)의 SUJAIN 워드마크를 투명 배경 흰색으로 추출(logo-white.png).
 // 대표번호 1811-4166, 상담 알림 문자 수신번호(adminPhones) 010-8874-8525 — 2026-09-29 사용자 전달값.
 const config = {
-  slug: 'pungmu-sujain-gracent-1',
-  // 풍무수자인그라센트1차.addupapt.kr → /apt/pungmu-sujain-gracent-1 (middleware.js)
-  subdomain: '풍무수자인그라센트1차',
-  projectName: '풍무역세권 수자인 그라센트 1차',
-  shortName: '수자인 그라센트 1차',
+  slug: 'pungmu-sujain-gracent-2',
+  // 풍무수자인그라센트2차.addupapt.kr → /apt/pungmu-sujain-gracent-2 (middleware.js)
+  subdomain: '풍무수자인그라센트2차',
+  projectName: '풍무역세권 수자인 그라센트 2차',
+  shortName: '수자인 그라센트 2차',
   telNumber: '1811-4166',
-  ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/pungmu-sujain-gracent-1/og.jpg',
+  ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/pungmu-sujain-gracent-2/og.jpg',
   // 상담신청 알림 문자 수신번호
   adminPhones: ['01088748525'],
   sheetId: '',
-  sheetTab: '풍무수자인그라센트1차',
+  sheetTab: '풍무수자인그라센트2차',
   showUtmInSms: true,
 
   // 상담북 메인 컬러(네이비 #0c3c6e + 청록 포인트) 기준
@@ -48,7 +48,7 @@ const config = {
 
   signature: {
     header: {
-      logo: { src: '/apt/pungmu-sujain-gracent-1/logo-white.png', alt: '수자인 SUJAIN', width: 265, height: 74 },
+      logo: { src: '/apt/pungmu-sujain-gracent-2/logo-white.png', alt: '수자인 SUJAIN', width: 265, height: 74 },
       logoSize: { base: 92, lg: 110, xl: 120 },
       gnb: ['사업안내', '위치안내', '프리미엄', '단지안내', '세대안내', '상담신청 및 방문예약'],
       quickCtaLabel: '방문예약',
@@ -65,7 +65,7 @@ const config = {
       favoriteLabel: '방문예약',
       menuLabel: 'MENU',
       ctaTargetId: 'vip-reservation',
-      deskText: '풍무역세권 수자인 그라센트 1차\n분양 상담을 도와드립니다.',
+      deskText: '풍무역세권 수자인 그라센트 2차\n분양 상담을 도와드립니다.',
       address: '경기도 김포시 사우동 173-1번지 일원',
       tagline: 'SUJAIN DUAL LIFE PREMIUM',
       items: [
@@ -82,7 +82,7 @@ const config = {
     // 배경 3장 크로스페이드 — 표지 투시도(p1) / 투시도(p10) / 조감도(p11). 문구는 표지·프리미엄(p73) 카피 발췌
     hero: {
       eyebrowDivider: true,
-      titleLine1: '풍무역세권 수자인 그라센트 1차',
+      titleLine1: '풍무역세권 수자인 그라센트 2차',
       titleWeight: 700,
       titleSize: { base: 25, md: 48, lg: 72 },
       eyebrowSize: { base: 15, lg: 21 },
@@ -94,21 +94,21 @@ const config = {
         {
           eyebrowLine1: '김포의 중심에서 만나는',
           eyebrowLine2: '듀얼 라이프 프리미엄.',
-          bgImage: { src: '/apt/pungmu-sujain-gracent-1/hero-1.webp', alt: '풍무역세권 수자인 그라센트 1차 투시도' },
+          bgImage: { src: '/apt/pungmu-sujain-gracent-2/hero-1.webp', alt: '풍무역세권 수자인 그라센트 2차 투시도' },
         },
         {
           eyebrowLine1: '풍무역 & 사우역 도보거리',
           eyebrowLine2: '더블 역세권.',
-          bgImage: { src: '/apt/pungmu-sujain-gracent-1/hero-2.webp', alt: '풍무역세권 수자인 그라센트 1차 투시도' },
+          bgImage: { src: '/apt/pungmu-sujain-gracent-2/hero-2.webp', alt: '풍무역세권 수자인 그라센트 2차 투시도' },
         },
         {
           eyebrowLine1: '분양가 상한제 적용',
           eyebrowLine2: '합리적인 분양가.',
-          bgImage: { src: '/apt/pungmu-sujain-gracent-1/hero-3.webp', alt: '풍무역세권 수자인 그라센트 1차 조감도' },
+          bgImage: { src: '/apt/pungmu-sujain-gracent-2/hero-3.webp', alt: '풍무역세권 수자인 그라센트 2차 조감도' },
         },
       ],
       mobileBar: {
-        announcements: [{ badge: '안내', textStrong: '풍무역세권 수자인 그라센트 1차', textLight: ' 공식 안내센터입니다.' }],
+        announcements: [{ badge: '안내', textStrong: '풍무역세권 수자인 그라센트 2차', textLight: ' 공식 안내센터입니다.' }],
         announceBg: '#0c3c6e',
         bubbleText: '방문예약하기',
         callLabel: '전화상담',
@@ -121,7 +121,7 @@ const config = {
       id: 'overview',
       navLabel: 'overview',
       title: 'overview',
-      photo: { src: '/apt/pungmu-sujain-gracent-1/overview-photo.webp', alt: '풍무역세권 수자인 그라센트 1차 조감도' },
+      photo: { src: '/apt/pungmu-sujain-gracent-2/overview-photo.webp', alt: '풍무역세권 수자인 그라센트 2차 조감도' },
       notice: '※ 본 페이지에 사용된 CG, 이미지 및 내용은 인·허가 과정 중 변경될 수 있습니다.',
       specItems: [
         { label: '사업명', value: '김포 풍무역세권 도시개발사업 B2블럭 공동주택 신축공사' },
@@ -147,14 +147,14 @@ const config = {
       descBody1: '김포골드라인 풍무역·사우역 도보 이용, 사우초 도보 약 6분, 사우동 학원가 도보 약 13분,',
       descBody1Accent: ['풍무역·사우역', '사우초'],
       descBody2: '김포시청·김포종합운동장·김포아트홀 등 반경 1km 생활 인프라를 가까이 누립니다.',
-      mapImage: { src: '/apt/pungmu-sujain-gracent-1/location-map.webp', alt: '풍무역세권 수자인 그라센트 1차 세부입지 현황' },
+      mapImage: { src: '/apt/pungmu-sujain-gracent-2/location-map.webp', alt: '풍무역세권 수자인 그라센트 2차 세부입지 현황' },
       features: [
         {
           titlePrefix: '빠른',
           titleStrong: '교통',
           titleSuffix: '으로',
           tag: 'Speed UP',
-          image: { src: '/apt/pungmu-sujain-gracent-1/feature-traffic.webp', alt: '더블 역세권' },
+          image: { src: '/apt/pungmu-sujain-gracent-2/feature-traffic.webp', alt: '더블 역세권' },
           descStrong: '풍무역·사우역 도보거리',
           descRest: ', 김포공항역 환승 및 김포한강로·올림픽대로로 서울 접근 용이',
         },
@@ -163,7 +163,7 @@ const config = {
           titleStrong: '학세권',
           titleSuffix: '으로',
           tag: 'Safe UP',
-          image: { src: '/apt/pungmu-sujain-gracent-1/feature-school.webp', alt: '안심도보 학세권' },
+          image: { src: '/apt/pungmu-sujain-gracent-2/feature-school.webp', alt: '안심도보 학세권' },
           descStrong: '사우초·사우고 도보 통학',
           descRest: ', 도시개발사업 내 유치원·초·중학교 예정',
         },
@@ -172,7 +172,7 @@ const config = {
           titleStrong: '교육',
           titleSuffix: '으로',
           tag: 'Smart UP',
-          image: { src: '/apt/pungmu-sujain-gracent-1/feature-edu.webp', alt: '우수한 교육 환경' },
+          image: { src: '/apt/pungmu-sujain-gracent-2/feature-edu.webp', alt: '우수한 교육 환경' },
           descStrong: '김포 최대 규모 사우동 학원가',
           descRest: ' 도보권, 학세권부터 학원가까지 교육 최적화 입지',
         },
@@ -181,7 +181,7 @@ const config = {
           titleStrong: '미래가치',
           titleSuffix: '로',
           tag: 'Class UP',
-          image: { src: '/apt/pungmu-sujain-gracent-1/feature-future.webp', alt: '미니신도시급 개발사업' },
+          image: { src: '/apt/pungmu-sujain-gracent-2/feature-future.webp', alt: '미니신도시급 개발사업' },
           descStrong: '약 6,600가구 미니신도시급 개발',
           descRest: ', 인하대 김포 메디컬캠퍼스 조성·5호선 연장·GTX-D 호재',
         },
@@ -194,11 +194,11 @@ const config = {
     premiumIntro: {
       eyebrow: 'SUJAIN DUAL LIFE',
       titleLine1: '김포의 중심에서 만나는',
-      titleLine2: '풍무역세권 수자인 그라센트 1차',
+      titleLine2: '풍무역세권 수자인 그라센트 2차',
       descLine1: '지하 2층~지상 29층 10개동, 총 1,071세대 규모',
       descLine1Accent: ['1,071세대'],
       descLine2: '풍무역세권 도시개발사업과 완성된 사우생활권을 함께 누리는 수자인 듀얼 라이프가 시작됩니다.',
-      bgImage: { src: '/apt/pungmu-sujain-gracent-1/premium-intro-bg.webp', alt: '풍무역세권 수자인 그라센트 1차 야간 조감도' },
+      bgImage: { src: '/apt/pungmu-sujain-gracent-2/premium-intro-bg.webp', alt: '풍무역세권 수자인 그라센트 2차 야간 조감도' },
     },
 
     // 프리미엄 가치 — 상담북 p73 8종 카피
@@ -231,13 +231,13 @@ const config = {
       tabColumns: 7,
       tabColumnsMobile: 4,
       tabs: [
-        { label: '단지배치도', image: { src: '/apt/pungmu-sujain-gracent-1/complex-layout.webp', alt: '단지배치도 및 타입별 세대수(총 1,071세대)', width: 1803, height: 1116 }, zoomable: true },
-        { label: '동호배치도Ⅰ', image: { src: '/apt/pungmu-sujain-gracent-1/complex-dongho-1.webp', alt: '동호수배치도(201~205동)', width: 1803, height: 1201 }, zoomable: true },
-        { label: '동호배치도Ⅱ', image: { src: '/apt/pungmu-sujain-gracent-1/complex-dongho-2.webp', alt: '동호수배치도(206~210동)', width: 1803, height: 1201 }, zoomable: true },
-        { label: '커뮤니티', image: { src: '/apt/pungmu-sujain-gracent-1/complex-community.webp', alt: '커뮤니티시설(B1F 라운지·피트니스·실내골프연습장·작은도서관·스터디카페 / B2F 다목적체육관·탁구장)', width: 1778, height: 1082 }, zoomable: true },
-        { label: '승강기·주차', image: { src: '/apt/pungmu-sujain-gracent-1/complex-elevator.webp', alt: '동별 엘리베이터 설치대수 및 주차대수 현황', width: 1803, height: 1201 }, zoomable: true },
-        { label: '문주', image: { src: '/apt/pungmu-sujain-gracent-1/complex-gate.webp', alt: '단지 문주 투시도', width: 1803, height: 1031 } },
-        { label: '조경', image: { src: '/apt/pungmu-sujain-gracent-1/complex-landscape-1.webp', alt: '단지 조경 투시도', width: 1803, height: 1031 } },
+        { label: '단지배치도', image: { src: '/apt/pungmu-sujain-gracent-2/complex-layout.webp', alt: '단지배치도 및 타입별 세대수(총 1,071세대)', width: 1803, height: 1116 }, zoomable: true },
+        { label: '동호배치도Ⅰ', image: { src: '/apt/pungmu-sujain-gracent-2/complex-dongho-1.webp', alt: '동호수배치도(201~205동)', width: 1803, height: 1201 }, zoomable: true },
+        { label: '동호배치도Ⅱ', image: { src: '/apt/pungmu-sujain-gracent-2/complex-dongho-2.webp', alt: '동호수배치도(206~210동)', width: 1803, height: 1201 }, zoomable: true },
+        { label: '커뮤니티', image: { src: '/apt/pungmu-sujain-gracent-2/complex-community.webp', alt: '커뮤니티시설(B1F 라운지·피트니스·실내골프연습장·작은도서관·스터디카페 / B2F 다목적체육관·탁구장)', width: 1778, height: 1082 }, zoomable: true },
+        { label: '승강기·주차', image: { src: '/apt/pungmu-sujain-gracent-2/complex-elevator.webp', alt: '동별 엘리베이터 설치대수 및 주차대수 현황', width: 1803, height: 1201 }, zoomable: true },
+        { label: '문주', image: { src: '/apt/pungmu-sujain-gracent-2/complex-gate.webp', alt: '단지 문주 투시도', width: 1803, height: 1031 } },
+        { label: '조경', image: { src: '/apt/pungmu-sujain-gracent-2/complex-landscape-1.webp', alt: '단지 조경 투시도', width: 1803, height: 1031 } },
       ],
     },
 
@@ -248,7 +248,7 @@ const config = {
       watermark: 'SUJAIN GRACENT',
       titlePlain: 'UNIT ',
       titleAccent: 'PLAN',
-      subtitleLines: ['김포의 중심에서 누리는', '풍무역세권 수자인 그라센트 1차', '전세대 4Bay 판상형으로', '완성한 평면을 만나보십시오.'],
+      subtitleLines: ['김포의 중심에서 누리는', '풍무역세권 수자인 그라센트 2차', '전세대 4Bay 판상형으로', '완성한 평면을 만나보십시오.'],
       groups: [
         {
           area: '59㎡',
@@ -256,13 +256,13 @@ const config = {
             {
               letter: 'A',
               countText: '총 1,071세대 중 261세대',
-              image: { src: '/apt/pungmu-sujain-gracent-1/unit-59a.webp', alt: '59㎡ A 타입 확장형 평면도', width: 924, height: 661 },
+              image: { src: '/apt/pungmu-sujain-gracent-2/unit-59a.webp', alt: '59㎡ A 타입 확장형 평면도', width: 924, height: 661 },
               specs: { exclusive: '59.9941', supply: '85.8022', contract: '130.3350' },
             },
             {
               letter: 'B',
               countText: '총 1,071세대 중 60세대',
-              image: { src: '/apt/pungmu-sujain-gracent-1/unit-59b.webp', alt: '59㎡ B 타입 확장형 평면도', width: 924, height: 661 },
+              image: { src: '/apt/pungmu-sujain-gracent-2/unit-59b.webp', alt: '59㎡ B 타입 확장형 평면도', width: 924, height: 661 },
               specs: { exclusive: '59.9976', supply: '85.5000', contract: '130.0352' },
             },
           ],
@@ -273,7 +273,7 @@ const config = {
             {
               letter: '',
               countText: '총 1,071세대 중 750세대',
-              image: { src: '/apt/pungmu-sujain-gracent-1/unit-84.webp', alt: '84㎡ 타입 확장형 평면도', width: 924, height: 661 },
+              image: { src: '/apt/pungmu-sujain-gracent-2/unit-84.webp', alt: '84㎡ 타입 확장형 평면도', width: 924, height: 661 },
               specs: { exclusive: '84.9939', supply: '112.2346', contract: '175.3243' },
             },
           ],
@@ -286,9 +286,9 @@ const config = {
       id: 'vip-reservation',
       showAfterVideo: true,
       eyebrow: 'VISIT RESERVATION',
-      titleLine1: '풍무역세권 수자인 그라센트 1차',
+      titleLine1: '풍무역세권 수자인 그라센트 2차',
       titleLine2: '방문예약',
-      desc: '간단한 정보를 남겨주시면 「풍무역세권 수자인 그라센트 1차」의 분양 일정과 상세 안내를 가장 빠르게 전해드립니다.',
+      desc: '간단한 정보를 남겨주시면 「풍무역세권 수자인 그라센트 2차」의 분양 일정과 상세 안내를 가장 빠르게 전해드립니다.',
       serviceOptions: ['모델하우스 방문예약', '원하는시간 전화예약'],
       ageOptions: ['20대 이하', '30대', '40대', '50대', '60대 이상'],
       privacyText: `[개인정보 수집 및 이용에 관한 안내] 주식회사 더블루파트너스는 귀하의 개인정보를 소중하게 생각하며, 『개인정보보호법』 등 관련 법규를 철저히 준수하고 있습니다. 당사는 분양 정보 제공 및 방문 예약 서비스의 원활한 이행을 위하여 아래와 같이 개인정보를 수집 및 이용합니다.
@@ -300,10 +300,10 @@ const config = {
     },
 
     footer: {
-      logo: { src: '/apt/pungmu-sujain-gracent-1/logo-white.png', alt: '수자인 SUJAIN', width: 265, height: 74 },
+      logo: { src: '/apt/pungmu-sujain-gracent-2/logo-white.png', alt: '수자인 SUJAIN', width: 265, height: 74 },
       logoAlign: 'center',
       logoWidth: 150,
-      highlightText: '김포의 중심에서 만나는,\n풍무역세권 수자인 그라센트 1차',
+      highlightText: '김포의 중심에서 만나는,\n풍무역세권 수자인 그라센트 2차',
       agencySlogan: '분양완판 전문가 그룹, (주) 더블루파트너스',
       companyLines: [
         { label: '시공', value: '(주)BS한양' },

@@ -532,3 +532,11 @@
   border: 2px solid transparent;
   background: linear-gradient(#fff, #fff) padding-box, linear-gradient(90deg, #cfea77, #9bd3bd) border-box;
 }
+
+/* premiumValue.columns === 2 — PC(1024px 이상)에서도 3열 대신 2열 고정 */
+@media (min-width: 1024px) {
+  .grid.gridTwoCol {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 1040px;
+  }
+}

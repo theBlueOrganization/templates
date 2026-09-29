@@ -199,7 +199,8 @@ export default function SignaturePremiumValue({ premiumValue }) {
         {premiumValue.subtitleLight && <p className={styles.subtitleLight}>{premiumValue.subtitleLight}</p>}
       </Reveal>
 
-      <Stagger className={styles.grid}>
+      {/* premiumValue.columns === 2 — PC에서도 2열 고정(8개 카드를 4줄 2열로, 예: 풍무역세권 수자인 그라센트 2차 PREMIUM 8) */}
+      <Stagger className={`${styles.grid} ${premiumValue.columns === 2 ? styles.gridTwoCol : ''}`}>
         {premiumValue.cards.map((card) => {
           const icon = ICONS[card.icon]
           return (

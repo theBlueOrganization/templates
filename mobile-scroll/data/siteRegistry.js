@@ -94,6 +94,7 @@ const adaptiveLandingPointers = [
   { slug: "forena-incheon-hagik", subdomain: "포레나인천학익", template: "adaptive-landing" },
   { slug: "city-ociel-9", subdomain: "시티오씨엘9단지", template: "adaptive-landing" },
   { slug: "city-ociel-9-2", subdomain: "c시티오씨엘9단지", template: "adaptive-landing" },
+  { slug: "pungmu-sujain-gracent-1", subdomain: "풍무수자인그라센트1차", template: "adaptive-landing" },
 ];
 
 const allSites = [...sites, ...adaptiveLandingPointers];

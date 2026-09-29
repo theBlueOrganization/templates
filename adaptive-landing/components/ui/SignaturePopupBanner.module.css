@@ -20,7 +20,15 @@
 }
 
 .imageWrap {
+  position: relative;
   line-height: 0;
+}
+
+.hotspot {
+  position: absolute;
+  display: block;
+  border-radius: 999px;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .image {

@@ -26,18 +26,48 @@ export default function SignatureComplexBlocks({ complex }) {
 
   return (
     <section id={complex.id} className={styles.section}>
-      <div className={styles.catBar} style={{ '--cat-count': complex.categories.length }}>
-        {complex.categories.map((c, i) => (
-          <button
-            key={c.label}
-            type="button"
-            className={cn(styles.catTab, i === catIndex && styles.catTabActive)}
-            onClick={() => selectCategory(i)}
-          >
-            {c.label}
-          </button>
-        ))}
-      </div>
+      {/* 섹션 타이틀(선택) — eyebrow(COMPLEX) + titlePlain(얇게) + titleAccent(굵게) */}
+      {(complex.titlePlain || complex.titleAccent) && (
+        <Reveal className={styles.sectionHead}>
+          {complex.eyebrow && <p className={styles.eyebrow}>{complex.eyebrow}</p>}
+          <h2 className={styles.sectionTitle}>
+            {complex.titlePlain}
+            <strong>{complex.titleAccent}</strong>
+          </h2>
+        </Reveal>
+      )}
+
+      {/* tabStyle: 'circle' — 카테고리 탭을 원형 썸네일(category.thumb) + 라벨로, 가운데 정렬 */}
+      {complex.tabStyle === 'circle' ? (
+        <div className={styles.circleTabs}>
+          {complex.categories.map((c, i) => (
+            <button
+              key={c.label}
+              type="button"
+              className={cn(styles.circleTab, i === catIndex && styles.circleTabActive)}
+              onClick={() => selectCategory(i)}
+            >
+              <span className={styles.circleThumb}>
+                {c.thumb && <Image src={c.thumb} alt="" fill sizes="120px" className={styles.circleImg} />}
+              </span>
+              <span className={styles.circleLabel}>{c.label}</span>
+            </button>
+          ))}
+        </div>
+      ) : (
+        <div className={styles.catBar} style={{ '--cat-count': complex.categories.length }}>
+          {complex.categories.map((c, i) => (
+            <button
+              key={c.label}
+              type="button"
+              className={cn(styles.catTab, i === catIndex && styles.catTabActive)}
+              onClick={() => selectCategory(i)}
+            >
+              {c.label}
+            </button>
+          ))}
+        </div>
+      )}
 
       <div className={styles.inner}>
         <Reveal className={styles.head}>

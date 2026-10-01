@@ -348,6 +348,7 @@ const config = {
       borderColor: "#006899",
       background:  "#006899",
       fontSize:    "1rem",
+      letterSpacing: "-0.01em",
     },
     // 긴급 배지 (eyebrowUrgent)
     eyebrowUrgent: {
@@ -356,9 +357,11 @@ const config = {
     },
 
     // 히어로 브랜드명
+    // 히어로 상단 글자 자간 — 기본값(브랜드 0.12em·배지 0.06em·서브타이틀 0.08em)이 넓어 보여서 좁힘
     brand: {
       color:    "rgb(255, 255, 255)",
       fontSize: "1rem",
+      letterSpacing: "-0.01em",
     },
     // 히어로 메인 타이틀
     // 금액 키워드가 한눈에 들어오도록 기존보다 크게 + 골드 강조색
@@ -382,6 +385,7 @@ const config = {
     subtitle: {
       color:    "rgb(255, 255, 255)",
       fontSize: "1rem",
+      letterSpacing: "0",
     },
 
     // 상담 신청 섹션 배경

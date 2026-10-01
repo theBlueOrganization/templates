@@ -183,8 +183,8 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
                   key={i}
                   className={`${styles.badge} ${isUrgent ? styles.urgent : ""}`}
                   style={isUrgent
-                    ? { color: th.eyebrowUrgent?.color, borderColor: th.eyebrowUrgent?.borderColor, fontSize: th.eyebrowUrgent?.fontSize ?? th.eyebrow?.fontSize }
-                    : { color: th.eyebrow?.color, borderColor: th.eyebrow?.borderColor, fontSize: th.eyebrow?.fontSize, background: th.eyebrow?.background }
+                    ? { color: th.eyebrowUrgent?.color, borderColor: th.eyebrowUrgent?.borderColor, fontSize: th.eyebrowUrgent?.fontSize ?? th.eyebrow?.fontSize, letterSpacing: th.eyebrow?.letterSpacing }
+                    : { color: th.eyebrow?.color, borderColor: th.eyebrow?.borderColor, fontSize: th.eyebrow?.fontSize, background: th.eyebrow?.background, letterSpacing: th.eyebrow?.letterSpacing }
                   }
                 >
                   {b}
@@ -194,7 +194,7 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
           </div>
         )}
         {brand && (
-          <p className={styles.brand} style={{ color: th.brand?.color, fontSize: th.brand?.fontSize }}>
+          <p className={styles.brand} style={{ color: th.brand?.color, fontSize: th.brand?.fontSize, letterSpacing: th.brand?.letterSpacing }}>
             {brand}
           </p>
         )}
@@ -241,7 +241,7 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
           </div>
         )}
         {effectiveSubtitle && (
-          <p className={styles.subtitle} style={{ color: th.subtitle?.color, fontSize: th.subtitle?.fontSize }}>
+          <p className={styles.subtitle} style={{ color: th.subtitle?.color, fontSize: th.subtitle?.fontSize, letterSpacing: th.subtitle?.letterSpacing }}>
             {effectiveSubtitle.split(/(\d[\d-]{5,}\d)/).map((part, i) =>
               /^\d[\d-]{5,}\d$/.test(part) ? (
                 <em key={i} className={styles.subtitleAccent} style={{ color: th.subtitle?.accentColor }}>

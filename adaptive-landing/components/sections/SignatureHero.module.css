@@ -295,7 +295,8 @@ img.bgImageMobileOnly {
   }
 
   .eyebrowDividerStackMobile .eyebrowDividerLine {
-    width: 24px;
+    width: 1px;
+    height: 18px;
   }
 }
 

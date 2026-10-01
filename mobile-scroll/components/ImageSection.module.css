@@ -84,6 +84,18 @@
   white-space: nowrap;
 }
 
+/* 섹션 tabCompact: true — 버튼 여백을 줄여 모바일에서도 한 줄로 나열 */
+.tabMenuCompact {
+  gap: 6px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.tabMenuCompact .tabButton {
+  padding: 10px 16px;
+  white-space: nowrap;
+}
+
 .tabButtonActive {
   background: #1d4ed8;
   border-color: #1d4ed8;

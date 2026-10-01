@@ -5,7 +5,8 @@
   justify-content: center;
   width: 100%;
   min-height: 560px;
-  padding: 80px 20px 110px;
+  /* 아래 여백을 위보다 크게 줘서 문구 묶음을 가운데보다 살짝 위에 배치 (건물 사진과 겹침 최소화) */
+  padding: 40px 20px 190px;
   overflow: hidden;
   background: #9cc3e6;
 }
@@ -122,7 +123,7 @@
   .hasWide {
     min-height: 0;
     aspect-ratio: 1200 / 649;
-    padding: 56px 20px 90px;
+    padding: 28px 20px 130px;
   }
 }
 

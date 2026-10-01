@@ -44,6 +44,7 @@
 | `heroByUtm` | 특정 유입경로 방문자에게만 히어로 타이틀/서브타이틀 등을 다르게 표시 |
 | `benefits.variant` | `"condition"`이면 혜택 리스트를 더샵 송도그란테르 "특별한 4가지 조건" 스타일로 표시(제목 둘째 줄 가는 대형 글씨, 세리프 번호, 스크롤로 화면 가운데 온 항목 카드를 `theme.BenefitsSection.activeBackground`/`activeTextColor`/`activeSubColor`(NO.N 태그)로 채움). 미설정 시 기존 스타일 |
 | `hero.highlight` | `{ label?, prefix?, value, unit?, desc? }` — 히어로 타이틀 아래에 핵심 혜택(예: 1차 계약금 500만원)을 초대형 숫자 카드로 강조. 색상은 `theme.highlight`(`borderColor`/`valueGradient`/`labelBackground`/`labelColor`)로 오버라이드 |
+| 섹션 `tabCompact` | `true`면 탭 버튼 좌우 여백을 줄이고 글자 줄바꿈을 막아 모바일에서도 한 줄로 나열(탭 3개 내외) |
 | 섹션 `tabWrap` | `true`면 탭이 한 줄을 넘칠 때 여러 줄로 줄바꿈(평면도 타입이 많은 경우 등). 미설정 시 기존처럼 한 줄 |
 | `hero.enableVariants` | `?v=1` 쿼리스트링으로 히어로 타입(레이아웃 변형) 전환 허용 |
 | `popupByUtm` | 특정 유입경로 방문자에게만 팝업 구성을 다르게 표시. 값이 이미지 객체면 첫 번째 팝업만 교체(나머지 순서 유지), 배열이면 그 유입경로만 팝업 전체를 다른 개수·순서로 교체(예: 특정 유입경로에만 팝업 2개), `null`이면 해당 유입경로는 팝업을 완전히 숨김. 값이 없는(=키가 없는) 유입경로는 기본 `popup` 그대로 노출 |

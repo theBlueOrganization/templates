@@ -236,7 +236,7 @@ const config = {
       navLabel: "단지배치",
       title:    "단지배치",
       subtitle: "1BL 13개동 · 2BL 9개동, 총 22개동",
-      tabWrap:  true,
+      tabCompact: true,
       tabs: [
         { label: "배치도", images: [{ src: "/apt/osan-heritage-xi-2/4-1.webp", alt: "오산헤리티지자이 단지 배치도(1BL·2BL)" }] },
         { label: "1BL 동호수", images: [{ src: "/apt/osan-heritage-xi-2/4-2.webp", alt: "오산헤리티지자이 1BL 동호수 배치표" }] },

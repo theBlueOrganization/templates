@@ -639,8 +639,9 @@ const config = {
     // 파격조건변경 팝업 1장으로 교체(사이트 내 주말 경품 이벤트 섹션(#event)은 그대로 유지, 팝업만 삭제).
     // 이미지 안에 그려진 "모델하우스 방문/예약" 버튼 클릭 시 관심고객등록 섹션(#vip-reservation)으로
     // 스크롤 이동 + 팝업 닫힘
+    // 요청 반영(2026-10-01) — 이 현장은 진입 팝업 없이 운영(enabled:false, 이미지 설정은 재사용 대비 유지)
     popup: {
-      enabled: true,
+      enabled: false,
       images: [
         {
           src: '/apt/osan-heritage-xi-xi/popup2.png',

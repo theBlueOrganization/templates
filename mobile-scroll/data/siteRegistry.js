@@ -98,6 +98,7 @@ const adaptiveLandingPointers = [
   { slug: "city-ociel-9-2", subdomain: "c시티오씨엘9단지", template: "adaptive-landing" },
   { slug: "pungmu-sujain-gracent-2", subdomain: "풍무수자인그라센트2차", template: "adaptive-landing" },
   { slug: "chumdan3-hoban-summit", subdomain: "첨단3지구호반써밋", template: "adaptive-landing" },
+  { slug: "buk-osan-xi-deforet", subdomain: "북오산자이드포레", template: "adaptive-landing" },
   { slug: "cheongna-theliv-tiamo-casa", subdomain: "청라더리브티아모까사", template: "adaptive-landing" },
 ];
 

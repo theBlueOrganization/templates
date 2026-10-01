@@ -122,6 +122,7 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
     ...(hero.titleWeight != null && { '--hero-title-weight': hero.titleWeight }),
     ...(hero.titleLetterSpacing && { '--hero-title-letter-spacing': hero.titleLetterSpacing }),
     ...(hero.imageAspectRatio && { '--hero-image-ratio': hero.imageAspectRatio }),
+    ...(hero.slidesAspectRatioMobile && { '--hero-slides-ratio': hero.slidesAspectRatioMobile }),
     ...(hero.descColorMobile && { '--hero-desc-mobile': hero.descColorMobile }),
     ...(hero.textColorMobile && { '--hero-title-mobile': hero.textColorMobile }),
     ...(hero.accentColorMobile && { '--hero-accent-mobile': hero.accentColorMobile }),

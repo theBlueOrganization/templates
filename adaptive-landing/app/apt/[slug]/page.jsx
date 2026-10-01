@@ -83,11 +83,14 @@ export async function generateMetadata({ params }) {
   // "...2"가 붙은 projectName은 SMS 알림 등에 그대로 쓰되, 고객에게 보이는 제목은 다르게) 지정.
   // 없으면 기존처럼 projectName을 그대로 사용
   const metaTitle = site.metaTitle ?? site.projectName
+  // shareTitle — 제목 전체를 그대로 지정하고 싶을 때(뒤에 " - 공식 분양 안내"를 붙이지 않음).
+  // 예: 카톡 공유 시 "청라 더리브 티아모 까사"만 노출(cheongna-theliv-tiamo-casa, 2026-10-01 요청)
+  const pageTitle = site.shareTitle ?? `${metaTitle} - 공식 분양 안내`
   return {
-    title: `${metaTitle} - 공식 분양 안내`,
+    title: pageTitle,
     description: `${metaTitle} 분양 정보 및 빠른 상담 신청`,
     openGraph: {
-      title: `${metaTitle} - 공식 분양 안내`,
+      title: pageTitle,
       description: `${metaTitle} 분양 정보 및 빠른 상담 신청`,
       images: [{ url: site.ogImage, width: 1200, height: 630 }],
       locale: 'ko_KR',

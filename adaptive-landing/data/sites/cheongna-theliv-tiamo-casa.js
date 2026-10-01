@@ -14,6 +14,8 @@ const config = {
   subdomain: '청라더리브티아모까사',
   projectName: '청라 더리브 티아모 까사',
   shortName: '청라 더리브 티아모 까사',
+  // 카톡 등 공유 링크 제목 — 요청 반영(2026-10-01): " - 공식 분양 안내" 없이 현장명만
+  shareTitle: '청라 더리브 티아모 까사',
   telNumber: '1533-6480',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/cheongna-theliv-tiamo-casa/og.jpg',
   // 참고 사이트 남색(#0d2b45 계열) + 브라운 골드 포인트(#b8906f)

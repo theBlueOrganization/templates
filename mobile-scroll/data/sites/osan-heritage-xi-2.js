@@ -173,6 +173,34 @@ const config = {
       ],
       note: "※ 위치도는 소비자의 이해를 돕기 위해 제작된 것으로 실제와 다를 수 있으며, 개발 계획은 관계 기관 사정에 따라 변경될 수 있습니다.",
     },
+    // 영상 섹션 — adaptive-landing 오산헤리티지자이x의 story(HERITAGE FILM) 문구·자이TV 공식 영상 3개 그대로
+    {
+      id:          "film",
+      type:        "film",
+      eyebrow:     "HERITAGE FILM",
+      titleLine1:  "영상으로 먼저 만나는",
+      titleAccent: "오산헤리티지자이",
+      desc:        "자이가 완성하는 병점생활권의 새로운 헤리티지, 영상과 이미지로 미리 확인해보세요.",
+      numbers: [
+        { value: "1,783", label: "총 세대수 (1BL 1,069세대 · 2BL 714세대)" },
+        { value: "GTX-C", label: "병점역 미래가치" },
+        { value: "22",    label: "총 22개동 (1BL 13개동 · 2BL 9개동), 지하 2층~최고 27층" },
+      ],
+      scenes: [
+        { youtubeId: "ZtsXOJ8pBcI", tag: "01 · BRAND FILM",   title: "Recreate, Every Moment",      desc: "당신으로부터 차이가 되다" },
+        { youtubeId: "TYkfBe32BxQ", tag: "02 · INTRODUCTION", title: "병점역 新주거타운의 중심에,", desc: "오산헤리티지자이" },
+        { youtubeId: "VFzBckoz8WM", tag: "03 · TEASER",       title: "오산헤리티지자이 티저영상",   desc: "영상으로 미리 만나는 오산헤리티지자이" },
+      ],
+    },
+    // 프리미엄 도입 배너 — adaptive-landing 오산헤리티지자이x의 premiumIntro 문구·사진(가운데를 세로로 크롭)
+    {
+      id:         "premium-intro",
+      type:       "intro-banner",
+      bgImage:    { src: "/apt/osan-heritage-xi-2/3-0.webp", alt: "오산헤리티지자이 단지 전경" },
+      introLines: ["新주거타운의 미래를 여는", "병점역 라이프의 新중심이 찾아옵니다."],
+      title:      "오산헤리티지자이",
+      footnote:   "※ 상기 내용 등은 소비자의 이해를 돕기 위한 것으로 실제와 차이가 있을 수 있습니다.",
+    },
     // 호반써밋 첨단3지구 "PREMIUM 8" 카드형(layout: "premium") — 아이콘·강조문구 색을 바둑판으로 번갈아 배치
     {
       id:        "premium",

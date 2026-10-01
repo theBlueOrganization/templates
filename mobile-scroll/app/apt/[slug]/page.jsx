@@ -7,6 +7,8 @@ import BenefitsSection from "../../../components/BenefitsSection";
 import ImageSection    from "../../../components/ImageSection";
 import VideoSection    from "../../../components/VideoSection";
 import FeatureSection  from "../../../components/FeatureSection";
+import FilmSection     from "../../../components/FilmSection";
+import IntroBannerSection from "../../../components/IntroBannerSection";
 import OfficeShell     from "../../../components/OfficeShell";
 import PopupBanner     from "../../../components/PopupBanner";
 import ExtraContactForm from "../../../components/ExtraContactForm";
@@ -88,6 +90,10 @@ export default async function AptPage({ params }) {
             ? <VideoSection {...section} theme={site.theme} />
             : section.type === "features"
             ? <FeatureSection {...section} theme={site.theme} />
+            : section.type === "film"
+            ? <FilmSection {...section} />
+            : section.type === "intro-banner"
+            ? <IntroBannerSection {...section} />
             : <ImageSection {...section} theme={site.theme} />}
           {extraContactForm && site.extraContactFormAfterSectionId === section.id && extraContactForm}
         </Fragment>

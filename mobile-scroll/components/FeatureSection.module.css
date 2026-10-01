@@ -299,7 +299,7 @@
 
 .premiumPhoto {
   width: 100%;
-  aspect-ratio: 413 / 200;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
 }
 
@@ -308,6 +308,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* 원본 사진 왼쪽 아래의 "이미지컷" 표기가 잘리지 않도록 왼쪽 기준 크롭 (item.image.position으로 개별 조정 가능) */
+  object-position: left center;
 }
 
 .premiumIcon {

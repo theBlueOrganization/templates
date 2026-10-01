@@ -8,12 +8,14 @@ import styles from './SignatureTiamoImmersive.module.css'
 
 // 청라 더리브 티아모 까사 전용 풀페이지 몰입형 랜딩 — 요청 반영(2026-10-01): 청라 아크원 푸르지오
 // (청라아크원푸르지오.addupapt.kr, SignatureArkoneImmersive)와 "똑같은 구조"로 만들어 달라는 요청이라,
-// 그 컴포넌트의 패널 흐름(인트로 → 히어로 → 사업개요 → 방문예약 → 핵심가치 3종 → 교통 → 입지 → 유니트 →
-// 단지배치 → 커뮤니티 → 프리미엄 5 → 가로 캐러셀 → 상담 → 푸터)·인터랙션·CSS를 그대로 복제하고
+// 그 컴포넌트의 패널 흐름(인트로 → 히어로 → 사업개요 → 방문예약 → 핵심가치 → 교통 → 입지 → 유니트 →
+// 커뮤니티 → 프리미엄 5 → 가로 캐러셀 → 상담 → 푸터)·인터랙션·CSS를 그대로 복제하고
 // 콘텐츠/이미지만 티아모 까사 것으로 교체했다. app/apt/[slug]/page.jsx에서 sig.tiamoImmersive로 분기.
 //
 // 아크원과 다른 점(콘텐츠가 달라서 생긴 차이만):
 //   - 히어로: 아크원은 영상, 티아모 까사는 홍보 영상 원본이 없어 메인 비주얼 CG 3장 크로스페이드
+//   - 핵심가치: 아크원은 3종(스타필드·병원·하나금융), 티아모 까사는 교통·수변·스카이브릿지·미래가치 4종.
+//     아크원의 단지배치 패널은 스카이브릿지 섹션과 겹쳐서 뺐다
 //   - 핵심가치/교통: 아크원의 "공공자료 요약 및 출처" 버튼은 기관 발표 링크가 있어야 해서, 그런 출처가 없는
 //     이 현장은 버튼 없이 참고 사이트(청라더리브티아모까사.com) 입지환경 원문만 사용
 //   - 청라의 연혁 캐러셀 → 견본세대 인테리어 실사 캐러셀(이 현장은 연혁 자료가 없음)
@@ -36,21 +38,21 @@ const NAV_ITEMS = [
 ]
 
 const PANEL_ORDER = [
-  'hero', 'brand', 'visit', 'traffic', 'nature', 'vision', 'network',
-  'location', 'unit', 'plan', 'community', 'premium', 'design', 'contact', 'footer',
+  'hero', 'brand', 'visit', 'traffic', 'nature', 'skybridge', 'vision', 'network',
+  'location', 'unit', 'community', 'premium', 'design', 'contact', 'footer',
 ]
 
 const TONE = {
-  brand: 'toneA', visit: 'toneB', traffic: 'toneC', nature: 'toneB', vision: 'toneA',
-  network: 'toneC', location: 'toneB', unit: 'toneA', plan: 'toneB', community: 'toneC',
+  brand: 'toneA', visit: 'toneB', traffic: 'toneC', nature: 'toneB', skybridge: 'toneC', vision: 'toneA',
+  network: 'toneC', location: 'toneB', unit: 'toneA', community: 'toneC',
   premium: 'toneA', design: 'toneB', contact: 'toneA',
 }
 
 // 아크원과 동일 — 패널마다 진입(is-active) 시 sectionHead가 다른 방식으로 나타남
 const MOTION = {
   hero: 'motionScale', brand: 'motionLeft', visit: 'motionClip', traffic: 'motionScale',
-  nature: 'motionSoft', vision: 'motionLeft', network: 'motionClip', location: 'motionScale',
-  unit: 'motionSoft', plan: 'motionLeft', community: 'motionClip', premium: 'motionScale',
+  nature: 'motionSoft', skybridge: 'motionClip', vision: 'motionLeft', network: 'motionClip', location: 'motionScale',
+  unit: 'motionSoft', community: 'motionClip', premium: 'motionScale',
   design: 'motionSoft', contact: 'motionLeft', footer: 'motionSoft',
 }
 
@@ -60,25 +62,39 @@ const HERO_SLIDES = [
   { img: 'hr-wide-aerial.webp', imgMobile: 'hr-wide-aerial-mobile.webp', alt: '청라 더리브 티아모 까사 광역 조감도' },
 ]
 
-// 출처: 참고 사이트 입지환경(CENTRAL TRAFFIC/NATURE/VISION) 원문
+// 출처: 참고 사이트 메인 PERFECT TRIPLE 01~03 원문(요청 반영 2026-10-01 — 교통·수변·스카이브릿지·미래가치 4개로).
+// 아크원 카드의 큰 숫자 통계(stats)는 "7호선/하나금융"처럼 글자 수치에선 카드 밖으로 넘쳐서, 원문처럼
+// 소제목 + 설명(points)으로 바꿨다
 const LANDMARKS = [
   {
-    id: 'traffic', eyebrow: 'CENTRAL TRAFFIC', titleTop: '7호선 초역세권', titleBottom: '프리미엄의 중심',
-    desc: '바로 앞 7호선 커낼웨이역(예정)과 광역 교통망을 가까이 누리는 입지.', img: 'hr-welcome-terrace.webp', imgAlt: '7호선 커낼웨이역(예정) 출입구와 웰컴테라스 투시도',
-    cardTitle: '청라를 빠르게 잇는 교통의 중심', cardDesc: '서울 지하철 2호선 연장(예정), 청라IC, BRT, GRT 등 쾌속 교통망을 갖췄습니다.',
-    stats: [['7호선', '커낼웨이역(예정)'], ['2호선', '연장(예정)']], objectPosition: '70% center',
+    id: 'traffic', eyebrow: 'CENTRAL TRAFFIC', titleTop: '7호선 초역세권,', titleBottom: '서울을 빠르게 잇다',
+    desc: '바로 앞 7호선 커낼웨이역(예정), 청라를 빠르게 잇는 쾌속교통망.', img: 'hr-welcome-terrace.webp', imgAlt: '7호선 커낼웨이역(예정) 출입구와 웰컴테라스 투시도',
+    points: [['7호선 초역세권 프리미엄', '바로 앞, 7호선 커낼웨이역(예정) 및 서울 지하철 2호선 연장(예정), 청라IC, BRT, GRT 등 쾌속교통망']],
+    objectPosition: '70% center',
   },
   {
-    id: 'nature', eyebrow: 'CENTRAL NATURE', titleTop: '커낼웨이', titleBottom: '힐링 라이프의 중심',
-    desc: '청라호수공원과 바로 앞 커낼웨이, 쾌적한 자연을 더 가까이.', img: 'hr-canal-aerial.webp', imgAlt: '커낼웨이 수변을 따라 선 청라 더리브 티아모 까사 조감도',
-    cardTitle: '수변을 품은 에코라이프', cardDesc: '청라호수공원, 커낼웨이 등 쾌적한 자연을 더 가까이 누리는 힐링라이프입니다.',
-    stats: [['커낼웨이', '바로 앞'], ['호수공원', '청라 수변']], objectPosition: '25% center',
+    id: 'nature', eyebrow: 'CENTRAL NATURE', titleTop: '늘 푸른 공원과 호수,', titleBottom: '일상에 여유를 더하다',
+    desc: '청라호수공원과 바로 앞 커낼웨이, 생활 인프라까지 한걸음에.', img: 'hr-canal-aerial.webp', imgAlt: '커낼웨이 수변을 따라 선 청라 더리브 티아모 까사 조감도',
+    points: [
+      ['커낼웨이 수변 조망', '청라호수공원, 커낼웨이 등 쾌적한 자연을 더 가까이 누리는 에코 라이프의 완성'],
+      ['한걸음에 누리는 생활 인프라', '홈플러스, 이마트, 롯데마트, 스타필드 청라(예정), 코스트코(예정) 등 다채로운 생활 환경'],
+    ],
+    objectPosition: '25% center',
+  },
+  {
+    id: 'skybridge', eyebrow: 'SKY BRIDGE', titleTop: '청라의 드높은 하늘,', titleBottom: '당신의 특권이 되다',
+    desc: '3개동을 하나로 잇는 20층 스카이브릿지, 최고 46층 청라의 랜드마크.', img: 'hr-skybridge-exterior.webp', imgAlt: '3개동을 잇는 20층 스카이브릿지 투시도',
+    points: [
+      ['청라의 자부심, 스카이브릿지', '단지의 품격을 높여주는 스카이브릿지로 3개동이 연결된 유니크한 외관 설계'],
+      ['최고 46층 랜드마크 가치', '최상층 펜트하우스부터 46층 초고층 설계로 청라를 대표할 랜드마크 특권'],
+    ],
+    objectPosition: '60% center',
   },
   {
     id: 'vision', eyebrow: 'CENTRAL VISION', titleTop: '청라의 빛나는', titleBottom: '미래가치의 중심',
     desc: '청라의 미래를 바꿀 개발 호재가 모이는 곳.', img: 'hr-wide-aerial.webp', imgAlt: '청라 더리브 티아모 까사 광역 조감도',
-    cardTitle: '눈부신 미래가치의 최중심', cardDesc: '하나금융·드림타운(예정), 의료복합타운 아산병원(예정), 스타필드 청라(예정) 등이 가까이 있습니다.',
-    stats: [['하나금융', '드림타운(예정)'], ['아산병원', '의료복합타운(예정)']], objectPosition: '72% center',
+    points: [['청라의 끝없는 미래가치', '하나금융·드림타운(예정), 의료복합타운 아산병원(예정) 등 눈부신 미래가치의 최중심']],
+    objectPosition: '72% center',
   },
 ]
 
@@ -552,7 +568,7 @@ export default function SignatureTiamoImmersive({ site }) {
           </div>
         </section>
 
-        {/* 핵심가치 3종 */}
+        {/* 핵심가치 4종 — 교통·수변·스카이브릿지·미래가치 */}
         {LANDMARKS.map((lm) => (
           <section key={lm.id} className={cn(panelClass(lm.id), styles.landmark)} id={lm.id}>
             <div className={styles.sectionShell}>
@@ -564,11 +580,9 @@ export default function SignatureTiamoImmersive({ site }) {
               <div className={styles.visual}>
                 <Image src={ASSET(lm.img)} alt={lm.imgAlt} fill sizes="100vw" style={{ objectPosition: lm.objectPosition }} />
                 <article className={styles.contentCard}>
-                  <h3>{lm.cardTitle}</h3>
-                  <p>{lm.cardDesc}</p>
-                  <div className={styles.stats}>
-                    {lm.stats.map(([v, l]) => (<div key={l}><strong>{v}</strong><span>{l}</span></div>))}
-                  </div>
+                  <dl className={styles.points}>
+                    {lm.points.map(([t, d]) => (<div key={t}><dt>{t}</dt><dd>{d}</dd></div>))}
+                  </dl>
                 </article>
               </div>
             </div>
@@ -639,21 +653,6 @@ export default function SignatureTiamoImmersive({ site }) {
                 </button>
                 <div className={styles.unitFeatures}>{unit.features.map((f) => (<span key={f}>{f}</span>))}</div>
               </article>
-            </div>
-          </div>
-        </section>
-
-        {/* 단지배치 */}
-        <section className={panelClass('plan')} id="plan">
-          <div className={styles.sectionShell}>
-            <header className={styles.sectionHead}>
-              <p className={styles.eyebrow}>단지설계</p>
-              <h2 className={styles.sectionTitle}>3개동을 하나로 잇는{' '}<br className={styles.titleBreak} /><span className={styles.gradientText}>스카이브릿지</span></h2>
-              <p className={styles.sectionDesc}>살아볼수록 자부심이 더 커지는 곳, 최고 46층 청라의 랜드마크가 완성됩니다.</p>
-            </header>
-            <div className={styles.visual}>
-              <Image src={ASSET('hr-skybridge-exterior.webp')} alt="3개동을 잇는 20층 스카이브릿지 투시도" fill sizes="100vw" />
-              <div className={styles.planPoints}><span>최고 46층</span><span>20층 스카이브릿지</span><span>커낼웨이 수변</span></div>
             </div>
           </div>
         </section>

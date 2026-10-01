@@ -37,9 +37,15 @@ function FadeUp({ children, delay = 0 }) {
 // (adaptive-landing SignatureSellingStory 참고: 헤더 + 숫자 3개 + 유튜브 영상 카드 목록)
 // titleLine1(흰색) + titleAccent(강조색) 두 줄 제목, desc, numbers[{ value, label }],
 // scenes[{ youtubeId, tag?, title, desc? }] — 영상은 음소거 자동재생·반복(모바일 정책상 음소거 필수)
-export default function FilmSection({ id, eyebrow, titleLine1, titleAccent, desc, numbers = [], scenes = [], sectionBg }) {
+// 강조색(eyebrow·강조 제목·숫자·태그)은 theme.FilmSection.accent (미설정 시 기본 하늘색)
+export default function FilmSection({ id, eyebrow, titleLine1, titleAccent, desc, numbers = [], scenes = [], sectionBg, theme }) {
+  const accent = theme?.FilmSection?.accent;
   return (
-    <section id={id} className={styles.section} style={sectionBg ? { background: sectionBg } : undefined}>
+    <section
+      id={id}
+      className={styles.section}
+      style={{ ...(sectionBg ? { background: sectionBg } : {}), ...(accent ? { "--film-accent": accent } : {}) }}
+    >
       <FadeUp>
         <div className={styles.header}>
           {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}

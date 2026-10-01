@@ -15,7 +15,7 @@
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.2em;
-  color: #a9dcea;
+  color: var(--film-accent, #a9dcea);
 }
 
 .title {
@@ -35,7 +35,7 @@
 
 .titleAccent {
   font-style: normal;
-  color: #9ad5e8;
+  color: var(--film-accent, #9ad5e8);
 }
 
 .desc {
@@ -67,7 +67,7 @@
   font-size: 2.6rem;
   font-weight: 500;
   line-height: 1;
-  color: #b9e0eb;
+  color: var(--film-accent, #b9e0eb);
 }
 
 .numberItem span {
@@ -109,7 +109,7 @@
   font-size: 0.7rem;
   font-weight: 900;
   letter-spacing: 0.2em;
-  color: #a9dcea;
+  color: var(--film-accent, #a9dcea);
 }
 
 .sceneTitle {

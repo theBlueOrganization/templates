@@ -43,14 +43,14 @@ export default function BottomBar({ telNumber, theme }) {
           onClick={handleCall}
           style={{ background: th.BottomBar_callBtn?.background, color: th.BottomBar_callBtn?.color }}
         >
-          📞 전화상담 연결
+          {th.BottomBar_callBtn?.label ?? "📞 전화상담 연결"}
         </button>
         <button
           className={styles.btnReg}
           onClick={scrollToContact}
           style={{ background: th.BottomBar_regBtn?.background, color: th.BottomBar_regBtn?.color }}
         >
-          ❤️ 관심고객 등록
+          {th.BottomBar_regBtn?.label ?? "❤️ 관심고객 등록"}
         </button>
       </div>
 

@@ -215,6 +215,7 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
               ...(th.highlight?.borderColor     ? { "--hl-border":   th.highlight.borderColor }     : {}),
               ...(th.highlight?.valueGradient   ? { "--hl-value":    th.highlight.valueGradient }   : {}),
               ...(th.highlight?.labelBackground ? { "--hl-label-bg": th.highlight.labelBackground } : {}),
+              ...(th.highlight?.labelColor      ? { "--hl-label-color": th.highlight.labelColor }   : {}),
             }}
           >
             {highlight.label && <span className={styles.highlightLabel}>{highlight.label}</span>}

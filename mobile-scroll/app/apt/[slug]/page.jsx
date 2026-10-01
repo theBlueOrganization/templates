@@ -91,7 +91,7 @@ export default async function AptPage({ params }) {
             : section.type === "features"
             ? <FeatureSection {...section} theme={site.theme} />
             : section.type === "film"
-            ? <FilmSection {...section} />
+            ? <FilmSection {...section} theme={site.theme} />
             : section.type === "intro-banner"
             ? <IntroBannerSection {...section} />
             : <ImageSection {...section} theme={site.theme} />}

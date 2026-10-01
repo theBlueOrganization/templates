@@ -49,7 +49,7 @@ const config = {
 
   hero: {
     eyebrow:       "선착순 동·호 지정｜GS건설 자이",
-    eyebrowUrgent: 1,
+    eyebrowUrgent: 0,
     brand:         "오산헤리티지자이",
     title:         "계약금 5%\n파격 조건!",
     subtitle:      " 문의) 1600-1646",
@@ -209,6 +209,7 @@ const config = {
       type:      "features",
       navLabel:  "프리미엄",
       layout:    "premium",
+      sectionBg: "linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%)",
       titleLead: "오산헤리티지자이만의",
       titleWord: "PREMIUM",
       titleNum:  "6",
@@ -290,14 +291,35 @@ const config = {
       textOverlay: "linear-gradient(to bottom, rgba(6,10,30,0.92) 0%, rgba(6,10,30,0.7) 50%, rgba(6,10,30,0) 85%)",
     },
 
-    // features 타입 섹션(입지환경·프리미엄) 강조색 — 히어로 골드 톤과 통일
+    // ── 색상 통일: 남색 #1e3a5f(버튼·탭·카드 강조) + 골드 #fbbf24/#f59e0b(포인트), 분홍·빨강 계열 제거 ──
+
+    // 히어로 500만원 강조 카드 — 빨간 라벨 대신 골드 라벨 + 남색 글씨
+    highlight: {
+      labelBackground: "#fbbf24",
+      labelColor:      "#1e3a5f",
+    },
+
+    // features 타입 섹션(입지환경·프리미엄) — 강조색 골드, PREMIUM 카드 아이콘·문구는 남색/골드 교차
     FeatureSection: {
-      accent: "#f59e0b",
+      accent:        "#f59e0b",
+      premiumAccent: "#1e3a5f",
+      premiumDark:   "#f59e0b",
+    },
+
+    // 영상 섹션 강조색(기본 하늘색 → 골드)
+    FilmSection: {
+      accent: "#fbbf24",
+    },
+
+    // 상단 메뉴 활성 탭(기본 파란색 → 남색)
+    TopNav_active: {
+      color:       "#1e3a5f",
+      borderColor: "#1e3a5f",
     },
 
     // 섹션 헤더 구분선
     ImageSection_divider: {
-      background: "linear-gradient(90deg, #3b82f6, #60a5fa)",
+      background: "linear-gradient(90deg, #1e3a5f, #f59e0b)",
       width:      "40px",
       height:     "3px",
     },
@@ -310,8 +332,8 @@ const config = {
     },
     // 긴급 배지 (eyebrowUrgent)
     eyebrowUrgent: {
-      color:       "#ff6b6b",
-      borderColor: "rgba(255,107,107,0.5)",
+      color:       "#fbbf24",
+      borderColor: "rgba(251,191,36,0.6)",
     },
 
     // 히어로 브랜드명
@@ -327,11 +349,13 @@ const config = {
       accentColor: "#fbbf24",
     },
 
-    // 핵심 혜택 리스트(condition 변형) — 배경 사진 위 오버레이, 활성 카드는 참고 디자인과 같은 연하늘색
+    // 핵심 혜택 리스트(condition 변형) — 배경 사진 위 오버레이, eyebrow·번호·활성 카드는 골드로 통일
     BenefitsSection: {
       overlay:          "linear-gradient(180deg, rgba(10,16,32,0.88) 0%, rgba(10,16,32,0.8) 40%, rgba(10,16,32,0.92) 100%)",
-      activeBackground: "#c9d9ea",
-      activeTextColor:  "#0f1f3d",
+      eyebrowColor:     "#fbbf24",
+      numColor:         "#fbbf24",
+      activeBackground: "#fbbf24",
+      activeTextColor:  "#1e3a5f",
     },
 
     // 히어로 서브타이틀
@@ -363,10 +387,12 @@ const config = {
     BottomBar_callBtn: {
       background: "#e2e8f0",
       color:      "#1e293b",
+      label:      "전화상담 연결",
     },
     BottomBar_regBtn: {
       background: "#1e3a5f",
       color:      "#ffffff",
+      label:      "관심고객 등록",
     },
   },
 

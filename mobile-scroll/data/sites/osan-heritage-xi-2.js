@@ -73,17 +73,20 @@ const config = {
 
   // 히어로 바로 다음에 노출되는 핵심 혜택 세로 리스트 — 광고주 강조 요청 순서대로 배치
   // (계약 조건 → 인근 시세 → 개발호재 → 교통망)
+  // variant "condition": 더샵 송도그란테르 "특별한 4가지 조건" 스타일 (스크롤로 가운데 온 항목 카드 강조)
   benefits: {
+    variant: "condition",
     eyebrow: "SPECIAL 5",
     brand:   "오산헤리티지자이",
     title:   "지금 잡아야 할\n5가지 핵심",
     desc:    "계약 조건부터 시세·개발호재·교통망까지 한눈에 확인하세요.",
+    bgImage: { src: "/apt/osan-heritage-xi-2/main2.webp", alt: "오산헤리티지자이 단지 전경" },
     items: [
-      { num: "500만원", label: "1차 계약금\n단 500만원" },
-      { num: "총 5%",   label: "계약금 총 5%로\n입주까지 추가 자금 無" },
-      { num: "9.7억",   label: "인근 병점역 아이파크캐슬\n매도가 9.7억" },
-      { num: "2,200억", label: "병점역 복합환승센터\n공사비 2,200억 개발 중" },
-      { num: "GTX-C",   label: "1호선 · 동탄 연장선 · 트램\nGTX-C 교통망 수혜지" },
+      { num: "01", label: "1차 계약금\n단 500만원" },
+      { num: "02", label: "계약금 총 5%로\n입주까지 추가 자금 無" },
+      { num: "03", label: "인근 병점역 아이파크캐슬\n매도가 9.7억" },
+      { num: "04", label: "병점역 복합환승센터\n공사비 2,200억 개발 중" },
+      { num: "05", label: "1호선 · 동탄 연장선 · 트램\nGTX-C 교통망 수혜지" },
     ],
   },
 
@@ -135,6 +138,7 @@ const config = {
     {
       id:        "location",
       type:      "features",
+      headerAlign: "center",
       navLabel:  "입지환경",
       dark:      true,
       eyebrow:   "LOCATION",
@@ -292,14 +296,13 @@ const config = {
       accentColor: "#fbbf24",
     },
 
-    // 핵심 혜택 리스트 — 숫자(금액/%)를 골드로 강조
+    // 핵심 혜택 리스트(condition 변형) — 배경 사진 위 오버레이, 활성 카드는 참고 디자인과 같은 연하늘색
     BenefitsSection: {
-      background:   "linear-gradient(180deg, #0f172a 0%, #1e293b 100%)",
-      eyebrowColor: "#fbbf24",
-      numColor:     "#fbbf24",
-      noTagColor:   "rgba(251,191,36,0.6)",
-      labelColor:   "#ffffff",
+      overlay:          "linear-gradient(180deg, rgba(10,16,32,0.88) 0%, rgba(10,16,32,0.8) 40%, rgba(10,16,32,0.92) 100%)",
+      activeBackground: "#c9d9ea",
+      activeTextColor:  "#0f1f3d",
     },
+
     // 히어로 서브타이틀
     subtitle: {
       color:    "rgb(255, 255, 255)",

@@ -134,6 +134,102 @@
   }
 }
 
+/* ─── variant: "condition" (더샵 송도그란테르 "특별한 4가지 조건" 스타일) ─── */
+.condition {
+  --active-bg: #c9d9ea;
+  --active-text: #0f1f3d;
+  padding-bottom: 40px;
+}
+
+.condition .eyebrow {
+  color: #c9d9ea;
+  letter-spacing: 0.18em;
+}
+
+.condition .brand {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.condition .titleLine:first-child {
+  font-size: 2.1rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.condition .titleLine:not(:first-child) {
+  font-size: 3.4rem;
+  font-weight: 300;
+  line-height: 1.15;
+  color: #dbe4f0;
+}
+
+.condition .desc {
+  margin-bottom: 40px;
+}
+
+.condition .list {
+  padding: 0 14px;
+}
+
+.condition .item,
+.condition .list .item:last-child {
+  padding: 34px 20px 36px;
+  border: none;
+  transition: background-color 0.35s ease;
+}
+
+.condition .num {
+  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  font-size: 1.9rem;
+  font-weight: 600;
+  color: #c9d9ea;
+  transition: color 0.35s ease;
+}
+
+.condition .noTag {
+  transition: color 0.35s ease;
+}
+
+.condition .label {
+  margin-top: 20px;
+  font-size: 1.4rem;
+  transition: color 0.35s ease;
+}
+
+.condition .item.active {
+  background: var(--active-bg);
+}
+
+/* theme.BenefitsSection의 numColor/labelColor 인라인 색상보다 활성 카드 색상이 우선하도록 !important */
+.condition .item.active .num,
+.condition .item.active .label {
+  color: var(--active-text) !important;
+}
+
+.condition .item.active .noTag {
+  color: rgba(15, 31, 61, 0.55) !important;
+}
+
+@media (hover: hover) {
+  .condition .item:hover {
+    background: var(--active-bg);
+  }
+  .condition .item:hover .num,
+  .condition .item:hover .label {
+    color: var(--active-text) !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .condition .titleLine:not(:first-child) {
+    font-size: 2.9rem;
+  }
+  .condition .label {
+    font-size: 1.25rem;
+  }
+}
+
 .fadeUp {
   opacity: 0;
   transform: translateY(20px);

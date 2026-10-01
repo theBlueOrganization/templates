@@ -40,12 +40,14 @@ const lines = (text) => text?.split("\n").map((line, i) => <span key={i} classNa
 // leadImage: 카드 목록 위에 크게 보여줄 대표 이미지(위치도 등, 선택)
 // items: [{ image: { src, alt }, tag?, title, desc? }] — title/desc는 \n으로 줄바꿈
 // dark: true면 어두운 배경 + 밝은 텍스트 (sectionBg로 배경색 직접 지정 가능)
+// headerAlign: "center"면 eyebrow/제목/부제를 가운데 정렬 (미설정 시 좌측 정렬)
 // 강조색은 theme.FeatureSection.accent (미설정 시 기본 파란색)
 export default function FeatureSection({
   id,
   eyebrow,
   title,
   subtitle,
+  headerAlign,
   leadImage,
   layout = "list",
   items = [],
@@ -67,7 +69,7 @@ export default function FeatureSection({
       }}
     >
       <FadeUp>
-        <div className={styles.header}>
+        <div className={styles.header} style={headerAlign === "center" ? { textAlign: "center" } : undefined}>
           {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}
           <h2 className={styles.title}>{lines(title)}</h2>
           {subtitle && <p className={styles.subtitle}>{subtitle}</p>}

@@ -201,8 +201,11 @@ export default function SignaturePremiumValue({ premiumValue }) {
         {premiumValue.subtitleLight && <p className={styles.subtitleLight}>{premiumValue.subtitleLight}</p>}
       </Reveal>
 
-      {/* premiumValue.columns === 2 — PC에서도 2열 고정(8개 카드를 4줄 2열로, 예: 풍무역세권 수자인 그라센트 2차 PREMIUM 8) */}
-      <Stagger className={`${styles.grid} ${premiumValue.columns === 2 ? styles.gridTwoCol : ''}`}>
+      {/* premiumValue.columns === 2 — PC에서도 2열 고정(8개 카드를 4줄 2열로, 예: 풍무역세권 수자인 그라센트 2차 PREMIUM 8)
+          premiumValue.columns === 4 — PC 4열(8개 카드를 2줄 4열로, 각진 얇은 테두리 카드 — 예: 청라 더리브 티아모 까사2 Premium 01~08) */}
+      <Stagger
+        className={`${styles.grid} ${premiumValue.columns === 2 ? styles.gridTwoCol : ''} ${premiumValue.columns === 4 ? styles.gridFourCol : ''}`}
+      >
         {premiumValue.cards.map((card) => {
           const icon = ICONS[card.icon]
           return (

@@ -100,6 +100,7 @@ const adaptiveLandingPointers = [
   { slug: "chumdan3-hoban-summit", subdomain: "첨단3지구호반써밋", template: "adaptive-landing" },
   { slug: "buk-osan-xi-deforet", subdomain: "북오산자이드포레", template: "adaptive-landing" },
   { slug: "cheongna-theliv-tiamo-casa", subdomain: "청라더리브티아모까사", template: "adaptive-landing" },
+  { slug: "cheongna-theliv-tiamo-casa-2", subdomain: "청라더리브티아모casa", template: "adaptive-landing" },
 ];
 
 const allSites = [...sites, ...adaptiveLandingPointers];

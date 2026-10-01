@@ -568,3 +568,22 @@
     margin-bottom: 26px;
   }
 }
+
+/* split 문단 소제목(paragraphs 항목이 { head, lines }일 때) — 참고: 청라 더리브 티아모 까사2 PERFECT TRIPLE */
+.splitParaHead {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 700;
+  color: var(--navy, #1d2f4d);
+}
+
+/* split.reverse — PC에서 이미지 오른쪽 / 카피 왼쪽 */
+@media (min-width: 1024px) {
+  .sectionSplitReverse {
+    flex-direction: row-reverse;
+  }
+
+  .sectionSplitReverse .splitText {
+    padding: 80px 60px 0 clamp(40px, 8vw, 160px);
+  }
+}

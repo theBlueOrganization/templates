@@ -44,9 +44,11 @@ export default function SignaturePremiumIntro({ premiumIntro }) {
 
   // split: true — 왼쪽 이미지컷 + 오른쪽 세로 카피(eyebrow · 부제 · 세로 라인 · 시 형태 문단).
   // paragraphs는 문단 배열, 각 문단은 줄 배열 — 줄 단위로 끊어 PC·모바일 모두 같은 줄바꿈 유지
+  // split.reverse: true — PC에서 이미지를 오른쪽, 카피를 왼쪽으로(연속 split 섹션을 지그재그로 배치할 때)
+  // paragraphs 항목은 줄 배열 대신 { head, lines }로도 줄 수 있음 — head는 문단 위 굵은 소제목
   if (premiumIntro.split) {
     return (
-      <section id={premiumIntro.id} className={styles.sectionSplit}>
+      <section id={premiumIntro.id} className={cn(styles.sectionSplit, premiumIntro.reverse && styles.sectionSplitReverse)}>
         <div className={styles.splitImageWrap}>
           <Image src={premiumIntro.bgImage.src} alt={premiumIntro.bgImage.alt} fill sizes="(min-width: 1024px) 64vw, 100vw" className={styles.bgImage} />
           {premiumIntro.imageBadge && <span className={styles.splitBadge}>{premiumIntro.imageBadge}</span>}
@@ -55,9 +57,10 @@ export default function SignaturePremiumIntro({ premiumIntro }) {
           {premiumIntro.eyebrow && <p className={styles.splitEyebrow}>{premiumIntro.eyebrow}</p>}
           {premiumIntro.titleLine1 && <h2 className={styles.splitTitle}>{premiumIntro.titleLine1}</h2>}
           <span className={styles.splitLine} />
-          {premiumIntro.paragraphs?.map((lines, i) => (
+          {premiumIntro.paragraphs?.map((para, i) => (
             <p key={i} className={styles.splitPara}>
-              {lines.map((line, j) => (
+              {!Array.isArray(para) && para.head && <strong className={styles.splitParaHead}>{para.head}</strong>}
+              {(Array.isArray(para) ? para : para.lines).map((line, j) => (
                 <Fragment key={j}>
                   {j > 0 && <br />}
                   {line}

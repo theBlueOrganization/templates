@@ -272,7 +272,6 @@
 .premiumMain em {
   margin-left: 6px;
   font-style: normal;
-  font-family: Georgia, "Times New Roman", serif;
   font-size: 3.9rem;
   font-weight: 700;
   letter-spacing: 0;
@@ -341,7 +340,6 @@
 }
 
 .premiumNum {
-  font-family: Georgia, "Times New Roman", serif;
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.2em;

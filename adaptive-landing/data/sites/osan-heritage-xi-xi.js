@@ -321,6 +321,8 @@ const config = {
       titleLine1: '오산헤리티지자이',
       titleUnderline: true,
       titleColor: '#ffffff',
+      // 요청 반영(2026-10-01) — 문구 묶음(박스 문구·세로선·타이틀)을 살짝 위로
+      contentOffsetY: '-6vh',
       footnote: '※ 상기 내용 등은 소비자의 이해를 돕기 위한 것으로 실제와 차이가 있을 수 있습니다.',
     },
 

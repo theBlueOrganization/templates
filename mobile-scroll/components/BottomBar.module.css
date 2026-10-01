@@ -33,6 +33,12 @@
   gap: 6px;
 }
 
+.icon {
+  width: 1.15em;
+  height: 1.15em;
+  flex-shrink: 0;
+}
+
 .btnCall {
   background-color: #e2e8f0;
   color: #1e293b;

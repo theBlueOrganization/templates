@@ -1,12 +1,17 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import styles from "./HeroSection.module.css";
 import HeroSectionType1 from "./HeroSectionType1";
+import HeroIntro from "./HeroIntro";
 
 // variant: "default" | "type1" | "type2" | "type3" …
 // 추후 변형 추가 시 여기에 케이스 추가
-export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, title, subtitle, bgColor, accentKeyword, theme, enableVariants, heroByUtm }) {
+// highlight: { label?, prefix?, value, unit?, desc?, variant?: "plain" } — 있으면 타이틀 아래에 핵심 혜택(예: 계약금 500만원)을
+// 초대형 숫자 카드로 강조 노출 (없으면 기존과 동일, 색상은 theme.highlight로 오버라이드)
+// intro: { logo?, title?, clipBg } — 있으면 시티오씨엘 9단지 스타일 인트로(HeroIntro)를 먼저 재생하고, 끝난 뒤
+// 커튼 없이 히어로 텍스트 애니메이션을 시작 (없으면 기존과 동일)
+export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, title, subtitle, bgColor, accentKeyword, highlight, intro, theme, enableVariants, heroByUtm }) {
   const [variant,     setVariant]    = useState("default");
   const [ready,       setReady]      = useState(false);
   const [visible,    setVisible]    = useState(false);
@@ -15,6 +20,8 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
   const [accentReady, setAccentReady] = useState(false);
   const [heroOverride, setHeroOverride] = useState(null);
   const [isDesktop, setIsDesktop] = useState(false);
+  const [introDone, setIntroDone] = useState(!intro);
+  const handleIntroDone = useCallback(() => setIntroDone(true), []);
 
   // 모바일 브라우저는 스크롤 중 주소창이 접히고 펴지며 100dvh(동적 뷰포트 높이)가 실시간으로
   // 바뀌는데, 이를 background-size: cover와 함께 쓰면 배경 이미지가 스크롤 중 커졌다 작아졌다
@@ -64,11 +71,17 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
   // default 변형: 기존 3단계 커튼 애니메이션
   useEffect(() => {
     if (variant !== "default") return;
+    if (!introDone) return;
+    // 인트로가 있으면 인트로 마지막 장면(전체 사진)에서 바로 이어지도록 커튼 단계 없이 텍스트만 등장
+    if (intro) {
+      const t = setTimeout(() => { setVisible(true); setSettled(true); }, 50);
+      return () => clearTimeout(t);
+    }
     const t1 = setTimeout(() => setVisible(true),    80);
     const t2 = setTimeout(() => setCurtainOut(true), 1700);
     const t3 = setTimeout(() => setSettled(true),    2850);
     return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
-  }, [variant]);
+  }, [variant, introDone, intro]);
 
   // accent 변형: 타이틀 드롭 후 스크롤 힌트 노출
   useEffect(() => {
@@ -124,7 +137,9 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
   };
 
   return (
-    <section id="home" className={styles.hero} style={heroStyle}>
+    <>
+    {intro && <HeroIntro intro={intro} onDone={handleIntroDone} />}
+    <section id="home" className={introDone ? styles.hero : `${styles.hero} ${styles.introWait}`} style={heroStyle}>
 
       {/* 배경 이미지 */}
       <div
@@ -135,8 +150,8 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
         }}
       />
 
-      {/* 커튼 — accent 변형에선 렌더하지 않음 */}
-      {!isAccent && (
+      {/* 커튼 — accent 변형·인트로 사용 시엔 렌더하지 않음 */}
+      {!isAccent && !intro && (
         <div
           className={`${styles.curtain} ${curtainOut ? styles.active : ""}`}
           style={{ background: curtainColor }}
@@ -168,8 +183,8 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
                   key={i}
                   className={`${styles.badge} ${isUrgent ? styles.urgent : ""}`}
                   style={isUrgent
-                    ? { color: th.eyebrowUrgent?.color, borderColor: th.eyebrowUrgent?.borderColor, fontSize: th.eyebrowUrgent?.fontSize ?? th.eyebrow?.fontSize }
-                    : { color: th.eyebrow?.color, borderColor: th.eyebrow?.borderColor, fontSize: th.eyebrow?.fontSize }
+                    ? { color: th.eyebrowUrgent?.color, borderColor: th.eyebrowUrgent?.borderColor, fontSize: th.eyebrowUrgent?.fontSize ?? th.eyebrow?.fontSize, letterSpacing: th.eyebrow?.letterSpacing }
+                    : { color: th.eyebrow?.color, borderColor: th.eyebrow?.borderColor, fontSize: th.eyebrow?.fontSize, background: th.eyebrow?.background, letterSpacing: th.eyebrow?.letterSpacing }
                   }
                 >
                   {b}
@@ -179,7 +194,7 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
           </div>
         )}
         {brand && (
-          <p className={styles.brand} style={{ color: th.brand?.color, fontSize: th.brand?.fontSize }}>
+          <p className={styles.brand} style={{ color: th.brand?.color, fontSize: th.brand?.fontSize, letterSpacing: th.brand?.letterSpacing }}>
             {brand}
           </p>
         )}
@@ -206,8 +221,27 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
             </span>
           ))}
         </h1>
+        {highlight && (
+          <div
+            className={highlight.variant === "plain" ? `${styles.highlight} ${styles.highlightPlain}` : styles.highlight}
+            style={{
+              ...(th.highlight?.borderColor     ? { "--hl-border":   th.highlight.borderColor }     : {}),
+              ...(th.highlight?.valueGradient   ? { "--hl-value":    th.highlight.valueGradient }   : {}),
+              ...(th.highlight?.labelBackground ? { "--hl-label-bg": th.highlight.labelBackground } : {}),
+              ...(th.highlight?.labelColor      ? { "--hl-label-color": th.highlight.labelColor }   : {}),
+            }}
+          >
+            {highlight.label && <span className={styles.highlightLabel}>{highlight.label}</span>}
+            <p className={styles.highlightValue}>
+              {highlight.prefix && <span className={styles.highlightPrefix}>{highlight.prefix}</span>}
+              <strong className={styles.highlightNumber}>{highlight.value}</strong>
+              {highlight.unit && <span className={styles.highlightUnit}>{highlight.unit}</span>}
+            </p>
+            {highlight.desc && <p className={styles.highlightDesc}>{highlight.desc}</p>}
+          </div>
+        )}
         {effectiveSubtitle && (
-          <p className={styles.subtitle} style={{ color: th.subtitle?.color, fontSize: th.subtitle?.fontSize }}>
+          <p className={styles.subtitle} style={{ color: th.subtitle?.color, fontSize: th.subtitle?.fontSize, letterSpacing: th.subtitle?.letterSpacing }}>
             {effectiveSubtitle.split(/(\d[\d-]{5,}\d)/).map((part, i) =>
               /^\d[\d-]{5,}\d$/.test(part) ? (
                 <em key={i} className={styles.subtitleAccent} style={{ color: th.subtitle?.accentColor }}>
@@ -228,5 +262,6 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
       </div>
 
     </section>
+    </>
   );
 }

@@ -1,0 +1,409 @@
+.section {
+  --accent: #3b82f6;
+  --text: #0f172a;
+  --text-sub: #64748b;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  position: relative;
+  width: 100%;
+  padding: 64px 0 56px;
+  background: #f8fafc;
+  color: var(--text);
+}
+
+.section.dark {
+  --text: #ffffff;
+  --text-sub: rgba(255, 255, 255, 0.62);
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --card-border: rgba(255, 255, 255, 0.1);
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+}
+
+/* ─── 헤더 ─────────────────────────────────────────── */
+.header {
+  padding: 0 24px;
+  margin-bottom: 28px;
+}
+
+.eyebrow {
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.title {
+  font-size: clamp(1.6rem, 7.4vw, 2.1rem);
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  word-break: keep-all;
+}
+
+.line {
+  display: block;
+}
+
+.subtitle {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-sub);
+  word-break: keep-all;
+}
+
+/* ─── 대표 이미지 ──────────────────────────────────── */
+.leadWrap {
+  margin: 0 16px 24px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  background: #ffffff;
+}
+
+.leadImage {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ─── list 레이아웃 ────────────────────────────────── */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 0 16px;
+}
+
+.card {
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+}
+
+.imageWrap {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #cbd5e1;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tag {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.body {
+  padding: 18px 20px 22px;
+}
+
+.num {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.cardTitle {
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  word-break: keep-all;
+}
+
+.desc {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-sub);
+  word-break: keep-all;
+}
+
+/* ─── grid 레이아웃 (2열) ──────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 0 16px;
+}
+
+.gridCard {
+  height: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+}
+
+.gridCard .body {
+  padding: 12px 12px 16px;
+}
+
+.gridCard .num {
+  font-size: 0.75rem;
+  margin-bottom: 4px;
+}
+
+.gridCard .cardTitle {
+  font-size: 1.02rem;
+}
+
+.gridCard .desc {
+  margin-top: 6px;
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+.grid > div {
+  height: 100%;
+}
+
+/* ─── simple 레이아웃 (제목+태그 → 사진 → 설명) ─────── */
+.simpleList {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 8px 20px 0;
+}
+
+.simpleTitle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  margin-bottom: 12px;
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  word-break: keep-all;
+}
+
+.simpleTitle strong {
+  font-weight: 800;
+}
+
+.simpleTag {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+}
+
+.simpleImageWrap {
+  aspect-ratio: 12 / 5;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #cbd5e1;
+}
+
+.simpleDesc {
+  margin-top: 12px;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--text-sub);
+  word-break: keep-all;
+}
+
+/* ─── 하단 유의문구 ────────────────────────────────── */
+.note {
+  margin: 20px 20px 0;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: var(--text-sub);
+  word-break: keep-all;
+}
+
+/* ─── premium 레이아웃 (PREMIUM N 카드형) ─────────────── */
+.premiumSection {
+  --p-accent: #a5584a;
+  --p-dark: #4a4644;
+  position: relative;
+  width: 100%;
+  padding: 56px 12px 60px;
+  background: linear-gradient(180deg, #faf6f2 0%, #f4ede6 100%);
+}
+
+.premiumTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.premiumLead {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333333;
+  letter-spacing: -0.02em;
+}
+
+.premiumMain {
+  display: flex;
+  align-items: center;
+  margin-top: 6px;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  color: #1c1c1c;
+  line-height: 1;
+}
+
+.premiumMain em {
+  margin-left: 6px;
+  font-style: normal;
+  font-size: 3.9rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  color: var(--p-accent);
+}
+
+.premiumGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.premiumGrid > div {
+  height: 100%;
+}
+
+.premiumCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  background: #ffffff;
+  border: 1px solid #ece4dc;
+}
+
+.premiumPhoto {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.premiumImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* 원본 사진 왼쪽 아래의 "이미지컷" 표기가 잘리지 않도록 왼쪽 기준 크롭 (item.image.position으로 개별 조정 가능) */
+  object-position: left center;
+}
+
+.premiumIcon {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin-top: -26px;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  background: var(--p-accent);
+  color: #ffffff;
+}
+
+.premiumIconDark {
+  background: var(--p-dark);
+}
+
+.premiumIcon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.premiumBody {
+  padding: 8px 6px 16px;
+  text-align: center;
+}
+
+.premiumNum {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: #555555;
+}
+
+.premiumItemLead {
+  margin-top: 4px;
+  font-size: 0.74rem;
+  line-height: 1.4;
+  color: #444444;
+  letter-spacing: -0.03em;
+  word-break: keep-all;
+}
+
+.premiumStrong {
+  margin-top: 4px;
+  font-size: 1.02rem;
+  font-weight: 800;
+  line-height: 1.3;
+  color: var(--p-accent);
+  letter-spacing: -0.03em;
+  word-break: keep-all;
+}
+
+.premiumStrongDark {
+  color: #1c1c1c;
+}
+
+.premiumSection .note {
+  color: #777777;
+}
+
+@media (max-width: 340px) {
+  .premiumStrong {
+    font-size: 0.92rem;
+  }
+}
+
+@media (max-width: 340px) {
+  .gridCard .cardTitle {
+    font-size: 0.92rem;
+  }
+}
+
+.fadeUp {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
+}
+
+.fadeUp.visible {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fadeUp {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

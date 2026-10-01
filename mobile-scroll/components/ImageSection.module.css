@@ -75,6 +75,27 @@
   transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
+/* 섹션 tabWrap: true — 탭이 많아 한 줄을 넘칠 때 여러 줄로 줄바꿈 (평면도 8개 타입 등) */
+.tabMenuWrap {
+  flex-wrap: wrap;
+}
+
+.tabMenuWrap .tabButton {
+  white-space: nowrap;
+}
+
+/* 섹션 tabCompact: true — 버튼 여백을 줄여 모바일에서도 한 줄로 나열 */
+.tabMenuCompact {
+  gap: 6px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.tabMenuCompact .tabButton {
+  padding: 10px 16px;
+  white-space: nowrap;
+}
+
 .tabButtonActive {
   background: #1d4ed8;
   border-color: #1d4ed8;

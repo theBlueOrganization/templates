@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./BenefitsSection.module.css";
 
 function FadeUp({ children, delay = 0 }) {
@@ -35,7 +35,30 @@ function FadeUp({ children, delay = 0 }) {
 
 // 히어로 바로 다음에 노출되는 "N가지 특성화" 세로 리스트 — site.benefits가 있는 현장만 렌더링
 // item.label은 \n으로 두 줄 표기 (예: "씨티뷰\n전주역 복합도시")
+// variant: "condition" — 더샵 송도그란테르 "특별한 4가지 조건" 스타일(제목 둘째 줄 가는 대형 글씨, 세리프 번호,
+// 화면 가운데에 온 항목 카드가 강조색으로 채워짐). 미설정 시 기존과 동일
 export default function BenefitsSection({ benefits, theme }) {
+  const sectionRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(-1);
+  const isCondition = benefits?.variant === "condition";
+
+  // condition 변형: 모바일엔 hover가 없으므로 스크롤로 화면 세로 중앙 띠에 들어온 항목을 활성화
+  useEffect(() => {
+    if (!isCondition) return;
+    const items = sectionRef.current?.querySelectorAll("[data-benefit-index]");
+    if (!items?.length) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveIndex(Number(entry.target.dataset.benefitIndex));
+        });
+      },
+      { rootMargin: "-45% 0px -45% 0px" }
+    );
+    items.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [isCondition]);
+
   if (!benefits) return null;
   const { eyebrow, brand, title, desc, items = [], bgImage } = benefits;
   const th = theme?.BenefitsSection ?? {};
@@ -43,9 +66,15 @@ export default function BenefitsSection({ benefits, theme }) {
 
   return (
     <section
+      ref={sectionRef}
       id="benefits"
-      className={styles.section}
-      style={{ background: bgImage ? undefined : th.background ?? "linear-gradient(180deg, #0f172a 0%, #1e293b 100%)" }}
+      className={isCondition ? `${styles.section} ${styles.condition}` : styles.section}
+      style={{
+        background: bgImage ? undefined : th.background ?? "linear-gradient(180deg, #0f172a 0%, #1e293b 100%)",
+        ...(th.activeBackground ? { "--active-bg": th.activeBackground } : {}),
+        ...(th.activeTextColor ? { "--active-text": th.activeTextColor } : {}),
+        ...(th.activeSubColor ? { "--active-sub": th.activeSubColor } : {}),
+      }}
     >
       {bgImage && (
         <div className={styles.bgWrap}>
@@ -71,7 +100,11 @@ export default function BenefitsSection({ benefits, theme }) {
         <div className={styles.list}>
           {items.map((item, i) => (
             <FadeUp key={i} delay={i * 80}>
-              <div className={styles.item} style={{ borderColor: th.dividerColor }}>
+              <div
+                data-benefit-index={i}
+                className={i === activeIndex ? `${styles.item} ${styles.active}` : styles.item}
+                style={{ borderColor: th.dividerColor }}
+              >
                 <div className={styles.itemTop}>
                   <span className={styles.num} style={{ color: th.numColor }}>{item.num}</span>
                   <span className={styles.noTag} style={{ color: th.noTagColor }}>NO.{i + 1}</span>

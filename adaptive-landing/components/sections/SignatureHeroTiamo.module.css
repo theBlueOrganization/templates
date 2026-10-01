@@ -1,0 +1,203 @@
+/* 모바일 기본 — 슬라이드(가로형) 위, 카피 블록 아래로 쌓음. 남색 물결 배경은 섹션 하단에 깔림 */
+.section {
+  position: relative;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 200% auto;
+  /* 하단 물결이 로고에 겹치지 않도록 아래 여백을 넉넉히 */
+  padding: 0 0 170px;
+  overflow: hidden;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.visual {
+  position: relative;
+}
+
+.slides {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1160 / 805;
+  overflow: hidden;
+  background: #e9edf1;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+}
+
+.slideImage {
+  object-fit: cover;
+}
+
+/* 페이지 번호 — 모바일은 이미지 오른쪽 아래에 가로로 작게 */
+.pager {
+  position: absolute;
+  right: 14px;
+  bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.pagerLine {
+  position: relative;
+  width: 28px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.pagerFill {
+  display: none;
+}
+
+.copy {
+  padding: 34px 24px 0;
+  color: var(--navy, #002c47);
+}
+
+.lead {
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: #002c47;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  margin-top: 22px;
+  font-family: var(--font-sans);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.06em;
+}
+
+.titleRow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.12em;
+}
+
+.titleRow + .titleRow {
+  padding-left: 0.9em;
+}
+
+.sm {
+  font-size: 30px;
+}
+
+.lg {
+  font-size: 48px;
+}
+
+.gold {
+  color: var(--gold, #bd9472);
+}
+
+.navy {
+  color: #1d2f4d;
+}
+
+.line {
+  display: block;
+  width: 43px;
+  height: 1px;
+  margin: 34px 0 26px;
+  background: #656565;
+}
+
+.logo {
+  width: 240px;
+  height: auto;
+}
+
+/* PC — 참고 사이트처럼 왼쪽 슬라이드(1160) + 오른쪽 카피(480) 2단, 슬라이드 왼쪽에 세로 페이지 번호 */
+@media (min-width: 1024px) {
+  .section {
+    background-size: cover;
+    /* PC 헤더는 position: fixed(96px)라 히어로가 헤더 밑에서 시작 — 헤더 높이만큼 더 내려서 시작 */
+    padding: calc(96px + 40px) 0 110px;
+  }
+
+  .inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1160fr) minmax(0, 480fr);
+    gap: clamp(40px, 4.5vw, 80px);
+    width: min(1720px, calc(100% - 140px));
+    margin: 0 auto;
+    align-items: start;
+  }
+
+  .pager {
+    right: auto;
+    left: -46px;
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+    flex-direction: column;
+    gap: 10px;
+    font-size: 12px;
+    color: #666;
+    text-shadow: none;
+  }
+
+  .pagerLine {
+    width: 1px;
+    height: 120px;
+    background: #d5d5d5;
+  }
+
+  .pagerFill {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1px;
+    background: #333;
+    transition: height 0.6s ease;
+  }
+
+  .copy {
+    padding: 20px 0 0;
+  }
+
+  .lead {
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .title {
+    margin-top: 40px;
+  }
+
+  .sm {
+    font-size: clamp(34px, 2.6vw, 50px);
+  }
+
+  .lg {
+    font-size: clamp(54px, 4.4vw, 84px);
+  }
+
+  .line {
+    width: 53px;
+    margin: 64px 0 40px;
+  }
+
+  .logo {
+    width: clamp(240px, 15.6vw, 300px);
+  }
+}

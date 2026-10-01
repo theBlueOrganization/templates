@@ -92,6 +92,8 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
   const heroStyle = {
     ...(hero.bgColor && { '--hero-bg': hero.bgColor }),
     ...(hero.mobileHeight && { '--hero-mobile-min-height': hero.mobileHeight }),
+    // mobileBar.dotColor — 모바일 하단 말풍선(방문예약하기 등) 앞 깜빡이는 점 색상 (기본 #004c45)
+    ...(mobileBar?.dotColor && { '--pulse-dot': mobileBar.dotColor }),
     ...(mobileBar?.offsetY != null && { '--mobile-bar-offset': `${mobileBar.offsetY}px`, '--hero-overflow': 'visible' }),
     ...(activeEyebrowColorMobile && { '--hero-eyebrow-mobile-active': activeEyebrowColorMobile }),
     ...(hero.textColor && {
@@ -116,6 +118,8 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
     ...(hero.descLineHeightMobile != null && { '--hero-desc-line-height-mobile': hero.descLineHeightMobile }),
     // hero.mobileBgShiftUp — 모바일 전용 배경 이미지(bgImageMobile)를 위로 끌어올릴 거리(px)
     ...(hero.mobileBgShiftUp != null && { '--hero-mobile-bg-shift': `${hero.mobileBgShiftUp}px` }),
+    // hero.mobileBgBottomInset — 모바일 전용 배경 이미지 하단을 하단 바(안내·전화/방문 버튼)에 가리지 않게 그만큼(px) 위에서 끝냄
+    ...(hero.mobileBgBottomInset != null && { '--hero-mobile-bg-bottom': `${hero.mobileBgBottomInset}px` }),
     // hero.brandLogoSize —{ base, lg }(px)로 brandLogo 표시 높이를 현장별로 덮어씀 (2줄 락업 로고 등)
     ...(hero.brandLogoSize && {
       '--hero-brand-logo-h': `${hero.brandLogoSize.base}px`,
@@ -143,6 +147,8 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
     slides && slides.length > 1 && hero.hideText && !hero.fullHeightSlides && styles.heroSlides,
     !(slides && slides.length > 1) && hero.imageAspectRatio && styles.heroTallImage,
     hero.contentTop && styles.heroContentTop,
+    // hero.desktopCopy.mobile — desktopCopy 블록(배지·문구·로고)을 모바일/태블릿에도 표시(기본 문구 대신)
+    hero.desktopCopy?.mobile && styles.dcMobile,
     hero.align === 'left' && styles.heroLeft,
     hero.align === 'right' && styles.heroRight,
   ]
@@ -547,6 +553,22 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
         >
           <span className={styles.scrollText}>Discover</span>
           <span className={styles.scrollLine} />
+        </motion.div>
+      )}
+
+      {/* hero.mobileScrollMouse — 모바일(768px 미만) 전용 마우스 모양 스크롤 힌트, 하단 바 바로 위 가운데 */}
+      {hero.mobileScrollMouse && (
+        <motion.div
+          className={styles.scrollMouse}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 1.1 }}
+          aria-hidden
+        >
+          <span className={styles.scrollMouseBody}>
+            <span className={styles.scrollMouseWheel} />
+          </span>
+          <span className={styles.scrollMouseText}>SCROLL</span>
         </motion.div>
       )}
 

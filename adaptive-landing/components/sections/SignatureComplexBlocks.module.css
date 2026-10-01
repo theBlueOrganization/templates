@@ -37,6 +37,101 @@
   font-weight: 700;
 }
 
+/* 섹션 타이틀 — COMPLEX / 단지(얇게)안내(굵게) */
+.sectionHead {
+  padding: 64px 20px 0;
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  font-family: var(--font-montserrat);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--gold, #b9a58d);
+}
+
+.sectionTitle {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 30px;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  color: #111;
+}
+
+.sectionTitle strong {
+  font-weight: 700;
+}
+
+/* 섹션 타이틀 바로 아래 원형 탭은 위 여백을 줄임 */
+.sectionHead + .circleTabs {
+  padding-top: 32px;
+}
+
+/* 원형 썸네일 탭(tabStyle: 'circle') — 가운데 정렬, 선택 탭은 링 + 진한 라벨, 나머지는 회색 라벨 */
+.circleTabs {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  padding: 48px 12px 0;
+}
+
+.circleTab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 76px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #999;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.03em;
+  word-break: keep-all;
+  text-align: center;
+  cursor: pointer;
+  transition: color 0.25s;
+}
+
+.circleThumb {
+  position: relative;
+  display: block;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px #e5e5e5;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.circleImg {
+  object-fit: cover;
+}
+
+.circleTab:hover .circleThumb {
+  transform: translateY(-2px);
+}
+
+.circleTabActive {
+  color: #111;
+  font-weight: 700;
+}
+
+.circleTabActive .circleThumb {
+  box-shadow: 0 0 0 3px #fff, 0 0 0 5px #222;
+}
+
+/* 원형 탭 바로 아래 카테고리 제목은 간격을 줄임 */
+.circleTabs + .inner .head {
+  padding-top: 36px;
+}
+
 .inner {
   max-width: 430px;
   margin: 0 auto;
@@ -129,6 +224,42 @@
 }
 
 @media (min-width: 768px) {
+  .sectionHead {
+    padding-top: 110px;
+  }
+
+  .eyebrow {
+    font-size: 15px;
+  }
+
+  .sectionTitle {
+    font-size: 44px;
+  }
+
+  .circleTabs {
+    gap: 36px;
+    padding-top: 80px;
+  }
+
+  .sectionHead + .circleTabs {
+    padding-top: 48px;
+  }
+
+  .circleTab {
+    width: 160px;
+    gap: 14px;
+    font-size: 17px;
+  }
+
+  .circleThumb {
+    width: 110px;
+    height: 110px;
+  }
+
+  .circleTabs + .inner .head {
+    padding-top: 56px;
+  }
+
   .catTab {
     height: 56px;
     font-size: 15px;

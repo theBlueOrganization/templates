@@ -161,10 +161,11 @@
 /* hero.mobileBgShiftUp — 세로형 모바일 이미지는 cover로 좌우만 잘려 object-position으로는 위아래 이동이
    안 되므로, 이미지 박스를 위로 그만큼 늘려(top 음수 + height 증가) 그림 자체를 위로 끌어올림.
    하단은 계속 꽉 차고, 위로 넘친 부분은 .hero의 overflow:hidden으로 잘림 (값이 없으면 0 → 기존과 동일).
+   hero.mobileBgBottomInset — 하단 바에 이미지 아랫부분이 가리지 않도록 이미지 박스 높이를 그만큼 줄임(바 뒤는 --hero-bg).
    next/image fill이 top/height를 인라인 스타일로 박아넣어서 !important 없이는 적용되지 않음 */
 img.bgImageMobileOnly {
   top: calc(-1 * var(--hero-mobile-bg-shift, 0px)) !important;
-  height: calc(100% + var(--hero-mobile-bg-shift, 0px)) !important;
+  height: calc(100% + var(--hero-mobile-bg-shift, 0px) - var(--hero-mobile-bg-bottom, 0px)) !important;
 }
 
 .bgImageDesktopOnly {
@@ -734,6 +735,72 @@ img.bgImageMobileOnly {
   }
 }
 
+/* hero.mobileScrollMouse — 모바일 전용 마우스 모양 스크롤 힌트 (휠 점이 아래로 반복 이동).
+   하단 바(안내바+버튼) 위에 오도록 bottom은 --hero-mobile-bg-bottom(없으면 100px) 기준 */
+.scrollMouse {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: calc(var(--hero-mobile-bg-bottom, 100px) + 16px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.35));
+}
+
+.scrollMouseBody {
+  position: relative;
+  display: block;
+  width: 20px;
+  height: 32px;
+  border: 2px solid #fff;
+  border-radius: 12px;
+}
+
+.scrollMouseWheel {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  width: 4px;
+  height: 7px;
+  margin-left: -2px;
+  border-radius: 2px;
+  background: #fff;
+  animation: scrollMouseWheel 1.6s ease-in-out infinite;
+}
+
+.scrollMouseText {
+  font-family: var(--font-montserrat);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  color: #fff;
+}
+
+@keyframes scrollMouseWheel {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  70% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .scrollMouse {
+    display: none;
+  }
+}
+
 .mobileBreak {
   display: inline;
 }
@@ -990,7 +1057,7 @@ img.bgImageMobileOnly {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: #004c45;
+  background: var(--pulse-dot, #004c45);
   animation: pulseDot 1.6s ease-in-out infinite;
 }
 
@@ -1113,6 +1180,132 @@ img.bgImageMobileOnly {
   .dcBadgeLast {
     font-weight: 500;
     color: #111;
+  }
+}
+
+/* hero.desktopCopy.mobile — 1024px 미만에서도 desktopCopy를 표시: 상단 가운데 문구 + 좌상단 작은 원형 배지
+   (예: 호반써밋 첨단3지구 — 공식 홈페이지 모바일 메인과 같은 구성). 기본 문구(content)는 숨김 */
+@media (max-width: 1023px) {
+  .dcMobile .contentBelowLg {
+    display: none;
+  }
+
+  .dcMobile .dcCopy {
+    position: absolute;
+    z-index: 1;
+    top: 128px;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+    text-align: center;
+    color: #111;
+    font-family: var(--font-serif);
+  }
+
+  .dcMobile .dcEyebrow {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  .dcMobile .dcTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.05em;
+    margin: 0.7em 0 0;
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+    color: #111;
+  }
+
+  .dcMobile .dcAccent {
+    color: var(--visit-btn-bg, var(--gold));
+  }
+
+  .dcMobile .dcLogo {
+    width: 180px;
+    height: auto;
+    margin-top: 1.8em;
+  }
+
+  .dcMobile .dcBadge {
+    position: absolute;
+    z-index: 1;
+    top: 26px;
+    left: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 84px;
+    height: 84px;
+  }
+
+  .dcMobile .dcBadgeRing {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    animation: dcRotate 14s linear infinite;
+  }
+
+  .dcMobile .dcBadgeText {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 62px;
+    height: 62px;
+    margin: 0;
+    border-radius: 50%;
+    background: #fff;
+    font-size: 12.5px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--visit-btn-bg, var(--gold));
+  }
+
+  .dcMobile .dcBadgeLast {
+    font-weight: 500;
+    color: #111;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .dcMobile .dcCopy {
+    top: 140px;
+  }
+
+  .dcMobile .dcEyebrow {
+    font-size: 20px;
+  }
+
+  .dcMobile .dcTitle {
+    font-size: 36px;
+  }
+
+  .dcMobile .dcLogo {
+    width: 220px;
+  }
+
+  .dcMobile .dcBadge {
+    top: 32px;
+    left: 36px;
+    width: 110px;
+    height: 110px;
+  }
+
+  .dcMobile .dcBadgeText {
+    width: 84px;
+    height: 84px;
+    font-size: 16px;
   }
 }
 

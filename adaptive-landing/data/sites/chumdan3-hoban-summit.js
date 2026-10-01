@@ -10,17 +10,17 @@
 //   배치도·동호수(block_7bl/8bl), 커뮤니티(community_7bl/8bl), 확장 기본형 평면(84a~135, 기타공용·계약면적 포함).
 //   A7·A8 조경, 첨단3지구 세대수, 개발 로드맵, 위치 features 이미지는 브리핑 PDF 크롭 유지.
 //   헤더/푸터 로고는 p2 우상단 HOBAN SUMMIT 첨단3지구 워드마크를 흰색 투명 PNG로 추출(logo-white.png).
-// 대표번호 1800-0000(임시), 상담 알림 문자 수신번호(adminPhones) 010-9421-6962 — 2026-09-30 사용자 전달값.
+// 대표번호 1661-5440, 상담 알림 문자 수신번호(adminPhones) 010-7573-9196 — 2026-09-30 사용자 전달값.
 const config = {
   slug: 'chumdan3-hoban-summit',
   // 첨단3지구호반써밋.addupapt.kr → /apt/chumdan3-hoban-summit (middleware.js)
   subdomain: '첨단3지구호반써밋',
   projectName: '호반써밋 첨단3지구',
   shortName: '호반써밋 첨단3지구',
-  telNumber: '1800-0000',
+  telNumber: '1661-5440',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/chumdan3-hoban-summit/og.jpg',
   // 상담신청 알림 문자 수신번호
-  adminPhones: ['01094216962'],
+  adminPhones: ['01075739196'],
   sheetId: '',
   sheetTab: '첨단3지구호반써밋',
   showUtmInSms: true,
@@ -66,7 +66,7 @@ const config = {
       logoSize: { base: 80, lg: 96, xl: 104 },
       gnb: ['사업안내', '위치안내', '프리미엄', '단지안내', '세대안내', '상담신청 및 방문예약'],
       quickCtaLabel: '방문예약',
-      phone: '1800-0000',
+      phone: '1661-5440',
     },
 
     popup: { enabled: false },
@@ -75,7 +75,7 @@ const config = {
     quickMenu: {
       brand: 'HOBAN SUMMIT',
       phoneLabel: '분양문의',
-      phone: '1800-0000',
+      phone: '1661-5440',
       favoriteLabel: '방문예약',
       menuLabel: 'MENU',
       ctaTargetId: 'vip-reservation',
@@ -105,8 +105,14 @@ const config = {
       keepTextShadow: true,
       overlay: false,
       contentTop: true,
-      // PC(1024px 이상)는 공식 홈페이지 메인과 같은 우측 문구 블록 + 좌상단 회전 배지(SignatureHero desktopCopy), 모바일은 slides 문구
+      // 요청 반영(2026-09-30) — 모바일 이미지 하단(도로·건물 아랫부분)이 하단 바(100px)에 가려 그림이 위로 치우쳐 보이던 문제
+      mobileBgBottomInset: 100,
+      // 요청 반영(2026-09-30) — 모바일 히어로 하단에 마우스 모양 스크롤 힌트
+      mobileScrollMouse: true,
+      // PC(1024px 이상)는 공식 홈페이지 메인과 같은 우측 문구 블록 + 좌상단 회전 배지(SignatureHero desktopCopy), 모바일도 같은 블록(mobile: true)
       desktopCopy: {
+        // 요청 반영(2026-09-30) — 모바일도 공식 홈페이지 모바일 메인처럼 같은 문구 블록 + 좌상단 원형 배지로
+        mobile: true,
         eyebrow: '첨단3지구를 선점할 다시없을 기회',
         title: '첨단3지구',
         accent: '분양가 상한제 아파트',
@@ -126,16 +132,12 @@ const config = {
           bgImage: { src: '/apt/chumdan3-hoban-summit/hero-2.webp', alt: '호반써밋 첨단3지구 투시도' },
           bgImageMobile: { src: '/apt/chumdan3-hoban-summit/hero-2-m.webp', alt: '호반써밋 첨단3지구 투시도' },
         },
-        {
-          eyebrowLine1: '84㎡ · 117㎡ · 135㎡',
-          eyebrowLine2: '남향 위주 판상형 특급설계.',
-          bgImage: { src: '/apt/chumdan3-hoban-summit/hero-3.webp', alt: '호반써밋 첨단3지구 A8BL 조감도' },
-        },
       ],
       mobileBar: {
         announcements: [{ badge: '안내', textStrong: '호반써밋 첨단3지구', textLight: ' 공식 안내센터입니다.' }],
         announceBg: '#a95d4f',
         bubbleText: '방문예약하기',
+        dotColor: '#a95d4f',
         callLabel: '전화상담',
         visitLabel: '방문예약',
       },
@@ -226,13 +228,16 @@ const config = {
     },
 
     // 프리미엄 인트로 — 공식 홈페이지 투시도(planning_img02_1)
+    // 요청 반영(2026-09-30) — city-ociel-9-2처럼 왼쪽 이미지컷 + 오른쪽 세로 카피(split). paragraphs는 줄 단위로 끊어 PC·모바일 동일 줄바꿈
     premiumIntro: {
+      split: true,
       eyebrow: 'HOBAN SUMMIT',
       titleLine1: '지상에 차 없는 공원 같은 단지',
-      titleLine2: '호반써밋 첨단3지구',
-      descLine1: '전남·광주 최초 「호반 써밋 조경」 적용, 총 805세대 규모',
-      descLine1Accent: ['805세대'],
-      descLine2: 'A7BL 356세대 / A8BL 449세대, 교육·공원의 중심에서 프리미엄 라이프가 시작됩니다.',
+      paragraphs: [
+        ['전남·광주 최초', '「호반 써밋 조경」 적용', '총 805세대 규모'],
+        ['A7BL 356세대 / A8BL 449세대', '교육·공원의 중심에서', '프리미엄 라이프가 시작됩니다'],
+      ],
+      imageBadge: '투시도',
       bgImage: { src: '/apt/chumdan3-hoban-summit/premium-intro-bg.webp', alt: '호반써밋 첨단3지구 투시도' },
     },
 
@@ -246,7 +251,6 @@ const config = {
       titleLead: '호반써밋 첨단3지구만의',
       titleWord: 'PREMIUM',
       titleNum: '8',
-      script: '오늘, 더 큰 내일이 시작되는 곳',
       // 이 필드들은 기본 카드형(SignaturePremiumValue)용 — premium8에서는 쓰지 않지만 필수 필드라 유지
       eyebrow: 'PREMIUM LIFE',
       titlePlain: '호반써밋 첨단3지구 ',
@@ -268,9 +272,15 @@ const config = {
     complex: {
       id: 'complex',
       variant: 'blockTabs',
+      // 요청 반영(2026-09-30) — 카테고리 탭을 원형 썸네일로(city-ociel-9-2 단지안내와 같은 느낌). 썸네일은 기존 이미지에서 크롭(complex-thumb-*.webp)
+      tabStyle: 'circle',
+      eyebrow: 'COMPLEX',
+      titlePlain: '단지',
+      titleAccent: '안내',
       categories: [
         {
           label: '설계',
+          thumb: '/apt/chumdan3-hoban-summit/complex-thumb-design.webp',
           blocks: [
             { label: 'A7BL', image: { src: '/apt/chumdan3-hoban-summit/complex-a7-aerial.webp', alt: 'A7BL 설계 — 조감도·주출입구·선큰·중앙광장', width: 1200, height: 1574 } },
             { label: 'A8BL', image: { src: '/apt/chumdan3-hoban-summit/complex-a8-aerial.webp', alt: 'A8BL 설계 — 조감도', width: 1200, height: 1574 } },
@@ -278,6 +288,7 @@ const config = {
         },
         {
           label: '커뮤니티',
+          thumb: '/apt/chumdan3-hoban-summit/complex-thumb-community.webp',
           blocks: [
             { label: 'A7BL', image: { src: '/apt/chumdan3-hoban-summit/complex-a7-community.webp', alt: 'A7BL 커뮤니티 시설', width: 1200, height: 768 } },
             { label: 'A8BL', image: { src: '/apt/chumdan3-hoban-summit/complex-a8-community.webp', alt: 'A8BL 커뮤니티 시설', width: 1200, height: 768 } },
@@ -285,10 +296,12 @@ const config = {
         },
         {
           label: '시스템',
+          thumb: '/apt/chumdan3-hoban-summit/complex-thumb-system.webp',
           blocks: [{ label: '공통', image: { src: '/apt/chumdan3-hoban-summit/complex-system.webp', alt: '호반써밋 첨단3지구 시스템', width: 1200, height: 2600 } }],
         },
         {
           label: '단지/동·호수배치도',
+          thumb: '/apt/chumdan3-hoban-summit/complex-thumb-block.webp',
           title: '단지/동·호수배치도',
           blocks: [
             { label: 'A7BL', image: { src: '/apt/chumdan3-hoban-summit/complex-a7-block.webp', alt: 'A7BL 단지배치도 및 동·호수 배치도(84㎡A 262세대 / 84㎡B 94세대)', width: 1200, height: 1735 } },
@@ -393,7 +406,7 @@ const config = {
         '※ 본 자료에 표현된 현황, 개발계획, 예정사항 등은 관계기관의 홈페이지 및 해당기관의 고시 등을 참조하여 작성된 것으로 사업계획 및 일정은 당사자와는 무관하며 사업주체 및 해당관청의 사정에 의해 지연, 변경 또는 취소될 수 있습니다.',
         '※ 제작, 편집, 인쇄과정상 오탈자 등의 오류가 있을 수 있으니, 계약 전 반드시 견본주택 관계자에게 문의하시기 바랍니다.',
       ],
-      csPhone: '1800-0000',
+      csPhone: '1661-5440',
       csHours: 'AM 09:00 ~ PM 19:00',
     },
   },

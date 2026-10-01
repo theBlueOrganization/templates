@@ -186,6 +186,154 @@
   word-break: keep-all;
 }
 
+/* ─── premium 레이아웃 (PREMIUM N 카드형) ─────────────── */
+.premiumSection {
+  --p-accent: #a5584a;
+  --p-dark: #4a4644;
+  position: relative;
+  width: 100%;
+  padding: 56px 12px 60px;
+  background: linear-gradient(180deg, #faf6f2 0%, #f4ede6 100%);
+}
+
+.premiumTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.premiumLead {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333333;
+  letter-spacing: -0.02em;
+}
+
+.premiumMain {
+  display: flex;
+  align-items: center;
+  margin-top: 6px;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  color: #1c1c1c;
+  line-height: 1;
+}
+
+.premiumMain em {
+  margin-left: 6px;
+  font-style: normal;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 3.9rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  color: var(--p-accent);
+}
+
+.premiumGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.premiumGrid > div {
+  height: 100%;
+}
+
+.premiumCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  background: #ffffff;
+  border: 1px solid #ece4dc;
+}
+
+.premiumPhoto {
+  width: 100%;
+  aspect-ratio: 413 / 200;
+  overflow: hidden;
+}
+
+.premiumImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.premiumIcon {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin-top: -26px;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  background: var(--p-accent);
+  color: #ffffff;
+}
+
+.premiumIconDark {
+  background: var(--p-dark);
+}
+
+.premiumIcon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.premiumBody {
+  padding: 8px 6px 16px;
+  text-align: center;
+}
+
+.premiumNum {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: #555555;
+}
+
+.premiumItemLead {
+  margin-top: 4px;
+  font-size: 0.74rem;
+  line-height: 1.4;
+  color: #444444;
+  letter-spacing: -0.03em;
+  word-break: keep-all;
+}
+
+.premiumStrong {
+  margin-top: 4px;
+  font-size: 1.02rem;
+  font-weight: 800;
+  line-height: 1.3;
+  color: var(--p-accent);
+  letter-spacing: -0.03em;
+  word-break: keep-all;
+}
+
+.premiumStrongDark {
+  color: #1c1c1c;
+}
+
+.premiumSection .note {
+  color: #777777;
+}
+
+@media (max-width: 340px) {
+  .premiumStrong {
+    font-size: 0.92rem;
+  }
+}
+
 @media (max-width: 340px) {
   .gridCard .cardTitle {
     font-size: 0.92rem;

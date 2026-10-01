@@ -99,6 +99,7 @@ const adaptiveLandingPointers = [
   { slug: "pungmu-sujain-gracent-2", subdomain: "풍무수자인그라센트2차", template: "adaptive-landing" },
   { slug: "chumdan3-hoban-summit", subdomain: "첨단3지구호반써밋", template: "adaptive-landing" },
   { slug: "cheongna-theliv-tiamo-casa", subdomain: "청라더리브티아모까사", template: "adaptive-landing" },
+  { slug: "cheongna-theliv-tiamo-casa-2", subdomain: "청라더리브티아모까사2", template: "adaptive-landing" },
 ];
 
 const allSites = [...sites, ...adaptiveLandingPointers];

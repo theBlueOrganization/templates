@@ -1,3 +1,6 @@
+// 청라 더리브 티아모 까사2 (청라더리브티아모까사2.addupapt.kr) — 원본(cheongna-theliv-tiamo-casa)은 아크원처럼 풀페이지
+// 몰입형(SignatureTiamoImmersive)이고, 이 사이트는 같은 콘텐츠를 기존 섹션형(헤더→히어로→사업개요→…→상담신청)으로 보여주는 2번째 사이트.
+// 이미지는 원본 폴더(/apt/cheongna-theliv-tiamo-casa/)를 그대로 공유.
 // 청라 더리브 티아모 까사 — 인천광역시 서구 청라동 157-11(인천 청라국제도시 157-11 오피스텔). 시행위탁 청라플러스,
 // 시공 SGC E&C(SGC이테크건설) 더리브. 지하3층~지상46층 3개동(101~103동), 오피스텔 523실
 // (76 208실 / 84A 208실 / 84B 104실 / 211 펜트하우스 3실), 20층 스카이브릿지로 3개동 연결.
@@ -9,10 +12,12 @@
 // 대표번호 1533-6480, 상담 알림 문자 진의원 010-7190-1052 / 최용호 010-4985-1470 (2026-10-01 사용자 전달값).
 // 구조는 같은 방식(참고 사이트 이미지 기반)으로 만든 buk-osan-xi-deforet를 기준으로 구성.
 const config = {
-  slug: 'cheongna-theliv-tiamo-casa',
-  // 청라더리브티아모까사.addupapt.kr → /apt/cheongna-theliv-tiamo-casa (middleware.js)
-  subdomain: '청라더리브티아모까사',
-  projectName: '청라 더리브 티아모 까사',
+  slug: 'cheongna-theliv-tiamo-casa-2',
+  // 청라더리브티아모까사2.addupapt.kr → /apt/cheongna-theliv-tiamo-casa-2 (mobile-scroll middleware 프록시)
+  subdomain: '청라더리브티아모까사2',
+  // 문자 제목에서 원본과 구분되도록 '2'를 붙이고, 카톡 공유 제목(metaTitle)은 원본과 같게
+  projectName: '청라 더리브 티아모 까사2',
+  metaTitle: '청라 더리브 티아모 까사',
   shortName: '청라 더리브 티아모 까사',
   telNumber: '1533-6480',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/cheongna-theliv-tiamo-casa/og.jpg',
@@ -31,7 +36,7 @@ const config = {
     '01049851470': '최용호',
   },
   sheetId: '',
-  sheetTab: '청라더리브티아모까사',
+  sheetTab: '청라더리브티아모까사2',
   showUtmInSms: true,
 
   company: {

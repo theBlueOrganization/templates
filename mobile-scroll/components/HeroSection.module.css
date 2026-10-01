@@ -10,6 +10,12 @@
   --hero-half: calc(var(--vh, 1vh) * 50);
 }
 
+/* hero.intro 재생 중에는 배지·카드 등 등장 애니메이션을 멈춰 두었다가 인트로가 끝나면 이어서 재생 */
+.introWait,
+.introWait * {
+  animation-play-state: paused !important;
+}
+
 /* ── 배경 이미지 ── */
 .imageWrap {
   position: absolute;

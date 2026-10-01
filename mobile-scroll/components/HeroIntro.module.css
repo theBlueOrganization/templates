@@ -1,0 +1,180 @@
+/* 시티오씨엘 9단지 인트로(모바일 구조)와 같은 타이밍:
+   0~1.8s 원 2개 드로잉 → 1.25s~ 로고 페이드인 → 2.8~4.2s 원이 비껴나며 사라짐 → 3.5s~ 원 안 배경 →
+   5s 원이 화면 전체로 열림(1.2s) + 로고 위로 이동 → 6s 오버레이 페이드아웃, 히어로 본편 시작 */
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 10000; /* 팝업·상단 메뉴보다 위 — 인트로가 끝나면 그 아래 팝업이 그대로 보임 */
+  overflow: hidden;
+  background: #000000;
+  color: #ffffff;
+  transition: opacity 0.7s ease;
+}
+
+.leaving {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---------- 원 2개 ---------- */
+.cirWrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(70vw, 420px);
+  height: min(70vw, 420px);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.open .cirWrap {
+  visibility: hidden;
+  transition: visibility 0s linear 4.2s;
+}
+
+.cir {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.cirA {
+  left: -8%;
+  top: 8%;
+}
+
+.cirB {
+  left: 8%;
+  top: 0;
+}
+
+.cir svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.cir svg circle {
+  stroke-dasharray: 1571;
+  stroke-dashoffset: 1571;
+}
+
+.cirB svg circle {
+  transform: rotate(180deg);
+  transform-origin: 250px 250px;
+}
+
+.open .cirA {
+  animation: moveA 4.2s ease forwards;
+}
+
+.open .cirB {
+  animation: moveB 4.2s ease forwards;
+}
+
+.open .cir svg circle {
+  animation: draw 4.2s ease forwards;
+}
+
+@keyframes draw {
+  0%        { stroke-dashoffset: 1571; }
+  43%, 100% { stroke-dashoffset: 0; }
+}
+
+@keyframes moveA {
+  0%, 67% { transform: translate(0, 0); opacity: 1; }
+  100%    { transform: translate(8%, -4%); opacity: 0; }
+}
+
+@keyframes moveB {
+  0%, 67% { transform: translate(0, 0); opacity: 1; }
+  100%    { transform: translate(-8%, 4%); opacity: 0; }
+}
+
+/* ---------- 원 안 배경 → 화면 전체로 열림 ---------- */
+.clip {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  clip-path: circle(min(33vw, 198px) at 50% calc(50% + 2vw));
+  transition: clip-path 1.2s 5s;
+}
+
+.open .clip {
+  clip-path: circle(75% at 50% calc(50% + 2vw));
+}
+
+.clip span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #000000 center bottom / cover no-repeat;
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 1.5s 3.5s, transform 1.5s 3.5s;
+}
+
+.open .clip span {
+  opacity: 0.85;
+  transform: scale(1);
+}
+
+/* ---------- 로고 ---------- */
+.logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 80%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 3s 1.25s;
+}
+
+.logoImg {
+  display: block;
+  width: 84px;
+  height: auto;
+}
+
+.logoTitle {
+  font-size: clamp(1.5rem, 7vw, 2rem);
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
+}
+
+.open .logo {
+  opacity: 1;
+  animation: logoUp 1.5s cubic-bezier(0.4, 0, 0.2, 1) 5s forwards;
+}
+
+@keyframes logoUp {
+  to {
+    top: 18%;
+    transform: translate(-50%, 0);
+  }
+}
+
+/* ---------- SKIP ---------- */
+.skipBtn {
+  position: absolute;
+  right: 20px;
+  bottom: 25px;
+  z-index: 10;
+  padding: 12px 26px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-size: 12px;
+  letter-spacing: 2px;
+  cursor: pointer;
+}

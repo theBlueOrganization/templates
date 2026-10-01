@@ -55,6 +55,13 @@ const config = {
     subtitle:      " 문의) 1600-1646",
     bgColor:       "#1e293b",
     accentKeyword: ["5%"],
+    // 시티오씨엘 9단지 스타일 인트로(모바일 구조) — 원 2개 → XI 로고 → 원 안 단지 사진 → 전체로 열린 뒤 히어로 시작
+    // 로고는 adaptive-landing 오산헤리티지자이x의 흰색 XI 마크(logo-white.svg)
+    intro: {
+      logo:   { src: "/apt/osan-heritage-xi-2/logo-white.svg", alt: "자이", width: 84, height: 46 },
+      title:  "오산헤리티지자이",
+      clipBg: "/apt/osan-heritage-xi-2/main2.webp",
+    },
     // 광고주 요청: 진입 시 '1차 계약금 500만원'이 가장 먼저 보이도록 초대형 숫자 카드로 강조
     highlight: {
       label:  "1차 계약금",

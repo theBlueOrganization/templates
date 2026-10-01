@@ -143,7 +143,7 @@ const config = {
       // 오산헤리티지자이x 입지 항목 스타일 — 흰 배경, "제목(일부 굵게) + 영문 태그" → 사진 → 설명
       layout:    "simple",
       sectionBg: "#ffffff",
-      accent:    "#1e3a5f",
+      accent:    "#006899",
       eyebrow:   "LOCATION",
       title:     "병점X동탄 더블생활권\nGTX-C 교통망 수혜지",
       subtitle:  "1호선·동탄 연장선·트램·GTX-C, 병점역 복합환승센터(공사비 2,200억) 개발 중",
@@ -298,49 +298,51 @@ const config = {
       textOverlay: "linear-gradient(to bottom, rgba(6,10,30,0.92) 0%, rgba(6,10,30,0.7) 50%, rgba(6,10,30,0) 85%)",
     },
 
-    // ── 색상 통일: 남색 #1e3a5f(버튼·탭·카드 강조) + 골드 #fbbf24/#f59e0b(포인트), 분홍·빨강 계열 제거 ──
+    // ── 색상 체계 ──
+    // 남색 #1e3a5f: 버튼·탭 / 자이 블루 #006899: 포인트(어두운 배경 위 글자는 같은 계열 밝은 톤 #5bc0e6)
+    // 골드 #fbbf24: 핵심 강조(히어로 계약금 5%·500만원 카드)에만 사용
 
-    // 히어로 500만원 강조 카드 — 빨간 라벨 대신 골드 라벨 + 남색 글씨
+    // 히어로 500만원 강조 카드 — 숫자·테두리는 골드 유지, 라벨은 자이 블루
     highlight: {
-      labelBackground: "#fbbf24",
-      labelColor:      "#1e3a5f",
+      labelBackground: "#006899",
+      labelColor:      "#ffffff",
     },
 
-    // features 타입 섹션(입지환경·프리미엄) — 강조색 골드, PREMIUM 카드 아이콘·문구는 남색/골드 교차
+    // features 타입 섹션 — 강조색 자이 블루, PREMIUM 카드 아이콘·문구는 남색/자이 블루 교차
     FeatureSection: {
-      accent:        "#f59e0b",
+      accent:        "#006899",
       premiumAccent: "#1e3a5f",
-      premiumDark:   "#f59e0b",
+      premiumDark:   "#006899",
     },
 
-    // 영상 섹션 강조색(기본 하늘색 → 골드)
+    // 영상 섹션 강조색 — 어두운 배경이라 자이 블루의 밝은 톤
     FilmSection: {
-      accent: "#fbbf24",
+      accent: "#5bc0e6",
     },
 
-    // 상단 메뉴 활성 탭(기본 파란색 → 남색)
+    // 상단 메뉴 활성 탭 — 자이 블루
     TopNav_active: {
-      color:       "#1e3a5f",
-      borderColor: "#1e3a5f",
+      color:       "#006899",
+      borderColor: "#006899",
     },
 
     // 섹션 헤더 구분선
     ImageSection_divider: {
-      background: "linear-gradient(90deg, #1e3a5f, #f59e0b)",
+      background: "linear-gradient(90deg, #1e3a5f, #006899)",
       width:      "40px",
       height:     "3px",
     },
 
     // 히어로 배지 (eyebrow)
     eyebrow: {
-      color:       "#f5c15c",
-      borderColor: "rgba(245,193,92,0.5)",
+      color:       "#ffffff",
+      borderColor: "rgba(0,104,153,0.9)",
       fontSize:    "1rem",
     },
     // 긴급 배지 (eyebrowUrgent)
     eyebrowUrgent: {
-      color:       "#fbbf24",
-      borderColor: "rgba(251,191,36,0.6)",
+      color:       "#ffffff",
+      borderColor: "rgba(0,104,153,0.9)",
     },
 
     // 히어로 브랜드명
@@ -356,13 +358,14 @@ const config = {
       accentColor: "#fbbf24",
     },
 
-    // 핵심 혜택 리스트(condition 변형) — 배경 사진 위 오버레이, eyebrow·번호·활성 카드는 골드로 통일
+    // 핵심 혜택 리스트(condition 변형) — 배경 사진 위 오버레이, 활성 카드는 자이 블루 면 + 흰 글씨
     BenefitsSection: {
       overlay:          "linear-gradient(180deg, rgba(10,16,32,0.88) 0%, rgba(10,16,32,0.8) 40%, rgba(10,16,32,0.92) 100%)",
-      eyebrowColor:     "#fbbf24",
-      numColor:         "#fbbf24",
-      activeBackground: "#fbbf24",
-      activeTextColor:  "#1e3a5f",
+      eyebrowColor:     "#5bc0e6",
+      numColor:         "#5bc0e6",
+      activeBackground: "#006899",
+      activeTextColor:  "#ffffff",
+      activeSubColor:   "rgba(255,255,255,0.7)",
     },
 
     // 히어로 서브타이틀

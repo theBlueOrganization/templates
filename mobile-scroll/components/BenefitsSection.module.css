@@ -207,7 +207,7 @@
 }
 
 .condition .item.active .noTag {
-  color: rgba(15, 31, 61, 0.55) !important;
+  color: var(--active-sub, rgba(15, 31, 61, 0.55)) !important;
 }
 
 @media (hover: hover) {

@@ -42,7 +42,7 @@
 | `kakao`, `kakaoTemplateId` | 카카오 알림톡 사용 여부 + 템플릿ID (미사용 시 SMS로 자동 폴백) |
 | `kakaoByUtm` | 특정 유입경로만 카카오 알림톡으로 발송 (나머지는 SMS) |
 | `heroByUtm` | 특정 유입경로 방문자에게만 히어로 타이틀/서브타이틀 등을 다르게 표시 |
-| `benefits.variant` | `"condition"`이면 혜택 리스트를 더샵 송도그란테르 "특별한 4가지 조건" 스타일로 표시(제목 둘째 줄 가는 대형 글씨, 세리프 번호, 스크롤로 화면 가운데 온 항목 카드를 `theme.BenefitsSection.activeBackground`/`activeTextColor`로 채움). 미설정 시 기존 스타일 |
+| `benefits.variant` | `"condition"`이면 혜택 리스트를 더샵 송도그란테르 "특별한 4가지 조건" 스타일로 표시(제목 둘째 줄 가는 대형 글씨, 세리프 번호, 스크롤로 화면 가운데 온 항목 카드를 `theme.BenefitsSection.activeBackground`/`activeTextColor`/`activeSubColor`(NO.N 태그)로 채움). 미설정 시 기존 스타일 |
 | `hero.highlight` | `{ label?, prefix?, value, unit?, desc? }` — 히어로 타이틀 아래에 핵심 혜택(예: 1차 계약금 500만원)을 초대형 숫자 카드로 강조. 색상은 `theme.highlight`(`borderColor`/`valueGradient`/`labelBackground`/`labelColor`)로 오버라이드 |
 | 섹션 `tabWrap` | `true`면 탭이 한 줄을 넘칠 때 여러 줄로 줄바꿈(평면도 타입이 많은 경우 등). 미설정 시 기존처럼 한 줄 |
 | `hero.enableVariants` | `?v=1` 쿼리스트링으로 히어로 타입(레이아웃 변형) 전환 허용 |

@@ -73,6 +73,7 @@ export default function BenefitsSection({ benefits, theme }) {
         background: bgImage ? undefined : th.background ?? "linear-gradient(180deg, #0f172a 0%, #1e293b 100%)",
         ...(th.activeBackground ? { "--active-bg": th.activeBackground } : {}),
         ...(th.activeTextColor ? { "--active-text": th.activeTextColor } : {}),
+        ...(th.activeSubColor ? { "--active-sub": th.activeSubColor } : {}),
       }}
     >
       {bgImage && (

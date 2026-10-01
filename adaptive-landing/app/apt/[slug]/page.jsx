@@ -57,6 +57,7 @@ import SignatureLocationGeomdan from '../../../components/sections/SignatureLoca
 import SignatureFinalInterest from '../../../components/sections/SignatureFinalInterest'
 import SignatureBottomDockGeomdan from '../../../components/ui/SignatureBottomDockGeomdan'
 import SignatureArkoneImmersive from '../../../components/sections/SignatureArkoneImmersive'
+import SignatureTiamoImmersive from '../../../components/sections/SignatureTiamoImmersive'
 import {
   SignatureArkoneIntro,
   SignatureHeroArkone,
@@ -106,7 +107,9 @@ export default async function AptPage({ params }) {
   // 기존 12섹션 고정 흐름과 완전히 다른 구조라, headerGeomdan과 같은 방식으로 여기서 전용 렌더
   // 트리로 완전히 분기하고 이후의 기존 로직은 타지 않는다. Solapi/구글시트 등 site 최상위 설정은
   // 그대로 두고, 디자인만 이 전용 컴포넌트가 담당한다.
-  if (sig.arkoneImmersive) {
+  // 청라 더리브 티아모 까사(cheongna-theliv-tiamo-casa)도 같은 구조(sig.tiamoImmersive)로 분기 —
+  // 패널 흐름·디자인은 아크원과 동일하고 콘텐츠만 다른 전용 컴포넌트(SignatureTiamoImmersive)를 렌더
+  if (sig.arkoneImmersive || sig.tiamoImmersive) {
     // 이 페이지는 telNumber/adminPhones/sheetId 등 라우팅용 설정과, 재사용하는 개인정보
     // 동의문·회사정보 몇 개만 필요 — site 전체를 그대로 넘기면 안 쓰는 legacy signature.*
     // 콘텐츠(hero/summary/premiumSplits/unitPlan 등)까지 클라이언트 페이로드로 직렬화돼
@@ -134,6 +137,7 @@ export default async function AptPage({ params }) {
         vipForm: { privacyText: sig.vipForm.privacyText },
       },
     }
+    if (sig.tiamoImmersive) return <SignatureTiamoImmersive site={immersiveSite} />
     return <SignatureArkoneImmersive site={immersiveSite} />
   }
 

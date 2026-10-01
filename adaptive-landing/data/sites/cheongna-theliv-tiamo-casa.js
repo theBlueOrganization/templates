@@ -52,6 +52,12 @@ const config = {
   ],
 
   signature: {
+    // 요청 반영(2026-10-01) — 청라아크원푸르지오.addupapt.kr(cheongna-arkone-prugio)과 똑같은 구조로:
+    // true면 SignatureTiamoImmersive(아크원 풀페이지 몰입형 복제, 콘텐츠만 티아모 까사) 전용 렌더.
+    // 아래 header/hero/summary 등 기존 signature 필드는 이 화면엔 안 쓰이고(footer.companyLines·disclaimers·
+    // csHours와 vipForm.privacyText만 사용), false로 되돌리면 기존 구성으로 바로 복귀하도록 남겨둠
+    tiamoImmersive: true,
+
     header: {
       logo: { src: '/apt/cheongna-theliv-tiamo-casa/logo-white.png', alt: '청라 더리브 티아모 까사', width: 204, height: 24 },
       logoSize: { base: 150, lg: 180, xl: 204 },

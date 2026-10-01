@@ -82,6 +82,7 @@ const config = {
     // 배경 3장 크로스페이드 — 투시도(p6) / 조감도(p7) / 사업개요 조감도(p3). 문구는 표지·사업개요·프리미엄 카피 발췌
     hero: {
       eyebrowDivider: true,
+      eyebrowStackMobile: true,
       titleLine1: '풍무역세권 수자인 그라센트 2차',
       titleWeight: 700,
       titleSize: { base: 25, md: 48, lg: 72 },

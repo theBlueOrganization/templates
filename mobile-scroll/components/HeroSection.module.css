@@ -348,7 +348,8 @@
 /* highlight.variant: "plain" — 박스(테두리·배경·빛 효과) 없이 큰 숫자 타이포만으로 강조 */
 .highlightPlain {
   display: block;
-  margin: 0 0 18px;
+  /* 큰 숫자 글리프 위쪽 기본 여백만큼 제목 쪽으로 당겨 행간을 좁힘 */
+  margin: -10px 0 16px;
   padding: 0;
   border: none;
   border-radius: 0;
@@ -361,6 +362,7 @@
 
 .highlightPlain .highlightValue {
   margin-top: 0;
+  line-height: 0.88;
 }
 
 .highlightPlain .highlightNumber {
@@ -373,7 +375,7 @@
 }
 
 .highlightPlain .highlightDesc {
-  margin-top: 8px;
+  margin-top: 4px;
   padding-top: 0;
   border-top: none;
   font-size: clamp(1rem, 4.6vw, 1.2rem);

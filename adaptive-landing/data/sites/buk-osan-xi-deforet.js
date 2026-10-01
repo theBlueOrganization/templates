@@ -78,6 +78,14 @@ const config = {
       ],
     },
 
+    // 요청 반영(2026-10-01) — 인트로(원 2개 드로잉 → 자이 로고 → 원이 화면 전체로 열리며 히어로) 추가.
+    //   배경은 히어로 첫 슬라이드와 같은 이미지라 열린 뒤 히어로로 그대로 이어짐 (SignatureCircleIntro)
+    circleIntro: {
+      logo: { src: '/apt/buk-osan-xi-deforet/logo-white.svg', alt: '북오산자이 드포레', width: 76, height: 41 },
+      bgImage: '/apt/buk-osan-xi-deforet/hero-slide-life.webp',
+      bgImageMobile: '/apt/buk-osan-xi-deforet/hero-slide-life-mobile.webp',
+    },
+
     hero: {
       eyebrowLine1: '자이라는 이름으로 완성될',
       eyebrowLine2: '새로운 시그니처 라이프',
@@ -114,6 +122,10 @@ const config = {
       hideText: true,
       // 모바일 슬라이드 원본이 640x645(거의 정사각형)라 기본 640/835로 잡으면 좌우가 잘려 문구가 가려짐
       slidesAspectRatioMobile: '640 / 645',
+      // 요청 반영(2026-10-01) — 모바일 히어로 하단에 마우스 모양 스크롤 힌트(768px 이상에서는 자동 숨김).
+      //   안내바를 히어로 아래로 내려둬서(mobileBar.offsetY) 기본 위치(하단 100px 위)는 너무 높아 하단 16px로 붙임
+      mobileScrollMouse: true,
+      mobileBgBottomInset: 0,
       badge: {
         lines: ['GS건설', '자이 대단지'],
         borderColor: '#5AC8FA',

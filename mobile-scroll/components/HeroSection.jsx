@@ -7,7 +7,7 @@ import HeroIntro from "./HeroIntro";
 
 // variant: "default" | "type1" | "type2" | "type3" …
 // 추후 변형 추가 시 여기에 케이스 추가
-// highlight: { label?, prefix?, value, unit?, desc? } — 있으면 타이틀 아래에 핵심 혜택(예: 계약금 500만원)을
+// highlight: { label?, prefix?, value, unit?, desc?, variant?: "plain" } — 있으면 타이틀 아래에 핵심 혜택(예: 계약금 500만원)을
 // 초대형 숫자 카드로 강조 노출 (없으면 기존과 동일, 색상은 theme.highlight로 오버라이드)
 // intro: { logo?, title?, clipBg } — 있으면 시티오씨엘 9단지 스타일 인트로(HeroIntro)를 먼저 재생하고, 끝난 뒤
 // 커튼 없이 히어로 텍스트 애니메이션을 시작 (없으면 기존과 동일)
@@ -223,7 +223,7 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
         </h1>
         {highlight && (
           <div
-            className={styles.highlight}
+            className={highlight.variant === "plain" ? `${styles.highlight} ${styles.highlightPlain}` : styles.highlight}
             style={{
               ...(th.highlight?.borderColor     ? { "--hl-border":   th.highlight.borderColor }     : {}),
               ...(th.highlight?.valueGradient   ? { "--hl-value":    th.highlight.valueGradient }   : {}),

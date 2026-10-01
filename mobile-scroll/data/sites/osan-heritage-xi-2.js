@@ -51,10 +51,10 @@ const config = {
     eyebrow:       "선착순 동·호 지정｜GS건설 자이",
     eyebrowUrgent: 0,
     brand:         "오산헤리티지자이",
-    title:         "계약금 5%\n파격 조건!",
+    title:         "1차 계약금",
     subtitle:      " 문의) 1600-1646",
     bgColor:       "#1e293b",
-    accentKeyword: ["5%"],
+    accentKeyword: [],
     // 시티오씨엘 9단지 스타일 인트로(모바일 구조) — 원 2개 → XI 로고 → 원 안 단지 사진 → 전체로 열린 뒤 히어로 시작
     // 로고는 adaptive-landing 오산헤리티지자이x의 흰색 XI 마크(logo-white.svg)
     intro: {
@@ -62,13 +62,13 @@ const config = {
       title:  "오산헤리티지자이",
       clipBg: "/apt/osan-heritage-xi-2/main2.webp",
     },
-    // 광고주 요청: 진입 시 '1차 계약금 500만원'이 가장 먼저 보이도록 초대형 숫자 카드로 강조
+    // 광고주 요청: 진입 시 '1차 계약금 500만원'이 가장 먼저 보이도록 강조
+    // 박스 없이(variant: "plain") "1차 계약금" 제목 아래 큰 골드 숫자 + 한 줄 설명으로 담백하게
     highlight: {
-      label:  "1차 계약금",
-      prefix: "단",
-      value:  "500",
-      unit:   "만원",
-      desc:   "총 5%로 입주까지 추가 자금 無",
+      variant: "plain",
+      value:   "500",
+      unit:    "만원",
+      desc:    "계약금 총 5%로 입주까지 추가 자금 無",
     },
     image: {
       src:    "/apt/osan-heritage-xi-2/main2.webp",

@@ -172,7 +172,8 @@
 
 @media (min-width: 1024px) {
   .hero {
-    --hero-h: max(calc(100svh - 96px), 640px);
+    /* 데스크톱은 헤더가 히어로 위에 투명하게 겹치므로 화면 전체 높이 */
+    --hero-h: max(100svh, 640px);
     --stage-offset: 0px;
   }
 
@@ -184,8 +185,9 @@
     display: block;
   }
 
+  /* 화면이 좁을수록 배경 양옆이 많이 잘려 태그가 화면 끝에 붙으므로 지시선·라벨을 폭에 비례해 줄임 */
   .tag {
-    --diag: 120px;
+    --diag: clamp(70px, 6.25vw, 120px);
   }
 
   .tagDot {
@@ -226,20 +228,21 @@
     right: calc(var(--diag) * 0.7071 + 16px);
     bottom: calc(var(--diag) * 0.7071);
     transform: translateY(50%);
-    padding: 8px 32px;
-    font-size: 21px;
+    padding: 0.4em 1.5em;
+    font-size: clamp(15px, 1.1vw, 21px);
   }
 
   .tagGray .tagLabel {
-    padding: 8px 16px;
-    font-size: 16px;
+    padding: 0.5em 1em;
+    font-size: clamp(13px, 0.85vw, 16px);
   }
 
   .content {
     top: 50%;
     left: 50%;
     right: auto;
-    width: min(84%, 1240px);
+    /* 우측 고정 퀵메뉴(약 120px)에 제목이 가리지 않게 좁은 화면에선 양옆 130px씩 비움 */
+    width: min(80%, calc(100% - 260px), 1180px);
     flex-direction: row;
     align-items: center;
     gap: 0;
@@ -257,7 +260,7 @@
     display: block;
     flex: 1;
     height: 1px;
-    margin: 0 60px;
+    margin: 0 clamp(24px, 3vw, 60px);
     background: currentColor;
     transform-origin: left center;
   }
@@ -283,6 +286,226 @@
   .mobileBar {
     display: none;
   }
+}
+
+/* hero.scrollMouse — 마우스 모양 스크롤 힌트(휠 점이 아래로 반복 이동). 모바일은 하단 액션바(100px) 위 */
+.scrollMouse {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: 116px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.35));
+}
+
+.scrollMouseBody {
+  position: relative;
+  display: block;
+  width: 20px;
+  height: 32px;
+  border: 2px solid #fff;
+  border-radius: 12px;
+}
+
+.scrollMouseWheel {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  width: 4px;
+  height: 7px;
+  margin-left: -2px;
+  border-radius: 2px;
+  background: #fff;
+  animation: scrollMouseWheel 1.6s ease-in-out infinite;
+}
+
+.scrollMouseText {
+  font-family: var(--font-montserrat);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  color: #fff;
+}
+
+@keyframes scrollMouseWheel {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  70% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+}
+
+/* hero.intro — 전체화면 인트로(공식 홈페이지 intro_wrap 재구성) */
+.lockScroll {
+  overflow: hidden !important;
+}
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  overflow: hidden;
+  background: #000;
+  cursor: pointer;
+  transition: opacity 1.2s ease;
+}
+
+.introLeaving {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.introBg {
+  position: absolute;
+  inset: 0;
+  transform: scale(1.2);
+}
+
+.introOn .introBg {
+  transform: scale(1);
+  transition: transform 6.5s ease;
+}
+
+.introBg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.introBgImage {
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+.mobileOnly {
+  display: block;
+}
+
+.desktopOnly {
+  display: none;
+}
+
+.introLine {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+.introLine svg {
+  width: 90%;
+  max-width: 1483px;
+  height: 100%;
+  transform: translateY(36px);
+}
+
+/* pathLength=1로 정규화 — dashoffset 1 → 0이면 선 길이와 무관하게 끝까지 그려짐 */
+.introLine path {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.introOn .introLine path {
+  stroke-dashoffset: 0;
+  transition-property: stroke-dashoffset;
+  transition-duration: 3.5s;
+  transition-timing-function: ease;
+}
+
+.introText {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  opacity: 0;
+}
+
+.introOn .introText {
+  opacity: 1;
+  transition: opacity 1.5s;
+}
+
+.introText h2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateY(-120px);
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 3;
+  white-space: nowrap;
+}
+
+.introTextLine {
+  opacity: 0.15;
+  transition: opacity 0.8s;
+}
+
+.introTextLineActive {
+  opacity: 1;
+  transition: opacity 1.2s;
+}
+
+.introLogo {
+  position: absolute;
+  left: 50%;
+  bottom: 120px;
+  z-index: 2;
+  width: 168px;
+  opacity: 0;
+  transform: translate(-50%, 36px);
+}
+
+.introLogo img {
+  width: 100%;
+  height: auto;
+}
+
+.introOn .introLogo {
+  opacity: 1;
+  transform: translate(-50%, 0);
+  transition: opacity 1.5s, transform 1.5s;
+}
+
+.skipBtn {
+  position: absolute;
+  right: 20px;
+  bottom: 25px;
+  z-index: 3;
+  padding: 12px 26px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-family: var(--font-montserrat);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  cursor: pointer;
 }
 
 /* 모바일 전용 하단 액션바 — 안내 롤링 배너 + 전화상담/방문예약 버튼 + 프로모 말풍선 */
@@ -428,5 +651,59 @@
   50% {
     transform: scale(1.8);
     opacity: 0.4;
+  }
+}
+
+/* 4:3에 가까운 데스크톱 화면 — 배경 양옆이 크게 잘려 왼쪽 태그 라벨이 화면 밖으로 나가므로,
+   왼쪽 태그(side 기본값)만 끝 점 오른쪽 위로 뒤집어서 표시 */
+@media (min-width: 1024px) and (max-aspect-ratio: 3/2) {
+  .tag:not(.tagRight) .tagElbow {
+    right: auto;
+    left: 0;
+    background: linear-gradient(to top left, transparent calc(50% - 0.5px), var(--tag-color) calc(50% - 0.5px), var(--tag-color) calc(50% + 0.5px), transparent calc(50% + 0.5px));
+  }
+
+  .tag:not(.tagRight) .tagElbow::before {
+    right: auto;
+    left: 100%;
+  }
+
+  .tag:not(.tagRight) .tagLabel {
+    right: auto;
+    left: calc(var(--diag) * 0.7071 + 16px);
+  }
+}
+
+/* 데스크톱 덮어쓰기 — 위 기본 규칙(인트로·스크롤 힌트)보다 뒤에 와야 이김 */
+@media (min-width: 1024px) {
+  .scrollMouse {
+    bottom: 36px;
+  }
+
+  .introLine svg {
+    transform: none;
+  }
+
+  .introText h2 {
+    transform: translateY(-144px);
+    font-size: 27px;
+  }
+
+  .introLogo {
+    bottom: 100px;
+    width: 254px;
+  }
+
+  .mobileOnly {
+    display: none;
+  }
+
+  .desktopOnly {
+    display: block;
+  }
+
+  .skipBtn {
+    right: 40px;
+    bottom: 40px;
   }
 }

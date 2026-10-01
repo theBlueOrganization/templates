@@ -2,9 +2,10 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useUtmSource } from '../../lib/useUtmSource'
 import { cn } from '../../lib/utils'
+import { DUAL_LIFE_INTRO_PATHS } from './dualLifeIntroPaths'
 import styles from './SignatureHeroDualLife.module.css'
 
 const EASE = [0.22, 1, 0.36, 1]
@@ -16,7 +17,7 @@ const lineVariants = {
 
 // 배경 이미지 + 블럭 태그를 한 무대(stage)에 같이 올림. stage는 background cover(center bottom)와 똑같이
 // 늘어나므로 태그 좌표(x/y %)를 이미지 기준으로 주면 화면 비율이 바뀌어도 늘 같은 건물을 가리킴
-function Stage({ image, tags, mobile }) {
+function Stage({ image, tags, mobile, ready }) {
   return (
     <div
       className={cn(styles.stage, mobile ? styles.stageMobile : styles.stageDesktop)}
@@ -31,7 +32,7 @@ function Stage({ image, tags, mobile }) {
             className={cn(styles.tag, tag.tone === 'gray' && styles.tagGray, tag.side === 'right' && styles.tagRight)}
             style={{ left: `${pos.x}%`, top: `${pos.y}%`, ...(pos.stem && { '--tag-stem': `${pos.stem}px` }) }}
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={{ opacity: ready ? 1 : 0 }}
             transition={{ duration: 1, delay: 1.2 + i * 0.2 }}
           >
             <span className={styles.tagDot} />
@@ -45,6 +46,105 @@ function Stage({ image, tags, mobile }) {
   )
 }
 
+// 인트로 타임라인(ms, 시작 기준) — 공식 홈페이지 introTimeline 그대로: 200ms 뒤 1줄 강조 + 라인 드로잉 시작 →
+// 1.6초 뒤 2줄 → 1.7초 뒤 3줄 → 3.2초 뒤 닫힘(1.2초 페이드)
+const INTRO_STEPS = [200, 1800, 3500]
+const INTRO_CLOSE_MS = 6700
+const INTRO_FADE_MS = 1200
+
+// 전체화면 인트로 — 어둡게 깐 히어로 배경 위로 흰 라인이 순서대로 그려지고, 카피 3줄이 한 줄씩 밝아진 뒤
+// 페이드아웃되며 히어로 카피가 이어서 등장. SKIP/화면 클릭/스크롤 시도 시 바로 닫힘, 동작 줄이기 설정이면 생략
+function DualLifeIntro({ intro, bgImage, bgImageMobile, onEnd }) {
+  const [step, setStep] = useState(-1)
+  const [leaving, setLeaving] = useState(false)
+  const [done, setDone] = useState(false)
+
+  const close = useCallback(() => setLeaving(true), [])
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setDone(true)
+      onEnd()
+      return
+    }
+    const timers = INTRO_STEPS.map((ms, i) => setTimeout(() => setStep(i), ms))
+    timers.push(setTimeout(close, INTRO_CLOSE_MS))
+    window.addEventListener('wheel', close, { passive: true })
+    window.addEventListener('touchmove', close, { passive: true })
+    window.addEventListener('keydown', close)
+    return () => {
+      timers.forEach(clearTimeout)
+      window.removeEventListener('wheel', close)
+      window.removeEventListener('touchmove', close)
+      window.removeEventListener('keydown', close)
+    }
+  }, [close, onEnd])
+
+  useEffect(() => {
+    if (!leaving) return
+    onEnd()
+    const t = setTimeout(() => setDone(true), INTRO_FADE_MS)
+    return () => clearTimeout(t)
+  }, [leaving, onEnd])
+
+  // 재생 중에는 뒤 페이지가 스크롤되지 않게
+  useEffect(() => {
+    if (done) return
+    document.documentElement.classList.add(styles.lockScroll)
+    document.body.classList.add(styles.lockScroll)
+    return () => {
+      document.documentElement.classList.remove(styles.lockScroll)
+      document.body.classList.remove(styles.lockScroll)
+    }
+  }, [done])
+
+  if (done) return null
+
+  return (
+    <div className={cn(styles.intro, step >= 0 && styles.introOn, leaving && styles.introLeaving)} onClick={close} aria-hidden="true">
+      <div className={styles.introBg}>
+        <Image src={bgImageMobile.src} alt="" fill priority sizes="100vw" className={cn(styles.introBgImage, styles.mobileOnly)} />
+        <Image src={bgImage.src} alt="" fill priority sizes="100vw" className={cn(styles.introBgImage, styles.desktopOnly)} />
+      </div>
+
+      <div className={styles.introLine}>
+        <svg viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+          {DUAL_LIFE_INTRO_PATHS.map((d, i) => (
+            <path key={i} d={d} pathLength="1" style={{ transitionDelay: `${i * 1.2}s` }} />
+          ))}
+        </svg>
+      </div>
+
+      <div className={styles.introText}>
+        <h2>
+          {intro.lines.map((line, i) => (
+            <span key={i} className={cn(styles.introTextLine, step === i && styles.introTextLineActive)}>
+              {line}
+            </span>
+          ))}
+        </h2>
+      </div>
+
+      {intro.logo && (
+        <div className={styles.introLogo}>
+          <Image src={intro.logo.src} alt={intro.logo.alt} width={intro.logo.width} height={intro.logo.height} priority />
+        </div>
+      )}
+
+      <button
+        type="button"
+        className={styles.skipBtn}
+        onClick={(e) => {
+          e.stopPropagation()
+          close()
+        }}
+      >
+        SKIP
+      </button>
+    </div>
+  )
+}
+
 // 풍무역세권 수자인 그라센트 2차 전용 — 공식 홈페이지(sujain-pm2.co.kr) 메인 비주얼 구성 이식.
 // 노을 단지 전경 위에 네이비 명조 카피("사우 생활… — 수자인 듀얼라이프의 완성")와 장식 원,
 // 1차/2차 블럭을 가리키는 지시선 태그. 모바일 하단 액션바는 SignatureHeroMinimal과 동일
@@ -53,6 +153,10 @@ export default function SignatureHeroDualLife({ hero, telNumber, telNumberByUtm,
   const [announceIndex, setAnnounceIndex] = useState(0)
   const utmSource = useUtmSource()
   const resolvedTelNumber = telNumberByUtm?.[utmSource] ?? telNumber
+  // hero.intro가 있으면 인트로가 닫히기 시작할 때까지 히어로 카피·태그를 숨겨 뒀다가 그때 등장시킴
+  const [ready, setReady] = useState(!hero.intro)
+  const handleIntroEnd = useCallback(() => setReady(true), [])
+  const show = ready ? 'show' : 'hidden'
 
   useEffect(() => {
     if (!mobileBar || mobileBar.announcements.length < 2) return
@@ -68,22 +172,26 @@ export default function SignatureHeroDualLife({ hero, telNumber, telNumberByUtm,
 
   return (
     <section id="hero" className={styles.hero}>
-      <Stage image={hero.bgImageMobile} tags={hero.tags} mobile />
-      <Stage image={hero.bgImage} tags={hero.tags} />
+      {hero.intro && (
+        <DualLifeIntro intro={hero.intro} bgImage={hero.bgImage} bgImageMobile={hero.bgImageMobile} onEnd={handleIntroEnd} />
+      )}
+
+      <Stage image={hero.bgImageMobile} tags={hero.tags} mobile ready={ready} />
+      <Stage image={hero.bgImage} tags={hero.tags} ready={ready} />
 
       <div className={styles.content}>
-        <motion.p className={styles.eyebrow} custom={0.3} initial="hidden" animate="show" variants={lineVariants}>
+        <motion.p className={styles.eyebrow} custom={0.3} initial="hidden" animate={show} variants={lineVariants}>
           {hero.eyebrow}
         </motion.p>
 
         <motion.span
           className={styles.rule}
           initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
+          animate={{ scaleX: ready ? 1 : 0 }}
           transition={{ duration: 1.2, delay: 0.5, ease: EASE }}
         />
 
-        <motion.h1 className={styles.title} custom={0.6} initial="hidden" animate="show" variants={lineVariants}>
+        <motion.h1 className={styles.title} custom={0.6} initial="hidden" animate={show} variants={lineVariants}>
           {hero.titleLines.map((line, i) => (
             <span key={i} className={cn(styles.titleLine, line.indent && styles.titleLineIndent)}>
               {line.parts.map((part, j) => (
@@ -97,6 +205,21 @@ export default function SignatureHeroDualLife({ hero, telNumber, telNumberByUtm,
           {hero.decoHatch && <img src={hero.decoHatch} alt="" className={styles.decoHatch} />}
         </motion.h1>
       </div>
+
+      {hero.scrollMouse && (
+        <motion.div
+          className={styles.scrollMouse}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: ready ? 1 : 0 }}
+          transition={{ duration: 0.8, delay: 1.6 }}
+          aria-hidden
+        >
+          <span className={styles.scrollMouseBody}>
+            <span className={styles.scrollMouseWheel} />
+          </span>
+          <span className={styles.scrollMouseText}>SCROLL</span>
+        </motion.div>
+      )}
 
       {mobileBar && (
         <motion.div

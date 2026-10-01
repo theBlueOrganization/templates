@@ -91,6 +91,12 @@ const config = {
         { parts: [{ text: '듀얼', strong: true }, { text: '라이프' }, { text: '의', small: true }] },
         { parts: [{ text: '완성' }], indent: true },
       ],
+      // 공식 홈페이지 인트로 — 어둡게 깐 전경 위 라인 드로잉 + 카피 3줄 순차 강조 + 로고(intro_logo.png)
+      intro: {
+        lines: ['사우 생활', '교육부터', '역까지 한걸음에'],
+        logo: { src: '/apt/pungmu-sujain-gracent-2/intro-logo.png', alt: 'SUJAIN 풍무역세권 수자인 그라센트 2차', width: 254, height: 40 },
+      },
+      scrollMouse: true,
       decoRing: '/apt/pungmu-sujain-gracent-2/hero-deco-ring.png',
       decoHatch: '/apt/pungmu-sujain-gracent-2/hero-deco-hatch.png',
       tags: [

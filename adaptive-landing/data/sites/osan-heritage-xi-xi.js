@@ -605,12 +605,10 @@ const config = {
       highlightText: '분양문의 1877-5930',
       agencySlogan: '분양완판 전문가 그룹, (주) 더블루파트너스',
       companyLines: [
-        { label: '운영', value: '(주)세인디엔씨' },
-        { label: '사업자등록번호', value: '824-88-01908' },
-        { label: '시행', value: '(주)양산사지구에스피씨' },
-        { label: '시행사 대표자', value: '신우철, 이담경' },
-        { label: '시행사업자번호', value: '434-88-02873' },
-        { label: '시공', value: 'GS건설(주)' },
+        // 요청 반영(2026-10-01) — 원본의 운영/시행/시공 6줄을 시행사 3줄로 교체(사용자 전달 캡처 그대로)
+        { label: '시행사', value: '(주)양산사지구에스피씨' },
+        { label: '사업자 등록번호', value: '434-88-02873' },
+        { label: '대표자', value: '신우철,이담경' },
         { label: '이메일', value: 'addup@addup.kr' },
         { label: '담당회사', value: '주식회사 더블루파트너스', newLine: true },
         { label: '사업자 등록번호', value: '789-81-03093' },

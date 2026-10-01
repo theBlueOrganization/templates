@@ -391,8 +391,6 @@ const config = {
     },
 
     // 하단 고정 버튼바
-    // 이모지(📞 분홍·❤️ 빨강) 대신 버튼 글자색을 따르는 선 아이콘으로 색상 통일
-    BottomBar_lineIcons: true,
     BottomBar_callBtn: {
       background: "#e2e8f0",
       color:      "#1e293b",

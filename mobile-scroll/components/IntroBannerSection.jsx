@@ -5,7 +5,7 @@ import styles from "./IntroBannerSection.module.css";
 
 // sections[]의 type: "intro-banner" — 단지 전경 사진 위에 도입 문구를 얹는 풀폭 배너
 // (adaptive-landing SignaturePremiumIntro의 introBox 변형 참고)
-// bgImage: { src, alt, position? }, introLines: [가는 글씨 줄, 굵은 글씨 줄], title(밑줄 강조 타이틀), footnote(선택)
+// bgImage: { src(모바일 세로 크롭), srcWide?(500px 이상 화면용 가로 원본 비율), alt, position? }, introLines: [가는 글씨 줄, 굵은 글씨 줄], title(밑줄 강조 타이틀), footnote(선택)
 export default function IntroBannerSection({ id, bgImage, introLines = [], title, footnote }) {
   const contentRef = useRef(null);
 
@@ -28,15 +28,19 @@ export default function IntroBannerSection({ id, bgImage, introLines = [], title
   const [lead, strong] = introLines;
 
   return (
-    <section id={id} className={styles.section}>
+    <section id={id} className={bgImage?.srcWide ? `${styles.section} ${styles.hasWide}` : styles.section}>
       {bgImage && (
-        <img
-          src={bgImage.src}
-          alt={bgImage.alt ?? ""}
-          className={styles.bgImage}
-          style={bgImage.position ? { objectPosition: bgImage.position } : undefined}
-          loading="lazy"
-        />
+        <picture>
+          {/* srcWide가 있으면 넓은 화면(500px 이상)에서는 가로 전체 사진 사용 — 세로 크롭본이 확대돼 보이는 것 방지 */}
+          {bgImage.srcWide && <source media="(min-width: 500px)" srcSet={bgImage.srcWide} />}
+          <img
+            src={bgImage.src}
+            alt={bgImage.alt ?? ""}
+            className={styles.bgImage}
+            style={bgImage.position ? { objectPosition: bgImage.position } : undefined}
+            loading="lazy"
+          />
+        </picture>
       )}
 
       <div ref={contentRef} className={styles.content}>

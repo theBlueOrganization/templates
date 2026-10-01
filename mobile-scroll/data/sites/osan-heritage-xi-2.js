@@ -205,7 +205,8 @@ const config = {
     {
       id:         "premium-intro",
       type:       "intro-banner",
-      bgImage:    { src: "/apt/osan-heritage-xi-2/3-0.webp", alt: "오산헤리티지자이 단지 전경" },
+      // 모바일은 세로 크롭(3-0), 500px 이상 화면은 가로 원본 비율(3-0-wide) — PC에서 확대돼 보이던 문제 해결
+      bgImage:    { src: "/apt/osan-heritage-xi-2/3-0.webp", srcWide: "/apt/osan-heritage-xi-2/3-0-wide.webp", alt: "오산헤리티지자이 단지 전경" },
       introLines: ["新주거타운의 미래를 여는", "병점역 라이프의 新중심이 찾아옵니다."],
       title:      "오산헤리티지자이",
       footnote:   "※ 상기 내용 등은 소비자의 이해를 돕기 위한 것으로 실제와 차이가 있을 수 있습니다.",

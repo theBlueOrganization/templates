@@ -117,6 +117,15 @@
   100% { transform: translateY(100%); }
 }
 
+/* 넓은 화면 + 가로 원본 사진(srcWide)이 있으면 섹션 높이를 사진 비율에 맞춰 확대·잘림 최소화 */
+@media (min-width: 500px) {
+  .hasWide {
+    min-height: 0;
+    aspect-ratio: 1200 / 649;
+    padding: 56px 20px 90px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .content {
     opacity: 1;

@@ -12,6 +12,7 @@ import SignatureVideoSection from '../../../components/sections/SignatureVideoSe
 import SignatureHeroMinimal from '../../../components/sections/SignatureHeroMinimal'
 import SignatureHeroLegacy from '../../../components/sections/SignatureHeroLegacy'
 import SignatureHeroOciel from '../../../components/sections/SignatureHeroOciel'
+import SignatureCircleIntro from '../../../components/sections/SignatureCircleIntro'
 import SignatureBenefits from '../../../components/sections/SignatureBenefits'
 import SignatureSummary from '../../../components/sections/SignatureSummary'
 import SignatureSummaryTabs from '../../../components/sections/SignatureSummaryTabs'
@@ -244,6 +245,8 @@ export default async function AptPage({ params }) {
       )}
       {/* 청라 아크원 푸르지오 원본의 인트로(5.6초 전체화면 오버레이)를 일반 템플릿 현장에서 쓸 때 */}
       {sig.arkoneIntro && <SignatureArkoneIntro intro={sig.arkoneIntro} />}
+      {/* 시티오씨엘 9단지 인트로(원 드로잉 → 원이 열림)를 일반 히어로 현장에서 전체화면 오버레이로 쓸 때 */}
+      {sig.circleIntro && <SignatureCircleIntro intro={sig.circleIntro} />}
       <main>
         {sig.hero.variant === 'arkone' ? (
           <SignatureHeroArkone hero={sig.hero} />
@@ -270,6 +273,7 @@ export default async function AptPage({ params }) {
             telNumber={site.telNumber}
             telNumberByUtm={site.telNumberByUtm}
             visitTargetId={sig.vipForm.id}
+            holdForIntro={!!sig.circleIntro}
           />
         )}
         {/* 청라 아크원 푸르지오 원본의 청라 핵심 3종(스타필드/아산병원/하나금융) + 미래 교통 계획 */}

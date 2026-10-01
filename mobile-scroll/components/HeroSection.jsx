@@ -184,7 +184,7 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
                   className={`${styles.badge} ${isUrgent ? styles.urgent : ""}`}
                   style={isUrgent
                     ? { color: th.eyebrowUrgent?.color, borderColor: th.eyebrowUrgent?.borderColor, fontSize: th.eyebrowUrgent?.fontSize ?? th.eyebrow?.fontSize }
-                    : { color: th.eyebrow?.color, borderColor: th.eyebrow?.borderColor, fontSize: th.eyebrow?.fontSize }
+                    : { color: th.eyebrow?.color, borderColor: th.eyebrow?.borderColor, fontSize: th.eyebrow?.fontSize, background: th.eyebrow?.background }
                   }
                 >
                   {b}

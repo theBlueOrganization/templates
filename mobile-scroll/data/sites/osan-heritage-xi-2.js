@@ -342,9 +342,11 @@ const config = {
     },
 
     // 히어로 배지 (eyebrow)
+    // 테두리만 있으면 어두운 배경에 묻혀 흐릿해 보여서 자이 블루로 채운 배지 + 흰 글씨
     eyebrow: {
       color:       "#ffffff",
-      borderColor: "rgba(0,104,153,0.9)",
+      borderColor: "#006899",
+      background:  "#006899",
       fontSize:    "1rem",
     },
     // 긴급 배지 (eyebrowUrgent)

@@ -16,11 +16,12 @@ import styles from './SignatureTiamoImmersive.module.css'
 //   - 히어로: 아크원은 영상, 티아모 까사는 홍보 영상 원본이 없어 메인 비주얼 CG 3장 크로스페이드
 //   - 핵심가치/교통: 아크원의 "공공자료 요약 및 출처" 버튼은 기관 발표 링크가 있어야 해서, 그런 출처가 없는
 //     이 현장은 버튼 없이 참고 사이트(청라더리브티아모까사.com) 입지환경 원문만 사용
-//   - 청라의 연혁 캐러셀 → 단지설계 SPECIAL DESIGN 6종 캐러셀(이 현장은 연혁 자료가 없음)
+//   - 청라의 연혁 캐러셀 → 견본세대 인테리어 실사 캐러셀(이 현장은 연혁 자료가 없음)
 //   - 유니트: 원본 평면 이미지가 있어 카드 안에 넣고 누르면 확대
 //   - 안내 팝업의 와인 증정 혜택은 아크원 현장 행사라 제외
-// 이미지 출처: public/apt/cheongna-theliv-tiamo-casa/ (참고 사이트 원본). im-*.webp는 같은 폴더의
-// 단지설계·커뮤니티·Dada 합성 이미지에서 사진 부분만 잘라낸 것.
+// 이미지(요청 반영 2026-10-01 — 저화질 전부 교체): hr-*.webp는 공식 사이트 livtiamocasa.com 원본(2650~3282px)을
+// 2560px로 변환한 것(-mobile은 세로 크롭), int-*.webp는 청라더리브티아모까사.com 인테리어(견본세대) 실사 원본.
+// 고해상도 원본이 없는 컷(피트니스·G/X 이미지컷, 시크릿정원·커낼스트리트·아케이드)은 흐리게 쓰지 않고 뺐다.
 
 const ASSET = (name) => `/apt/cheongna-theliv-tiamo-casa/${name}`
 
@@ -54,30 +55,30 @@ const MOTION = {
 }
 
 const HERO_SLIDES = [
-  { img: 'hero-1.webp', imgMobile: 'hero-1-mobile.webp', alt: '청라 더리브 티아모 까사 조감도 — 커낼웨이 수변' },
-  { img: 'hero-2.webp', imgMobile: 'hero-2-mobile.webp', alt: '청라 더리브 티아모 까사 야경 투시도 — 스카이브릿지' },
-  { img: 'hero-3.webp', imgMobile: 'hero-3-mobile.webp', alt: '청라 더리브 티아모 까사 광역 조감도' },
+  { img: 'hr-canal-aerial.webp', imgMobile: 'hr-canal-aerial-mobile.webp', alt: '청라 더리브 티아모 까사 조감도 — 커낼웨이 수변' },
+  { img: 'hr-tower-night.webp', imgMobile: 'hr-tower-night-mobile.webp', alt: '청라 더리브 티아모 까사 야경 투시도 — 스카이브릿지' },
+  { img: 'hr-wide-aerial.webp', imgMobile: 'hr-wide-aerial-mobile.webp', alt: '청라 더리브 티아모 까사 광역 조감도' },
 ]
 
 // 출처: 참고 사이트 입지환경(CENTRAL TRAFFIC/NATURE/VISION) 원문
 const LANDMARKS = [
   {
     id: 'traffic', eyebrow: 'CENTRAL TRAFFIC', titleTop: '7호선 초역세권', titleBottom: '프리미엄의 중심',
-    desc: '바로 앞 7호선 커낼웨이역(예정)과 광역 교통망을 가까이 누리는 입지.', img: 'hero-3.webp', imgAlt: '청라 더리브 티아모 까사 광역 조감도',
+    desc: '바로 앞 7호선 커낼웨이역(예정)과 광역 교통망을 가까이 누리는 입지.', img: 'hr-welcome-terrace.webp', imgAlt: '7호선 커낼웨이역(예정) 출입구와 웰컴테라스 투시도',
     cardTitle: '청라를 빠르게 잇는 교통의 중심', cardDesc: '서울 지하철 2호선 연장(예정), 청라IC, BRT, GRT 등 쾌속 교통망을 갖췄습니다.',
-    stats: [['7호선', '커낼웨이역(예정)'], ['2호선', '연장(예정)']], objectPosition: 'center',
+    stats: [['7호선', '커낼웨이역(예정)'], ['2호선', '연장(예정)']], objectPosition: '70% center',
   },
   {
     id: 'nature', eyebrow: 'CENTRAL NATURE', titleTop: '커낼웨이', titleBottom: '힐링 라이프의 중심',
-    desc: '청라호수공원과 바로 앞 커낼웨이, 쾌적한 자연을 더 가까이.', img: 'im-aerial-canal.webp', imgAlt: '커낼웨이 수변을 따라 선 청라 더리브 티아모 까사 조감도',
+    desc: '청라호수공원과 바로 앞 커낼웨이, 쾌적한 자연을 더 가까이.', img: 'hr-canal-aerial.webp', imgAlt: '커낼웨이 수변을 따라 선 청라 더리브 티아모 까사 조감도',
     cardTitle: '수변을 품은 에코라이프', cardDesc: '청라호수공원, 커낼웨이 등 쾌적한 자연을 더 가까이 누리는 힐링라이프입니다.',
-    stats: [['커낼웨이', '바로 앞'], ['호수공원', '청라 수변']], objectPosition: 'center 60%',
+    stats: [['커낼웨이', '바로 앞'], ['호수공원', '청라 수변']], objectPosition: '25% center',
   },
   {
     id: 'vision', eyebrow: 'CENTRAL VISION', titleTop: '청라의 빛나는', titleBottom: '미래가치의 중심',
-    desc: '청라의 미래를 바꿀 개발 호재가 모이는 곳.', img: 'overview-aerial.webp', imgAlt: '청라 더리브 티아모 까사 조감도',
+    desc: '청라의 미래를 바꿀 개발 호재가 모이는 곳.', img: 'hr-wide-aerial.webp', imgAlt: '청라 더리브 티아모 까사 광역 조감도',
     cardTitle: '눈부신 미래가치의 최중심', cardDesc: '하나금융·드림타운(예정), 의료복합타운 아산병원(예정), 스타필드 청라(예정) 등이 가까이 있습니다.',
-    stats: [['하나금융', '드림타운(예정)'], ['아산병원', '의료복합타운(예정)']], objectPosition: 'center',
+    stats: [['하나금융', '드림타운(예정)'], ['아산병원', '의료복합타운(예정)']], objectPosition: '72% center',
   },
 ]
 
@@ -98,30 +99,33 @@ const UNIT_TABS = [
   { key: '211', label: 'PENTHOUSE UNIT', name: '최상층 펜트하우스', desc: '전용 211.6980㎡ · 공급 296.7958㎡ · 계약 414.4300㎡', features: ['3실', '최상층', '파노라마 조망'], img: 'unit-211.webp' },
 ]
 
-// 출처: 참고 사이트 커뮤니티 원문(스카이브릿지 / 피트니스 클럽 / G/X룸)
+// 출처: 참고 사이트 커뮤니티·단지설계 원문 — 피트니스/G/X룸은 고해상도 사진이 없어 아크원과 같은
+// "커뮤니티와 조경" 구성(스카이브릿지·휴게정원·웰컴테라스)으로
 const COMMUNITY_CARDS = [
-  { img: 'im-skybridge.webp', alt: '20층 스카이브릿지 커뮤니티 이미지컷', label: '스카이브릿지' },
-  { img: 'im-fitness.webp', alt: '피트니스 클럽 이미지컷', label: '피트니스 클럽' },
-  { img: 'im-gx.webp', alt: 'G/X룸 이미지컷', label: 'G/X룸' },
+  { img: 'hr-skybridge-lounge.webp', alt: '20층 스카이브릿지 내부 투시도', label: '스카이브릿지 (20F)' },
+  { img: 'hr-rest-garden.webp', alt: '2층 휴게정원 투시도', label: '휴게정원 (2F)' },
+  { img: 'hr-welcome-terrace.webp', alt: '1층 웰컴테라스 투시도', label: '웰컴테라스 (1F)' },
 ]
 
 // 출처: 참고 사이트 PREMIUM 8 중 5개 원문
 const PREMIUM_SLIDES = [
-  { num: '01', img: 'im-tower-night.webp', alt: '스카이브릿지로 연결된 3개동 야경 투시도', title: '청라의 자부심 스카이브릿지', desc: '단지의 품격을 높여주는 스카이브릿지로 3개 동이 연결되는 유니크한 외관설계' },
-  { num: '02', img: 'hero-2.webp', alt: '최고 46층 야경 투시도', title: '최고 46층 랜드마크 가치', desc: '최상층 펜트하우스부터 46층 초고층 설계로 청라를 대표할 랜드마크' },
-  { num: '03', img: 'hero-3.webp', alt: '광역 조감도', title: '7호선 커낼웨이역 초역세권', desc: '바로 앞 7호선 커낼웨이역(예정) 및 서울 지하철 2호선 연장(예정), 청라IC, BRT, GRT 등 쾌속 교통망' },
-  { num: '04', img: 'hero-1.webp', alt: '커낼웨이 수변 조감도', title: '커낼웨이 수변조망', desc: '청라호수공원, 커낼웨이 등 쾌적한 자연을 더 가까이 누리는 에코라이프의 완성' },
-  { num: '05', img: 'im-dada-kitchen.webp', alt: 'Dada 주방가구 이미지컷', title: '하이엔드 주방가구 Dada 인테리어', desc: '세계최고의 주방가구 몰테니앤씨그룹의 브랜드 Dada 전 세대 적용 (※ 펜트타입(211㎡) 3세대 제외)' },
+  { num: '01', img: 'hr-skybridge-exterior.webp', alt: '3개동을 잇는 스카이브릿지 투시도', title: '청라의 자부심 스카이브릿지', desc: '단지의 품격을 높여주는 스카이브릿지로 3개 동이 연결되는 유니크한 외관설계' },
+  { num: '02', img: 'hr-tower-night.webp', alt: '최고 46층 야경 투시도', title: '최고 46층 랜드마크 가치', desc: '최상층 펜트하우스부터 46층 초고층 설계로 청라를 대표할 랜드마크' },
+  { num: '03', img: 'hr-welcome-terrace.webp', alt: '7호선 커낼웨이역(예정) 출입구 투시도', title: '7호선 커낼웨이역 초역세권', desc: '바로 앞 7호선 커낼웨이역(예정) 및 서울 지하철 2호선 연장(예정), 청라IC, BRT, GRT 등 쾌속 교통망' },
+  { num: '04', img: 'hr-canal-aerial.webp', alt: '커낼웨이 수변 조감도', title: '커낼웨이 수변조망', desc: '청라호수공원, 커낼웨이 등 쾌적한 자연을 더 가까이 누리는 에코라이프의 완성' },
+  { num: '05', img: 'int-kitchen.webp', alt: '견본세대 Dada 주방 실사', title: '하이엔드 주방가구 Dada 인테리어', desc: '세계최고의 주방가구 몰테니앤씨그룹의 브랜드 Dada 전 세대 적용 (※ 펜트타입(211㎡) 3세대 제외)' },
 ]
 
-// 출처: 참고 사이트 단지설계(SPECIAL DESIGN) 6종 원문 — 아크원의 "청라의 연혁" 가로 캐러셀 자리
+// 출처: 참고 사이트 인테리어(견본세대) 실사 원본 — 아크원의 "청라의 연혁" 가로 캐러셀 자리
 const DESIGN_ITEMS = [
-  { img: 'im-welcome.webp', time: '1F', title: '웰컴테라스', desc: '단지를 방문한 고객과 입주민이 어우러지며 휴식을 취할 수 있는 휴게공간(공개공지)' },
-  { img: 'im-secret.webp', time: '2F', title: '시크릿정원', desc: '2층에 동별 쉼터구성으로 온전한 휴식을 위한 입주민 전용공간' },
-  { img: 'im-rest.webp', time: '2F', title: '휴게정원', desc: '어린이를 위한 다양한 놀이시설을 갖춘 입주민 전용 휴게공간' },
-  { img: 'im-canal-street.webp', time: '1F', title: '커낼스트리트', desc: '북측 도로변에서 커낼웨이로 접근이 용이한 스트리트몰 조성' },
-  { img: 'im-arcade.webp', time: '1F', title: '아케이드', desc: '커낼웨이변의 지상 1층 아케이드 공간을 통해 이동과 휴식이 가능한 공간' },
-  { img: 'im-skybridge-20f.webp', time: '20F', title: '스카이브릿지', desc: '단지의 품격을 높여주는 3개동이 연결된 유니크한 외관설계 (※ 비상 시 대피통로로 이용될 수 있음)' },
+  { img: 'int-kitchen.webp', time: 'KITCHEN', title: 'Dada 주방', desc: '세계최고의 주방가구 몰테니앤씨그룹의 브랜드 Dada 적용' },
+  { img: 'int-dining.webp', time: 'DINING', title: '다이닝', desc: '주방과 이어지는 넉넉한 다이닝 공간' },
+  { img: 'int-living.webp', time: 'LIVING', title: '거실', desc: '채광과 개방감을 살린 거실' },
+  { img: 'int-bedroom.webp', time: 'BEDROOM', title: '침실', desc: '휴식에 집중한 침실' },
+  { img: 'int-room.webp', time: 'ROOM', title: '자녀방', desc: '라이프스타일에 맞춰 꾸미는 방' },
+  { img: 'int-bath.webp', time: 'BATH', title: '욕실', desc: '호텔식 감성의 욕실' },
+  { img: 'int-dress.webp', time: 'DRESS', title: '드레스룸', desc: '수납을 고려한 드레스룸' },
+  { img: 'int-storage.webp', time: 'STORAGE', title: '수납', desc: '현관·다용도 수납 공간' },
 ]
 
 // 출처: 참고 사이트 사업개요 원문
@@ -311,7 +315,7 @@ export default function SignatureTiamoImmersive({ site }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index, introDone, noticeOpen, premiumIndex])
 
-  // SPECIAL DESIGN 캐러셀 자동 스크롤 + 드래그(아크원 연혁 타임라인과 동일 로직)
+  // 인테리어 캐러셀 자동 스크롤 + 드래그(아크원 연혁 타임라인과 동일 로직)
   useEffect(() => {
     const track = designTrackRef.current
     const vp = designViewportRef.current
@@ -535,7 +539,7 @@ export default function SignatureTiamoImmersive({ site }) {
               <p className={styles.sectionDesc}>방문 희망일과 시간을 먼저 선택하면 전담 상담사가 일정 확인 후 안내드립니다.</p>
             </header>
             <div className={styles.visual}>
-              <Image src={ASSET('hero-2.webp')} alt="청라 더리브 티아모 까사 야경 투시도" fill sizes="100vw" />
+              <Image src={ASSET('hr-tower-night.webp')} alt="청라 더리브 티아모 까사 야경 투시도" fill sizes="100vw" />
               <div className={styles.visitCard}>
                 <h3>100% 담당제</h3>
                 <p>예약하시면 담당자가 배정되어 즉시 연락드립니다.</p>
@@ -648,7 +652,7 @@ export default function SignatureTiamoImmersive({ site }) {
               <p className={styles.sectionDesc}>살아볼수록 자부심이 더 커지는 곳, 최고 46층 청라의 랜드마크가 완성됩니다.</p>
             </header>
             <div className={styles.visual}>
-              <Image src={ASSET('im-tower-night.webp')} alt="스카이브릿지로 연결된 3개동 야경 투시도" fill sizes="100vw" />
+              <Image src={ASSET('hr-skybridge-exterior.webp')} alt="3개동을 잇는 20층 스카이브릿지 투시도" fill sizes="100vw" />
               <div className={styles.planPoints}><span>최고 46층</span><span>20층 스카이브릿지</span><span>커낼웨이 수변</span></div>
             </div>
           </div>
@@ -658,9 +662,9 @@ export default function SignatureTiamoImmersive({ site }) {
         <section className={panelClass('community')} id="community">
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
-              <p className={styles.eyebrow}>커뮤니티</p>
-              <h2 className={styles.sectionTitle}>365일 건강한{' '}<br className={styles.titleBreak} /><span className={styles.gradientText}>일상을 누리다</span></h2>
-              <p className={styles.sectionDesc}>입주민의 라이프스타일을 반영한 커뮤니티 시설로 한층 더 여유로운 생활의 활력을 더합니다.</p>
+              <p className={styles.eyebrow}>커뮤니티와 조경</p>
+              <h2 className={styles.sectionTitle}>일상의 여백을{' '}<br className={styles.titleBreak} /><span className={styles.gradientText}>더 풍요롭게</span></h2>
+              <p className={styles.sectionDesc}>청라의 하늘을 잇는 스카이브릿지와 입주민 전용 정원, 웰컴테라스까지.</p>
             </header>
             <div className={styles.communityGrid}>
               {COMMUNITY_CARDS.map((c) => (
@@ -704,13 +708,13 @@ export default function SignatureTiamoImmersive({ site }) {
           </div>
         </section>
 
-        {/* SPECIAL DESIGN 캐러셀 — 아크원 historyCard 스타일 재사용 */}
+        {/* 인테리어 캐러셀 — 아크원 historyCard 스타일 재사용 */}
         <section className={panelClass('design')} id="design">
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
-              <p className={styles.eyebrow}>SPECIAL DESIGN</p>
-              <h2 className={styles.sectionTitle}>자부심을 더하는{' '}<br className={styles.titleBreak} /><span className={styles.gradientText}>특화 설계</span></h2>
-              <p className={styles.sectionDesc}>우수한 녹지와 고객의 동선을 고려한 오피스텔. 자동 이동·드래그·화살표로 살펴보세요.</p>
+              <p className={styles.eyebrow}>INTERIOR</p>
+              <h2 className={styles.sectionTitle}>견본세대로 보는{' '}<br className={styles.titleBreak} /><span className={styles.gradientText}>실내 공간</span></h2>
+              <p className={styles.sectionDesc}>견본세대 실사 사진입니다. 자동 이동·드래그·화살표로 살펴보세요.</p>
             </header>
             <div className={styles.historyViewport} ref={designViewportRef}>
               <div className={styles.historyTrack} ref={designTrackRef}>
@@ -725,10 +729,10 @@ export default function SignatureTiamoImmersive({ site }) {
               </div>
             </div>
             <div className={styles.historyControls}>
-              <span>SPECIAL DESIGN</span>
+              <span>INTERIOR</span>
               <div>
-                <button type="button" className={styles.circleButton} aria-label="이전 특화설계" onClick={() => { designStateRef.current.x += window.innerWidth < 768 ? 170 : 300 }}>←</button>
-                <button type="button" className={styles.circleButton} aria-label="다음 특화설계" onClick={() => { designStateRef.current.x -= window.innerWidth < 768 ? 170 : 300 }}>→</button>
+                <button type="button" className={styles.circleButton} aria-label="이전 사진" onClick={() => { designStateRef.current.x += window.innerWidth < 768 ? 170 : 300 }}>←</button>
+                <button type="button" className={styles.circleButton} aria-label="다음 사진" onClick={() => { designStateRef.current.x -= window.innerWidth < 768 ? 170 : 300 }}>→</button>
               </div>
             </div>
           </div>
@@ -878,7 +882,7 @@ export default function SignatureTiamoImmersive({ site }) {
             <article className={styles.noticeCard}>
               <button type="button" className={styles.noticeX} aria-label="닫기" onClick={closeNotice}>×</button>
               <div className={styles.noticeImageWrap}>
-                <Image src={ASSET('hero-1.webp')} alt="" fill sizes="440px" />
+                <Image src={ASSET('hr-canal-aerial.webp')} alt="" fill sizes="440px" />
               </div>
               <h3>{site.projectName}</h3>
               <p>관심고객등록 시 분양 정보와 주요 소식을 가장 먼저 안내해 드립니다.</p>
@@ -915,9 +919,9 @@ function PcFloat({ visible, onVisit, onRequest, onFaq, onTop }) {
 }
 
 const INTRO_SCENES = [
-  { img: 'hero-1.webp', label: '01 · CANALWAY', name: '커낼웨이 수변 프리미엄' },
-  { img: 'im-tower-night.webp', label: '02 · SKY BRIDGE', name: '3개동을 잇는 스카이브릿지' },
-  { img: 'hero-3.webp', label: '03 · LANDMARK', name: '최고 46층 청라의 랜드마크' },
+  { img: 'hr-canal-aerial.webp', label: '01 · CANALWAY', name: '커낼웨이 수변 프리미엄' },
+  { img: 'hr-skybridge-exterior.webp', label: '02 · SKY BRIDGE', name: '3개동을 잇는 스카이브릿지' },
+  { img: 'hr-tower-night.webp', label: '03 · LANDMARK', name: '최고 46층 청라의 랜드마크' },
 ]
 
 function IntroOverlay({ onSkip, ready }) {

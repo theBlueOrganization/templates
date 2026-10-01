@@ -774,3 +774,9 @@
 /* 티아모 로고는 흰 배지("청라") 안에 글자가 있는 형태라 흰색 반전 필터를 걸면 배지가 흰 덩어리로 뭉개짐 — 원본 그대로 */
 .introBrand .word { filter: none; }
 .footerLogos :global(img[src*='logo-white']) { filter: none; }
+
+/* 인테리어 캐러셀 — 아크원은 연도(숫자) 라벨이라 크게 써도 됐지만 KITCHEN 등 영문 단어는 카드 밖으로 넘쳐서 축소 */
+.historyCard time { font-size: 18px; letter-spacing: 0.08em; }
+@media (min-width: 1024px) {
+  .historyCard time { font-size: 28px; }
+}

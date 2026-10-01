@@ -89,6 +89,26 @@ const config = {
 
     // 참고 사이트 메인 비주얼 3장(문구 없는 CG) — 문구는 메인 카피(가장 이상적인 일상의 시작 / 최고 46층 랜드마크) 발췌
     hero: {
+      // 요청 반영(2026-10-01) — 참고 사이트 메인 첫 화면처럼: 왼쪽 슬라이드 + 오른쪽 흰 바탕 카피 + 하단 남색 물결(SignatureHeroTiamo).
+      //   아래 eyebrow/title/desc/badge는 기본 히어로용 값이라 이 화면에선 안 쓰지만 variant를 빼면 바로 복귀하도록 남겨둠.
+      //   참고 사이트 메인 우측의 전속모델 사진(main_model.png·name.png)은 초상권 문제로 넣지 않음
+      variant: 'tiamo',
+      tiamo: {
+        leadLines: ['눈앞에 보이는 7호선 커낼웨이역', '더 완벽한 생활의 중심,', '가장 새로운 청라의 시작!'],
+        titleRows: [
+          [
+            { text: '가장', size: 'sm', tone: 'gold' },
+            { text: '이상적인', size: 'lg', tone: 'gold' },
+          ],
+          [
+            { text: '일상', size: 'lg', tone: 'navy' },
+            { text: '의', size: 'sm', tone: 'navy' },
+            { text: '시작', size: 'lg', tone: 'navy' },
+          ],
+        ],
+        logo: { src: '/apt/cheongna-theliv-tiamo-casa/hero-luxurism-logo.png', alt: '새로운 청라, 그 중심에 NEW LUXURISM — 청라 더리브 티아모 Casa', width: 300, height: 65 },
+        bgImage: '/apt/cheongna-theliv-tiamo-casa/hero-bg-wave.webp',
+      },
       eyebrowLine1: '새로운 청라, 그 중심에',
       eyebrowLine2: 'NEW LUXURISM',
       titleLine1: '청라 더리브 티아모 까사',

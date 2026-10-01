@@ -13,6 +13,7 @@ import SignatureHeroMinimal from '../../../components/sections/SignatureHeroMini
 import SignatureHeroDualLife from '../../../components/sections/SignatureHeroDualLife'
 import SignatureHeroLegacy from '../../../components/sections/SignatureHeroLegacy'
 import SignatureHeroOciel from '../../../components/sections/SignatureHeroOciel'
+import SignatureHeroTiamo from '../../../components/sections/SignatureHeroTiamo'
 import SignatureCircleIntro from '../../../components/sections/SignatureCircleIntro'
 import SignatureBenefits from '../../../components/sections/SignatureBenefits'
 import SignatureSummary from '../../../components/sections/SignatureSummary'
@@ -239,7 +240,8 @@ export default async function AptPage({ params }) {
         sectionIds={sectionIds}
         ctaTargetId={sig.vipForm.id}
         telNumberByUtm={site.telNumberByUtm}
-        transparentOverHero
+        // 청라 더리브 티아모 까사 히어로(variant 'tiamo')는 흰 바탕이라 투명 헤더를 쓰면 메뉴가 안 보여 꺼둠
+        transparentOverHero={sig.hero.variant !== 'tiamo'}
       />
       {sig.popupNotice?.enabled && (
         <SignaturePopupNoticeGeomdan popup={sig.popupNotice} visitTargetId={sig.vipForm.id} />
@@ -251,6 +253,9 @@ export default async function AptPage({ params }) {
       <main>
         {sig.hero.variant === 'arkone' ? (
           <SignatureHeroArkone hero={sig.hero} />
+        ) : sig.hero.variant === 'tiamo' ? (
+          // 청라 더리브 티아모 까사2 — 참고 사이트 메인(왼쪽 슬라이드 + 오른쪽 흰 바탕 카피 + 하단 남색 물결) 재구성
+          <SignatureHeroTiamo hero={sig.hero} />
         ) : sig.hero.variant === 'ociel' ? (
           // 시티오씨엘 9단지 — 공식 사이트 인트로(원 드로잉 → 원이 열리며 메인 슬라이드) 재구성
           <SignatureHeroOciel hero={sig.hero} />

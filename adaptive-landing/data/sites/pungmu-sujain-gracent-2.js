@@ -4,7 +4,7 @@
 //   투시도/조감도(p6~7)·단지배치도(p8)·동호배치도(p9)·커뮤니티(p10~11)·주차설계(p12)·84/105 평면(p13~14)·
 //   프리미엄 교육/교통/생활/의료(p16~21) 페이지를 pdftoppm으로 렌더링 후 크롭해 사용(public/apt/pungmu-sujain-gracent-2/).
 //   PREMIUM 8 문구는 사용자 제공 이미지(2026-09-29) 원문 그대로. 헤더/푸터 로고는 SUJAIN 워드마크(logo-white.png).
-// 대표번호 1811-4166, 상담 알림 문자 수신번호(adminPhones) 010-8874-8525 — 2026-09-29 사용자 전달값.
+// 대표번호 1811-4166, 상담 알림 문자 수신번호(adminPhones) 010-4441-1561 — 2026-10-01 사용자 전달값.
 const config = {
   slug: 'pungmu-sujain-gracent-2',
   // 풍무수자인그라센트2차.addupapt.kr → /apt/pungmu-sujain-gracent-2 (middleware.js)
@@ -14,7 +14,7 @@ const config = {
   telNumber: '1811-4166',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/pungmu-sujain-gracent-2/og.jpg',
   // 상담신청 알림 문자 수신번호
-  adminPhones: ['01088748525'],
+  adminPhones: ['01044411561'],
   sheetId: '',
   sheetTab: '풍무수자인그라센트2차',
   showUtmInSms: true,

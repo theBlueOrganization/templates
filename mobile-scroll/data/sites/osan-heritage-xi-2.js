@@ -47,16 +47,22 @@ const config = {
     "17:00 ~ 18:00",
   ],
 
-  // TODO: 실제 히어로 이미지·문구 준비되면 교체
   hero: {
-    eyebrow:       "특별공급｜선착순",
+    eyebrow:       "선착순 동·호 지정｜GS건설 자이",
     eyebrowUrgent: 1,
     brand:         "오산헤리티지자이",
-    // 광고주 요청: 진입 시 '1차 계약금 500만원'이 가장 먼저 보이도록 히어로 타이틀 최상단에 배치
-    title:         "1차 계약금\n단 500만원\n총 5%로 입주까지\n추가 자금 無",
+    title:         "계약금 5%\n파격 조건!",
     subtitle:      " 문의) 1600-1646",
     bgColor:       "#1e293b",
-    accentKeyword: ["500만원", "총 5%", "無"],
+    accentKeyword: ["5%"],
+    // 광고주 요청: 진입 시 '1차 계약금 500만원'이 가장 먼저 보이도록 초대형 숫자 카드로 강조
+    highlight: {
+      label:  "1차 계약금",
+      prefix: "단",
+      value:  "500",
+      unit:   "만원",
+      desc:   "총 5%로 입주까지 추가 자금 無",
+    },
     image: {
       src:    "/apt/osan-heritage-xi-2/main2.webp",
       alt:    "오산헤리티지자이 대표 이미지",
@@ -81,20 +87,21 @@ const config = {
     ],
   },
 
-  // TODO: 실제 이미지·스펙 데이터 준비되면 교체 (구조는 포레나더샵인천시청역과 동일)
+  // 섹션 이미지는 adaptive-landing 오산헤리티지자이x(osan-heritage-xi-x) 현장의 공식 사이트 원본 사진을
+  // 1200px webp로 변환해 사용 — 텍스트가 박힌 긴 통이미지 대신 사진 + HTML 텍스트(features 타입)·탭 구성으로 교체
   sections: [
     {
       id:       "overview",
       type:     "image-then-spec",
       navLabel: "사업개요",
       title:    "사업개요",
-      subtitle: "입지·규모를 한눈에",
-      // 1단지/2단지 탭 메뉴 — 탭별로 이미지·스펙을 따로 보여줌 (기존 images/specItems는 1단지로 이동)
+      subtitle: "총 1,783세대 GS건설 자이 대단지",
+      // 1단지/2단지 탭 메뉴 — 탭별로 이미지·스펙을 따로 보여줌
       tabs: [
         {
           label: "1단지",
           images: [
-            { src: "/apt/osan-heritage-xi-2/1-1.webp", alt: "사업개요 1단지" },
+            { src: "/apt/osan-heritage-xi-2/1-1.webp", alt: "오산헤리티지자이 단지 전경" },
           ],
           specItems: [
             { label: "사업명",   value: "오산 양산4지구 도시개발사업지구내 1BL공동주택 신축공사" },
@@ -104,58 +111,92 @@ const config = {
             { label: "건폐율",   value: "18.19%" },
             { label: "용적률",   value: "225.73%" },
             { label: "건축규모", value: "지하 2층 ~ 지상 27층 / 13개동" },
-            { label: "세대수", value: "총 1,783세대(1BL 1,069세대)" },
-
-
+            { label: "세대수",   value: "총 1,783세대(1BL 1,069세대)" },
           ],
         },
         {
           label: "2단지",
           images: [
-            { src: "/apt/osan-heritage-xi-2/1-2.webp", alt: "사업개요 2단지" },
+            { src: "/apt/osan-heritage-xi-2/1-2.webp", alt: "오산헤리티지자이 단지 전경" },
           ],
           specItems: [
-        { label: "사업명",   value: "오산 양산4지구 도시개발사업지구내 2BL공동주택 신축공사" },
+            { label: "사업명",   value: "오산 양산4지구 도시개발사업지구내 2BL공동주택 신축공사" },
             { label: "대지위치", value: "경기도 오산시 양산동 328-2번지 일원" },
             { label: "대지면적", value: "36,880㎡" },
             { label: "연면적",   value: "127,132.1994㎡" },
             { label: "건폐율",   value: "17.38%" },
             { label: "용적률",   value: "226.13%" },
             { label: "건축규모", value: "지하 2층 ~ 지상 27층 / 9개동" },
-            { label: "세대수", value: "총 1,783세대(2BL 714세대)" },
-
-
+            { label: "세대수",   value: "총 1,783세대(2BL 714세대)" },
           ],
         },
       ],
     },
     {
-      id:       "location",
-      type:     "image",
-      navLabel: "입지환경",
-      title:    "입지환경",
-      subtitle: "생활이 편리한 핵심 입지",
-      images: [
-        { src: "/apt/osan-heritage-xi-2/1-3.webp", alt: "입지환경" },
+      id:        "location",
+      type:      "features",
+      navLabel:  "입지환경",
+      dark:      true,
+      eyebrow:   "LOCATION",
+      title:     "병점X동탄 더블생활권\nGTX-C 교통망 수혜지",
+      subtitle:  "1호선·동탄 연장선·트램·GTX-C, 병점역 복합환승센터(공사비 2,200억) 개발 중",
+      leadImage: { src: "/apt/osan-heritage-xi-2/2-0.webp", alt: "오산헤리티지자이 광역 위치 안내도" },
+      items: [
+        {
+          tag:   "STATION",
+          title: "더 커질 병점역 미래가치",
+          desc:  "GTX-C 병점역 연장 추진, 동탄트램(계획) 등 병점·동탄 생활권",
+          image: { src: "/apt/osan-heritage-xi-2/2-1.webp", alt: "병점역 미래가치" },
+        },
+        {
+          tag:   "TRAFFIC",
+          title: "쾌속 광역 교통망",
+          desc:  "수도권 제2순환·오산화성·오산용인고속도로(계획) 등 광역 교통망",
+          image: { src: "/apt/osan-heritage-xi-2/2-2.webp", alt: "쾌속 광역 교통망" },
+        },
+        {
+          tag:   "EDUCATION",
+          title: "탁월한 교육 인프라",
+          desc:  "도보통학 양산1초(가칭·계획)·양산중('27예정), 세마중·고, 양산도서관 등",
+          image: { src: "/apt/osan-heritage-xi-2/2-3.webp", alt: "탁월한 교육 인프라" },
+        },
+        {
+          tag:   "LIFE",
+          title: "센트럴 그린라이프",
+          desc:  "병점복합타운 생활인프라, 단지 앞 대규모 체육공원 조성(계획)",
+          image: { src: "/apt/osan-heritage-xi-2/2-4.webp", alt: "센트럴 그린라이프" },
+        },
       ],
+      note: "※ 위치도는 소비자의 이해를 돕기 위해 제작된 것으로 실제와 다를 수 있으며, 개발 계획은 관계 기관 사정에 따라 변경될 수 있습니다.",
     },
     {
-      id:       "premium",
-      type:     "image",
-      title:    "프리미엄",
-      subtitle: "특별함이 일상이 되는 공간",
-      images: [
-        { src: "/apt/osan-heritage-xi-2/2-1.webp", alt: "프리미엄" },
+      id:        "premium",
+      type:      "features",
+      navLabel:  "프리미엄",
+      layout:    "grid",
+      eyebrow:   "PREMIUM 6",
+      title:     "오산헤리티지자이\n6가지 프리미엄",
+      leadImage: { src: "/apt/osan-heritage-xi-2/3-0.webp", alt: "오산헤리티지자이 전경" },
+      items: [
+        { title: "더 커질 병점역\n미래가치", desc: "GTX-C 병점역 연장 추진, 동탄트램(계획)",         image: { src: "/apt/osan-heritage-xi-2/3-1.webp", alt: "병점역 미래가치 이미지컷" } },
+        { title: "쾌속\n광역 교통망",        desc: "수도권 제2순환·오산화성·오산용인고속도로(계획)", image: { src: "/apt/osan-heritage-xi-2/3-2.webp", alt: "광역 교통망 이미지컷" } },
+        { title: "탁월한\n교육 인프라",      desc: "도보통학 양산1초(가칭·계획)·양산중('27예정)",     image: { src: "/apt/osan-heritage-xi-2/3-3.webp", alt: "교육 인프라 이미지컷" } },
+        { title: "센트럴\n그린라이프",       desc: "단지 앞 대규모 체육공원 조성(계획)",              image: { src: "/apt/osan-heritage-xi-2/3-4.webp", alt: "그린라이프 이미지컷" } },
+        { title: "다채로운\n커뮤니티",       desc: "스카이라운지, 피트니스, 작은도서관 등",            image: { src: "/apt/osan-heritage-xi-2/3-5.webp", alt: "커뮤니티 이미지컷" } },
+        { title: "완성형\n新주거타운 비전",  desc: "미니신도시급 1,783세대(1BL/2BL) 대단지",           image: { src: "/apt/osan-heritage-xi-2/3-6.webp", alt: "신주거타운 비전 이미지컷" } },
       ],
     },
     {
       id:       "complexenvironment",
       type:     "image",
-      navLabel: "단지설계",
-      title:    "단지설계",
-      subtitle: "자연과 조화를 이루는 단지 설계",
-      images: [
-        { src: "/apt/osan-heritage-xi-2/2-2.webp", alt: "단지설계" },
+      navLabel: "단지배치",
+      title:    "단지배치",
+      subtitle: "1BL 13개동 · 2BL 9개동, 총 22개동",
+      tabWrap:  true,
+      tabs: [
+        { label: "배치도", images: [{ src: "/apt/osan-heritage-xi-2/4-1.webp", alt: "오산헤리티지자이 단지 배치도(1BL·2BL)" }] },
+        { label: "1BL 동호수", images: [{ src: "/apt/osan-heritage-xi-2/4-2.webp", alt: "오산헤리티지자이 1BL 동호수 배치표" }] },
+        { label: "2BL 동호수", images: [{ src: "/apt/osan-heritage-xi-2/4-3.webp", alt: "오산헤리티지자이 2BL 동호수 배치표" }] },
       ],
     },
     {
@@ -163,23 +204,45 @@ const config = {
       type:     "image",
       navLabel: "커뮤니티",
       title:    "커뮤니티",
-      subtitle: "일상에 활력을 더하는 주거공간",
-      images: [
-        { src: "/apt/osan-heritage-xi-2/3-1.webp", alt: "커뮤니티" },
+      subtitle: "CLUB XIAN · CLUB CLOUD",
+      tabs: [
+        {
+          label: "CLUB XIAN",
+          subTabs: [
+            { label: "1BL",           images: [{ src: "/apt/osan-heritage-xi-2/5-1.webp", alt: "1BL CLUB XIAN 시설 안내" }] },
+            { label: "2BL",           images: [{ src: "/apt/osan-heritage-xi-2/5-2.webp", alt: "2BL CLUB XIAN 시설 안내" }] },
+            { label: "특화 커뮤니티", images: [{ src: "/apt/osan-heritage-xi-2/5-3.webp", alt: "CLUB XIAN 특화 커뮤니티 시설 안내" }] },
+          ],
+        },
+        {
+          label: "CLUB CLOUD",
+          subTabs: [
+            { label: "1BL", images: [{ src: "/apt/osan-heritage-xi-2/5-4.webp", alt: "1BL CLUB CLOUD(26F) 시설 안내" }] },
+            { label: "2BL", images: [{ src: "/apt/osan-heritage-xi-2/5-5.webp", alt: "2BL CLUB CLOUD(26F) 시설 안내" }] },
+          ],
+        },
       ],
     },
     {
       id:       "complex",
-      type:     "image",
+      type:     "image-then-spec",
       navLabel: "평면도",
       title:    "평면도",
-      subtitle: "휴식이 완성되는 주거공간",
-      images: [
-        { src: "/apt/osan-heritage-xi-2/3-2.webp", alt: "평면도 75~84C" },
-        { src: "/apt/osan-heritage-xi-2/3-2b.webp", alt: "평면도 84D~166P" },
+      subtitle: "75㎡부터 166㎡P까지 8개 타입 (면적은 1BL 기준)",
+      tabWrap:  true,
+      tabs: [
+        { label: "75",   images: [{ src: "/apt/osan-heritage-xi-2/6-1.webp", alt: "75㎡ 타입 평면도" }],   specItems: [{ label: "세대수", value: "1BL 44세대 · 2BL 47세대 (총 91세대)" },            { label: "전용면적", value: "75.4736㎡" },  { label: "공급면적", value: "99.1264㎡" },  { label: "계약면적", value: "149.6620㎡" }] },
+        { label: "84A",  images: [{ src: "/apt/osan-heritage-xi-2/6-2.webp", alt: "84㎡A 타입 평면도" }],  specItems: [{ label: "세대수", value: "1BL 270세대 · 2BL 239세대 (총 509세대)" },         { label: "전용면적", value: "84.9796㎡" },  { label: "공급면적", value: "110.8249㎡" }, { label: "계약면적", value: "167.7255㎡" }] },
+        { label: "84B",  images: [{ src: "/apt/osan-heritage-xi-2/6-3.webp", alt: "84㎡B 타입 평면도" }],  specItems: [{ label: "세대수", value: "1BL 260세대 · 2BL 176세대 (총 436세대)" },         { label: "전용면적", value: "84.9665㎡" },  { label: "공급면적", value: "111.4029㎡" }, { label: "계약면적", value: "168.2948㎡" }] },
+        { label: "84C",  images: [{ src: "/apt/osan-heritage-xi-2/6-4.webp", alt: "84㎡C 타입 평면도" }],  specItems: [{ label: "세대수", value: "1BL 262세대 · 2BL 184세대 (총 446세대)" },         { label: "전용면적", value: "84.8237㎡" },  { label: "공급면적", value: "110.4619㎡" }, { label: "계약면적", value: "167.2581㎡" }] },
+        { label: "84D",  images: [{ src: "/apt/osan-heritage-xi-2/6-5.webp", alt: "84㎡D 타입 평면도" }],  specItems: [{ label: "세대수", value: "1BL 88세대 (총 88세대)" },                         { label: "전용면적", value: "84.9708㎡" },  { label: "공급면적", value: "110.7265㎡" }, { label: "계약면적", value: "167.6212㎡" }] },
+        { label: "102",  images: [{ src: "/apt/osan-heritage-xi-2/6-6.webp", alt: "102㎡ 타입 평면도" }],  specItems: [{ label: "세대수", value: "1BL 97세대 · 2BL 43세대 (총 140세대)" },           { label: "전용면적", value: "102.6201㎡" }, { label: "공급면적", value: "130.3482㎡" }, { label: "계약면적", value: "199.0605㎡" }] },
+        { label: "124",  images: [{ src: "/apt/osan-heritage-xi-2/6-7.webp", alt: "124㎡ 타입 평면도" }],  specItems: [{ label: "세대수", value: "1BL 45세대 · 2BL 23세대 (총 68세대)" },            { label: "전용면적", value: "124.8692㎡" }, { label: "공급면적", value: "155.8720㎡" }, { label: "계약면적", value: "239.4820㎡" }] },
+        { label: "166P", images: [{ src: "/apt/osan-heritage-xi-2/6-8.webp", alt: "166㎡P 타입 평면도" }], specItems: [{ label: "세대수", value: "1BL 3세대 · 2BL 2세대 (총 5세대, 펜트하우스)" }, { label: "전용면적", value: "166.2309㎡" }, { label: "공급면적", value: "210.1771㎡" }, { label: "계약면적", value: "321.4820㎡" }] },
       ],
     },
   ],
+
 
   theme: {
     // ── 히어로 커튼 색상 ──
@@ -188,6 +251,13 @@ const config = {
     // (다른 현장들처럼 여백 없이 꽉 채움 — 모바일에서 PC보다 조금 더 확대되어 보이는 건 감수)
     hero: {
       curtainColor: "#1e293b",
+      // 500만원 강조 카드가 하늘 배경 위에서도 또렷하게 보이도록 상단 오버레이를 기본값보다 진하게
+      textOverlay: "linear-gradient(to bottom, rgba(6,10,30,0.92) 0%, rgba(6,10,30,0.7) 50%, rgba(6,10,30,0) 85%)",
+    },
+
+    // features 타입 섹션(입지환경·프리미엄) 강조색 — 히어로 골드 톤과 통일
+    FeatureSection: {
+      accent: "#f59e0b",
     },
 
     // 섹션 헤더 구분선

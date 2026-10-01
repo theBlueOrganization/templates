@@ -6,7 +6,9 @@ import HeroSectionType1 from "./HeroSectionType1";
 
 // variant: "default" | "type1" | "type2" | "type3" …
 // 추후 변형 추가 시 여기에 케이스 추가
-export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, title, subtitle, bgColor, accentKeyword, theme, enableVariants, heroByUtm }) {
+// highlight: { label?, prefix?, value, unit?, desc? } — 있으면 타이틀 아래에 핵심 혜택(예: 계약금 500만원)을
+// 초대형 숫자 카드로 강조 노출 (없으면 기존과 동일, 색상은 theme.highlight로 오버라이드)
+export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, title, subtitle, bgColor, accentKeyword, highlight, theme, enableVariants, heroByUtm }) {
   const [variant,     setVariant]    = useState("default");
   const [ready,       setReady]      = useState(false);
   const [visible,    setVisible]    = useState(false);
@@ -206,6 +208,24 @@ export default function HeroSection({ image, eyebrow, eyebrowUrgent, brand, titl
             </span>
           ))}
         </h1>
+        {highlight && (
+          <div
+            className={styles.highlight}
+            style={{
+              ...(th.highlight?.borderColor     ? { "--hl-border":   th.highlight.borderColor }     : {}),
+              ...(th.highlight?.valueGradient   ? { "--hl-value":    th.highlight.valueGradient }   : {}),
+              ...(th.highlight?.labelBackground ? { "--hl-label-bg": th.highlight.labelBackground } : {}),
+            }}
+          >
+            {highlight.label && <span className={styles.highlightLabel}>{highlight.label}</span>}
+            <p className={styles.highlightValue}>
+              {highlight.prefix && <span className={styles.highlightPrefix}>{highlight.prefix}</span>}
+              <strong className={styles.highlightNumber}>{highlight.value}</strong>
+              {highlight.unit && <span className={styles.highlightUnit}>{highlight.unit}</span>}
+            </p>
+            {highlight.desc && <p className={styles.highlightDesc}>{highlight.desc}</p>}
+          </div>
+        )}
         {effectiveSubtitle && (
           <p className={styles.subtitle} style={{ color: th.subtitle?.color, fontSize: th.subtitle?.fontSize }}>
             {effectiveSubtitle.split(/(\d[\d-]{5,}\d)/).map((part, i) =>

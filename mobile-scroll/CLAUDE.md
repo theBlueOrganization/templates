@@ -9,7 +9,8 @@
 - **데이터 = 코드 밖**: 현장 고유 정보는 전부 `data/sites/[slug].js` 설정 객체로 분리. 컴포넌트/페이지 코드는 절대 건드리지 않음.
 - **레지스트리 패턴**: `data/siteRegistry.js`가 모든 현장을 import해서 배열로 관리 (`getSiteBySlug`, `getAllSlugs`).
 - **공유 컴포넌트**: `components/` 아래 모든 현장이 공유 — TopNav, HeroSection, ImageSection, VideoSection, OfficeShell, PopupBanner, ContactForm, ClientFooter, BottomBar, SiteFooter.
-- **섹션 타입**: `sections[]`의 각 항목은 `type`에 따라 `page.jsx`가 다른 컴포넌트로 렌더링 — `"image"`/`"image-then-spec"`(기본, 미지정 시 `"image"`)은 `ImageSection`, `"video"`는 `VideoSection`(`youtubeId` 또는 `src`+`poster`, 유튜브면 `youtubeId` 우선, 둘 다 없으면 섹션 자체가 렌더링되지 않음). navLabel/extraContactFormAfterSectionId 등 `sections[]` 공통 동작은 타입과 무관하게 동일하게 적용됨.
+- **섹션 타입**: `sections[]`의 각 항목은 `type`에 따라 `page.jsx`가 다른 컴포넌트로 렌더링 — `"image"`/`"image-then-spec"`(기본, 미지정 시 `"image"`)은 `ImageSection`, `"video"`는 `VideoSection`(`youtubeId` 또는 `src`+`poster`, 유튜브면 `youtubeId` 우선, 둘 다 없으면 섹션 자체가 렌더링되지 않음). `"features"`는 `FeatureSection`(통이미지 대신 실사 사진 + HTML 텍스트 카드 — `eyebrow`, `title`/`subtitle`, `leadImage`(위치도 등 대표 이미지), `items[{ image, tag?, title, desc? }]`(
+ 줄바꿈), `layout: "list"|"grid"`(grid는 2열), `dark: true`(어두운 배경), `note`(하단 유의문구), 강조색은 `theme.FeatureSection.accent`). navLabel/extraContactFormAfterSectionId 등 `sections[]` 공통 동작은 타입과 무관하게 동일하게 적용됨.
 - **테마 주입**: 색상/폰트 등 현장별 시각 커스터마이징은 `site.theme` 객체를 컴포넌트에 prop으로 전달하는 방식. 컴포넌트 자체 스타일 하드코딩 금지.
 - **한글 서브도메인**: `middleware.js`가 `site.subdomain` (공백 없는 한글 문자열)이 있는 현장만 `[subdomain].addupapt.kr` → `/apt/[slug]`로 rewrite. 없으면 `/apt/[slug]` 경로로만 접근.
 - **Multi-Zone(adaptive-landing 연동)**: `*.addupapt.kr` 와일드카드 도메인은 이 프로젝트(theblue-apt)에만 연결되어 있어서, 다른 템플릿(`adaptive-landing`, 별도 Vercel 프로젝트)으로 보여줄 현장도 이 프로젝트의 `middleware.js`가 게이트웨이 역할을 함. 방법: (1) `adaptive-landing/data/sites/[slug].js`에 현장 등록(그 프로젝트 방식대로), (2) **이 프로젝트의 `siteRegistry.js`에도** 같은 slug로 최소 정보(`slug`, `subdomain`, `template: "adaptive-landing"`)만 담은 항목을 추가 — 이 프로젝트가 실제로 렌더링하진 않고 라우팅 정보로만 사용됨. `middleware.js`가 `template`값을 보고 `adaptive-landing` 배포(`ADAPTIVE_LANDING_ORIGIN` 환경변수)로 요청을 프록시함(정적 자산은 `/apt2` basePath 접두사로 구분). `adaptive-landing` 프로젝트 쪽은 `next.config.mjs`에 `basePath: '/apt2'`가 설정되어 있어야 함.
@@ -41,6 +42,8 @@
 | `kakao`, `kakaoTemplateId` | 카카오 알림톡 사용 여부 + 템플릿ID (미사용 시 SMS로 자동 폴백) |
 | `kakaoByUtm` | 특정 유입경로만 카카오 알림톡으로 발송 (나머지는 SMS) |
 | `heroByUtm` | 특정 유입경로 방문자에게만 히어로 타이틀/서브타이틀 등을 다르게 표시 |
+| `hero.highlight` | `{ label?, prefix?, value, unit?, desc? }` — 히어로 타이틀 아래에 핵심 혜택(예: 1차 계약금 500만원)을 초대형 숫자 카드로 강조. 색상은 `theme.highlight`(`borderColor`/`valueGradient`/`labelBackground`)로 오버라이드 |
+| 섹션 `tabWrap` | `true`면 탭이 한 줄을 넘칠 때 여러 줄로 줄바꿈(평면도 타입이 많은 경우 등). 미설정 시 기존처럼 한 줄 |
 | `hero.enableVariants` | `?v=1` 쿼리스트링으로 히어로 타입(레이아웃 변형) 전환 허용 |
 | `popupByUtm` | 특정 유입경로 방문자에게만 팝업 구성을 다르게 표시. 값이 이미지 객체면 첫 번째 팝업만 교체(나머지 순서 유지), 배열이면 그 유입경로만 팝업 전체를 다른 개수·순서로 교체(예: 특정 유입경로에만 팝업 2개), `null`이면 해당 유입경로는 팝업을 완전히 숨김. 값이 없는(=키가 없는) 유입경로는 기본 `popup` 그대로 노출 |
 | `clientCompany` | `{ name, bizNumber, representative, address }` — 값이 있을 때만 `ClientFooter`가 `SiteFooter` 바로 위에 렌더링 (고객사/분양사 정보, 대행사 정보보다 강조된 톤). 분양대행사 하나만 표기하면 객체 하나, 분양대행사+시행사처럼 두 곳 이상을 함께 표기해야 하면 배열로 지정(`[{...}, {roleLabel: "시행사", ...}]`) — 배열의 첫 번째 항목에만 대표 전화번호(telNumber)와 강조 톤이 적용되고, 두 번째부터는 구분선과 함께 기본 톤으로 표시되며 `roleLabel`이 있으면 상호명 앞에 붙어서 노출됨. 폰트사이즈/컬러는 `ClientFooter.module.css`에 반응형 공통값(clamp)으로 이미 설정되어 있어 대부분 현장은 그대로 사용하면 됨 — 고객사 요청이 있을 때만 `theme.ClientFooter_name`(상호명, color+fontSize)/`theme.ClientFooter_leadContact`(전화번호·사업자번호, color+fontSize)/`theme.ClientFooter_key`·`_value`(대표자·주소, color만)로 개별 오버라이드. 회사가 여러 곳(배열)일 때 이 theme 값들도 배열로 지정하면 `clientCompany` 배열과 같은 인덱스끼리 매칭되어 회사별로 다르게 커스터마이징 가능(객체 하나만 주면 전체 공통 적용) |

@@ -6,6 +6,7 @@ import HeroSection     from "../../../components/HeroSection";
 import BenefitsSection from "../../../components/BenefitsSection";
 import ImageSection    from "../../../components/ImageSection";
 import VideoSection    from "../../../components/VideoSection";
+import FeatureSection  from "../../../components/FeatureSection";
 import OfficeShell     from "../../../components/OfficeShell";
 import PopupBanner     from "../../../components/PopupBanner";
 import ExtraContactForm from "../../../components/ExtraContactForm";
@@ -85,6 +86,8 @@ export default async function AptPage({ params }) {
         <Fragment key={section.id}>
           {section.type === "video"
             ? <VideoSection {...section} theme={site.theme} />
+            : section.type === "features"
+            ? <FeatureSection {...section} theme={site.theme} />
             : <ImageSection {...section} theme={site.theme} />}
           {extraContactForm && site.extraContactFormAfterSectionId === section.id && extraContactForm}
         </Fragment>

@@ -134,7 +134,15 @@ export default function SignaturePremiumIntro({ premiumIntro }) {
       {(premiumIntro.eyebrow || premiumIntro.introBox || premiumIntro.titleLine1 || premiumIntro.descLine1) && (
         <Reveal className={cn(styles.content, premiumIntro.align === 'left' && styles.contentLeft)}>
           {premiumIntro.introBox && (
-            <div className={styles.introBox}>
+            // introBox.color — 어두운 배경 위에서 박스 문구 색을 따로 지정(없으면 기존처럼 섹션 글자색 상속)
+            <div
+              className={styles.introBox}
+              style={
+                premiumIntro.introBox.color
+                  ? { color: premiumIntro.introBox.color, textShadow: '0 2px 12px rgba(0, 0, 0, 0.65)' }
+                  : undefined
+              }
+            >
               <p>{premiumIntro.introBox.line1}</p>
               <p>
                 <strong>{premiumIntro.introBox.line2}</strong>

@@ -20,7 +20,8 @@
    이어짐. 다른 현장(단일 배경 이미지)은 기존 100svh 유지 */
 .heroSlides {
   min-height: 0;
-  aspect-ratio: 640 / 835;
+  /* hero.slidesAspectRatioMobile — 모바일 슬라이드 원본 비율이 640x835와 다른 현장(예: 640x645)용 */
+  aspect-ratio: var(--hero-slides-ratio, 640 / 835);
 }
 
 /* heroTallImage — hero.imageAspectRatio가 있는 현장 전용. 모바일은 이미 세로로 긴 뷰포트라

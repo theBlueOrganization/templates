@@ -177,6 +177,53 @@
   height: 100%;
 }
 
+/* ─── simple 레이아웃 (제목+태그 → 사진 → 설명) ─────── */
+.simpleList {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 8px 20px 0;
+}
+
+.simpleTitle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  margin-bottom: 12px;
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  word-break: keep-all;
+}
+
+.simpleTitle strong {
+  font-weight: 800;
+}
+
+.simpleTag {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+}
+
+.simpleImageWrap {
+  aspect-ratio: 12 / 5;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #cbd5e1;
+}
+
+.simpleDesc {
+  margin-top: 12px;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--text-sub);
+  word-break: keep-all;
+}
+
 /* ─── 하단 유의문구 ────────────────────────────────── */
 .note {
   margin: 20px 20px 0;

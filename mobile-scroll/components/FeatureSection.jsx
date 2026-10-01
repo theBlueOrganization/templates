@@ -142,13 +142,27 @@ function PremiumLayout({ id, titleLead, titleWord = "PREMIUM", titleNum, items, 
   );
 }
 
+// title 안의 titleStrong 부분만 굵게 (예: "더 커질 병점역 미래가치" + "미래가치")
+function renderTitleStrong(title, strong) {
+  if (!strong || !title?.includes(strong)) return title;
+  const idx = title.indexOf(strong);
+  return (
+    <>
+      {title.slice(0, idx)}
+      <strong>{strong}</strong>
+      {title.slice(idx + strong.length)}
+    </>
+  );
+}
+
 // sections[]의 type: "features" — 통이미지 대신 실사 사진 + HTML 텍스트 카드로 구성하는 섹션
 // layout: "list"(기본, 사진 크게 세로 나열) | "grid"(2열 카드)
+//         | "simple"(카드 테두리 없이 "제목(titleStrong만 굵게) + 영문 tag" → 사진 → 회색 설명, 오산헤리티지자이x 입지 항목 스타일)
 // leadImage: 카드 목록 위에 크게 보여줄 대표 이미지(위치도 등, 선택)
 // items: [{ image: { src, alt }, tag?, title, desc? }] — title/desc는 \n으로 줄바꿈
 // dark: true면 어두운 배경 + 밝은 텍스트 (sectionBg로 배경색 직접 지정 가능)
 // headerAlign: "center"면 eyebrow/제목/부제를 가운데 정렬 (미설정 시 좌측 정렬)
-// 강조색은 theme.FeatureSection.accent (미설정 시 기본 파란색)
+// 강조색은 섹션 accent > theme.FeatureSection.accent > 기본 파란색
 export default function FeatureSection({
   id,
   eyebrow,
@@ -161,6 +175,7 @@ export default function FeatureSection({
   note,
   dark = false,
   sectionBg,
+  accent,
   titleLead,
   titleWord,
   titleNum,
@@ -179,7 +194,7 @@ export default function FeatureSection({
       className={`${styles.section} ${dark ? styles.dark : ""}`}
       style={{
         ...(sectionBg ? { background: sectionBg } : {}),
-        ...(th.accent ? { "--accent": th.accent } : {}),
+        ...((accent ?? th.accent) ? { "--accent": accent ?? th.accent } : {}),
       }}
     >
       <FadeUp>
@@ -198,6 +213,24 @@ export default function FeatureSection({
         </FadeUp>
       )}
 
+      {layout === "simple" ? (
+        <div className={styles.simpleList}>
+          {items.map((item, i) => (
+            <FadeUp key={i}>
+              <article className={styles.simpleItem}>
+                <h3 className={styles.simpleTitle}>
+                  <span>{renderTitleStrong(item.title, item.titleStrong)}</span>
+                  {item.tag && <span className={styles.simpleTag}>{item.tag}</span>}
+                </h3>
+                <div className={styles.simpleImageWrap}>
+                  <img src={item.image?.src} alt={item.image?.alt ?? ""} className={styles.image} loading="lazy" />
+                </div>
+                {item.desc && <p className={styles.simpleDesc}>{item.desc}</p>}
+              </article>
+            </FadeUp>
+          ))}
+        </div>
+      ) : (
       <div className={isGrid ? styles.grid : styles.list}>
         {items.map((item, i) => (
           <FadeUp key={i} delay={isGrid ? (i % 2) * 80 : 0}>
@@ -215,6 +248,7 @@ export default function FeatureSection({
           </FadeUp>
         ))}
       </div>
+      )}
 
       {note && <p className={styles.note}>{note}</p>}
     </section>

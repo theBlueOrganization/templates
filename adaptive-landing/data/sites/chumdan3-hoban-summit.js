@@ -94,6 +94,14 @@ const config = {
     },
 
     // 배경 3장 크로스페이드 — 공식 홈페이지 메인 투시도 2장(PC/모바일 별도) / A8BL 조감도(plan_8bl). 문구는 표지·사업개요 카피 발췌
+    // 요청 반영(2026-10-01) — 시티오씨엘 9단지처럼 인트로(원 2개 드로잉 → 로고 → 원이 화면 전체로 열리며 히어로)
+    //   배경은 히어로 첫 슬라이드와 같은 이미지라 열린 뒤 히어로로 그대로 이어짐 (SignatureCircleIntro)
+    circleIntro: {
+      logo: { src: '/apt/chumdan3-hoban-summit/logo-white.png', alt: '호반써밋 첨단3지구 HOBAN SUMMIT', width: 347, height: 137 },
+      bgImage: '/apt/chumdan3-hoban-summit/hero-1.webp',
+      bgImageMobile: '/apt/chumdan3-hoban-summit/hero-1-m.webp',
+    },
+
     hero: {
       // 모바일은 eyebrow 두 줄을 세로로 쌓음(divider 한 줄 배치는 390px 폭에서 줄바꿈이 깨짐)
       eyebrowDivider: false,

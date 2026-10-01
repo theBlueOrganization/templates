@@ -24,7 +24,7 @@ const SPARKLE_ICON = (
 )
 
 // eupseong-prugio 첫 화면 히어로 — 로드 즉시 순차적으로 텍스트가 아래→위로 떠오르며 나타남
-export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTargetId }) {
+export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTargetId, holdForIntro }) {
   const descSegments = hero.descLine1 ? splitHighlight(hero.descLine1, hero.descLine1Accent) : []
   const titleSegments = hero.titleAccent ? splitHighlight(hero.titleLine1, hero.titleAccent) : null
   const mobileBar = hero.mobileBar
@@ -52,9 +52,22 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
   }
 
   useEffect(() => {
+    // holdForIntro — 전체화면 인트로(SignatureCircleIntro)가 재생되는 동안은 자동 전환을 멈췄다가, 인트로가
+    // 닫히는 순간 첫 슬라이드부터 시작 (인트로 배경 = 첫 슬라이드라 열린 뒤 그대로 이어지게)
+    if (holdForIntro && !window.__circleIntroEnded) {
+      const start = () => {
+        setActiveSlide(0)
+        restartSlideTimer()
+      }
+      window.addEventListener('circleintro:end', start, { once: true })
+      return () => {
+        window.removeEventListener('circleintro:end', start)
+        clearInterval(slideTimerRef.current)
+      }
+    }
     restartSlideTimer()
     return () => clearInterval(slideTimerRef.current)
-  }, [slides])
+  }, [slides, holdForIntro])
 
   // 화살표/썸네일로 수동 이동하면 자동 전환 타이머를 리셋해서, 고른 직후 바로 다음 슬라이드로
   // 넘어가버리는 어색함을 방지

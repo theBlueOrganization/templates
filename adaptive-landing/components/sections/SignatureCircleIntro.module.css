@@ -1,0 +1,236 @@
+/* 원형 인트로 오버레이 — 타이밍은 시티오씨엘 9단지 인트로(SignatureHeroOciel)를 조금 줄여서 맞춤.
+   0~1.8s 원 2개 드로잉 → 0.8s~ 로고 페이드인 → 2.8~4.2s 원이 비껴나며 사라짐 → 3.2s~ 원 안 배경 →
+   4.6s 로고 페이드아웃 → 4.8s 원이 화면 전체로 열림(1.2s) → 6s 오버레이 페이드아웃(0.6s) */
+
+.lockScroll {
+  overflow: hidden !important;
+}
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  overflow: hidden;
+  background: #000;
+  cursor: pointer;
+  transition: opacity 0.6s ease;
+}
+
+.leaving {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pcOnly {
+  display: none;
+}
+
+.mobileOnly {
+  display: block;
+}
+
+/* ---------- 원 2개 드로잉 ---------- */
+.cirWrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 3;
+  width: 70vw;
+  height: 70vw;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.open .cirWrap {
+  visibility: hidden;
+  transition: visibility 0s linear 4.2s;
+}
+
+.cir {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.cirA {
+  left: -8%;
+  top: 8%;
+}
+
+.cirB {
+  left: 8%;
+  top: 0;
+}
+
+.cir svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.cir svg circle {
+  stroke-dasharray: 1571;
+  stroke-dashoffset: 1571;
+}
+
+.cirB svg circle {
+  transform: rotate(180deg);
+  transform-origin: 250px 250px;
+}
+
+.open .cirA {
+  animation: moveA 4.2s ease forwards;
+}
+
+.open .cirB {
+  animation: moveB 4.2s ease forwards;
+}
+
+.open .cir svg circle {
+  animation: draw 4.2s ease forwards;
+}
+
+@keyframes draw {
+  0% {
+    stroke-dashoffset: 1571;
+  }
+  43%,
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes moveA {
+  0%,
+  67% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(8%, -4%);
+    opacity: 0;
+  }
+}
+
+@keyframes moveB {
+  0%,
+  67% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-8%, 4%);
+    opacity: 0;
+  }
+}
+
+/* ---------- 원 안 배경 → 화면 전체로 열림 ---------- */
+.clip {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  clip-path: circle(33vw at 50% calc(50% + 2vw));
+  transition: clip-path 1.2s cubic-bezier(0.65, 0, 0.35, 1) 4.8s;
+}
+
+.open .clip {
+  clip-path: circle(75% at 50% calc(50% + 2vw));
+}
+
+.clipBg {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 1.4s 3.2s, transform 2.8s ease 3.2s;
+}
+
+.open .clipBg {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.clipImg {
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+/* ---------- 로고 ---------- */
+.logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 5;
+  width: 52%;
+  max-width: 260px;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 1.5s 0.8s;
+}
+
+.logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.open .logo {
+  opacity: 1;
+  animation: logoOut 0.5s ease 4.6s forwards;
+}
+
+@keyframes logoOut {
+  to {
+    opacity: 0;
+  }
+}
+
+/* ---------- SKIP ---------- */
+.skipBtn {
+  position: absolute;
+  right: 20px;
+  bottom: 25px;
+  z-index: 6;
+  padding: 12px 26px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+/* ---------- PC ---------- */
+@media (min-width: 768px) {
+  .pcOnly {
+    display: block;
+  }
+
+  .mobileOnly {
+    display: none;
+  }
+
+  .cirWrap {
+    width: 36vw;
+    height: 36vw;
+  }
+
+  .clip {
+    clip-path: circle(18.13vw at 50% calc(50% + 1.2vw));
+  }
+
+  .open .clip {
+    clip-path: circle(75% at 50% calc(50% + 1.2vw));
+  }
+
+  .logo {
+    width: 20%;
+    max-width: 320px;
+  }
+
+  .skipBtn {
+    right: 40px;
+    bottom: 40px;
+  }
+}

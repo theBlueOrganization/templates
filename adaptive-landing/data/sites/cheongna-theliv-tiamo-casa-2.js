@@ -234,6 +234,47 @@ const config = {
       imageBadge: '투시도',
       bgImage: { src: '/apt/cheongna-theliv-tiamo-casa/hero-2.webp', alt: '청라 더리브 티아모 까사 야경 투시도' },
     },
+    // 요청 반영(2026-10-01) — NEW LUXURISM 섹션 다음에 참고 사이트 메인 'PERFECT TRIPLE 01~03' 내용을 같은 split 디자인으로
+    //   3개 이어 붙임(이미지 좌/우 지그재그). 문구는 참고 사이트 원문 그대로, 사진은 참고 사이트 이미지 크롭
+    //   (01 커뮤니티 스카이브릿지 CG, 02 사업개요 조감도, 03 입지환경 7호선 이미지컷 — 03은 원본 이미지가 작아 다소 흐릴 수 있음)
+    premiumIntroExtras: [
+      {
+        split: true,
+        reverse: true,
+        eyebrow: 'PERFECT TRIPLE 01',
+        titleLine1: '청라의 드높은 하늘, 당신의 특권이 되다',
+        paragraphs: [
+          { head: '청라의 자부심, 스카이브릿지', lines: ['단지의 품격을 높여주는 스카이브릿지로', '3개동이 연결된 유니크한 외관 설계'] },
+          { head: '최고 46층 랜드마크 가치', lines: ['최상층 펜트하우스부터 46층 초고층', '설계로 청라를 대표할 랜드마크 특권'] },
+        ],
+        imageBadge: '이미지컷',
+        bgImage: { src: '/apt/cheongna-theliv-tiamo-casa/triple-01-skybridge.webp', alt: '청라 더리브 티아모 까사 스카이브릿지 이미지컷' },
+      },
+      {
+        split: true,
+        eyebrow: 'PERFECT TRIPLE 02',
+        titleLine1: '늘 푸른 공원과 호수, 일상에 여유를 더하다',
+        paragraphs: [
+          { head: '커낼웨이 수변 조망', lines: ['청라호수공원, 커낼웨이 등 쾌적한 자연을', '더 가까이 누리는 에코 라이프의 완성'] },
+          { head: '한걸음에 누리는 생활 인프라', lines: ['홈플러스, 이마트, 롯데마트, 스타필드 청라(예정),', '코스트코(예정) 등 다채로운 생활 환경'] },
+        ],
+        imageBadge: '조감도',
+        bgImage: { src: '/apt/cheongna-theliv-tiamo-casa/overview-aerial.webp', alt: '청라 더리브 티아모 까사 조감도 — 커낼웨이와 청라호수공원' },
+      },
+      {
+        split: true,
+        reverse: true,
+        eyebrow: 'PERFECT TRIPLE 03',
+        titleLine1: '7호선 초역세권, 서울을 빠르게 잇다',
+        paragraphs: [
+          { head: '7호선 초역세권 프리미엄', lines: ['바로 앞, 7호선 커낼웨이역(예정) 및 서울 지하철', '2호선 연장(예정), 청라IC, BRT, GRT 등 쾌속교통망'] },
+          { head: '청라의 끝없는 미래가치', lines: ['하나금융·드림타운(예정) 의료복합타운 아산병원', '(예정) 등 눈부신 미래가치의 최중심'] },
+        ],
+        imageBadge: '이미지컷',
+        bgImage: { src: '/apt/cheongna-theliv-tiamo-casa/triple-03-traffic.webp', alt: '7호선 커낼웨이역(예정) 이미지컷' },
+      },
+    ],
+
 
     // 출처: 참고 사이트 단지설계(complex) — SPECIAL DESIGN(웰컴테라스·시크릿정원·휴게정원 / 커낼스트리트·아케이드·스카이브릿지)
     newsImage: {

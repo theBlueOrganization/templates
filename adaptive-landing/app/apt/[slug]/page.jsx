@@ -318,6 +318,10 @@ export default async function AptPage({ params }) {
         {sig.transitDetail && <SignatureTransitDetail transit={sig.transitDetail} />}
         {sig.story && <SignatureSellingStory story={sig.story} />}
         <SignaturePremiumIntro premiumIntro={sig.premiumIntro} />
+        {/* premiumIntroExtras — premiumIntro 바로 다음에 같은 컴포넌트(주로 split)를 여러 개 이어 붙일 때 (예: 청라 더리브 티아모 까사2 PERFECT TRIPLE 01~03) */}
+        {sig.premiumIntroExtras?.map((extra, i) => (
+          <SignaturePremiumIntro key={i} premiumIntro={extra} />
+        ))}
         {sig.newsImage && <SignatureNewsImage image={sig.newsImage} maxWidth={sig.newsImage.maxWidth} />}
         <SignaturePremiumValue premiumValue={sig.premiumValue} />
         {sig.premiumSplits?.map((split, i) => (

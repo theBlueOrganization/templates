@@ -317,9 +317,16 @@ const config = {
 
     // 상담 신청 버튼
     ContactForm_submitBtn: {
-      background: "linear-gradient(135deg, #3b82f6, #1d4ed8)",
+      background: "#1e3a5f",
       color:      "#ffffff",
       fontSize:   "1.15rem",
+    },
+
+    // 탭 활성 버튼(사업개요·단지배치·커뮤니티·평면도) — 하단 관심고객등록 버튼과 같은 남색으로 통일
+    ImageSection_tabActive: {
+      background:  "#1e3a5f",
+      borderColor: "#1e3a5f",
+      color:       "#ffffff",
     },
 
     // 하단 고정 버튼바

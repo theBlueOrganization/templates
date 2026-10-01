@@ -285,21 +285,6 @@ img.bgImageMobileOnly {
   }
 }
 
-/* hero.eyebrowStackMobile — 모바일/태블릿에서 "평문 — 구분선 — 강조문구"를 한 줄 대신 세로로 쌓음
-   (문구가 길어 한 줄에 빽빽한 현장용). 데스크톱은 기존 한 줄 배치 유지 */
-@media (max-width: 1023px) {
-  .eyebrowDividerStackMobile {
-    flex-direction: column;
-    gap: 6px;
-    line-height: 1.4;
-  }
-
-  .eyebrowDividerStackMobile .eyebrowDividerLine {
-    width: 1px;
-    height: 18px;
-  }
-}
-
 @media (min-width: 1024px) {
   .eyebrowDividerRow {
     font-size: var(--hero-eyebrow-divider-size-lg, 19px);

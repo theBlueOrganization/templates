@@ -403,7 +403,7 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
           ) : (
             <>
               {hero.eyebrowDivider ? (
-                <motion.p className={hero.eyebrowStackMobile ? `${styles.eyebrowDividerRow} ${styles.eyebrowDividerStackMobile}` : styles.eyebrowDividerRow} custom={0.2} initial="hidden" animate="show" variants={lineVariants}>
+                <motion.p className={styles.eyebrowDividerRow} custom={0.2} initial="hidden" animate="show" variants={lineVariants}>
                   <span className={styles.eyebrowDividerText}>{activeEyebrowLine1}</span>
                   <span className={styles.eyebrowDividerLine} />
                   <span className={styles.eyebrowAccent}>{activeEyebrowLine2}</span>

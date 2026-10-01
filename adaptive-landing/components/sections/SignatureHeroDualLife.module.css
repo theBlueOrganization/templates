@@ -1,0 +1,432 @@
+/* 히어로 높이 — stage 폭 계산(cover 재현)에 같이 쓰므로 변수로 고정. 모바일은 sticky 헤더(64px)를
+   뺀 나머지만큼이라 하단 액션바까지 첫 화면에 다 보임 */
+.hero {
+  --hero-h: max(calc(100svh - 64px), 560px);
+  /* 모바일은 배경을 하단 액션바(100px) 위로 끌어올려 단지가 바에 가리지 않게 함 — 생긴 틈은 바가 덮음 */
+  --stage-offset: 70px;
+  position: relative;
+  height: var(--hero-h);
+  overflow: hidden;
+  background: #c3cfe8;
+  color: var(--hero-ink, #003c66);
+}
+
+/* stage — background-size: cover + background-position: center bottom을 그대로 재현.
+   폭이 넉넉하면 100% 폭(위쪽이 잘림), 세로로 길면 (히어로 높이 - offset) × 이미지 비율(양옆이 잘림) */
+.stage {
+  position: absolute;
+  left: 50%;
+  bottom: var(--stage-offset);
+  width: max(100%, calc((var(--hero-h) - var(--stage-offset)) * var(--stage-ratio)));
+  aspect-ratio: var(--stage-ratio);
+  transform: translateX(-50%);
+}
+
+.stageDesktop {
+  display: none;
+}
+
+.stageImage {
+  object-fit: cover;
+  transform-origin: center bottom;
+  animation: heroZoom 3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes heroZoom {
+  from {
+    transform: scale(1.15);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* 블럭 태그 — (left, top)이 끝 점 위치. 모바일은 끝 점에서 위로 세로 지시선 → 라벨,
+   데스크톱은 라벨 오른쪽에서 짧은 가로선 → 45° 사선 → 끝 점(공식 홈페이지와 동일) */
+.tag {
+  --tag-color: #0b3d5c;
+  --stem: var(--tag-stem, 72px);
+  position: absolute;
+  width: 0;
+  height: 0;
+  z-index: 1;
+}
+
+.tagGray {
+  --tag-color: #737373;
+}
+
+.tagDot {
+  position: absolute;
+  left: -6px;
+  top: -6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--tag-color);
+}
+
+.tagStem {
+  position: absolute;
+  left: -0.5px;
+  bottom: 0;
+  width: 1px;
+  height: var(--stem);
+  background: var(--tag-color);
+}
+
+.tagElbow {
+  display: none;
+}
+
+.tagLabel {
+  position: absolute;
+  left: -20px;
+  bottom: var(--stem);
+  padding: 6px 11px;
+  background: var(--tag-color);
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+}
+
+.tagRight .tagLabel {
+  left: auto;
+  right: -20px;
+}
+
+/* 카피 — 모바일은 가운데 세로 스택(구분선 숨김), 데스크톱은 "eyebrow — 가로선 — 큰 제목" 한 줄 */
+.content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 13%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px;
+  text-align: center;
+  pointer-events: none;
+}
+
+.eyebrow {
+  font-family: var(--font-serif);
+  font-size: clamp(15px, 4.2vw, 18px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  word-break: keep-all;
+}
+
+.rule {
+  display: none;
+}
+
+.title {
+  position: relative;
+  margin-top: 14px;
+  font-family: var(--font-serif);
+  font-size: clamp(34px, 10vw, 44px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+
+.titleLine {
+  display: block;
+}
+
+.titleLineIndent {
+  padding-left: 2.6em;
+}
+
+.titleStrong {
+  font-size: 1.27em;
+  font-weight: 800;
+}
+
+.titleSmall {
+  font-size: 0.8em;
+}
+
+.decoRing,
+.decoHatch {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.decoRing {
+  width: 220px;
+  top: -120px;
+  right: -110px;
+}
+
+.decoHatch {
+  width: 100px;
+  left: -70px;
+  bottom: -10px;
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    --hero-h: max(calc(100svh - 96px), 640px);
+    --stage-offset: 0px;
+  }
+
+  .stageMobile {
+    display: none;
+  }
+
+  .stageDesktop {
+    display: block;
+  }
+
+  .tag {
+    --diag: 120px;
+  }
+
+  .tagDot {
+    left: -8px;
+    top: -8px;
+    width: 16px;
+    height: 16px;
+  }
+
+  .tagStem {
+    display: none;
+  }
+
+  /* 사선(45°) — 끝 점에서 왼쪽 위로 --diag 길이만큼, 그 끝에 16px 가로선 */
+  .tagElbow {
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: calc(var(--diag) * 0.7071);
+    height: calc(var(--diag) * 0.7071);
+    background: linear-gradient(to top right, transparent calc(50% - 0.5px), var(--tag-color) calc(50% - 0.5px), var(--tag-color) calc(50% + 0.5px), transparent calc(50% + 0.5px));
+  }
+
+  .tagElbow::before {
+    content: '';
+    position: absolute;
+    right: 100%;
+    top: 0;
+    width: 16px;
+    height: 1px;
+    background: var(--tag-color);
+  }
+
+  .tagLabel,
+  .tagRight .tagLabel {
+    left: auto;
+    right: calc(var(--diag) * 0.7071 + 16px);
+    bottom: calc(var(--diag) * 0.7071);
+    transform: translateY(50%);
+    padding: 8px 32px;
+    font-size: 21px;
+  }
+
+  .tagGray .tagLabel {
+    padding: 8px 16px;
+    font-size: 16px;
+  }
+
+  .content {
+    top: 50%;
+    left: 50%;
+    right: auto;
+    width: min(84%, 1240px);
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+    padding: 0;
+    text-align: left;
+    transform: translate(-50%, -100%);
+  }
+
+  .eyebrow {
+    flex-shrink: 0;
+    font-size: clamp(20px, 1.5vw, 27px);
+  }
+
+  .rule {
+    display: block;
+    flex: 1;
+    height: 1px;
+    margin: 0 60px;
+    background: currentColor;
+    transform-origin: left center;
+  }
+
+  .title {
+    flex-shrink: 0;
+    margin-top: 0;
+    font-size: clamp(44px, 3.4vw, 61px);
+  }
+
+  .decoRing {
+    width: 316px;
+    top: -140px;
+    right: -40px;
+  }
+
+  .decoHatch {
+    width: 146px;
+    left: -150px;
+    bottom: -10px;
+  }
+
+  .mobileBar {
+    display: none;
+  }
+}
+
+/* 모바일 전용 하단 액션바 — 안내 롤링 배너 + 전화상담/방문예약 버튼 + 프로모 말풍선 */
+.mobileBar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+}
+
+.announceBar {
+  position: relative;
+  height: 40px;
+  background: var(--navy);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.announceTrack {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.5s ease;
+}
+
+.announceItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+}
+
+.announceBadge {
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  padding: 3px 7px;
+  color: var(--cream);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+.announceText {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 13.5px;
+  letter-spacing: -0.3px;
+}
+
+.announceStrong {
+  color: #fff;
+  font-weight: 500;
+}
+
+.announceLight {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 300;
+}
+
+.actionButtons {
+  position: relative;
+  display: flex;
+  height: 60px;
+}
+
+.callBtn,
+.visitBtn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-top: 1px solid;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.callBtn {
+  background: var(--cream);
+  border-top-color: var(--cream);
+  color: var(--navy);
+}
+
+.visitBtn {
+  background: var(--gold);
+  border-top-color: var(--gold);
+  color: var(--navy);
+}
+
+.promoBubble {
+  position: absolute;
+  right: 14px;
+  bottom: 100%;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gold);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+  padding: 8px 16px 8px 12px;
+  box-shadow: 0 4px 7.5px rgba(0, 0, 0, 0.15);
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+}
+
+.pulseDot {
+  flex-shrink: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--navy);
+  animation: pulseDot 1.6s ease-in-out infinite;
+}
+
+.bubbleTail {
+  position: absolute;
+  right: 24px;
+  bottom: -5px;
+  width: 10px;
+  height: 10px;
+  background: var(--gold);
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  transform: rotate(45deg);
+}
+
+@keyframes pulseDot {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.8);
+    opacity: 0.4;
+  }
+}

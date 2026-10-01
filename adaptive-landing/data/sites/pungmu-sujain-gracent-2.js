@@ -79,34 +79,23 @@ const config = {
       ],
     },
 
-    // 배경 3장 크로스페이드 — 투시도(p6) / 조감도(p7) / 사업개요 조감도(p3). 문구는 표지·사업개요·프리미엄 카피 발췌
+    // 공식 홈페이지(sujain-pm2.co.kr) 메인 비주얼 이식 — 노을 단지 전경(main.jpg / 모바일 m_main.jpg)·장식 원(main_bg01/02)
+    // 원본 그대로. tags 좌표는 배경 이미지 기준 %(끝 점 위치) — 2차(B1, 좌측 단지) / 1차(B2, 우측 단지)
     hero: {
-      eyebrowDivider: true,
-      eyebrowStackMobile: true,
-      titleLine1: '풍무역세권 수자인 그라센트 2차',
-      titleWeight: 700,
-      titleSize: { base: 25, md: 48, lg: 72 },
-      eyebrowSize: { base: 15, lg: 21 },
-      textColor: '#ffffff',
-      keepTextShadow: true,
-      overlay: false,
-      contentTop: true,
-      slides: [
-        {
-          eyebrowLine1: '사우 생활, 교육부터 역까지 한걸음에',
-          eyebrowLine2: '수자인 듀얼라이프의 완성.',
-          bgImage: { src: '/apt/pungmu-sujain-gracent-2/hero-1.webp', alt: '풍무역세권 수자인 그라센트 2차 투시도' },
-        },
-        {
-          eyebrowLine1: 'B1·B2블럭 총 1,710세대',
-          eyebrowLine2: '수자인 브랜드타운.',
-          bgImage: { src: '/apt/pungmu-sujain-gracent-2/hero-2.webp', alt: '풍무역세권 수자인 그라센트 2차 조감도' },
-        },
-        {
-          eyebrowLine1: '84㎡~105㎡ 전 타입 4베이 판상형',
-          eyebrowLine2: '중대형 평면 설계.',
-          bgImage: { src: '/apt/pungmu-sujain-gracent-2/hero-3.webp', alt: '풍무역세권 수자인 그라센트 2차 조감도' },
-        },
+      variant: 'dualLife',
+      bgImage: { src: '/apt/pungmu-sujain-gracent-2/hero-dual-life.webp', alt: '풍무역세권 수자인 그라센트 2차 단지 전경', width: 1920, height: 1000 },
+      bgImageMobile: { src: '/apt/pungmu-sujain-gracent-2/hero-dual-life-mobile.webp', alt: '풍무역세권 수자인 그라센트 2차 단지 전경', width: 1000, height: 1444 },
+      eyebrow: '사우 생활, 교육부터 역까지 한걸음에',
+      titleLines: [
+        { parts: [{ text: '수자인', strong: true }] },
+        { parts: [{ text: '듀얼', strong: true }, { text: '라이프' }, { text: '의', small: true }] },
+        { parts: [{ text: '완성' }], indent: true },
+      ],
+      decoRing: '/apt/pungmu-sujain-gracent-2/hero-deco-ring.png',
+      decoHatch: '/apt/pungmu-sujain-gracent-2/hero-deco-hatch.png',
+      tags: [
+        { label: '2차 금회분양(B1 BL)', desktop: { x: 29, y: 66 }, mobile: { x: 29, y: 77, stem: 96 } },
+        { label: '1차 분양완료(B2 BL)', tone: 'gray', side: 'right', desktop: { x: 66.4, y: 65.5 }, mobile: { x: 68, y: 76.5, stem: 40 } },
       ],
       mobileBar: {
         announcements: [{ badge: '안내', textStrong: '풍무역세권 수자인 그라센트 2차', textLight: ' 공식 안내센터입니다.' }],

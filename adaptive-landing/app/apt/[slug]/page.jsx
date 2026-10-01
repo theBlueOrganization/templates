@@ -10,6 +10,7 @@ import SignatureMobileBottomBar from '../../../components/ui/SignatureMobileBott
 import SignatureHero from '../../../components/sections/SignatureHero'
 import SignatureVideoSection from '../../../components/sections/SignatureVideoSection'
 import SignatureHeroMinimal from '../../../components/sections/SignatureHeroMinimal'
+import SignatureHeroDualLife from '../../../components/sections/SignatureHeroDualLife'
 import SignatureHeroLegacy from '../../../components/sections/SignatureHeroLegacy'
 import SignatureHeroOciel from '../../../components/sections/SignatureHeroOciel'
 import SignatureCircleIntro from '../../../components/sections/SignatureCircleIntro'
@@ -253,6 +254,14 @@ export default async function AptPage({ params }) {
         ) : sig.hero.variant === 'ociel' ? (
           // 시티오씨엘 9단지 — 공식 사이트 인트로(원 드로잉 → 원이 열리며 메인 슬라이드) 재구성
           <SignatureHeroOciel hero={sig.hero} />
+        ) : sig.hero.variant === 'dualLife' ? (
+          // 풍무역세권 수자인 그라센트 2차 — 공식 홈페이지 메인 비주얼(노을 전경 + 명조 카피 + 블럭 지시선 태그) 재구성
+          <SignatureHeroDualLife
+            hero={sig.hero}
+            telNumber={site.telNumber}
+            telNumberByUtm={site.telNumberByUtm}
+            visitTargetId={sig.vipForm.id}
+          />
         ) : sig.hero.variant === 'minimal' ? (
           <SignatureHeroMinimal
             hero={sig.hero}

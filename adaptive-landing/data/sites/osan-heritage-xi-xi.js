@@ -151,12 +151,24 @@ const config = {
       },
     },
 
-    // 히어로 바로 다음 영상 섹션 — 사용자가 전달한 유튜브 영상(youtu.be/qQxcm17SLFk)을 그대로 삽입
-    videoSection: {
-      youtubeId: 'qQxcm17SLFk',
-      title: '오산헤리티지자이 소개 영상',
-      // 요청 반영 — 화면 전체 폭보다 살짝 작게
-      maxWidth: 1200,
+    // 요청 반영(2026-10-01) — 히어로 다음 영상 섹션을 지우고 그 자리에 특별 혜택 4가지 섹션을 넣음
+    // (the-sharp-songdo-grand-terre의 "SPECIAL CONDITIONS" 구조 그대로). afterHero:true면 영상 다음
+    // 상담폼(vipForm.showAfterVideo)보다 앞, 히어로 바로 다음에 렌더링됨
+    benefits: {
+      id: 'benefits',
+      afterHero: true,
+      eyebrow: 'SPECIAL CONDITIONS',
+      titleSmall: '오산헤리티지자이',
+      titleBold: '특별한 ',
+      titleScript: '4가지 혜택',
+      desc: '오산헤리티지자이만의 특별한 혜택을 확인하세요.',
+      bgImage: { src: '/apt/osan-heritage-xi-xi/hero-bg.jpg', alt: '오산헤리티지자이 특별 혜택' },
+      items: [
+        { num: '01', tag: 'NO.1', title: ['방문이벤트', '와인추첨'], desc: '' },
+        { num: '02', tag: 'NO.2', title: ['주말', '경품추첨'], desc: '' },
+        { num: '03', tag: 'NO.3', title: ['1차 계약금', '500만원'], desc: '' },
+        { num: '04', tag: 'NO.4', title: ['계약시 계약축하금', '100만원'], desc: '' },
+      ],
     },
 
     summary: {

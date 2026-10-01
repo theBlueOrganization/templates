@@ -104,6 +104,8 @@ export default function SignaturePremiumIntro({ premiumIntro }) {
 
   const introStyle = {
     ...(premiumIntro.fontFamily && { '--intro-font': premiumIntro.fontFamily }),
+    // contentOffsetY — 가운데 정렬된 문구 묶음을 위/아래로 살짝 옮길 때(음수면 위로, 예: '-6vh')
+    ...(premiumIntro.contentOffsetY && { '--intro-content-offset': premiumIntro.contentOffsetY }),
     ...(premiumIntro.titleColor && {
       '--intro-color': premiumIntro.titleColor,
       '--intro-title-shadow': premiumIntro.titleShadow || '0 2px 16px rgba(0, 0, 0, 0.55)',

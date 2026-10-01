@@ -162,7 +162,8 @@ const config = {
       titleBold: '특별한 ',
       titleScript: '4가지 혜택',
       desc: '오산헤리티지자이만의 특별한 혜택을 확인하세요.',
-      bgImage: { src: '/apt/osan-heritage-xi-xi/hero-bg.jpg', alt: '오산헤리티지자이 특별 혜택' },
+      // 요청 반영 — 히어로 이미지(글자 포함) 대신 프리미엄 인트로 섹션의 주간 단지 전경 이미지 사용
+      bgImage: { src: '/apt/osan-heritage-xi-xi/premium-intro-bg.png', alt: '오산헤리티지자이 특별 혜택' },
       items: [
         { num: '01', tag: 'NO.1', title: ['방문이벤트', '와인추첨'], desc: '' },
         { num: '02', tag: 'NO.2', title: ['주말', '경품추첨'], desc: '' },

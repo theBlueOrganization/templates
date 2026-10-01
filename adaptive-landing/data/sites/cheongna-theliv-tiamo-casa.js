@@ -196,17 +196,18 @@ const config = {
         '※ 상기 지역도는 소비자의 이해를 돕기 위해 제작된 것으로 실제와 차이가 있을 수 있습니다. 상기 현황 및 개발계획은 사업주체, 국가기관, 지자체 및 기타 기관의 사업추진 중 변경 및 지연 또는 취소될 수 있으며, 이는 당사와는 무관합니다.',
     },
 
+    // 요청 반영(2026-10-01) — city-ociel-9-2처럼 왼쪽 이미지컷 + 오른쪽 세로 카피(split).
+    //   문구는 참고 사이트 메인 'NEW LUXURISM' 섹션(sec02b) 원문을 줄 단위로 끊어 PC·모바일 동일 줄바꿈
     premiumIntro: {
+      split: true,
+      eyebrow: 'NEW LUXURISM',
+      titleLine1: '가장 새로운 청라의 시작',
+      paragraphs: [
+        ['모두의 청라에서', '당신만의 청라로', '다 갖춘 중심에서', '단 하나의 시그니처로'],
+        ['청라의 하늘아래', '가장 새로운 럭셔리로', '새롭게 선보입니다'],
+      ],
+      imageBadge: '투시도',
       bgImage: { src: '/apt/cheongna-theliv-tiamo-casa/hero-2.webp', alt: '청라 더리브 티아모 까사 야경 투시도' },
-      // 야경 사진 위에 흰 글씨 — 기본 스크림(크림톤)은 짙은 글씨용이라 끄고 그림자로 가독성 확보
-      overlay: false,
-      eyebrow: '더 완벽한 생활의 중심, 가장 새로운 청라의 시작!',
-      eyebrowColor: '#ffffff',
-      eyebrowShadow: '0 2px 12px rgba(0, 0, 0, 0.65)',
-      titleLine1: '청라 더리브 티아모 까사',
-      titleUnderline: true,
-      titleColor: '#ffffff',
-      footnote: '※ 상기 이미지는 소비자의 이해를 돕기 위한 것으로 실제와 차이가 있을 수 있습니다.',
     },
 
     // 출처: 참고 사이트 단지설계(complex) — SPECIAL DESIGN(웰컴테라스·시크릿정원·휴게정원 / 커낼스트리트·아케이드·스카이브릿지)
@@ -219,73 +220,83 @@ const config = {
     },
 
     // 출처: 참고 사이트 프리미엄8(premium) 원문 — 카드 사진은 원본 4x2 그리드에서 각 칸 이미지를 잘라낸 것
+    // 요청 반영(2026-10-01) — city-ociel-9-2처럼 PREMIUM 9 카드(3열 x 3줄). 참고 사이트는 8개라
+    //   9번은 같은 사이트 단지설계(시크릿정원 등)·커뮤니티(스카이브릿지·피트니스·G/X룸) 문구로 구성,
+    //   사진은 단지설계 시크릿정원 컷 크롭(premium-photo-09.webp)
     premiumValue: {
       id: 'premium-value',
       navLabel: '프리미엄',
-      eyebrow: 'PREMIUM VALUE',
+      eyebrow: 'NEW LUXURISM',
       titlePlain: '청라 더리브 티아모 까사 ',
-      titleAccent: 'PREMIUM 8',
+      titleAccent: 'PREMIUM 9',
       cardTextAlign: 'center',
-      columns: 2,
       cards: [
         {
           num: '01',
           icon: 'tower',
-          title: ['Premium 01', '청라의 자부심 스카이브릿지'],
-          desc: ['단지의 품격을 높여주는 스카이브릿지로', '3개 동이 연결되는 유니크한 외관설계'],
           image: { src: '/apt/cheongna-theliv-tiamo-casa/premium-photo-01.webp', alt: '청라의 자부심 스카이브릿지' },
+          title: ['청라의 자부심', '스카이브릿지'],
+          desc: ['단지의 품격을 높여주는 스카이브릿지로', '3개 동이 연결되는 유니크한 외관설계'],
         },
         {
           num: '02',
           icon: 'trophy',
-          title: ['Premium 02', '최고 46층 랜드마크 가치'],
+          image: { src: '/apt/cheongna-theliv-tiamo-casa/premium-photo-02.webp', alt: '최고 46층 랜드마크 조감도' },
+          title: ['최고 46층', '랜드마크 가치'],
           desc: ['최상층 펜트하우스부터 46층 초고층 설계로', '청라를 대표할 랜드마크'],
-          image: { src: '/apt/cheongna-theliv-tiamo-casa/premium-photo-02.webp', alt: '최고 46층 랜드마크 가치' },
         },
         {
           num: '03',
           icon: 'train',
-          title: ['Premium 03', '7호선 커낼웨이역 초역세권'],
-          desc: ['바로 앞, 7호선 커낼웨이역(예정) 및', '서울 지하철 2호선 연장(예정), 청라IC, BRT, GRT 등 쾌속 교통망'],
           image: { src: '/apt/cheongna-theliv-tiamo-casa/premium-photo-03.webp', alt: '7호선 커낼웨이역 초역세권 이미지컷' },
+          title: ['7호선 커낼웨이역', '초역세권'],
+          desc: ['바로 앞, 7호선 커낼웨이역(예정) 및 서울 지하철 2호선 연장(예정)', '청라IC, BRT, GRT 등 쾌속 교통망'],
         },
         {
           num: '04',
           icon: 'forest',
-          title: ['Premium 04', '커낼웨이 수변조망'],
-          desc: ['청라호수공원, 커낼웨이 등 쾌적한 자연을', '더 가까이 누리는 에코라이프의 완성'],
           image: { src: '/apt/cheongna-theliv-tiamo-casa/premium-photo-04.webp', alt: '커낼웨이 수변조망 이미지컷' },
+          title: ['커낼웨이', '수변조망'],
+          desc: ['청라호수공원, 커낼웨이 등 쾌적한 자연을', '더 가까이 누리는 에코라이프의 완성'],
         },
         {
           num: '05',
           icon: 'pin',
-          title: ['Premium 05', '하이엔드 주방가구 Dada 인테리어'],
-          desc: ['세계최고의 주방가구 몰테니앤씨그룹의 브랜드', 'Dada 전 세대 적용 (※ 펜트타입(211㎡) 3세대 제외)'],
-          image: { src: '/apt/cheongna-theliv-tiamo-casa/premium-photo-05.webp', alt: '하이엔드 주방가구 Dada 인테리어' },
+          image: { src: '/apt/cheongna-theliv-tiamo-casa/premium-photo-05.webp', alt: 'Dada 주방가구 이미지' },
+          title: ['하이엔드 주방가구', 'Dada 인테리어'],
+          desc: ['세계최고의 주방가구 몰테니앤씨그룹의', '브랜드 Dada 전 세대 적용', '(※ 펜트타입(211㎡) 3세대 제외)'],
         },
         {
           num: '06',
           icon: 'money',
-          title: ['Premium 06', '생활가전 무상옵션 제공'],
-          desc: ['FCU 에어컨, 비스포크 냉장&냉동고, 세탁기&건조기,', '전기오븐, 하이브리드 쿡탑 등 가전가구(일부) 무상제공'],
           image: { src: '/apt/cheongna-theliv-tiamo-casa/premium-photo-06.webp', alt: '생활가전 무상옵션 이미지컷' },
+          title: ['생활가전', '무상옵션 제공'],
+          desc: ['FCU 에어컨, 비스포크 냉장&냉동고,', '세탁기&건조기, 전기오븐, 하이브리드 쿡탑 등', '가전가구(일부) 무상제공'],
         },
         {
           num: '07',
           icon: 'cart',
-          title: ['Premium 07', '한 걸음에 누리는 생활인프라'],
-          desc: ['홈플러스, 롯데마트, 스타필드 청라(예정),', '코스트코(예정) 등 다채로운 생활 환경'],
           image: { src: '/apt/cheongna-theliv-tiamo-casa/premium-photo-07.webp', alt: '생활인프라 이미지컷' },
+          title: ['한 걸음에 누리는', '생활인프라'],
+          desc: ['홈플러스, 롯데마트, 스타필드 청라(예정),', '코스트코(예정) 등 다채로운 생활 환경'],
         },
         {
           num: '08',
           icon: 'city',
-          title: ['Premium 08', '청라의 끝없는 미래가치'],
-          desc: ['하나금융·드림타운(예정), 의료복합타운 아산병원(예정)', '등 눈부신 미래가치의 최중심'],
-          image: { src: '/apt/cheongna-theliv-tiamo-casa/premium-photo-08.webp', alt: '청라의 미래가치 이미지컷' },
+          image: { src: '/apt/cheongna-theliv-tiamo-casa/premium-photo-08.webp', alt: '의료복합타운 이미지컷' },
+          title: ['청라의 끝없는', '미래가치'],
+          desc: ['하나금융·드림타운(예정),', '의료복합타운 아산병원(예정) 등', '눈부신 미래가치의 최중심'],
+        },
+        {
+          num: '09',
+          icon: 'forest',
+          image: { src: '/apt/cheongna-theliv-tiamo-casa/premium-photo-09.webp', alt: '시크릿정원 이미지' },
+          title: ['특화 정원 &', '컴팩트 커뮤니티'],
+          desc: ['웰컴테라스·시크릿정원·휴게정원', '스카이브릿지·피트니스 클럽·G/X룸'],
         },
       ],
     },
+
 
     complex: {
       id: 'complex',

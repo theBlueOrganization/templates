@@ -13,6 +13,7 @@ import hanyangIclassYangju from './sites/hanyang-iclass-yangju'
 import hanyangIclassYangju2 from './sites/hanyang-iclass-yangju-2'
 import doosanWevethezenithBucheon from './sites/doosan-wevethezenith-bucheon'
 import osanHeritageXiX from './sites/osan-heritage-xi-x'
+import osanHeritageXiXi from './sites/osan-heritage-xi-xi'
 import cheongnaArkonePrugio from './sites/cheongna-arkone-prugio'
 import cheongnaArkonePrugio2 from './sites/cheongna-arkone-prugio-2'
 import cheongnaArkonePrugio3 from './sites/cheongna-arkone-prugio-3'
@@ -50,6 +51,7 @@ const sites = [
   hanyangIclassYangju2,
   doosanWevethezenithBucheon,
   osanHeritageXiX,
+  osanHeritageXiXi,
   cheongnaArkonePrugio,
   cheongnaArkonePrugio2,
   cheongnaArkonePrugio3,

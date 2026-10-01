@@ -173,7 +173,8 @@ const config = {
       ],
       note: "※ 위치도는 소비자의 이해를 돕기 위해 제작된 것으로 실제와 다를 수 있으며, 개발 계획은 관계 기관 사정에 따라 변경될 수 있습니다.",
     },
-    // 영상 섹션 — adaptive-landing 오산헤리티지자이x의 story(HERITAGE FILM) 문구·자이TV 공식 영상 3개 그대로
+    // 영상 섹션 — adaptive-landing 오산헤리티지자이x의 story(HERITAGE FILM) 문구 + 자이TV 공식 영상 4개
+    // (01은 오산헤리티지자이x 상단 videoSection의 Xi 브랜드 홍보 영상, 02~04는 story 영상 그대로)
     {
       id:          "film",
       type:        "film",
@@ -187,9 +188,10 @@ const config = {
         { value: "22",    label: "총 22개동 (1BL 13개동 · 2BL 9개동), 지하 2층~최고 27층" },
       ],
       scenes: [
-        { youtubeId: "ZtsXOJ8pBcI", tag: "01 · BRAND FILM",   title: "Recreate, Every Moment",      desc: "당신으로부터 차이가 되다" },
-        { youtubeId: "TYkfBe32BxQ", tag: "02 · INTRODUCTION", title: "병점역 新주거타운의 중심에,", desc: "오산헤리티지자이" },
-        { youtubeId: "VFzBckoz8WM", tag: "03 · TEASER",       title: "오산헤리티지자이 티저영상",   desc: "영상으로 미리 만나는 오산헤리티지자이" },
+        { youtubeId: "qQxcm17SLFk", tag: "01 · XI BRAND",     title: "Xi x LIFE｜Xi x NEW",          desc: "Xi 브랜드 홍보 영상" },
+        { youtubeId: "ZtsXOJ8pBcI", tag: "02 · BRAND FILM",   title: "Recreate, Every Moment",      desc: "당신으로부터 차이가 되다" },
+        { youtubeId: "TYkfBe32BxQ", tag: "03 · INTRODUCTION", title: "병점역 新주거타운의 중심에,", desc: "오산헤리티지자이" },
+        { youtubeId: "VFzBckoz8WM", tag: "04 · TEASER",       title: "오산헤리티지자이 티저영상",   desc: "영상으로 미리 만나는 오산헤리티지자이" },
       ],
     },
     // 프리미엄 도입 배너 — adaptive-landing 오산헤리티지자이x의 premiumIntro 문구·사진(가운데를 세로로 크롭)

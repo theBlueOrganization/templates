@@ -402,15 +402,16 @@ const config = {
       csHours: 'AM 09:00 ~ PM 19:00',
     },
 
-    // 출처: 참고 사이트 진입 팝업(잔여세대 동·호지정 계약) 원본 — 클릭 시 상담신청 섹션으로 이동
+    // 요청 반영(2026-10-01) — 사용자 전달 "모델하우스 방문 및 계약 이벤트"(10/7~10/18) 이미지로 진입 팝업 교체
+    // (참고 사이트의 잔여세대 동·호지정 계약 팝업 대체). 클릭 시 상담신청 섹션으로 이동
     popup: {
       enabled: true,
       images: [
         {
-          src: '/apt/buk-osan-xi-deforet/popup-remaining.webp',
-          alt: '북오산자이 드포레 잔여세대 동·호지정 계약 — 계약 시 구비서류 안내',
-          width: 350,
-          height: 470,
+          src: '/apt/buk-osan-xi-deforet/popup-event.webp',
+          alt: '북오산자이 드포레 모델하우스 방문 및 계약 이벤트(10/7~10/18) — 방문 상담 시 신세계상품권 1만원(선착순 30명), 복권 이벤트 1등 신세계상품권 30만원·2등 10만원권·3등 정관장 홍삼셋트',
+          width: 1024,
+          height: 1536,
           link: '#vip-reservation',
           linkLabel: '방문예약 바로가기',
         },

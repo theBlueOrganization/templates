@@ -156,7 +156,7 @@
 /* bgImageMobile — 768px 미만은 세로형(모바일 크롭) 이미지, 그 이상은 기존 가로형 이미지.
    화면 높이를 꽉 채워야 하므로 cover 유지 + object-position만 중앙으로 명시 */
 .bgImageMobileOnly {
-  object-position: center;
+  object-position: var(--hero-mobile-bg-x, 50%) 50%;
 }
 
 /* hero.mobileBgShiftUp — 세로형 모바일 이미지는 cover로 좌우만 잘려 object-position으로는 위아래 이동이

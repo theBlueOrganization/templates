@@ -65,6 +65,35 @@
     border-color 0.2s ease;
 }
 
+@media (max-width: 1023px) {
+  .tabRowGridMobile {
+    display: grid;
+    grid-template-columns: repeat(var(--tab-cols-mobile), minmax(0, 1fr));
+    max-width: 360px;
+  }
+
+  .tabRowScrollMobile {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding: 0 20px;
+    scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(to right, #000 85%, transparent);
+    mask-image: linear-gradient(to right, #000 85%, transparent);
+  }
+
+  .tabRowScrollMobile::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tabRowScrollMobile .tabBtn {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+}
+
 .tabBtnActive {
   background: var(--navy, #263241);
   color: #fff;

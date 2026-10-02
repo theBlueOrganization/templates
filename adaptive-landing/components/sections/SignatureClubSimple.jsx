@@ -44,13 +44,25 @@ function PlainImageGroup({ group }) {
   return (
     <div className={styles.plainGroup}>
       {group.title && <h3 className={styles.plainGroupTitle}>{group.title}</h3>}
-      <div className={styles.tabRow}>
+      {/* tabColumnsMobile — 모바일(1024px 미만)에서 탭이 3+1처럼 어색하게 줄바꿈될 때 N열 균등 그리드로 고정
+          tabScrollMobile — 탭이 많아 여러 줄로 쌓일 때 모바일에서는 한 줄 가로 스와이프로 (누른 탭은 가운데로 스크롤) */}
+      <div
+        className={cn(
+          styles.tabRow,
+          group.tabColumnsMobile && styles.tabRowGridMobile,
+          group.tabScrollMobile && styles.tabRowScrollMobile,
+        )}
+        style={group.tabColumnsMobile ? { '--tab-cols-mobile': group.tabColumnsMobile } : undefined}
+      >
         {group.tabs.map((t, i) => (
           <button
             key={t.label}
             type="button"
             className={cn(styles.tabBtn, i === activeTab && styles.tabBtnActive)}
-            onClick={() => setActiveTab(i)}
+            onClick={(e) => {
+              setActiveTab(i)
+              if (group.tabScrollMobile) e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+            }}
             aria-pressed={i === activeTab}
           >
             {t.label}

@@ -205,6 +205,8 @@ export default function SignaturePremiumValue({ premiumValue }) {
           premiumValue.columns === 4 — PC 4열(8개 카드를 2줄 4열로, 각진 얇은 테두리 카드 — 예: 청라 더리브 티아모 까사2 Premium 01~08) */}
       <Stagger
         className={`${styles.grid} ${premiumValue.columns === 2 ? styles.gridTwoCol : ''} ${premiumValue.columns === 4 ? styles.gridFourCol : ''}`}
+        // columns: 4 — 모바일에서 그리드가 길어 기본(20% 보여야 등장)으로는 카드가 늦게 떠 빈 화면처럼 보여 조금만 보여도 등장
+        amount={premiumValue.columns === 4 ? 0.02 : undefined}
       >
         {premiumValue.cards.map((card) => {
           const icon = ICONS[card.icon]

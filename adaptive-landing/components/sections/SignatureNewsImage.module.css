@@ -35,3 +35,10 @@
     padding: 48px 20px;
   }
 }
+
+/* sig.roomySpacing(main[data-spacing='roomy']) — PC 위아래 여백 넉넉히 (예: 청라 더리브 티아모 까사2) */
+@media (min-width: 1024px) {
+  :global([data-spacing='roomy']) .section {
+    padding: 120px 20px;
+  }
+}

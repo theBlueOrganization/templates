@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import SignatureInterestPopup from './SignatureInterestPopup'
 import SignaturePopupBanner from './SignaturePopupBanner'
+import SignatureVisitPopupTiamo from './SignatureVisitPopupTiamo'
 
 // 진입 팝업 순서 제어: 기본은 관심고객등록 팝업(popup.interest)이 있으면 그것부터 띄우고,
 // 닫힌 뒤에야 기존 이미지 팝업(popup)을 띄운다. interest가 없는 현장은 기존 이미지
@@ -21,6 +22,10 @@ export default function SignaturePopupSequence({ popup, config }) {
         )}
         {popup?.interest?.enabled && firstClosed && (
           <SignatureInterestPopup interest={popup.interest} config={config} openDelayMs={400} />
+        )}
+        {/* popup.visitForm — 관심고객등록 대신 티아모 까사 몰입형과 같은 디자인의 방문예약 폼을 2번 팝업으로 */}
+        {popup?.visitForm?.enabled && firstClosed && (
+          <SignatureVisitPopupTiamo visitForm={popup.visitForm} config={config} openDelayMs={400} />
         )}
       </>
     )

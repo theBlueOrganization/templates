@@ -19,14 +19,15 @@ const itemVariants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
 }
 
-export function Stagger({ children, className, style }) {
+// amount — 컨테이너가 얼마나 보여야 등장할지(기본 0.2). 세로로 아주 긴 목록은 작게 줘야 늦게 뜨지 않음
+export function Stagger({ children, className, style, amount = 0.2 }) {
   return (
     <motion.div
       className={className}
       style={style}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true, amount }}
       variants={containerVariants}
     >
       {children}

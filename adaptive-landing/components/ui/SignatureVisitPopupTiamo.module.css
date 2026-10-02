@@ -1,0 +1,183 @@
+/* SignatureTiamoImmersive.module.css의 방문예약 다이얼로그(.dialog/.modal/.leadForm …) 스타일을 그대로 옮김 */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 9px;
+  background: rgba(1, 11, 19, 0.72);
+  backdrop-filter: blur(7px);
+}
+
+.modal {
+  position: relative;
+  width: min(94vw, 520px);
+  max-height: calc(100svh - 18px);
+  overflow-y: auto;
+  padding: 20px;
+  border-radius: 18px;
+  background: #fff;
+  color: #091724;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.32);
+}
+
+.modal h2 {
+  margin: 0 42px 6px 0;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.sub {
+  margin: 0 0 12px;
+  font-size: 10px;
+  color: #6a7177;
+}
+
+.close {
+  position: absolute;
+  z-index: 2;
+  right: 12px;
+  top: 12px;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: #edeff0;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 12px;
+  margin-top: 10px;
+  padding-right: 2px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.full {
+  grid-column: 1 / -1;
+}
+
+.field label,
+.field > span {
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.input {
+  width: 100%;
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid #cdd2d7;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 14px;
+  color: inherit;
+}
+
+.phoneGrid {
+  display: grid;
+  grid-template-columns: 60px 1fr 1fr;
+  gap: 6px;
+}
+
+.consultGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.consultGrid label {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px;
+  border: 1px solid #d6dade;
+  border-radius: 9px;
+  background: #fff;
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.consultGrid label input {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  accent-color: #073359;
+}
+
+.consultGrid label:has(input:checked) {
+  border-color: #084275;
+  background: #edf3f8;
+  font-weight: 700;
+}
+
+.consultTitle {
+  grid-column: 1 / -1;
+  margin: 4px 0 -2px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.agree {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  align-items: start;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.agree input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: #073359;
+}
+
+.submit {
+  grid-column: 1 / -1;
+  height: 46px;
+  border: 0;
+  border-radius: 9px;
+  background: linear-gradient(90deg, #e2c39c, #c09a76);
+  color: #07223a;
+  font-size: 15px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (min-width: 1024px) {
+  .input {
+    height: 42px;
+    font-size: 11px;
+  }
+
+  .consultGrid label {
+    min-height: 38px;
+    font-size: 10px;
+  }
+
+  .submit {
+    height: 42px;
+  }
+}

@@ -45,3 +45,43 @@
     font-size: 15px;
   }
 }
+
+/* tapZoom — 기본은 화면 폭에 맞춤(PC 최대 1100px), 이미지를 누르면 250% 폭으로 키우고 가로/세로 스크롤로 이동 */
+.overlayTapZoom {
+  overflow: auto;
+  /* 확대 시 가로 스크롤 영역이 왼쪽 끝부터 시작되도록 */
+  justify-content: flex-start;
+}
+
+.innerTapZoom {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.innerZoomed {
+  /* overlay가 flex라 기본 flex-shrink로 다시 화면 폭까지 줄어들지 않게 */
+  flex: 0 0 auto;
+  width: 250%;
+  max-width: none;
+}
+
+.imageTapZoom {
+  cursor: zoom-in;
+}
+
+.innerZoomed .imageTapZoom {
+  cursor: zoom-out;
+}
+
+.zoomHint {
+  position: sticky;
+  left: 0;
+  margin-top: 12px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 13px;
+  text-align: center;
+}
+
+.innerZoomed .zoomHint {
+  text-align: left;
+}

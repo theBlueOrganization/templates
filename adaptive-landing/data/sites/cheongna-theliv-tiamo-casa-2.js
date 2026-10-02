@@ -57,6 +57,9 @@ const config = {
   ],
 
   signature: {
+    // 요청 반영(2026-10-02) — PC에서 섹션끼리 너무 붙어 보여 섹션·탭·이미지 사이 여백을 넉넉히(page.jsx main[data-spacing='roomy'])
+    roomySpacing: true,
+
     header: {
       logo: { src: '/apt/cheongna-theliv-tiamo-casa/logo-white.png', alt: '청라 더리브 티아모 까사', width: 204, height: 24 },
       logoSize: { base: 150, lg: 180, xl: 204 },
@@ -108,6 +111,15 @@ const config = {
         ],
         logo: { src: '/apt/cheongna-theliv-tiamo-casa/hero-luxurism-logo.png', alt: '새로운 청라, 그 중심에 NEW LUXURISM — 청라 더리브 티아모 Casa', width: 300, height: 65 },
         bgImage: '/apt/cheongna-theliv-tiamo-casa/hero-bg-wave.webp',
+        // 요청 반영(2026-10-02) — 모바일은 전체화면 이미지 위에 카피를 얹어서(어두운 배경) 남색 로고 대신 흰 문구 + 흰 로고
+        logoMobile: {
+          eyebrow: '새로운 청라, 그 중심에',
+          eyebrowStrong: 'NEW LUXURISM',
+          src: '/apt/cheongna-theliv-tiamo-casa/logo-white.png',
+          alt: '청라 더리브 티아모 Casa',
+          width: 204,
+          height: 24,
+        },
       },
       eyebrowLine1: '새로운 청라, 그 중심에',
       eyebrowLine2: 'NEW LUXURISM',
@@ -121,15 +133,15 @@ const config = {
       slides: [
         {
           bgImage: { src: '/apt/cheongna-theliv-tiamo-casa/hero-1.webp', alt: '청라 더리브 티아모 까사 조감도 — 커낼웨이 수변' },
-          bgImageMobile: { src: '/apt/cheongna-theliv-tiamo-casa/hero-1-mobile.webp', alt: '청라 더리브 티아모 까사 조감도 — 커낼웨이 수변' },
+          bgImageMobile: { src: '/apt/cheongna-theliv-tiamo-casa/hero-m-1.webp', alt: '청라 더리브 티아모 까사 조감도 — 커낼웨이 수변' },
         },
         {
           bgImage: { src: '/apt/cheongna-theliv-tiamo-casa/hero-2.webp', alt: '청라 더리브 티아모 까사 야경 투시도 — 스카이브릿지' },
-          bgImageMobile: { src: '/apt/cheongna-theliv-tiamo-casa/hero-2-mobile.webp', alt: '청라 더리브 티아모 까사 야경 투시도 — 스카이브릿지' },
+          bgImageMobile: { src: '/apt/cheongna-theliv-tiamo-casa/hero-m-2.webp', alt: '청라 더리브 티아모 까사 야경 투시도 — 스카이브릿지' },
         },
         {
           bgImage: { src: '/apt/cheongna-theliv-tiamo-casa/hero-3.webp', alt: '청라 더리브 티아모 까사 광역 조감도' },
-          bgImageMobile: { src: '/apt/cheongna-theliv-tiamo-casa/hero-3-mobile.webp', alt: '청라 더리브 티아모 까사 광역 조감도' },
+          bgImageMobile: { src: '/apt/cheongna-theliv-tiamo-casa/hero-m-3.webp', alt: '청라 더리브 티아모 까사 광역 조감도' },
         },
       ],
       overlay: true,
@@ -177,7 +189,8 @@ const config = {
     location: {
       id: 'location',
       navLabel: '입지환경',
-      label: 'LOCATION',
+      // 요청 반영(2026-10-02) — 작은 라벨(12px)만 있어 문구가 너무 작아 보여 큰 제목(PC 64px)으로
+      title: 'LOCATION',
       mapImage: { src: '/apt/cheongna-theliv-tiamo-casa/location-map.webp', alt: '청라 더리브 티아모 까사 광역 위치도 — 7호선 커낼웨이역(예정), 청라호수공원, 커낼웨이', width: 1100, height: 742 },
       features: [
         {
@@ -287,60 +300,63 @@ const config = {
 
     // 출처: 참고 사이트 프리미엄8(premium) 원문 — 줄바꿈까지 원본 그대로. 카드 사진은 원본 4x2 그리드에서 각 칸 이미지를 잘라낸 것
     // 요청 반영(2026-10-01) — 참고 사이트처럼 4열 x 2줄, 금색 'Premium 0N' 라벨 + 각진 얇은 테두리 카드(columns: 4)
+    // 요청 반영(2026-10-02) — 원본 카드 사진(260x152)이 흐려 premium-hd-0N으로 교체: 01·02는 2560 CG(hr-skybridge-exterior·
+    //   hr-canal-aerial), 05·06은 실내 CG(int-kitchen·int-dining), 03·04·07·08은 같은 컷의 입지 이미지(feature-*, 548px)
     premiumValue: {
       id: 'premium-value',
       navLabel: '프리미엄',
       eyebrow: 'NEW LUXURISM',
-      titlePlain: '청라 더리브 티아모 까사 ',
+      // 요청 반영(2026-10-02) — 모바일 줄바꿈: 청라 더리브 / 티아모 까사 / PREMIUM 8 (PC는 한 줄)
+      titlePlain: '청라 더리브\n티아모 까사\n',
       titleAccent: 'PREMIUM 8',
       cardTextAlign: 'center',
       columns: 4,
       cards: [
         {
           num: 'Premium 01',
-          image: { src: '/apt/cheongna-theliv-tiamo-casa/premium-photo-01.webp', alt: '청라의 자부심 스카이브릿지' },
+          image: { src: '/apt/cheongna-theliv-tiamo-casa/premium-hd-01.webp', alt: '청라의 자부심 스카이브릿지' },
           title: ['청라의 자부심', '스카이브릿지'],
           desc: ['단지의 품격을 높여주는', '스카이브릿지로 3개 동이', '연결되는 유니크한 외관설계'],
         },
         {
           num: 'Premium 02',
-          image: { src: '/apt/cheongna-theliv-tiamo-casa/premium-photo-02.webp', alt: '최고 46층 랜드마크 조감도' },
+          image: { src: '/apt/cheongna-theliv-tiamo-casa/premium-hd-02.webp', alt: '최고 46층 랜드마크 조감도' },
           title: ['최고 46층', '랜드마크 가치'],
           desc: ['최상층 펜트하우스부터', '46층 초고층 설계로', '청라를 대표할 랜드마크'],
         },
         {
           num: 'Premium 03',
-          image: { src: '/apt/cheongna-theliv-tiamo-casa/premium-photo-03.webp', alt: '7호선 커낼웨이역 초역세권 이미지컷' },
+          image: { src: '/apt/cheongna-theliv-tiamo-casa/premium-hd-03.webp', alt: '7호선 커낼웨이역 초역세권 이미지컷' },
           title: ['7호선 커낼웨이역', '초역세권'],
           desc: ['바로 앞, 7호선 커낼웨이역(예정) 및', '서울 지하철 2호선 연장(예정),', '청라IC, BRT, GRT 등 쾌속 교통망'],
         },
         {
           num: 'Premium 04',
-          image: { src: '/apt/cheongna-theliv-tiamo-casa/premium-photo-04.webp', alt: '커낼웨이 수변조망 이미지컷' },
+          image: { src: '/apt/cheongna-theliv-tiamo-casa/premium-hd-04.webp', alt: '커낼웨이 수변조망 이미지컷' },
           title: ['커낼웨이', '수변조망'],
           desc: ['청라호수공원, 커낼웨이 등', '쾌적한 자연을 더 가까이', '누리는 에코라이프의 완성'],
         },
         {
           num: 'Premium 05',
-          image: { src: '/apt/cheongna-theliv-tiamo-casa/premium-photo-05.webp', alt: 'Dada 주방가구 이미지' },
+          image: { src: '/apt/cheongna-theliv-tiamo-casa/premium-hd-05.webp', alt: '주방 인테리어 CG' },
           title: ['하이엔드 주방가구', 'Dada 인테리어'],
           desc: ['세계최고의 주방가구', '몰테니앤씨그룹의 브랜드', 'Dada 전 세대 적용', '※ 펜트타입(211㎡) 3세대 제외'],
         },
         {
           num: 'Premium 06',
-          image: { src: '/apt/cheongna-theliv-tiamo-casa/premium-photo-06.webp', alt: '생활가전 무상옵션 이미지컷' },
+          image: { src: '/apt/cheongna-theliv-tiamo-casa/premium-hd-06.webp', alt: '다이닝·주방 가전 인테리어 CG' },
           title: ['생활가전', '무상옵션 제공'],
           desc: ['FCU 에어컨, 비스포크 냉장&냉동고,', '세탁기&건조기, 전기오븐, 하이브리드', '쿡탑 등 가전가구(일부) 무상제공'],
         },
         {
           num: 'Premium 07',
-          image: { src: '/apt/cheongna-theliv-tiamo-casa/premium-photo-07.webp', alt: '생활인프라 이미지컷' },
+          image: { src: '/apt/cheongna-theliv-tiamo-casa/premium-hd-07.webp', alt: '생활인프라 이미지컷' },
           title: ['한 걸음에 누리는', '생활인프라'],
           desc: ['홈플러스, 롯데마트,', '스타필드 청라(예정), 코스트코(예정) 등', '다채로운 생활 환경'],
         },
         {
           num: 'Premium 08',
-          image: { src: '/apt/cheongna-theliv-tiamo-casa/premium-photo-08.webp', alt: '의료복합타운 이미지컷' },
+          image: { src: '/apt/cheongna-theliv-tiamo-casa/premium-hd-08.webp', alt: '의료복합타운 이미지컷' },
           title: ['청라의 끝없는', '미래가치'],
           desc: ['하나금융·드림타운(예정),', '의료복합타운 아산병원(예정)', '등 눈부신 미래가치의 최중심'],
         },
@@ -388,9 +404,13 @@ const config = {
       id: 'community',
       navLabel: '커뮤니티',
       variant: 'simple',
+      // 요청 반영(2026-10-02) — 커뮤니티·시스템 이미지를 누르면 확대(모달에서 한 번 더 누르면 2.5배)
+      zoomLightbox: true,
       plainImageGroups: [
         {
           title: 'COMMUNITY',
+          // 요청 반영(2026-10-02) — 이미지가 1장뿐이라 '커뮤니티 시설' 탭 버튼은 숨김
+          hideTabs: true,
           tabs: [
             {
               label: '커뮤니티 시설',
@@ -400,6 +420,11 @@ const config = {
         },
         {
           title: 'SYSTEM',
+          // 요청 반영(2026-10-02) — 둥근 버튼이 모바일에서 3/3/1로 어색하게 줄바꿈돼, 세대안내 타입 탭과 같은 줄 구분 그리드로
+          //   (모바일 4열 → 4+3, PC 7열 한 줄)
+          tabStyle: 'grid',
+          tabColumns: 7,
+          tabColumnsMobile: 4,
           tabs: [
             { label: '디지털', image: { src: '/apt/cheongna-theliv-tiamo-casa/system-01.webp', alt: '디지털 시스템', width: 1100, height: 963 } },
             { label: '시큐리티', image: { src: '/apt/cheongna-theliv-tiamo-casa/system-02.webp', alt: '시큐리티 시스템', width: 1100, height: 963 } },
@@ -453,7 +478,30 @@ const config = {
       csHours: 'AM 09:00 ~ PM 19:00',
     },
 
-    popup: { enabled: false },
+    // 요청 반영(2026-10-02) — 진입 팝업 1번: 완성본 이미지(popup.webp, 원본과 같은 이미지) → 닫으면 팝업 2번: 방문예약 폼
+    //   (원본 사이트 방문예약 다이얼로그와 같은 디자인 — SignatureVisitPopupTiamo)
+    popup: {
+      enabled: true,
+      order: 'imageFirst',
+      openDelayMs: 1200,
+      // 이미지 우상단에 X가 그려져 있어 하단 '팝업닫기' 바 없이 이미지를 누르면 닫힘
+      hideCloseBar: true,
+      fitViewport: true,
+      images: [
+        {
+          src: '/apt/cheongna-theliv-tiamo-casa/popup.webp',
+          alt: '청라를 완성하는 BIG3 — 스타필드 청라&동구장, 서울아산청라병원, 하나금융그룹 하나드림타운. 입주 조건: 계약금 4,000만원 정액제, 대출 60~70% 은행 협의 완료, 5개월 내 잔금·등기',
+          width: 1024,
+          height: 1536,
+        },
+      ],
+      visitForm: {
+        enabled: true,
+        title: '방문예약',
+        desc: '상담 가능시간 10:00~18:00 (담당자와 조율가능)',
+        submitLabel: '방문예약 등록',
+      },
+    },
   },
 }
 

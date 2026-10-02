@@ -25,6 +25,14 @@ export default function SignatureHeroTiamo({ hero }) {
 
   const slide = slides[index]
 
+  // 히어로 바로 다음 섹션으로 — 고정 헤더(모바일 64 / PC 96px) 높이만큼 덜 내려감
+  const scrollToNext = (e) => {
+    const next = e.currentTarget.closest('section')?.nextElementSibling
+    if (!next) return
+    const headerH = window.innerWidth >= 1024 ? 96 : 64
+    window.scrollTo({ top: next.getBoundingClientRect().top + window.scrollY - headerH, behavior: 'smooth' })
+  }
+
   return (
     <section id="hero" className={styles.section} style={{ backgroundImage: `url(${tiamo.bgImage})` }}>
       <div className={styles.inner}>
@@ -45,10 +53,22 @@ export default function SignatureHeroTiamo({ hero }) {
                   fill
                   priority={index === 0}
                   sizes="(min-width: 1024px) 65vw, 100vw"
-                  className={styles.slideImage}
+                  className={`${styles.slideImage} ${slide.bgImageMobile ? styles.slideImageDesktop : ''}`}
                 />
+                {/* 모바일 전체화면용 세로 이미지(bgImageMobile)가 있으면 모바일에서만 그걸 보여줌 */}
+                {slide.bgImageMobile && (
+                  <Image
+                    src={slide.bgImageMobile.src}
+                    alt={slide.bgImageMobile.alt}
+                    fill
+                    priority={index === 0}
+                    sizes="100vw"
+                    className={`${styles.slideImage} ${styles.slideImageMobile}`}
+                  />
+                )}
               </motion.div>
             </AnimatePresence>
+            <span className={styles.mobileShade} aria-hidden="true" />
           </div>
 
           {slides.length > 1 && (
@@ -93,7 +113,37 @@ export default function SignatureHeroTiamo({ hero }) {
             height={tiamo.logo.height}
             className={styles.logo}
           />
+          {tiamo.logoMobile && (
+            <span className={styles.logoMobile}>
+              <span className={styles.logoMobileEyebrow}>
+                {tiamo.logoMobile.eyebrow} <strong>{tiamo.logoMobile.eyebrowStrong}</strong>
+              </span>
+              <Image
+                src={tiamo.logoMobile.src}
+                alt={tiamo.logoMobile.alt}
+                width={tiamo.logoMobile.width}
+                height={tiamo.logoMobile.height}
+                className={styles.logoMobileImage}
+              />
+            </span>
+          )}
         </motion.div>
+
+        {/* 마우스 모양 스크롤 힌트 — 누르면 히어로 다음 섹션으로 이동 */}
+        <motion.button
+          type="button"
+          className={styles.scrollMouse}
+          onClick={scrollToNext}
+          aria-label="아래로 스크롤"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 1.2 }}
+        >
+          <span className={styles.scrollMouseBody}>
+            <span className={styles.scrollMouseWheel} />
+          </span>
+          <span className={styles.scrollMouseText}>SCROLL</span>
+        </motion.button>
       </div>
     </section>
   )

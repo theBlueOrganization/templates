@@ -82,8 +82,10 @@ const config = {
     //   배경은 히어로 첫 슬라이드와 같은 이미지라 열린 뒤 히어로로 그대로 이어짐 (SignatureCircleIntro)
     circleIntro: {
       logo: { src: '/apt/buk-osan-xi-deforet/logo-white.svg', alt: '북오산자이 드포레', width: 76, height: 41 },
-      bgImage: '/apt/buk-osan-xi-deforet/hero-slide-life.webp',
-      bgImageMobile: '/apt/buk-osan-xi-deforet/hero-slide-life-mobile.webp',
+      // 요청 반영(2026-10-02) — 히어로 슬라이드는 문구가 박혀 있어 원 안에 글자가 비쳐 보였음 → 문구 없는
+      //   새 투시도(투시도-0513)로 교체(PC 16:9 2400px / 모바일 1:2 1000px, 동 무리가 원 가운데 오도록 잘라 둠)
+      bgImage: '/apt/buk-osan-xi-deforet/intro-bg.webp',
+      bgImageMobile: '/apt/buk-osan-xi-deforet/intro-bg-mobile.webp',
     },
 
     hero: {

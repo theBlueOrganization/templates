@@ -580,7 +580,6 @@ const config = {
     },
 
     // 출처: 공식 사이트(xi.co.kr/osxi, cmsMenuSeq=29772 주말 경품 이벤트) 원본 캡처(2026-09-14) —
-    // 진입 팝업 1번(popup-weekend-event.jpg) 클릭 시 이 섹션(#event)으로 스크롤 이동
     eventImage: {
       id: 'event',
       title: '주말 경품 이벤트',
@@ -637,21 +636,19 @@ const config = {
       csHours: 'AM 09:00 ~ PM 19:00',
     },
 
-    // 요청 반영 — 기존 진입 팝업 2장(주말 경품 이벤트/선착순 동호 지정 계약중) 삭제, 계약금 5%
-    // 파격조건변경 팝업 1장으로 교체(사이트 내 주말 경품 이벤트 섹션(#event)은 그대로 유지, 팝업만 삭제).
-    // 이미지 안에 그려진 "모델하우스 방문/예약" 버튼 클릭 시 관심고객등록 섹션(#vip-reservation)으로
-    // 스크롤 이동 + 팝업 닫힘
-    // 요청 반영(2026-10-01) — 이 현장은 진입 팝업 없이 운영(enabled:false, 이미지 설정은 재사용 대비 유지)
+    // 요청 반영(2026-10-02) — 진입 팝업 재개, 방문 이벤트 안내 이미지(popup0.webp) 1장으로 교체.
+    // 하단 "팝업닫기" 바 없이 이미지에 그려진 X로 닫음(hideCloseBar — 이미지 탭 시 팝업 닫힘)
     popup: {
-      enabled: false,
+      enabled: true,
+      hideCloseBar: true,
+      // 요청 반영 — 기본 2.9초 대기가 늦게 느껴져 0.5초 뒤 바로 띄움
+      openDelayMs: 500,
       images: [
         {
-          src: '/apt/osan-heritage-xi-xi-2/popup2.png',
-          alt: '오산헤리티지자이 계약금 5% 파격조건변경 — 선착순 동·호 지정 계약중',
-          width: 1086,
-          height: 1448,
-          link: '#vip-reservation',
-          linkLabel: '모델하우스 방문/예약',
+          src: '/apt/osan-heritage-xi-xi-2/popup0.webp',
+          alt: '오산헤리티지자이 특별한 방문 이벤트 — 와인 추첨·주말 경품추첨·1차 계약금 500만원·계약축하금 100만원',
+          width: 1218,
+          height: 930,
         },
       ],
     },

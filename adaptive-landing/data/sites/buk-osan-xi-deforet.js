@@ -147,9 +147,13 @@ const config = {
       navLabel: 'overview',
       title: '북오산자이 드포레',
       subtitle: '경기도 오산시 내삼미동, 내삼미2구역 A2BL에 들어서는 총 1,517세대 자이 대단지',
+      // 요청 반영(2026-10-02) — 사용자 전달 원본(투시도-0513·조감도·광역조감도·상가투시도, 약 5000px)으로 교체.
+      //   대표사진 영역 비율(995:468)에 맞춰 미리 잘라 2x(1990px) webp로 저장
       photo: { src: '/apt/buk-osan-xi-deforet/overview-landmark.webp', alt: '북오산자이 드포레 단지 투시도' },
       thumbs: [
         { src: '/apt/buk-osan-xi-deforet/overview-aerial.webp', alt: '북오산자이 드포레 조감도' },
+        { src: '/apt/buk-osan-xi-deforet/overview-wide.webp', alt: '북오산자이 드포레 광역 조감도' },
+        { src: '/apt/buk-osan-xi-deforet/overview-commercial.webp', alt: '북오산자이 드포레 단지 내 상가 투시도' },
       ],
       notice: '※ 본 페이지에 사용된 CG, 이미지 및 내용은 소비자의 이해를 돕기 위한 것으로 인·허가 과정 등에 따라 변경될 수 있고 실제와 다를 수 있습니다(면적 및 세대수 등 포함).',
       // 출처: 참고 사이트 사업개요(overview01) 및 공급안내(supply01) 원문
@@ -216,6 +220,7 @@ const config = {
 
     premiumIntro: {
       // 밝은 조감도 위 흰 문구 가독성을 위해 원본을 어둡게(밝기 60%) 보정한 배경 사용
+      // 요청 반영(2026-10-02) — 사용자 전달 새 조감도 원본으로 다시 생성(2400px)
       bgImage: { src: '/apt/buk-osan-xi-deforet/premium-intro-bg.webp', alt: '북오산자이 드포레 단지 조감도' },
       overlay: false,
       introBox: {
@@ -239,7 +244,8 @@ const config = {
     },
 
     // 출처: 참고 사이트 프리미엄(premium) "당신의 삶이 더 빛나게 될 가치 6" 원문 — 카드 사진은 원본
-    // 3x2 그리드에서 각 칸을 그대로 잘라낸 것
+    // 3x2 그리드에서 각 칸을 그대로 잘라낸 것. 요청 반영(2026-10-02) — 저해상도(457px) 이미지컷이던 01(대단지)·
+    //   04(도시확장)는 사용자 전달 조감도·광역조감도 원본으로 교체(914x470)
     premiumValue: {
       id: 'premium-value',
       navLabel: '프리미엄',
@@ -349,6 +355,24 @@ const config = {
               label: '커뮤니티 시설',
               image: { src: '/apt/buk-osan-xi-deforet/club-xian.webp', alt: '북오산자이 드포레 CLUB XIAN(B1) 커뮤니티 시설 안내', width: 1100, height: 3061 },
             },
+          ],
+        },
+        // 요청 반영(2026-10-02) — 안내 이미지 안의 시설 사진이 작고 흐려서, 사용자 전달 커뮤니티 투시도 원본
+        //   (3508x2480 등)을 1800px webp로 변환해 시설별 탭으로 추가
+        {
+          title: 'COMMUNITY',
+          tabs: [
+            { label: 'B1F 배치', image: { src: '/apt/buk-osan-xi-deforet/club-iso-b1f.webp', alt: '북오산자이 드포레 커뮤니티 B1F 아이소 배치도', width: 1800, height: 1273 } },
+            { label: '1F 배치', image: { src: '/apt/buk-osan-xi-deforet/club-iso-1f.webp', alt: '북오산자이 드포레 커뮤니티 1F 아이소 배치도', width: 1800, height: 1273 } },
+            { label: '로비', image: { src: '/apt/buk-osan-xi-deforet/club-lobby.webp', alt: '북오산자이 드포레 커뮤니티 로비', width: 1800, height: 1273 } },
+            { label: '오픈스터디', image: { src: '/apt/buk-osan-xi-deforet/club-open-study.webp', alt: '북오산자이 드포레 오픈스터디', width: 1800, height: 1273 } },
+            { label: '실내골프장', image: { src: '/apt/buk-osan-xi-deforet/club-golf.webp', alt: '북오산자이 드포레 실내골프장', width: 1800, height: 1273 } },
+            { label: '사우나', image: { src: '/apt/buk-osan-xi-deforet/club-sauna.webp', alt: '북오산자이 드포레 사우나', width: 1800, height: 1273 } },
+            { label: '탈의실', image: { src: '/apt/buk-osan-xi-deforet/club-locker.webp', alt: '북오산자이 드포레 탈의실', width: 1800, height: 1273 } },
+            { label: '파우더룸', image: { src: '/apt/buk-osan-xi-deforet/club-powder.webp', alt: '북오산자이 드포레 파우더룸', width: 1800, height: 1273 } },
+            { label: '티하우스', image: { src: '/apt/buk-osan-xi-deforet/club-teahouse.webp', alt: '북오산자이 드포레 티하우스 내부', width: 1800, height: 1273 } },
+            { label: '티하우스 외관', image: { src: '/apt/buk-osan-xi-deforet/club-teahouse-exterior.webp', alt: '북오산자이 드포레 티하우스 외관', width: 1800, height: 1271 } },
+            { label: '청음실', image: { src: '/apt/buk-osan-xi-deforet/club-listening.webp', alt: '북오산자이 드포레 청음실', width: 1800, height: 1273 } },
           ],
         },
         {

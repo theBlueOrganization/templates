@@ -103,7 +103,7 @@ const config = {
       title:    "프리미엄",
       subtitle: "특별함이 일상이 되는 공간",
       images: [
-        { src: "/apt/dongtan-herium-central/2-1.webp", alt: "프리미엄" },
+        { src: "/apt/dongtan-herium-central/2-1.webp?v=1002", alt: "프리미엄" },
       ],
     },
     {

@@ -45,24 +45,28 @@ function PlainImageGroup({ group }) {
     <div className={styles.plainGroup}>
       {group.title && <h3 className={styles.plainGroupTitle}>{group.title}</h3>}
       {/* tabColumnsMobile — 모바일(1024px 미만)에서 탭이 3+1처럼 어색하게 줄바꿈될 때 N열 균등 그리드로 고정
-          tabScrollMobile — 탭이 많아 여러 줄로 쌓일 때 모바일에서는 한 줄 가로 스와이프로 (누른 탭은 가운데로 스크롤) */}
+          tabStyle: 'grid' — 탭이 많을 때 세대안내(SignatureUnitPlanTabs)와 같은 줄 구분 그리드 + 선택 탭 하단 라인
+          (tabColumns: PC 열 수, tabColumnsMobile: 모바일 열 수) */}
       <div
         className={cn(
           styles.tabRow,
-          group.tabColumnsMobile && styles.tabRowGridMobile,
-          group.tabScrollMobile && styles.tabRowScrollMobile,
+          group.tabStyle === 'grid' ? styles.tabGrid : group.tabColumnsMobile && styles.tabRowGridMobile,
         )}
-        style={group.tabColumnsMobile ? { '--tab-cols-mobile': group.tabColumnsMobile } : undefined}
+        style={{
+          ...(group.tabColumnsMobile && { '--tab-cols-mobile': group.tabColumnsMobile }),
+          ...(group.tabColumns && { '--tab-cols': group.tabColumns }),
+        }}
       >
         {group.tabs.map((t, i) => (
           <button
             key={t.label}
             type="button"
-            className={cn(styles.tabBtn, i === activeTab && styles.tabBtnActive)}
-            onClick={(e) => {
-              setActiveTab(i)
-              if (group.tabScrollMobile) e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
-            }}
+            className={
+              group.tabStyle === 'grid'
+                ? cn(styles.gridTab, i === activeTab && styles.gridTabActive)
+                : cn(styles.tabBtn, i === activeTab && styles.tabBtnActive)
+            }
+            onClick={() => setActiveTab(i)}
             aria-pressed={i === activeTab}
           >
             {t.label}

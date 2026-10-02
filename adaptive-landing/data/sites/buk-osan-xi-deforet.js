@@ -361,8 +361,10 @@ const config = {
         //   (3508x2480 등)을 1800px webp로 변환해 시설별 탭으로 추가
         {
           title: 'COMMUNITY',
-          // 요청 반영(2026-10-02) — 탭 11개가 모바일에서 4줄로 쌓여 한 줄 가로 스와이프로
-          tabScrollMobile: true,
+          // 요청 반영(2026-10-02) — 세대안내 타입 탭과 같은 그리드 모양(PC 6열 / 모바일 4열)
+          tabStyle: 'grid',
+          tabColumns: 6,
+          tabColumnsMobile: 4,
           tabs: [
             { label: 'B1F 배치', image: { src: '/apt/buk-osan-xi-deforet/club-iso-b1f.webp', alt: '북오산자이 드포레 커뮤니티 B1F 아이소 배치도', width: 1800, height: 1273 } },
             { label: '1F 배치', image: { src: '/apt/buk-osan-xi-deforet/club-iso-1f.webp', alt: '북오산자이 드포레 커뮤니티 1F 아이소 배치도', width: 1800, height: 1273 } },

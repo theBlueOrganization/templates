@@ -108,6 +108,7 @@ export default async function AptPage({ params }) {
         contactConfig={contactConfig}
         company={site.company}
         clientCompany={site.clientCompany}
+        footerNotice={site.footerNotice}
         theme={site.theme}
       />
 

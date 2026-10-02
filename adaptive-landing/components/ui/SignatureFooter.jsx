@@ -47,7 +47,7 @@ export default function SignatureFooter({ footer, telNumber, telNumberByUtm, pro
             <div className={styles.companyLines}>
               {/* line.dividerBefore — 그 항목 앞에 가로 구분선을 그어 위 그룹(시행/시공 등)과 나눔 (새 줄에서 시작) */}
               {footer.companyLines.map((line) => (
-                <Fragment key={line.label}>
+                <Fragment key={`${line.label}-${line.value}`}>
                   {line.dividerBefore && <span className={styles.companyDivider} aria-hidden="true" />}
                   <span className={cn(styles.companyLine, line.newLine && styles.companyLineBreak)}>
                     <strong>{line.label}</strong> {line.value}

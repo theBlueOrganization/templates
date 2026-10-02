@@ -27,6 +27,7 @@ import chumdan3HobanSummit2 from './sites/chumdan3-hoban-summit-2'
 import bukOsanXiDeforet from './sites/buk-osan-xi-deforet'
 import cheongnaThelivTiamoCasa from './sites/cheongna-theliv-tiamo-casa'
 import cheongnaThelivTiamoCasa2 from './sites/cheongna-theliv-tiamo-casa-2'
+import pajuHobanSummitEastpark from './sites/paju-hoban-summit-eastpark'
 
 /**
  * 새 현장 추가 방법:
@@ -70,6 +71,7 @@ const sites = [
   bukOsanXiDeforet,
   cheongnaThelivTiamoCasa,
   cheongnaThelivTiamoCasa2,
+  pajuHobanSummitEastpark,
 ]
 
 // slug로 현장 하나를 찾음 (app/apt/[slug]/page.jsx에서 사용)

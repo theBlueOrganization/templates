@@ -644,6 +644,8 @@ const config = {
       hideCloseBar: true,
       // 요청 반영 — 기본 2.9초 대기가 늦게 느껴져 0.5초 뒤 바로 띄움
       openDelayMs: 500,
+      // 요청 반영 — 세로형 이미지라 짧은 화면에서 헤더에 가려지지 않게 화면 높이에 맞춰 축소
+      fitViewport: true,
       images: [
         {
           src: '/apt/osan-heritage-xi-xi/popup0.webp',

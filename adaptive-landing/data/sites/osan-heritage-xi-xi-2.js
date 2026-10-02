@@ -636,7 +636,7 @@ const config = {
       csHours: 'AM 09:00 ~ PM 19:00',
     },
 
-    // 요청 반영(2026-10-02) — 진입 팝업 재개, 방문 이벤트 안내 이미지(popup0.webp) 1장으로 교체.
+    // 요청 반영(2026-10-02) — 진입 팝업 재개, 방문 이벤트 안내 이미지(popup0.webp, 세로형) 1장으로 교체.
     // 하단 "팝업닫기" 바 없이 이미지에 그려진 X로 닫음(hideCloseBar — 이미지 탭 시 팝업 닫힘)
     popup: {
       enabled: true,
@@ -647,8 +647,8 @@ const config = {
         {
           src: '/apt/osan-heritage-xi-xi-2/popup0.webp',
           alt: '오산헤리티지자이 특별한 방문 이벤트 — 와인 추첨·주말 경품추첨·1차 계약금 500만원·계약축하금 100만원',
-          width: 1218,
-          height: 930,
+          width: 861,
+          height: 1448,
         },
       ],
     },

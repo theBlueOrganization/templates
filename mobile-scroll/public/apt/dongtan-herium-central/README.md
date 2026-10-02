@@ -5,7 +5,6 @@ data/sites/dongtan-herium-central.js 에서 참조하는 이미지들입니다.
 
 - main.webp — 히어로 대표 이미지
 - sub-main.webp — 서브 비주얼
-- 1-1.webp — 사업개요 (1차/2차/3차 탭 공통)
 - 1-2.webp — 입지환경
 - 2-2.webp — 단지설계
 - 2-1.webp — 프리미엄
@@ -13,5 +12,5 @@ data/sites/dongtan-herium-central.js 에서 참조하는 이미지들입니다.
 - 2-A.webp / 2-B.webp / 2-C.webp / 2-D.webp — 평면도 2차(9-5BL) 59A/63B/69C/63D
 - 3-A.webp / 3-B.webp / 3-C.webp — 평면도 3차(15-1BL) 59A/64B/72C
 - popup.webp — 팝업
-- share_img.png — OG 이미지 (1200×630)
+- share_img3.png — OG 이미지 (1200×630)
 - favicon.ico

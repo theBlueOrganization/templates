@@ -1,11 +1,11 @@
-// 호반써밋 첨단3지구 (첨단3지구호반써밋-2.addupapt.kr) — chumdan3-hoban-summit을 그대로 복제한 별도 분양팀 사이트.
+// 호반써밋 첨단3지구 (호반써밋첨단3지구.addupapt.kr) — chumdan3-hoban-summit을 그대로 복제한 별도 분양팀 사이트.
 // 대표번호 1666-6642, 상담 접수 알림은 카카오 알림톡(실패 시 SMS 폴백)으로 010-8146-7288 (2026-10-02 사용자 전달값).
 // 원본과 달리 관심고객등록 폼을 히어로 바로 아래(vipForm.showAfterHero)에 두고, CTA 문구를 '관심고객등록'으로 통일.
 // 이미지·문구 출처는 chumdan3-hoban-summit.js 상단 주석 참고. 카카오톡 공유 제목(metaTitle)은 접미사 없이 원래 이름.
 const config = {
   slug: 'chumdan3-hoban-summit-2',
-  // 첨단3지구호반써밋-2.addupapt.kr → /apt/chumdan3-hoban-summit-2 (middleware.js)
-  subdomain: '첨단3지구호반써밋-2',
+  // 호반써밋첨단3지구.addupapt.kr → /apt/chumdan3-hoban-summit-2 (middleware.js)
+  subdomain: '호반써밋첨단3지구',
   // "-2"가 붙은 projectName은 SMS/시트 탭 등 내부용, 고객에게 보이는 공유 제목(metaTitle)은 원래 이름 유지
   projectName: '호반써밋 첨단3지구-2',
   metaTitle: '호반써밋 첨단3지구',

@@ -257,7 +257,8 @@ export default async function AptPage({ params }) {
       {sig.arkoneIntro && <SignatureArkoneIntro intro={sig.arkoneIntro} />}
       {/* 시티오씨엘 9단지 인트로(원 드로잉 → 원이 열림)를 일반 히어로 현장에서 전체화면 오버레이로 쓸 때 */}
       {sig.circleIntro && <SignatureCircleIntro intro={sig.circleIntro} />}
-      <main>
+      {/* sig.roomySpacing — PC에서 섹션 사이 여백을 넉넉히(각 컴포넌트 CSS의 [data-spacing='roomy'] 규칙). 예: 청라 더리브 티아모 까사2 */}
+      <main data-spacing={sig.roomySpacing ? 'roomy' : undefined}>
         {sig.hero.variant === 'arkone' ? (
           <SignatureHeroArkone hero={sig.hero} />
         ) : sig.hero.variant === 'tiamo' ? (

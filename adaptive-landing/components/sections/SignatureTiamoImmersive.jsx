@@ -56,10 +56,11 @@ const MOTION = {
   design: 'motionSoft', contact: 'motionLeft', footer: 'motionSoft',
 }
 
+// 요청 반영(2026-10-02) — 모바일 히어로 배경을 새 세로 이미지(hero-m-1~3, 1080x1350 — 까사2와 동일)로 교체
 const HERO_SLIDES = [
-  { img: 'hr-canal-aerial.webp', imgMobile: 'hr-canal-aerial-mobile.webp', alt: '청라 더리브 티아모 까사 조감도 — 커낼웨이 수변' },
-  { img: 'hr-tower-night.webp', imgMobile: 'hr-tower-night-mobile.webp', alt: '청라 더리브 티아모 까사 야경 투시도 — 스카이브릿지' },
-  { img: 'hr-wide-aerial.webp', imgMobile: 'hr-wide-aerial-mobile.webp', alt: '청라 더리브 티아모 까사 광역 조감도' },
+  { img: 'hr-canal-aerial.webp', imgMobile: 'hero-m-1.webp', alt: '청라 더리브 티아모 까사 조감도 — 커낼웨이 수변' },
+  { img: 'hr-tower-night.webp', imgMobile: 'hero-m-2.webp', alt: '청라 더리브 티아모 까사 야경 투시도 — 스카이브릿지' },
+  { img: 'hr-wide-aerial.webp', imgMobile: 'hero-m-3.webp', alt: '청라 더리브 티아모 까사 광역 조감도' },
 ]
 
 // 출처: 참고 사이트 메인 PERFECT TRIPLE 01~03 원문(요청 반영 2026-10-01 — 교통·수변·스카이브릿지·미래가치 4개로).
@@ -877,15 +878,19 @@ export default function SignatureTiamoImmersive({ site }) {
 
       {noticeOpen && (
         <div className={cn(styles.popupOverlay, styles.isOpen)} role="dialog" aria-modal="true" aria-label="주요 안내">
-          <div className={styles.popupShell}>
-            <article className={styles.noticeCard}>
-              <button type="button" className={styles.noticeX} aria-label="닫기" onClick={closeNotice}>×</button>
-              <div className={styles.noticeImageWrap}>
-                <Image src={ASSET('hr-canal-aerial.webp')} alt="" fill sizes="440px" />
-              </div>
-              <h3>{site.projectName}</h3>
-              <p>관심고객등록 시 분양 정보와 주요 소식을 가장 먼저 안내해 드립니다.</p>
-            </article>
+          {/* 요청 반영(2026-10-02) — 기존 안내 카드 대신 완성본 이미지(popup.webp) 한 장. 이미지 우상단에 X가
+              그려져 있어 그 위치에 투명 닫기 버튼을 얹고, 이미지 아무 곳을 눌러도 닫힘(닫으면 방문예약 다이얼로그) */}
+          <div className={cn(styles.popupShell, styles.popupShellImage)}>
+            <button type="button" className={styles.noticeImageBtn} onClick={closeNotice} aria-label="팝업 닫기">
+              <Image
+                src={ASSET('popup.webp')}
+                alt="청라를 완성하는 BIG3 — 스타필드 청라&동구장, 서울아산청라병원, 하나금융그룹 하나드림타운. 입주 조건: 계약금 4,000만원 정액제, 대출 60~70% 은행 협의 완료, 5개월 내 잔금·등기"
+                width={1024}
+                height={1536}
+                sizes="420px"
+                priority
+              />
+            </button>
           </div>
         </div>
       )}

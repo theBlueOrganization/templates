@@ -37,7 +37,15 @@ const ICONS = {
 
 // plainImageGroups 그룹 하나(예: CLUB XIAN)를 담당 — 1BL/2BL/특화 커뮤니티처럼 이미지가
 // 여러 장 있을 때 전부 세로로 이어붙이는 대신 탭 버튼으로 하나씩만 보여줌
-function PlainImageGroup({ group }) {
+const MAGNIFIER_ICON = (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="11" cy="11" r="7" />
+    <path d="m21 21-4.3-4.3M11 8v6M8 11h6" />
+  </svg>
+)
+
+// onZoom — 있으면 이미지를 버튼으로 감싸 누르면 확대(club.zoomLightbox)
+function PlainImageGroup({ group, onZoom }) {
   const [activeTab, setActiveTab] = useState(0)
   const tab = group.tabs[activeTab]
 
@@ -46,41 +54,63 @@ function PlainImageGroup({ group }) {
       {group.title && <h3 className={styles.plainGroupTitle}>{group.title}</h3>}
       {/* tabColumnsMobile — 모바일(1024px 미만)에서 탭이 3+1처럼 어색하게 줄바꿈될 때 N열 균등 그리드로 고정
           tabStyle: 'grid' — 탭이 많을 때 세대안내(SignatureUnitPlanTabs)와 같은 줄 구분 그리드 + 선택 탭 하단 라인
-          (tabColumns: PC 열 수, tabColumnsMobile: 모바일 열 수) */}
-      <div
-        className={cn(
-          styles.tabRow,
-          group.tabStyle === 'grid' ? styles.tabGrid : group.tabColumnsMobile && styles.tabRowGridMobile,
-        )}
-        style={{
-          ...(group.tabColumnsMobile && { '--tab-cols-mobile': group.tabColumnsMobile }),
-          ...(group.tabColumns && { '--tab-cols': group.tabColumns }),
-        }}
-      >
-        {group.tabs.map((t, i) => (
-          <button
-            key={t.label}
-            type="button"
-            className={
-              group.tabStyle === 'grid'
-                ? cn(styles.gridTab, i === activeTab && styles.gridTabActive)
-                : cn(styles.tabBtn, i === activeTab && styles.tabBtnActive)
-            }
-            onClick={() => setActiveTab(i)}
-            aria-pressed={i === activeTab}
-          >
-            {t.label}
-          </button>
-        ))}
-      </div>
-      <Image
-        src={tab.image.src}
-        alt={tab.image.alt}
-        width={tab.image.width || 1100}
-        height={tab.image.height || 3267}
-        sizes="100vw"
-        className={styles.plainImage}
-      />
+          (tabColumns: PC 열 수, tabColumnsMobile: 모바일 열 수)
+          hideTabs — 탭이 1개뿐이라 버튼이 의미 없을 때 탭 줄을 숨기고 이미지만 노출 */}
+      {!group.hideTabs && (
+        <div
+          className={cn(
+            styles.tabRow,
+            group.tabStyle === 'grid' ? styles.tabGrid : group.tabColumnsMobile && styles.tabRowGridMobile,
+          )}
+          style={{
+            ...(group.tabColumnsMobile && { '--tab-cols-mobile': group.tabColumnsMobile }),
+            ...(group.tabColumns && { '--tab-cols': group.tabColumns }),
+          }}
+        >
+          {group.tabs.map((t, i) => (
+            <button
+              key={t.label}
+              type="button"
+              className={
+                group.tabStyle === 'grid'
+                  ? cn(styles.gridTab, i === activeTab && styles.gridTabActive)
+                  : cn(styles.tabBtn, i === activeTab && styles.tabBtnActive)
+              }
+              onClick={() => setActiveTab(i)}
+              aria-pressed={i === activeTab}
+            >
+              {t.label}
+            </button>
+          ))}
+        </div>
+      )}
+      {onZoom ? (
+        <button
+          type="button"
+          className={styles.plainZoomTrigger}
+          onClick={() => onZoom(tab.image)}
+          aria-label={`${group.title ? `${group.title} ` : ''}${tab.label} 크게 보기`}
+        >
+          <Image
+            src={tab.image.src}
+            alt={tab.image.alt}
+            width={tab.image.width || 1100}
+            height={tab.image.height || 3267}
+            sizes="100vw"
+            className={styles.plainImage}
+          />
+          <span className={styles.plainZoomIcon}>{MAGNIFIER_ICON}</span>
+        </button>
+      ) : (
+        <Image
+          src={tab.image.src}
+          alt={tab.image.alt}
+          width={tab.image.width || 1100}
+          height={tab.image.height || 3267}
+          sizes="100vw"
+          className={styles.plainImage}
+        />
+      )}
     </div>
   )
 }
@@ -94,8 +124,14 @@ export default function SignatureClubSimple({ club }) {
     return (
       <section id={club.id} className={styles.sectionPlain}>
         {club.plainImageGroups.map((group) => (
-          <PlainImageGroup key={group.title ?? group.tabs[0].label} group={group} />
+          <PlainImageGroup
+            key={group.title ?? group.tabs[0].label}
+            group={group}
+            onZoom={club.zoomLightbox ? setZoomImage : undefined}
+          />
         ))}
+        {/* club.zoomLightbox — 그룹 이미지를 누르면 확대 모달(누르면 한 번 더 2.5배 확대)로 보기 */}
+        {club.zoomLightbox && <SignatureLightbox image={zoomImage} onClose={() => setZoomImage(null)} tapZoom />}
       </section>
     )
   }

@@ -792,3 +792,15 @@
   .points dt { font-size: 21px; }
   .points dd { font-size: 14px; }
 }
+
+/* 요청 반영(2026-10-02) — 진입 팝업 1번을 완성본 이미지(1024x1536)로: 짧은 화면에서도 한 화면에 다 보이도록
+   폭을 (화면 높이 − 24px) × 2/3 이하로 제한. 이미지 전체가 닫기 버튼(우상단 X가 이미지에 그려져 있음) */
+.popupShellImage { width: min(100%, 420px, calc((100svh - 24px) * 2 / 3)); }
+.noticeImageBtn { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; }
+.noticeImageBtn :global(img) { display: block; width: 100%; height: auto; border-radius: 10px; }
+
+/* 요청 반영(2026-10-02) — PC 와이드 화면(1480px 초과)에서 핵심가치 패널 하단 카드가 화면 왼쪽 5vw에 붙어
+   위 제목(최대폭 1480px 가운데 정렬된 .sectionShell 안)과 왼쪽 시작선이 어긋나던 문제 — 카드도 같은 시작선에 맞춤 */
+@media (min-width: 1024px) {
+  .landmark .contentCard { left: max(5vw, calc((100vw - 1480px) / 2)); }
+}

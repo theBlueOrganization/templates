@@ -50,6 +50,25 @@
   border-radius: 0 0 8px 8px;
 }
 
+/* popup.closeIcon — 이미지 오른쪽 위 원형 X 닫기 버튼 */
+.closeIcon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  cursor: pointer;
+}
+
 @media (min-width: 768px) {
   .card {
     max-width: min(430px, var(--fit-max-width, 430px));

@@ -132,6 +132,8 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
     ...(hero.descLineHeightMobile != null && { '--hero-desc-line-height-mobile': hero.descLineHeightMobile }),
     // hero.mobileBgShiftUp — 모바일 전용 배경 이미지(bgImageMobile)를 위로 끌어올릴 거리(px)
     ...(hero.mobileBgShiftUp != null && { '--hero-mobile-bg-shift': `${hero.mobileBgShiftUp}px` }),
+    // hero.mobileBgPositionX — 모바일 배경(bgImageMobile)이 cover로 좌우가 잘릴 때 어느 쪽을 남길지(가로 위치, 예: '25%')
+    ...(hero.mobileBgPositionX && { '--hero-mobile-bg-x': hero.mobileBgPositionX }),
     // hero.mobileBgBottomInset — 모바일 전용 배경 이미지 하단을 하단 바(안내·전화/방문 버튼)에 가리지 않게 그만큼(px) 위에서 끝냄
     ...(hero.mobileBgBottomInset != null && { '--hero-mobile-bg-bottom': `${hero.mobileBgBottomInset}px` }),
     // hero.brandLogoSize —{ base, lg }(px)로 brandLogo 표시 높이를 현장별로 덮어씀 (2줄 락업 로고 등)

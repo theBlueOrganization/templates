@@ -82,8 +82,10 @@ const config = {
     //   배경은 히어로 첫 슬라이드와 같은 이미지라 열린 뒤 히어로로 그대로 이어짐 (SignatureCircleIntro)
     circleIntro: {
       logo: { src: '/apt/buk-osan-xi-deforet/logo-white.svg', alt: '북오산자이 드포레', width: 76, height: 41 },
-      bgImage: '/apt/buk-osan-xi-deforet/hero-slide-life.webp',
-      bgImageMobile: '/apt/buk-osan-xi-deforet/hero-slide-life-mobile.webp',
+      // 요청 반영(2026-10-02) — 히어로 슬라이드는 문구가 박혀 있어 원 안에 글자가 비쳐 보였음 → 문구 없는
+      //   새 투시도(투시도-0513)로 교체(PC 16:9 2400px / 모바일 1:2 1000px, 동 무리가 원 가운데 오도록 잘라 둠)
+      bgImage: '/apt/buk-osan-xi-deforet/intro-bg.webp',
+      bgImageMobile: '/apt/buk-osan-xi-deforet/intro-bg-mobile.webp',
     },
 
     hero: {
@@ -123,7 +125,10 @@ const config = {
       // 모바일 슬라이드 원본이 640x645(거의 정사각형)라 기본 640/835로 잡으면 좌우가 잘려 문구가 가려짐.
       // 요청 반영(2026-10-01) — 원본 비율 그대로는 낮아 보여 약 24% 늘림(좌우 각 ~10% 잘림 — 슬라이드 왼쪽 문구가
       //   화면 끝에서 16px 남는 한계치라 이보다 더 늘리면 문구가 잘림)
-      slidesAspectRatioMobile: '640 / 800',
+      // 요청 반영(2026-10-02) — 높이를 더 늘림(640/800 → 640/850). 대신 좌우를 똑같이 자르면 왼쪽 문구가 잘려서,
+      //   문구가 없는 오른쪽을 더 잘라내도록 가로 기준점을 35%로 옮김(mobileBgPositionX)
+      slidesAspectRatioMobile: '640 / 850',
+      mobileBgPositionX: '35%',
       // 요청 반영(2026-10-01) — 모바일 히어로 하단에 마우스 모양 스크롤 힌트(768px 이상에서는 자동 숨김).
       //   안내바를 히어로 아래로 내려둬서(mobileBar.offsetY) 기본 위치(하단 100px 위)는 너무 높아 하단 16px로 붙임
       mobileScrollMouse: true,
@@ -147,9 +152,13 @@ const config = {
       navLabel: 'overview',
       title: '북오산자이 드포레',
       subtitle: '경기도 오산시 내삼미동, 내삼미2구역 A2BL에 들어서는 총 1,517세대 자이 대단지',
+      // 요청 반영(2026-10-02) — 사용자 전달 원본(투시도-0513·조감도·광역조감도·상가투시도, 약 5000px)으로 교체.
+      //   대표사진 영역 비율(995:468)에 맞춰 미리 잘라 2x(1990px) webp로 저장
       photo: { src: '/apt/buk-osan-xi-deforet/overview-landmark.webp', alt: '북오산자이 드포레 단지 투시도' },
       thumbs: [
         { src: '/apt/buk-osan-xi-deforet/overview-aerial.webp', alt: '북오산자이 드포레 조감도' },
+        { src: '/apt/buk-osan-xi-deforet/overview-wide.webp', alt: '북오산자이 드포레 광역 조감도' },
+        { src: '/apt/buk-osan-xi-deforet/overview-commercial.webp', alt: '북오산자이 드포레 단지 내 상가 투시도' },
       ],
       notice: '※ 본 페이지에 사용된 CG, 이미지 및 내용은 소비자의 이해를 돕기 위한 것으로 인·허가 과정 등에 따라 변경될 수 있고 실제와 다를 수 있습니다(면적 및 세대수 등 포함).',
       // 출처: 참고 사이트 사업개요(overview01) 및 공급안내(supply01) 원문
@@ -216,6 +225,7 @@ const config = {
 
     premiumIntro: {
       // 밝은 조감도 위 흰 문구 가독성을 위해 원본을 어둡게(밝기 60%) 보정한 배경 사용
+      // 요청 반영(2026-10-02) — 사용자 전달 새 조감도 원본으로 다시 생성(2400px)
       bgImage: { src: '/apt/buk-osan-xi-deforet/premium-intro-bg.webp', alt: '북오산자이 드포레 단지 조감도' },
       overlay: false,
       introBox: {
@@ -239,7 +249,8 @@ const config = {
     },
 
     // 출처: 참고 사이트 프리미엄(premium) "당신의 삶이 더 빛나게 될 가치 6" 원문 — 카드 사진은 원본
-    // 3x2 그리드에서 각 칸을 그대로 잘라낸 것
+    // 3x2 그리드에서 각 칸을 그대로 잘라낸 것. 요청 반영(2026-10-02) — 저해상도(457px) 이미지컷이던 01(대단지)·
+    //   04(도시확장)는 사용자 전달 조감도·광역조감도 원본으로 교체(914x470)
     premiumValue: {
       id: 'premium-value',
       navLabel: '프리미엄',
@@ -351,8 +362,32 @@ const config = {
             },
           ],
         },
+        // 요청 반영(2026-10-02) — 안내 이미지 안의 시설 사진이 작고 흐려서, 사용자 전달 커뮤니티 투시도 원본
+        //   (3508x2480 등)을 1800px webp로 변환해 시설별 탭으로 추가
+        {
+          title: 'COMMUNITY',
+          // 요청 반영(2026-10-02) — 세대안내 타입 탭과 같은 그리드 모양(PC 6열 / 모바일 4열)
+          tabStyle: 'grid',
+          tabColumns: 6,
+          tabColumnsMobile: 4,
+          tabs: [
+            { label: 'B1F 배치', image: { src: '/apt/buk-osan-xi-deforet/club-iso-b1f.webp', alt: '북오산자이 드포레 커뮤니티 B1F 아이소 배치도', width: 1800, height: 1273 } },
+            { label: '1F 배치', image: { src: '/apt/buk-osan-xi-deforet/club-iso-1f.webp', alt: '북오산자이 드포레 커뮤니티 1F 아이소 배치도', width: 1800, height: 1273 } },
+            { label: '로비', image: { src: '/apt/buk-osan-xi-deforet/club-lobby.webp', alt: '북오산자이 드포레 커뮤니티 로비', width: 1800, height: 1273 } },
+            { label: '오픈스터디', image: { src: '/apt/buk-osan-xi-deforet/club-open-study.webp', alt: '북오산자이 드포레 오픈스터디', width: 1800, height: 1273 } },
+            { label: '실내골프장', image: { src: '/apt/buk-osan-xi-deforet/club-golf.webp', alt: '북오산자이 드포레 실내골프장', width: 1800, height: 1273 } },
+            { label: '사우나', image: { src: '/apt/buk-osan-xi-deforet/club-sauna.webp', alt: '북오산자이 드포레 사우나', width: 1800, height: 1273 } },
+            { label: '탈의실', image: { src: '/apt/buk-osan-xi-deforet/club-locker.webp', alt: '북오산자이 드포레 탈의실', width: 1800, height: 1273 } },
+            { label: '파우더룸', image: { src: '/apt/buk-osan-xi-deforet/club-powder.webp', alt: '북오산자이 드포레 파우더룸', width: 1800, height: 1273 } },
+            { label: '티하우스', image: { src: '/apt/buk-osan-xi-deforet/club-teahouse.webp', alt: '북오산자이 드포레 티하우스 내부', width: 1800, height: 1273 } },
+            { label: '티하우스 외관', image: { src: '/apt/buk-osan-xi-deforet/club-teahouse-exterior.webp', alt: '북오산자이 드포레 티하우스 외관', width: 1800, height: 1271 } },
+            { label: '청음실', image: { src: '/apt/buk-osan-xi-deforet/club-listening.webp', alt: '북오산자이 드포레 청음실', width: 1800, height: 1273 } },
+          ],
+        },
         {
           title: 'SYSTEM',
+          // 요청 반영(2026-10-02) — 모바일에서 3+1로 줄바꿈되던 탭을 2x2로
+          tabColumnsMobile: 2,
           tabs: [
             {
               label: '스마트 & 안전',
@@ -420,6 +455,8 @@ const config = {
     // (참고 사이트의 잔여세대 동·호지정 계약 팝업 대체). 클릭 시 상담신청 섹션으로 이동
     popup: {
       enabled: true,
+      // 요청 반영(2026-10-02) — 하단 "팝업닫기" 바 없애고 이미지 오른쪽 위 X 버튼으로 닫기
+      closeIcon: true,
       images: [
         {
           src: '/apt/buk-osan-xi-deforet/popup-event.webp',

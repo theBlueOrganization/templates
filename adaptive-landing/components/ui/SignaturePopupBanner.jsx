@@ -27,6 +27,10 @@ export default function SignaturePopupBanner({ popup, openDelayMs = 2900, onClos
 
   useEffect(() => {
     if (!popup.enabled) return
+    // 열리기 전 대기 시간 동안 팝업 이미지를 미리 받아둬, 열리는 순간 빈 카드 없이 바로 그려지게 함
+    images.forEach((img) => {
+      if (img?.src) new window.Image().src = img.src
+    })
     const t = setTimeout(() => setOpen(true), openDelayMs)
     return () => clearTimeout(t)
   }, [popup.enabled, openDelayMs])

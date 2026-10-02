@@ -298,6 +298,10 @@ export default async function AptPage({ params }) {
             holdForIntro={!!sig.circleIntro}
           />
         )}
+        {/* vipForm.showAfterHero — 관심고객등록 폼을 히어로 바로 다음(영상보다 위)에 두는 현장용. 예: 호반써밋 첨단3지구-2 */}
+        {sig.vipForm.showAfterHero && (
+          <SignatureVipForm config={site} sectionId={`${sig.vipForm.id}-early`} />
+        )}
         {/* 청라 아크원 푸르지오 원본의 청라 핵심 3종(스타필드/아산병원/하나금융) + 미래 교통 계획 */}
         {sig.arkoneLandmarks && <SignatureArkoneLandmarks landmarks={sig.arkoneLandmarks} />}
         {sig.arkoneNetwork && <SignatureArkoneNetwork network={sig.arkoneNetwork} />}

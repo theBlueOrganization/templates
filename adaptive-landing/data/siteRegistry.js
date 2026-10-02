@@ -23,6 +23,7 @@ import cityOciel9 from './sites/city-ociel-9'
 import cityOciel92 from './sites/city-ociel-9-2'
 import pungmuSujainGracent2 from './sites/pungmu-sujain-gracent-2'
 import chumdan3HobanSummit from './sites/chumdan3-hoban-summit'
+import chumdan3HobanSummit2 from './sites/chumdan3-hoban-summit-2'
 import bukOsanXiDeforet from './sites/buk-osan-xi-deforet'
 import cheongnaThelivTiamoCasa from './sites/cheongna-theliv-tiamo-casa'
 import cheongnaThelivTiamoCasa2 from './sites/cheongna-theliv-tiamo-casa-2'
@@ -65,6 +66,7 @@ const sites = [
   cityOciel92,
   pungmuSujainGracent2,
   chumdan3HobanSummit,
+  chumdan3HobanSummit2,
   bukOsanXiDeforet,
   cheongnaThelivTiamoCasa,
   cheongnaThelivTiamoCasa2,

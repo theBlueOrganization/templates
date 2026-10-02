@@ -61,20 +61,20 @@ const config = {
       phone: '053-760-4734',
     },
 
-    // 진입 팝업 — 9/10 상품권 혜택 팝업, 9/13 SAMSUNG DAY 경품이벤트 팝업은 행사 종료로 삭제(2026-09-14).
-    // 남은 Apple DAY 팝업(9/20 예정)만 노출.
+    // 진입 팝업 — 2026-10-02 현장 요청: 기존 팝업 전부 삭제하고 오피스텔 10월중 분양 오픈 안내(popup0) 1장으로 교체.
+    // 이미지 안에 그려진 "사전 상담 접수 시작" 버튼 영역만 관심고객등록 섹션(#vip-reservation)으로 이동.
     popup: {
       enabled: true,
       images: [
         {
-          src: '/apt/dalseo-xi-genic/popup1.png',
-          alt: '달서자이 제니크 모델하우스 문의하기',
-          width: 1254,
-          height: 1254,
-          link: 'tel:053-760-4734',
-          linkLabel: '달서자이 제니크 모델하우스 전화 문의',
+          src: '/apt/dalseo-xi-genic/popup0.png',
+          alt: '달서자이 제니크 오피스텔 10월중 분양 오픈 — 최고 29층 총 78실, 84타입 방3 화2, 사전 상담 접수 시작',
+          width: 1122,
+          height: 1402,
+          hotspots: [
+            { link: '#vip-reservation', label: '사전 상담 접수 — 관심고객등록 섹션으로 이동', left: 10.5, top: 82.8, width: 79, height: 10.6 },
+          ],
         },
-        { src: '/apt/dalseo-xi-genic/popup3.png', alt: '달서자이 제니크 Apple DAY 주말경품 이벤트', width: 754, height: 1024 },
       ],
       closeLabel: '팝업닫기',
     },

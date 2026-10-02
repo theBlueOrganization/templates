@@ -57,6 +57,9 @@ const config = {
   ],
 
   signature: {
+    // 요청 반영(2026-10-02) — PC에서 섹션끼리 너무 붙어 보여 섹션·탭·이미지 사이 여백을 넉넉히(page.jsx main[data-spacing='roomy'])
+    roomySpacing: true,
+
     header: {
       logo: { src: '/apt/cheongna-theliv-tiamo-casa/logo-white.png', alt: '청라 더리브 티아모 까사', width: 204, height: 24 },
       logoSize: { base: 150, lg: 180, xl: 204 },
@@ -177,7 +180,8 @@ const config = {
     location: {
       id: 'location',
       navLabel: '입지환경',
-      label: 'LOCATION',
+      // 요청 반영(2026-10-02) — 작은 라벨(12px)만 있어 문구가 너무 작아 보여 큰 제목(PC 64px)으로
+      title: 'LOCATION',
       mapImage: { src: '/apt/cheongna-theliv-tiamo-casa/location-map.webp', alt: '청라 더리브 티아모 까사 광역 위치도 — 7호선 커낼웨이역(예정), 청라호수공원, 커낼웨이', width: 1100, height: 742 },
       features: [
         {
@@ -391,6 +395,8 @@ const config = {
       plainImageGroups: [
         {
           title: 'COMMUNITY',
+          // 요청 반영(2026-10-02) — 이미지가 1장뿐이라 '커뮤니티 시설' 탭 버튼은 숨김
+          hideTabs: true,
           tabs: [
             {
               label: '커뮤니티 시설',

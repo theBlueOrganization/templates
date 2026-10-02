@@ -128,9 +128,17 @@
 /* PC — 참고 사이트처럼 왼쪽 슬라이드(1160) + 오른쪽 카피(480) 2단, 슬라이드 왼쪽에 세로 페이지 번호 */
 @media (min-width: 1024px) {
   .section {
-    background-size: cover;
-    /* PC 헤더는 position: fixed(96px)라 히어로가 헤더 밑에서 시작 — 헤더 높이만큼 더 내려서 시작 */
-    padding: calc(96px + 40px) 0 110px;
+    /* cover 대신 폭 기준 — 화면 높이와 무관하게 물결 위치가 폭에만 비례해 아래 min-height로 계산 가능 */
+    background-size: 100% auto;
+    /* 요청 반영(2026-10-02) — 이미지가 아래로 치우쳐 보이지 않도록 히어로를 한 화면(100vh) 높이로 고정하고
+       헤더(fixed 96px) 아래 남은 영역에서 이미지·카피를 세로 가운데 정렬(위아래 여백 동일) */
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    /* 물결(배경 하단 약 31%)이 폭에 비례해 올라오므로, 화면이 낮은 노트북(1440x800 등)에서도
+       하단 로고가 물결 위에 겹치지 않도록 폭 기준 최소 높이 확보 */
+    min-height: calc(28vw + 470px);
+    padding: calc(96px + 44px) 0 44px;
   }
 
   .inner {
@@ -138,8 +146,19 @@
     grid-template-columns: minmax(0, 1160fr) minmax(0, 480fr);
     gap: clamp(40px, 4.5vw, 80px);
     width: min(1720px, calc(100% - 140px));
+    height: 100%;
     margin: 0 auto;
-    align-items: start;
+    align-items: center;
+  }
+
+  .visual {
+    height: 100%;
+  }
+
+  /* 모바일의 고정 비율 대신 남은 화면 높이를 꽉 채움(가로가 남으면 object-fit: cover로 좌우만 살짝 잘림) */
+  .slides {
+    height: 100%;
+    aspect-ratio: auto;
   }
 
   .pager {
@@ -171,8 +190,10 @@
     transition: height 0.6s ease;
   }
 
+  /* 카피는 위쪽 정렬 유지 — 세로 가운데로 내리면 하단 로고가 남색 물결 위로 올라가 안 보임 */
   .copy {
-    padding: 20px 0 0;
+    align-self: start;
+    padding: 24px 0 0;
   }
 
   .lead {

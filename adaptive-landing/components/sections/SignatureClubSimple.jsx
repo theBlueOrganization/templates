@@ -46,33 +46,36 @@ function PlainImageGroup({ group }) {
       {group.title && <h3 className={styles.plainGroupTitle}>{group.title}</h3>}
       {/* tabColumnsMobile — 모바일(1024px 미만)에서 탭이 3+1처럼 어색하게 줄바꿈될 때 N열 균등 그리드로 고정
           tabStyle: 'grid' — 탭이 많을 때 세대안내(SignatureUnitPlanTabs)와 같은 줄 구분 그리드 + 선택 탭 하단 라인
-          (tabColumns: PC 열 수, tabColumnsMobile: 모바일 열 수) */}
-      <div
-        className={cn(
-          styles.tabRow,
-          group.tabStyle === 'grid' ? styles.tabGrid : group.tabColumnsMobile && styles.tabRowGridMobile,
-        )}
-        style={{
-          ...(group.tabColumnsMobile && { '--tab-cols-mobile': group.tabColumnsMobile }),
-          ...(group.tabColumns && { '--tab-cols': group.tabColumns }),
-        }}
-      >
-        {group.tabs.map((t, i) => (
-          <button
-            key={t.label}
-            type="button"
-            className={
-              group.tabStyle === 'grid'
-                ? cn(styles.gridTab, i === activeTab && styles.gridTabActive)
-                : cn(styles.tabBtn, i === activeTab && styles.tabBtnActive)
-            }
-            onClick={() => setActiveTab(i)}
-            aria-pressed={i === activeTab}
-          >
-            {t.label}
-          </button>
-        ))}
-      </div>
+          (tabColumns: PC 열 수, tabColumnsMobile: 모바일 열 수)
+          hideTabs — 탭이 1개뿐이라 버튼이 의미 없을 때 탭 줄을 숨기고 이미지만 노출 */}
+      {!group.hideTabs && (
+        <div
+          className={cn(
+            styles.tabRow,
+            group.tabStyle === 'grid' ? styles.tabGrid : group.tabColumnsMobile && styles.tabRowGridMobile,
+          )}
+          style={{
+            ...(group.tabColumnsMobile && { '--tab-cols-mobile': group.tabColumnsMobile }),
+            ...(group.tabColumns && { '--tab-cols': group.tabColumns }),
+          }}
+        >
+          {group.tabs.map((t, i) => (
+            <button
+              key={t.label}
+              type="button"
+              className={
+                group.tabStyle === 'grid'
+                  ? cn(styles.gridTab, i === activeTab && styles.gridTabActive)
+                  : cn(styles.tabBtn, i === activeTab && styles.tabBtnActive)
+              }
+              onClick={() => setActiveTab(i)}
+              aria-pressed={i === activeTab}
+            >
+              {t.label}
+            </button>
+          ))}
+        </div>
+      )}
       <Image
         src={tab.image.src}
         alt={tab.image.alt}

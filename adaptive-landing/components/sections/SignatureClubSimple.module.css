@@ -351,3 +351,24 @@
     font-size: 15.5px;
   }
 }
+
+/* sig.roomySpacing(main[data-spacing='roomy']) — PC에서 그룹 사이·제목/탭/이미지 사이 여백을 넉넉히 (예: 청라 더리브 티아모 까사2) */
+@media (min-width: 1024px) {
+  :global([data-spacing='roomy']) .sectionPlain {
+    padding: 120px 20px;
+  }
+
+  :global([data-spacing='roomy']) .plainGroup + .plainGroup {
+    margin-top: 140px;
+  }
+
+  :global([data-spacing='roomy']) .plainGroupTitle {
+    margin-bottom: 40px;
+    font-size: 34px;
+  }
+
+  :global([data-spacing='roomy']) .tabRow {
+    gap: 10px;
+    margin-bottom: 64px;
+  }
+}

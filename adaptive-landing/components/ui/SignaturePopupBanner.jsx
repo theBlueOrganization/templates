@@ -10,6 +10,8 @@ import styles from './SignaturePopupBanner.module.css'
 // (app/apt/[slug]/page.jsx에서 조건부 렌더).
 // popup.hideCloseBar: true인 현장은 이미지 자체에 닫기(X) 표시가 이미 그려져 있는 경우 —
 // 하단 바를 렌더하지 않고, 이미지를 포함한 카드 전체를 탭하면 바로 닫히게 한다.
+// popup.closeIcon: true면 하단 "팝업닫기" 바 대신 이미지 오른쪽 위에 X 버튼을 얹어 닫는다
+// (이미지 자체 link·hotspots 동작은 그대로 유지 — 북오산자이 드포레 참고).
 // popup.images(배열)가 있으면 popup.image 대신 그 순서대로 한 장씩 이어서 띄우고,
 // 마지막 장을 닫으면 전체가 닫힌다(달서자이 제니크처럼 이벤트 안내 팝업 여러 장을
 // 순차 노출해야 하는 현장용 — dalseo-xi-genic.js 참고).
@@ -92,7 +94,7 @@ export default function SignaturePopupBanner({ popup, openDelayMs = 2900, onClos
                     height={current.height}
                     sizes="(min-width: 768px) 430px, 90vw"
                     className={styles.image}
-                    style={popup.hideCloseBar ? { borderRadius: 8 } : undefined}
+                    style={popup.hideCloseBar || popup.closeIcon ? { borderRadius: 8 } : undefined}
                   />
                 </a>
               ) : current.hotspots ? (
@@ -104,7 +106,7 @@ export default function SignaturePopupBanner({ popup, openDelayMs = 2900, onClos
                     height={current.height}
                     sizes="(min-width: 768px) 430px, 90vw"
                     className={styles.image}
-                    style={popup.hideCloseBar ? { borderRadius: 8 } : undefined}
+                    style={popup.hideCloseBar || popup.closeIcon ? { borderRadius: 8 } : undefined}
                   />
                   {current.hotspots.map((spot) => (
                     <a
@@ -128,12 +130,20 @@ export default function SignaturePopupBanner({ popup, openDelayMs = 2900, onClos
                   height={current.height}
                   sizes="(min-width: 768px) 430px, 90vw"
                   className={styles.image}
-                  style={popup.hideCloseBar ? { borderRadius: 8 } : undefined}
+                  style={popup.hideCloseBar || popup.closeIcon ? { borderRadius: 8 } : undefined}
                 />
               )}
             </div>
 
-            {!popup.hideCloseBar && (
+            {popup.closeIcon && (
+              <button type="button" onClick={handleClose} className={styles.closeIcon} aria-label="팝업 닫기">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+                  <path d="M3 3l10 10M13 3L3 13" />
+                </svg>
+              </button>
+            )}
+
+            {!popup.hideCloseBar && !popup.closeIcon && (
               <button type="button" onClick={handleClose} className={styles.closeBtn}>
                 {popup.closeLabel ?? '팝업닫기'} ✕
               </button>

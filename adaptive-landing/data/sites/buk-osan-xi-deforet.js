@@ -450,6 +450,8 @@ const config = {
     // (참고 사이트의 잔여세대 동·호지정 계약 팝업 대체). 클릭 시 상담신청 섹션으로 이동
     popup: {
       enabled: true,
+      // 요청 반영(2026-10-02) — 하단 "팝업닫기" 바 없애고 이미지 오른쪽 위 X 버튼으로 닫기
+      closeIcon: true,
       images: [
         {
           src: '/apt/buk-osan-xi-deforet/popup-event.webp',

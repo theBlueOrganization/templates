@@ -171,6 +171,8 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
     hero.desktopCopy?.tight && styles.dcTight,
     // hero.desktopCopy.bold — 문구 블록 글씨를 굵게
     hero.desktopCopy?.bold && styles.dcBold,
+    // hero.desktopCopy.badge.large — 좌상단 원형 배지를 약 1.35배 크게
+    hero.desktopCopy?.badge?.large && styles.dcBadgeLarge,
     hero.align === 'left' && styles.heroLeft,
     hero.align === 'right' && styles.heroRight,
   ]

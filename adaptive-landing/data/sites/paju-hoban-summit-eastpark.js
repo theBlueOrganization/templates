@@ -142,7 +142,10 @@ const config = {
           alt: 'HOBAN SUMMIT EAST PARK',
         },
         badge: {
-          ringSrc: '/apt/paju-hoban-summit-eastpark/hero-badge-ring.png',
+          // 링 문구를 'HOBAN SUMMIT · EAST PARK · PAJU UNJEONG'으로 새로 만듦(기존은 첨단3지구 문구)
+          ringSrc: '/apt/paju-hoban-summit-eastpark/hero-badge-ring-eastpark.png',
+          // 원형 배지 크게 — 2026-10-06 사용자 요청
+          large: true,
           lines: ['A2블록', '총 1,110', '세대'],
         },
       },

@@ -23,13 +23,13 @@ const config = {
   // 상담 접수 알림을 카카오 알림톡으로 발송(실패 시 SMS 자동 폴백)
   kakao: true,
 
-  // 공식 홈페이지 톤 — 테라코타(#b55a4b / 진한 #a14d3f) + 딥그린 차콜(#1f2a22)
+  // 녹색(#3f9b4f) + 찐녹색(#1e5a32 / 배경 #173d26) — 2026-10-06 사용자 요청으로 테라코타(핑크 톤)에서 변경
   colorTheme: {
-    navy: '#1f2a22',
+    navy: '#173d26',
     ink: '#0d0f0c',
-    cream: '#f5efe6',
-    gold: '#b55a4b',
-    visitBtnBg: '#a14d3f',
+    cream: '#f1f5ef',
+    gold: '#3f9b4f',
+    visitBtnBg: '#1e5a32',
     visitBtnColor: '#ffffff',
   },
 
@@ -173,9 +173,9 @@ const config = {
         announcements: [
           { badge: '안내', textStrong: '파주 호반써밋 이스트파크', textLight: ' 공식 안내센터입니다.' },
         ],
-        announceBg: '#a14d3f',
+        announceBg: '#1e5a32',
         bubbleText: '관심고객등록',
-        dotColor: '#a14d3f',
+        dotColor: '#1e5a32',
         callLabel: '전화상담',
         visitLabel: '관심고객등록',
       },

@@ -321,7 +321,13 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
             </motion.p>
             <motion.h1 className={styles.dcTitle} custom={0.4} variants={lineVariants}>
               {hero.desktopCopy.title}
-              <span className={styles.dcAccent}>{hero.desktopCopy.accent}</span>
+              {/* desktopCopy.accentColor — 강조 줄(현장명 등) 색을 현장별로 지정(없으면 visitBtnBg/gold) */}
+              <span
+                className={styles.dcAccent}
+                style={hero.desktopCopy.accentColor ? { color: hero.desktopCopy.accentColor } : undefined}
+              >
+                {hero.desktopCopy.accent}
+              </span>
             </motion.h1>
             {hero.desktopCopy.logo && (
               <motion.img

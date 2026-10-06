@@ -11,8 +11,8 @@ const config = {
   slug: 'paju-hoban-summit-eastpark',
   // 호반써밋이스트파크.addupapt.kr → /apt/paju-hoban-summit-eastpark (middleware.js)
   subdomain: '호반써밋이스트파크',
-  projectName: '호반써밋 이스트파크',
-  shortName: '호반써밋 이스트파크',
+  projectName: '파주 호반써밋 이스트파크',
+  shortName: '파주 호반써밋 이스트파크',
   telNumber: '1666-4691',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/paju-hoban-summit-eastpark/og.jpg',
   // 상담신청 알림 수신번호
@@ -64,7 +64,7 @@ const config = {
     header: {
       logo: {
         src: '/apt/paju-hoban-summit-eastpark/logo-white.png',
-        alt: '호반써밋 이스트파크 HOBAN SUMMIT EAST PARK',
+        alt: '파주 호반써밋 이스트파크 HOBAN SUMMIT EAST PARK',
         width: 400,
         height: 188,
       },
@@ -84,7 +84,7 @@ const config = {
       favoriteLabel: '관심고객',
       menuLabel: 'MENU',
       ctaTargetId: 'vip-reservation',
-      deskText: '호반써밋 이스트파크\n분양 상담을 도와드립니다.',
+      deskText: '파주 호반써밋 이스트파크\n분양 상담을 도와드립니다.',
       address: '파주운정3지구 A2블록',
       tagline: '운정신도시, 두 번째 호반써밋',
       items: [
@@ -102,7 +102,7 @@ const config = {
     circleIntro: {
       logo: {
         src: '/apt/paju-hoban-summit-eastpark/logo-white.png',
-        alt: '호반써밋 이스트파크 HOBAN SUMMIT EAST PARK',
+        alt: '파주 호반써밋 이스트파크 HOBAN SUMMIT EAST PARK',
         width: 400,
         height: 188,
       },
@@ -113,7 +113,7 @@ const config = {
     // 히어로 — 공식 홈페이지 메인 투시도 2장(주간/석양), 문구는 메인 '운정신도시, 두 번째 호반써밋' 카피
     hero: {
       eyebrowDivider: false,
-      titleLine1: '호반써밋 이스트파크',
+      titleLine1: '파주 호반써밋 이스트파크',
       titleWeight: 700,
       titleSize: { base: 28, md: 48, lg: 72 },
       eyebrowSize: { base: 15, lg: 21 },
@@ -125,9 +125,11 @@ const config = {
       mobileScrollMouse: true,
       desktopCopy: {
         mobile: true,
-        eyebrow: '운정신도시가 원하던 모든 프리미엄',
-        title: '운정신도시,',
-        accent: '두 번째 호반써밋',
+        eyebrow: '운정신도시, 두 번째 호반써밋',
+        title: '운정신도시가 원하던',
+        accent: '파주 호반써밋 이스트파크',
+        // 현장명 녹색 강조 — 2026-10-06 사용자 요청
+        accentColor: '#3f9b4f',
         logo: {
           src: '/apt/paju-hoban-summit-eastpark/logo-white.png',
           alt: 'HOBAN SUMMIT EAST PARK',
@@ -143,11 +145,11 @@ const config = {
           eyebrowLine2: '운정신도시, 두 번째 호반써밋',
           bgImage: {
             src: '/apt/paju-hoban-summit-eastpark/hero-1.webp',
-            alt: '호반써밋 이스트파크 투시도',
+            alt: '파주 호반써밋 이스트파크 투시도',
           },
           bgImageMobile: {
             src: '/apt/paju-hoban-summit-eastpark/hero-1-m.webp',
-            alt: '호반써밋 이스트파크 투시도',
+            alt: '파주 호반써밋 이스트파크 투시도',
           },
         },
         {
@@ -155,17 +157,17 @@ const config = {
           eyebrowLine2: 'A2블록 59㎡~84㎡ 총 1,110세대',
           bgImage: {
             src: '/apt/paju-hoban-summit-eastpark/hero-2.webp',
-            alt: '호반써밋 이스트파크 투시도',
+            alt: '파주 호반써밋 이스트파크 투시도',
           },
           bgImageMobile: {
             src: '/apt/paju-hoban-summit-eastpark/hero-2-m.webp',
-            alt: '호반써밋 이스트파크 투시도',
+            alt: '파주 호반써밋 이스트파크 투시도',
           },
         },
       ],
       mobileBar: {
         announcements: [
-          { badge: '안내', textStrong: '호반써밋 이스트파크', textLight: ' 공식 안내센터입니다.' },
+          { badge: '안내', textStrong: '파주 호반써밋 이스트파크', textLight: ' 공식 안내센터입니다.' },
         ],
         announceBg: '#a14d3f',
         bubbleText: '관심고객등록',
@@ -182,7 +184,7 @@ const config = {
       title: 'overview',
       photo: {
         src: '/apt/paju-hoban-summit-eastpark/overview-photo.webp',
-        alt: '호반써밋 이스트파크 투시도',
+        alt: '파주 호반써밋 이스트파크 투시도',
       },
       notice: '※ 본 페이지에 사용된 CG, 이미지 및 내용은 인·허가 과정 중 변경될 수 있습니다.',
       specItems: [
@@ -211,7 +213,7 @@ const config = {
       descBody2: '더 편안하고 편리한 생활을 누립니다.',
       mapImage: {
         src: '/apt/paju-hoban-summit-eastpark/location-map.webp',
-        alt: '호반써밋 이스트파크 광역 위치도',
+        alt: '파주 호반써밋 이스트파크 광역 위치도',
         width: 2000,
         height: 1530,
       },
@@ -273,13 +275,14 @@ const config = {
     premiumIntro: {
       eyebrow: 'LANDMARK DESIGN',
       titleLine1: '대단지 스케일에 혁신적인 디테일을 더하다',
-      titleLine2: '호반써밋 이스트파크',
+      titleLine2: '파주 호반써밋 이스트파크',
+      titleLine2Color: '#2f7d3f',
       descLine1: '지하 2층~지상 25층 14개동, 총 1,110세대 대단지',
       descLine1Accent: ['1,110세대'],
       descLine2: '햇살과 바람이 가득한 친환경 설계로 쾌적하고 여유로운 라이프를 선사합니다.',
       bgImage: {
         src: '/apt/paju-hoban-summit-eastpark/premium-intro-bg.webp',
-        alt: '호반써밋 이스트파크 조감도',
+        alt: '파주 호반써밋 이스트파크 조감도',
       },
     },
 
@@ -288,7 +291,7 @@ const config = {
       id: 'premium-value',
       navLabel: '프리미엄가치',
       eyebrow: 'PREMIUM LIFE',
-      titlePlain: '호반써밋 이스트파크 ',
+      titlePlain: '파주 호반써밋 이스트파크 ',
       titleAccent: 'PREMIUM 8',
       columns: 2,
       cards: [
@@ -493,9 +496,9 @@ const config = {
       id: 'vip-reservation',
       showAfterVideo: true,
       eyebrow: 'VISIT RESERVATION',
-      titleLine1: '호반써밋 이스트파크',
+      titleLine1: '파주 호반써밋 이스트파크',
       titleLine2: '관심고객등록',
-      desc: '간단한 정보를 남겨주시면 「호반써밋 이스트파크」의 분양 정보와 상세 안내를 가장 빠르게 전해드립니다.',
+      desc: '간단한 정보를 남겨주시면 「파주 호반써밋 이스트파크」의 분양 정보와 상세 안내를 가장 빠르게 전해드립니다.',
       serviceOptions: ['모델하우스 방문예약', '원하는시간 전화예약'],
       ageOptions: ['20대 이하', '30대', '40대', '50대', '60대 이상'],
       privacyText: `[개인정보 수집 및 이용에 관한 안내] 주식회사 더블루파트너스는 귀하의 개인정보를 소중하게 생각하며, 『개인정보보호법』 등 관련 법규를 철저히 준수하고 있습니다. 당사는 분양 정보 제공 및 방문 예약 서비스의 원활한 이행을 위하여 아래와 같이 개인정보를 수집 및 이용합니다.
@@ -509,13 +512,13 @@ const config = {
     footer: {
       logo: {
         src: '/apt/paju-hoban-summit-eastpark/logo-white.png',
-        alt: '호반써밋 이스트파크 HOBAN SUMMIT EAST PARK',
+        alt: '파주 호반써밋 이스트파크 HOBAN SUMMIT EAST PARK',
         width: 400,
         height: 188,
       },
       logoAlign: 'center',
       logoWidth: 130,
-      highlightText: '운정신도시, 두 번째 호반써밋\n호반써밋 이스트파크',
+      highlightText: '운정신도시, 두 번째 호반써밋\n파주 호반써밋 이스트파크',
       agencySlogan: '분양완판 전문가 그룹, (주) 더블루파트너스',
       companyLines: [
         { label: '시행', value: '파주운정A2 PFV' },

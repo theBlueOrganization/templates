@@ -267,7 +267,7 @@
   font-weight: 800;
   font-size: 32px;
   letter-spacing: -0.02em;
-  background: var(--intro-color, linear-gradient(116deg, var(--navy, #06203e) 0%, var(--navy, #082d57) 50%, var(--navy, #06203e) 100%));
+  background: var(--intro-name-color, var(--intro-color, linear-gradient(116deg, var(--navy, #06203e) 0%, var(--navy, #082d57) 50%, var(--navy, #06203e) 100%)));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

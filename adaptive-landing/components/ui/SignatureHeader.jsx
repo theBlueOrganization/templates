@@ -91,7 +91,12 @@ export default function SignatureHeader({
           <button type="button" className={styles.quickCta} onClick={() => scrollTo(ctaTargetId)}>
             {header.quickCtaLabel}
           </button>
-          <button type="button" className={styles.quickPhone} onClick={() => setPhoneModalOpen(true)}>
+          <button
+            type="button"
+            className={styles.quickPhone}
+            style={header.phoneBorderColor ? { '--quick-phone-border': header.phoneBorderColor } : undefined}
+            onClick={() => setPhoneModalOpen(true)}
+          >
             {phone}
           </button>
         </div>

@@ -73,9 +73,22 @@ const config = {
       gnb: ['사업안내', '위치안내', '프리미엄', '단지안내', '세대안내', '관심고객등록'],
       quickCtaLabel: '관심고객등록',
       phone: '1666-4691',
+      // 헤더 대표번호 버튼 테두리 — 녹색(--gold) 대신 핑크, 2026-10-06 사용자 요청
+      phoneBorderColor: '#c86e5f',
     },
 
-    popup: { enabled: false },
+    // 진입 시 관심고객 팝업 — 티아모 까사 방문예약 팝업과 같은 흰 카드 디자인, 포인트는 핑크 단색(녹색 없음). 2026-10-06 사용자 요청
+    popup: {
+      enabled: false,
+      visitForm: {
+        enabled: true,
+        accentColor: '#c86e5f',
+        title: '관심고객등록',
+        desc: '상담 가능시간 10:00~18:00 (담당자와 조율가능)',
+        checks: ['모델하우스 방문예약', '원하는시간 전화예약', '자료요청', '기타문의'],
+        submitLabel: '관심고객 등록',
+      },
+    },
 
     // PC(1024px 이상) 전용 우측 고정 사이드 퀵메뉴
     quickMenu: {
@@ -220,6 +233,8 @@ const config = {
       eyebrowPlain: '운정신도시가 원하던 ',
       eyebrowAccent: '모든 프리미엄',
       title: 'Premium Location',
+      // 'Premium Location' 제목을 녹색 대신 핑크로 — 2026-10-06 사용자 요청
+      titleColor: '#c86e5f',
       descTitle: '운정신도시가 원하던 모든 프리미엄, 호반써밋 앞으로.',
       descTitleAccent: ['호반써밋'],
       descBody1: '바로 앞 학교용지에 가까이 누리는 공원과 다양한 편의시설까지',
@@ -309,6 +324,8 @@ const config = {
       eyebrow: 'PREMIUM LIFE',
       titlePlain: '파주 호반써밋 이스트파크 ',
       titleAccent: 'PREMIUM 8',
+      // 'PREMIUM 8' 강조 글씨를 녹색 대신 핑크로 — 2026-10-06 사용자 요청
+      accentColor: '#c86e5f',
       columns: 2,
       // 모바일도 2열(8개 카드를 4줄 2열로) + 카드마다 이미지 — 2026-10-06 사용자 요청
       mobileColumns: 2,

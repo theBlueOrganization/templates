@@ -329,3 +329,18 @@
     padding-top: 40px;
   }
 }
+
+/* block.imageMobile — 모바일은 세로형 모바일 이미지만, 768px 이상은 PC 이미지만 (예: 파주 호반써밋 이스트파크) */
+.imageMobileOnly {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .imageDesktopOnly {
+    display: none;
+  }
+
+  .imageMobileOnly {
+    display: block;
+  }
+}

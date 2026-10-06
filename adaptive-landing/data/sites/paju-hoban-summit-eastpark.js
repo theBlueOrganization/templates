@@ -382,6 +382,13 @@ const config = {
                 width: 1300,
                 height: 2724,
               },
+              // 공식 홈페이지 모바일 버전 이미지(mobile/sub/) — 2026-10-06 사용자 요청
+              imageMobile: {
+                src: '/apt/paju-hoban-summit-eastpark/complex-design-m.webp',
+                alt: 'LANDMARK DESIGN — 투시도·조감도·주출입구·단지 내 상가와 설계 특장점',
+                width: 640,
+                height: 1846,
+              },
             },
           ],
         },
@@ -397,6 +404,13 @@ const config = {
                 width: 1300,
                 height: 3027,
               },
+              // 공식 홈페이지 모바일 버전 이미지(mobile/sub/) — 2026-10-06 사용자 요청
+              imageMobile: {
+                src: '/apt/paju-hoban-summit-eastpark/complex-landscape-m.webp',
+                alt: 'HEALING PARK — 단지 조경과 어린이놀이터·잔디광장 등 조경시설',
+                width: 640,
+                height: 2658,
+              },
             },
           ],
         },
@@ -411,6 +425,13 @@ const config = {
                 alt: 'COMMUNITY — 피트니스·GX룸·실내골프연습장·스크린골프·다목적실·독서실·스터디룸·작은도서관·키즈카페/맘스존·주민회의실·동호회실',
                 width: 1300,
                 height: 2200,
+              },
+              // 공식 홈페이지 모바일 버전 이미지(mobile/sub/) — 2026-10-06 사용자 요청
+              imageMobile: {
+                src: '/apt/paju-hoban-summit-eastpark/complex-community-m.webp',
+                alt: 'COMMUNITY — 피트니스·독서실 이미지컷과 커뮤니티 시설 배치도',
+                width: 640,
+                height: 2219,
               },
             },
           ],

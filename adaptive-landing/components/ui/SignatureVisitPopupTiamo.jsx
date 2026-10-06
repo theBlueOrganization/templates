@@ -94,6 +94,16 @@ export default function SignatureVisitPopupTiamo({ visitForm, config, openDelayM
             role="dialog"
             aria-modal="true"
             aria-labelledby="visit-popup-title"
+            // visitForm.accentColor — 체크·버튼 포인트색을 현장색 단색으로(예: 이스트파크 핑크). 없으면 기존 네이비/골드 그대로
+            style={
+              visitForm.accentColor
+                ? {
+                    '--visit-accent': visitForm.accentColor,
+                    '--visit-accent-soft': `color-mix(in srgb, ${visitForm.accentColor} 10%, #fff)`,
+                    '--visit-accent-fg': '#fff',
+                  }
+                : undefined
+            }
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.97, opacity: 0 }}

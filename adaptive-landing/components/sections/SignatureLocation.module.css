@@ -40,7 +40,8 @@
   font-size: 32px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--gold, #c8b693);
+  /* --location-title-color: location.titleColor를 지정한 현장만 제목색 별도(예: 이스트파크 핑크) */
+  color: var(--location-title-color, var(--gold, #c8b693));
   white-space: pre-line;
   word-break: keep-all;
 }

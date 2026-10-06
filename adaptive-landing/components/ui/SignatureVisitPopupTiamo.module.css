@@ -115,12 +115,12 @@
   width: 16px;
   height: 16px;
   flex: none;
-  accent-color: #073359;
+  accent-color: var(--visit-accent, #073359);
 }
 
 .consultGrid label:has(input:checked) {
-  border-color: #084275;
-  background: #edf3f8;
+  border-color: var(--visit-accent, #084275);
+  background: var(--visit-accent-soft, #edf3f8);
   font-weight: 700;
 }
 
@@ -146,7 +146,7 @@
   width: 18px;
   height: 18px;
   margin: 0;
-  accent-color: #073359;
+  accent-color: var(--visit-accent, #073359);
 }
 
 .submit {
@@ -154,8 +154,8 @@
   height: 46px;
   border: 0;
   border-radius: 9px;
-  background: linear-gradient(90deg, #e2c39c, #c09a76);
-  color: #07223a;
+  background: var(--visit-accent, linear-gradient(90deg, #e2c39c, #c09a76));
+  color: var(--visit-accent-fg, #07223a);
   font-size: 15px;
   font-weight: 900;
   cursor: pointer;

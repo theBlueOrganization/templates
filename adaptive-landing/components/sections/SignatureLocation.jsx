@@ -143,6 +143,7 @@ export default function SignatureLocation({ location }) {
         ...(location.bgColor && { '--location-bg': location.bgColor }),
         ...(location.titleFont && { '--location-title-font': location.titleFont }),
         ...(location.titleWeight && { '--location-title-weight': location.titleWeight }),
+        ...(location.titleColor && { '--location-title-color': location.titleColor }),
       }}
     >
       {/* location.titleOneLineDesktop — PC(1024px~)에서 제목을 한 줄로(헤더 폭 제한 해제 + 줄바꿈 금지) */}

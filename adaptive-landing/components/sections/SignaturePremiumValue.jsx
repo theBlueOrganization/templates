@@ -187,7 +187,10 @@ export default function SignaturePremiumValue({ premiumValue }) {
     <section
       id={premiumValue.id}
       className={styles.section}
-      style={premiumValue.imageAspectRatio ? { '--premium-image-ratio': premiumValue.imageAspectRatio } : undefined}
+      style={{
+        ...(premiumValue.imageAspectRatio && { '--premium-image-ratio': premiumValue.imageAspectRatio }),
+        ...(premiumValue.accentColor && { '--premium-accent': premiumValue.accentColor }),
+      }}
     >
       <Reveal className={styles.header}>
         <p className={styles.eyebrow}>{premiumValue.eyebrow}</p>

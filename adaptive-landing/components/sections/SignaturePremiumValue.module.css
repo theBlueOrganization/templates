@@ -32,7 +32,8 @@
 
 .title strong {
   font-weight: 800;
-  color: var(--gold, #7c8560);
+  /* --premium-accent: premiumValue.accentColor를 지정한 현장만 강조색 별도(예: 이스트파크 핑크) */
+  color: var(--premium-accent, var(--gold, #7c8560));
 }
 
 .mobileBreak {

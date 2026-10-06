@@ -31,6 +31,11 @@ export default function SignaturePopupSequence({ popup, config }) {
     )
   }
 
+  // 이미지 팝업 없이 방문예약 폼 팝업(popup.visitForm)만 진입 시 띄우는 현장(예: 파주 호반써밋 이스트파크)
+  if (!popup?.enabled && popup?.visitForm?.enabled) {
+    return <SignatureVisitPopupTiamo visitForm={popup.visitForm} config={config} openDelayMs={popup.visitForm.openDelayMs ?? 1500} />
+  }
+
   return (
     <>
       {popup?.interest?.enabled && !firstClosed && (

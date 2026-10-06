@@ -23,14 +23,14 @@ const config = {
   // 상담 접수 알림을 카카오 알림톡으로 발송(실패 시 SMS 자동 폴백)
   kakao: true,
 
-  // 청라 더리브 티아모 까사 톤 — 딥네이비(#0d2b45) + 브라운 골드(#b8906f) + 아이보리, 히어로 현장명만 핑크(#b55a4b) — 2026-10-06 사용자 요청
-  //   강조 문구는 골드, 버튼·CTA·어두운 배경은 네이비
+  // 딥네이비(#0d2b45, 청라 더리브 티아모 까사 톤) + 핑크(테라코타 #b55a4b) 포인트 + 아이보리 — 2026-10-06 사용자 요청(핑크 꼭 사용)
+  //   강조 문구·현장명·버튼·CTA는 핑크, 어두운 배경·본문은 네이비
   colorTheme: {
     navy: '#0d2b45',
     ink: '#0d2b45',
     cream: '#f7f4f0',
-    gold: '#b8906f',
-    visitBtnBg: '#0d2b45',
+    gold: '#b55a4b',
+    visitBtnBg: '#b55a4b',
     visitBtnColor: '#ffffff',
   },
 
@@ -179,9 +179,9 @@ const config = {
         announcements: [
           { badge: '안내', textStrong: '파주 호반써밋 이스트파크', textLight: ' 공식 안내센터입니다.' },
         ],
-        announceBg: '#0d2b45',
+        announceBg: '#b55a4b',
         bubbleText: '관심고객등록',
-        dotColor: '#b8906f',
+        dotColor: '#b55a4b',
         callLabel: '전화상담',
         visitLabel: '관심고객등록',
       },
@@ -286,7 +286,7 @@ const config = {
       eyebrow: 'LANDMARK DESIGN',
       titleLine1: '대단지 스케일에 혁신적인 디테일을 더하다',
       titleLine2: '파주 호반써밋 이스트파크',
-      titleLine2Color: '#b8906f',
+      titleLine2Color: '#b55a4b',
       descLine1: '지하 2층~지상 25층 14개동, 총 1,110세대 대단지',
       descLine1Accent: ['1,110세대'],
       descLine2: '햇살과 바람이 가득한 친환경 설계로 쾌적하고 여유로운 라이프를 선사합니다.',

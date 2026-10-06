@@ -23,14 +23,14 @@ const config = {
   // 상담 접수 알림을 카카오 알림톡으로 발송(실패 시 SMS 자동 폴백)
   kakao: true,
 
-  // 딥네이비(#0d2b45, 청라 더리브 티아모 까사 톤) + 핑크(테라코타 #b55a4b) 포인트 + 아이보리 — 2026-10-06 사용자 요청(핑크 꼭 사용)
-  //   강조 문구·현장명·버튼·CTA는 핑크, 어두운 배경·본문은 네이비
+  // 공식 홈페이지 톤 — 녹색(#335422) + 슬레이트(#47515b) + 핑크(#c86e5f) + 아이보리 — 2026-10-06 사용자 요청
+  //   강조 문구는 녹색, 현장명·버튼·CTA는 핑크, 어두운 배경·제목은 슬레이트
   colorTheme: {
-    navy: '#0d2b45',
-    ink: '#0d2b45',
+    navy: '#47515b',
+    ink: '#47515b',
     cream: '#f7f4f0',
-    gold: '#b55a4b',
-    visitBtnBg: '#b55a4b',
+    gold: '#335422',
+    visitBtnBg: '#c86e5f',
     visitBtnColor: '#ffffff',
   },
 
@@ -134,7 +134,7 @@ const config = {
         title: '운정신도시가 원하던',
         accent: '파주 호반써밋 이스트파크',
         // 현장명 핑크(테라코타) 강조 — 2026-10-06 사용자 요청
-        accentColor: '#b55a4b',
+        accentColor: '#c86e5f',
         // 문구 굵게 — 2026-10-06 사용자 요청
         bold: true,
         logo: {
@@ -179,9 +179,9 @@ const config = {
         announcements: [
           { badge: '안내', textStrong: '파주 호반써밋 이스트파크', textLight: ' 공식 안내센터입니다.' },
         ],
-        announceBg: '#b55a4b',
+        announceBg: '#c86e5f',
         bubbleText: '관심고객등록',
-        dotColor: '#b55a4b',
+        dotColor: '#335422',
         callLabel: '전화상담',
         visitLabel: '관심고객등록',
       },

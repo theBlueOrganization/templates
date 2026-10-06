@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Reveal from '../motion/Reveal'
 import { Stagger, StaggerItem } from '../motion/Stagger'
+import LazyYouTube from '../ui/LazyYouTube'
 import styles from './SignatureSellingStory.module.css'
 
 // 핵심가치(#story) — 통계 3개 + 씬 3개(영상 1 + 이미지 2) + 전환 CTA 스트립
@@ -54,12 +55,7 @@ export default function SignatureSellingStory({ story }) {
 
             {scene.type === 'video' ? (
               scene.youtubeId ? (
-                <iframe
-                  className={styles.sceneMedia}
-                  src={`https://www.youtube-nocookie.com/embed/${scene.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${scene.youtubeId}&controls=0&playsinline=1&rel=0`}
-                  title={scene.ariaLabel}
-                  allow="autoplay; encrypted-media"
-                />
+                <LazyYouTube className={styles.sceneMedia} youtubeId={scene.youtubeId} title={scene.ariaLabel} />
               ) : (
                 <video className={styles.sceneMedia} autoPlay muted loop playsInline poster={scene.video.poster} aria-label={scene.ariaLabel}>
                   <source src={scene.video.src} type="video/mp4" />

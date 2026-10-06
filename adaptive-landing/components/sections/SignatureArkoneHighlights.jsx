@@ -42,7 +42,13 @@ export function SignatureArkoneIntro({ intro }) {
   }, [])
 
   useEffect(() => {
-    if (done) return
+    if (done) {
+      // 일반 히어로(SignatureHero holdForIntro)가 인트로 동안 멈춰둔 슬라이드 자동 전환을 이때부터 시작하도록
+      // SignatureCircleIntro와 같은 신호를 보냄
+      window.__circleIntroEnded = true
+      window.dispatchEvent(new Event('circleintro:end'))
+      return
+    }
     document.documentElement.classList.add(styles.lockScroll)
     document.body.classList.add(styles.lockScroll)
     return () => {
@@ -53,8 +59,19 @@ export function SignatureArkoneIntro({ intro }) {
 
   if (done) return null
 
+  // intro.theme — 현장 브랜드 색으로 바꿀 때만 지정(없으면 원본 아크원 그린). 예: 오산헤리티지자이 xi-3는 티아모 까사 네이비/골드
+  const t = intro.theme
+  const themeStyle = t && {
+    ...(t.base && { '--intro-base': t.base }),
+    ...(t.stageOne && { '--intro-one-bg': t.stageOne }),
+    ...(t.stageTwo && { '--intro-two-bg': t.stageTwo }),
+    ...(t.ring && { '--intro-ring': t.ring }),
+    ...(t.accent && { '--intro-accent': t.accent }),
+    ...(t.sub && { '--intro-sub': t.sub }),
+  }
+
   return (
-    <div className={cn(styles.intro, ready && styles.ready)} aria-label={intro.ariaLabel}>
+    <div className={cn(styles.intro, ready && styles.ready)} style={themeStyle || undefined} aria-label={intro.ariaLabel}>
       <section className={cn(styles.introStage, styles.introOne)} aria-hidden="true">
         <div className={styles.introScenes}>
           {intro.scenes.map((s) => (
@@ -73,8 +90,9 @@ export function SignatureArkoneIntro({ intro }) {
         <i className={cn(styles.introRing, styles.ringA)} />
         <i className={cn(styles.introRing, styles.ringB)} />
         <div className={styles.introBrand}>
-          <Image className={styles.mark} src={intro.symbol} alt="" width={190} height={190} />
-          <Image className={styles.word} src={intro.wordmark} alt="PRUGIO" width={290} height={47} />
+          {intro.symbol && <Image className={styles.mark} src={intro.symbol} alt="" width={190} height={190} />}
+          {intro.wordmark && <Image className={styles.word} src={intro.wordmark} alt={intro.wordmarkAlt ?? 'PRUGIO'} width={290} height={47} />}
+          {intro.brandName && <strong className={styles.wordText}>{intro.brandName}</strong>}
           <p>{intro.tagline}</p>
         </div>
       </section>

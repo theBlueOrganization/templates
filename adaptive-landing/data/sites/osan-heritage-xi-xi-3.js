@@ -87,6 +87,32 @@ const config = {
       ],
     },
 
+    // 요청 반영(2026-10-06) — xi-3에만 청라 더리브 티아모 까사와 같은 전체화면 인트로(3분할 이미지 → 브랜드
+    // 임팩트, 5.6초)를 띄움. 공용 SignatureArkoneIntro를 쓰고 색만 티아모 까사 네이비/골드로 맞춤.
+    // CLUB XIAN·엘리시안가든 이미지는 사용자가 직접 전달한 투시도
+    arkoneIntro: {
+      ariaLabel: '오산헤리티지자이 단지와 커뮤니티를 소개하는 인트로',
+      scenes: [
+        { img: '/apt/osan-heritage-xi-xi-3/overview-photo.webp', label: '01 · LANDMARK', name: '총 1,783세대 대단지' },
+        { img: '/apt/osan-heritage-xi-xi-3/intro-club-xian.webp', label: '02 · CLUB XIAN', name: '프리미엄 커뮤니티 클럽자이안' },
+        { img: '/apt/osan-heritage-xi-xi-3/intro-elysian-garden.webp', label: '03 · ELYSIAN GARDEN', name: '단지 속 정원 엘리시안가든' },
+      ],
+      copySmall: "OSAN'S NEW HERITAGE",
+      copyLine1: 'Lead the',
+      copyLine2: 'Change.',
+      symbol: '/apt/osan-heritage-xi-xi-3/logo-white.svg',
+      brandName: '오산헤리티지자이',
+      tagline: 'NEW HERITAGE · XI',
+      theme: {
+        base: '#073359',
+        stageOne: 'radial-gradient(circle at 50% 35%, #195385 0, #073359 48%, #031a2f 100%)',
+        stageTwo: 'radial-gradient(circle at center, #0f487a, #073359 42%, #031f37 100%)',
+        ring: 'rgba(208, 167, 125, 0.4)',
+        accent: '#d0a77d',
+        sub: '#d8e6f2',
+      },
+    },
+
     hero: {
       eyebrowLine1: '병점생활권을 넘어, GTX-C가 여는',
       eyebrowLine2: '오산의 새로운 헤리티지',

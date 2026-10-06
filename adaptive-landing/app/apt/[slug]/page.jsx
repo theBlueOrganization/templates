@@ -295,7 +295,7 @@ export default async function AptPage({ params }) {
             telNumber={site.telNumber}
             telNumberByUtm={site.telNumberByUtm}
             visitTargetId={sig.vipForm.id}
-            holdForIntro={!!sig.circleIntro}
+            holdForIntro={!!sig.circleIntro || !!sig.arkoneIntro}
           />
         )}
         {/* vipForm.showAfterHero — 관심고객등록 폼을 히어로 바로 다음(영상보다 위)에 두는 현장용. 예: 호반써밋 첨단3지구-2 */}

@@ -243,6 +243,13 @@ export default function SignatureTiamoImmersive({ site }) {
     setTimeout(() => openDialog(visitDialogRef), 300)
   }
 
+  // 요청 반영(2026-10-06) — 팝업 이미지 안 '문의하기' 버튼: 방문예약 다이얼로그 대신 상담·예약 패널(방문예약 탭)로 이동
+  const goContactFromNotice = () => {
+    setNoticeOpen(false)
+    setContactTab('visit')
+    navigateTo('contact')
+  }
+
   const blockingOverlay = () => noticeOpen || openDialogCountRef.current > 0
 
   const setPanels = (next) => {
@@ -878,19 +885,22 @@ export default function SignatureTiamoImmersive({ site }) {
 
       {noticeOpen && (
         <div className={cn(styles.popupOverlay, styles.isOpen)} role="dialog" aria-modal="true" aria-label="주요 안내">
-          {/* 요청 반영(2026-10-02) — 기존 안내 카드 대신 완성본 이미지(popup.webp) 한 장. 이미지 우상단에 X가
-              그려져 있어 그 위치에 투명 닫기 버튼을 얹고, 이미지 아무 곳을 눌러도 닫힘(닫으면 방문예약 다이얼로그) */}
+          {/* 요청 반영(2026-10-02) — 기존 안내 카드 대신 완성본 이미지 한 장. 이미지 우상단에 X가
+              그려져 있어 이미지 아무 곳을 눌러도 닫힘(닫으면 방문예약 다이얼로그).
+              요청 반영(2026-10-06) — 이미지를 popup0.webp로 교체하고, 이미지 안 '문의하기' 버튼 위치에만
+              투명 버튼(noticeHotspot)을 얹어 누르면 상담·예약 패널로 이동 */}
           <div className={cn(styles.popupShell, styles.popupShellImage)}>
             <button type="button" className={styles.noticeImageBtn} onClick={closeNotice} aria-label="팝업 닫기">
               <Image
-                src={ASSET('popup.webp')}
-                alt="청라를 완성하는 BIG3 — 스타필드 청라&동구장, 서울아산청라병원, 하나금융그룹 하나드림타운. 입주 조건: 계약금 4,000만원 정액제, 대출 60~70% 은행 협의 완료, 5개월 내 잔금·등기"
-                width={1024}
-                height={1536}
+                src={ASSET('popup0.webp')}
+                alt="청라를 완성하는 BIG3 — 스타필드, 서울청라아산병원, 하나금융그룹 하나드림타운. 아파트를 담은 대단지 오피스텔, 주거형 523실 이상 대단지. 5억~6억대로 청라 중심에 입주"
+                width={1159}
+                height={1358}
                 sizes="420px"
                 priority
               />
             </button>
+            <button type="button" className={styles.noticeHotspot} onClick={goContactFromNotice} aria-label="문의하기 — 방문예약으로 이동" />
           </div>
         </div>
       )}

@@ -124,15 +124,7 @@ export default function SignaturePopupBanner({ popup, openDelayMs = 2900, onClos
                       style={{ left: `${spot.left}%`, top: `${spot.top}%`, width: `${spot.width}%`, height: `${spot.height}%` }}
                       onClick={(e) => {
                         e.stopPropagation()
-                        if (!spot.link.startsWith('#')) return
-                        if (index < images.length - 1) {
-                          handleClose()
-                          return
-                        }
-                        // 마지막 장의 #section 앵커 — onClose에 navigated를 넘겨 이어지는 방문예약 폼
-                        // 팝업이 이동한 섹션을 가리지 않게 함(SignaturePopupSequence 참고)
-                        setOpen(false)
-                        onClose?.({ navigated: true })
+                        if (spot.link.startsWith('#')) handleClose()
                       }}
                     />
                   ))}

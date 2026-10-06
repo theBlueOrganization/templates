@@ -281,18 +281,20 @@ const config = {
         '※ 지역도는 소비자의 이해를 돕기 위해 제작한 것으로 실제와 차이가 있습니다. 개발 및 교통계획 관련 사항은 관계기관의 사정에 따라 변경 및 취소될 수 있으며, 학교 관련 사항은 해당 교육청의 결정사항으로 당사와 무관합니다.',
     },
 
-    // 프리미엄 인트로 — 설계(design.html) 'LANDMARK DESIGN' 조감도
+    // 프리미엄 인트로 — 왼쪽 투시도 + 오른쪽 세로 카피(호반써밋 첨단3지구와 같은 split 구성) — 2026-10-06 사용자 요청
+    //   이미지는 메인 투시도(hero-1)에서 단지 부분만 크롭(premium-split.webp)
     premiumIntro: {
-      eyebrow: 'LANDMARK DESIGN',
-      titleLine1: '대단지 스케일에 혁신적인 디테일을 더하다',
-      titleLine2: '파주 호반써밋 이스트파크',
-      titleLine2Color: '#b55a4b',
-      descLine1: '지하 2층~지상 25층 14개동, 총 1,110세대 대단지',
-      descLine1Accent: ['1,110세대'],
-      descLine2: '햇살과 바람이 가득한 친환경 설계로 쾌적하고 여유로운 라이프를 선사합니다.',
+      split: true,
+      eyebrow: 'HOBAN SUMMIT',
+      titleLine1: '대단지에 혁신적인 디테일을 더하다',
+      paragraphs: [
+        ['운정신도시, 두 번째 호반써밋', '지하 2층~지상 25층 14개동', '총 1,110세대 대단지'],
+        ['59㎡A 396세대 / 84㎡A·B 714세대', '햇살과 바람이 가득한 친환경 설계로', '쾌적하고 여유로운 라이프가 시작됩니다'],
+      ],
+      imageBadge: '투시도',
       bgImage: {
-        src: '/apt/paju-hoban-summit-eastpark/premium-intro-bg.webp',
-        alt: '파주 호반써밋 이스트파크 조감도',
+        src: '/apt/paju-hoban-summit-eastpark/premium-split.webp',
+        alt: '파주 호반써밋 이스트파크 투시도',
       },
     },
 

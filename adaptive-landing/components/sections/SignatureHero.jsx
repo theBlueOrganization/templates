@@ -11,6 +11,42 @@ import styles from './SignatureHero.module.css'
 
 const EASE = [0.22, 1, 0.36, 1]
 
+// 모바일(세로형)/PC(가로형) 배경 이미지 쌍 — 둘 다 priority(eager)로 두면 CSS로 숨겨진 쪽까지
+// 무조건 다운로드돼서 모바일에서도 PC용 원본(1MB+)을 같이 받음. loading="lazy"면 display:none인
+// 이미지는 브라우저가 아예 요청하지 않으므로 보이는 쪽만 받게 하고, 첫 화면 이미지(first)는
+// 화면 폭(media)에 맞는 것만 preload 링크로 미리 받아 첫 화면이 늦게 뜨지 않게 함
+// (768px 경계는 SignatureHero.module.css의 bgImageMobileOnly/DesktopOnly와 반드시 같아야 함)
+function ResponsiveBgImages({ mobile, desktop, first = false }) {
+  return (
+    <>
+      {first && (
+        <>
+          <link rel="preload" as="image" href={mobile.src} media="(max-width: 767px)" fetchPriority="high" />
+          <link rel="preload" as="image" href={desktop.src} media="(min-width: 768px)" fetchPriority="high" />
+        </>
+      )}
+      <Image
+        src={mobile.src}
+        alt={mobile.alt}
+        fill
+        loading="lazy"
+        fetchPriority={first ? 'high' : undefined}
+        sizes="100vw"
+        className={`${styles.bgImage} ${styles.bgImageMobileOnly}`}
+      />
+      <Image
+        src={desktop.src}
+        alt={desktop.alt}
+        fill
+        loading="lazy"
+        fetchPriority={first ? 'high' : undefined}
+        sizes="100vw"
+        className={`${styles.bgImage} ${styles.bgImageDesktopOnly}`}
+      />
+    </>
+  )
+}
+
 const lineVariants = {
   hidden: { opacity: 0, y: 28 },
   show: (delay) => ({ opacity: 1, y: 0, transition: { duration: 0.9, delay, ease: EASE } }),
@@ -199,24 +235,7 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
               aria-hidden={i === activeSlide ? undefined : true}
             >
               {slide.bgImageMobile ? (
-                <>
-                  <Image
-                    src={slide.bgImageMobile.src}
-                    alt={slide.bgImageMobile.alt}
-                    fill
-                    priority={i === 0}
-                    sizes="100vw"
-                    className={`${styles.bgImage} ${styles.bgImageMobileOnly}`}
-                  />
-                  <Image
-                    src={slide.bgImage.src}
-                    alt={slide.bgImage.alt}
-                    fill
-                    priority={i === 0}
-                    sizes="100vw"
-                    className={`${styles.bgImage} ${styles.bgImageDesktopOnly}`}
-                  />
-                </>
+                <ResponsiveBgImages mobile={slide.bgImageMobile} desktop={slide.bgImage} first={i === 0} />
               ) : (
                 <Image
                   src={slide.bgImage.src}
@@ -262,24 +281,7 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
             />
           )
         ) : hero.bgImageMobile ? (
-          <>
-            <Image
-              src={hero.bgImageMobile.src}
-              alt={hero.bgImageMobile.alt}
-              fill
-              priority
-              sizes="100vw"
-              className={`${styles.bgImage} ${styles.bgImageMobileOnly}`}
-            />
-            <Image
-              src={hero.bgImage.src}
-              alt={hero.bgImage.alt}
-              fill
-              priority
-              sizes="100vw"
-              className={`${styles.bgImage} ${styles.bgImageDesktopOnly}`}
-            />
-          </>
+          <ResponsiveBgImages mobile={hero.bgImageMobile} desktop={hero.bgImage} first />
         ) : (
           <Image src={hero.bgImage.src} alt={hero.bgImage.alt} fill priority sizes="100vw" className={styles.bgImage} />
         )}

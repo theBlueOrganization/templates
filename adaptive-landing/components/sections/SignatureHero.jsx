@@ -165,6 +165,8 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
     hero.contentTop && styles.heroContentTop,
     // hero.desktopCopy.mobile — desktopCopy 블록(배지·문구·로고)을 모바일/태블릿에도 표시(기본 문구 대신)
     hero.desktopCopy?.mobile && styles.dcMobile,
+    // hero.desktopCopy.center — PC에서도 문구 블록을 우측 대신 화면 가운데에 배치
+    hero.desktopCopy?.center && styles.dcCenter,
     hero.align === 'left' && styles.heroLeft,
     hero.align === 'right' && styles.heroRight,
   ]

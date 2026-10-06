@@ -125,6 +125,8 @@ const config = {
       mobileScrollMouse: true,
       desktopCopy: {
         mobile: true,
+        // PC에서도 문구를 화면 가운데로 — 2026-10-06 사용자 요청
+        center: true,
         eyebrow: '운정신도시, 두 번째 호반써밋',
         title: '운정신도시가 원하던',
         accent: '파주 호반써밋 이스트파크',

@@ -1111,6 +1111,12 @@ img.bgImageMobileOnly {
     font-family: var(--font-serif);
   }
 
+  /* hero.desktopCopy.center — 우측 대신 화면 가운데 (예: 파주 호반써밋 이스트파크) */
+  .dcCenter .dcCopy {
+    left: 0;
+    right: 0;
+  }
+
   .dcEyebrow {
     margin: 0;
     font-size: clamp(20px, 1.5vw, 28px);

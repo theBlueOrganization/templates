@@ -116,6 +116,8 @@ const config = {
       desktopCopy: {
         // 요청 반영(2026-09-30) — 모바일도 공식 홈페이지 모바일 메인처럼 같은 문구 블록 + 좌상단 원형 배지로
         mobile: true,
+        // 요청 반영(2026-10-06) — 문구 글씨 살짝 두껍게
+        semibold: true,
         eyebrow: '첨단3지구를 선점할 다시없을 기회',
         title: '첨단3지구',
         accent: '분양가 상한제 아파트',
@@ -199,8 +201,18 @@ const config = {
       headlineAccent: '광주의 새로운 중심으로 떠오르다',
       mapImage: { src: '/apt/chumdan3-hoban-summit-2/location-map.webp', alt: '호반써밋 첨단3지구 현장위치도', width: 2477, height: 1724 },
       caption: '나날이 빛날 도시. 혜택 좋은 도시. 마지막 새 도시.',
+      // 요청 반영(2026-10-06) — 공식 location.php(location_img03) 구성 추가: 헤드라인 + 하단 이미지컷 2장 + 유의사항 전체
+      captionTitle: '첨단을 달리는 프리미엄 도시가 탄생하다',
+      // 요청 반영(2026-10-06) — 하단 이미지컷 2장은 PC에서 숨기고 모바일·태블릿만
+      galleryMobileOnly: true,
+      gallery: [
+        { src: '/apt/chumdan3-hoban-summit-2/location-cut-night.webp', alt: '야경 이미지컷', width: 863, height: 358 },
+        { src: '/apt/chumdan3-hoban-summit-2/location-cut-drone.webp', alt: '드론 이미지컷', width: 330, height: 358 },
+      ],
       vision: {
         bgImage: '/apt/chumdan3-hoban-summit-2/vision-bg.webp',
+        // 요청 반영(2026-10-06) — PC 왼쪽 이미지를 위 여백 없이 블록 맨 위로
+        visualFlushTop: true,
         visual: { src: '/apt/chumdan3-hoban-summit-2/vision-left.webp', alt: 'Hoban Summit Vision 야경 이미지컷' },
         bottomImage: { src: '/apt/chumdan3-hoban-summit-2/vision-bottom.webp', alt: '광주 도심 야경 이미지컷' },
         items: [
@@ -226,8 +238,15 @@ const config = {
           },
         ],
       },
-      disclaimer:
-        '※ 상기 지역도 및 교통도 등은 소비자의 이해를 돕기 위한 것이므로 실제와 차이가 있을 수 있습니다. 단지 주변 교통시설, 기타 주변 시설 현황, 지구단위 계획 등은 인·허가 및 정부시책에 따라 변경 및 취소 가능하며 실제와 차이가 있으므로 직접 확인하시기 바랍니다.',
+      disclaimer: [
+        '상기 지역도 및 교통도 등은 소비자의 이해를 돕기 위한 것이므로 실제와 차이가 있을 수 있습니다.',
+        '단지 주변 교통시설, 기타 주변 시설 현황, 지구단위 계획 등은 인·허가 및 정부시책에 따라 변경 및 취소 가능하며 실제와 차이가 있으므로 직접 확인하시기 바라며, 이는 사업주체, 시공사와 무관합니다.',
+        '단지 설계 사항들은 추후 완공 시 변경될 수 있으며 실제와 차이가 있을 수 있으므로 이와 관련하여 반드시 견본주택에서 확인하시기 바랍니다.',
+        "첨단3지구의 첨단산업단지, 인공지능 데이터센터, 국립심뇌혈관센터, 초·중·고 및 공원 개발 계획은 '광주광역시 고시 제2020-552호, 전라남도 고시 제2020-587호'를 참고하였습니다.",
+        '상무지구~첨단산단간 도로신설의 내용은 광주광역시 토목과 2026년 주요건설사업 현황(2026.01)을 참고하였습니다.',
+        "월출동 의료특화산업단지 : 광주광역시 2023.05.14.(일) 보도자료 '광주시, 월출동에 의료특화 산업단지 조성' 참고",
+        "지하철 2호선 계획 : '광주광역시 도시철도본부 관리부 관리과(2023.04.28)' 광주도시철도 2호선 공사개요 의거",
+      ],
     },
 
     // 프리미엄 인트로 — 공식 홈페이지 투시도(planning_img02_1)

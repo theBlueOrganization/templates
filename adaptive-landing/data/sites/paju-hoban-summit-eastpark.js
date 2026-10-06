@@ -84,6 +84,8 @@ const config = {
       phone: '1666-4691',
       favoriteLabel: '관심고객',
       menuLabel: 'MENU',
+      // MENU 버튼을 분양문의와 같은 차콜로 — 색이 다채로워 보여 핑크(관심고객)만 포인트로 남김, 2026-10-06 사용자 요청
+      menuBg: '#2c2b2b',
       ctaTargetId: 'vip-reservation',
       deskText: '파주 호반써밋 이스트파크\n분양 상담을 도와드립니다.',
       address: '파주운정3지구 A2블록',

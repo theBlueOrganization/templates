@@ -13,27 +13,18 @@ import SignatureVisitPopupTiamo from './SignatureVisitPopupTiamo'
 export default function SignaturePopupSequence({ popup, config }) {
   const imageFirst = popup?.order === 'imageFirst'
   const [firstClosed, setFirstClosed] = useState(imageFirst ? !popup?.enabled : !popup?.interest?.enabled)
-  // 이미지 팝업 안 hotspot으로 섹션 이동(#앵커)한 경우 — 방문예약 폼 팝업이 그 섹션을 가리지 않게 생략
-  const [navigated, setNavigated] = useState(false)
 
   if (imageFirst) {
     return (
       <>
         {popup?.enabled && !firstClosed && (
-          <SignaturePopupBanner
-            popup={popup}
-            openDelayMs={popup.openDelayMs ?? 2900}
-            onClose={(info) => {
-              if (info?.navigated) setNavigated(true)
-              setFirstClosed(true)
-            }}
-          />
+          <SignaturePopupBanner popup={popup} openDelayMs={popup.openDelayMs ?? 2900} onClose={() => setFirstClosed(true)} />
         )}
         {popup?.interest?.enabled && firstClosed && (
           <SignatureInterestPopup interest={popup.interest} config={config} openDelayMs={400} />
         )}
         {/* popup.visitForm — 관심고객등록 대신 티아모 까사 몰입형과 같은 디자인의 방문예약 폼을 2번 팝업으로 */}
-        {popup?.visitForm?.enabled && firstClosed && !navigated && (
+        {popup?.visitForm?.enabled && firstClosed && (
           <SignatureVisitPopupTiamo visitForm={popup.visitForm} config={config} openDelayMs={400} />
         )}
       </>

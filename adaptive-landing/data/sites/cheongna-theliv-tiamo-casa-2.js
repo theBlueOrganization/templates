@@ -29,8 +29,7 @@ const config = {
     gold: '#b8906f',
     visitBtnColor: '#ffffff',
   },
-  // 요청 반영(2026-10-06) — 상담 알림 문자 수신번호 4개로 교체
-  adminPhones: ['01049851470', '01090447402', '01048086474', '01071901052'],
+  adminPhones: ['01071901052', '01049851470'],
   // 문자 본문에 담당자명 표기용
   adminPhoneNames: {
     '01071901052': '진의원',
@@ -479,10 +478,8 @@ const config = {
       csHours: 'AM 09:00 ~ PM 19:00',
     },
 
-    // 요청 반영(2026-10-02) — 진입 팝업 1번: 완성본 이미지 → 닫으면 팝업 2번: 방문예약 폼
+    // 요청 반영(2026-10-02) — 진입 팝업 1번: 완성본 이미지(popup.webp, 원본과 같은 이미지) → 닫으면 팝업 2번: 방문예약 폼
     //   (원본 사이트 방문예약 다이얼로그와 같은 디자인 — SignatureVisitPopupTiamo)
-    // 요청 반영(2026-10-06) — 팝업 1번 이미지를 popup0.webp(BIG3·대단지 오피스텔)로 교체, 이미지 안 '문의하기'
-    //   버튼 위치만 눌리게 hotspot → 방문예약 섹션(#vip-reservation)으로 이동(이때는 팝업 2번을 띄우지 않음)
     popup: {
       enabled: true,
       order: 'imageFirst',
@@ -492,13 +489,10 @@ const config = {
       fitViewport: true,
       images: [
         {
-          src: '/apt/cheongna-theliv-tiamo-casa/popup0.webp',
-          alt: '청라를 완성하는 BIG3 — 스타필드, 서울청라아산병원, 하나금융그룹 하나드림타운. 아파트를 담은 대단지 오피스텔, 주거형 523실 이상 대단지. 5억~6억대로 청라 중심에 입주',
-          width: 1159,
-          height: 1358,
-          hotspots: [
-            { link: '#vip-reservation', label: '문의하기 — 방문예약', left: 54.5, top: 85.5, width: 38.5, height: 9.5 },
-          ],
+          src: '/apt/cheongna-theliv-tiamo-casa/popup.webp',
+          alt: '청라를 완성하는 BIG3 — 스타필드 청라&동구장, 서울아산청라병원, 하나금융그룹 하나드림타운. 입주 조건: 계약금 4,000만원 정액제, 대출 60~70% 은행 협의 완료, 5개월 내 잔금·등기',
+          width: 1024,
+          height: 1536,
         },
       ],
       visitForm: {

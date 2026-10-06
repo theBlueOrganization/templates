@@ -1321,3 +1321,14 @@ img.bgImageMobileOnly {
     transform: rotate(360deg);
   }
 }
+
+/* hero.desktopCopy.tight — 문구 블록 줄 간격(소제목↔제목, 제목 두 줄, 제목↔로고)을 좁게 (예: 파주 호반써밋 이스트파크) */
+.dcTight .dcTitle {
+  gap: 0;
+  margin-top: 0.3em;
+  line-height: 1.12;
+}
+
+.dcTight .dcLogo {
+  margin-top: 1em;
+}

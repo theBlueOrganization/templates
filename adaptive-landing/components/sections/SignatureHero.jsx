@@ -167,6 +167,8 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
     hero.desktopCopy?.mobile && styles.dcMobile,
     // hero.desktopCopy.center — PC에서도 문구 블록을 우측 대신 화면 가운데에 배치
     hero.desktopCopy?.center && styles.dcCenter,
+    // hero.desktopCopy.tight — 문구 블록 줄 간격을 좁게
+    hero.desktopCopy?.tight && styles.dcTight,
     hero.align === 'left' && styles.heroLeft,
     hero.align === 'right' && styles.heroRight,
   ]

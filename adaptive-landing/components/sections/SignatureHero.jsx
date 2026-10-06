@@ -171,6 +171,8 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
     hero.desktopCopy?.tight && styles.dcTight,
     // hero.desktopCopy.bold — 문구 블록 글씨를 굵게
     hero.desktopCopy?.bold && styles.dcBold,
+    // hero.desktopCopy.semibold — 문구 블록 글씨를 살짝 굵게(bold보다 한 단계 약하게)
+    hero.desktopCopy?.semibold && styles.dcSemibold,
     // hero.desktopCopy.badge.large — 좌상단 원형 배지를 약 1.35배 크게
     hero.desktopCopy?.badge?.large && styles.dcBadgeLarge,
     // hero.desktopCopy.halo — 밝은 하늘·건물 위에서도 문구가 잘 읽히도록 뒤에 흰 빛 번짐 + 글자 흰 테두리 광

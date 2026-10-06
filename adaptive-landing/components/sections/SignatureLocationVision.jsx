@@ -11,6 +11,8 @@ import styles from './SignatureLocationVision.module.css'
 // 1) LOCATION 제목 + 세로선 + 카피(명조, 포인트 컬러 구간) + 현장위치도(클릭 시 확대) + 하단 캡션
 // 2) 비전 블록: 왼쪽 세로 이미지(visual) / 오른쪽 2×2 문구(label → 명조 포인트 헤드라인 → 본문) + 하단 가로 이미지
 // (예: 호반써밋 첨단3지구 — 공식 홈페이지 location.php + 메인 'Hoban Summit Vision' 섹션 구성)
+// 선택 필드: captionTitle(캡션 아래 명조 헤드라인), panorama(가로 파노라마 이미지컷), gallery(비전 블록 아래 이미지컷 행),
+//           disclaimer를 배열로 주면 ※ 목록으로 렌더
 export default function SignatureLocationVision({ location }) {
   const [zoom, setZoom] = useState(null)
   const { vision } = location
@@ -40,12 +42,34 @@ export default function SignatureLocationVision({ location }) {
             />
             <span className={styles.zoomBadge}>+ 크게보기</span>
           </button>
-          {location.caption && <p className={styles.caption}>{location.caption}</p>}
+          {/* captionTitle이 있으면 캡션+헤드라인을 지도와 띄운 별도 블록으로(위아래 여백 넉넉히) */}
+          {location.captionTitle ? (
+            <div className={styles.captionBlock}>
+              {location.caption && <p className={styles.caption}>{location.caption}</p>}
+              <h3 className={styles.captionTitle}>{location.captionTitle}</h3>
+            </div>
+          ) : (
+            location.caption && <p className={styles.caption}>{location.caption}</p>
+          )}
         </Reveal>
       </div>
 
+      {location.panorama && (
+        <Reveal className={styles.panorama}>
+          <Image
+            src={location.panorama.src}
+            alt={location.panorama.alt}
+            width={location.panorama.width}
+            height={location.panorama.height}
+            sizes="100vw"
+            className={styles.panoramaImg}
+          />
+        </Reveal>
+      )}
+
       <div className={styles.vision} style={vision.bgImage ? { backgroundImage: `url(${vision.bgImage})` } : undefined}>
-        <div className={styles.visual}>
+        {/* vision.visualFlushTop — PC에서 왼쪽 이미지를 블록 위쪽 여백(70px) 없이 맨 위에 붙임(오른쪽 문구 위치는 그대로) */}
+        <div className={[styles.visual, vision.visualFlushTop && styles.visualFlushTop].filter(Boolean).join(' ')}>
           <Image src={vision.visual.src} alt={vision.visual.alt} fill sizes="(min-width: 1024px) 38vw, 100vw" className={styles.cover} />
         </div>
 
@@ -67,7 +91,26 @@ export default function SignatureLocationVision({ location }) {
         </div>
       </div>
 
-      {location.disclaimer && <p className={styles.disclaimer}>{location.disclaimer}</p>}
+      {location.gallery && (
+        // location.galleryMobileOnly — PC(1024px 이상)에서는 이미지컷 행 숨김
+        <Reveal className={[styles.gallery, location.galleryMobileOnly && styles.galleryMobileOnly].filter(Boolean).join(' ')}>
+          {location.gallery.map((img) => (
+            <div key={img.src} className={styles.galleryItem} style={{ flexGrow: img.width, aspectRatio: `${img.width} / ${img.height}` }}>
+              <Image src={img.src} alt={img.alt} fill sizes="(min-width: 1024px) 70vw, 100vw" className={styles.cover} />
+            </div>
+          ))}
+        </Reveal>
+      )}
+
+      {Array.isArray(location.disclaimer) ? (
+        <ul className={styles.disclaimerList}>
+          {location.disclaimer.map((line) => (
+            <li key={line}>{line}</li>
+          ))}
+        </ul>
+      ) : (
+        location.disclaimer && <p className={styles.disclaimer}>{location.disclaimer}</p>
+      )}
 
       <SignatureLightbox image={zoom} onClose={() => setZoom(null)} />
     </section>

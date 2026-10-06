@@ -1342,6 +1342,12 @@ img.bgImageMobileOnly {
   font-weight: 800;
 }
 
+/* hero.desktopCopy.semibold — 문구 블록 글씨 살짝 굵게(명조 400 → 700, 예: 호반써밋 첨단3지구 2) */
+.dcSemibold .dcEyebrow,
+.dcSemibold .dcTitle {
+  font-weight: 700;
+}
+
 /* hero.desktopCopy.badge.large — 좌상단 원형 배지를 약 1.35배 크게 (예: 파주 호반써밋 이스트파크) */
 @media (max-width: 1023px) {
   .dcBadgeLarge .dcBadge {

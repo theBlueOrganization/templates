@@ -133,10 +133,12 @@ const config = {
         eyebrow: '운정신도시, 두 번째 호반써밋',
         title: '운정신도시가 원하던',
         accent: '파주 호반써밋 이스트파크',
-        // 현장명 녹색 강조 — 2026-10-06 사용자 요청
-        accentColor: '#3f9b4f',
+        // 현장명 핑크(테라코타) 강조 — 2026-10-06 사용자 요청
+        accentColor: '#b55a4b',
+        // 문구 굵게 — 2026-10-06 사용자 요청
+        bold: true,
         logo: {
-          src: '/apt/paju-hoban-summit-eastpark/logo-white.png',
+          src: '/apt/paju-hoban-summit-eastpark/logo-black.png',
           alt: 'HOBAN SUMMIT EAST PARK',
         },
         badge: {
@@ -299,44 +301,55 @@ const config = {
       titlePlain: '파주 호반써밋 이스트파크 ',
       titleAccent: 'PREMIUM 8',
       columns: 2,
+      // 모바일도 2열(8개 카드를 4줄 2열로) + 카드마다 이미지 — 2026-10-06 사용자 요청
+      mobileColumns: 2,
       cards: [
         {
           num: '01',
+          image: { src: '/apt/paju-hoban-summit-eastpark/feature-traffic.webp', alt: '금릉역·운정역 및 경의중앙선 위치도' },
           title: ['서울·경기로 통하는', '광역 교통망'],
           desc: ['금릉역, 경의중앙선 운정역,', '금촌IC, 서울문산고속도로'],
         },
         {
           num: '02',
+          image: { src: '/apt/paju-hoban-summit-eastpark/feature-edu.webp', alt: '등교하는 아이들 이미지컷' },
           title: ['단지 바로 앞', '안심 교육환경'],
           desc: ['초·중교, 유치원 부지와', '편리한 학원가 이용'],
         },
         {
           num: '03',
+          image: { src: '/apt/paju-hoban-summit-eastpark/feature-nature.webp', alt: '단지 내 잔디광장 투시도' },
           title: ['가까이 누리는', '힐링 자연'],
           desc: ['단지 인근 근린공원과', '운정체육공원'],
         },
         {
           num: '04',
+          image: { src: '/apt/paju-hoban-summit-eastpark/feature-life.webp', alt: '단지 내 상가 투시도' },
           title: ['운정신도시', '풍부한 생활 인프라'],
           desc: ['상업용지, 이마트,', '운정1·2지구 생활편의시설'],
         },
         {
           num: '05',
+          image: { src: '/apt/paju-hoban-summit-eastpark/premium-05.webp', alt: '파주 호반써밋 이스트파크 투시도' },
           title: ['남향위주', '단지배치'],
           desc: ['일조와 채광을 고려한', '남향위주 쾌적한 단지배치'],
         },
         {
           num: '06',
+          image: { src: '/apt/paju-hoban-summit-eastpark/premium-06.webp', alt: '파주 호반써밋 이스트파크 조감도' },
           title: ['전세대', '4베이 설계'],
           desc: ['전세대 4베이에 라이프스타일을', '고려한 다양한 타입 공간 설계'],
         },
         {
           num: '07',
+          image: { src: '/apt/paju-hoban-summit-eastpark/unit-84a.webp', alt: '84㎡A 타입 평면도' },
+          imageFit: 'contain',
           title: ['중소형', '혁신평면'],
           desc: ['선호도 높고 공간 활용도 높은', '혁신적인 설계의 중소형 평면'],
         },
         {
           num: '08',
+          image: { src: '/apt/paju-hoban-summit-eastpark/premium-08.webp', alt: '단지 중앙 공원형 조경 투시도' },
           title: ['공원형', '단지조경'],
           desc: ['다채로운 정원과 놀이시설 및', '휴게공간을 곳곳에 마련한 공원형 단지'],
         },

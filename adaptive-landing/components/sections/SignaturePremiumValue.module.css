@@ -624,3 +624,26 @@
     word-break: keep-all;
   }
 }
+
+/* premiumValue.mobileColumns === 2 — 모바일(767px 이하)에서도 2열, 카드 글자·여백을 좁은 폭에 맞게 줄임 (예: 파주 호반써밋 이스트파크) */
+@media (max-width: 767px) {
+  .grid.gridMobileTwo {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .gridMobileTwo .cardPhoto .body {
+    gap: 4px;
+    padding: 12px 12px 16px;
+  }
+
+  .gridMobileTwo .cardTitle {
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  .gridMobileTwo .cardDesc {
+    font-size: 11px;
+    line-height: 1.55;
+  }
+}

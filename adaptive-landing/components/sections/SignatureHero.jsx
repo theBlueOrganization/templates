@@ -169,6 +169,8 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
     hero.desktopCopy?.center && styles.dcCenter,
     // hero.desktopCopy.tight — 문구 블록 줄 간격을 좁게
     hero.desktopCopy?.tight && styles.dcTight,
+    // hero.desktopCopy.bold — 문구 블록 글씨를 굵게
+    hero.desktopCopy?.bold && styles.dcBold,
     hero.align === 'left' && styles.heroLeft,
     hero.align === 'right' && styles.heroRight,
   ]

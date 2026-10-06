@@ -361,6 +361,8 @@ const config = {
       id: 'complex',
       variant: 'blockTabs',
       tabStyle: 'circle',
+      // 프리미엄 섹션과의 여백 좁게 — 2026-10-06 사용자 요청
+      compactTop: true,
       eyebrow: 'COMPLEX',
       titlePlain: '단지',
       titleAccent: '안내',

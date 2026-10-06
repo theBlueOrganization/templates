@@ -25,7 +25,8 @@ export default function SignatureComplexBlocks({ complex }) {
   }
 
   return (
-    <section id={complex.id} className={styles.section}>
+    // complex.compactTop — 위 섹션과의 여백(섹션 타이틀 위쪽)을 좁게
+    <section id={complex.id} className={complex.compactTop ? `${styles.section} ${styles.sectionCompact}` : styles.section}>
       {/* 섹션 타이틀(선택) — eyebrow(COMPLEX) + titlePlain(얇게) + titleAccent(굵게) */}
       {(complex.titlePlain || complex.titleAccent) && (
         <Reveal className={styles.sectionHead}>

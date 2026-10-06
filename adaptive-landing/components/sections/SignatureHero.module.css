@@ -1381,3 +1381,25 @@ img.bgImageMobileOnly {
     font-size: 25px;
   }
 }
+
+/* hero.desktopCopy.halo — 문구 블록 뒤 흰 타원 빛 번짐 + 글자 흰 광으로 배경 위 가독성 확보 (예: 파주 호반써밋 이스트파크) */
+.dcHalo .dcCopy::before {
+  content: '';
+  position: absolute;
+  inset: -48px -72px;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.82) 0%,
+    rgba(255, 255, 255, 0.6) 42%,
+    rgba(255, 255, 255, 0) 72%
+  );
+  pointer-events: none;
+}
+
+.dcHalo .dcEyebrow,
+.dcHalo .dcTitle {
+  text-shadow:
+    0 0 2px rgba(255, 255, 255, 0.95),
+    0 0 12px rgba(255, 255, 255, 0.85);
+}

@@ -137,6 +137,8 @@ const config = {
         accentColor: '#c86e5f',
         // 문구 굵게 — 2026-10-06 사용자 요청
         bold: true,
+        // 문구 가독성(흰 빛 번짐) — 2026-10-06 사용자 요청
+        halo: true,
         logo: {
           src: '/apt/paju-hoban-summit-eastpark/logo-black.png',
           alt: 'HOBAN SUMMIT EAST PARK',

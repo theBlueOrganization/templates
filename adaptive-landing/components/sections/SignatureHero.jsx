@@ -173,6 +173,8 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
     hero.desktopCopy?.bold && styles.dcBold,
     // hero.desktopCopy.badge.large — 좌상단 원형 배지를 약 1.35배 크게
     hero.desktopCopy?.badge?.large && styles.dcBadgeLarge,
+    // hero.desktopCopy.halo — 밝은 하늘·건물 위에서도 문구가 잘 읽히도록 뒤에 흰 빛 번짐 + 글자 흰 테두리 광
+    hero.desktopCopy?.halo && styles.dcHalo,
     hero.align === 'left' && styles.heroLeft,
     hero.align === 'right' && styles.heroRight,
   ]

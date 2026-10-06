@@ -1111,6 +1111,12 @@ img.bgImageMobileOnly {
     font-family: var(--font-serif);
   }
 
+  /* hero.desktopCopy.center — 우측 대신 화면 가운데 (예: 파주 호반써밋 이스트파크) */
+  .dcCenter .dcCopy {
+    left: 0;
+    right: 0;
+  }
+
   .dcEyebrow {
     margin: 0;
     font-size: clamp(20px, 1.5vw, 28px);
@@ -1314,4 +1320,86 @@ img.bgImageMobileOnly {
   to {
     transform: rotate(360deg);
   }
+}
+
+/* hero.desktopCopy.tight — 문구 블록 줄 간격(소제목↔제목, 제목 두 줄, 제목↔로고)을 좁게 (예: 파주 호반써밋 이스트파크) */
+.dcTight .dcTitle {
+  gap: 0;
+  margin-top: 0.3em;
+  line-height: 1.12;
+}
+
+.dcTight .dcLogo {
+  margin-top: 1em;
+}
+
+/* hero.desktopCopy.bold — 문구 블록 글씨 굵게 (예: 파주 호반써밋 이스트파크) */
+.dcBold .dcEyebrow {
+  font-weight: 700;
+}
+
+.dcBold .dcTitle {
+  font-weight: 800;
+}
+
+/* hero.desktopCopy.badge.large — 좌상단 원형 배지를 약 1.35배 크게 (예: 파주 호반써밋 이스트파크) */
+@media (max-width: 1023px) {
+  .dcBadgeLarge .dcBadge {
+    width: 106px;
+    height: 106px;
+  }
+
+  .dcBadgeLarge .dcBadgeText {
+    width: 78px;
+    height: 78px;
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .dcBadgeLarge .dcBadge {
+    width: 148px;
+    height: 148px;
+  }
+
+  .dcBadgeLarge .dcBadgeText {
+    width: 112px;
+    height: 112px;
+    font-size: 21px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .dcBadgeLarge .dcBadge {
+    width: 172px;
+    height: 172px;
+  }
+
+  .dcBadgeLarge .dcBadgeText {
+    width: 132px;
+    height: 132px;
+    font-size: 25px;
+  }
+}
+
+/* hero.desktopCopy.halo — 문구 블록 뒤 흰 타원 빛 번짐 + 글자 흰 광으로 배경 위 가독성 확보 (예: 파주 호반써밋 이스트파크) */
+.dcHalo .dcCopy::before {
+  content: '';
+  position: absolute;
+  inset: -48px -72px;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.82) 0%,
+    rgba(255, 255, 255, 0.6) 42%,
+    rgba(255, 255, 255, 0) 72%
+  );
+  pointer-events: none;
+}
+
+.dcHalo .dcEyebrow,
+.dcHalo .dcTitle {
+  text-shadow:
+    0 0 2px rgba(255, 255, 255, 0.95),
+    0 0 12px rgba(255, 255, 255, 0.85);
 }

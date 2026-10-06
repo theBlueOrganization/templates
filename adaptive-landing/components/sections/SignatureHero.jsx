@@ -165,6 +165,16 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
     hero.contentTop && styles.heroContentTop,
     // hero.desktopCopy.mobile — desktopCopy 블록(배지·문구·로고)을 모바일/태블릿에도 표시(기본 문구 대신)
     hero.desktopCopy?.mobile && styles.dcMobile,
+    // hero.desktopCopy.center — PC에서도 문구 블록을 우측 대신 화면 가운데에 배치
+    hero.desktopCopy?.center && styles.dcCenter,
+    // hero.desktopCopy.tight — 문구 블록 줄 간격을 좁게
+    hero.desktopCopy?.tight && styles.dcTight,
+    // hero.desktopCopy.bold — 문구 블록 글씨를 굵게
+    hero.desktopCopy?.bold && styles.dcBold,
+    // hero.desktopCopy.badge.large — 좌상단 원형 배지를 약 1.35배 크게
+    hero.desktopCopy?.badge?.large && styles.dcBadgeLarge,
+    // hero.desktopCopy.halo — 밝은 하늘·건물 위에서도 문구가 잘 읽히도록 뒤에 흰 빛 번짐 + 글자 흰 테두리 광
+    hero.desktopCopy?.halo && styles.dcHalo,
     hero.align === 'left' && styles.heroLeft,
     hero.align === 'right' && styles.heroRight,
   ]
@@ -321,7 +331,13 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
             </motion.p>
             <motion.h1 className={styles.dcTitle} custom={0.4} variants={lineVariants}>
               {hero.desktopCopy.title}
-              <span className={styles.dcAccent}>{hero.desktopCopy.accent}</span>
+              {/* desktopCopy.accentColor — 강조 줄(현장명 등) 색을 현장별로 지정(없으면 visitBtnBg/gold) */}
+              <span
+                className={styles.dcAccent}
+                style={hero.desktopCopy.accentColor ? { color: hero.desktopCopy.accentColor } : undefined}
+              >
+                {hero.desktopCopy.accent}
+              </span>
             </motion.h1>
             {hero.desktopCopy.logo && (
               <motion.img

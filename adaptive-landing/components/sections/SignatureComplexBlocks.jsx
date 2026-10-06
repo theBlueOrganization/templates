@@ -25,7 +25,8 @@ export default function SignatureComplexBlocks({ complex }) {
   }
 
   return (
-    <section id={complex.id} className={styles.section}>
+    // complex.compactTop — 위 섹션과의 여백(섹션 타이틀 위쪽)을 좁게
+    <section id={complex.id} className={complex.compactTop ? `${styles.section} ${styles.sectionCompact}` : styles.section}>
       {/* 섹션 타이틀(선택) — eyebrow(COMPLEX) + titlePlain(얇게) + titleAccent(굵게) */}
       {(complex.titlePlain || complex.titleAccent) && (
         <Reveal className={styles.sectionHead}>
@@ -91,15 +92,35 @@ export default function SignatureComplexBlocks({ complex }) {
         )}
 
         <div key={`${catIndex}-${block.label}`} className={styles.panel}>
-          <button type="button" className={styles.imageBtn} onClick={() => setZoom(block.image)} aria-label={`${block.image.alt} 크게 보기`}>
+          {/* block.imageMobile — 모바일(767px 이하) 전용 세로형 이미지(공식 홈페이지 모바일 버전). 확대 보기도 화면에 맞는 쪽으로 */}
+          <button
+            type="button"
+            className={styles.imageBtn}
+            onClick={() =>
+              setZoom(
+                block.imageMobile && window.matchMedia('(max-width: 767px)').matches ? block.imageMobile : block.image
+              )
+            }
+            aria-label={`${block.image.alt} 크게 보기`}
+          >
             <Image
               src={block.image.src}
               alt={block.image.alt}
               width={block.image.width}
               height={block.image.height}
               sizes="(min-width: 1024px) 1080px, 100vw"
-              className={styles.image}
+              className={block.imageMobile ? `${styles.image} ${styles.imageDesktopOnly}` : styles.image}
             />
+            {block.imageMobile && (
+              <Image
+                src={block.imageMobile.src}
+                alt={block.imageMobile.alt}
+                width={block.imageMobile.width}
+                height={block.imageMobile.height}
+                sizes="100vw"
+                className={`${styles.image} ${styles.imageMobileOnly}`}
+              />
+            )}
           </button>
         </div>
 

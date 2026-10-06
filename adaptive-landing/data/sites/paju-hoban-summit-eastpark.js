@@ -11,8 +11,8 @@ const config = {
   slug: 'paju-hoban-summit-eastpark',
   // 호반써밋이스트파크.addupapt.kr → /apt/paju-hoban-summit-eastpark (middleware.js)
   subdomain: '호반써밋이스트파크',
-  projectName: '호반써밋 이스트파크',
-  shortName: '호반써밋 이스트파크',
+  projectName: '파주 호반써밋 이스트파크',
+  shortName: '파주 호반써밋 이스트파크',
   telNumber: '1666-4691',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/paju-hoban-summit-eastpark/og.jpg',
   // 상담신청 알림 수신번호
@@ -23,13 +23,14 @@ const config = {
   // 상담 접수 알림을 카카오 알림톡으로 발송(실패 시 SMS 자동 폴백)
   kakao: true,
 
-  // 공식 홈페이지 톤 — 테라코타(#b55a4b / 진한 #a14d3f) + 딥그린 차콜(#1f2a22)
+  // 공식 홈페이지 톤 — 녹색(#335422) + 차콜(#2c2b2b) + 핑크(#c86e5f) + 아이보리 — 2026-10-06 사용자 요청
+  //   강조 문구는 녹색, 현장명·버튼·CTA는 핑크, 어두운 배경·제목은 차콜
   colorTheme: {
-    navy: '#1f2a22',
-    ink: '#0d0f0c',
-    cream: '#f5efe6',
-    gold: '#b55a4b',
-    visitBtnBg: '#a14d3f',
+    navy: '#2c2b2b',
+    ink: '#2c2b2b',
+    cream: '#f7f4f0',
+    gold: '#335422',
+    visitBtnBg: '#c86e5f',
     visitBtnColor: '#ffffff',
   },
 
@@ -64,7 +65,7 @@ const config = {
     header: {
       logo: {
         src: '/apt/paju-hoban-summit-eastpark/logo-white.png',
-        alt: '호반써밋 이스트파크 HOBAN SUMMIT EAST PARK',
+        alt: '파주 호반써밋 이스트파크 HOBAN SUMMIT EAST PARK',
         width: 400,
         height: 188,
       },
@@ -83,8 +84,10 @@ const config = {
       phone: '1666-4691',
       favoriteLabel: '관심고객',
       menuLabel: 'MENU',
+      // MENU 버튼을 분양문의와 같은 차콜로 — 색이 다채로워 보여 핑크(관심고객)만 포인트로 남김, 2026-10-06 사용자 요청
+      menuBg: '#2c2b2b',
       ctaTargetId: 'vip-reservation',
-      deskText: '호반써밋 이스트파크\n분양 상담을 도와드립니다.',
+      deskText: '파주 호반써밋 이스트파크\n분양 상담을 도와드립니다.',
       address: '파주운정3지구 A2블록',
       tagline: '운정신도시, 두 번째 호반써밋',
       items: [
@@ -102,7 +105,7 @@ const config = {
     circleIntro: {
       logo: {
         src: '/apt/paju-hoban-summit-eastpark/logo-white.png',
-        alt: '호반써밋 이스트파크 HOBAN SUMMIT EAST PARK',
+        alt: '파주 호반써밋 이스트파크 HOBAN SUMMIT EAST PARK',
         width: 400,
         height: 188,
       },
@@ -113,7 +116,7 @@ const config = {
     // 히어로 — 공식 홈페이지 메인 투시도 2장(주간/석양), 문구는 메인 '운정신도시, 두 번째 호반써밋' 카피
     hero: {
       eyebrowDivider: false,
-      titleLine1: '호반써밋 이스트파크',
+      titleLine1: '파주 호반써밋 이스트파크',
       titleWeight: 700,
       titleSize: { base: 28, md: 48, lg: 72 },
       eyebrowSize: { base: 15, lg: 21 },
@@ -125,15 +128,28 @@ const config = {
       mobileScrollMouse: true,
       desktopCopy: {
         mobile: true,
-        eyebrow: '운정신도시가 원하던 모든 프리미엄',
-        title: '운정신도시,',
-        accent: '두 번째 호반써밋',
+        // PC에서도 문구를 화면 가운데로 — 2026-10-06 사용자 요청
+        center: true,
+        // 문구 줄 간격 좁게 — 2026-10-06 사용자 요청
+        tight: true,
+        eyebrow: '운정신도시, 두 번째 호반써밋',
+        title: '운정신도시가 원하던',
+        accent: '파주 호반써밋 이스트파크',
+        // 현장명 핑크(테라코타) 강조 — 2026-10-06 사용자 요청
+        accentColor: '#c86e5f',
+        // 문구 굵게 — 2026-10-06 사용자 요청
+        bold: true,
+        // 문구 가독성(흰 빛 번짐) — 2026-10-06 사용자 요청
+        halo: true,
         logo: {
-          src: '/apt/paju-hoban-summit-eastpark/logo-white.png',
+          src: '/apt/paju-hoban-summit-eastpark/logo-black.png',
           alt: 'HOBAN SUMMIT EAST PARK',
         },
         badge: {
-          ringSrc: '/apt/paju-hoban-summit-eastpark/hero-badge-ring.png',
+          // 링 문구를 'HOBAN SUMMIT · EAST PARK · PAJU UNJEONG'으로 새로 만듦(기존은 첨단3지구 문구)
+          ringSrc: '/apt/paju-hoban-summit-eastpark/hero-badge-ring-eastpark.png',
+          // 원형 배지 크게 — 2026-10-06 사용자 요청
+          large: true,
           lines: ['A2블록', '총 1,110', '세대'],
         },
       },
@@ -143,11 +159,11 @@ const config = {
           eyebrowLine2: '운정신도시, 두 번째 호반써밋',
           bgImage: {
             src: '/apt/paju-hoban-summit-eastpark/hero-1.webp',
-            alt: '호반써밋 이스트파크 투시도',
+            alt: '파주 호반써밋 이스트파크 투시도',
           },
           bgImageMobile: {
             src: '/apt/paju-hoban-summit-eastpark/hero-1-m.webp',
-            alt: '호반써밋 이스트파크 투시도',
+            alt: '파주 호반써밋 이스트파크 투시도',
           },
         },
         {
@@ -155,21 +171,21 @@ const config = {
           eyebrowLine2: 'A2블록 59㎡~84㎡ 총 1,110세대',
           bgImage: {
             src: '/apt/paju-hoban-summit-eastpark/hero-2.webp',
-            alt: '호반써밋 이스트파크 투시도',
+            alt: '파주 호반써밋 이스트파크 투시도',
           },
           bgImageMobile: {
             src: '/apt/paju-hoban-summit-eastpark/hero-2-m.webp',
-            alt: '호반써밋 이스트파크 투시도',
+            alt: '파주 호반써밋 이스트파크 투시도',
           },
         },
       ],
       mobileBar: {
         announcements: [
-          { badge: '안내', textStrong: '호반써밋 이스트파크', textLight: ' 공식 안내센터입니다.' },
+          { badge: '안내', textStrong: '파주 호반써밋 이스트파크', textLight: ' 공식 안내센터입니다.' },
         ],
-        announceBg: '#a14d3f',
+        announceBg: '#c86e5f',
         bubbleText: '관심고객등록',
-        dotColor: '#a14d3f',
+        dotColor: '#335422',
         callLabel: '전화상담',
         visitLabel: '관심고객등록',
       },
@@ -182,7 +198,7 @@ const config = {
       title: 'overview',
       photo: {
         src: '/apt/paju-hoban-summit-eastpark/overview-photo.webp',
-        alt: '호반써밋 이스트파크 투시도',
+        alt: '파주 호반써밋 이스트파크 투시도',
       },
       notice: '※ 본 페이지에 사용된 CG, 이미지 및 내용은 인·허가 과정 중 변경될 수 있습니다.',
       specItems: [
@@ -211,7 +227,7 @@ const config = {
       descBody2: '더 편안하고 편리한 생활을 누립니다.',
       mapImage: {
         src: '/apt/paju-hoban-summit-eastpark/location-map.webp',
-        alt: '호반써밋 이스트파크 광역 위치도',
+        alt: '파주 호반써밋 이스트파크 광역 위치도',
         width: 2000,
         height: 1530,
       },
@@ -269,17 +285,20 @@ const config = {
         '※ 지역도는 소비자의 이해를 돕기 위해 제작한 것으로 실제와 차이가 있습니다. 개발 및 교통계획 관련 사항은 관계기관의 사정에 따라 변경 및 취소될 수 있으며, 학교 관련 사항은 해당 교육청의 결정사항으로 당사와 무관합니다.',
     },
 
-    // 프리미엄 인트로 — 설계(design.html) 'LANDMARK DESIGN' 조감도
+    // 프리미엄 인트로 — 왼쪽 투시도 + 오른쪽 세로 카피(호반써밋 첨단3지구와 같은 split 구성) — 2026-10-06 사용자 요청
+    //   이미지는 메인 투시도(hero-1)에서 단지 부분만 크롭(premium-split.webp)
     premiumIntro: {
-      eyebrow: 'LANDMARK DESIGN',
-      titleLine1: '대단지 스케일에 혁신적인 디테일을 더하다',
-      titleLine2: '호반써밋 이스트파크',
-      descLine1: '지하 2층~지상 25층 14개동, 총 1,110세대 대단지',
-      descLine1Accent: ['1,110세대'],
-      descLine2: '햇살과 바람이 가득한 친환경 설계로 쾌적하고 여유로운 라이프를 선사합니다.',
+      split: true,
+      eyebrow: 'HOBAN SUMMIT',
+      titleLine1: '대단지에 혁신적인 디테일을 더하다',
+      paragraphs: [
+        ['운정신도시, 두 번째 호반써밋', '지하 2층~지상 25층 14개동', '총 1,110세대 대단지'],
+        ['59㎡A 396세대 / 84㎡A·B 714세대', '햇살과 바람이 가득한 친환경 설계로', '쾌적하고 여유로운 라이프가 시작됩니다'],
+      ],
+      imageBadge: '투시도',
       bgImage: {
-        src: '/apt/paju-hoban-summit-eastpark/premium-intro-bg.webp',
-        alt: '호반써밋 이스트파크 조감도',
+        src: '/apt/paju-hoban-summit-eastpark/premium-split.webp',
+        alt: '파주 호반써밋 이스트파크 투시도',
       },
     },
 
@@ -288,47 +307,58 @@ const config = {
       id: 'premium-value',
       navLabel: '프리미엄가치',
       eyebrow: 'PREMIUM LIFE',
-      titlePlain: '호반써밋 이스트파크 ',
+      titlePlain: '파주 호반써밋 이스트파크 ',
       titleAccent: 'PREMIUM 8',
       columns: 2,
+      // 모바일도 2열(8개 카드를 4줄 2열로) + 카드마다 이미지 — 2026-10-06 사용자 요청
+      mobileColumns: 2,
       cards: [
         {
           num: '01',
+          image: { src: '/apt/paju-hoban-summit-eastpark/feature-traffic.webp', alt: '금릉역·운정역 및 경의중앙선 위치도' },
           title: ['서울·경기로 통하는', '광역 교통망'],
           desc: ['금릉역, 경의중앙선 운정역,', '금촌IC, 서울문산고속도로'],
         },
         {
           num: '02',
+          image: { src: '/apt/paju-hoban-summit-eastpark/feature-edu.webp', alt: '등교하는 아이들 이미지컷' },
           title: ['단지 바로 앞', '안심 교육환경'],
           desc: ['초·중교, 유치원 부지와', '편리한 학원가 이용'],
         },
         {
           num: '03',
+          image: { src: '/apt/paju-hoban-summit-eastpark/feature-nature.webp', alt: '단지 내 잔디광장 투시도' },
           title: ['가까이 누리는', '힐링 자연'],
           desc: ['단지 인근 근린공원과', '운정체육공원'],
         },
         {
           num: '04',
+          image: { src: '/apt/paju-hoban-summit-eastpark/feature-life.webp', alt: '단지 내 상가 투시도' },
           title: ['운정신도시', '풍부한 생활 인프라'],
           desc: ['상업용지, 이마트,', '운정1·2지구 생활편의시설'],
         },
         {
           num: '05',
+          image: { src: '/apt/paju-hoban-summit-eastpark/premium-05.webp', alt: '파주 호반써밋 이스트파크 투시도' },
           title: ['남향위주', '단지배치'],
           desc: ['일조와 채광을 고려한', '남향위주 쾌적한 단지배치'],
         },
         {
           num: '06',
+          image: { src: '/apt/paju-hoban-summit-eastpark/premium-06.webp', alt: '파주 호반써밋 이스트파크 조감도' },
           title: ['전세대', '4베이 설계'],
           desc: ['전세대 4베이에 라이프스타일을', '고려한 다양한 타입 공간 설계'],
         },
         {
           num: '07',
+          image: { src: '/apt/paju-hoban-summit-eastpark/unit-84a.webp', alt: '84㎡A 타입 평면도' },
+          imageFit: 'contain',
           title: ['중소형', '혁신평면'],
           desc: ['선호도 높고 공간 활용도 높은', '혁신적인 설계의 중소형 평면'],
         },
         {
           num: '08',
+          image: { src: '/apt/paju-hoban-summit-eastpark/premium-08.webp', alt: '단지 중앙 공원형 조경 투시도' },
           title: ['공원형', '단지조경'],
           desc: ['다채로운 정원과 놀이시설 및', '휴게공간을 곳곳에 마련한 공원형 단지'],
         },
@@ -340,6 +370,8 @@ const config = {
       id: 'complex',
       variant: 'blockTabs',
       tabStyle: 'circle',
+      // 프리미엄 섹션과의 여백 좁게 — 2026-10-06 사용자 요청
+      compactTop: true,
       eyebrow: 'COMPLEX',
       titlePlain: '단지',
       titleAccent: '안내',
@@ -356,6 +388,13 @@ const config = {
                 width: 1300,
                 height: 2724,
               },
+              // 공식 홈페이지 모바일 버전 이미지(mobile/sub/) — 2026-10-06 사용자 요청
+              imageMobile: {
+                src: '/apt/paju-hoban-summit-eastpark/complex-design-m.webp',
+                alt: 'LANDMARK DESIGN — 투시도·조감도·주출입구·단지 내 상가와 설계 특장점',
+                width: 640,
+                height: 1846,
+              },
             },
           ],
         },
@@ -371,6 +410,13 @@ const config = {
                 width: 1300,
                 height: 3027,
               },
+              // 공식 홈페이지 모바일 버전 이미지(mobile/sub/) — 2026-10-06 사용자 요청
+              imageMobile: {
+                src: '/apt/paju-hoban-summit-eastpark/complex-landscape-m.webp',
+                alt: 'HEALING PARK — 단지 조경과 어린이놀이터·잔디광장 등 조경시설',
+                width: 640,
+                height: 2658,
+              },
             },
           ],
         },
@@ -385,6 +431,13 @@ const config = {
                 alt: 'COMMUNITY — 피트니스·GX룸·실내골프연습장·스크린골프·다목적실·독서실·스터디룸·작은도서관·키즈카페/맘스존·주민회의실·동호회실',
                 width: 1300,
                 height: 2200,
+              },
+              // 공식 홈페이지 모바일 버전 이미지(mobile/sub/) — 2026-10-06 사용자 요청
+              imageMobile: {
+                src: '/apt/paju-hoban-summit-eastpark/complex-community-m.webp',
+                alt: 'COMMUNITY — 피트니스·독서실 이미지컷과 커뮤니티 시설 배치도',
+                width: 640,
+                height: 2219,
               },
             },
           ],
@@ -493,9 +546,9 @@ const config = {
       id: 'vip-reservation',
       showAfterVideo: true,
       eyebrow: 'VISIT RESERVATION',
-      titleLine1: '호반써밋 이스트파크',
+      titleLine1: '파주 호반써밋 이스트파크',
       titleLine2: '관심고객등록',
-      desc: '간단한 정보를 남겨주시면 「호반써밋 이스트파크」의 분양 정보와 상세 안내를 가장 빠르게 전해드립니다.',
+      desc: '간단한 정보를 남겨주시면 「파주 호반써밋 이스트파크」의 분양 정보와 상세 안내를 가장 빠르게 전해드립니다.',
       serviceOptions: ['모델하우스 방문예약', '원하는시간 전화예약'],
       ageOptions: ['20대 이하', '30대', '40대', '50대', '60대 이상'],
       privacyText: `[개인정보 수집 및 이용에 관한 안내] 주식회사 더블루파트너스는 귀하의 개인정보를 소중하게 생각하며, 『개인정보보호법』 등 관련 법규를 철저히 준수하고 있습니다. 당사는 분양 정보 제공 및 방문 예약 서비스의 원활한 이행을 위하여 아래와 같이 개인정보를 수집 및 이용합니다.
@@ -509,13 +562,13 @@ const config = {
     footer: {
       logo: {
         src: '/apt/paju-hoban-summit-eastpark/logo-white.png',
-        alt: '호반써밋 이스트파크 HOBAN SUMMIT EAST PARK',
+        alt: '파주 호반써밋 이스트파크 HOBAN SUMMIT EAST PARK',
         width: 400,
         height: 188,
       },
       logoAlign: 'center',
       logoWidth: 130,
-      highlightText: '운정신도시, 두 번째 호반써밋\n호반써밋 이스트파크',
+      highlightText: '운정신도시, 두 번째 호반써밋\n파주 호반써밋 이스트파크',
       agencySlogan: '분양완판 전문가 그룹, (주) 더블루파트너스',
       companyLines: [
         { label: '시행', value: '파주운정A2 PFV' },

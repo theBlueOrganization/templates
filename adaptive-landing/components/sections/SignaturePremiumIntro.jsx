@@ -113,6 +113,8 @@ export default function SignaturePremiumIntro({ premiumIntro }) {
       '--intro-color': premiumIntro.titleColor,
       '--intro-title-shadow': premiumIntro.titleShadow || '0 2px 16px rgba(0, 0, 0, 0.55)',
     }),
+    // titleLine2Color — 두 번째 제목 줄(현장명)만 색을 따로 지정
+    ...(premiumIntro.titleLine2Color && { '--intro-name-color': premiumIntro.titleLine2Color }),
     ...(premiumIntro.eyebrowColor && {
       '--intro-eyebrow-color': premiumIntro.eyebrowColor,
       '--intro-eyebrow-shadow': premiumIntro.eyebrowShadow || 'none',

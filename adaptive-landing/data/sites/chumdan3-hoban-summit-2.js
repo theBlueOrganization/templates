@@ -68,6 +68,8 @@ const config = {
       enabled: true,
       openDelayMs: 1200,
       fitViewport: true,
+      // 하단 '팝업닫기' 바 대신 이미지 오른쪽 위 X 버튼으로 닫기 — 2026-10-07 사용자 요청
+      closeIcon: true,
       images: [
         {
           src: '/apt/chumdan3-hoban-summit-2/popup1.webp',

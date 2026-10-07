@@ -9,7 +9,7 @@
 // 참고 사이트는 이미 입주(2025.11) 이후 상태라 입주안내 팝업과 2022년 공급금액표(gg)는 넣지 않음.
 // 참고 사이트 메인 비주얼 원본이 1160x806이라 PC 히어로는 다소 흐릴 수 있음 — 고해상도 CG 받으면 교체 권장.
 // 헤더/푸터 로고는 참고 사이트 푸터 흰색 로고(204x24) 원본.
-// 대표번호 1533-6480, 상담 알림 문자 진의원 010-7190-1052 / 최용호 010-4985-1470 (2026-10-01 사용자 전달값).
+// 대표번호 1800-2261(2026-10-07 1533-6480에서 변경 — 까사2만), 상담 알림 문자 진의원 010-7190-1052 / 최용호 010-4985-1470 (2026-10-01 사용자 전달값).
 // 구조는 같은 방식(참고 사이트 이미지 기반)으로 만든 buk-osan-xi-deforet를 기준으로 구성.
 const config = {
   slug: 'cheongna-theliv-tiamo-casa-2',
@@ -19,7 +19,7 @@ const config = {
   projectName: '청라 더리브 티아모 까사2',
   metaTitle: '청라 더리브 티아모 까사',
   shortName: '청라 더리브 티아모 까사',
-  telNumber: '1533-6480',
+  telNumber: '1800-2261',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/cheongna-theliv-tiamo-casa/og.jpg',
   // 참고 사이트 남색(#0d2b45 계열) + 브라운 골드 포인트(#b8906f)
   colorTheme: {
@@ -67,13 +67,13 @@ const config = {
       logoSize: { base: 150, lg: 180, xl: 204 },
       gnb: ['사업개요', '입지환경', '프리미엄', '단지안내', '세대안내', '커뮤니티', '상담신청 및 방문예약'],
       quickCtaLabel: '관심고객등록',
-      phone: '1533-6480',
+      phone: '1800-2261',
     },
 
     quickMenu: {
       brand: '더리브 티아모 까사',
       phoneLabel: '분양문의',
-      phone: '1533-6480',
+      phone: '1800-2261',
       favoriteLabel: '관심고객',
       menuLabel: 'MENU',
       ctaTargetId: 'vip-reservation',
@@ -456,7 +456,7 @@ const config = {
     footer: {
       logo: { src: '/apt/cheongna-theliv-tiamo-casa/logo-white.png', alt: '청라 더리브 티아모 까사', width: 204, height: 24 },
       logoAlign: 'center',
-      highlightText: '분양문의 1533-6480',
+      highlightText: '분양문의 1800-2261',
       agencySlogan: '분양완판 전문가 그룹, (주) 더블루파트너스',
       companyLines: [
         { label: '시행위탁', value: '청라플러스' },
@@ -471,7 +471,7 @@ const config = {
         '※ 본 사이트에 기재된 부동산 관련 내용은 정부 정책에 따라 향후 일부 변경될 수 있습니다.',
         '※ 제작, 편집, 인쇄과정상 오탈자 등의 오류가 있을 수 있으니, 계약 전 반드시 현장 관계자에게 문의하시기 바랍니다.',
       ],
-      csPhone: '1533-6480',
+      csPhone: '1800-2261',
       csHours: 'AM 09:00 ~ PM 19:00',
     },
 

@@ -29,11 +29,13 @@ const config = {
     gold: '#b8906f',
     visitBtnColor: '#ffffff',
   },
-  adminPhones: ['01071901052', '01049851470'],
+  // 요청 반영(2026-10-07) — 상담 알림 문자 수신번호 3개로 교체
+  adminPhones: ['01090447402', '01048086474', '01071901052'],
   // 문자 본문에 담당자명 표기용
   adminPhoneNames: {
+    '01090447402': '최현정',
+    '01048086474': '이수지',
     '01071901052': '진의원',
-    '01049851470': '최용호',
   },
   sheetId: '',
   sheetTab: '청라더리브티아모casa',
@@ -156,12 +158,7 @@ const config = {
       },
     },
 
-    // 참고 사이트 진입 팝업의 YouTube 30초 TVCM(청라플러스 채널) — 메인 홍보영상(Vimeo 1107960434)은
-    // 도메인 제한 영상이라 다른 도메인에서 재생되지 않아 YouTube 영상으로 대체
-    videoSection: {
-      youtubeId: '_PU1MQnRjyA',
-      title: '청라 더리브 티아모 까사 30초 TVCM',
-    },
+    // 요청 반영(2026-10-07) — 영상 섹션(YouTube 30초 TVCM) 삭제
 
     // 출처: 참고 사이트 사업개요(planning) 원문
     summary: {
@@ -478,8 +475,10 @@ const config = {
       csHours: 'AM 09:00 ~ PM 19:00',
     },
 
-    // 요청 반영(2026-10-02) — 진입 팝업 1번: 완성본 이미지(popup.webp, 원본과 같은 이미지) → 닫으면 팝업 2번: 방문예약 폼
+    // 요청 반영(2026-10-02) — 진입 팝업 1번: 완성본 이미지 → 닫으면 팝업 2번: 방문예약 폼
     //   (원본 사이트 방문예약 다이얼로그와 같은 디자인 — SignatureVisitPopupTiamo)
+    // 요청 반영(2026-10-07) — 팝업 1번 이미지를 popup0.webp(원본 티아모 까사와 같은 이미지)로 교체, 이미지 안 '문의하기'
+    //   버튼 위치만 눌리게 hotspot → 관심고객(상담신청 및 방문예약) 섹션(#vip-reservation)으로 이동(이때는 팝업 2번을 띄우지 않음)
     popup: {
       enabled: true,
       order: 'imageFirst',
@@ -489,10 +488,13 @@ const config = {
       fitViewport: true,
       images: [
         {
-          src: '/apt/cheongna-theliv-tiamo-casa/popup.webp',
-          alt: '청라를 완성하는 BIG3 — 스타필드 청라&동구장, 서울아산청라병원, 하나금융그룹 하나드림타운. 입주 조건: 계약금 4,000만원 정액제, 대출 60~70% 은행 협의 완료, 5개월 내 잔금·등기',
-          width: 1024,
-          height: 1536,
+          src: '/apt/cheongna-theliv-tiamo-casa/popup0.webp',
+          alt: '청라를 완성하는 BIG3 — 스타필드, 서울청라아산병원, 하나금융그룹 하나드림타운. 아파트를 담은 대단지 오피스텔, 주거형 523실 이상 대단지. 5억~6억대로 청라 중심에 입주',
+          width: 1159,
+          height: 1358,
+          hotspots: [
+            { link: '#vip-reservation', label: '문의하기 — 관심고객등록', left: 54.5, top: 85.5, width: 38.5, height: 9.5 },
+          ],
         },
       ],
       visitForm: {

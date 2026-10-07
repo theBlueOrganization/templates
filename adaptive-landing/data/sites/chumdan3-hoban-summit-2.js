@@ -64,7 +64,22 @@ const config = {
       phone: '1666-6642',
     },
 
-    popup: { enabled: false },
+    popup: {
+      enabled: true,
+      openDelayMs: 1200,
+      fitViewport: true,
+      images: [
+        {
+          src: '/apt/chumdan3-hoban-summit-2/popup1.webp',
+          alt: '첨단3지구 호반써밋 — 사람+일자리+인프라! AI 산업의 중심, 교육부터 다른 신주거타운, 약 7,500세대 신주거타운. 분양가상한제 적용. 모델하우스 방문자 1만원 커피쿠폰 제공',
+          width: 1024,
+          height: 1536,
+          hotspots: [
+            { link: '#vip-reservation', label: '간편 방문예약하기 — 관심고객등록', left: 14, top: 89, width: 72, height: 6 },
+          ],
+        },
+      ],
+    },
 
     // PC(1024px 이상) 전용 우측 고정 사이드 퀵메뉴
     quickMenu: {

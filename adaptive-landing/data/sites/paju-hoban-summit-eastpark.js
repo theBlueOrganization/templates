@@ -86,6 +86,8 @@ const config = {
       order: 'imageFirst',
       openDelayMs: 1200,
       fitViewport: true,
+      // 하단 '팝업닫기' 바 대신 이미지 오른쪽 위 X 버튼으로 닫기 — 2026-10-07 사용자 요청
+      closeIcon: true,
       images: [
         {
           src: '/apt/paju-hoban-summit-eastpark/popup1.webp',

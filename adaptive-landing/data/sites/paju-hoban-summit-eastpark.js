@@ -1,5 +1,6 @@
 // 호반써밋 이스트파크 — 파주운정3지구 A2블록 공동주택. 시행 파주운정A2 PFV, 시공 (주)호반산업.
 // 지하 2층~지상 14~25층 14개동(501~514동), 59㎡~84㎡ 총 1,110세대(59A 396 / 84A 599 / 84B 115).
+//   59㎡A는 완판 — 2026-10-07 요청으로 사이트 문구·세대안내에서 59타입 내용 삭제(84㎡A·B만 노출).
 // 출처: 공식 홈페이지(http://hobansummit-uj.co.kr/a2/) — 메인 투시도(vis_1/vis_2), 사업개요(about_img1 + 표),
 //   입지환경(area_img1 광역 위치도 / area_img2 세부 위치도·PREMIUM LOCATION 문구), 설계(design_img1), 조경(landscape_img1),
 //   커뮤니티(community_img1), 동호수배치도(dong_img1), 평면(unit_img1~3에서 유상옵션 적용 평면만 크롭 + 면적표),
@@ -78,8 +79,24 @@ const config = {
     },
 
     // 진입 시 관심고객 팝업 — 티아모 까사 방문예약 팝업과 같은 흰 카드 디자인, 포인트는 핑크 단색(녹색 없음). 2026-10-06 사용자 요청
+    // 요청 반영(2026-10-07) — 팝업 1번: 완성본 이미지(popup1.webp, 방문예약 사은품 안내) → 닫으면 팝업 2번: 관심고객 폼.
+    //   이미지 안 '방문 예약 하러가기' 버튼 위치만 눌리게 hotspot → 관심고객등록 섹션(#vip-reservation)으로 이동(이때는 팝업 2번 생략)
     popup: {
-      enabled: false,
+      enabled: true,
+      order: 'imageFirst',
+      openDelayMs: 1200,
+      fitViewport: true,
+      images: [
+        {
+          src: '/apt/paju-hoban-summit-eastpark/popup1.webp',
+          alt: '파주 호반써밋 회사보유분 세대 — 실제 세대 직접 확인 후 입주 가능. 방문예약 후 상담 완료 고객 고급와인 증정(2026.10.08~소진 시까지, 선착순 20명)',
+          width: 1024,
+          height: 1536,
+          hotspots: [
+            { link: '#vip-reservation', label: '방문 예약 하러가기 — 관심고객등록', left: 14, top: 89, width: 72, height: 8 },
+          ],
+        },
+      ],
       visitForm: {
         enabled: true,
         accentColor: '#c86e5f',
@@ -181,7 +198,7 @@ const config = {
         },
         {
           eyebrowLine1: '생활도 교육도 편안한 호반써밋',
-          eyebrowLine2: 'A2블록 59㎡~84㎡ 총 1,110세대',
+          eyebrowLine2: 'A2블록 총 1,110세대 대단지',
           bgImage: {
             src: '/apt/paju-hoban-summit-eastpark/hero-2.webp',
             alt: '파주 호반써밋 이스트파크 투시도',
@@ -217,7 +234,7 @@ const config = {
       specItems: [
         { label: '사업명', value: '파주운정3지구 A2블록 공동주택' },
         { label: '대지위치', value: '경기도 파주시 당하동 428번지 일대 (파주운정3지구 A2블록)' },
-        { label: '건축규모', value: ['지하 2층, 지상 14~25층 / 14개동', '59㎡~84㎡ 총 1,110세대'] },
+        { label: '건축규모', value: ['지하 2층, 지상 14~25층 / 14개동', '총 1,110세대'] },
         { label: '대지면적', value: '67,097.00㎡' },
         { label: '연면적', value: '179,007.5975㎡' },
         { label: '건축면적', value: '9,098.9611㎡' },
@@ -308,7 +325,7 @@ const config = {
       titleLine1: '대단지에 혁신적인 디테일을 더하다',
       paragraphs: [
         ['운정신도시, 두 번째 호반써밋', '지하 2층~지상 25층 14개동', '총 1,110세대 대단지'],
-        ['59㎡A 396세대 / 84㎡A·B 714세대', '햇살과 바람이 가득한 친환경 설계로', '쾌적하고 여유로운 라이프가 시작됩니다'],
+        ['84㎡A·B 714세대', '햇살과 바람이 가득한 친환경 설계로', '쾌적하고 여유로운 라이프가 시작됩니다'],
       ],
       imageBadge: '투시도',
       bgImage: {
@@ -468,7 +485,7 @@ const config = {
               label: 'A2BL',
               image: {
                 src: '/apt/paju-hoban-summit-eastpark/complex-dong.webp',
-                alt: '동·호수배치도(501~514동, 59A 396세대 / 84A 599세대 / 84B 115세대, 계 1,110세대)',
+                alt: '동·호수배치도(501~514동, 계 1,110세대)',
                 width: 1300,
                 height: 4633,
               },
@@ -480,7 +497,7 @@ const config = {
         '※ 상기 이미지는 소비자의 이해를 돕기 위한 것으로 실제와 차이가 있을 수 있으며, 인·허가 과정 및 실제 시공 시 변경될 수 있습니다.',
     },
 
-    // 세대안내 — 59㎡A / 84㎡A / 84㎡B. 평면·면적은 공식 홈페이지 세대정보(unit_tab1~3) 기준(유상옵션 적용 평면)
+    // 세대안내 — 84㎡A / 84㎡B(59㎡A는 완판으로 2026-10-07 삭제). 평면·면적은 공식 홈페이지 세대정보(unit_tab1~3) 기준(유상옵션 적용 평면)
     unitPlan: {
       id: 'unit-plan',
       navLabel: '세대안내',
@@ -494,28 +511,6 @@ const config = {
         '호반써밋이 디자인합니다.',
       ],
       groups: [
-        {
-          area: '59㎡',
-          types: [
-            {
-              letter: 'A',
-              countText: '396세대 · 4BAY',
-              image: {
-                src: '/apt/paju-hoban-summit-eastpark/unit-59a.webp',
-                alt: '59㎡A 타입 평면도',
-                width: 829,
-                height: 642,
-              },
-              specs: {
-                exclusive: '59.9683',
-                common: '20.9907',
-                supply: '80.9590',
-                otherCommon: '46.5830',
-                contract: '127.5420',
-              },
-            },
-          ],
-        },
         {
           area: '84㎡',
           types: [

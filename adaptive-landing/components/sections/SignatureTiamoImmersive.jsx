@@ -231,16 +231,16 @@ export default function SignatureTiamoImmersive({ site }) {
     return () => clearInterval(t)
   }, [activePanelId])
 
-  // 인트로가 끝나면 안내 팝업을 띄우고, 닫으면 이어서 방문예약 다이얼로그를 띄움(아크원과 동일)
+  // 인트로가 끝나면 안내 팝업을 띄움
   useEffect(() => {
     if (!introDone) return
     const t = setTimeout(() => setNoticeOpen(true), 700)
     return () => clearTimeout(t)
   }, [introDone])
 
+  // 요청 반영(2026-10-07) — 안내 팝업을 닫아도 방문예약(관심고객) 다이얼로그를 이어서 띄우지 않음
   const closeNotice = () => {
     setNoticeOpen(false)
-    setTimeout(() => openDialog(visitDialogRef), 300)
   }
 
   // 요청 반영(2026-10-06) — 팝업 이미지 안 '문의하기' 버튼: 방문예약 다이얼로그 대신 상담·예약 패널(방문예약 탭)로 이동

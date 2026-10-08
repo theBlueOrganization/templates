@@ -1409,3 +1409,82 @@ img.bgImageMobileOnly {
     0 0 2px rgba(255, 255, 255, 0.95),
     0 0 12px rgba(255, 255, 255, 0.85);
 }
+
+/* hero.estCopy — 공식 홈페이지 메인 문구(브랜드 줄 → 가는+굵은 2줄 헤드라인, 강조 앞 글자 위 점 → | GRAND OPEN |).
+   화면 위쪽 하늘 영역 가운데. 영상이 밤 장면으로 바뀌어도 읽히게 글자 주위에 흰 빛 번짐 */
+.estCopy {
+  --est-color: #2b3153;
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  top: calc(var(--header-h, 64px) + 6vh);
+  padding: 0 16px;
+  text-align: center;
+  color: var(--est-color);
+  pointer-events: none;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.85);
+}
+/* 공식 홈페이지는 밝은 하늘 위에 남색 글씨 — 영상이 밤 장면이어도 그 느낌이 나게 문구 뒤에 옅은 하늘빛 타원을 깔아 줌 */
+.estCopy::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  top: 50%;
+  width: min(118vw, 1100px);
+  height: 150%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse at center, rgba(236, 242, 250, 0.92) 0%, rgba(228, 236, 247, 0.78) 38%, rgba(220, 230, 244, 0.35) 60%, rgba(220, 230, 244, 0) 72%);
+}
+.estBrand {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.estTitle {
+  margin: 14px 0 0;
+  font-size: clamp(28px, 8.4vw, 40px);
+  line-height: 1.32;
+  letter-spacing: -0.05em;
+  font-weight: 300;
+}
+.estLine { display: block; white-space: nowrap; }
+.estLight { font-weight: 300; }
+.estTitle strong { font-weight: 800; }
+.estDot { position: relative; display: inline-block; }
+.estDot::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -0.12em;
+  width: 0.13em;
+  height: 0.13em;
+  margin-left: -0.065em;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.5;
+}
+.estBadge {
+  margin: 16px 0 0;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+.estBadge::before,
+.estBadge::after {
+  content: '';
+  display: inline-block;
+  width: 1.5px;
+  height: 0.9em;
+  margin: 0 0.7em;
+  vertical-align: -0.08em;
+  background: currentColor;
+}
+@media (min-width: 768px) {
+  .estCopy { top: calc(var(--header-h, 96px) + 7vh); }
+  .estBrand { font-size: 24px; }
+  .estTitle { margin-top: 22px; font-size: clamp(48px, 5vw, 76px); line-height: 1.3; }
+  .estBadge { margin-top: 26px; font-size: 32px; }
+}

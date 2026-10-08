@@ -70,7 +70,16 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
   const utmSource = useUtmSource()
   const resolvedTelNumber = telNumberByUtm?.[utmSource] ?? telNumber
 
-  // slides — 배경 이미지가 여러 장이면 일정 간격으로 자동 전환되는 스와이퍼(공식 사이트 메인 슬라이드 참고).
+  // hero.bgVideoMobile — 모바일(767px 이하) 전용 세로 영상. 화면 폭을 보고 한 개만 골라 src를 넣어 둘 다 받지 않게 함
+  //   (선택 전에는 poster 이미지만 보임). 예: 용인 고림 동문 디 이스트(공식 홈페이지 PC/모바일 메인 영상)
+  const [videoSrc, setVideoSrc] = useState(null)
+  useEffect(() => {
+    if (!hero.bgVideo || !hero.bgVideoMobile) return
+    const mobile = window.matchMedia('(max-width: 767px)').matches
+    setVideoSrc(mobile ? hero.bgVideoMobile.src : hero.bgVideo.src)
+  }, [hero.bgVideo, hero.bgVideoMobile])
+
+  // slides —배경 이미지가 여러 장이면 일정 간격으로 자동 전환되는 스와이퍼(공식 사이트 메인 슬라이드 참고).
   // 각 슬라이드 이미지 자체에 문구가 이미 포함돼 있어 hero.hideText와 함께 쓰는 걸 전제로 함.
   const slides = hero.slides
   const [activeSlide, setActiveSlide] = useState(0)
@@ -248,6 +257,29 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
               )}
             </div>
           ))
+        ) : hero.bgVideo && hero.bgVideoMobile ? (
+          <>
+            {/* 모바일/PC poster 이미지를 각각 깔고, 화면에 맞게 고른 영상 하나만 위에 재생 */}
+            {hero.bgImageMobile && (
+              <Image
+                src={hero.bgImageMobile.src}
+                alt={hero.bgImageMobile.alt}
+                fill
+                priority
+                sizes="100vw"
+                className={`${styles.bgImage} ${styles.bgImageMobileOnly}`}
+              />
+            )}
+            <Image
+              src={hero.bgImage.src}
+              alt={hero.bgImage.alt}
+              fill
+              priority
+              sizes="100vw"
+              className={hero.bgImageMobile ? `${styles.bgImage} ${styles.bgImageDesktopOnly}` : styles.bgImage}
+            />
+            {videoSrc && <video key={videoSrc} className={styles.bgImage} src={videoSrc} autoPlay muted loop playsInline />}
+          </>
         ) : hero.bgVideo ? (
           hero.bgImageMobile ? (
             <>
@@ -312,6 +344,41 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
           </div>
         )}
       </div>
+
+      {/* hero.estCopy — 공식 홈페이지 메인 문구 이미지 구성을 HTML로(현장 브랜드 줄 → 2줄 헤드라인(가는 글씨 + 굵은 강조,
+          강조 앞 글자 위에 점) → | GRAND OPEN |). PC·모바일 공통으로 화면 위쪽 하늘 영역 가운데. 예: 용인 고림 동문 디 이스트 */}
+      {hero.estCopy && (
+        <motion.div
+          className={styles.estCopy}
+          initial="hidden"
+          animate="show"
+          style={hero.estCopy.color ? { '--est-color': hero.estCopy.color } : undefined}
+        >
+          <motion.p className={styles.estBrand} custom={0.2} variants={lineVariants}>
+            {hero.estCopy.brand}
+          </motion.p>
+          <motion.h1 className={styles.estTitle} custom={0.4} variants={lineVariants}>
+            {hero.estCopy.lines.map((line, i) => (
+              <span key={i} className={styles.estLine}>
+                <span className={styles.estLight}>{line.light}</span>
+                <strong>
+                  {/* line.dots — 강조 문구 앞에서부터 몇 글자 위에 점을 찍을지 */}
+                  {[...line.strong].map((ch, j) => (
+                    <span key={j} className={j < (line.dots ?? 0) ? styles.estDot : undefined}>
+                      {ch}
+                    </span>
+                  ))}
+                </strong>
+              </span>
+            ))}
+          </motion.h1>
+          {hero.estCopy.badge && (
+            <motion.p className={styles.estBadge} custom={0.6} variants={lineVariants}>
+              {hero.estCopy.badge}
+            </motion.p>
+          )}
+        </motion.div>
+      )}
 
       {/* hero.desktopCopy — PC(1024px 이상) 전용 우측 문구 블록(eyebrow → 제목 → 포인트 줄 → 로고) + 좌상단 원형 배지.
           지정하면 PC에서는 기본 문구(content) 대신 이 블록만 보이고, 모바일은 기존 문구 그대로 (예: 호반써밋 첨단3지구) */}

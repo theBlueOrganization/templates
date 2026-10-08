@@ -1,0 +1,62 @@
+.section {
+  --zz-bg: #2b3153;
+  --zz-head: #849db3;
+  --zz-odd: #b49c92;
+  --zz-even: #9fb4c5;
+  --zz-line: #4e5776;
+  background: var(--zz-bg);
+  color: #fff;
+  padding: 72px 20px 64px;
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 모바일: 헤더 + 1열 목록만 */
+.left { display: none; }
+.right > .item { display: none; }
+.column { min-width: 0; }
+
+.header { text-align: right; margin-bottom: 28px; }
+.title { margin: 0; display: inline-flex; flex-direction: column; align-items: flex-start; color: var(--zz-head); line-height: 1; }
+.eyebrow { font-size: 34px; font-weight: 300; letter-spacing: 0.12em; }
+.titleRow { display: flex; align-items: flex-end; gap: 4px; margin-top: 6px; padding-left: 0.9em; }
+.titleRow strong { font-size: 34px; font-weight: 800; letter-spacing: -0.01em; }
+.titleRow em { font-style: normal; font-size: 84px; font-weight: 200; line-height: 0.78; margin-bottom: -2px; }
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid var(--zz-line);
+  padding: 30px 0;
+}
+.text { flex: 1 1 auto; min-width: 0; }
+.label { margin: 0; font-size: 14px; font-weight: 500; letter-spacing: 0.01em; }
+.itemTitle { margin: 12px 0 0; font-size: 20px; font-weight: 800; letter-spacing: -0.04em; line-height: 1.3; }
+.odd { color: var(--zz-odd); }
+.even { color: var(--zz-even); }
+.desc { margin: 12px 0 0; font-size: 14px; line-height: 1.6; color: #fff; }
+.desc span { display: block; }
+.visual { flex: 0 0 38%; max-width: 170px; }
+.visual img { display: block; width: 100%; height: auto; }
+
+@media (min-width: 768px) {
+  .section { padding: 110px 40px 100px; }
+  .inner { display: grid; grid-template-columns: 1fr 1fr; gap: 0 60px; }
+  .left { display: block; padding-top: 170px; }
+  .right > .item { display: flex; }
+  .mobileList { display: none; }
+  .header { margin-bottom: 120px; }
+  .eyebrow { font-size: 52px; }
+  .titleRow strong { font-size: 56px; }
+  .titleRow em { font-size: 150px; }
+  .item { padding: 76px 0; gap: 20px; }
+  .label { font-size: 20px; }
+  .itemTitle { margin-top: 22px; font-size: 28px; }
+  .desc { margin-top: 22px; font-size: 18px; }
+  .visual { flex-basis: 44%; max-width: 250px; }
+}

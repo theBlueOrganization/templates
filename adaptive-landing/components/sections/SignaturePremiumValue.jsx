@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import SignaturePremiumEight from './SignaturePremiumEight'
+import SignaturePremiumZigzag from './SignaturePremiumZigzag'
 import Reveal from '../motion/Reveal'
 import { Stagger, StaggerItem } from '../motion/Stagger'
 import MobileBreakText from '../ui/MobileBreakText'
@@ -182,6 +183,7 @@ function NumberedPremiumValue({ premiumValue }) {
 export default function SignaturePremiumValue({ premiumValue }) {
   if (premiumValue.cardStyle === 'numbered') return <NumberedPremiumValue premiumValue={premiumValue} />
   if (premiumValue.cardStyle === 'premium8') return <SignaturePremiumEight premiumValue={premiumValue} />
+  if (premiumValue.cardStyle === 'zigzag') return <SignaturePremiumZigzag premiumValue={premiumValue} />
 
   return (
     <section

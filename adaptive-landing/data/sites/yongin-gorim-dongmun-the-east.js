@@ -141,60 +141,33 @@ const config = {
       },
     },
 
-    // 히어로 — 공식 홈페이지 조감도(사업개요) + 설계특화 투시도, 문구는 메인 카피
+    // 히어로 — 공식 홈페이지(https://www.yongin-dmapt.co.kr/) 메인과 같은 구성. 2026-10-08 사용자 요청
+    //   배경: 공식 메인 영상(PC vis_mov 1920x1080 17.6s / 모바일 m_vis_mov 466x720 30s)을 받아 ffmpeg로 재압축
+    //   (22MB→3.3MB / 28MB→1.2MB, 무음). poster는 각 영상 첫 프레임.
+    //   문구: 공식 메인 문구 이미지(main_img_260405_2.png)를 HTML로 재구성(estCopy) — 기본 문구(content)는 숨김
     hero: {
-      eyebrowDivider: false,
-      titleLine1: '용인 고림 동문 디 이스트',
-      titleWeight: 700,
-      titleSize: { base: 28, md: 48, lg: 72 },
-      eyebrowSize: { base: 15, lg: 21 },
-      textColor: '#ffffff',
-      keepTextShadow: true,
+      hideText: true,
       overlay: false,
-      contentTop: true,
-      mobileBgBottomInset: 100,
       mobileScrollMouse: true,
-      desktopCopy: {
-        mobile: true,
-        center: true,
-        tight: true,
-        eyebrow: '초중고 안심교육이 곁에! 반도체 프리미엄은 바로!',
-        title: '용인 고림의 완성된 자리를 바로 누리다',
-        accent: '용인 고림 동문 디 이스트',
-        accentColor: '#2b3153',
-        bold: true,
-        halo: true,
-        logo: {
-          src: '/apt/yongin-gorim-dongmun-the-east/logo-color.png',
-          alt: 'THE EST 용인 고림 | 동문 디 이스트',
-        },
+      bgVideo: { src: '/apt/yongin-gorim-dongmun-the-east/hero-video.mp4' },
+      bgVideoMobile: { src: '/apt/yongin-gorim-dongmun-the-east/hero-video-m.mp4' },
+      bgImage: {
+        src: '/apt/yongin-gorim-dongmun-the-east/hero-video-poster.webp',
+        alt: '용인 고림 동문 디 이스트 항공 영상',
       },
-      slides: [
-        {
-          eyebrowLine1: '올세권 라이프에서 미래비전까지',
-          eyebrowLine2: '한 발 앞선 라이프',
-          bgImage: {
-            src: '/apt/yongin-gorim-dongmun-the-east/hero-1.webp',
-            alt: '용인 고림 동문 디 이스트 항공조감도',
-          },
-          bgImageMobile: {
-            src: '/apt/yongin-gorim-dongmun-the-east/hero-1-m.webp',
-            alt: '용인 고림 동문 디 이스트 항공조감도',
-          },
-        },
-        {
-          eyebrowLine1: '디테일이 다른 단지설계로',
-          eyebrowLine2: '프리미엄 주거문화를 만나다',
-          bgImage: {
-            src: '/apt/yongin-gorim-dongmun-the-east/hero-2.webp',
-            alt: '용인 고림 동문 디 이스트 투시도',
-          },
-          bgImageMobile: {
-            src: '/apt/yongin-gorim-dongmun-the-east/hero-2-m.webp',
-            alt: '용인 고림 동문 디 이스트 투시도',
-          },
-        },
-      ],
+      bgImageMobile: {
+        src: '/apt/yongin-gorim-dongmun-the-east/hero-video-poster-m.webp',
+        alt: '용인 고림 동문 디 이스트 항공 영상',
+      },
+      estCopy: {
+        color: '#2b3153',
+        brand: '용인 고림 | 동문 디 이스트',
+        lines: [
+          { light: '초중고 ', strong: '안심교육이 곁에!', dots: 4 },
+          { light: '반도체 ', strong: '프리미엄은 바로!', dots: 4 },
+        ],
+        badge: 'GRAND OPEN',
+      },
       mobileBar: {
         announcements: [
           { badge: '안내', textStrong: '용인 고림 동문 디 이스트', textLight: ' 공식 안내센터입니다.' },
@@ -317,50 +290,58 @@ const config = {
       },
     },
 
-    // 프리미엄 가치 — 공식 홈페이지 'THE EST PREMIUM 6'
+    // 프리미엄 가치 — 공식 홈페이지 'THE EST PREMIUM 6'(about/premium.html) 디자인 그대로(cardStyle 'zigzag'). 2026-10-08 사용자 요청
+    //   카드 이미지(premium6-0N)는 공식 premium_img.jpg에서 원 배경째 크롭 — 배경 남색(#2b3153)이 섹션 배경과 같음
     premiumValue: {
       id: 'premium-value',
       navLabel: '프리미엄가치',
+      cardStyle: 'zigzag',
       eyebrow: 'THE EST',
       titlePlain: '용인 고림 동문 디 이스트 ',
-      titleAccent: 'PREMIUM 6',
-      columns: 2,
-      mobileColumns: 2,
+      titleAccent: 'PREMIUM',
+      titleNumber: '6',
+      colors: {
+        bg: '#2b3153',
+        head: '#849db3',
+        accentOdd: '#b49c92',
+        accentEven: '#9fb4c5',
+        line: '#4e5776',
+      },
       cards: [
         {
           num: '01',
-          image: { src: '/apt/yongin-gorim-dongmun-the-east/feature-education.webp', alt: '등교하는 아이들 이미지컷' },
-          title: ['12년 원스톱', '명문교육'],
+          image: { src: '/apt/yongin-gorim-dongmun-the-east/premium6-01.webp', alt: '등교하는 아이들', width: 500, height: 400 },
+          title: '12년 원스톱 명문교육',
           desc: ['단지 앞 고진초·중, 고림고 등', '우수한 교육여건 조성'],
         },
         {
           num: '02',
-          image: { src: '/apt/yongin-gorim-dongmun-the-east/feature-semicon.webp', alt: '반도체 클러스터 위치도' },
-          title: ['반도체', '클러스터 수혜'],
+          image: { src: '/apt/yongin-gorim-dongmun-the-east/premium6-02.webp', alt: '반도체 칩', width: 500, height: 400 },
+          title: '반도체 클러스터 수혜',
           desc: ['삼성전자, SK하이닉스의', 'K-반도체 클러스터 직주근접'],
         },
         {
           num: '03',
-          image: { src: '/apt/yongin-gorim-dongmun-the-east/feature-traffic.webp', alt: '도로 이미지컷' },
-          title: ['막힘 없는', '쾌속교통망'],
+          image: { src: '/apt/yongin-gorim-dongmun-the-east/premium6-03.webp', alt: '자동차', width: 640, height: 370 },
+          title: '막힘 없는 쾌속교통망',
           desc: ['용인경전철(에버라인) 고진역,', '용인IC 10분내 위치'],
         },
         {
           num: '04',
-          image: { src: '/apt/yongin-gorim-dongmun-the-east/feature-life.webp', alt: '근린생활시설 특화 투시도' },
-          title: ['잘 갖춰진', '생활인프라'],
+          image: { src: '/apt/yongin-gorim-dongmun-the-east/premium6-04.webp', alt: '쇼핑백을 든 가족', width: 524, height: 456 },
+          title: '잘 갖춰진 생활인프라',
           desc: ['대형마트, 처인구청(예정),', '중심상업지구 등 인접'],
         },
         {
           num: '05',
-          image: { src: '/apt/yongin-gorim-dongmun-the-east/feature-nature.webp', alt: '어린이놀이터 특화 투시도' },
-          title: ['쉼이 있는', '힐링라이프'],
+          image: { src: '/apt/yongin-gorim-dongmun-the-east/premium6-05.webp', alt: '나뭇잎', width: 500, height: 420 },
+          title: '쉼이 있는 힐링라이프',
           desc: ['도심 속 여유를 선사하는', '경안천과 단지 앞 문화공원(예정)'],
         },
         {
           num: '06',
-          image: { src: '/apt/yongin-gorim-dongmun-the-east/feature-premium.webp', alt: '용인 고림 동문 디 이스트 전체조감도' },
-          title: ['비규제지역', '프리미엄'],
+          image: { src: '/apt/yongin-gorim-dongmun-the-east/premium6-06.webp', alt: '전구', width: 372, height: 456 },
+          title: '비규제지역 프리미엄',
           desc: ['10.15 부동산규제 미지정 지역으로', '프리미엄 상승 기대'],
         },
       ],

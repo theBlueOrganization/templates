@@ -399,9 +399,9 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
 
       {/* hero.estCopy — 공식 홈페이지 메인 문구 이미지 구성을 HTML로(현장 브랜드 줄 → 2줄 헤드라인(가는 글씨 + 굵은 강조,
           강조 앞 글자 위에 점) → | GRAND OPEN |). PC·모바일 공통으로 화면 위쪽 하늘 영역 가운데. 예: 용인 고림 동문 디 이스트 */}
-      {hero.estCopy && videoDone && (
+      {hero.estCopy && (
         <motion.div
-          className={styles.estCopy}
+          className={cn(styles.estCopy, !videoDone && styles.estOnVideo)}
           initial="hidden"
           animate="show"
           style={hero.estCopy.color ? { '--est-color': hero.estCopy.color } : undefined}
@@ -432,10 +432,10 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
         </motion.div>
       )}
       {/* hero.estCopy.ctaBadge — PC 우상단 회전 원형 문구(ringText) + 가운데 관심고객등록 원 버튼 → 관심고객등록 섹션으로 이동 */}
-      {hero.estCopy?.ctaBadge && videoDone && (
+      {hero.estCopy?.ctaBadge && (
         <button
           type="button"
-          className={styles.estCta}
+          className={cn(styles.estCta, !videoDone && styles.estOnVideo)}
           onClick={() => document.getElementById(visitTargetId)?.scrollIntoView({ behavior: 'smooth' })}
           aria-label={hero.estCopy.ctaBadge.label.join(' ')}
         >

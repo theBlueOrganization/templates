@@ -1528,3 +1528,12 @@ img.bgImageMobileOnly {
 /* hero.introVideo — 영상이 끝나면 서서히 사라지며 아래 정지 화면이 드러남 */
 .introVideo { z-index: 1; opacity: 1; transition: opacity 1.2s ease; }
 .introVideoDone { opacity: 0; pointer-events: none; }
+
+/* 영상 재생 중(어두운 장면)에는 문구·배지 링을 흰 글씨 + 어두운 그림자로, 영상이 끝나면(정지 화면) 남색으로 전환 */
+.estCopy, .estCtaRing { transition: color 0.8s ease, text-shadow 0.8s ease, fill 0.8s ease; }
+.estCopy.estOnVideo {
+  --est-color: #ffffff !important;
+  color: #ffffff;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55), 0 0 2px rgba(0, 0, 0, 0.35);
+}
+.estCta.estOnVideo { color: #ffffff; }

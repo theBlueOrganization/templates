@@ -154,7 +154,7 @@ const config = {
     //   + PC 우상단 회전 '관심고객 등록' 배지가 나타나고, 헤더가 남색 글씨로 바뀜(header.transparentDark).
     //   영상: 공식 메인 영상(PC vis_mov 1920x1080 17.6s / 모바일 m_vis_mov 466x720 30s)을 ffmpeg로 재압축(3.3MB / 1.2MB, 무음).
     //   정지 화면: 사용자 제공 고화질 투시도 원본(@투시도.jpg). 공식 캡처보다 하늘이 좁아 문구가 건물에 겹쳐서 원본 맨 위
-    //   하늘 띠를 늘려 위로 이어 붙임(hero-sky.webp 2400x1768 / 모바일 hero-sky-m.webp 103동 중심 세로 크롭). PC는 아래 기준 배치
+    //   하늘 띠를 늘려 위로 이어 붙임(hero-sky.webp 2400x1768 / 모바일 hero-sky-m.webp 103동 중심 세로 크롭). PC는 세로 45% 기준 배치
     hero: {
       hideText: true,
       overlay: false,
@@ -169,7 +169,8 @@ const config = {
         src: '/apt/yongin-gorim-dongmun-the-east/hero-sky.webp',
         alt: '용인 고림 동문 디 이스트 투시도',
       },
-      bgPositionY: '100%',
+      // PC 배경 세로 기준 45% — 와이드 화면(예: 1889x890)에서 아래 기준이면 건물이 문구 뒤로 올라와 겹쳐서 아래로 내림(2026-10-08 사용자 요청)
+      bgPositionY: '45%',
       bgImageMobile: {
         src: '/apt/yongin-gorim-dongmun-the-east/hero-sky-m.webp',
         alt: '용인 고림 동문 디 이스트 투시도',

@@ -32,6 +32,17 @@ export default function SignatureHeader({
   const [scrolled, setScrolled] = useState(false)
   const [transparent, setTransparent] = useState(false)
   const [phoneModalOpen, setPhoneModalOpen] = useState(false)
+  // header.transparentDark — 히어로가 밝은 정지 화면이 된 뒤(SignatureHero가 보내는 'hero:light')부터 남색 글씨로.
+  //   영상 재생 중(어두운 장면)에는 기존 흰 글씨 투명 헤더 그대로
+  const [heroLight, setHeroLight] = useState(false)
+  useEffect(() => {
+    if (!header.transparentDark) return
+    const on = () => setHeroLight(true)
+    if (window.__heroLight) on()
+    window.addEventListener('hero:light', on)
+    return () => window.removeEventListener('hero:light', on)
+  }, [header.transparentDark])
+  const darkText = transparent && header.transparentDark && heroLight
   // telNumberByUtm에 등록된 utm_source로 들어온 경우에만 노출 전화번호를 덮어씀
   const utmSource = useUtmSource()
   const phone = telNumberByUtm?.[utmSource] ?? header.phone
@@ -68,13 +79,20 @@ export default function SignatureHeader({
       className={cn(
         styles.header,
         transparent && styles.headerTransparent,
+        // header.transparentDark — 히어로가 밝은 하늘 배경인 현장: 투명 구간에서 메뉴·전화번호를 남색 글씨로(로고는 header.logoDark)
+        //   예: 용인 고림 동문 디 이스트(공식 홈페이지 메인과 같은 구성)
+        darkText && styles.headerTransparentDark,
         scrolled && !transparent && styles.headerScrolled
       )}
     >
       <div className={styles.inner}>
         <a href="#" className={styles.logo} style={logoStyle} onClick={(e) => e.preventDefault()}>
           {(() => {
-            const activeLogo = transparent && header.logoWhite ? header.logoWhite : header.logo
+            const activeLogo = darkText && header.logoDark
+              ? header.logoDark
+              : transparent && header.logoWhite
+                ? header.logoWhite
+                : header.logo
             return <Image src={activeLogo.src} alt={activeLogo.alt} width={activeLogo.width} height={activeLogo.height} priority />
           })()}
         </a>

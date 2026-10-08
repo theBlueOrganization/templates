@@ -123,6 +123,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 50% var(--hero-bg-y, 50%);
 }
 
 .overlay {
@@ -1409,3 +1410,130 @@ img.bgImageMobileOnly {
     0 0 2px rgba(255, 255, 255, 0.95),
     0 0 12px rgba(255, 255, 255, 0.85);
 }
+
+/* hero.estCopy — 공식 홈페이지 메인 문구(브랜드 줄 → 가는+굵은 2줄 헤드라인, 강조 앞 글자 위 점 → | GRAND OPEN |).
+   화면 위쪽 하늘 영역 가운데. 영상이 밤 장면으로 바뀌어도 읽히게 글자 주위에 흰 빛 번짐 */
+.estCopy {
+  --est-color: #2b3153;
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  top: calc(var(--header-h, 64px) + 6vh);
+  padding: 0 16px;
+  text-align: center;
+  color: var(--est-color);
+  pointer-events: none;
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.6);
+}
+.estBrand {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.estTitle {
+  margin: 14px 0 0;
+  font-size: clamp(28px, 8.4vw, 40px);
+  line-height: 1.32;
+  letter-spacing: -0.05em;
+  font-weight: 300;
+}
+.estLine { display: block; white-space: nowrap; }
+.estLight { font-weight: 300; }
+.estTitle strong { font-weight: 800; }
+.estDot { position: relative; display: inline-block; }
+.estDot::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -0.12em;
+  width: 0.13em;
+  height: 0.13em;
+  margin-left: -0.065em;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.5;
+}
+.estBadge {
+  margin: 16px 0 0;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+.estBadge::before,
+.estBadge::after {
+  content: '';
+  display: inline-block;
+  width: 1.5px;
+  height: 0.9em;
+  margin: 0 0.7em;
+  vertical-align: -0.08em;
+  background: currentColor;
+}
+@media (min-width: 768px) {
+  .estCopy { top: 11vh; }
+  .estBrand { font-size: clamp(20px, 1.6vw, 30px); }
+  .estTitle { margin-top: 18px; font-size: clamp(40px, 3.4vw, 64px); line-height: 1.4; }
+  .estBadge { margin-top: 22px; font-size: clamp(26px, 2.1vw, 38px); }
+}
+
+/* hero.estCopy.ctaBadge — PC 전용 우상단 회전 원형 배지(공식 홈페이지 '관심고객 등록' 버튼) */
+.estCta { display: none; }
+@media (min-width: 1024px) {
+  .estCta {
+    display: grid;
+    place-items: center;
+    position: absolute;
+    z-index: 3;
+    right: 64px;
+    top: calc(96px + 4px);
+    width: 140px;
+    height: 140px;
+    color: var(--navy, #2b3153);
+    cursor: pointer;
+  }
+  .estCtaRing {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    fill: currentColor;
+    animation: estCtaSpin 14s linear infinite;
+  }
+  .estCtaCore {
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    background: var(--gold, #9e8368);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.25;
+    box-shadow: 0 6px 18px rgba(43, 49, 83, 0.25);
+    transition: transform 0.25s ease;
+  }
+  .estCtaCore svg { width: 22px; height: 22px; margin-bottom: 4px; }
+  .estCta:hover .estCtaCore { transform: scale(1.06); }
+}
+@keyframes estCtaSpin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .estCtaRing { animation: none; } }
+
+/* hero.introVideo — 영상이 끝나면 서서히 사라지며 아래 정지 화면이 드러남 */
+.introVideo { z-index: 1; opacity: 1; transition: opacity 1.2s ease; }
+.introVideoDone { opacity: 0; pointer-events: none; }
+
+/* 영상 재생 중(어두운 장면)에는 문구·배지 링을 흰 글씨 + 어두운 그림자로, 영상이 끝나면(정지 화면) 남색으로 전환 */
+.estCopy, .estCtaRing { transition: color 0.8s ease, text-shadow 0.8s ease, fill 0.8s ease; }
+.estCopy.estOnVideo {
+  --est-color: #ffffff !important;
+  color: #ffffff;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55), 0 0 2px rgba(0, 0, 0, 0.35);
+}
+.estCta.estOnVideo { color: #ffffff; }

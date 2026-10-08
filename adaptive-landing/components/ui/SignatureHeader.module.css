@@ -195,3 +195,32 @@
     padding: 11px 14px;
   }
 }
+
+/* header.transparentDark — 밝은 하늘 히어로 위 투명 구간: 남색 글씨, CTA 버튼은 숨기고 전화번호만 아이콘+글씨로(공식 홈페이지 메인 헤더) */
+.headerTransparentDark .gnbItem {
+  color: var(--navy, #06203e);
+  font-weight: 600;
+}
+.headerTransparentDark .quickCta {
+  display: none;
+}
+.headerTransparentDark .quickPhone {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border-color: transparent;
+  color: var(--navy, #06203e);
+  font-weight: 700;
+}
+.headerTransparentDark .quickPhone::before {
+  content: '';
+  width: 0.9em;
+  height: 0.9em;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.headerTransparentDark .menuToggle span {
+  background: var(--navy, #06203e);
+}

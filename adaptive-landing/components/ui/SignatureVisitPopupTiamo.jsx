@@ -10,16 +10,27 @@ import styles from './SignatureVisitPopupTiamo.module.css'
 // 같은 현장의 섹션형 2번 사이트(cheongna-theliv-tiamo-casa-2)에서 이미지 팝업 다음에 이어 띄움
 const DEFAULT_CHECKS = ['방문예약', '홍보관 위치 전송', '자료요청', '기타문의']
 
-export default function SignatureVisitPopupTiamo({ visitForm, config, openDelayMs = 400, onClose }) {
+// waitForIntro — 전체화면 인트로(SignatureArkoneIntro/SignatureCircleIntro)가 끝난 뒤(circleintro:end)부터
+// openDelayMs를 셈. 티아모 까사처럼 인트로가 끝나고 팝업이 뜨게 할 때(예: 용인 고림 동문 디 이스트)
+export default function SignatureVisitPopupTiamo({ visitForm, config, openDelayMs = 400, onClose, waitForIntro = false }) {
   const [open, setOpen] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const utmSource = useUtmSource() ?? '직접유입'
   const checks = visitForm.checks ?? DEFAULT_CHECKS
 
   useEffect(() => {
-    const t = setTimeout(() => setOpen(true), openDelayMs)
-    return () => clearTimeout(t)
-  }, [openDelayMs])
+    let t
+    const start = () => { t = setTimeout(() => setOpen(true), openDelayMs) }
+    if (waitForIntro && !window.__circleIntroEnded) {
+      window.addEventListener('circleintro:end', start, { once: true })
+    } else {
+      start()
+    }
+    return () => {
+      clearTimeout(t)
+      window.removeEventListener('circleintro:end', start)
+    }
+  }, [openDelayMs, waitForIntro])
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''

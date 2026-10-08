@@ -84,6 +84,8 @@ const config = {
       enabled: false,
       visitForm: {
         enabled: true,
+        // 티아모 까사처럼 인트로가 끝난 뒤(0.7초 후) 띄움
+        afterIntro: true,
         accentColor: '#2b3153',
         title: '관심고객등록',
         desc: '상담 가능시간 10:00~18:00 (담당자와 조율가능)',
@@ -115,16 +117,28 @@ const config = {
       ],
     },
 
-    // 인트로(원 2개 드로잉 → 로고 → 원이 열리며 히어로) — 배경은 히어로 첫 슬라이드와 같은 조감도
-    circleIntro: {
-      logo: {
-        src: '/apt/yongin-gorim-dongmun-the-east/logo-white.png',
-        alt: 'THE EST 용인 고림 | 동문 디 이스트',
-        width: 137,
-        height: 49,
+    // 인트로 — 청라 더리브 티아모 까사와 같은 연출(1단계 3분할 이미지+영문 카피 4s → 2단계 링 펄스+브랜드 임팩트, 5.6s 종료). 2026-10-08 사용자 요청
+    //   로고 원본이 137px라 확대하면 흐려서 브랜드 단계는 현장명 텍스트로 표시. 색은 현장 남색/베이지
+    arkoneIntro: {
+      ariaLabel: '용인 고림 동문 디 이스트를 소개하는 인트로',
+      scenes: [
+        { img: '/apt/yongin-gorim-dongmun-the-east/hero-1.webp', label: '01 · VISION', name: '반도체 클러스터 직주근접' },
+        { img: '/apt/yongin-gorim-dongmun-the-east/hero-2.webp', label: '02 · LANDMARK', name: '지상 23층 6개동 총 350세대' },
+        { img: '/apt/yongin-gorim-dongmun-the-east/special-playground.webp', label: '03 · PARK', name: '지상에 차 없는 공원형 단지' },
+      ],
+      copySmall: "YONGIN GORIM'S NEW PLACE",
+      copyLine1: 'Life in',
+      copyLine2: 'Motion.',
+      brandName: '용인 고림 동문 디 이스트',
+      tagline: 'THE EST · DONGMUN',
+      theme: {
+        base: '#2b3153',
+        stageOne: 'radial-gradient(circle at 50% 35%, #46507f 0, #2b3153 48%, #161a30 100%)',
+        stageTwo: 'radial-gradient(circle at center, #3c4570, #2b3153 42%, #171b33 100%)',
+        ring: 'rgba(196, 168, 138, 0.45)',
+        accent: '#c4a88a',
+        sub: '#dfe2ee',
       },
-      bgImage: '/apt/yongin-gorim-dongmun-the-east/hero-1.webp',
-      bgImageMobile: '/apt/yongin-gorim-dongmun-the-east/hero-1-m.webp',
     },
 
     // 히어로 — 공식 홈페이지 조감도(사업개요) + 설계특화 투시도, 문구는 메인 카피

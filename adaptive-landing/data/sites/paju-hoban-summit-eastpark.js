@@ -7,7 +7,8 @@
 //   메인 프리미엄 사진(pre_slide_img3/4), 오시는길(견본주택·현장 주소) 이미지를 받아 크롭/webp 변환
 //   (public/apt/paju-hoban-summit-eastpark/). 로고는 모바일 로고(컬러)를 흰색 투명 PNG로 바꿈(logo-white.png).
 //   히어로 원형 배지 링(hero-badge-ring.png)은 chumdan3-hoban-summit에서 복사.
-// 대표번호 1666-4691, 상담 접수 알림은 카카오 알림톡(실패 시 SMS 폴백)으로 010-9908-3238 — 2026-10-02 사용자 전달값.
+// 대표번호 1666-4691 — 2026-10-02 사용자 전달값.
+// 상담 접수 알림은 SMS(문자)로 강태우 010-9908-3238, 진의원 010-7190-1052 — 2026-10-08 사용자 요청(알림톡 → 문자).
 const config = {
   slug: 'paju-hoban-summit-eastpark',
   // 호반써밋이스트파크.addupapt.kr → /apt/paju-hoban-summit-eastpark (middleware.js)
@@ -17,12 +18,12 @@ const config = {
   telNumber: '1666-4691',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/paju-hoban-summit-eastpark/og.jpg',
   // 상담신청 알림 수신번호
-  adminPhones: ['01099083238'],
+  adminPhones: ['01099083238', '01071901052'],
   sheetId: '',
   sheetTab: '호반써밋이스트파크',
   showUtmInSms: true,
-  // 상담 접수 알림을 카카오 알림톡으로 발송(실패 시 SMS 자동 폴백)
-  kakao: true,
+  // 상담 접수 알림을 SMS(문자)로 발송
+  kakao: false,
 
   // 공식 홈페이지 톤 — 녹색(#335422) + 차콜(#2c2b2b) + 핑크(#c86e5f) + 아이보리 — 2026-10-06 사용자 요청
   //   강조 문구는 녹색, 현장명·버튼·CTA는 핑크, 어두운 배경·제목은 차콜

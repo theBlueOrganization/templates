@@ -591,7 +591,8 @@ const config = {
       },
       logoAlign: 'center',
       logoWidth: 137,
-      highlightText: '용인 고림의 완성된 자리를 바로 누리다\n용인 고림 동문 디 이스트',
+      // '자리' 앞에서 줄바꿈 — 모바일에서 '누리다'만 따로 떨어지던 것(2026-10-08 사용자 요청)
+      highlightText: '용인 고림의 완성된\n자리를 바로 누리다\n용인 고림 동문 디 이스트',
       agencySlogan: '분양완판 전문가 그룹, (주) 더블루파트너스',
       companyLines: [
         { label: '시행', value: '㈜블루엘' },

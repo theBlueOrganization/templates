@@ -5,6 +5,8 @@
 //   커뮤니티(community-img1), 단지배치도·동호배치도(danji-img1), 평면정보(59~84b_img1 면적표 / img2에서 확장기본형 평면만 크롭)
 //   이미지를 받아 크롭/webp 변환(public/apt/yongin-gorim-dongmun-the-east/). 로고는 메인 logo_w(흰색)·logo_c(남색) 원본.
 //   반도체 클러스터 카드 이미지는 광역 위치도에서 삼성·SK하이닉스 부분만 크롭(feature-semicon.webp).
+// 2026-10-08 사용자 제공 고화질 원본으로 교체 — 항공조감도(hero-1·og), 투시도(hero-2·premium-split), 전체조감도(overview·PREMIUM 06),
+//   배치도(complex-siteplan), 특화 4종 주출입구·어린이놀이터·주민공동시설·근린생활시설(special-*, 생활·자연 카드). 원본 jpg는 커밋하지 않음.
 // 대표번호 1599-4229, 상담 접수 알림 010-3957-2256(이윤정 팀장) — 2026-10-08 사용자 전달값.
 const config = {
   slug: 'yongin-gorim-dongmun-the-east',
@@ -159,11 +161,11 @@ const config = {
           eyebrowLine2: '한 발 앞선 라이프',
           bgImage: {
             src: '/apt/yongin-gorim-dongmun-the-east/hero-1.webp',
-            alt: '용인 고림 동문 디 이스트 조감도',
+            alt: '용인 고림 동문 디 이스트 항공조감도',
           },
           bgImageMobile: {
             src: '/apt/yongin-gorim-dongmun-the-east/hero-1-m.webp',
-            alt: '용인 고림 동문 디 이스트 조감도',
+            alt: '용인 고림 동문 디 이스트 항공조감도',
           },
         },
         {
@@ -198,7 +200,7 @@ const config = {
       title: 'overview',
       photo: {
         src: '/apt/yongin-gorim-dongmun-the-east/overview-photo.webp',
-        alt: '용인 고림 동문 디 이스트 조감도',
+        alt: '용인 고림 동문 디 이스트 전체조감도',
       },
       notice: '※ 본 페이지에 사용된 CG, 이미지 및 내용은 인·허가 과정 중 변경될 수 있습니다.',
       specItems: [
@@ -275,7 +277,7 @@ const config = {
           tag: 'Life',
           image: {
             src: '/apt/yongin-gorim-dongmun-the-east/feature-life.webp',
-            alt: '단지 내 근린생활시설 투시도',
+            alt: '근린생활시설 특화 투시도',
           },
           descStrong: '이마트, 하나로마트, 병원',
           descRest: ' 등 준비된 중심 인프라와 경안천·문화공원(예정) 힐링 라이프',
@@ -331,19 +333,19 @@ const config = {
         },
         {
           num: '04',
-          image: { src: '/apt/yongin-gorim-dongmun-the-east/feature-life.webp', alt: '단지 내 근린생활시설 투시도' },
+          image: { src: '/apt/yongin-gorim-dongmun-the-east/feature-life.webp', alt: '근린생활시설 특화 투시도' },
           title: ['잘 갖춰진', '생활인프라'],
           desc: ['대형마트, 처인구청(예정),', '중심상업지구 등 인접'],
         },
         {
           num: '05',
-          image: { src: '/apt/yongin-gorim-dongmun-the-east/feature-nature.webp', alt: '단지 내 어린이놀이터 조경 투시도' },
+          image: { src: '/apt/yongin-gorim-dongmun-the-east/feature-nature.webp', alt: '어린이놀이터 특화 투시도' },
           title: ['쉼이 있는', '힐링라이프'],
           desc: ['도심 속 여유를 선사하는', '경안천과 단지 앞 문화공원(예정)'],
         },
         {
           num: '06',
-          image: { src: '/apt/yongin-gorim-dongmun-the-east/feature-premium.webp', alt: '용인 고림 동문 디 이스트 조감도' },
+          image: { src: '/apt/yongin-gorim-dongmun-the-east/feature-premium.webp', alt: '용인 고림 동문 디 이스트 전체조감도' },
           title: ['비규제지역', '프리미엄'],
           desc: ['10.15 부동산규제 미지정 지역으로', '프리미엄 상승 기대'],
         },
@@ -360,6 +362,25 @@ const config = {
       titlePlain: '단지',
       titleAccent: '안내',
       categories: [
+        {
+          label: '단지특화',
+          thumb: '/apt/yongin-gorim-dongmun-the-east/complex-thumb-special.webp',
+          title: '단지특화',
+          blocks: [
+            { label: '주출입구', image: { src: '/apt/yongin-gorim-dongmun-the-east/special-gate.webp', alt: '주출입구 특화 투시도', width: 1800, height: 1056 } },
+            { label: '어린이놀이터', image: { src: '/apt/yongin-gorim-dongmun-the-east/special-playground.webp', alt: '어린이놀이터 특화 투시도', width: 1800, height: 1080 } },
+            { label: '주민공동시설', image: { src: '/apt/yongin-gorim-dongmun-the-east/special-community.webp', alt: '주민공동시설 특화 투시도', width: 1800, height: 1080 } },
+            { label: '근린생활시설', image: { src: '/apt/yongin-gorim-dongmun-the-east/special-retail.webp', alt: '근린생활시설 특화 투시도', width: 1800, height: 1065 } },
+          ],
+        },
+        {
+          label: '배치도',
+          thumb: '/apt/yongin-gorim-dongmun-the-east/complex-thumb-siteplan.webp',
+          title: '배치도',
+          blocks: [
+            { label: 'THE EST', image: { src: '/apt/yongin-gorim-dongmun-the-east/complex-siteplan.webp', alt: '용인 고림 동문 디 이스트 단지 배치도', width: 2000, height: 1582 } },
+          ],
+        },
         {
           label: '설계특화',
           thumb: '/apt/yongin-gorim-dongmun-the-east/complex-thumb-design.webp',

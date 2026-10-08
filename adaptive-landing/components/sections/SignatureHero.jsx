@@ -70,14 +70,51 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
   const utmSource = useUtmSource()
   const resolvedTelNumber = telNumberByUtm?.[utmSource] ?? telNumber
 
-  // hero.bgVideoMobile — 모바일(767px 이하) 전용 세로 영상. 화면 폭을 보고 한 개만 골라 src를 넣어 둘 다 받지 않게 함
-  //   (선택 전에는 poster 이미지만 보임). 예: 용인 고림 동문 디 이스트(공식 홈페이지 PC/모바일 메인 영상)
+  // hero.introVideo — 공식 홈페이지 메인처럼 "영상 한 번 재생 → 끝나면 정지 화면(bgImage) + 문구(estCopy)" 구성.
+  //   { src, srcMobile } — 화면 폭(767px 이하면 srcMobile)을 보고 영상 하나만 받음. 전체화면 인트로가 있으면(holdForIntro)
+  //   인트로가 끝난 뒤 재생 시작. 자동재생이 막히거나(저전력 모드 등) 오류면 바로 정지 화면으로.
+  //   정지 화면이 되면 window 'hero:light' 신호 — 헤더(header.transparentDark)가 그때부터 남색 글씨로 바뀜.
+  //   예: 용인 고림 동문 디 이스트
+  const introVideo = hero.introVideo
+  const videoRef = useRef(null)
   const [videoSrc, setVideoSrc] = useState(null)
+  const [videoDone, setVideoDone] = useState(!introVideo)
   useEffect(() => {
-    if (!hero.bgVideo || !hero.bgVideoMobile) return
-    const mobile = window.matchMedia('(max-width: 767px)').matches
-    setVideoSrc(mobile ? hero.bgVideoMobile.src : hero.bgVideo.src)
-  }, [hero.bgVideo, hero.bgVideoMobile])
+    if (!introVideo) return
+    const mobile = introVideo.srcMobile && window.matchMedia('(max-width: 767px)').matches
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setVideoDone(true)
+      return
+    }
+    setVideoSrc(mobile ? introVideo.srcMobile : introVideo.src)
+  }, [introVideo])
+  useEffect(() => {
+    const v = videoRef.current
+    if (!videoSrc || !v) return
+    let stallTimer
+    const start = () => {
+      v.play().catch(() => setVideoDone(true))
+      // 재생이 실제로 시작되지 않으면(자동재생 차단) 4초 뒤 정지 화면으로
+      stallTimer = setTimeout(() => {
+        if (v.paused && v.currentTime === 0) setVideoDone(true)
+      }, 4000)
+    }
+    if (holdForIntro && !window.__circleIntroEnded) window.addEventListener('circleintro:end', start, { once: true })
+    else start()
+    return () => {
+      window.removeEventListener('circleintro:end', start)
+      clearTimeout(stallTimer)
+    }
+  }, [videoSrc, holdForIntro])
+  useEffect(() => {
+    if (!hero.estCopy) return
+    if (!videoDone) {
+      window.__heroLight = false
+      return
+    }
+    window.__heroLight = true
+    window.dispatchEvent(new Event('hero:light'))
+  }, [videoDone, hero.estCopy])
 
   // slides —배경 이미지가 여러 장이면 일정 간격으로 자동 전환되는 스와이퍼(공식 사이트 메인 슬라이드 참고).
   // 각 슬라이드 이미지 자체에 문구가 이미 포함돼 있어 hero.hideText와 함께 쓰는 걸 전제로 함.
@@ -149,6 +186,8 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
 
   const heroStyle = {
     ...(hero.bgColor && { '--hero-bg': hero.bgColor }),
+    // hero.bgPositionY — PC 배경 이미지 세로 기준(예: '100%'면 아래 기준, 위쪽 하늘이 잘림). 예: 용인 고림 동문 디 이스트
+    ...(hero.bgPositionY && { '--hero-bg-y': hero.bgPositionY }),
     ...(hero.mobileHeight && { '--hero-mobile-min-height': hero.mobileHeight }),
     // mobileBar.dotColor — 모바일 하단 말풍선(방문예약하기 등) 앞 깜빡이는 점 색상 (기본 #004c45)
     ...(mobileBar?.dotColor && { '--pulse-dot': mobileBar.dotColor }),
@@ -257,9 +296,9 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
               )}
             </div>
           ))
-        ) : hero.bgVideo && hero.bgVideoMobile ? (
+        ) : introVideo ? (
           <>
-            {/* 모바일/PC poster 이미지를 각각 깔고, 화면에 맞게 고른 영상 하나만 위에 재생 */}
+            {/* 정지 화면(bgImage/bgImageMobile)을 깔고 그 위에서 영상 재생 → 끝나면 영상이 서서히 사라지며 정지 화면이 드러남 */}
             {hero.bgImageMobile && (
               <Image
                 src={hero.bgImageMobile.src}
@@ -278,7 +317,20 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
               sizes="100vw"
               className={hero.bgImageMobile ? `${styles.bgImage} ${styles.bgImageDesktopOnly}` : styles.bgImage}
             />
-            {videoSrc && <video key={videoSrc} className={styles.bgImage} src={videoSrc} autoPlay muted loop playsInline />}
+            {videoSrc && (
+              <video
+                ref={videoRef}
+                key={videoSrc}
+                className={cn(styles.bgImage, styles.introVideo, videoDone && styles.introVideoDone)}
+                src={videoSrc}
+                poster={videoSrc === introVideo.srcMobile ? introVideo.posterMobile : introVideo.poster}
+                muted
+                playsInline
+                preload="auto"
+                onEnded={() => setVideoDone(true)}
+                onError={() => setVideoDone(true)}
+              />
+            )}
           </>
         ) : hero.bgVideo ? (
           hero.bgImageMobile ? (
@@ -347,7 +399,7 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
 
       {/* hero.estCopy — 공식 홈페이지 메인 문구 이미지 구성을 HTML로(현장 브랜드 줄 → 2줄 헤드라인(가는 글씨 + 굵은 강조,
           강조 앞 글자 위에 점) → | GRAND OPEN |). PC·모바일 공통으로 화면 위쪽 하늘 영역 가운데. 예: 용인 고림 동문 디 이스트 */}
-      {hero.estCopy && (
+      {hero.estCopy && videoDone && (
         <motion.div
           className={styles.estCopy}
           initial="hidden"
@@ -378,6 +430,35 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
             </motion.p>
           )}
         </motion.div>
+      )}
+      {/* hero.estCopy.ctaBadge — PC 우상단 회전 원형 문구(ringText) + 가운데 관심고객등록 원 버튼 → 관심고객등록 섹션으로 이동 */}
+      {hero.estCopy?.ctaBadge && videoDone && (
+        <button
+          type="button"
+          className={styles.estCta}
+          onClick={() => document.getElementById(visitTargetId)?.scrollIntoView({ behavior: 'smooth' })}
+          aria-label={hero.estCopy.ctaBadge.label.join(' ')}
+        >
+          <svg className={styles.estCtaRing} viewBox="0 0 140 140" aria-hidden="true">
+            <defs>
+              <path id="est-cta-ring-path" d="M70,70 m-58,0 a58,58 0 1,1 116,0 a58,58 0 1,1 -116,0" />
+            </defs>
+            <text>
+              <textPath href="#est-cta-ring-path">{hero.estCopy.ctaBadge.ringText}</textPath>
+            </text>
+          </svg>
+          <span className={styles.estCtaCore}>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="4" y="3" width="16" height="15" rx="3" fill="none" stroke="currentColor" strokeWidth="1.8" />
+              <circle cx="12" cy="9" r="2.6" fill="none" stroke="currentColor" strokeWidth="1.8" />
+              <path d="M7.5 15.5c1-2 2.6-3 4.5-3s3.5 1 4.5 3" fill="none" stroke="currentColor" strokeWidth="1.8" />
+              <path d="M9 21l2 1.5 4-3.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+            </svg>
+            {hero.estCopy.ctaBadge.label.map((l) => (
+              <span key={l}>{l}</span>
+            ))}
+          </span>
+        </button>
       )}
 
       {/* hero.desktopCopy — PC(1024px 이상) 전용 우측 문구 블록(eyebrow → 제목 → 포인트 줄 → 로고) + 좌상단 원형 배지.

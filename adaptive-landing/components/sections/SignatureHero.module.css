@@ -123,6 +123,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 50% var(--hero-bg-y, 50%);
 }
 
 .overlay {
@@ -1423,19 +1424,7 @@ img.bgImageMobileOnly {
   text-align: center;
   color: var(--est-color);
   pointer-events: none;
-  text-shadow: 0 0 12px rgba(255, 255, 255, 0.85);
-}
-/* 공식 홈페이지는 밝은 하늘 위에 남색 글씨 — 영상이 밤 장면이어도 그 느낌이 나게 문구 뒤에 옅은 하늘빛 타원을 깔아 줌 */
-.estCopy::before {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  left: 50%;
-  top: 50%;
-  width: min(118vw, 1100px);
-  height: 150%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(ellipse at center, rgba(236, 242, 250, 0.92) 0%, rgba(228, 236, 247, 0.78) 38%, rgba(220, 230, 244, 0.35) 60%, rgba(220, 230, 244, 0) 72%);
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.6);
 }
 .estBrand {
   margin: 0;
@@ -1483,8 +1472,59 @@ img.bgImageMobileOnly {
   background: currentColor;
 }
 @media (min-width: 768px) {
-  .estCopy { top: calc(var(--header-h, 96px) + 7vh); }
-  .estBrand { font-size: 24px; }
-  .estTitle { margin-top: 22px; font-size: clamp(48px, 5vw, 76px); line-height: 1.3; }
-  .estBadge { margin-top: 26px; font-size: 32px; }
+  .estCopy { top: 11vh; }
+  .estBrand { font-size: clamp(20px, 1.6vw, 30px); }
+  .estTitle { margin-top: 18px; font-size: clamp(40px, 3.4vw, 64px); line-height: 1.4; }
+  .estBadge { margin-top: 22px; font-size: clamp(26px, 2.1vw, 38px); }
 }
+
+/* hero.estCopy.ctaBadge — PC 전용 우상단 회전 원형 배지(공식 홈페이지 '관심고객 등록' 버튼) */
+.estCta { display: none; }
+@media (min-width: 1024px) {
+  .estCta {
+    display: grid;
+    place-items: center;
+    position: absolute;
+    z-index: 3;
+    right: 64px;
+    top: calc(96px + 4px);
+    width: 140px;
+    height: 140px;
+    color: var(--navy, #2b3153);
+    cursor: pointer;
+  }
+  .estCtaRing {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    fill: currentColor;
+    animation: estCtaSpin 14s linear infinite;
+  }
+  .estCtaCore {
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    background: var(--gold, #9e8368);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.25;
+    box-shadow: 0 6px 18px rgba(43, 49, 83, 0.25);
+    transition: transform 0.25s ease;
+  }
+  .estCtaCore svg { width: 22px; height: 22px; margin-bottom: 4px; }
+  .estCta:hover .estCtaCore { transform: scale(1.06); }
+}
+@keyframes estCtaSpin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .estCtaRing { animation: none; } }
+
+/* hero.introVideo — 영상이 끝나면 서서히 사라지며 아래 정지 화면이 드러남 */
+.introVideo { z-index: 1; opacity: 1; transition: opacity 1.2s ease; }
+.introVideoDone { opacity: 0; pointer-events: none; }

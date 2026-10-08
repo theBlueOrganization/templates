@@ -77,6 +77,14 @@ const config = {
       gnb: ['사업안내', '위치안내', '프리미엄', '단지안내', '세대안내', '관심고객등록'],
       quickCtaLabel: '관심고객등록',
       phone: '1599-4229',
+      // 히어로(밝은 하늘 투시도) 위 투명 구간에서는 공식 홈페이지처럼 남색 메뉴·전화번호 + 남색 로고
+      transparentDark: true,
+      logoDark: {
+        src: '/apt/yongin-gorim-dongmun-the-east/logo-color.png',
+        alt: 'THE EST 용인 고림 | 동문 디 이스트',
+        width: 137,
+        height: 49,
+      },
     },
 
     // 진입 시 관심고객 팝업 — 이미지 팝업 없이 방문예약 폼만(파주 호반써밋 이스트파크 초기 구성과 동일)
@@ -141,23 +149,30 @@ const config = {
       },
     },
 
-    // 히어로 — 공식 홈페이지(https://www.yongin-dmapt.co.kr/) 메인과 같은 구성. 2026-10-08 사용자 요청
-    //   배경: 공식 메인 영상(PC vis_mov 1920x1080 17.6s / 모바일 m_vis_mov 466x720 30s)을 받아 ffmpeg로 재압축
-    //   (22MB→3.3MB / 28MB→1.2MB, 무음). poster는 각 영상 첫 프레임.
-    //   문구: 공식 메인 문구 이미지(main_img_260405_2.png)를 HTML로 재구성(estCopy) — 기본 문구(content)는 숨김
+    // 히어로 — 공식 홈페이지(https://www.yongin-dmapt.co.kr/) 메인과 같은 방식(2026-10-08 사용자 요청):
+    //   메인 영상 한 번 재생(introVideo, 인트로가 끝난 뒤 시작) → 끝나면 영상이 사라지며 정지 화면(투시도) + 문구(estCopy)
+    //   + PC 우상단 회전 '관심고객 등록' 배지가 나타나고, 헤더가 남색 글씨로 바뀜(header.transparentDark).
+    //   영상: 공식 메인 영상(PC vis_mov 1920x1080 17.6s / 모바일 m_vis_mov 466x720 30s)을 ffmpeg로 재압축(3.3MB / 1.2MB, 무음).
+    //   정지 화면: 사용자 제공 고화질 투시도 원본(@투시도.jpg). 공식 캡처보다 하늘이 좁아 문구가 건물에 겹쳐서 원본 맨 위
+    //   하늘 띠를 늘려 위로 이어 붙임(hero-sky.webp 2400x1768 / 모바일 hero-sky-m.webp 103동 중심 세로 크롭). PC는 아래 기준 배치
     hero: {
       hideText: true,
       overlay: false,
       mobileScrollMouse: true,
-      bgVideo: { src: '/apt/yongin-gorim-dongmun-the-east/hero-video.mp4' },
-      bgVideoMobile: { src: '/apt/yongin-gorim-dongmun-the-east/hero-video-m.mp4' },
-      bgImage: {
-        src: '/apt/yongin-gorim-dongmun-the-east/hero-video-poster.webp',
-        alt: '용인 고림 동문 디 이스트 항공 영상',
+      introVideo: {
+        src: '/apt/yongin-gorim-dongmun-the-east/hero-video.mp4',
+        srcMobile: '/apt/yongin-gorim-dongmun-the-east/hero-video-m.mp4',
+        poster: '/apt/yongin-gorim-dongmun-the-east/hero-video-poster.webp',
+        posterMobile: '/apt/yongin-gorim-dongmun-the-east/hero-video-poster-m.webp',
       },
+      bgImage: {
+        src: '/apt/yongin-gorim-dongmun-the-east/hero-sky.webp',
+        alt: '용인 고림 동문 디 이스트 투시도',
+      },
+      bgPositionY: '100%',
       bgImageMobile: {
-        src: '/apt/yongin-gorim-dongmun-the-east/hero-video-poster-m.webp',
-        alt: '용인 고림 동문 디 이스트 항공 영상',
+        src: '/apt/yongin-gorim-dongmun-the-east/hero-sky-m.webp',
+        alt: '용인 고림 동문 디 이스트 투시도',
       },
       estCopy: {
         color: '#2b3153',
@@ -167,6 +182,10 @@ const config = {
           { light: '반도체 ', strong: '프리미엄은 바로!', dots: 4 },
         ],
         badge: 'GRAND OPEN',
+        ctaBadge: {
+          ringText: 'THE EST · CUSTOMERS INTEREST · ',
+          label: ['관심고객', '등록'],
+        },
       },
       mobileBar: {
         announcements: [

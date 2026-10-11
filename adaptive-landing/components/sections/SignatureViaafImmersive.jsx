@@ -55,11 +55,11 @@ const MOTION = {
   design: 'motionSoft', contact: 'motionLeft', footer: 'motionSoft',
 }
 
-// 공식 사이트 메인 비주얼 2장 + 교육자료 p4 투시도. 모바일은 세로 크롭
+// 공식 사이트 메인 비주얼 2장 + 교육자료 p4 투시도. 모바일은 공식 비주얼 세로 크롭(hero-m-1/2) + 공식 단지설계 세로 조감도(plan-bg → hero-m-3)
 const HERO_SLIDES = [
   { img: 'hr-hero-1.webp', imgMobile: 'hero-m-1.webp', alt: '인천대교와 신일 비아프 크레스트 투시도' },
   { img: 'hr-hero-2.webp', imgMobile: 'hero-m-2.webp', alt: '서해바다와 인천대교를 품은 신일 비아프 크레스트 조감도' },
-  { img: 'premium-split.webp', imgMobile: 'hero-m-3.webp', alt: '노을 진 서해와 신일 비아프 크레스트 투시도' },
+  { img: 'premium-split.webp', imgMobile: 'hero-m-3.webp', alt: '서해를 품은 신일 비아프 크레스트 투시도·조감도' },
 ]
 
 // 출처: 공식 사이트 입지 8가지(TRAFFIC·PANORAMA VIEW·EDUCATION·NEW CENTRAL·INNOVATION) + 교육자료 p26·p33~41
@@ -464,7 +464,7 @@ export default function SignatureViaafImmersive({ site }) {
       <header className={styles.siteHeader}>
         <div className={styles.headerLeft}>
           <button type="button" className={styles.headerLogo} style={LOGO_BOX} onClick={() => navigateTo('hero')} aria-label="맨 위로">
-            <Image src={ASSET('logo-white.png')} alt="VIAAF 신일 비아프 크레스트" width={308} height={59} />
+            <Image src={ASSET('logo-white.png')} alt="VIAAF 신일 비아프 크레스트" width={LOGO_BOX.width} height={LOGO_BOX.height} />
           </button>
         </div>
         <nav className={styles.headerMenu} aria-label="주요 메뉴">

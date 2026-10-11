@@ -5,7 +5,10 @@
 //   커뮤니티(p11)·스마트 시스템(p12)·특화 시스템(p14~17)·평면(p19~23)·광역 위치도(p25)·입지(p26~28)·초품아(p35)·조망(p37)·
 //   공세권(p39)·행정타운(p40)·항공AI혁신허브(p43)·트램(p47)·무상제공품목(p49) 페이지를 pdf-to-img(scale 3)로 렌더링 후 크롭해
 //   webp 변환(public/apt/yeongjong-shinil-viaaf-crest/). 로고는 p8 VIAAF 워드마크를 흰색·남색 투명 PNG로 추출.
-//   분양대금·유상옵션 납부계좌(p51~52)는 공개 페이지에 싣지 않음. 시행/시공사는 자료에 명시되지 않아 푸터에서 제외.
+//   분양대금·유상옵션 납부계좌(p51~52)는 공개 페이지에 싣지 않음.
+// 2026-10-11 공식 사이트(https://신일비아프크레스트.com/) 이미지로 교체 + 티아모 까사와 같은 풀페이지 몰입형(viaafImmersive)으로 전환 —
+//   메인 비주얼(visual-bg-new-01/02 → hr-hero-1/2, 모바일 세로 크롭 hero-m-1/2), 입지 8가지 이미지컷(envi-bg-01~08 → envi-1~8).
+//   시행 한국토지신탁 / 시공 ㈜신일은 공식 사이트 푸터 기준. 평면·단지설계 컷은 공식 사이트 원본(417px 등)보다 교육자료 크롭이 고화질이라 유지.
 // 대표번호 1660-4579, 상담 접수 알림 010-3053-4088 — 2026-10-11 사용자 전달값.
 const config = {
   slug: 'yeongjong-shinil-viaaf-crest',
@@ -61,6 +64,12 @@ const config = {
   ],
 
   signature: {
+    // 요청 반영(2026-10-11) — "까사 현장 템플릿이랑 비슷하게": true면 SignatureViaafImmersive(티아모 까사 풀페이지
+    // 몰입형 구조 그대로, 콘텐츠·이미지만 비아프 — 공식 사이트 신일비아프크레스트.com + 교육자료) 전용 렌더.
+    // 이 화면은 아래 footer.companyLines·disclaimers·csHours와 vipForm.privacyText만 쓰고, 나머지 signature 필드는
+    // false로 되돌리면 기존 섹션형 구성으로 바로 복귀하도록 남겨둠
+    viaafImmersive: true,
+
     header: {
       logo: {
         src: '/apt/yeongjong-shinil-viaaf-crest/logo-white.png',
@@ -541,8 +550,11 @@ const config = {
       logoWidth: 150,
       highlightText: '인천대교 건너,\n첫 집을 만나다\n영종국제도시 신일 비아프 크레스트',
       agencySlogan: '분양완판 전문가 그룹, (주) 더블루파트너스',
+      // 시행/시공 — 공식 사이트(신일비아프크레스트.com) 푸터 기준
       companyLines: [
-        { label: '광고 운영·관리 대행사', value: '더블루파트너스' },
+        { label: '시행', value: '한국토지신탁' },
+        { label: '시공', value: '㈜신일' },
+        { label: '광고 운영·관리 대행사', value: '더블루파트너스', newLine: true },
         { label: '전화번호', value: '1666-1755' },
         { label: '사업자등록번호', value: '789-81-03093' },
         { label: '이메일', value: 'addup@addup.kr' },

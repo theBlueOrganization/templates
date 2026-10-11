@@ -59,6 +59,7 @@ import SignatureFinalInterest from '../../../components/sections/SignatureFinalI
 import SignatureBottomDockGeomdan from '../../../components/ui/SignatureBottomDockGeomdan'
 import SignatureArkoneImmersive from '../../../components/sections/SignatureArkoneImmersive'
 import SignatureTiamoImmersive from '../../../components/sections/SignatureTiamoImmersive'
+import SignatureViaafImmersive from '../../../components/sections/SignatureViaafImmersive'
 import {
   SignatureArkoneIntro,
   SignatureHeroArkone,
@@ -113,7 +114,9 @@ export default async function AptPage({ params }) {
   // 그대로 두고, 디자인만 이 전용 컴포넌트가 담당한다.
   // 청라 더리브 티아모 까사(cheongna-theliv-tiamo-casa)도 같은 구조(sig.tiamoImmersive)로 분기 —
   // 패널 흐름·디자인은 아크원과 동일하고 콘텐츠만 다른 전용 컴포넌트(SignatureTiamoImmersive)를 렌더
-  if (sig.arkoneImmersive || sig.tiamoImmersive) {
+  // 영종국제도시 신일 비아프 크레스트(yeongjong-shinil-viaaf-crest)도 티아모 까사 구조를 그대로 쓰는
+  // 전용 컴포넌트(SignatureViaafImmersive)로 분기(sig.viaafImmersive)
+  if (sig.arkoneImmersive || sig.tiamoImmersive || sig.viaafImmersive) {
     // 이 페이지는 telNumber/adminPhones/sheetId 등 라우팅용 설정과, 재사용하는 개인정보
     // 동의문·회사정보 몇 개만 필요 — site 전체를 그대로 넘기면 안 쓰는 legacy signature.*
     // 콘텐츠(hero/summary/premiumSplits/unitPlan 등)까지 클라이언트 페이로드로 직렬화돼
@@ -142,6 +145,7 @@ export default async function AptPage({ params }) {
       },
     }
     if (sig.tiamoImmersive) return <SignatureTiamoImmersive site={immersiveSite} />
+    if (sig.viaafImmersive) return <SignatureViaafImmersive site={immersiveSite} />
     return <SignatureArkoneImmersive site={immersiveSite} />
   }
 

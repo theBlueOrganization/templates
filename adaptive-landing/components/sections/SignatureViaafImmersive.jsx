@@ -17,15 +17,11 @@ import styles from './SignatureTiamoImmersive.module.css'
 //   - 진입 안내 팝업 이미지가 없어(공식 팝업은 320px 저화질) 인트로가 끝나면 방문예약 다이얼로그를 띄움
 //   - 푸터 시행/시공 로고 대신 텍스트(시행 한국토지신탁 · 시공 ㈜신일 — 공식 사이트 푸터 기준)
 // 이미지: hr-hero-1/2·hero-m-1/2·envi-1~8은 공식 사이트(신일비아프크레스트.com) 원본(1920~2138px / 480x970),
-//   premium-split·hero-2·hero-m-3·overview-photo·special-*·location-map·unit-*는 영업사원 교육자료 PDF(26.01.20) 크롭.
+//   premium-split·hero-2·hero-m-3·overview-photo·unit-*는 영업사원 교육자료 PDF(26.01.20) 크롭.
+//   special-*는 공식 사이트 단지설계(plan.jpg), location-map은 공식 사이트 입지환경(environment_view.jpg 2773px) 원본.
 // 문구 출처: 공식 사이트 메인(인천대교 건너, 첫 집을 만나다 / 입지 8가지 / 브랜드 소개 / 단지설계) + 교육자료 사업개요·프리미엄.
 
 const ASSET = (name) => `/apt/yeongjong-shinil-viaaf-crest/${name}`
-
-const ROOT_STYLE = {
-  '--lime': '#cbbd9f',
-  '--cta-gradient': 'linear-gradient(90deg, #ddd0b6, #b3a486)',
-}
 
 const NAV_ITEMS = [
   { id: 'traffic', label: '핵심가치', num: '01', code: 'VALUE' },
@@ -55,11 +51,13 @@ const MOTION = {
   design: 'motionSoft', contact: 'motionLeft', footer: 'motionSoft',
 }
 
-// 공식 사이트 메인 비주얼 2장 + 교육자료 p4 투시도. 모바일은 공식 비주얼 세로 크롭(hero-m-1/2) + 공식 단지설계 세로 조감도(plan-bg → hero-m-3)
+// 공식 사이트 메인 비주얼 2장 + 교육자료 p4 투시도. 모바일은 하늘이 넉넉한 세로컷(hero-1-m/2-m) + hero-m-3.
+// title — 슬라이드마다 사진에 맞는 문구(2026-10-12 요청, PC·모바일 공통). 1·2는 공식 사이트 비주얼 문구 그대로,
+//   3(노을 진 서해 조감도)은 공식 비주얼에 없는 컷이라 이 페이지의 '서해를 품은 총 960세대' 문구 사용
 const HERO_SLIDES = [
-  { img: 'hr-hero-1.webp', imgMobile: 'hero-m-1.webp', alt: '인천대교와 신일 비아프 크레스트 투시도' },
-  { img: 'hr-hero-2.webp', imgMobile: 'hero-m-2.webp', alt: '서해바다와 인천대교를 품은 신일 비아프 크레스트 조감도' },
-  { img: 'premium-split.webp', imgMobile: 'hero-m-3.webp', alt: '서해를 품은 신일 비아프 크레스트 투시도·조감도' },
+  { img: 'hr-hero-1.webp', imgMobile: 'hero-1-m.webp', title: ['인천대교 건너,', '첫 집을 만나다.'], alt: '인천대교와 신일 비아프 크레스트 투시도' },
+  { img: 'hr-hero-2.webp', imgMobile: 'hero-2-m.webp', title: ['영종이 기다려온', '압도적 새중심!'], alt: '서해바다와 인천대교를 품은 신일 비아프 크레스트 조감도' },
+  { img: 'premium-split.webp', imgMobile: 'hero-m-3.webp', title: ['서해를 품은', '총 960세대'], alt: '서해를 품은 신일 비아프 크레스트 투시도·조감도' },
 ]
 
 // 출처: 공식 사이트 입지 8가지(TRAFFIC·PANORAMA VIEW·EDUCATION·NEW CENTRAL·INNOVATION) + 교육자료 p26·p33~41
@@ -137,26 +135,33 @@ const PREMIUM_SLIDES = [
   { num: '05', img: 'premium-split.webp', alt: '노을 진 서해와 단지 투시도', title: '총 960세대 VIAAF', desc: '세대당 1.5대 주차, 약 95% 이상 판상형, 층간소음저감·준불연문 등 특화설계' },
 ]
 
-// 출처: 공식 사이트 입지 8가지 원문 + 세로 이미지컷(envi-bg-01~08) — 까사 인테리어 캐러셀 자리
+// 입지환경 지도 아래 유의사항 — 공식 사이트 입지환경(environment.html) page_info 원문(띄어쓰기 깨진 곳만 보정)
+const LOCATION_NOTES = [
+  '본 홈페이지에 표기된 지역명소와 생활인프라 및 각종 교통시설의 거리, 이동시간은 다음과 같습니다 (네이버지도 직선거리, 주행시간) 영종IC 1.2km 차량 4분, 운서초 954m 도보 14분, 씨사이드파크 615m 도보 9분, 롯데마트 3km 차량 10분, 메가박스 2.4km 차량 8분, 제3유보지 2.0km 차량 7분, 영종복합문화센터 1.1km 도보 15분, 백운산 1km 도보 15분, 영종대교 5.4km 차량 10분, 인천대교 900m 차량 2분, 인천하늘고 2.3km 차량 5분, 과학고 1.9km 차량 4분, 국제고 1.7km 차량 4분 행정타운, 청라하늘대교 등 계획은 인천국제공항 5단계(계획)(\'25.07.22일 경향신문 기사 기준) 제2공항철도(계획)(\'25.08.07일 헤럴드경제기사 기준) 행정타운(계획)(25.02.18일 인천광역시청 보도자료 기준) 청라하늘대교(26년1월 개통)(25.11.11일 인천광역시경제자유구역청 보도자료 기준) GTX D,E(계획)(24.01.25일 인천광역시청 보도자료 기준) 초등학교(계획)(인천광역시교육청-신설학교추진현황 기준, 주소:중구 운남동 1696-2) 영종구청(계획), 경찰서(계획)(25.03.05일 인천투데이 기사 기준) 바이오특화단지(계획)(25.11.10일 인천광역시 보도자료 기준)',
+  '본 홈페이지에 사용한 CG, 일러스트 및 내용, 문구 등은 소비자의 이해를 돕기 위해 제작, 또는 표기된 것으로 실제와 차이가 있을 수 있습니다.',
+]
+// 출처: 공식 사이트 메인 입지 8가지(main-section-envi) 원문 줄바꿈 그대로 + 세로 이미지컷(envi-bg-01~08).
+// 카드 위쪽 하늘 여백에 영문 세리프 타이틀 + 3줄 문구(공식 사이트 EDUCATION 카드 느낌, 2026-10-12 요청).
+// VISION은 원문에 다른 카드 문구가 잘못 붙어 있어("…프리미엄인천대교에서 송도까지…") 앞 3줄만 사용
 const DESIGN_ITEMS = [
-  { img: 'envi-1.webp', time: 'VIEW', title: 'PANORAMA VIEW', desc: '씨사이드파크 뷰와 함께 인천대교에서 송도까지 탁 트인 특급전망(일부세대)' },
-  { img: 'envi-2.webp', time: 'VISION', title: '초대형 비전 프리미엄', desc: '약 1.5km 거리 바이오특화단지(계획), 인천국제공항 5단계 확장 및 제2공항철도(계획)' },
-  { img: 'envi-3.webp', time: 'EDU', title: '영종 명문학군의 최중심', desc: '초등학교를 품은 단지로 인천하늘고, 과학고, 국제고 등' },
-  { img: 'envi-4.webp', time: 'LIFE', title: '걸어서 누리는 생활', desc: '상업시설(계획) 및 영종복합문화센터' },
-  { img: 'envi-5.webp', time: 'CENTRAL', title: '행정타운(계획)의 중심', desc: '영종구청(계획), 경찰서(계획), 일반상업시설, 터미널(계획) 등' },
-  { img: 'envi-6.webp', time: 'TRAFFIC', title: '광역교통망', desc: '영종대교와 인천대교 외 청라하늘대교를 통해 기대되는 서울접근성' },
-  { img: 'envi-7.webp', time: 'SPACE', title: 'INNOVATION', desc: '세대당 1.5대 주차, 남향 위주 배치, 판상형 4BAY(일부 제외)' },
-  { img: 'envi-8.webp', time: 'NATURE', title: '힐링 라이프', desc: '백운산과 씨사이드파크의 자연을 가깝게 누리는 일상' },
+  { img: 'envi-1.webp', title: 'PANORAMA VIEW', lines: ['씨사이드파크 뷰와 함께', '인천대교에서 송도까지', '탁 트인 특급전망(일부세대)'] },
+  { img: 'envi-2.webp', title: 'VISION', lines: ['약 1.5km 거리 바이오특화단지(계획) 외', '인천국제공항 5단계 확장 및 제2공항철도(계획)로', '이어진 초대형 비전 프리미엄'] },
+  { img: 'envi-3.webp', title: 'EDUCATION', lines: ['초등학교를 품은 단지로', '인천하늘고, 과학고, 국제고 등', '영종 명문학군의 최중심'] },
+  { img: 'envi-4.webp', title: 'LIFE', lines: ['걸어서 누리는', '상업시설(계획) 및', '영종복합문화센터'] },
+  { img: 'envi-5.webp', title: 'NEW CENTRAL', lines: ['영종구청(계획), 경찰서(계획),', '일반상업시설, 터미널(계획) 등', '기대되는 행정타운(계획)의 중심가치'] },
+  { img: 'envi-6.webp', title: 'TRAFFIC', lines: ['영종대교와 인천대교 외', '청라하늘대교(26년 1월 개통)를 통해 기대되는', '서울접근성의 광역교통망'] },
+  { img: 'envi-7.webp', title: 'INNOVATION', lines: ['세대당 1.5대 주차, 남향 위주 배치,', '판상형 4BAY(일부 제외)로', '일상의 편의와 공간의 품격을 동시에'] },
+  { img: 'envi-8.webp', title: 'NATURE', lines: ['백운산과 씨사이드파크의', '자연을 가깝게 누릴', '힐링 라이프'] },
 ]
 
-// 출처: 교육자료 p7 사업개요
+// 출처: 교육자료 p7 사업개요 + 공식 사이트 사업개요 표(단지별 대지면적·규모·공급예정 주택, 2026-10-12 반영 — 연면적·주차대수는 요청으로 뺌)
 const BRAND_STATS = [
-  { label: '총 세대수', value: '960세대', sub: '1단지 444 · 2단지 516' },
-  { label: '규모', value: '최고 21층', sub: '지하2층~지상21층 11개동' },
-  { label: '주택형', value: '84㎡ · 114㎡', sub: '84A·B·C·D / 114' },
-  { label: '주차대수', value: '세대당 1.5대', sub: '확장형 주차 약 50%' },
+  { label: '총 세대수', value: '960세대', sub: '1단지 444세대 · 2단지 516세대' },
+  { label: '규모', value: '최고 21층', sub: '1단지 지하2층~최고21층 5개동 · 2단지 지하2층~최고20층 6개동 및 부대복리시설' },
+  { label: '대지면적', value: '1단지 27,771.1㎡', sub: '2단지 37,772.7㎡' },
+  { label: '공급예정 주택', value: '84㎡ · 114㎡', sub: '1단지 84㎡형(4개 타입) · 2단지 84㎡형(4개 타입), 114㎡형(1개 타입)' },
 ]
-const BRAND_WIDE = { label: '대지위치', value: '인천 중구 운남동', sub: '1단지(A19BL) 1695-2번지 · 2단지(A20BL) 1696-1번지 일원' }
+const BRAND_WIDE = { label: '대지위치', value: '인천광역시 중구 운남동', sub: '1단지(A19BL) 1695-2번지 · 2단지(A20BL) 1696-1번지 일원' }
 const BRAND_WORDS = [
   { letter: 'VIA', copy: ['행복을 찾아가는', '여정'] },
   { letter: 'AF', copy: ['Felicity · Fineness', '정교한 세련됨'] },
@@ -164,7 +169,7 @@ const BRAND_WORDS = [
 ]
 
 const REQUEST_CHECKS = ['타입별 평면도', '분양가격', '계약조건', '분양일정']
-const CONSULT_CHECKS = ['방문예약', '견본주택 위치 전송', '자료요청', '기타문의']
+const CONSULT_CHECKS = ['방문예약', '견본주택 위치 전송', '기타문의']
 
 const PREMIUM_LAST = PREMIUM_SLIDES.length - 1
 const TRANSITION_MS = 520
@@ -182,14 +187,12 @@ export default function SignatureViaafImmersive({ site }) {
   const [heroIndex, setHeroIndex] = useState(0)
   const [premiumIndex, setPremiumIndex] = useState(0)
   const [unitKey, setUnitKey] = useState(UNIT_TABS[0].key)
-  const [contactTab, setContactTab] = useState('visit')
   const [zoomImage, setZoomImage] = useState(null)
   const [faqIndex, setFaqIndex] = useState(0)
   const [toast, setToast] = useState('')
 
   const viewportRef = useRef(null)
   const visitDialogRef = useRef(null)
-  const requestDialogRef = useRef(null)
   const zoomDialogRef = useRef(null)
   const infoDialogRef = useRef(null)
   const faqDialogRef = useRef(null)
@@ -285,7 +288,7 @@ export default function SignatureViaafImmersive({ site }) {
   useEffect(() => {
     const onWheel = (e) => {
       if (blockingOverlay() || !introDone) { e.preventDefault(); return }
-      if (e.target.closest('dialog,.' + styles.mobileMenu + ',.' + styles.contactPanel)) return
+      if (e.target.closest('dialog,.' + styles.mobileMenu + ',.' + styles.contactPanel + ',.' + styles.locationNotes)) return
       e.preventDefault()
       const w = wheelRef.current
       const now = performance.now()
@@ -303,7 +306,7 @@ export default function SignatureViaafImmersive({ site }) {
       if (w.sum >= threshold) { w.consumed = true; w.sum = 0; move(dir) }
     }
     const onTouchStart = (e) => {
-      touchRef.current.blocked = !!e.target.closest('dialog,.' + styles.mobileMenu + ',.' + styles.contactPanel)
+      touchRef.current.blocked = !!e.target.closest('dialog,.' + styles.mobileMenu + ',.' + styles.contactPanel + ',.' + styles.locationNotes)
       if (touchRef.current.blocked || e.touches.length !== 1) return
       touchRef.current.y = e.touches[0].clientY
       touchRef.current.x = e.touches[0].clientX
@@ -458,7 +461,7 @@ export default function SignatureViaafImmersive({ site }) {
   const mapImage = { src: ASSET('location-map.webp'), alt: '신일 비아프 크레스트 광역 위치도 확대' }
 
   return (
-    <div className={styles.root} style={ROOT_STYLE}>
+    <div className={cn(styles.root, styles.themeIce)}>
       {!introDone && <IntroOverlay onSkip={() => setIntroDone(true)} ready={introReady} />}
 
       <header className={styles.siteHeader}>
@@ -510,12 +513,19 @@ export default function SignatureViaafImmersive({ site }) {
               />
             </picture>
           ))}
-          <div className={styles.heroOne} aria-hidden="true">960</div>
-          <div className={styles.capBadge}><div><small>총 960세대</small><b>영종의<br />새중심</b></div></div>
+          <div className={cn(styles.heroOne, styles.heroOneWord)} aria-hidden="true">VIAAF</div>
+          <div className={styles.capBadge}><div><b>분양가 상한제<br />적용 단지</b></div></div>
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>영종국제도시 · 신일 비아프 크레스트</p>
-              <h1 className={styles.sectionTitle}>인천대교 건너,<br /><span className={styles.gradientText}>첫 집을 만나다</span></h1>
+              {/* 슬라이드별 문구를 한 칸에 겹쳐 두고 현재 슬라이드 것만 보이게(높이 고정, 레이아웃 흔들림 없음) */}
+              <h1 className={cn(styles.sectionTitle, styles.heroTitleStack)}>
+                {HERO_SLIDES.map((s, i) => (
+                  <span key={s.img} className={cn(styles.heroTitleSlide, i === heroIndex && styles.isOn)} aria-hidden={i !== heroIndex}>
+                    {s.title[0]}<br /><span className={styles.gradientText}>{s.title[1]}</span>
+                  </span>
+                ))}
+              </h1>
               <p className={styles.sectionDesc}>YEONGJONG SHINIL VIAAF CREST</p>
             </header>
           </div>
@@ -528,7 +538,7 @@ export default function SignatureViaafImmersive({ site }) {
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>사업개요</p>
               <h2 className={styles.sectionTitle}>영종이 기다려온{' '}<br className={styles.titleBreak} /><span className={styles.gradientText}>압도적 새중심</span></h2>
-              <p className={styles.sectionDesc}>1단지(A19BL) 444세대 · 2단지(A20BL) 516세대, 84㎡·114㎡ 총 960세대 대규모 단지.</p>
+              <p className={styles.sectionDesc}>1단지(A19BL) 444세대 · 2단지(A20BL) 516세대,<br className={styles.titleBreak} /> 84㎡·114㎡ 총 960세대 대규모 단지.</p>
             </header>
             <div className={styles.brandLayout}>
               <dl className={styles.brandOverview}>
@@ -612,16 +622,19 @@ export default function SignatureViaafImmersive({ site }) {
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>입지환경</p>
-              <h2 className={styles.sectionTitle}>영종의 유일한{' '}<br className={styles.titleBreak} /><span className={styles.gradientText}>완성형 입지</span></h2>
-              <p className={styles.sectionDesc}>운남동 생활권의 중심에서 교통·교육·자연·미래가치를 함께 누립니다.</p>
+              {/* 공식 사이트 입지환경(environment_01.png) 문구 그대로 — 윗줄 가는 회색, 아랫줄 굵은 네이비 */}
+              <h2 className={cn(styles.sectionTitle, styles.locationTitle)}>
+                <span className={styles.locationTitleLight}>송도와 청라를 잇는 인천 단 하나</span>
+                새로운 영종의 프리미엄 앞권
+              </h2>
             </header>
-            <div className={styles.visual} role="button" tabIndex={0} onClick={() => openZoom(mapImage)} onKeyDown={(e) => e.key === 'Enter' && openZoom(mapImage)}>
+            <div className={cn(styles.visual, styles.locationMap)} role="button" tabIndex={0} onClick={() => openZoom(mapImage)} onKeyDown={(e) => e.key === 'Enter' && openZoom(mapImage)}>
               <Image src={ASSET('location-map.webp')} alt="신일 비아프 크레스트 광역 위치도" fill sizes="100vw" />
               <button type="button" className={styles.mapZoom} onClick={(e) => { e.stopPropagation(); openZoom(mapImage) }}>＋ 지도 확대</button>
             </div>
-            <div className={styles.mapPins}>
-              <span>청라하늘대교</span><span>초등학교(계획)</span><span>씨사이드파크</span><span>행정타운(계획)</span>
-            </div>
+            <ul className={styles.locationNotes}>
+              {LOCATION_NOTES.map((n) => <li key={n.slice(0, 24)}>{n}</li>)}
+            </ul>
           </div>
         </section>
 
@@ -718,11 +731,10 @@ export default function SignatureViaafImmersive({ site }) {
             <div className={styles.historyViewport} ref={designViewportRef}>
               <div className={styles.historyTrack} ref={designTrackRef}>
                 {[...DESIGN_ITEMS, ...DESIGN_ITEMS].map((h, i) => (
-                  <article key={i} className={styles.historyCard}>
-                    <Image src={ASSET(h.img)} alt="" fill sizes="60vw" />
-                    <time>{h.time}</time>
+                  <article key={i} className={cn(styles.historyCard, styles.envCard)}>
+                    <Image src={ASSET(h.img)} alt="" fill sizes="(min-width: 1024px) 420px, 60vw" />
                     <h3>{h.title}</h3>
-                    <p>{h.desc}</p>
+                    <p>{h.lines.map((l, j) => <span key={j}>{l}</span>)}</p>
                   </article>
                 ))}
               </div>
@@ -743,19 +755,11 @@ export default function SignatureViaafImmersive({ site }) {
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>{site.projectName}</p>
               <h2 className={styles.sectionTitle}>관심 있는 정보를{' '}<br className={styles.titleBreak} /><span className={styles.gradientText}>상담받아보세요</span></h2>
-              <p className={styles.sectionDesc}>상담 유형을 선택하면 입력 화면이 즉시 전환됩니다.</p>
+              <p className={styles.sectionDesc}>방문 희망일을 남겨주시면 담당자가 확인 후 연락드립니다.</p>
             </header>
-            <div className={styles.contactLayout}>
-              <div className={styles.contactTabs}>
-                <button type="button" className={cn(contactTab === 'visit' && styles.isActive)} onClick={() => setContactTab('visit')}>방문예약</button>
-                <button type="button" className={cn(contactTab === 'request' && styles.isActive)} onClick={() => setContactTab('request')}>자료요청</button>
-              </div>
+            <div className={cn(styles.contactLayout, styles.contactLayoutSingle)}>
               <div className={styles.contactPanel}>
-                {contactTab === 'visit' ? (
-                  <LeadForm kind="visit" idPrefix="contactVisit" site={site} onSubmit={submitLead} />
-                ) : (
-                  <LeadForm kind="request" idPrefix="contactRequest" site={site} onSubmit={submitLead} />
-                )}
+                <LeadForm kind="visit" idPrefix="contactVisit" site={site} onSubmit={submitLead} />
               </div>
             </div>
           </div>
@@ -792,14 +796,12 @@ export default function SignatureViaafImmersive({ site }) {
       <PcFloat
         visible={index >= 1 && index < PANEL_ORDER.length - 1}
         onVisit={() => openDialog(visitDialogRef)}
-        onRequest={() => openDialog(requestDialogRef)}
         onFaq={() => openDialog(faqDialogRef)}
         onTop={() => navigateTo('hero')}
       />
 
-      <nav className={cn(styles.mobileBar, index >= 1 && styles.isVisible)} aria-label="빠른 문의">
+      <nav className={cn(styles.mobileBar, styles.mobileBarTwo, index >= 1 && styles.isVisible)} aria-label="빠른 문의">
         <a href={`tel:${telNumber}`}>전화문의</a>
-        <button type="button" onClick={() => openDialog(requestDialogRef)}>자료요청</button>
         <button type="button" onClick={() => openDialog(visitDialogRef)}>방문예약</button>
       </nav>
       <button
@@ -818,18 +820,6 @@ export default function SignatureViaafImmersive({ site }) {
           <LeadForm
             kind="visit" idPrefix="visitDialog" site={site} showTerms={false}
             onSubmit={async (kind, form) => { const ok = await submitLead(kind, form); if (ok) closeDialog(visitDialogRef); return ok }}
-          />
-        </div>
-      </dialog>
-
-      <dialog ref={requestDialogRef} className={styles.dialog} onClick={(e) => e.target === e.currentTarget && closeDialog(requestDialogRef)}>
-        <div className={styles.modal}>
-          <button type="button" className={styles.modalClose} aria-label="닫기" onClick={() => closeDialog(requestDialogRef)}>×</button>
-          <h2>자료요청</h2>
-          <p>원하시는 자료를 선택하시면 담당자가 확인 후 보내드립니다.</p>
-          <LeadForm
-            kind="request" idPrefix="requestDialog" site={site} showTerms={false}
-            onSubmit={async (kind, form) => { const ok = await submitLead(kind, form); if (ok) closeDialog(requestDialogRef); return ok }}
           />
         </div>
       </dialog>
@@ -887,11 +877,10 @@ const FAQ_ITEMS = [
 ]
 
 // 아크원과 동일 — 태블릿/PC 폭에서 화면 우측 중앙에 떠 있는 4버튼 세로 바
-function PcFloat({ visible, onVisit, onRequest, onFaq, onTop }) {
+function PcFloat({ visible, onVisit, onFaq, onTop }) {
   return (
     <aside className={cn(styles.pcFloat, visible && styles.isVisible)}>
       <button type="button" onClick={onVisit}>방문예약</button>
-      <button type="button" onClick={onRequest}>자료요청</button>
       <button type="button" onClick={onFaq}>F&amp;A</button>
       <button type="button" onClick={onTop}>TOP ↑</button>
     </aside>

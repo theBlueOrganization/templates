@@ -143,23 +143,21 @@ const config = {
       },
     },
 
-    // 히어로 — 교육자료 카피('도시를 품은 자리, 첫 번째 자이에서 누리다') + 공식 홈페이지 메인 투시도(주간)·교육자료 야경 투시도(p4) 2장 슬라이드
-    //   투시도 옥탑 Xi 로고는 지운 이미지. 모바일 배경은 같은 이미지에서 단지 부분만 세로 크롭(hero-N-m.webp)
+    // 히어로 — 영종 신일 비아프 크레스트 첫 화면과 같은 디자인(variant 'viaaf', 2026-10-13 사용자 요청, 모바일 포함):
+    //   전체화면 사진 크로스페이드(5초) + 우상단 외곽선 워터마크 + 원형 배지 + 좌하단 슬라이드별 2줄 타이틀(2번째 줄 아이스 블루 그라데이션).
+    //   사진은 공식 홈페이지 메인 투시도(주간)·교육자료 야경 투시도(p4)·조감도(p5) — 투시도 옥탑 Xi 로고는 지운 이미지.
+    //   모바일은 같은 이미지에서 단지 부분만 세로 크롭(hero-N-m.webp). 배지 문구는 교육자료 분양조건(중도금 전액 무이자)
     hero: {
-      eyebrowDivider: false,
-      titleLine1: '양산자이 파크팰리체',
-      titleWeight: 700,
-      titleSize: { base: 28, md: 48, lg: 72 },
-      eyebrowSize: { base: 15, lg: 21 },
-      textColor: '#ffffff',
-      keepTextShadow: true,
-      overlay: false,
-      contentTop: true,
-      mobileScrollMouse: true,
+      variant: 'viaaf',
+      viaaf: {
+        eyebrow: '양산 평산동 · 양산자이 파크팰리체',
+        desc: 'TIMELESS PRESTIGE · PARK PALICHE',
+        watermark: 'PARK',
+        badge: ['중도금', '전액 무이자'],
+      },
       slides: [
         {
-          eyebrowLine1: '도시를 품은 자리, 첫 번째 자이에서 누리다',
-          eyebrowLine2: '웅상센트럴파크를 품은 총 842세대 브랜드 대단지',
+          title: ['도시를 품은 자리,', '첫 번째 자이'],
           bgImage: {
             src: '/apt/yangsan-xi-park-paliche/hero-1.webp',
             alt: '양산자이 파크팰리체 투시도',
@@ -170,8 +168,7 @@ const config = {
           },
         },
         {
-          eyebrowLine1: 'Park + Palace + Riche',
-          eyebrowLine2: '공세권의 특권을 누리는 프리미엄 주거공간',
+          title: ['웅상센트럴파크를', '앞마당처럼'],
           bgImage: {
             src: '/apt/yangsan-xi-park-paliche/hero-2.webp',
             alt: '양산자이 파크팰리체 야경 투시도',
@@ -179,6 +176,17 @@ const config = {
           bgImageMobile: {
             src: '/apt/yangsan-xi-park-paliche/hero-2-m.webp',
             alt: '양산자이 파크팰리체 야경 투시도',
+          },
+        },
+        {
+          title: ['총 842세대', '브랜드 대단지'],
+          bgImage: {
+            src: '/apt/yangsan-xi-park-paliche/hero-3.webp',
+            alt: '양산자이 파크팰리체 조감도',
+          },
+          bgImageMobile: {
+            src: '/apt/yangsan-xi-park-paliche/hero-3-m.webp',
+            alt: '양산자이 파크팰리체 조감도',
           },
         },
       ],

@@ -14,6 +14,7 @@ import SignatureHeroDualLife from '../../../components/sections/SignatureHeroDua
 import SignatureHeroLegacy from '../../../components/sections/SignatureHeroLegacy'
 import SignatureHeroOciel from '../../../components/sections/SignatureHeroOciel'
 import SignatureHeroTiamo from '../../../components/sections/SignatureHeroTiamo'
+import SignatureHeroViaaf from '../../../components/sections/SignatureHeroViaaf'
 import SignatureCircleIntro from '../../../components/sections/SignatureCircleIntro'
 import SignatureBenefits from '../../../components/sections/SignatureBenefits'
 import SignatureSummary from '../../../components/sections/SignatureSummary'
@@ -268,6 +269,9 @@ export default async function AptPage({ params }) {
         ) : sig.hero.variant === 'tiamo' ? (
           // 청라 더리브 티아모 까사2 — 참고 사이트 메인(왼쪽 슬라이드 + 오른쪽 흰 바탕 카피 + 하단 남색 물결) 재구성
           <SignatureHeroTiamo hero={sig.hero} />
+        ) : sig.hero.variant === 'viaaf' ? (
+          // 양산자이 파크팰리체 — 영종 신일 비아프 크레스트 몰입형 첫 화면(전체화면 크로스페이드 + 워터마크 + 원형 배지) 재구성
+          <SignatureHeroViaaf hero={sig.hero} />
         ) : sig.hero.variant === 'ociel' ? (
           // 시티오씨엘 9단지 — 공식 사이트 인트로(원 드로잉 → 원이 열리며 메인 슬라이드) 재구성
           <SignatureHeroOciel hero={sig.hero} />

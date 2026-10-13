@@ -4,6 +4,9 @@
 //   단지배치도(p6)·클럽자이안(p7)·조경(p8)·동호배치도(p9)·광역/세부입지(p10~11)·항공사진(p12~13)·광역철도(p16)·주진불빛공원(p17)·
 //   BIG 프리미엄 5(p18)·커뮤니티(p21~22)·스마트 시스템(p23)·평면(p27·29·31·33·35)의 원본 이미지를 pdfimages로 추출해
 //   크롭/webp 변환(public/apt/yangsan-xi-park-paliche/). 배치도·동호배치도는 페이지를 250dpi로 렌더링해 크롭.
+// 2026-10-13 고화질 교체(사용자 요청): 공식 홈페이지(https://hangbogchurch.kr/) 원본 이미지로 메인 투시도(hero-1·og)·광역 위치도·
+//   입지 이미지컷 4종(feature-*)·광역철도 노선도·주진불빛공원·단지배치도·동호배치도·커뮤니티 B1/B2·스마트 시스템·평면(확장형) 교체.
+//   메인 투시도 옥탑 Xi 로고는 지우고, 브랜드소개·잔여세대 팝업(Xi 로고)·Xi 로고 합성 항공컷은 사용하지 않음.
 // 2026-10-13 사용자 요청: 모든 광고에서 자이(Xi) 로고를 빼고 '양산자이 파크팰리체' 글씨만 사용 —
 //   로고 이미지는 글씨만 렌더링한 PNG(logo-white/logo-color), 투시도 2장의 옥탑 Xi 로고와 클럽 'CLUB XIAN' 사인은 주변 벽면으로 덮어 지움.
 //   Xi 로고가 크게 들어간 항공 합성컷(p14~15)·브랜드 소개(p1)·Xi 프리미엄 비교(p19)·분양가표는 사용하지 않음.
@@ -119,7 +122,7 @@ const config = {
       ariaLabel: '양산자이 파크팰리체를 소개하는 인트로',
       scenes: [
         { img: '/apt/yangsan-xi-park-paliche/hero-1.webp', label: '01 · LANDMARK', name: '양산의 첫 번째 브랜드 대단지' },
-        { img: '/apt/yangsan-xi-park-paliche/hero-2.webp', label: '02 · SCALE', name: '지상 최고 29층 6개동 총 842세대' },
+        { img: '/apt/yangsan-xi-park-paliche/overview-aerial.webp', label: '02 · SCALE', name: '지상 최고 29층 6개동 총 842세대' },
         { img: '/apt/yangsan-xi-park-paliche/landscape-1.webp', label: '03 · PARK', name: '웅상센트럴파크를 앞마당처럼' },
       ],
       copySmall: "YANGSAN'S FIRST LANDMARK",
@@ -137,7 +140,7 @@ const config = {
       },
     },
 
-    // 히어로 — 교육자료 카피('도시를 품은 자리, 첫 번째 자이에서 누리다') + 야경 투시도(p4)·조감도(p5) 2장 슬라이드
+    // 히어로 — 교육자료 카피('도시를 품은 자리, 첫 번째 자이에서 누리다') + 공식 홈페이지 메인 투시도(주간)·교육자료 야경 투시도(p4) 2장 슬라이드
     //   투시도 옥탑 Xi 로고는 지운 이미지. 모바일 배경은 같은 이미지에서 단지 부분만 세로 크롭(hero-N-m.webp)
     hero: {
       eyebrowDivider: false,
@@ -168,11 +171,11 @@ const config = {
           eyebrowLine2: '공세권의 특권을 누리는 프리미엄 주거공간',
           bgImage: {
             src: '/apt/yangsan-xi-park-paliche/hero-2.webp',
-            alt: '양산자이 파크팰리체 조감도',
+            alt: '양산자이 파크팰리체 야경 투시도',
           },
           bgImageMobile: {
             src: '/apt/yangsan-xi-park-paliche/hero-2-m.webp',
-            alt: '양산자이 파크팰리체 조감도',
+            alt: '양산자이 파크팰리체 야경 투시도',
           },
         },
       ],
@@ -211,7 +214,7 @@ const config = {
       ],
     },
 
-    // 위치안내 — 광역 위치도(p10) + 세부입지·광역철도·공원(p11, p13, p16)
+    // 위치안내 — 공식 홈페이지 입지환경(광역 위치도 + 교통·자연·생활·교육 인프라 이미지컷)
     location: {
       id: 'location',
       navLabel: '위치안내',
@@ -226,8 +229,8 @@ const config = {
       mapImage: {
         src: '/apt/yangsan-xi-park-paliche/location-map.webp',
         alt: '양산자이 파크팰리체 광역 위치도',
-        width: 1446,
-        height: 1019,
+        width: 2000,
+        height: 1425,
       },
       features: [
         {
@@ -237,7 +240,7 @@ const config = {
           tag: 'Traffic',
           image: {
             src: '/apt/yangsan-xi-park-paliche/feature-traffic.webp',
-            alt: '부산~양산~울산 광역철도(계획) 노선도',
+            alt: '도로 이미지컷',
           },
           descStrong: '웅상대로·7번 국도, 부울경 광역철도(계획)',
           descRest: '로 부산 노포~양산 웅상 약 10분대 이동(계획)',
@@ -249,7 +252,7 @@ const config = {
           tag: 'Life',
           image: {
             src: '/apt/yangsan-xi-park-paliche/feature-life.webp',
-            alt: '이마트 트레이더스',
+            alt: '장보는 가족 이미지컷',
           },
           descStrong: '이마트 트레이더스·일반상업지역',
           descRest: ', 웅상문화체육센터·웅상도서관 등 가깝고 편리한 생활인프라',
@@ -261,7 +264,7 @@ const config = {
           tag: 'Education',
           image: {
             src: '/apt/yangsan-xi-park-paliche/feature-education.webp',
-            alt: '웅상도서관·웅상문화체육센터',
+            alt: '책을 든 아이 이미지컷',
           },
           descStrong: '단지 바로 앞 평산초등학교',
           descRest: ' 도보 거리, 웅상도서관·3D과학체험관 등 교육시설',
@@ -272,8 +275,8 @@ const config = {
           titleSuffix: '',
           tag: 'Park',
           image: {
-            src: '/apt/yangsan-xi-park-paliche/feature-park.webp',
-            alt: '웅상센트럴파크 항공사진',
+            src: '/apt/yangsan-xi-park-paliche/feature-nature.webp',
+            alt: '산책하는 가족 이미지컷',
           },
           descStrong: '약 10만㎡ 규모 웅상센트럴파크',
           descRest: '(실내체육관 포함)를 앞마당처럼, 주진불빛공원(계획)',
@@ -312,13 +315,13 @@ const config = {
       cards: [
         {
           num: '01',
-          image: { src: '/apt/yangsan-xi-park-paliche/feature-traffic.webp', alt: '부산~양산~울산 광역철도(계획) 노선도' },
+          image: { src: '/apt/yangsan-xi-park-paliche/premium-rail.webp', alt: '부산~양산~울산 광역철도(계획) 노선도' },
           title: ['어디든 빠르게', '특급교통의 중심'],
           desc: ['웅상대로·7번 국도,', '부울경 광역철도(계획)'],
         },
         {
           num: '02',
-          image: { src: '/apt/yangsan-xi-park-paliche/feature-life.webp', alt: '이마트 트레이더스' },
+          image: { src: '/apt/yangsan-xi-park-paliche/feature-life.webp', alt: '장보는 가족 이미지컷' },
           title: ['편리한 모든 것', '생활인프라의 중심'],
           desc: ['이마트 트레이더스,', '웅상문화체육센터·웅상도서관'],
         },
@@ -330,7 +333,7 @@ const config = {
         },
         {
           num: '04',
-          image: { src: '/apt/yangsan-xi-park-paliche/feature-education.webp', alt: '웅상도서관·웅상문화체육센터' },
+          image: { src: '/apt/yangsan-xi-park-paliche/feature-education.webp', alt: '책을 든 아이 이미지컷' },
           title: ['한 걸음 가깝게', '교육인프라의 중심'],
           desc: ['단지 바로 앞 평산초등학교,', '웅상도서관 3D과학체험관'],
         },
@@ -349,7 +352,7 @@ const config = {
       ],
     },
 
-    // 단지안내 — 교육자료 단지배치도(p6)·조감도(p2)·조경(p7~8)·동호배치도(p9)·커뮤니티(p21~22)·스마트 시스템(p23)
+    // 단지안내 — 공식 홈페이지 단지배치도·동호배치도·커뮤니티·시스템 + 교육자료 조감도(p2)·조경(p7~8)
     complex: {
       id: 'complex',
       variant: 'blockTabs',
@@ -364,7 +367,7 @@ const config = {
           thumb: '/apt/yangsan-xi-park-paliche/complex-thumb-siteplan.webp',
           title: '단지배치도',
           blocks: [
-            { label: '배치도', image: { src: '/apt/yangsan-xi-park-paliche/complex-siteplan.webp', alt: '단지 배치도(101~106동, 84A 334세대 / 84B 174세대 / 84C 160세대 / 120 171세대 / 168P 3세대)', width: 2000, height: 1342 } },
+            { label: '배치도', image: { src: '/apt/yangsan-xi-park-paliche/complex-siteplan.webp', alt: '단지 배치도(101~106동, 84A 334세대 / 84B 174세대 / 84C 160세대 / 120 171세대 / 168P 3세대)', width: 2000, height: 1338 } },
             { label: '조감도', image: { src: '/apt/yangsan-xi-park-paliche/overview-aerial.webp', alt: '양산자이 파크팰리체 조감도', width: 1207, height: 1018 } },
           ],
         },
@@ -385,7 +388,7 @@ const config = {
           thumb: '/apt/yangsan-xi-park-paliche/complex-thumb-dong.webp',
           title: '동호배치도',
           blocks: [
-            { label: '101~106동', image: { src: '/apt/yangsan-xi-park-paliche/complex-dong.webp', alt: '동호배치도(101~106동, 총 842세대)', width: 2000, height: 1362 } },
+            { label: '101~106동', image: { src: '/apt/yangsan-xi-park-paliche/complex-dong.webp', alt: '동호배치도(101~106동, 총 842세대)', width: 2000, height: 2533 } },
           ],
         },
         {
@@ -393,8 +396,12 @@ const config = {
           thumb: '/apt/yangsan-xi-park-paliche/complex-thumb-community.webp',
           title: '커뮤니티',
           blocks: [
-            { label: '지하 1층', image: { src: '/apt/yangsan-xi-park-paliche/complex-community-b1.webp', alt: '지하 1층 커뮤니티 — 스크린골프·골프연습장·사우나·피트니스클럽·G.X룸', width: 977, height: 511 } },
-            { label: '지하 2층', image: { src: '/apt/yangsan-xi-park-paliche/complex-community-b2.webp', alt: '지하 2층 커뮤니티 — 작은도서관·북카페·독서실·다목적실·주민회의실', width: 862, height: 614 } },
+            { label: '지하 1층', image: { src: '/apt/yangsan-xi-park-paliche/complex-community-b1.webp', alt: '지하 1층 커뮤니티 — 스크린골프·골프연습장·사우나·피트니스클럽·G.X룸', width: 1833, height: 1016 } },
+            { label: '지하 2층', image: { src: '/apt/yangsan-xi-park-paliche/complex-community-b2.webp', alt: '지하 2층 커뮤니티 — 작은도서관·북카페·독서실·다목적실·주민회의실', width: 1833, height: 1250 } },
+            { label: '피트니스', image: { src: '/apt/yangsan-xi-park-paliche/community-fitness.webp', alt: '피트니스클럽 이미지', width: 594, height: 404 } },
+            { label: '골프연습장', image: { src: '/apt/yangsan-xi-park-paliche/community-golf.webp', alt: '골프연습장 이미지', width: 594, height: 404 } },
+            { label: '사우나', image: { src: '/apt/yangsan-xi-park-paliche/community-sauna.webp', alt: '사우나 이미지', width: 594, height: 404 } },
+            { label: '작은도서관', image: { src: '/apt/yangsan-xi-park-paliche/community-library.webp', alt: '작은도서관 이미지', width: 900, height: 372 } },
           ],
         },
         {
@@ -402,7 +409,9 @@ const config = {
           thumb: '/apt/yangsan-xi-park-paliche/complex-thumb-smart.webp',
           title: '스마트시스템',
           blocks: [
-            { label: '스마트 IoT', image: { src: '/apt/yangsan-xi-park-paliche/complex-smart.webp', alt: '스마트홈 IoT — 에너지 모니터링·조명/난방 제어·부재중 방문자 확인·IoT 생활가전 제어', width: 1400, height: 636 } },
+            { label: '스마트 IoT', image: { src: '/apt/yangsan-xi-park-paliche/complex-smart.webp', alt: '스마트홈 IoT — 에너지 모니터링·조명/난방 제어·부재중 방문자 확인·IoT 생활가전 제어', width: 1818, height: 861 } },
+            { label: '안전 시스템', image: { src: '/apt/yangsan-xi-park-paliche/complex-smart-safety.webp', alt: 'CCTV·엘리베이터 방범 핸드레일·적외선감지기·앱 솔루션·차량번호인식 주차관제', width: 2000, height: 1372 } },
+            { label: '안심 서비스', image: { src: '/apt/yangsan-xi-park-paliche/complex-smart-alert.webp', alt: '안전사고 조기경보 시스템·방범형 도어폰·지하주차장 비상콜 버튼', width: 1818, height: 861 } },
           ],
         },
       ],
@@ -410,7 +419,7 @@ const config = {
         '※ 상기 이미지는 소비자의 이해를 돕기 위한 것으로 실제와 차이가 있을 수 있으며, 인·허가 과정 및 실제 시공 시 변경될 수 있습니다.',
     },
 
-    // 세대안내 — 84㎡A·B·C / 120㎡ / 168㎡P. 평면(확장형)·면적은 교육자료 p3, p27~35
+    // 세대안내 — 84㎡A·B·C / 120㎡ / 168㎡P. 평면은 공식 홈페이지 세대안내의 확장형(별도계약), 면적은 교육자료 p3
     unitPlan: {
       id: 'unit-plan',
       navLabel: '세대안내',
@@ -430,19 +439,19 @@ const config = {
             {
               letter: 'A',
               countText: '334세대',
-              image: { src: '/apt/yangsan-xi-park-paliche/unit-84a.webp', alt: '84㎡A 타입 평면도', width: 1059, height: 713 },
+              image: { src: '/apt/yangsan-xi-park-paliche/unit-84a.webp', alt: '84㎡A 타입 평면도', width: 1297, height: 873 },
               specs: { exclusive: '84.9604', supply: '107.4518' },
             },
             {
               letter: 'B',
               countText: '174세대',
-              image: { src: '/apt/yangsan-xi-park-paliche/unit-84b.webp', alt: '84㎡B 타입 평면도', width: 910, height: 689 },
+              image: { src: '/apt/yangsan-xi-park-paliche/unit-84b.webp', alt: '84㎡B 타입 평면도', width: 1344, height: 1026 },
               specs: { exclusive: '84.9794', supply: '107.9915' },
             },
             {
               letter: 'C',
               countText: '160세대',
-              image: { src: '/apt/yangsan-xi-park-paliche/unit-84c.webp', alt: '84㎡C 타입 평면도', width: 723, height: 473 },
+              image: { src: '/apt/yangsan-xi-park-paliche/unit-84c.webp', alt: '84㎡C 타입 평면도', width: 1402, height: 918 },
               specs: { exclusive: '84.9816', supply: '107.8450' },
             },
           ],
@@ -453,7 +462,7 @@ const config = {
             {
               letter: '',
               countText: '171세대',
-              image: { src: '/apt/yangsan-xi-park-paliche/unit-120.webp', alt: '120㎡ 타입 평면도', width: 1019, height: 561 },
+              image: { src: '/apt/yangsan-xi-park-paliche/unit-120.webp', alt: '120㎡ 타입 평면도', width: 1665, height: 937 },
               specs: { exclusive: '120.9561', supply: '151.9365' },
             },
           ],
@@ -464,7 +473,7 @@ const config = {
             {
               letter: 'P',
               countText: '3세대',
-              image: { src: '/apt/yangsan-xi-park-paliche/unit-168p.webp', alt: '168㎡P(펜트하우스) 타입 평면도', width: 1387, height: 755 },
+              image: { src: '/apt/yangsan-xi-park-paliche/unit-168p.webp', alt: '168㎡P(펜트하우스) 타입 평면도', width: 1825, height: 1004 },
               specs: { exclusive: '168.9129', supply: '215.2025' },
             },
           ],

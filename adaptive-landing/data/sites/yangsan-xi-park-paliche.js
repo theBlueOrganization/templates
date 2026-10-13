@@ -33,7 +33,8 @@ const config = {
     ink: '#0b1240',
     cream: '#e8f0f5',
     gold: '#558eb1',
-    visitBtnBg: '#0b1240',
+    // 관심고객 버튼(헤더·퀵메뉴·폼·모바일 하단바)은 스카이 블루로 — 네이비 분양문의 버튼과 구분
+    visitBtnBg: '#558eb1',
     visitBtnColor: '#ffffff',
   },
 
@@ -101,7 +102,9 @@ const config = {
       phone: '1533-5514',
       favoriteLabel: '관심고객',
       menuLabel: 'MENU',
-      menuBg: '#0b1240',
+      // 퀵메뉴 3버튼 색 구분: 분양문의 네이비 · 관심고객 스카이 블루(visitBtnBg) · MENU 아이스 블루+네이비 글씨
+      menuBg: '#dbe7ef',
+      menuColor: '#0b1240',
       ctaTargetId: 'vip-reservation',
       deskText: '양산자이 파크팰리체\n분양 상담을 도와드립니다.',
       address: '경남 양산시 평산동 47-1번지 일대',

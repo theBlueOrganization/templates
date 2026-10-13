@@ -126,6 +126,8 @@ export default async function AptPage({ params }) {
       slug: site.slug,
       telNumber: site.telNumber,
       projectName: site.projectName,
+      // 화면 표기용 현장명 — projectName이 문자 구분용으로 "...2"처럼 다를 때(예: 청라 아크원 푸르지오2) displayName 사용
+      displayName: site.displayName,
       adminPhones: site.adminPhones,
       adminPhonesByUtm: site.adminPhonesByUtm,
       adminPhoneNames: site.adminPhoneNames,
@@ -143,6 +145,7 @@ export default async function AptPage({ params }) {
           csHours: sig.footer.csHours,
         },
         vipForm: { privacyText: sig.vipForm.privacyText },
+        arkoneImmersiveContent: sig.arkoneImmersiveContent,
       },
     }
     if (sig.tiamoImmersive) return <SignatureTiamoImmersive site={immersiveSite} />

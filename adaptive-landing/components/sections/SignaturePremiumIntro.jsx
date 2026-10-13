@@ -54,7 +54,12 @@ export default function SignaturePremiumIntro({ premiumIntro }) {
           {premiumIntro.imageBadge && <span className={styles.splitBadge}>{premiumIntro.imageBadge}</span>}
         </div>
         <Reveal className={styles.splitText}>
-          {premiumIntro.eyebrow && <p className={styles.splitEyebrow}>{premiumIntro.eyebrow}</p>}
+          {/* premiumIntro.eyebrowColor — split에서도 eyebrow 색을 현장별로 지정(없으면 CSS 기본 브라운) */}
+          {premiumIntro.eyebrow && (
+            <p className={styles.splitEyebrow} style={premiumIntro.eyebrowColor ? { color: premiumIntro.eyebrowColor } : undefined}>
+              {premiumIntro.eyebrow}
+            </p>
+          )}
           {premiumIntro.titleLine1 && <h2 className={styles.splitTitle}>{premiumIntro.titleLine1}</h2>}
           <span className={styles.splitLine} />
           {premiumIntro.paragraphs?.map((para, i) => (

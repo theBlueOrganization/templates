@@ -27,13 +27,13 @@ const config = {
   // 상담 접수 알림을 카카오 알림톡으로 발송(실패 시 SMS 자동 폴백)
   kakao: true,
 
-  // 교육자료 톤 — 딥 네이비(#13284a) + 웜 골드(#b59a6a)
+  // 공식 홈페이지 서브 비주얼 톤(2026-10-13 사용자 요청) — 딥 네이비(#0b1240) + 스카이 블루(#558eb1) + 아이스 블루(#e8f0f5)
   colorTheme: {
-    navy: '#13284a',
-    ink: '#13284a',
-    cream: '#f4f2ee',
-    gold: '#b59a6a',
-    visitBtnBg: '#13284a',
+    navy: '#0b1240',
+    ink: '#0b1240',
+    cream: '#e8f0f5',
+    gold: '#558eb1',
+    visitBtnBg: '#0b1240',
     visitBtnColor: '#ffffff',
   },
 
@@ -86,7 +86,7 @@ const config = {
         enabled: true,
         // 인트로가 끝난 뒤(0.7초 후) 띄움
         afterIntro: true,
-        accentColor: '#13284a',
+        accentColor: '#0b1240',
         title: '관심고객등록',
         desc: '상담 가능시간 10:00~18:00 (담당자와 조율가능)',
         checks: ['모델하우스 방문예약', '원하는시간 전화예약', '자료요청', '기타문의'],
@@ -101,7 +101,7 @@ const config = {
       phone: '1533-5514',
       favoriteLabel: '관심고객',
       menuLabel: 'MENU',
-      menuBg: '#13284a',
+      menuBg: '#0b1240',
       ctaTargetId: 'vip-reservation',
       deskText: '양산자이 파크팰리체\n분양 상담을 도와드립니다.',
       address: '경남 양산시 평산동 47-1번지 일대',
@@ -131,12 +131,12 @@ const config = {
       brandName: '양산자이 파크팰리체',
       tagline: 'PARK · PALACE · RICHE',
       theme: {
-        base: '#13284a',
-        stageOne: 'radial-gradient(circle at 50% 35%, #2c4774 0, #13284a 48%, #08142a 100%)',
-        stageTwo: 'radial-gradient(circle at center, #233d68, #13284a 42%, #0a162c 100%)',
-        ring: 'rgba(212, 190, 150, 0.45)',
-        accent: '#d4be96',
-        sub: '#dfe4ee',
+        base: '#0b1240',
+        stageOne: 'radial-gradient(circle at 50% 35%, #3d6f95 0, #0b1240 50%, #050824 100%)',
+        stageTwo: 'radial-gradient(circle at center, #2f5a82, #0b1240 44%, #050824 100%)',
+        ring: 'rgba(163, 196, 219, 0.5)',
+        accent: '#a3c4db',
+        sub: '#e8f0f5',
       },
     },
 
@@ -183,9 +183,9 @@ const config = {
         announcements: [
           { badge: '안내', textStrong: '양산자이 파크팰리체', textLight: ' 공식 안내센터입니다.' },
         ],
-        announceBg: '#13284a',
+        announceBg: '#0b1240',
         bubbleText: '관심고객등록',
-        dotColor: '#b59a6a',
+        dotColor: '#558eb1',
         callLabel: '전화상담',
         visitLabel: '관심고객등록',
       },
@@ -290,6 +290,7 @@ const config = {
     premiumIntro: {
       split: true,
       eyebrow: 'Timeless prestige',
+      eyebrowColor: '#558eb1',
       titleLine1: '공세권의 특권을 누리는 프리미엄 주거공간',
       paragraphs: [
         ['Park(공원) + Palace(궁전, 대저택)', '+ Riche(부유한)', '총 842세대 브랜드 대단지'],
@@ -309,7 +310,7 @@ const config = {
       eyebrow: 'PREMIUM LIFE',
       titlePlain: '양산자이 파크팰리체 ',
       titleAccent: 'PREMIUM 6',
-      accentColor: '#b59a6a',
+      accentColor: '#558eb1',
       columns: 2,
       mobileColumns: 2,
       cards: [

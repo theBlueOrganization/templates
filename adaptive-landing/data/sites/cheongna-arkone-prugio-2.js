@@ -2,6 +2,8 @@
 // 대표번호 1811-4166, 상담 알림 010-8874-8525. 카톡 공유 제목(metaTitle)은 원본과 같은 "청라 아크원 푸르지오".
 // 콘텐츠·이미지·브랜드 컬러/폰트: 공식 사이트 arkone-prugio.com(2026-09-16). 배치도·동호수표·평면도는
 // 미공개라 "공개 예정" 이미지 사용(공개되면 교체).
+// 사업개요·입지환경·PREMIUM 7·APT 타입별 세대수·사업개요/프리미엄 이미지(premium-*.webp 등)는
+// 중개업소 교육자료(청라아크원푸르지오_중개업소배포자료 260928.pdf) 기준.
 const config = {
   slug: 'cheongna-arkone-prugio-2',
   subdomain: '청라아크원푸르지오2',
@@ -60,7 +62,7 @@ const config = {
       menuLabel: 'MENU',
       ctaTargetId: 'vip-reservation',
       deskText: '청라 아크원 푸르지오\n관심고객등록을 도와드립니다.',
-      address: '인천광역시 서구 청라동 86-1번지 일원',
+      address: '인천광역시 서해구 청라동 86-1번지 일원',
       tagline: 'ABSOLUTE REMARKABLE ONE',
       items: [
         { num: '01', label: 'MAIN', sub: '메인페이지', targetId: 'hero' },
@@ -111,23 +113,32 @@ const config = {
       id: 'overview',
       navLabel: 'overview',
       title: '청라 아크원 푸르지오',
-      subtitle: '청라국제도시 주상복합용지 M5BL, 청라를 대표하는 푸르지오 대규모 브랜드타운',
-      photo: { src: '/apt/cheongna-arkone-prugio-2/overview-photo.webp', alt: '청라 아크원 푸르지오 조감도' },
+      subtitle: '청라국제업무단지 안에서 선보이는 대규모 푸르지오 주거복합단지, 아파트 868세대 중심의 새로운 주거 랜드마크',
+      photo: { src: '/apt/cheongna-arkone-prugio-2/overview-photo.webp', alt: '청라 아크원 푸르지오 투시도' },
       notice: '※ 본 페이지에 사용된 CG, 이미지 및 내용은 소비자의 이해를 돕기 위한 사전홍보용으로 인·허가 과정 등에 따라 변경될 수 있고 실제와 다를 수 있습니다.',
       specItems: [
         { label: '사업명', value: '청라 아크원 푸르지오' },
-        { label: '대지위치', value: '인천광역시 서구 청라동 86-1번지 (청라국제도시 주상복합용지 M5BL)' },
+        { label: '대지위치', value: '인천광역시 서해구 청라동 86-1번지 (청라국제업무단지 M5BL)' },
         { label: '대지면적', value: '35,306.00㎡ (10,680.07평)' },
-        { label: '건축규모', value: ['지하 5층 ~ 지상 49층, 총 6개동', 'APT 868세대(전용 84㎡·103㎡), OT 987실(전용 105㎡·121㎡·136㎡)', '근린생활시설 1~2층'] },
+        { label: '건축면적', value: '12,278.44㎡ (3,714.23평)' },
+        { label: '연면적', value: '424,558.08㎡ (128,418.82평)' },
         {
-          label: '연면적',
+          label: '건축규모',
           value: [
-            'APT 173,952.7508㎡ (52,620.7071평)',
-            'OT 245,645.4826㎡ (74,307.7585평)',
-            '근린생활시설 4,959.8424㎡ (1,500.3523평)',
+            '총 6개동 1,855세대 (APT 868세대 / OT 987실)',
+            'APT 3개동 지하 5층 ~ 지상 44층',
           ],
         },
-        { label: '주차대수', value: '총 3,124대 (APT 1,389대 · OT 1,695대 · 근린생활시설 40대)' },
+        {
+          label: 'APT 공급',
+          value: [
+            '84㎡ 620세대 (84A 248 · 84B 124 · 84C 124 · 84D 124)',
+            '103㎡ 248세대 (103A 124 · 103B 124)',
+          ],
+        },
+        { label: '건폐율 / 용적률', value: '34.78% / 799.57%' },
+        { label: '주차대수', value: 'APT 1,389대 (세대당 1.60대)' },
+        { label: '입주예정', value: '2031년 예정' },
         { label: '시행', value: '(주)청라스마트시티' },
         { label: '시공', value: '(주)대우건설' },
       ],
@@ -139,29 +150,29 @@ const config = {
       title: 'CENTRAL LOCATION PRUGIO',
       titleAlign: 'left',
       titleWeight: 700,
-      mapImage: { src: '/apt/cheongna-arkone-prugio-2/location-map.webp', alt: '청라 아크원 푸르지오 위치 안내도 — 청라국제도시 주변 교통 및 생활 인프라' },
+      mapImage: { src: '/apt/cheongna-arkone-prugio-2/location-map.webp', alt: '청라 아크원 푸르지오 입지환경도 — 청라국제업무단지 반경 1km 교육·교통·생활 인프라' },
       features: [
-        {
-          icon: '교통',
-          title: '서울-인천-경기를 잇는 쾌속교통망',
-          desc: '강남까지 바로 잇는 7호선, 국제업무단지역 초역세권(예정), GTX-D·E(계획), 청라하늘대교 개통, 제2외곽순환도로 등',
-        },
         {
           icon: 'diamond',
           badgeVariant: 'gold',
-          title: '완성되고 있는 핵심 개발비전',
-          desc: "하나드림타운('26년 예정), 영상문화복합단지('31년 계획), 인천로봇랜드(예정), 청라시티타워(계획) 등",
+          title: '청라 3.0의 중심, 청라국제업무단지',
+          desc: '국제업무단지 활성화로 자족도시 기능이 강화되는 청라, 국제업무단지 중심축에 위치한 M5BL — 개발호재와 생활 인프라가 집중되는 핵심 입지',
+        },
+        {
+          icon: '교통',
+          title: '서울 · 인천 쾌속 교통망',
+          desc: "서울 7호선 연장('30년 1차 개통예정), GTX-D·E 더블 광역급행철도 계획('35년 계획), 인천3호선 계획, 청라하늘대교 개통, 경인·제2외곽순환고속도로",
         },
         {
           icon: '생활',
           badgeVariant: 'gold',
-          title: '눈앞에 다가온 트렌디한 생활특권',
-          desc: "복합쇼핑몰+돔구장 형태의 스타필드 청라('28년 개장 예정), 서울아산청라병원('29년 예정), 코스트코 청라점 등",
+          title: '원스톱 생활 인프라',
+          desc: "코스트코·스타필드&돔구장(예정) 차량 10분, 서울아산청라병원 반경 1.5km('29년 계획), 청라호수공원·해변공원 등 수변 녹지, B1BL 연계 단지 내 상업시설",
         },
         {
           icon: 'book',
-          title: '단지 앞 안전한 통학길 안심 교육환경',
-          desc: '도보 5분 초교 신설(예정), 중교 신설(계획), 도보거리 경연초·중교, 청라달튼외국인학교',
+          title: '도보통학 안심학군',
+          desc: '사업지 인근 신설되는 초·중교까지 도보 5분거리(예정), 청라달튼외국인학교 반경 1.5km, B1BL 내 종로엠스쿨 학원 MOU 교육 콘텐츠 연계 기대',
         },
       ],
       disclaimer:
@@ -172,72 +183,111 @@ const config = {
       bgImage: { src: '/apt/cheongna-arkone-prugio-2/premium-intro-bg.webp', alt: '청라 아크원 푸르지오 프리미엄 전경' },
       titleLine1: '공간의 특별함도 자부심의 높이도',
       titleLine2: '정점을 넘어 완성된 라이프로\n청라 아크원 푸르지오',
-      descLine1: '총 2,911가구(청라 피크원 푸르지오 포함) 규모의',
-      descLine1Accent: ['2,911가구'],
+      descLine1: '청라 푸르지오 이후 13년 만에, 청라 피크원 푸르지오와 함께 총 2,911가구',
+      descLine1Accent: ['13년 만에', '2,911가구'],
       descLine2: '청라를 대표하는 푸르지오 대규모 브랜드타운을 완성합니다.',
     },
 
-    // 짧은 인덱스(숫자+제목) — 상세는 아래 premiumSplits
+    // 짧은 인덱스(숫자+제목) — 상세는 아래 premiumSplits. 교육자료 "PREMIUM 7" 기준
     premiumValue: {
       id: 'premium-value',
       navLabel: '프리미엄',
       eyebrow: 'PREMIUM VALUE',
       titlePlain: '청라 아크원 푸르지오 ',
-      titleAccent: 'PREMIUM 5',
+      titleAccent: 'PREMIUM 7',
       cardTextAlign: 'center',
       cards: [
-        { num: '01', title: ['총 2,911가구', '브랜드타운'], desc: ['청라를 대표하는', '푸르지오 대규모 타운'] },
-        { num: '02', title: ['국제업무단지', '센트럴 라이프'], desc: ['청라의 중심으로', '완성되는 주거 가치'] },
-        { num: '03', title: ['오션 · 시티뷰', '조망 특화'], desc: ['2면 or 3면 개방구조', '(일부세대)'] },
-        { num: '04', title: ['높은 희소가치', '합리적 분양가'], desc: ['2017년 이후 10년만의', '분양가 상한제 공급'] },
-        { num: '05', title: ['멀티', '라이프 플랫폼'], desc: ['팬트리 2개소 이상,', '멀티 발코니(OT)'] },
+        { num: '01', title: ['푸르지오', '브랜드 타운'], desc: ['청라 피크원 푸르지오 포함', '총 2,911가구 대규모 타운'] },
+        { num: '02', title: ['국제업무단지의', '미래가치'], desc: ['하나드림타운·인천로봇랜드 등', '자족도시로 완성되는 청라'] },
+        { num: '03', title: ['청라와 서울을 잇는', '쾌속 광역교통망'], desc: ['7호선 국제업무단지역(예정)', '도보 7분 · GTX-D·E 계획'] },
+        { num: '04', title: ['원스톱', '생활인프라'], desc: ['스타필드·코스트코·', '서울아산청라병원(예정) 등'] },
+        { num: '05', title: ['단지 앞 안심', '교육환경'], desc: ['도보권 초·중교 신설 계획', '(초 예정 · 중 계획)'] },
+        { num: '06', title: ['실수요', '선호 평형'], desc: ['전용 84㎡·103㎡', '세대당 주차 1.60대'] },
+        { num: '07', title: ['에코힐링', '스포츠 라이프'], desc: ['해변·노을공원과 배드민턴·', '농구·테니스 등 여가 인프라'] },
       ],
     },
 
-    // PREMIUM 01~05 텍스트+사진 좌우 분할(짝수 reverse)
+    // PREMIUM 01~07 텍스트+이미지 좌우 분할(짝수 reverse). 01~06 이미지는 교육자료 페이지를 잘라 만든 것 —
+    // 글자가 들어간 이미지라 잘리지 않도록 imageAspect를 원본 비율로 지정
     premiumSplits: [
       {
         eyebrow: 'PREMIUM 01',
-        title: ['총 2,911가구', '푸르지오 브랜드타운'],
-        descLines: ['최고 49층 총 2,911가구(청라 피크원 푸르지오 포함)로', '청라를 대표하는 푸르지오 대규모 브랜드타운'],
-        images: [
-          { src: '/apt/cheongna-arkone-prugio-2/premium-photo-01.webp', alt: '청라 아크원 푸르지오 야경 이미지컷 1' },
-          { src: '/apt/cheongna-arkone-prugio-2/premium-photo-01b.webp', alt: '청라 아크원 푸르지오 야경 이미지컷 2' },
+        title: ['총 2,911가구', '푸르지오 브랜드 타운'],
+        descLines: [
+          '청라 피크원 푸르지오 1,056실 + 청라 아크원 푸르지오 1,855가구,',
+          '국제업무단지에 형성되는 총 2,911가구 푸르지오 브랜드 타운',
+          '청라 푸르지오 이후 13년 만에 다시 선보이는 푸르지오 아파트',
         ],
+        imageAspect: '1544 / 1445',
+        images: [{ src: '/apt/cheongna-arkone-prugio-2/premium-brandtown.webp', alt: '청라 피크원 푸르지오와 청라 아크원 푸르지오 총 2,911가구 브랜드 타운 투시도' }],
       },
       {
         reverse: true,
         eyebrow: 'PREMIUM 02',
-        title: ['국제업무단지의', '센트럴 라이프'],
-        descLines: ['청라의 중심으로 완성되는', '국제업무단지의 특별한 주거 가치'],
-        images: [{ src: '/apt/cheongna-arkone-prugio-2/premium-photo-02.webp', alt: '청라 아크원 푸르지오 도심 전경 이미지컷' }],
+        title: ['국제업무단지의', '미래가치'],
+        descLines: [
+          '금융·첨단산업·의료·쇼핑·스포츠·문화·관광을 아우르는 대규모 자족시설,',
+          '하나드림타운·로봇랜드·청라의료복합타운·영상문화복합단지·ICON-CITY 등',
+          '계획고용 약 6.3만 명의 직주근접 배후수요',
+        ],
+        imageAspect: '1395 / 1067',
+        images: [{ src: '/apt/cheongna-arkone-prugio-2/premium-jobs.webp', alt: '청라 주요 자족시설 고용계획 — 계획고용 약 6.3만 명' }],
       },
       {
         eyebrow: 'PREMIUM 03',
-        title: ['오션 · 시티뷰', '조망 특화'],
-        descLines: ['오션 · 시티뷰를 동시에 누리는', '2면 or 3면 개방구조(일부세대)'],
-        images: [
-          { src: '/apt/cheongna-arkone-prugio-2/premium-photo-03.webp', alt: '청라 아크원 푸르지오 오션뷰 이미지컷 1' },
-          { src: '/apt/cheongna-arkone-prugio-2/premium-photo-03b.webp', alt: '청라 아크원 푸르지오 오션뷰 이미지컷 2' },
+        title: ['청라와 서울을 잇는', '쾌속 광역교통망'],
+        descLines: [
+          "서울 7호선 연장 국제업무단지역(계획) 도보 7분 — '30년 1차 개통예정",
+          "GTX-D·E 더블 광역급행철도 계획('35년 계획), 인천3호선 계획",
+          '경인·제2외곽순환고속도로, 청라하늘대교로 영종~청라 접근성 강화',
         ],
+        imageAspect: '1657 / 1766',
+        images: [{ src: '/apt/cheongna-arkone-prugio-2/premium-transit.webp', alt: '서울 7호선 연장 및 GTX-D·E 계획 노선도' }],
       },
       {
         reverse: true,
         eyebrow: 'PREMIUM 04',
-        title: ['높은 희소가치와', '합리적 분양가'],
-        descLines: ['청라가 기다려온 신규공급,', "2017년 이후 10년만의 분양가 상한제 공급 아파트"],
+        title: ['원스톱', '생활인프라'],
+        descLines: [
+          "스타필드&돔구장('28년 예정)·코스트코 차량 10분 거리",
+          "서울아산청라병원 반경 1.5km('29년 계획), 청라호수공원·해변공원",
+          'B1BL과 연계되는 단지 내 상업시설로 생활편의성 강화',
+        ],
+        imageAspect: '785 / 499',
         images: [
-          { src: '/apt/cheongna-arkone-prugio-2/premium-photo-04.webp', alt: '청라 아크원 푸르지오 실내 이미지컷 1' },
-          { src: '/apt/cheongna-arkone-prugio-2/premium-photo-04b.webp', alt: '청라 아크원 푸르지오 실내 이미지컷 2' },
+          { src: '/apt/cheongna-arkone-prugio-2/premium-starfield.webp', alt: "스타필드&돔구장 — '28년 예정, 연간 약 2,500만 명 방문 기대" },
+          { src: '/apt/cheongna-arkone-prugio-2/premium-medical.webp', alt: "청라의료복합타운 — '29년 예정 의료·연구 기능 결합" },
         ],
       },
       {
         eyebrow: 'PREMIUM 05',
-        title: ['멀티', '라이프 플랫폼'],
-        descLines: ['팬트리 2개소 이상 제공,', '다양한 공간 활용의 멀티 발코니(OT)'],
+        title: ['단지 앞 안심', '교육환경'],
+        descLines: [
+          '사업지 인근 신설되는 초·중교까지 도보 5분거리(초 예정 · 중 계획)',
+          '청라달튼 외국인학교 반경 1.5km',
+          'B1BL 내 종로엠스쿨 학원 MOU 교육 콘텐츠 연계 기대',
+        ],
+        imageAspect: '494 / 568',
+        images: [{ src: '/apt/cheongna-arkone-prugio-2/premium-school.webp', alt: '사업지와 초·중교 신설 예정 부지 위치도' }],
+      },
+      {
+        reverse: true,
+        eyebrow: 'PREMIUM 06',
+        title: ['실수요', '선호 평형'],
+        descLines: [
+          '선호도 높은 전용 84㎡·103㎡ 중대형 상품 구성, APT 총 868세대',
+          '세대당 주차 1.60대 — 청라3동 `12년 이후 입주단지 중 최상위권',
+        ],
+        imageAspect: '1297 / 654',
+        images: [{ src: '/apt/cheongna-arkone-prugio-2/premium-unit-table.webp', alt: '청라 아크원 푸르지오 APT 분양면적표 — 84A·84B·84C·84D·103A·103B' }],
+      },
+      {
+        eyebrow: 'PREMIUM 07',
+        title: ['에코힐링', '스포츠 라이프'],
+        descLines: ['해변·노을공원과 배드민턴·농구·테니스 등', '집 앞에서 누리는 자연·여가·스포츠 인프라'],
         images: [
-          { src: '/apt/cheongna-arkone-prugio-2/premium-photo-05.webp', alt: '청라 아크원 푸르지오 발코니 이미지컷 1' },
-          { src: '/apt/cheongna-arkone-prugio-2/premium-photo-05b.webp', alt: '청라 아크원 푸르지오 발코니 이미지컷 2' },
+          { src: '/apt/cheongna-arkone-prugio-2/premium-photo-03.webp', alt: '청라 아크원 푸르지오 오션뷰 이미지컷 1' },
+          { src: '/apt/cheongna-arkone-prugio-2/premium-photo-03b.webp', alt: '청라 아크원 푸르지오 오션뷰 이미지컷 2' },
         ],
       },
     ],
@@ -246,8 +296,8 @@ const config = {
     complex: {
       id: 'complex',
       eyebrow: 'COMPLEX PLAN',
-      titleLine1: '지하 5층~지상 49층 총 6개동',
-      titleLine2: '1,855가구, 청라의 새로운 랜드마크',
+      titleLine1: '총 6개동 1,855세대(APT 868 · OT 987실)',
+      titleLine2: '청라국제업무단지의 새로운 주거 랜드마크',
       desc: '단지 배치와 동호수 구성은 공식 분양 일정에 맞춰 순차적으로 공개될 예정입니다.',
       siteMap: {
         image: { src: '/apt/cheongna-arkone-prugio-2/complex-sitemap.webp', alt: '청라 아크원 푸르지오 단지 배치도 — 공개 예정', width: 1200, height: 1200 },
@@ -270,10 +320,28 @@ const config = {
           area: 'APT 84㎡',
           types: [
             {
-              letter: '',
-              countText: 'APT 총 868세대(전용 84㎡·103㎡) 중',
-              image: { src: '/apt/cheongna-arkone-prugio-2/unit-apt-84.webp', alt: 'APT 84㎡ 타입 평면도 — 공개 예정', width: 900, height: 1300 },
-              specs: { exclusive: '84' },
+              letter: 'A',
+              countText: '248세대',
+              image: { src: '/apt/cheongna-arkone-prugio-2/unit-apt-84.webp', alt: 'APT 84㎡ A타입 평면도 — 공개 예정', width: 900, height: 1300 },
+              specs: { exclusive: '84.94', supply: '122.21' },
+            },
+            {
+              letter: 'B',
+              countText: '124세대',
+              image: { src: '/apt/cheongna-arkone-prugio-2/unit-apt-84.webp', alt: 'APT 84㎡ B타입 평면도 — 공개 예정', width: 900, height: 1300 },
+              specs: { exclusive: '84.92', supply: '121.66' },
+            },
+            {
+              letter: 'C',
+              countText: '124세대',
+              image: { src: '/apt/cheongna-arkone-prugio-2/unit-apt-84.webp', alt: 'APT 84㎡ C타입 평면도 — 공개 예정', width: 900, height: 1300 },
+              specs: { exclusive: '84.86', supply: '120.29' },
+            },
+            {
+              letter: 'D',
+              countText: '124세대',
+              image: { src: '/apt/cheongna-arkone-prugio-2/unit-apt-84.webp', alt: 'APT 84㎡ D타입 평면도 — 공개 예정', width: 900, height: 1300 },
+              specs: { exclusive: '84.95', supply: '121.91' },
             },
           ],
         },
@@ -281,10 +349,16 @@ const config = {
           area: 'APT 103㎡',
           types: [
             {
-              letter: '',
-              countText: 'APT 총 868세대(전용 84㎡·103㎡) 중',
-              image: { src: '/apt/cheongna-arkone-prugio-2/unit-apt-103.webp', alt: 'APT 103㎡ 타입 평면도 — 공개 예정', width: 900, height: 1300 },
-              specs: { exclusive: '103' },
+              letter: 'A',
+              countText: '124세대',
+              image: { src: '/apt/cheongna-arkone-prugio-2/unit-apt-103.webp', alt: 'APT 103㎡ A타입 평면도 — 공개 예정', width: 900, height: 1300 },
+              specs: { exclusive: '103.85', supply: '147.04' },
+            },
+            {
+              letter: 'B',
+              countText: '124세대',
+              image: { src: '/apt/cheongna-arkone-prugio-2/unit-apt-103.webp', alt: 'APT 103㎡ B타입 평면도 — 공개 예정', width: 900, height: 1300 },
+              specs: { exclusive: '103.99', supply: '148.20' },
             },
           ],
         },

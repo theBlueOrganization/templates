@@ -111,6 +111,8 @@ const adaptiveLandingPointers = [
   { slug: "yongin-gorim-dongmun-the-east", subdomain: "용인고림동문디이스트", template: "adaptive-landing" },
   // 영종국제도시 신일 비아프 크레스트(2026-10-11) — 한글도메인 영종신일비아프크레스트.addupapt.kr
   { slug: "yeongjong-shinil-viaaf-crest", subdomain: "영종신일비아프크레스트", template: "adaptive-landing" },
+  // 양산자이 파크팰리체(2026-10-13) — 한글도메인 양산자이파크팰리체.addupapt.kr
+  { slug: "yangsan-xi-park-paliche", subdomain: "양산자이파크팰리체", template: "adaptive-landing" },
 ];
 
 const allSites = [...sites, ...adaptiveLandingPointers];

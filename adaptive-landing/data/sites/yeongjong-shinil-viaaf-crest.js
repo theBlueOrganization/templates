@@ -9,14 +9,14 @@
 // 2026-10-11 공식 사이트(https://신일비아프크레스트.com/) 이미지로 교체 + 티아모 까사와 같은 풀페이지 몰입형(viaafImmersive)으로 전환 —
 //   메인 비주얼(visual-bg-new-01/02 → hr-hero-1/2, 모바일 세로 크롭 hero-m-1/2), 입지 8가지 이미지컷(envi-bg-01~08 → envi-1~8).
 //   시행 한국토지신탁 / 시공 ㈜신일은 공식 사이트 푸터 기준. 평면·단지설계 컷은 공식 사이트 원본(417px 등)보다 교육자료 크롭이 고화질이라 유지.
-// 대표번호 1660-4579, 상담 접수 알림 010-3053-4088 — 2026-10-11 사용자 전달값.
+// 대표번호 1844-2357 (2026-10-14 변경), 상담 접수 알림 010-3053-4088 — 2026-10-11 사용자 전달값.
 const config = {
   slug: 'yeongjong-shinil-viaaf-crest',
   // 영종신일비아프크레스트.addupapt.kr → /apt/yeongjong-shinil-viaaf-crest (middleware.js)
   subdomain: '영종신일비아프크레스트',
   projectName: '영종국제도시 신일 비아프 크레스트',
   shortName: '신일 비아프 크레스트',
-  telNumber: '1660-4579',
+  telNumber: '1844-2357',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/yeongjong-shinil-viaaf-crest/og.jpg',
   // 상담신청 알림 수신번호
   adminPhones: ['01030534088'],
@@ -80,7 +80,7 @@ const config = {
       logoSize: { base: 92, lg: 108, xl: 116 },
       gnb: ['사업안내', '위치안내', '프리미엄', '단지안내', '세대안내', '관심고객등록'],
       quickCtaLabel: '관심고객등록',
-      phone: '1660-4579',
+      phone: '1844-2357',
       // 히어로(밝은 하늘 투시도) 위 투명 구간에서는 남색 메뉴·전화번호 + 남색 로고
       transparentDark: true,
       logoDark: {
@@ -110,7 +110,7 @@ const config = {
     quickMenu: {
       brand: 'VIAAF',
       phoneLabel: '분양문의',
-      phone: '1660-4579',
+      phone: '1844-2357',
       favoriteLabel: '관심고객',
       menuLabel: 'MENU',
       menuBg: '#0d1240',
@@ -565,7 +565,7 @@ const config = {
         '※ 84㎡형, 114㎡형은 이해를 돕기 위한 호칭이며, 정확한 전용면적 및 공급면적 등은 모집공고와 분양홍보관에서 확인하시기 바랍니다.',
         '※ 제작, 편집, 인쇄과정상 오탈자 등의 오류가 있을 수 있으니, 계약 전 반드시 견본주택 관계자에게 문의하시기 바랍니다.',
       ],
-      csPhone: '1660-4579',
+      csPhone: '1844-2357',
       csHours: 'AM 09:00 ~ PM 19:00',
     },
   },

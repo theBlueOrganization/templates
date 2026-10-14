@@ -19,6 +19,7 @@ import styles from './SignatureArkoneImmersive.module.css'
 // 그 외 콘텐츠(둘러보기 브랜드 필름 중복 영상 제외)는 시안 그대로 반영.
 
 const ASSET = (name) => `/apt/cheongna-arkone-prugio/v2/${name}`
+const assetSrc = (name) => (name.startsWith('/') ? name : ASSET(name))
 
 const NAV_ITEMS = [
   { id: 'starfield', label: '핵심가치', num: '01', code: 'VALUE' },
@@ -37,7 +38,7 @@ const PANEL_ORDER = [
 
 const TONE = {
   brand: 'toneA', visit: 'toneB', starfield: 'toneC', hospital: 'toneB', hana: 'toneA',
-  network: 'toneC', location: 'toneB', unit: 'toneA', plan: 'toneB', community: 'toneC',
+  network: 'toneC', location: 'toneB', seoul: 'toneA', unit: 'toneA', plan: 'toneB', community: 'toneC',
   premium: 'toneA', history: 'toneB', contact: 'toneA',
 }
 
@@ -45,7 +46,7 @@ const TONE = {
 // (좌측 슬라이드/스케일/클립리빌/소프트블러). 스크롤로 패널을 오갈 때마다 매번 다시 재생됨
 const MOTION = {
   hero: 'motionScale', brand: 'motionLeft', visit: 'motionClip', starfield: 'motionScale',
-  hospital: 'motionSoft', hana: 'motionLeft', network: 'motionClip', location: 'motionScale',
+  hospital: 'motionSoft', hana: 'motionLeft', network: 'motionClip', location: 'motionScale', seoul: 'motionSoft',
   unit: 'motionSoft', plan: 'motionLeft', community: 'motionClip', premium: 'motionScale',
   history: 'motionSoft', contact: 'motionLeft', footer: 'motionSoft',
 }
@@ -171,12 +172,54 @@ const BRAND_WORDS = [
 
 const REQUEST_CHECKS = ['타입별 평면도', '공급금액', '계약조건', '공급일정']
 const CONSULT_CHECKS = ['방문예약', '모델하우스 위치 전송', '자료요청', '기타문의']
+const consultChecksFor = (content) => (content?.hideRequest ? CONSULT_CHECKS.filter((c) => c !== '자료요청') : CONSULT_CHECKS)
 
 const TRANSITION_MS = 520
 
 export default function SignatureArkoneImmersive({ site }) {
   const sig = site.signature
   const telNumber = site.telNumber
+  // 다른 아크원 현장(예: cheongna-arkone-prugio-2)이 같은 화면을 쓰면서 일부 콘텐츠만 바꿀 때
+  // sig.arkoneImmersiveContent로 덮어씀 — 없으면 원본(cheongna-arkone-prugio) 콘텐츠 그대로
+  const content = sig.arkoneImmersiveContent ?? {}
+  const displayName = site.displayName ?? site.projectName
+  const brandStats = content.brandStats ?? BRAND_STATS
+  const brandWide = content.brandWide ?? BRAND_WIDE
+  const unitTabs = content.unitTabs ?? UNIT_TABS
+  const premiumSlides = content.premiumSlides ?? PREMIUM_SLIDES
+  const premium = content.premium ?? { eyebrow: '프리미엄 01—05', titleTop: '청라 생활을 넓히는', titleAccent: '다섯 가지 가치' }
+  const plan = content.plan ?? { desc: '최고 49층 스카이라인과 일부 2·3면 개방구조가 만드는 오션·시티뷰.', points: ['최고 49층', '오션·시티뷰', '일부 2·3면 개방'] }
+  const locationMap = content.locationMap ?? { src: '/apt/cheongna-arkone-prugio/location-map.webp' }
+  const mapPins = content.mapPins ?? ['스타필드 청라', '서울아산청라병원', '하나드림타운', '광역 교통망']
+  // 자료요청(상담 탭·PC 플로팅·모바일 하단바 버튼·방문예약 체크항목)을 숨김 — 예: 청라 아크원 푸르지오2
+  const hideRequest = !!content.hideRequest
+  // 자료가 없는 패널을 통째로 뺌(예: hidePanels: ['unit', 'plan']) — 메뉴에서도 같이 빠짐
+  const hidePanels = content.hidePanels ?? []
+  const locationHead = content.location ?? { eyebrow: '입지환경', titleTop: '청라의 변화가', titleAccent: '한곳에 모이다', desc: '문화·의료·금융·교통이 연결되는 청라국제업무단지의 중심.' }
+  // 입지환경 패널 안에 지도와 함께(PC 좌우·모바일 위아래) 보여줄 노선 인포그래픽 — 예: 청라 아크원 푸르지오2
+  const seoulRoutes = content.seoulRoutes ?? null
+  // 유니트 자리에 넣을 프리미엄 슬라이드(공식 사이트 프리미엄 페이지 형식) — 예: 청라 아크원 푸르지오2
+  const unitPremium = content.unitPremium ?? null
+  const heroCopy = content.heroCopy ?? null
+  // 노선 인포그래픽: PC는 입지환경 패널 안 지도 오른쪽, 모바일(1023px 이하)은 지도 다음 별도 패널('seoul')
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 1023px)')
+    const update = () => setIsMobile(mq.matches)
+    update()
+    mq.addEventListener('change', update)
+    return () => mq.removeEventListener('change', update)
+  }, [])
+  const panelOrder = PANEL_ORDER
+    .flatMap((id) => (id === 'location' && seoulRoutes && isMobile ? ['location', 'seoul'] : [id]))
+    .filter((id) => !hidePanels.includes(id))
+  const navItems = NAV_ITEMS
+    .filter((item) => !hidePanels.includes(item.id))
+    .map((item) => (content.navLabels?.[item.id] ? { ...item, label: content.navLabels[item.id] } : item))
+  const showPanel = (id) => !hidePanels.includes(id)
+  const noticeBenefit = content.noticeBenefit === undefined
+    ? '사전예약 후 방문 상담 고객님들께\n「7만원 상당 고급 와인」 증정!\n(선착순 100명)'
+    : content.noticeBenefit
   const utmSource = useUtmSource() ?? '직접유입'
   const resolvedAdminPhones = site.adminPhonesByUtm?.[utmSource] ?? site.adminPhones
 
@@ -185,7 +228,8 @@ export default function SignatureArkoneImmersive({ site }) {
   const [introReady, setIntroReady] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [premiumIndex, setPremiumIndex] = useState(0)
-  const [unitKey, setUnitKey] = useState(UNIT_TABS[0].key)
+  const [unitIndex, setUnitIndex] = useState(0)
+  const [unitKey, setUnitKey] = useState(unitTabs[0].key)
   const [contactTab, setContactTab] = useState('visit')
   const [noticeOpen, setNoticeOpen] = useState(false)
   const [sourceInfo, setSourceInfo] = useState(null)
@@ -200,6 +244,7 @@ export default function SignatureArkoneImmersive({ site }) {
   const infoDialogRef = useRef(null)
   const faqDialogRef = useRef(null)
   const openDialogCountRef = useRef(0)
+  const interestDialogRef = useRef(null)
 
   const transitioningRef = useRef(false)
   const wheelRef = useRef({ sum: 0, dir: 0, consumed: false, lastAt: 0 })
@@ -210,7 +255,7 @@ export default function SignatureArkoneImmersive({ site }) {
   const historyViewportRef = useRef(null)
   const historyStateRef = useRef({ x: 0, dragging: false, startX: 0, baseX: 0, lastT: 0, half: 0, raf: 0 })
 
-  const activePanelId = PANEL_ORDER[index]
+  const activePanelId = panelOrder[index]
 
   // 풀페이지 락 — 이 페이지가 떠 있는 동안만 body 스크롤을 잠그고, 언마운트 시 원복
   useEffect(() => {
@@ -237,9 +282,13 @@ export default function SignatureArkoneImmersive({ site }) {
   // 인트로가 끝나면 안내 팝업을 띄우고, 닫으면 이어서 방문예약 다이얼로그를 띄움
   // (요청 반영 — 별도 디자인의 "관심고객등록" 팝업 대신, 이미 있는 방문예약 다이얼로그를 그대로 재사용).
   // 세션 내 재노출 억제 없이 매번(새로고침해도) 노출
+  // content.interestPopup이 있으면(예: 청라 아크원 푸르지오2) 안내 팝업 없이 관심고객등록 팝업 하나만 띄움
   useEffect(() => {
     if (!introDone) return
-    const t = setTimeout(() => setNoticeOpen(true), 700)
+    const t = setTimeout(() => {
+      if (content.interestPopup) openDialog(interestDialogRef)
+      else setNoticeOpen(true)
+    }, 700)
     return () => clearTimeout(t)
   }, [introDone])
 
@@ -251,9 +300,12 @@ export default function SignatureArkoneImmersive({ site }) {
   const blockingOverlay = () => noticeOpen || openDialogCountRef.current > 0
 
   const setPanels = (next) => {
-    const clamped = Math.max(0, Math.min(PANEL_ORDER.length - 1, next))
-    if (PANEL_ORDER[clamped] === 'premium' && PANEL_ORDER[index] !== 'premium') {
-      setPremiumIndex(index > clamped ? 4 : 0)
+    const clamped = Math.max(0, Math.min(panelOrder.length - 1, next))
+    if (panelOrder[clamped] === 'premium' && panelOrder[index] !== 'premium') {
+      setPremiumIndex(index > clamped ? premiumSlides.length - 1 : 0)
+    }
+    if (unitPremium && panelOrder[clamped] === 'unit' && panelOrder[index] !== 'unit') {
+      setUnitIndex(index > clamped ? unitPremium.slides.length - 1 : 0)
     }
     setIndex(clamped)
   }
@@ -270,18 +322,22 @@ export default function SignatureArkoneImmersive({ site }) {
   const move = (dir) => {
     if (transitioningRef.current || blockingOverlay() || !introDone) return false
     if (activePanelId === 'premium') {
-      if (dir > 0 && premiumIndex < 4) { setPremiumIndex((p) => p + 1); lock(); return true }
+      if (dir > 0 && premiumIndex < premiumSlides.length - 1) { setPremiumIndex((p) => p + 1); lock(); return true }
       if (dir < 0 && premiumIndex > 0) { setPremiumIndex((p) => p - 1); lock(); return true }
     }
+    if (activePanelId === 'unit' && unitPremium) {
+      if (dir > 0 && unitIndex < unitPremium.slides.length - 1) { setUnitIndex((p) => p + 1); lock(); return true }
+      if (dir < 0 && unitIndex > 0) { setUnitIndex((p) => p - 1); lock(); return true }
+    }
     const next = index + dir
-    if (next < 0 || next >= PANEL_ORDER.length) return false
+    if (next < 0 || next >= panelOrder.length) return false
     lock()
     setPanels(next)
     return true
   }
 
   const navigateTo = (targetId) => {
-    const target = PANEL_ORDER.indexOf(targetId)
+    const target = panelOrder.indexOf(targetId)
     if (target < 0 || transitioningRef.current || target === index) return
     lock()
     setPanels(target)
@@ -291,7 +347,15 @@ export default function SignatureArkoneImmersive({ site }) {
   useEffect(() => {
     const onWheel = (e) => {
       if (blockingOverlay() || !introDone) { e.preventDefault(); return }
-      if (e.target.closest('dialog,.' + styles.mobileMenu + ',.' + styles.contactPanel)) return
+      if (e.target.closest('dialog,.' + styles.mobileMenu)) return
+      // 상담 폼 영역은 폼 안에서 그 방향으로 더 스크롤할 내용이 있을 때만 휠을 양보 —
+      // 폼이 다 보이는 경우(예: PC 가운데 정렬 폼)엔 그대로 다음/이전 패널로 넘어감
+      const panelEl = e.target.closest('.' + styles.contactPanel)
+      if (panelEl) {
+        const canDown = panelEl.scrollTop + panelEl.clientHeight < panelEl.scrollHeight - 1
+        const canUp = panelEl.scrollTop > 0
+        if ((e.deltaY > 0 && canDown) || (e.deltaY < 0 && canUp)) return
+      }
       e.preventDefault()
       const w = wheelRef.current
       const now = performance.now()
@@ -335,7 +399,7 @@ export default function SignatureArkoneImmersive({ site }) {
       window.removeEventListener('touchend', onTouchEnd)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index, introDone, noticeOpen, premiumIndex])
+  }, [index, introDone, noticeOpen, premiumIndex, unitIndex])
 
   // 히스토리 타임라인 자동 스크롤 + 드래그
   useEffect(() => {
@@ -420,7 +484,7 @@ export default function SignatureArkoneImmersive({ site }) {
       alert('개인정보 수집 및 이용에 동의해 주세요.')
       return false
     }
-    const checkboxLabels = kind === 'visit' ? CONSULT_CHECKS : REQUEST_CHECKS
+    const checkboxLabels = kind === 'visit' ? consultChecksFor(content) : REQUEST_CHECKS
     const serviceType = checkboxLabels.filter((label) => fd.get(label) === 'on').join(', ') || (kind === 'visit' ? '방문예약' : '자료요청')
     const payload = {
       name,
@@ -459,7 +523,7 @@ export default function SignatureArkoneImmersive({ site }) {
   }
 
   const panelClass = (id) => {
-    const pos = PANEL_ORDER.indexOf(id)
+    const pos = panelOrder.indexOf(id)
     return cn(
       styles.panel,
       id !== 'hero' && id !== 'footer' && styles[TONE[id]],
@@ -470,7 +534,40 @@ export default function SignatureArkoneImmersive({ site }) {
     )
   }
 
-  const unit = UNIT_TABS.find((u) => u.key === unitKey)
+  const unit = unitTabs.find((u) => u.key === unitKey)
+
+  // 프리미엄 슬라이드 한 장 — images가 있으면 공식 사이트 프리미엄 페이지 형식(문구 + 이미지컷 1~2장,
+  // imagesLayout 'stack'이면 위아래, reverse면 PC 좌우 반전), 없으면 원본처럼 풀블리드 사진 + 캡션
+  const lines = (text) => text.split('\n').map((line, k) => (<span key={k}>{k > 0 && <br />}{line}</span>))
+  const renderSlide = (s, i, activeIdx) => (
+    s.images ? (
+      <figure key={s.num} className={cn(styles.premiumSlide, styles.premiumFeature, s.reverse && styles.premiumFeatureReverse, i === activeIdx && styles.isActive, i < activeIdx && styles.isBefore)}>
+        <figcaption>
+          <small>{s.label ?? `PREMIUM ${s.num}`}</small>
+          <h3>{lines(s.title)}</h3>
+          <p>{lines(s.desc)}</p>
+          {s.note && <p className={styles.premiumFeatureNote}>{s.note}</p>}
+        </figcaption>
+        <div className={cn(styles.premiumFeatureImages, s.imagesLayout === 'stack' && styles.premiumFeatureStack)}>
+          {s.images.map((img) => (
+            <div key={img.src} className={styles.premiumFeatureImage}>
+              <Image src={img.src} alt={img.alt} fill sizes="(min-width: 1024px) 40vw, 50vw" />
+              <span>이미지컷</span>
+            </div>
+          ))}
+        </div>
+      </figure>
+    ) : (
+      <figure key={s.num} className={cn(styles.premiumSlide, i === activeIdx && styles.isActive, i < activeIdx && styles.isBefore)}>
+        <Image src={assetSrc(s.img)} alt={s.alt} fill sizes="100vw" style={{ objectFit: s.fit, objectPosition: s.position }} />
+        <figcaption>
+          <small>{s.label ?? `PREMIUM ${s.num}`}</small>
+          <h3>{s.title}</h3>
+          <p>{s.desc}</p>
+        </figcaption>
+      </figure>
+    )
+  )
 
   return (
     <div className={styles.root}>
@@ -484,7 +581,7 @@ export default function SignatureArkoneImmersive({ site }) {
           <strong className={styles.headerProject}>청라 아크원</strong>
         </div>
         <nav className={styles.headerMenu} aria-label="주요 메뉴">
-          {NAV_ITEMS.map((item) => (
+          {navItems.map((item) => (
             <button key={item.id} type="button" onClick={() => navigateTo(item.id)}>{item.label}</button>
           ))}
         </nav>
@@ -504,7 +601,7 @@ export default function SignatureArkoneImmersive({ site }) {
       </header>
 
       <nav className={cn(styles.mobileMenu, menuOpen && styles.isOpen)} aria-label="모바일 메뉴">
-        {NAV_ITEMS.map((item) => (
+        {navItems.map((item) => (
           <button key={item.id} type="button" onClick={() => { navigateTo(item.id); setMenuOpen(false) }}>{item.label}</button>
         ))}
         <button type="button" onClick={() => openDialog(visitDialogRef)}>방문예약 신청</button>
@@ -512,16 +609,28 @@ export default function SignatureArkoneImmersive({ site }) {
 
       <main className={styles.viewport} ref={viewportRef}>
         {/* 히어로 */}
-        <section className={cn(panelClass('hero'), styles.hero)} id="hero">
+        <section className={cn(panelClass('hero'), styles.hero, heroCopy && styles.heroPosterMode)} id="hero">
           <video className={styles.heroVideo} src={ASSET('hero-video.mp4')} autoPlay muted loop playsInline preload="metadata" />
           <div className={styles.heroOne} aria-hidden="true">ONE</div>
           <div className={styles.capBadge}><div><small>10년만의 공급</small><b>분양가 상한제<br />적용단지</b></div></div>
           <div className={styles.sectionShell}>
-            <header className={styles.sectionHead}>
-              <p className={styles.eyebrow}>ABSOLUTE · REMARKABLE · ONE</p>
-              <h1 className={styles.sectionTitle}>청라의 정점을<br /><span className={styles.gradientText}>빛내는 단 하나</span></h1>
-              <p className={styles.sectionDesc}>CHEONGNA ARK-ONE PRUGIO</p>
-            </header>
+            {heroCopy ? (
+              // content.heroCopy — 포스터형 문구(영문 현장명 3줄 + 국문명 + 아크원 뜻풀이). 예: 청라 아크원 푸르지오2
+              <header className={cn(styles.sectionHead, styles.heroPoster)}>
+                <h1 className={styles.heroPosterTitle}>{heroCopy.titleLines.map((l, k) => (<span key={k}>{l}</span>))}</h1>
+                <p className={styles.heroPosterSub}>{heroCopy.subtitle}</p>
+                <span className={styles.heroPosterStar} aria-hidden="true">✦</span>
+                <p className={styles.heroPosterLabel}>{heroCopy.taglineLabel}</p>
+                <p className={styles.heroPosterTagline}>{heroCopy.tagline.map((t, k) => (t.big ? <b key={k}>{t.text}</b> : <span key={k}>{t.text}</span>))}</p>
+                <p className={styles.heroPosterDesc}>{lines(heroCopy.desc)}</p>
+              </header>
+            ) : (
+              <header className={styles.sectionHead}>
+                <p className={styles.eyebrow}>ABSOLUTE · REMARKABLE · ONE</p>
+                <h1 className={styles.sectionTitle}>청라의 정점을<br /><span className={styles.gradientText}>빛내는 단 하나</span></h1>
+                <p className={styles.sectionDesc}>CHEONGNA ARK-ONE PRUGIO</p>
+              </header>
+            )}
           </div>
           <div className={styles.scrollCue}><i /><span>SCROLL</span></div>
         </section>
@@ -531,15 +640,18 @@ export default function SignatureArkoneImmersive({ site }) {
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>아크원 이야기</p>
-              <h2 className={styles.sectionTitle}>청라에 세워질<br className={styles.titleBreak} /><span className={styles.gradientText}>하나의 기준</span></h2>
+              <h2 className={styles.sectionTitle}>청라에 세워질<br className={styles.titleBreak} />{' '}<span className={styles.gradientText}>하나의 기준</span></h2>
               <p className={styles.sectionDesc}>ARK-ONE은 청라의 절대적 기준이 될 단 하나의 주거명작을 상징합니다.</p>
             </header>
             <div className={styles.brandLayout}>
               <dl className={styles.brandOverview}>
-                {BRAND_STATS.map((s) => (
+                {brandStats.map((s) => (
                   <div key={s.label}><dt>{s.label}</dt><dd>{s.value}<small>{s.sub}</small></dd></div>
                 ))}
-                <div className={styles.wide}><dt>{BRAND_WIDE.label}</dt><dd>{BRAND_WIDE.value}<small>{BRAND_WIDE.sub}</small></dd></div>
+                {/* brandWide는 한 칸 또는 여러 칸(배열) — 전체 폭으로 표시 */}
+                {[].concat(brandWide ?? []).map((w) => (
+                  <div key={w.label} className={styles.wide}><dt>{w.label}</dt><dd>{w.value}<small>{w.sub}</small></dd></div>
+                ))}
               </dl>
               <div className={styles.brandWords}>
                 {BRAND_WORDS.map((w) => (
@@ -555,7 +667,7 @@ export default function SignatureArkoneImmersive({ site }) {
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>방문예약</p>
-              <h2 className={styles.sectionTitle}>기다림 없이<br className={styles.titleBreak} /><span className={styles.gradientText}>여유로운 상담</span></h2>
+              <h2 className={styles.sectionTitle}>기다림 없이<br className={styles.titleBreak} />{' '}<span className={styles.gradientText}>여유로운 상담</span></h2>
               <p className={styles.sectionDesc}>방문 희망일과 시간을 먼저 선택하면 전담 상담사가 일정 확인 후 안내드립니다.</p>
             </header>
             <div className={styles.visual}>
@@ -597,11 +709,11 @@ export default function SignatureArkoneImmersive({ site }) {
         ))}
 
         {/* 미래 교통 계획 */}
-        <section className={panelClass('network')} id="network">
+        {showPanel('network') && (<section className={panelClass('network')} id="network">
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>미래 교통 계획</p>
-              <h2 className={styles.sectionTitle}>서울을 향한<br className={styles.titleBreak} /><span className={styles.gradientText}>다섯 개의 축</span></h2>
+              <h2 className={styles.sectionTitle}>서울을 향한<br className={styles.titleBreak} />{' '}<span className={styles.gradientText}>다섯 개의 축</span></h2>
               <p className={styles.sectionDesc}>확정 노선과 건의·검토 단계 계획을 구분해 공공자료 기준으로 정리했습니다.</p>
             </header>
             <div className={styles.networkList}>
@@ -612,39 +724,90 @@ export default function SignatureArkoneImmersive({ site }) {
               ))}
             </div>
           </div>
-        </section>
+        </section>)}
 
         {/* 입지환경 */}
         <section className={cn(panelClass('location'), styles.locationPanel)} id="location">
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
-              <p className={styles.eyebrow}>입지환경</p>
-              <h2 className={styles.sectionTitle}>청라의 변화가<br className={styles.titleBreak} /><span className={styles.gradientText}>한곳에 모이다</span></h2>
-              <p className={styles.sectionDesc}>문화·의료·금융·교통이 연결되는 청라국제업무단지의 중심.</p>
+              <p className={styles.eyebrow}>{locationHead.eyebrow}</p>
+              <h2 className={styles.sectionTitle}>{locationHead.titleTop}<br className={styles.titleBreak} />{' '}<span className={styles.gradientText}>{locationHead.titleAccent}</span></h2>
+              {locationHead.desc && <p className={styles.sectionDesc}>{locationHead.desc}</p>}
             </header>
-            <div className={styles.visual} role="button" tabIndex={0} onClick={() => openDialog(mapDialogRef)} onKeyDown={(e) => e.key === 'Enter' && openDialog(mapDialogRef)}>
-              <Image src="/apt/cheongna-arkone-prugio/location-map.webp" alt="청라 아크원 푸르지오 위치 안내도" fill sizes="100vw" />
-              <button type="button" className={styles.mapZoom} onClick={(e) => { e.stopPropagation(); openDialog(mapDialogRef) }}>＋ 지도 확대</button>
+            {/* PC에서 seoulRoutes가 있으면 지도(왼쪽) + 노선 인포그래픽(오른쪽)을 한 패널에 */}
+            <div className={cn(styles.locationBody, seoulRoutes && !isMobile && styles.locationSplit)}>
+              <div className={styles.visual} style={{ background: locationMap.bg }} role="button" tabIndex={0} onClick={() => openDialog(mapDialogRef)} onKeyDown={(e) => e.key === 'Enter' && openDialog(mapDialogRef)}>
+                <Image src={locationMap.src} alt="청라 아크원 푸르지오 위치 안내도" fill sizes="100vw" style={{ objectFit: locationMap.fit, objectPosition: locationMap.position }} />
+                <button type="button" className={styles.mapZoom} onClick={(e) => { e.stopPropagation(); openDialog(mapDialogRef) }}>＋ 지도 확대</button>
+              </div>
+              {seoulRoutes && !isMobile && (
+                <div className={styles.seoulRoutes}>
+                  <p className={styles.seoulRoutesTitle}><small>{seoulRoutes.eyebrow}</small>{seoulRoutes.titleTop} {seoulRoutes.titleAccent}</p>
+                  {seoulRoutes.images.map((img) => (
+                    <Image key={img.src} src={img.src} alt={img.alt} width={img.width} height={img.height} sizes="600px" />
+                  ))}
+                </div>
+              )}
             </div>
             {/* 요청 반영 — 지도 이미지 하단에 겹쳐 놓으면 지도 자체의 지명 라벨과 겹쳐 보여서
                 이미지 밖 별도 목록으로 분리 */}
-            <div className={styles.mapPins}>
-              <span>스타필드 청라</span><span>서울아산청라병원</span><span>하나드림타운</span><span>광역 교통망</span>
-            </div>
+            {mapPins.length > 0 && (
+              <div className={styles.mapPins}>
+                {mapPins.map((p) => (<span key={p}>{p}</span>))}
+              </div>
+            )}
           </div>
         </section>
 
+        {/* 더 가까워지는 서울(모바일 전용 패널) — PC는 위 입지환경 패널 안에 함께 표시 */}
+        {seoulRoutes && isMobile && (
+          <section className={panelClass('seoul')} id="seoul">
+            <div className={styles.sectionShell}>
+              <header className={styles.sectionHead}>
+                <p className={styles.eyebrow}>{seoulRoutes.eyebrow}</p>
+                <h2 className={styles.sectionTitle}>{seoulRoutes.titleTop}<br className={styles.titleBreak} />{' '}<span className={styles.gradientText}>{seoulRoutes.titleAccent}</span></h2>
+              </header>
+              <div className={styles.seoulRoutes}>
+                {seoulRoutes.images.map((img) => (
+                  <Image key={img.src} src={img.src} alt={img.alt} width={img.width} height={img.height} sizes="(min-width: 1024px) 900px, 92vw" />
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* 유니트 자리의 프리미엄 — content.unitPremium이 있으면(예: 청라 아크원 푸르지오2) 유니트 대신 공식 사이트
+            프리미엄 페이지 형식(문구 + 이미지컷) 슬라이드를 보여줌. 스크롤로 한 장씩 넘어감(unitIndex) */}
+        {showPanel('unit') && unitPremium && (
+          <section className={cn(panelClass('unit'), styles.premiumPanel, styles.unitPremiumPanel)} id="unit">
+            <div className={styles.sectionShell}>
+              <header className={styles.sectionHead}>
+                <p className={styles.eyebrow}>{unitPremium.eyebrow}</p>
+                <h2 className={styles.sectionTitle}>{unitPremium.titleTop}<br className={styles.titleBreak} />{' '}<span className={styles.gradientText}>{unitPremium.titleAccent}</span></h2>
+              </header>
+              <div className={styles.premiumStage}>
+                {unitPremium.slides.map((s, i) => renderSlide(s, i, unitIndex))}
+                <div className={styles.premiumDots}>
+                  {unitPremium.slides.map((s, i) => (
+                    <button key={s.num} type="button" aria-label={`프리미엄 ${i + 1}`} className={cn(i === unitIndex && styles.isActive)} onClick={() => { setUnitIndex(i); lock() }} />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* 유니트 */}
-        <section className={panelClass('unit')} id="unit">
+        {showPanel('unit') && !unitPremium && (<section className={panelClass('unit')} id="unit">
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>주거공간</p>
-              <h2 className={styles.sectionTitle}>다양한 생활을 담는<br className={styles.titleBreak} /><span className={styles.gradientText}>유연한 공간</span></h2>
+              <h2 className={styles.sectionTitle}>다양한 생활을 담는<br className={styles.titleBreak} />{' '}<span className={styles.gradientText}>유연한 공간</span></h2>
               <p className={styles.sectionDesc}>다양한 라이프스타일을 상상하는 유니트 프리뷰입니다.</p>
             </header>
             <div className={styles.unitArea}>
               <div className={styles.unitTabs} role="tablist">
-                {UNIT_TABS.map((u) => (
+                {unitTabs.map((u) => (
                   <button key={u.key} type="button" className={cn(styles.unitTab, u.key === unitKey && styles.isActive)} onClick={() => setUnitKey(u.key)}>{u.key}</button>
                 ))}
               </div>
@@ -656,29 +819,29 @@ export default function SignatureArkoneImmersive({ site }) {
               </article>
             </div>
           </div>
-        </section>
+        </section>)}
 
         {/* 단지배치 */}
-        <section className={panelClass('plan')} id="plan">
+        {showPanel('plan') && (<section className={panelClass('plan')} id="plan">
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>단지배치</p>
-              <h2 className={styles.sectionTitle}>도시와 바다를 향한<br className={styles.titleBreak} /><span className={styles.gradientText}>열린 배치</span></h2>
-              <p className={styles.sectionDesc}>최고 49층 스카이라인과 일부 2·3면 개방구조가 만드는 오션·시티뷰.</p>
+              <h2 className={styles.sectionTitle}>도시와 바다를 향한<br className={styles.titleBreak} />{' '}<span className={styles.gradientText}>열린 배치</span></h2>
+              <p className={styles.sectionDesc}>{plan.desc}</p>
             </header>
             <div className={styles.visual}>
               <Image src={ASSET('plan-oceanview.webp')} alt="오션 시티뷰 이미지컷" fill sizes="100vw" />
-              <div className={styles.planPoints}><span>최고 49층</span><span>오션·시티뷰</span><span>일부 2·3면 개방</span></div>
+              <div className={styles.planPoints}>{plan.points.map((p) => (<span key={p}>{p}</span>))}</div>
             </div>
           </div>
-        </section>
+        </section>)}
 
         {/* 커뮤니티와 조경 */}
         <section className={panelClass('community')} id="community">
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>커뮤니티와 조경</p>
-              <h2 className={styles.sectionTitle}>일상의 여백을<br className={styles.titleBreak} /><span className={styles.gradientText}>더 풍요롭게</span></h2>
+              <h2 className={styles.sectionTitle}>일상의 여백을<br className={styles.titleBreak} />{' '}<span className={styles.gradientText}>더 풍요롭게</span></h2>
               <p className={styles.sectionDesc}>휴식·건강·교류를 하나의 흐름으로 연결하는 커뮤니티와 조경 콘셉트.</p>
             </header>
             <div className={styles.communityGrid}>
@@ -696,26 +859,17 @@ export default function SignatureArkoneImmersive({ site }) {
         <section className={cn(panelClass('premium'), styles.premiumPanel)} id="premium">
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
-              <p className={styles.eyebrow}>프리미엄 01—05</p>
-              <h2 className={styles.sectionTitle}>청라 생활을 넓히는<br className={styles.titleBreak} /><span className={styles.gradientText}>다섯 가지 가치</span></h2>
+              <p className={styles.eyebrow}>{premium.eyebrow}</p>
+              <h2 className={styles.sectionTitle}>{premium.titleTop}<br className={styles.titleBreak} />{' '}<span className={styles.gradientText}>{premium.titleAccent}</span></h2>
             </header>
             <div className={styles.premiumBrand}>
               <Image className={styles.premiumSymbol} src={ASSET('prugio-symbol.svg')} alt="푸르지오 심볼" width={38} height={38} />
               <Image className={styles.premiumWord} src="/apt/cheongna-arkone-prugio/logo-white.svg" alt="PRUGIO" width={104} height={17} />
             </div>
             <div className={styles.premiumStage}>
-              {PREMIUM_SLIDES.map((s, i) => (
-                <figure key={s.num} className={cn(styles.premiumSlide, i === premiumIndex && styles.isActive, i < premiumIndex && styles.isBefore)}>
-                  <Image src={ASSET(s.img)} alt={s.alt} fill sizes="100vw" />
-                  <figcaption>
-                    <small>PREMIUM {s.num}</small>
-                    <h3>{s.title}</h3>
-                    <p>{s.desc}</p>
-                  </figcaption>
-                </figure>
-              ))}
+              {premiumSlides.map((s, i) => renderSlide(s, i, premiumIndex))}
               <div className={styles.premiumDots}>
-                {PREMIUM_SLIDES.map((s, i) => (
+                {premiumSlides.map((s, i) => (
                   <button key={s.num} type="button" aria-label={`프리미엄 ${i + 1}`} className={cn(i === premiumIndex && styles.isActive)} onClick={() => { setPremiumIndex(i); lock() }} />
                 ))}
               </div>
@@ -725,11 +879,11 @@ export default function SignatureArkoneImmersive({ site }) {
         </section>
 
         {/* 청라의 연혁 */}
-        <section className={panelClass('history')} id="history">
+        {showPanel('history') && (<section className={panelClass('history')} id="history">
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>청라의 연혁</p>
-              <h2 className={styles.sectionTitle}>시간이 증명한<br className={styles.titleBreak} /><span className={styles.gradientText}>청라의 미래가치</span></h2>
+              <h2 className={styles.sectionTitle}>시간이 증명한<br className={styles.titleBreak} />{' '}<span className={styles.gradientText}>청라의 미래가치</span></h2>
               <p className={styles.sectionDesc}>자동 이동·드래그·화살표로 살펴보는 청라의 변화.</p>
             </header>
             <div className={styles.historyViewport} ref={historyViewportRef}>
@@ -752,23 +906,25 @@ export default function SignatureArkoneImmersive({ site }) {
               </div>
             </div>
           </div>
-        </section>
+        </section>)}
 
         {/* 상담과 예약 */}
-        <section className={panelClass('contact')} id="contact">
+        <section className={cn(panelClass('contact'), hideRequest && styles.contactCentered)} id="contact">
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
-              <p className={styles.eyebrow}>{site.projectName}</p>
-              <h2 className={styles.sectionTitle}>관심 있는 정보를<br className={styles.titleBreak} /><span className={styles.gradientText}>상담받아보세요</span></h2>
+              <p className={styles.eyebrow}>{displayName}</p>
+              <h2 className={styles.sectionTitle}>관심 있는 정보를<br className={styles.titleBreak} />{' '}<span className={styles.gradientText}>상담받아보세요</span></h2>
               <p className={styles.sectionDesc}>상담 유형을 선택하면 입력 화면이 즉시 전환됩니다.</p>
             </header>
-            <div className={styles.contactLayout}>
-              <div className={styles.contactTabs}>
-                <button type="button" className={cn(contactTab === 'visit' && styles.isActive)} onClick={() => setContactTab('visit')}>방문예약</button>
-                <button type="button" className={cn(contactTab === 'request' && styles.isActive)} onClick={() => setContactTab('request')}>자료요청</button>
-              </div>
+            <div className={cn(styles.contactLayout, hideRequest && styles.contactLayoutSingle)}>
+              {!hideRequest && (
+                <div className={styles.contactTabs}>
+                  <button type="button" className={cn(contactTab === 'visit' && styles.isActive)} onClick={() => setContactTab('visit')}>방문예약</button>
+                  <button type="button" className={cn(contactTab === 'request' && styles.isActive)} onClick={() => setContactTab('request')}>자료요청</button>
+                </div>
+              )}
               <div className={styles.contactPanel}>
-                {contactTab === 'visit' ? (
+                {hideRequest || contactTab === 'visit' ? (
                   <LeadForm
                     kind="visit" idPrefix="contactVisit" site={site}
                     onSubmit={submitLead}
@@ -807,7 +963,7 @@ export default function SignatureArkoneImmersive({ site }) {
               신규 유니트·단지·커뮤니티 콘텐츠는 시안이며, 확정 정보는 모집공고를 확인해야 합니다.{' '}
               {sig.footer.disclaimers.join(' ')}
             </p>
-            <p className={styles.footerCopy}>© 2026 {site.projectName.toUpperCase().replace(/\s+/g, ' ')}. ALL RIGHTS RESERVED.</p>
+            <p className={styles.footerCopy}>© 2026 {displayName.toUpperCase().replace(/\s+/g, ' ')}. ALL RIGHTS RESERVED.</p>
             <div className={styles.footerLinks}>
               <button type="button" onClick={() => openDialog(infoDialogRef)}>모집공고 안내</button>
             </div>
@@ -816,26 +972,39 @@ export default function SignatureArkoneImmersive({ site }) {
       </main>
 
       <PcFloat
-        visible={index >= 1 && index < PANEL_ORDER.length - 1}
+        visible={index >= 1 && index < panelOrder.length - 1}
         onVisit={() => openDialog(visitDialogRef)}
-        onRequest={() => openDialog(requestDialogRef)}
+        onRequest={hideRequest ? null : () => openDialog(requestDialogRef)}
         onFaq={() => openDialog(faqDialogRef)}
         onTop={() => navigateTo('hero')}
       />
 
-      <nav className={cn(styles.mobileBar, index >= 1 && styles.isVisible)} aria-label="빠른 문의">
+      <nav className={cn(styles.mobileBar, index >= 1 && styles.isVisible)} style={hideRequest ? { gridTemplateColumns: 'repeat(2, 1fr)' } : undefined} aria-label="빠른 문의">
         <a href={`tel:${telNumber}`}>전화문의</a>
-        <button type="button" onClick={() => openDialog(requestDialogRef)}>자료요청</button>
+        {!hideRequest && <button type="button" onClick={() => openDialog(requestDialogRef)}>자료요청</button>}
         <button type="button" onClick={() => openDialog(visitDialogRef)}>방문예약</button>
       </nav>
       <button
         type="button"
-        className={cn(styles.mobileTop, index >= Math.ceil((PANEL_ORDER.length - 1) * 0.4) && styles.isVisible)}
+        className={cn(styles.mobileTop, index >= Math.ceil((panelOrder.length - 1) * 0.4) && styles.isVisible)}
         aria-label="맨 위로"
         onClick={() => navigateTo('hero')}
       >↑</button>
 
       {/* 다이얼로그 */}
+      {content.interestPopup && (
+        <dialog ref={interestDialogRef} className={styles.dialog} onClick={(e) => e.target === e.currentTarget && closeDialog(interestDialogRef)}>
+          <div className={styles.modal}>
+            <button type="button" className={styles.modalClose} aria-label="닫기" onClick={() => closeDialog(interestDialogRef)}>×</button>
+            <h2>{content.interestPopup.title}</h2>
+            <p>{content.interestPopup.desc}</p>
+            <LeadForm
+              kind="visit" idPrefix="interestDialog" site={site} showTerms={false}
+              onSubmit={async (kind, form) => { const ok = await submitLead(kind, form); if (ok) closeDialog(interestDialogRef); return ok }}
+            />
+          </div>
+        </dialog>
+      )}
       <dialog ref={visitDialogRef} className={styles.dialog} onClick={(e) => e.target === e.currentTarget && closeDialog(visitDialogRef)}>
         <div className={styles.modal}>
           <button type="button" className={styles.modalClose} aria-label="닫기" onClick={() => closeDialog(visitDialogRef)}>×</button>
@@ -881,7 +1050,7 @@ export default function SignatureArkoneImmersive({ site }) {
       <dialog ref={mapDialogRef} className={cn(styles.dialog, styles.mapDialog)} onClick={(e) => e.target === e.currentTarget && closeDialog(mapDialogRef)}>
         <div className={styles.modal}>
           <button type="button" className={styles.modalClose} aria-label="닫기" onClick={() => closeDialog(mapDialogRef)}>×</button>
-          <Image src="/apt/cheongna-arkone-prugio/location-map.webp" alt="청라 아크원 푸르지오 위치 안내도 확대" fill sizes="96vw" />
+          <Image src={locationMap.src} alt="청라 아크원 푸르지오 위치 안내도 확대" fill sizes="96vw" />
         </div>
       </dialog>
 
@@ -922,13 +1091,15 @@ export default function SignatureArkoneImmersive({ site }) {
               <div className={styles.noticeImageWrap}>
                 <Image src={ASSET('notice-popup.webp')} alt="" fill sizes="440px" />
               </div>
-              <h3>{site.projectName}</h3>
+              <h3>{displayName}</h3>
               <p>관심고객등록 시 분양 일정과 주요 소식을 가장 먼저 안내해 드립니다.</p>
               {/* 요청 반영(2026-09-28) — cheongna-arkone-prugio-3과 동일: 혜택 안내 추가, 하단 "닫기" 버튼 삭제(× 버튼만 유지) */}
-              <div className={styles.noticeBenefit}>
-                <b>[혜택]</b>
-                <span>{'사전예약 후 방문 상담 고객님들께\n「7만원 상당 고급 와인」 증정!\n(선착순 100명)'}</span>
-              </div>
+              {noticeBenefit && (
+                <div className={styles.noticeBenefit}>
+                  <b>[혜택]</b>
+                  <span>{noticeBenefit}</span>
+                </div>
+              )}
             </article>
           </div>
         </div>
@@ -954,7 +1125,7 @@ function PcFloat({ visible, onVisit, onRequest, onFaq, onTop }) {
   return (
     <aside className={cn(styles.pcFloat, visible && styles.isVisible)}>
       <button type="button" onClick={onVisit}>방문예약</button>
-      <button type="button" onClick={onRequest}>자료요청</button>
+      {onRequest && <button type="button" onClick={onRequest}>자료요청</button>}
       <button type="button" onClick={onFaq}>F&amp;A</button>
       <button type="button" onClick={onTop}>TOP ↑</button>
     </aside>
@@ -1002,7 +1173,7 @@ function IntroOverlay({ onSkip, ready }) {
 // cheongna-arkone-prugio-3과 동일). 페이지 안 상담 섹션 폼은 전문 보기 유지
 function LeadForm({ kind, idPrefix, site, onSubmit, showTerms = true }) {
   const [submitting, setSubmitting] = useState(false)
-  const checks = kind === 'visit' ? CONSULT_CHECKS : REQUEST_CHECKS
+  const checks = kind === 'visit' ? consultChecksFor(site.signature.arkoneImmersiveContent) : REQUEST_CHECKS
   const visitTimeOptions = site.visitTimeOptions
   const privacyText = site.signature.vipForm.privacyText
 

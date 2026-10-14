@@ -4,6 +4,10 @@
 // 미공개라 "공개 예정" 이미지 사용(공개되면 교체).
 // 사업개요·입지환경·PREMIUM 7·APT 타입별 세대수·사업개요/프리미엄 이미지(premium-*.webp 등)는
 // 중개업소 교육자료(청라아크원푸르지오_중개업소배포자료 260928.pdf) 기준.
+// 요청 반영(2026-10-14) — 청라 더리브 티아모 까사(원본)처럼 풀페이지 몰입형으로: signature.arkoneImmersive=true →
+// 원본과 같은 SignatureArkoneImmersive 화면을 쓰고, 사업개요·유니트·프리미엄·입지도·팝업 혜택만
+// arkoneImmersiveContent로 교육자료 내용으로 바꿈. 아래 header/summary/premiumSplits 등 기존 필드는 이 화면에선
+// 안 쓰이고(footer·vipForm.privacyText만 사용), arkoneImmersive를 지우면 기존 구성으로 바로 복귀.
 const config = {
   slug: 'cheongna-arkone-prugio-2',
   subdomain: '청라아크원푸르지오2',
@@ -11,6 +15,8 @@ const config = {
   // 카톡 등 공유 제목 — projectName("...2", 문자 구분용)과 분리
   metaTitle: '청라 아크원 푸르지오',
   shortName: '청라 아크원 푸르지오',
+  // 몰입형 화면의 팝업·상담 섹션·푸터에 보이는 현장명("2" 없이)
+  displayName: '청라 아크원 푸르지오',
   telNumber: '1811-4166',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/cheongna-arkone-prugio-2/og.jpg',
   colorTheme: {
@@ -46,6 +52,123 @@ const config = {
   ],
 
   signature: {
+    arkoneImmersive: true,
+
+    // SignatureArkoneImmersive 콘텐츠 덮어쓰기 — 여기 없는 패널(인트로·히어로 영상·스타필드/병원/하나금융·
+    // 미래 교통·커뮤니티·연혁)은 원본 그대로. 이미지 파일명만 쓰면 원본 v2 폴더, /apt/...면 그 경로
+    arkoneImmersiveContent: {
+      // 사업개요 — 공식 사이트 사업개요(arkone-prugio.com/pages/overview) 원문
+      // 요청 반영(2026-10-14) — 모바일에서 카드가 길어 아래가 잘려서, 대지면적·건축면적을 한 칸으로 합치고 줄 수를 줄임
+      brandStats: [
+        { label: '대지면적 / 건축면적', value: '35,306.00㎡', sub: '(10,680.07py)\n건축면적 12,278.4410㎡' },
+        { label: '연면적', value: '424,558.08㎡', sub: 'APT 173,952.7508㎡\nOT 245,645.4826㎡ · 상업 4,959.8424㎡' },
+        { label: '건축규모', value: '지하 5층~지상 49층', sub: '총 6개동 1,855가구\nAPT 868세대 · OT 987실' },
+        { label: '주차대수', value: '총 3,124대', sub: 'APT 1,389대 · OT 1,695대\n상업시설 40대' },
+      ],
+      brandWide: { label: '대지위치', value: '인천광역시 서해구 청라동 86-1번지', sub: '(청라국제도시 주상복합용지 M5BL)' },
+      // 요청 반영(2026-10-14) — 히어로 문구를 기존 2현장 포스터형 문구로
+      heroCopy: {
+        titleLines: ['CHEONG NA', 'ARK-ONE', 'PRUGIO'],
+        subtitle: '청라 아크원 푸르지오',
+        taglineLabel: '아크원(ARK-ONE)이란?',
+        tagline: [
+          { text: 'A', big: true }, { text: 'bsolute ' },
+          { text: 'R', big: true }, { text: 'emar' },
+          { text: 'K', big: true }, { text: 'able ' },
+          { text: 'O', big: true }, { text: 'ne' },
+        ],
+        desc: '청라의 절대적 기준이 될\n단 하나의 주거명작을 상징',
+      },
+      // 요청 반영(2026-10-14) — 단지배치(자료 없음)·미래 교통 계획·청라의 연혁 패널 삭제. 유니트 자리는 아래 unitPremium(공식 프리미엄)으로 대체
+      hidePanels: ['plan', 'network', 'history'],
+      // 메뉴 이름 — 유니트 자리가 프리미엄이 되어서, 원래 프리미엄(원본 5장 슬라이드)은 "라이프"로
+      navLabels: { unit: '프리미엄', premium: '라이프' },
+      // 원래 프리미엄 패널(라이프) — 문구는 원본 그대로, 이미지만 공식 사이트(arkone-prugio.com) 고화질 원본(life-*.webp)으로.
+      // 요청 반영(2026-10-14) — 이 패널은 '프리미엄' 대신 'VALUE'로 표기(위 유니트 자리 프리미엄과 구분)
+      premium: { eyebrow: 'VALUE 01—05', titleTop: '청라 생활을 넓히는', titleAccent: '다섯 가지 가치' },
+      premiumSlides: [
+        { num: '01', label: 'VALUE 01', img: '/apt/cheongna-arkone-prugio-2/life-01-brandtown.webp', position: 'center 35%', alt: '청라 아크원 푸르지오 조감도', title: '총 2,911가구 푸르지오 브랜드타운', desc: '최고 49층 총 2,911가구로 완성되는 청라의 대규모 브랜드타운' },
+        { num: '02', label: 'VALUE 02', img: '/apt/cheongna-arkone-prugio-2/life-02-central.webp', alt: '도심 조망 거실 이미지컷', title: '국제업무단지의 센트럴 라이프', desc: '청라의 중심으로 완성되는 국제업무단지의 특별한 주거 가치' },
+        { num: '03', label: 'VALUE 03', img: '/apt/cheongna-arkone-prugio-2/life-03-view.webp', alt: '오션 시티뷰 거실 이미지컷', title: '오션·시티뷰 조망 특화', desc: '오션·시티뷰를 동시에 누리는 2면 또는 3면 개방구조(일부 세대)' },
+        { num: '04', label: 'VALUE 04', img: '/apt/cheongna-arkone-prugio-2/life-04-value.webp', alt: '프리미엄 실내 이미지컷', title: '높은 희소가치와 합리적 분양가', desc: '2017년 이후 10년만의 분양가 상한제 공급 아파트' },
+        { num: '05', label: 'VALUE 05', img: '/apt/cheongna-arkone-prugio-2/life-05-multi.webp', alt: '멀티 라이프 이미지컷', title: '멀티 라이프 플랫폼', desc: '팬트리 2개소 이상, 다양한 공간 활용의 멀티 발코니(OT)' },
+      ],
+      // 입지환경 — 공식 사이트 입지안내(arkone-prugio.com/pages/location) 구성: 문구 + 입지환경도 원본(2472x2700, 세로형 —
+      // 잘리지 않게 contain + 지도 바탕색) + "더 가까워지는 서울!" 노선 인포그래픽 3장(PC는 지도 오른쪽, 모바일은 다음 패널)
+      location: { eyebrow: '청라의 기다림이 완성되는 곳,', titleTop: '푸르지오의', titleAccent: '품격을 더하다' },
+      locationMap: { src: '/apt/cheongna-arkone-prugio-2/hd-location-map.webp', fit: 'contain', bg: '#eef0ec' },
+      mapPins: [],
+      seoulRoutes: {
+        eyebrow: 'CENTRAL LOCATION PRUGIO',
+        titleTop: '더 가까워지는',
+        titleAccent: '서울!',
+        images: [
+          { src: '/apt/cheongna-arkone-prugio-2/official-location-route-1.webp', width: 1284, height: 324, alt: '서울 최대 R&D 마곡업무지구를 한 번에! 청라국제도시역에서 마곡나루역까지 공항철도·9호선 직결(계획)' },
+          { src: '/apt/cheongna-arkone-prugio-2/official-location-route-2.webp', width: 1284, height: 322, alt: '강남권역도 환승 없이 한 번에! 국제업무단지역에서 강남구청역까지 7호선 청라연장선(예정)' },
+          { src: '/apt/cheongna-arkone-prugio-2/official-location-route-3.webp', width: 1284, height: 332, alt: '여의도를 더 빠르게! 남청라IC에서 여의도까지 경인고속국도 지하화(예정) 및 신월여의지하도로' },
+        ],
+      },
+      // 유니트 자리의 프리미엄 — 공식 사이트 프리미엄 페이지(arkone-prugio.com/pages/premium) 그대로: 키비주얼 + PREMIUM 01~06
+      // 문구·이미지컷(official-*.webp 원본). reverse/imagesLayout은 공식 페이지 배치(좌우 교차, 03은 위아래)를 따름.
+      // 원래 프리미엄 패널은 덮어쓰지 않아 원본 이미지·문구 그대로(요청 반영 2026-10-14)
+      unitPremium: {
+        // 요청 반영(2026-10-14) — 제목에 PREMIUM이 확실히 보이게(공식 카피는 위 작은 문구·첫 키비주얼에 유지)
+        eyebrow: '공간의 특별함도 자부심의 높이도, 정점을 넘어 완성된 라이프로',
+        titleTop: '청라 아크원 푸르지오',
+        titleAccent: 'PREMIUM 6',
+        slides: [
+          { num: '00', label: 'CHEONGNA ARK-ONE PRUGIO', img: '/apt/cheongna-arkone-prugio-2/official-premium-visual-img.webp', alt: '청라 아크원 푸르지오 이미지컷', title: '정점을 넘어 완성된 라이프로', desc: '공간의 특별함도 자부심의 높이도, 청라 아크원 푸르지오' },
+          {
+            num: '01', reverse: true, title: '서울과 하나되는\n교통 네트워크',
+            desc: '강남, 강북을 잇는 국제업무단지역(예정), 청라국제도시역\n경인고속국도 지하화(예정)로 서울을 더 빠르게!',
+            images: [{ src: '/apt/cheongna-arkone-prugio-2/official-premium-01-img-1.webp', alt: '빠르게 이동하는 자동차' }],
+          },
+          {
+            num: '02', title: '청라국제업무단지\n대표 브랜드타운',
+            desc: '청라의 새로운 주거중심, 청라국제업무단지를\n대표하는 푸르지오 브랜드타운의 완성',
+            images: [
+              { src: '/apt/cheongna-arkone-prugio-2/official-premium-02-img-1.webp', alt: '저녁 도시 전경' },
+              { src: '/apt/cheongna-arkone-prugio-2/official-premium-02-img-2.webp', alt: '고층 세대에서 바깥을 바라보는 모습' },
+            ],
+          },
+          {
+            num: '03', reverse: true, imagesLayout: 'stack', title: '오션뷰 & 시티뷰 조망 특화',
+            desc: '오션 ∙ 시티뷰를 동시에 누리는\n2면 or 3면 개방구조(일부 가구)',
+            images: [
+              { src: '/apt/cheongna-arkone-prugio-2/official-premium-03-img-1.webp', alt: '바다 풍경이 보이는 모습' },
+              { src: '/apt/cheongna-arkone-prugio-2/official-premium-03-img-2.webp', alt: '노을지는 바다 풍경이 보이는 모습' },
+            ],
+          },
+          {
+            num: '04', title: '단지 앞 안전한\n통학길의 교육 프리미엄',
+            desc: '도보 약 5분 초교 신설(예정), 중교 신설(계획)\n도보거리 경연초·중교, 청라달튼외국인학교',
+            images: [
+              { src: '/apt/cheongna-arkone-prugio-2/official-premium-04-img-1.webp', alt: '등교하는 학생 이미지컷' },
+              { src: '/apt/cheongna-arkone-prugio-2/official-premium-04-img-2.webp', alt: '학교 이미지컷' },
+            ],
+          },
+          {
+            num: '05', reverse: true, title: '완벽해지는 청라의\n트렌디한 생활특권',
+            desc: "하나드림타운, 돔구장 & 스타필드 청라('28년 개장 예정)\n서울아산청라병원('29년 예정), 코스트코 청라\n영상문화복합단지('31년 계획)\n인천로봇랜드(예정), 청라시티타워(계획) 등",
+            images: [{ src: '/apt/cheongna-arkone-prugio-2/official-premium-05-img-1.webp', alt: '도심을 오가는 사람들의 모습' }],
+          },
+          {
+            num: '06', title: '높은 희소가치와\n합리적 분양가',
+            desc: '청라가 기다려온 신규공급\n2017년 이후 10년만의 분양가 상한제 공급 아파트',
+            note: '※ 500세대 이상 대단지 기준',
+            images: [
+              { src: '/apt/cheongna-arkone-prugio-2/official-premium-06-img-1.webp', alt: '고급스러운 실내 이미지' },
+              { src: '/apt/cheongna-arkone-prugio-2/official-premium-06-img-2.webp', alt: '프리미엄 실내 인테리어' },
+            ],
+          },
+        ],
+      },
+      // 요청 반영(2026-10-14) — 팝업은 관심고객등록 하나만(안내 이미지 팝업 없음)
+      interestPopup: { title: '관심고객등록', desc: '관심고객등록 시 청라 아크원 푸르지오의 분양 일정과 주요 소식을 가장 먼저 안내해 드립니다.' },
+      // 요청 반영(2026-10-14) — 자료요청 버튼·탭·체크항목 숨김(방문예약만)
+      hideRequest: true,
+    },
+
     header: {
       logo: { src: '/apt/cheongna-arkone-prugio-2/logo-white.svg', alt: '청라 아크원 푸르지오', width: 161, height: 26 },
       logoSize: { base: 96, lg: 130, xl: 150 },

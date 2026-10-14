@@ -612,7 +612,7 @@ export default function SignatureArkoneImmersive({ site }) {
         <section className={cn(panelClass('hero'), styles.hero, heroCopy && styles.heroPosterMode)} id="hero">
           <video className={styles.heroVideo} src={ASSET('hero-video.mp4')} autoPlay muted loop playsInline preload="metadata" />
           <div className={styles.heroOne} aria-hidden="true">ONE</div>
-          <div className={cn(styles.capBadge, heroCopy && styles.capBadgeLow)}><div><small>10년만의 공급</small><b>분양가 상한제<br />적용단지</b></div></div>
+          <div className={styles.capBadge}><div><small>10년만의 공급</small><b>분양가 상한제<br />적용단지</b></div></div>
           <div className={styles.sectionShell}>
             {heroCopy ? (
               // content.heroCopy — 포스터형 문구(영문 현장명 3줄 + 국문명 + 아크원 뜻풀이). 예: 청라 아크원 푸르지오2

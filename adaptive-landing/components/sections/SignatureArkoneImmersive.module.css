@@ -786,7 +786,7 @@
   .unitPremiumPanel .premiumStage { margin-left: 0; }
 }
 /* 히어로 포스터형 문구(content.heroCopy) — 영문 현장명 3줄 + 국문명 + 아크원 뜻풀이 */
-.heroPoster { margin-bottom: auto; padding-top: 3vh; color: #fff; text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35); }
+.heroPoster { color: #fff; text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35); }
 .heroPosterTitle { display: flex; flex-direction: column; margin: 0; font-family: 'SUIT', 'Pretendard', sans-serif; font-size: clamp(40px, 13vw, 64px); font-weight: 700; line-height: 1.02; letter-spacing: -0.01em; }
 .heroPosterSub { margin: 14px 0 0; font-size: 19px; font-weight: 700; }
 .heroPosterStar { display: block; margin: 16px 0 6px; font-size: 16px; }
@@ -802,10 +802,6 @@
   .heroPosterTagline { font-size: 17px; }
   .heroPosterTagline b { font-size: 24px; }
   .heroPosterDesc { font-size: 16px; }
-}
-/* 포스터형 히어로 문구(heroCopy)와 겹치지 않게 모바일에서 배지를 오른쪽 아래로 */
-@media (max-width: 1023px) {
-  .capBadgeLow { top: auto; bottom: calc(var(--bottom) + 48px); }
 }
 /* PC 지도+노선 한 패널 — 노선 카드가 패널 높이를 넘지 않게: 이미지 3장이 남은 높이를 나눠 쓰고 비율 유지(contain) */
 @media (min-width: 1024px) {
@@ -828,8 +824,8 @@
 /* 탭이 없으니 "상담 유형을 선택하면…" 안내 문구는 숨김(모바일 포함) */
 .contactCentered .sectionDesc { display: none; }
 /* 포스터형 히어로 문구 사용 시 — 뒤의 큰 "ONE" 외곽선 장식이 제목과 겹쳐 지저분해 보여서 숨기고,
-   밝은 하늘 위 흰 글씨가 잘 읽히도록 위쪽을 어둡게 */
+   화면 아래쪽 글씨가 잘 읽히도록 아래를 어둡게 */
 .heroPosterMode .heroOne { display: none; }
 .heroPosterMode::after {
-  background: linear-gradient(180deg, rgba(1, 24, 20, 0.62) 0%, rgba(1, 24, 20, 0.38) 45%, rgba(1, 24, 20, 0.7) 100%);
+  background: linear-gradient(180deg, rgba(1, 24, 20, 0.25) 0%, rgba(1, 24, 20, 0.35) 40%, rgba(1, 24, 20, 0.82) 100%);
 }

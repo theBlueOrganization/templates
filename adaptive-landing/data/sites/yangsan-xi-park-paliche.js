@@ -264,7 +264,7 @@ const config = {
           tag: 'Traffic',
           image: {
             src: '/apt/yangsan-xi-park-paliche/location-traffic.webp',
-            alt: '고속도로 항공 이미지컷',
+            alt: '도심 도로 야경 이미지컷',
           },
           descStrong: '웅상대로·7번 국도, 부울경 광역철도(계획)',
           descRest: '로 부산 노포~양산 웅상 약 10분대 이동(계획)',
@@ -276,7 +276,7 @@ const config = {
           tag: 'Life',
           image: {
             src: '/apt/yangsan-xi-park-paliche/location-life.webp',
-            alt: '장바구니 이미지컷',
+            alt: '마트 쇼핑카트 이미지컷',
           },
           descStrong: '이마트 트레이더스·일반상업지역',
           descRest: ', 웅상문화체육센터·웅상도서관 등 가깝고 편리한 생활인프라',
@@ -288,7 +288,7 @@ const config = {
           tag: 'Education',
           image: {
             src: '/apt/yangsan-xi-park-paliche/location-education.webp',
-            alt: '공부하는 학생 이미지컷',
+            alt: '교실에서 손 드는 아이들 이미지컷',
           },
           descStrong: '단지 바로 앞 평산초등학교',
           descRest: ' 도보 거리, 웅상도서관·3D과학체험관 등 교육시설',

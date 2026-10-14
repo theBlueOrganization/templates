@@ -640,7 +640,7 @@ export default function SignatureArkoneImmersive({ site }) {
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>아크원 이야기</p>
-              <h2 className={styles.sectionTitle}>청라에 세워질<br className={styles.titleBreak} /><span className={styles.gradientText}>하나의 기준</span></h2>
+              <h2 className={styles.sectionTitle}>청라에 세워질<br className={styles.titleBreak} />{' '}<span className={styles.gradientText}>하나의 기준</span></h2>
               <p className={styles.sectionDesc}>ARK-ONE은 청라의 절대적 기준이 될 단 하나의 주거명작을 상징합니다.</p>
             </header>
             <div className={styles.brandLayout}>
@@ -667,7 +667,7 @@ export default function SignatureArkoneImmersive({ site }) {
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>방문예약</p>
-              <h2 className={styles.sectionTitle}>기다림 없이<br className={styles.titleBreak} /><span className={styles.gradientText}>여유로운 상담</span></h2>
+              <h2 className={styles.sectionTitle}>기다림 없이<br className={styles.titleBreak} />{' '}<span className={styles.gradientText}>여유로운 상담</span></h2>
               <p className={styles.sectionDesc}>방문 희망일과 시간을 먼저 선택하면 전담 상담사가 일정 확인 후 안내드립니다.</p>
             </header>
             <div className={styles.visual}>
@@ -713,7 +713,7 @@ export default function SignatureArkoneImmersive({ site }) {
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>미래 교통 계획</p>
-              <h2 className={styles.sectionTitle}>서울을 향한<br className={styles.titleBreak} /><span className={styles.gradientText}>다섯 개의 축</span></h2>
+              <h2 className={styles.sectionTitle}>서울을 향한<br className={styles.titleBreak} />{' '}<span className={styles.gradientText}>다섯 개의 축</span></h2>
               <p className={styles.sectionDesc}>확정 노선과 건의·검토 단계 계획을 구분해 공공자료 기준으로 정리했습니다.</p>
             </header>
             <div className={styles.networkList}>
@@ -731,7 +731,7 @@ export default function SignatureArkoneImmersive({ site }) {
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>{locationHead.eyebrow}</p>
-              <h2 className={styles.sectionTitle}>{locationHead.titleTop}<br className={styles.titleBreak} /><span className={styles.gradientText}>{locationHead.titleAccent}</span></h2>
+              <h2 className={styles.sectionTitle}>{locationHead.titleTop}<br className={styles.titleBreak} />{' '}<span className={styles.gradientText}>{locationHead.titleAccent}</span></h2>
               {locationHead.desc && <p className={styles.sectionDesc}>{locationHead.desc}</p>}
             </header>
             {/* PC에서 seoulRoutes가 있으면 지도(왼쪽) + 노선 인포그래픽(오른쪽)을 한 패널에 */}
@@ -765,7 +765,7 @@ export default function SignatureArkoneImmersive({ site }) {
             <div className={styles.sectionShell}>
               <header className={styles.sectionHead}>
                 <p className={styles.eyebrow}>{seoulRoutes.eyebrow}</p>
-                <h2 className={styles.sectionTitle}>{seoulRoutes.titleTop}<br className={styles.titleBreak} /><span className={styles.gradientText}>{seoulRoutes.titleAccent}</span></h2>
+                <h2 className={styles.sectionTitle}>{seoulRoutes.titleTop}<br className={styles.titleBreak} />{' '}<span className={styles.gradientText}>{seoulRoutes.titleAccent}</span></h2>
               </header>
               <div className={styles.seoulRoutes}>
                 {seoulRoutes.images.map((img) => (
@@ -783,7 +783,7 @@ export default function SignatureArkoneImmersive({ site }) {
             <div className={styles.sectionShell}>
               <header className={styles.sectionHead}>
                 <p className={styles.eyebrow}>{unitPremium.eyebrow}</p>
-                <h2 className={styles.sectionTitle}>{unitPremium.titleTop}<br className={styles.titleBreak} /><span className={styles.gradientText}>{unitPremium.titleAccent}</span></h2>
+                <h2 className={styles.sectionTitle}>{unitPremium.titleTop}<br className={styles.titleBreak} />{' '}<span className={styles.gradientText}>{unitPremium.titleAccent}</span></h2>
               </header>
               <div className={styles.premiumStage}>
                 {unitPremium.slides.map((s, i) => renderSlide(s, i, unitIndex))}
@@ -802,7 +802,7 @@ export default function SignatureArkoneImmersive({ site }) {
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>주거공간</p>
-              <h2 className={styles.sectionTitle}>다양한 생활을 담는<br className={styles.titleBreak} /><span className={styles.gradientText}>유연한 공간</span></h2>
+              <h2 className={styles.sectionTitle}>다양한 생활을 담는<br className={styles.titleBreak} />{' '}<span className={styles.gradientText}>유연한 공간</span></h2>
               <p className={styles.sectionDesc}>다양한 라이프스타일을 상상하는 유니트 프리뷰입니다.</p>
             </header>
             <div className={styles.unitArea}>
@@ -826,7 +826,7 @@ export default function SignatureArkoneImmersive({ site }) {
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>단지배치</p>
-              <h2 className={styles.sectionTitle}>도시와 바다를 향한<br className={styles.titleBreak} /><span className={styles.gradientText}>열린 배치</span></h2>
+              <h2 className={styles.sectionTitle}>도시와 바다를 향한<br className={styles.titleBreak} />{' '}<span className={styles.gradientText}>열린 배치</span></h2>
               <p className={styles.sectionDesc}>{plan.desc}</p>
             </header>
             <div className={styles.visual}>
@@ -841,7 +841,7 @@ export default function SignatureArkoneImmersive({ site }) {
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>커뮤니티와 조경</p>
-              <h2 className={styles.sectionTitle}>일상의 여백을<br className={styles.titleBreak} /><span className={styles.gradientText}>더 풍요롭게</span></h2>
+              <h2 className={styles.sectionTitle}>일상의 여백을<br className={styles.titleBreak} />{' '}<span className={styles.gradientText}>더 풍요롭게</span></h2>
               <p className={styles.sectionDesc}>휴식·건강·교류를 하나의 흐름으로 연결하는 커뮤니티와 조경 콘셉트.</p>
             </header>
             <div className={styles.communityGrid}>
@@ -860,7 +860,7 @@ export default function SignatureArkoneImmersive({ site }) {
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>{premium.eyebrow}</p>
-              <h2 className={styles.sectionTitle}>{premium.titleTop}<br className={styles.titleBreak} /><span className={styles.gradientText}>{premium.titleAccent}</span></h2>
+              <h2 className={styles.sectionTitle}>{premium.titleTop}<br className={styles.titleBreak} />{' '}<span className={styles.gradientText}>{premium.titleAccent}</span></h2>
             </header>
             <div className={styles.premiumBrand}>
               <Image className={styles.premiumSymbol} src={ASSET('prugio-symbol.svg')} alt="푸르지오 심볼" width={38} height={38} />
@@ -883,7 +883,7 @@ export default function SignatureArkoneImmersive({ site }) {
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>청라의 연혁</p>
-              <h2 className={styles.sectionTitle}>시간이 증명한<br className={styles.titleBreak} /><span className={styles.gradientText}>청라의 미래가치</span></h2>
+              <h2 className={styles.sectionTitle}>시간이 증명한<br className={styles.titleBreak} />{' '}<span className={styles.gradientText}>청라의 미래가치</span></h2>
               <p className={styles.sectionDesc}>자동 이동·드래그·화살표로 살펴보는 청라의 변화.</p>
             </header>
             <div className={styles.historyViewport} ref={historyViewportRef}>
@@ -913,7 +913,7 @@ export default function SignatureArkoneImmersive({ site }) {
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>{displayName}</p>
-              <h2 className={styles.sectionTitle}>관심 있는 정보를<br className={styles.titleBreak} /><span className={styles.gradientText}>상담받아보세요</span></h2>
+              <h2 className={styles.sectionTitle}>관심 있는 정보를<br className={styles.titleBreak} />{' '}<span className={styles.gradientText}>상담받아보세요</span></h2>
               <p className={styles.sectionDesc}>상담 유형을 선택하면 입력 화면이 즉시 전환됩니다.</p>
             </header>
             <div className={cn(styles.contactLayout, hideRequest && styles.contactLayoutSingle)}>

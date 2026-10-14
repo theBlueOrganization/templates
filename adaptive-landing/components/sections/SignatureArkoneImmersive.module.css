@@ -827,3 +827,9 @@
 }
 /* 탭이 없으니 "상담 유형을 선택하면…" 안내 문구는 숨김(모바일 포함) */
 .contactCentered .sectionDesc { display: none; }
+/* 포스터형 히어로 문구 사용 시 — 뒤의 큰 "ONE" 외곽선 장식이 제목과 겹쳐 지저분해 보여서 숨기고,
+   밝은 하늘 위 흰 글씨가 잘 읽히도록 위쪽을 어둡게 */
+.heroPosterMode .heroOne { display: none; }
+.heroPosterMode::after {
+  background: linear-gradient(180deg, rgba(1, 24, 20, 0.62) 0%, rgba(1, 24, 20, 0.38) 45%, rgba(1, 24, 20, 0.7) 100%);
+}

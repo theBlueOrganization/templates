@@ -829,3 +829,16 @@
 .heroPosterMode::after {
   background: linear-gradient(180deg, rgba(1, 24, 20, 0.25) 0%, rgba(1, 24, 20, 0.35) 40%, rgba(1, 24, 20, 0.82) 100%);
 }
+/* content.fontSans(예: 청라 아크원 푸르지오2) — 원본의 세리프(Georgia·Noto Serif) 포인트 글꼴을 전부 고딕으로 */
+.fontSans .heroOne,
+.fontSans .brandWords b,
+.fontSans .unitDisplay::after,
+.fontSans .unitDisplay h3,
+.fontSans .premiumSlide h3,
+.fontSans .historyCard time,
+.fontSans .noticeCard h3,
+.fontSans .introCopy b {
+  font-family: Pretendard, 'Noto Sans KR', Arial, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}

@@ -570,7 +570,7 @@ export default function SignatureArkoneImmersive({ site }) {
   )
 
   return (
-    <div className={styles.root}>
+    <div className={cn(styles.root, content.fontSans && styles.fontSans)}>
       {!introDone && <IntroOverlay onSkip={() => setIntroDone(true)} ready={introReady} />}
 
       <header className={styles.siteHeader}>

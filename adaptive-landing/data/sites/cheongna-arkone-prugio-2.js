@@ -66,6 +66,8 @@ const config = {
         { label: '주차대수', value: '총 3,124대', sub: 'APT 1,389대 · OT 1,695대\n상업시설 40대' },
       ],
       brandWide: { label: '대지위치', value: '인천광역시 서해구 청라동 86-1번지', sub: '(청라국제도시 주상복합용지 M5BL)' },
+      // 요청 반영(2026-10-14) — 원본의 세리프 포인트 글꼴(프리미엄 제목·A/R/ONE 등)을 전부 고딕으로
+      fontSans: true,
       // 요청 반영(2026-10-14) — 히어로 문구를 기존 2현장 포스터형 문구로
       heroCopy: {
         titleLines: ['CHEONG NA', 'ARK-ONE', 'PRUGIO'],

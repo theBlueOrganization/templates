@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation'
 import { getSiteBySlug, getAllSlugs } from '../../../data/siteRegistry'
 import MetaPixel from '../../../components/MetaPixel'
+// site.pageTheme — 페이지 전체 색 디자인 프리셋(현재 'ice' — 영종 신일 비아프 크레스트 몰입형 아이스 테마 톤)
+import './pageThemes.css'
 import SignatureHeader from '../../../components/ui/SignatureHeader'
 import SignatureFooter from '../../../components/ui/SignatureFooter'
 import SignatureQuickMenu from '../../../components/ui/SignatureQuickMenu'
@@ -237,7 +239,7 @@ export default async function AptPage({ params }) {
   }
 
   return (
-    <div style={themeStyle}>
+    <div style={themeStyle} data-page-theme={site.pageTheme}>
       {/* 선택 필드 — metaPixelId를 지정한 현장에서만, 그 현장 한글 도메인(subdomain.addupapt.kr)으로 접속했을 때만
           Meta 픽셀 로드. 호스트는 mobile-scroll middleware와 같은 방식(new URL)으로 퓨니코드 변환 */}
       {site.metaPixelId && (

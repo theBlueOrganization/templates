@@ -23,6 +23,8 @@ export default function SignaturePopupSequence({ popup, config }) {
           <SignaturePopupBanner
             popup={popup}
             openDelayMs={popup.openDelayMs ?? 2900}
+            // popup.afterIntro — 전체화면 인트로가 끝난 뒤에 이미지 팝업을 띄움
+            waitForIntro={!!popup.afterIntro}
             onClose={(info) => {
               if (info?.navigated) setNavigated(true)
               setFirstClosed(true)

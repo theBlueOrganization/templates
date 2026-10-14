@@ -60,7 +60,17 @@ export default function SignaturePremiumIntro({ premiumIntro }) {
               {premiumIntro.eyebrow}
             </p>
           )}
-          {premiumIntro.titleLine1 && <h2 className={styles.splitTitle}>{premiumIntro.titleLine1}</h2>}
+          {/* titleLine1 안의 '\n'은 줄바꿈(PC·모바일 동일) */}
+          {premiumIntro.titleLine1 && (
+            <h2 className={styles.splitTitle}>
+              {premiumIntro.titleLine1.split('\n').map((line, i) => (
+                <Fragment key={i}>
+                  {i > 0 && <br />}
+                  {line}
+                </Fragment>
+              ))}
+            </h2>
+          )}
           <span className={styles.splitLine} />
           {premiumIntro.paragraphs?.map((para, i) => (
             <p key={i} className={styles.splitPara}>

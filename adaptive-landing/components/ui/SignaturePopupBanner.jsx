@@ -21,7 +21,8 @@ import styles from './SignaturePopupBanner.module.css'
 // 이미지 전체가 아니라 이미지 안에 그려진 버튼 위치만 눌리게 하려면 link 대신 hotspots
 // 배열({ link, label, left, top, width, height } — 이미지 대비 % 값)을 지정한다. 해당 영역에만
 // 투명 링크가 얹히고, 나머지 이미지 부분은 탭해도 아무 동작이 없다(포레나 인천학익 참고).
-export default function SignaturePopupBanner({ popup, openDelayMs = 2900, onClose }) {
+// waitForIntro — 전체화면 인트로가 끝난 뒤(circleintro:end)부터 openDelayMs를 셈(SignatureVisitPopupTiamo와 같은 방식, 예: 양산자이 파크팰리체)
+export default function SignaturePopupBanner({ popup, openDelayMs = 2900, onClose, waitForIntro = false }) {
   const [open, setOpen] = useState(false)
   const [index, setIndex] = useState(0)
   const images = popup.images ?? [popup.image]
@@ -33,9 +34,18 @@ export default function SignaturePopupBanner({ popup, openDelayMs = 2900, onClos
     images.forEach((img) => {
       if (img?.src) new window.Image().src = img.src
     })
-    const t = setTimeout(() => setOpen(true), openDelayMs)
-    return () => clearTimeout(t)
-  }, [popup.enabled, openDelayMs])
+    let t
+    const start = () => { t = setTimeout(() => setOpen(true), openDelayMs) }
+    if (waitForIntro && !window.__circleIntroEnded) {
+      window.addEventListener('circleintro:end', start, { once: true })
+    } else {
+      start()
+    }
+    return () => {
+      clearTimeout(t)
+      window.removeEventListener('circleintro:end', start)
+    }
+  }, [popup.enabled, openDelayMs, waitForIntro])
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''

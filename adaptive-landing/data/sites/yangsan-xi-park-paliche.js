@@ -27,16 +27,18 @@ const config = {
   // 상담 접수 알림을 카카오 알림톡으로 발송(실패 시 SMS 자동 폴백)
   kakao: true,
 
-  // 공식 홈페이지 서브 비주얼 톤(2026-10-13 사용자 요청) — 딥 네이비(#0b1240) + 스카이 블루(#558eb1) + 아이스 블루(#e8f0f5)
+  // 2026-10-14 사용자 요청: 영종 신일 비아프 크레스트(몰입형 아이스 테마)와 같은 색 디자인 —
+  //   잉크 네이비(#0b1340) + 아이스 블루 포인트(#2b6a9c·#8fc3e8) + 아이스 그라데이션 배경(pageTheme 'ice', app/apt/[slug]/pageThemes.css)
   colorTheme: {
-    navy: '#0b1240',
-    ink: '#0b1240',
-    cream: '#e8f0f5',
-    gold: '#558eb1',
-    // 관심고객 버튼(헤더·퀵메뉴·폼·모바일 하단바)은 스카이 블루로 — 네이비 분양문의 버튼과 구분
-    visitBtnBg: '#558eb1',
-    visitBtnColor: '#ffffff',
+    navy: '#0b1340',
+    ink: '#0b1340',
+    cream: '#eaf2f8',
+    gold: '#2b6a9c',
+    // 방문예약 버튼(헤더·퀵메뉴·폼·모바일 하단바) — 영종 신일처럼 아이스 블루 그라데이션 + 네이비 글씨
+    visitBtnBg: 'linear-gradient(90deg, #dcecf8, #8dbfe4)',
+    visitBtnColor: '#0b1340',
   },
+  pageTheme: 'ice',
 
   webfont: {
     family: "'Pretendard', var(--font-noto-sans-kr, 'Noto Sans KR'), sans-serif",
@@ -71,27 +73,39 @@ const config = {
       logo: {
         src: '/apt/yangsan-xi-park-paliche/logo-white.png',
         alt: '양산자이 파크팰리체',
-        width: 1155,
-        height: 122,
+        width: 1161,
+        height: 128,
       },
       logoSize: { base: 150, lg: 180, xl: 196 },
-      gnb: ['사업안내', '위치안내', '프리미엄', '단지안내', '세대안내', '관심고객등록'],
-      quickCtaLabel: '관심고객등록',
+      gnb: ['사업안내', '위치안내', '프리미엄', '단지안내', '세대안내', '방문예약신청'],
+      quickCtaLabel: '방문예약신청',
       phone: '1533-5514',
     },
 
-    // 진입 시 관심고객 팝업 — 이미지 팝업 없이 방문예약 폼만
+    // 진입 팝업(2026-10-14 사용자 요청) — 1번: 조건변경 이벤트 이미지(popup1.webp, 인트로 끝나고 0.7초 뒤) →
+    //   닫으면 2번: 방문예약신청 폼. 이미지 우상단에 X가 그려져 있어 하단 '팝업닫기' 바 없이 이미지를 누르면 닫힘
     popup: {
-      enabled: false,
+      enabled: true,
+      order: 'imageFirst',
+      afterIntro: true,
+      openDelayMs: 700,
+      hideCloseBar: true,
+      fitViewport: true,
+      images: [
+        {
+          src: '/apt/yangsan-xi-park-paliche/popup1.webp',
+          alt: '조건변경 이벤트 — 계약금 1,000만원(입주시까지), 중도금 60% 전액 무이자, 비규제지역, 84㎡ 계약축하금 최대 1,500만원·120㎡ 최대 2,200만원. 방문상담 이벤트 모나리자 천연펄프 화장지 12롤 증정',
+          width: 1024,
+          height: 1536,
+        },
+      ],
       visitForm: {
         enabled: true,
-        // 인트로가 끝난 뒤(0.7초 후) 띄움
-        afterIntro: true,
-        accentColor: '#0b1240',
-        title: '관심고객등록',
+        accentColor: '#0b1340',
+        title: '방문예약신청',
         desc: '상담 가능시간 10:00~18:00 (담당자와 조율가능)',
         checks: ['모델하우스 방문예약', '원하는시간 전화예약', '자료요청', '기타문의'],
-        submitLabel: '관심고객 등록',
+        submitLabel: '방문예약 신청',
       },
     },
 
@@ -100,11 +114,11 @@ const config = {
       brand: '양산자이 파크팰리체',
       phoneLabel: '분양문의',
       phone: '1533-5514',
-      favoriteLabel: '관심고객',
+      favoriteLabel: '방문예약',
       menuLabel: 'MENU',
-      // 퀵메뉴 3버튼 색 구분: 분양문의 네이비 · 관심고객 스카이 블루(visitBtnBg) · MENU 아이스 블루+네이비 글씨
-      menuBg: '#dbe7ef',
-      menuColor: '#0b1240',
+      // 퀵메뉴 3버튼 색 구분(영종 신일 톤): 분양문의 네이비 · 방문예약 아이스 블루 그라데이션(visitBtnBg) · MENU 딥 네이비
+      menuBg: '#0c1e44',
+      menuColor: '#ffffff',
       ctaTargetId: 'vip-reservation',
       deskText: '양산자이 파크팰리체\n분양 상담을 도와드립니다.',
       address: '경남 양산시 평산동 47-1번지 일대',
@@ -116,7 +130,7 @@ const config = {
         { num: '04', label: 'PREMIUM', sub: '프리미엄', targetId: 'premium-value' },
         { num: '05', label: 'COMPLEX', sub: '단지안내', targetId: 'complex' },
         { num: '06', label: 'UNIT', sub: '세대안내', targetId: 'unit-plan' },
-        { num: '07', label: 'CONTACT', sub: '관심고객등록', targetId: 'vip-reservation' },
+        { num: '07', label: 'CONTACT', sub: '방문예약신청', targetId: 'vip-reservation' },
       ],
     },
 
@@ -134,9 +148,9 @@ const config = {
       brandName: '양산자이 파크팰리체',
       tagline: 'PARK · PALACE · RICHE',
       theme: {
-        base: '#0b1240',
-        stageOne: 'radial-gradient(circle at 50% 35%, #3d6f95 0, #0b1240 50%, #050824 100%)',
-        stageTwo: 'radial-gradient(circle at center, #2f5a82, #0b1240 44%, #050824 100%)',
+        base: '#0b1340',
+        stageOne: 'radial-gradient(circle at 50% 35%, #3d6f95 0, #0b1340 50%, #050824 100%)',
+        stageTwo: 'radial-gradient(circle at center, #2f5a82, #0b1340 44%, #050824 100%)',
         ring: 'rgba(163, 196, 219, 0.5)',
         accent: '#a3c4db',
         sub: '#e8f0f5',
@@ -146,18 +160,17 @@ const config = {
     // 히어로 — 영종 신일 비아프 크레스트 첫 화면과 같은 디자인(variant 'viaaf', 2026-10-13 사용자 요청, 모바일 포함):
     //   전체화면 사진 크로스페이드(5초) + 우상단 외곽선 워터마크 + 원형 배지 + 좌하단 슬라이드별 2줄 타이틀(2번째 줄 아이스 블루 그라데이션).
     //   사진은 공식 홈페이지 메인 투시도(주간)·교육자료 야경 투시도(p4)·조감도(p5) — 투시도 옥탑 Xi 로고는 지운 이미지.
-    //   모바일은 같은 이미지에서 단지 부분만 세로 크롭(hero-N-m.webp). 배지 문구는 교육자료 분양조건(중도금 전액 무이자)
+    //   모바일은 같은 이미지에서 단지가 화면 가운데 오도록 세로 크롭(hero-N-m.webp, 2026-10-14 재크롭). 원형 배지(중도금 전액 무이자)는 2026-10-14 사용자 요청으로 삭제
     hero: {
       variant: 'viaaf',
       viaaf: {
         eyebrow: '양산 평산동 · 양산자이 파크팰리체',
         desc: 'TIMELESS PRESTIGE · PARK PALICHE',
         watermark: 'PARK',
-        badge: ['중도금', '전액 무이자'],
       },
       slides: [
         {
-          title: ['도시를 품은 자리,', '첫 번째 자이'],
+          title: ['스케일이 다른 공원', '클래스가 다른 자이'],
           bgImage: {
             src: '/apt/yangsan-xi-park-paliche/hero-1.webp',
             alt: '양산자이 파크팰리체 투시도',
@@ -168,7 +181,7 @@ const config = {
           },
         },
         {
-          title: ['웅상센트럴파크를', '앞마당처럼'],
+          title: ['도시를 품은 자리', '첫번째 자이에서 누리다'],
           bgImage: {
             src: '/apt/yangsan-xi-park-paliche/hero-2.webp',
             alt: '양산자이 파크팰리체 야경 투시도',
@@ -194,11 +207,11 @@ const config = {
         announcements: [
           { badge: '안내', textStrong: '양산자이 파크팰리체', textLight: ' 공식 안내센터입니다.' },
         ],
-        announceBg: '#0b1240',
-        bubbleText: '관심고객등록',
-        dotColor: '#558eb1',
+        announceBg: '#0b1340',
+        bubbleText: '방문예약신청',
+        dotColor: '#2b6a9c',
         callLabel: '전화상담',
-        visitLabel: '관심고객등록',
+        visitLabel: '방문예약신청',
       },
     },
 
@@ -250,8 +263,8 @@ const config = {
           titleSuffix: '',
           tag: 'Traffic',
           image: {
-            src: '/apt/yangsan-xi-park-paliche/feature-traffic.webp',
-            alt: '도로 이미지컷',
+            src: '/apt/yangsan-xi-park-paliche/location-traffic.webp',
+            alt: '고속도로 항공 이미지컷',
           },
           descStrong: '웅상대로·7번 국도, 부울경 광역철도(계획)',
           descRest: '로 부산 노포~양산 웅상 약 10분대 이동(계획)',
@@ -262,8 +275,8 @@ const config = {
           titleSuffix: '',
           tag: 'Life',
           image: {
-            src: '/apt/yangsan-xi-park-paliche/feature-life.webp',
-            alt: '장보는 가족 이미지컷',
+            src: '/apt/yangsan-xi-park-paliche/location-life.webp',
+            alt: '장바구니 이미지컷',
           },
           descStrong: '이마트 트레이더스·일반상업지역',
           descRest: ', 웅상문화체육센터·웅상도서관 등 가깝고 편리한 생활인프라',
@@ -274,8 +287,8 @@ const config = {
           titleSuffix: '',
           tag: 'Education',
           image: {
-            src: '/apt/yangsan-xi-park-paliche/feature-education.webp',
-            alt: '책을 든 아이 이미지컷',
+            src: '/apt/yangsan-xi-park-paliche/location-education.webp',
+            alt: '공부하는 학생 이미지컷',
           },
           descStrong: '단지 바로 앞 평산초등학교',
           descRest: ' 도보 거리, 웅상도서관·3D과학체험관 등 교육시설',
@@ -286,8 +299,8 @@ const config = {
           titleSuffix: '',
           tag: 'Park',
           image: {
-            src: '/apt/yangsan-xi-park-paliche/feature-nature.webp',
-            alt: '산책하는 가족 이미지컷',
+            src: '/apt/yangsan-xi-park-paliche/location-park.webp',
+            alt: '햇살 드는 공원 숲 이미지컷',
           },
           descStrong: '약 10만㎡ 규모 웅상센트럴파크',
           descRest: '(실내체육관 포함)를 앞마당처럼, 주진불빛공원(계획)',
@@ -301,8 +314,8 @@ const config = {
     premiumIntro: {
       split: true,
       eyebrow: 'Timeless prestige',
-      eyebrowColor: '#558eb1',
-      titleLine1: '공세권의 특권을 누리는 프리미엄 주거공간',
+      eyebrowColor: '#2b6a9c',
+      titleLine1: '공세권의 특권을 누리는\n프리미엄 주거공간',
       paragraphs: [
         ['Park(공원) + Palace(궁전, 대저택)', '+ Riche(부유한)', '총 842세대 브랜드 대단지'],
         ['남동·남서향 배치와 전용 84㎡ 위주,', '지역 내 희소성 높은 중대형 구성으로', '여유로운 라이프가 시작됩니다'],
@@ -314,52 +327,74 @@ const config = {
       },
     },
 
-    // 프리미엄 가치 — 교육자료 'BIG 프리미엄 5'(p18) + 커뮤니티·주차(p21, p25)
+    // 프리미엄 인트로 바로 다음 split 섹션 2개(2026-10-14 사용자 요청 — 현장 핵심 포인트) — 브랜드 대단지·교통 / 커뮤니티·조경
+    premiumIntroExtras: [
+      {
+        split: true,
+        reverse: true,
+        eyebrow: 'Brand Landmark',
+        eyebrowColor: '#2b6a9c',
+        titleLine1: '양산 첫 번째 자이,\n842세대 브랜드 대단지',
+        paragraphs: [
+          { head: 'GS건설 자이 브랜드 프리미엄', lines: ['지하 2층~지상 최고 29층', '6개동 총 842세대,', '84㎡부터 168㎡P까지', '다양한 평형 구성'] },
+          { head: '부울경 메가시티 교통 중심', lines: ['웅상대로·7번 국도와', '부울경 광역철도(계획)로', '부산·울산 생활권을 더 가깝게'] },
+        ],
+        imageBadge: '조감도',
+        bgImage: { src: '/apt/yangsan-xi-park-paliche/overview-aerial.webp', alt: '양산자이 파크팰리체 조감도' },
+      },
+      {
+        split: true,
+        eyebrow: 'Club Xian',
+        eyebrowColor: '#2b6a9c',
+        titleLine1: '단지 안에서 누리는\n품격 있는 일상',
+        paragraphs: [
+          { head: '지하 1·2층 프리미엄 커뮤니티', lines: ['골프연습장(GDR 8타석)·스크린골프', '피트니스·사우나', '작은도서관(교보문고 북 큐레이션)', '독서실·북카페'] },
+          { head: '공원 같은 단지 조경', lines: ['중앙 잔디마당·산책로', '테마정원·수경공간으로', '집 앞에서 즐기는 힐링 라이프'] },
+        ],
+        imageBadge: '커뮤니티 광장 투시도',
+        bgImage: { src: '/apt/yangsan-xi-park-paliche/landscape-club.webp', alt: '양산자이 파크팰리체 커뮤니티 앞 광장 투시도' },
+      },
+    ],
+
+    // 프리미엄 가치 — 2026-10-14 사용자 요청으로 PREMIUM 5로 교체: 문구는 사용자 제공, 사진은 https://megacitymh.co.kr/ 프리미엄 섹션 원본(1300×800)
     premiumValue: {
       id: 'premium-value',
       navLabel: '프리미엄가치',
       eyebrow: 'PREMIUM LIFE',
       titlePlain: '양산자이 파크팰리체 ',
-      titleAccent: 'PREMIUM 6',
-      accentColor: '#558eb1',
-      columns: 2,
-      mobileColumns: 2,
+      titleAccent: 'PREMIUM 5',
+      accentColor: '#2b6a9c',
+      columns: 5,
       cards: [
         {
           num: '01',
-          image: { src: '/apt/yangsan-xi-park-paliche/premium-rail.webp', alt: '부산~양산~울산 광역철도(계획) 노선도' },
-          title: ['어디든 빠르게', '특급교통의 중심'],
-          desc: ['웅상대로·7번 국도,', '부울경 광역철도(계획)'],
+          image: { src: '/apt/yangsan-xi-park-paliche/premium5-traffic.webp', alt: '도심 도로 야경 이미지컷' },
+          title: ['한발빠른 교통망'],
+          desc: ['웅상대로와 7번 국도로 부산 및 울산 이동이 편리하며, 1028호 국도(계획) 등 편리한 광역 교통망을 갖추고 있습니다.'],
         },
         {
           num: '02',
-          image: { src: '/apt/yangsan-xi-park-paliche/feature-life.webp', alt: '장보는 가족 이미지컷' },
-          title: ['편리한 모든 것', '생활인프라의 중심'],
-          desc: ['이마트 트레이더스,', '웅상문화체육센터·웅상도서관'],
+          image: { src: '/apt/yangsan-xi-park-paliche/premium5-eco.webp', alt: '공원 잔디밭을 뛰노는 아이들 이미지컷' },
+          title: ['친환경 에코특권'],
+          desc: ['단지 바로 옆 웅상센트럴파크 조성으로 365일 쾌적함이 돋보이는 친환경 공원 라이프를 누릴 수 있습니다.'],
         },
         {
           num: '03',
-          image: { src: '/apt/yangsan-xi-park-paliche/premium-vision.webp', alt: '양산자이 파크팰리체 일대 항공사진' },
-          title: ['양산을 더욱 가치있게', '미래 비전의 중심'],
-          desc: ['주진·흥등지구, 소주지구', '도시개발사업(계획)'],
+          image: { src: '/apt/yangsan-xi-park-paliche/premium5-infra.webp', alt: '마트 쇼핑카트 이미지컷' },
+          title: ['풍요로운 인프라'],
+          desc: ['이마트 트레이더스, 웅상문화체육센터, 동부행정타운(계획), 양산 웅상출장소, 일반상업지역 내 시설 등을 편리하게 이용할 수 있습니다.'],
         },
         {
           num: '04',
-          image: { src: '/apt/yangsan-xi-park-paliche/feature-education.webp', alt: '책을 든 아이 이미지컷' },
-          title: ['한 걸음 가깝게', '교육인프라의 중심'],
-          desc: ['단지 바로 앞 평산초등학교,', '웅상도서관 3D과학체험관'],
+          image: { src: '/apt/yangsan-xi-park-paliche/premium5-education.webp', alt: '교실에서 손 드는 학생 이미지컷' },
+          title: ['가까운 교육시설'],
+          desc: ['단지 앞 평산초등학교가 도보 거리에 있어 안심하고 통학할 수 있으며, 웅상도서관 등 가깝고 우수한 교육 환경을 제공합니다.'],
         },
         {
           num: '05',
-          image: { src: '/apt/yangsan-xi-park-paliche/premium-jujin-park.webp', alt: '주진불빛공원(계획) 조감도' },
-          title: ['365일 쾌적하게', '공원라이프의 중심'],
-          desc: ['약 10만㎡ 웅상센트럴파크,', '주진불빛공원(계획)'],
-        },
-        {
-          num: '06',
-          image: { src: '/apt/yangsan-xi-park-paliche/premium-club.webp', alt: '커뮤니티 투시도' },
-          title: ['품격 있는 커뮤니티', '여유로운 주차공간'],
-          desc: ['피트니스·골프연습장·작은도서관,', '세대당 1.39대 주차'],
+          image: { src: '/apt/yangsan-xi-park-paliche/premium5-work.webp', alt: '출근하는 직장인 이미지컷' },
+          title: ['직주근접 라이프'],
+          desc: ['소주공업지구, 서창일반산단, 덕계일반산단 등 인근 13개 산단(조성 계획 포함)을 품은 직주근접 프리미엄을 갖추고 있습니다.'],
         },
       ],
     },
@@ -408,12 +443,10 @@ const config = {
           thumb: '/apt/yangsan-xi-park-paliche/complex-thumb-community.webp',
           title: '커뮤니티',
           blocks: [
-            { label: '지하 1층', image: { src: '/apt/yangsan-xi-park-paliche/complex-community-b1.webp', alt: '지하 1층 커뮤니티 — 스크린골프·골프연습장·사우나·피트니스클럽·G.X룸', width: 1833, height: 1016 } },
-            { label: '지하 2층', image: { src: '/apt/yangsan-xi-park-paliche/complex-community-b2.webp', alt: '지하 2층 커뮤니티 — 작은도서관·북카페·독서실·다목적실·주민회의실', width: 1833, height: 1250 } },
-            { label: '피트니스', image: { src: '/apt/yangsan-xi-park-paliche/community-fitness.webp', alt: '피트니스클럽 이미지', width: 594, height: 404 } },
-            { label: '골프연습장', image: { src: '/apt/yangsan-xi-park-paliche/community-golf.webp', alt: '골프연습장 이미지', width: 594, height: 404 } },
-            { label: '사우나', image: { src: '/apt/yangsan-xi-park-paliche/community-sauna.webp', alt: '사우나 이미지', width: 594, height: 404 } },
-            { label: '작은도서관', image: { src: '/apt/yangsan-xi-park-paliche/community-library.webp', alt: '작은도서관 이미지', width: 900, height: 372 } },
+            // 2026-10-14 사용자 요청: 지하 1층·지하 2층 탭만 — 공식 홈페이지 커뮤니티 원본(2000×6295)을 층별로 나눠
+            //   평면도·시설 설명·하단 사진(사우나·피트니스·골프연습장 / 작은도서관·클럽 광장)까지 자르지 않고 통째로 사용
+            { label: '지하 1층', image: { src: '/apt/yangsan-xi-park-paliche/community-b1.webp', alt: '지하 1층 커뮤니티 — 골프연습장·스크린골프·사우나·피트니스클럽·G.X룸', width: 2000, height: 2569 } },
+            { label: '지하 2층', image: { src: '/apt/yangsan-xi-park-paliche/community-b2.webp', alt: '지하 2층 커뮤니티 — 작은도서관·북카페·독서실·다목적실·주민회의실', width: 2000, height: 2568 } },
           ],
         },
         {
@@ -421,9 +454,10 @@ const config = {
           thumb: '/apt/yangsan-xi-park-paliche/complex-thumb-smart.webp',
           title: '스마트시스템',
           blocks: [
-            { label: '스마트 IoT', image: { src: '/apt/yangsan-xi-park-paliche/complex-smart.webp', alt: '스마트홈 IoT — 에너지 모니터링·조명/난방 제어·부재중 방문자 확인·IoT 생활가전 제어', width: 1818, height: 861 } },
-            { label: '안전 시스템', image: { src: '/apt/yangsan-xi-park-paliche/complex-smart-safety.webp', alt: 'CCTV·엘리베이터 방범 핸드레일·적외선감지기·앱 솔루션·차량번호인식 주차관제', width: 2000, height: 1372 } },
-            { label: '안심 서비스', image: { src: '/apt/yangsan-xi-park-paliche/complex-smart-alert.webp', alt: '안전사고 조기경보 시스템·방범형 도어폰·지하주차장 비상콜 버튼', width: 1818, height: 861 } },
+            // 2026-10-14 사용자 요청: 공식 홈페이지 시스템 페이지(/sub/sub02_05.php)의 탭 3개 원본 이미지를 자르지 않고 그대로
+            { label: '스마트 & 안전', image: { src: '/apt/yangsan-xi-park-paliche/system-smart-safety.webp', alt: '스마트 & 안전 시스템 — 자이 스마트홈 IoT·CCTV·엘리베이터 방범 핸드레일·적외선감지기·차량번호인식 주차관제·안전사고 조기경보·방범형 도어폰·지하주차장 비상콜', width: 2000, height: 5745 } },
+            { label: '에너지 시스템', image: { src: '/apt/yangsan-xi-park-paliche/system-energy.webp', alt: '에너지 시스템 — 스마트 원격 검침·실별 온도 조절기·세대 비례 제어·고효율 LED·일괄소등 스위치·전력회생형 엘리베이터·지하주차장 LED 디밍', width: 2000, height: 4336 } },
+            { label: '편의 시스템', image: { src: '/apt/yangsan-xi-park-paliche/system-convenience.webp', alt: '편의 시스템 — 자이 패스·차세대 실내 환기·전자책도서관·주차유도·전기차 충전기·엘리베이터 홀 에어컨·태양광 발전·무인택배', width: 2000, height: 4447 } },
           ],
         },
       ],
@@ -493,13 +527,13 @@ const config = {
       ],
     },
 
-    // 관심고객등록 폼 — 히어로 다음 + 페이지 맨 아래 두 번 렌더링
+    // 방문예약신청 폼 — 히어로 다음 + 페이지 맨 아래 두 번 렌더링
     vipForm: {
       id: 'vip-reservation',
       showAfterHero: true,
       eyebrow: 'VISIT RESERVATION',
       titleLine1: '양산자이 파크팰리체',
-      titleLine2: '관심고객등록',
+      titleLine2: '방문예약신청',
       desc: '간단한 정보를 남겨주시면 「양산자이 파크팰리체」의 분양 정보와 상세 안내를 가장 빠르게 전해드립니다.',
       serviceOptions: ['모델하우스 방문예약', '원하는시간 전화예약'],
       ageOptions: ['20대 이하', '30대', '40대', '50대', '60대 이상'],
@@ -515,8 +549,8 @@ const config = {
       logo: {
         src: '/apt/yangsan-xi-park-paliche/logo-white.png',
         alt: '양산자이 파크팰리체',
-        width: 1155,
-        height: 122,
+        width: 1161,
+        height: 128,
       },
       logoAlign: 'center',
       logoWidth: 200,

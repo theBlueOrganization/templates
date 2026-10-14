@@ -648,3 +648,33 @@
     line-height: 1.55;
   }
 }
+
+/* premiumValue.columns === 5 — 넓은 PC(1200px 이상)에서 5개 카드를 한 줄로. 그보다 좁으면 기본 3열.
+   PC .card의 50px 40px 안쪽 여백이 사진 카드에도 걸려 사진이 작게 들어가고 글이 좁게 꺾이던 것 —
+   사진은 카드 폭에 꽉 채우고 글 영역 여백만 줄임 */
+.gridFiveCol .cardPhoto {
+  padding: 0;
+}
+
+@media (min-width: 1024px) {
+  .gridFiveCol .cardPhoto .body {
+    gap: 10px;
+    padding: 24px 22px 30px;
+  }
+
+  .gridFiveCol .cardTitle {
+    font-size: 20px;
+  }
+
+  .gridFiveCol .cardDesc {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid.gridFiveCol {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+  }
+}

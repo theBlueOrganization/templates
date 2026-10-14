@@ -1,0 +1,47 @@
+/* site.pageTheme 프리셋 — 루트 div의 data-page-theme 값으로만 켜지므로 지정하지 않은 현장에는 영향 없음.
+   공용 Signature* 컴포넌트를 건드리지 않고 섹션 id·CSS 모듈 클래스 이름(접두어 매칭)으로 배경/포인트 색만 덮어씀 */
+
+/* 'ice' — 영종 신일 비아프 크레스트 몰입형(SignatureTiamoImmersive.module.css .themeIce)과 같은 톤:
+   흰 섹션을 아이스 블루 그라데이션 3톤(A/B/C)으로 번갈아 깔고, 제목 포인트는 네이비→블루 그라데이션 글씨,
+   폼·푸터는 딥 네이비(#0c1e44) */
+[data-page-theme='ice'] {
+  --ice-ink: #0b1340;
+  --ice-blue: #2b6a9c;
+  --ice-sky: #8fc3e8;
+  --ice-deep: #0c1e44;
+  --ice-tone-a: linear-gradient(180deg, #eef5fa, #dde9f3);
+  --ice-tone-b: linear-gradient(180deg, #f3f8fc, #e3eef6);
+  --ice-text-grad: linear-gradient(90deg, #0b1340, #1f4f86, #4a8fc4, #0b1340);
+  background: #eef5fa;
+}
+
+/* 섹션 배경 — A/B를 번갈아. 사업개요(#overview)·사진+카피 split 섹션(premiumIntro)은 사용자 요청(2026-10-14)으로 흰 배경 */
+[data-page-theme='ice'] #premium-value,
+[data-page-theme='ice'] #unit-plan {
+  background: var(--ice-tone-a);
+}
+
+[data-page-theme='ice'] #location,
+[data-page-theme='ice'] #complex {
+  background: var(--ice-tone-b);
+}
+
+[data-page-theme='ice'] #overview,
+[data-page-theme='ice'] section[class*='SignaturePremiumIntro_sectionSplit'] {
+  background: #fff;
+}
+
+/* 폼·푸터 — 영종 신일 푸터 패널과 같은 딥 네이비 */
+[data-page-theme='ice'] #vip-reservation,
+[data-page-theme='ice'] #vip-reservation-early {
+  background: var(--ice-deep);
+}
+
+/* 섹션 제목 포인트(PREMIUM 5 등) — 네이비→블루 그라데이션 글씨 */
+[data-page-theme='ice'] #premium-value h2 [class*='Accent'],
+[data-page-theme='ice'] #premium-value h2 em {
+  background-image: var(--ice-text-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}

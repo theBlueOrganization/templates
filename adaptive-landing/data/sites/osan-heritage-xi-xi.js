@@ -627,6 +627,7 @@ const config = {
     },
 
     // 요청 반영(2026-10-02) — 진입 팝업 재개, 방문 이벤트 안내 이미지(popup0.webp, 세로형) 1장으로 교체.
+    // 요청 반영(2026-10-14) — 팝업 이미지를 popup_v1.webp(와인 추첨·계약금 500만원·축하금 100만원)로 교체.
     // 하단 "팝업닫기" 바 없이 이미지에 그려진 X로 닫음(hideCloseBar — 이미지 탭 시 팝업 닫힘)
     popup: {
       enabled: true,
@@ -637,10 +638,10 @@ const config = {
       fitViewport: true,
       images: [
         {
-          src: '/apt/osan-heritage-xi-xi/popup0.webp',
-          alt: '오산헤리티지자이 특별한 방문 이벤트 — 와인 추첨·주말 경품추첨·1차 계약금 500만원·계약축하금 100만원',
-          width: 861,
-          height: 1448,
+          src: '/apt/osan-heritage-xi-xi/popup_v1.webp',
+          alt: '오산헤리티지자이 특별한 방문 이벤트 — 방문이벤트 와인 추첨·1차 계약금 500만원·계약시 계약축하금 100만원',
+          width: 1024,
+          height: 1536,
         },
       ],
     },

@@ -676,7 +676,8 @@
      이 칼럼 폭에 맞는 별도 크기로 축소 */
   .landmark .sectionTitle { font-size: clamp(32px, 3.2vw, 52px); }
   .landmark .visual { margin-top: 0; }
-  .contentCard { left: 5vw; right: auto; width: min(420px, 48%); bottom: 18px; padding: 20px; }
+  /* 넓은 화면에선 .sectionShell(최대 1480px 가운데 정렬)의 왼쪽 기준선에 맞춤 — 제목과 카드 왼쪽 정렬 일치 */
+  .contentCard { left: max(5vw, calc((100vw - 1480px) / 2)); right: auto; width: min(420px, 48%); bottom: 18px; padding: 20px; }
   .contentCard h3 { font-size: 33px; }
   .contentCard p { font-size: 12px; }
   .stats strong { font-size: 52px; }
@@ -805,3 +806,23 @@
 @media (max-width: 1023px) {
   .capBadgeLow { top: auto; bottom: calc(var(--bottom) + 48px); }
 }
+/* PC 지도+노선 한 패널 — 노선 카드가 패널 높이를 넘지 않게: 이미지 3장이 남은 높이를 나눠 쓰고 비율 유지(contain) */
+@media (min-width: 1024px) {
+  .locationSplit .seoulRoutes { flex: 0.85; justify-content: flex-start; gap: 12px; padding: 22px 28px; overflow: hidden; }
+  .locationSplit .seoulRoutes :global(img) { flex: 1 1 0; min-height: 0; width: 100%; height: auto; max-height: none; object-fit: contain; }
+  .locationSplit .seoulRoutesTitle { flex: none; font-size: 22px; }
+}
+/* 자료요청 탭이 없는 현장(hideRequest) — PC에서 폼 하나를 가운데 정렬하고 글씨·입력칸을 키움 */
+@media (min-width: 1024px) {
+  .contactCentered .sectionHead { text-align: center; }
+  .contactLayoutSingle { display: flex; width: min(720px, 100%); margin: 16px auto 0; }
+  .contactLayoutSingle .contactPanel { padding: 22px 30px; }
+  .contactLayoutSingle .leadForm { gap: 10px 16px; margin-top: 0; }
+  .contactLayoutSingle .field label, .contactLayoutSingle .field > span, .contactLayoutSingle .agree { font-size: 13.5px; }
+  .contactLayoutSingle .input { height: 44px; font-size: 15px; }
+  .contactLayoutSingle .checkGrid label, .contactLayoutSingle .consultGrid label { min-height: 40px; font-size: 14px; }
+  .contactLayoutSingle .leadForm .submitButton { height: 50px; font-size: 16px; }
+
+}
+/* 탭이 없으니 "상담 유형을 선택하면…" 안내 문구는 숨김(모바일 포함) */
+.contactCentered .sectionDesc { display: none; }

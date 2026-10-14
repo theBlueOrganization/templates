@@ -83,13 +83,15 @@ const config = {
       hidePanels: ['plan', 'network'],
       // 메뉴 이름 — 유니트 자리가 프리미엄이 되어서, 원래 프리미엄(원본 5장 슬라이드)은 "라이프"로
       navLabels: { unit: '프리미엄', premium: '라이프' },
-      // 원래 프리미엄 패널(라이프) — 문구는 원본 그대로, 이미지만 공식 사이트(arkone-prugio.com) 고화질 원본(life-*.webp)으로
+      // 원래 프리미엄 패널(라이프) — 문구는 원본 그대로, 이미지만 공식 사이트(arkone-prugio.com) 고화질 원본(life-*.webp)으로.
+      // 요청 반영(2026-10-14) — 이 패널은 '프리미엄' 대신 'VALUE'로 표기(위 유니트 자리 프리미엄과 구분)
+      premium: { eyebrow: 'VALUE 01—05', titleTop: '청라 생활을 넓히는', titleAccent: '다섯 가지 가치' },
       premiumSlides: [
-        { num: '01', img: '/apt/cheongna-arkone-prugio-2/life-01-brandtown.webp', position: 'center 35%', alt: '청라 아크원 푸르지오 조감도', title: '총 2,911가구 푸르지오 브랜드타운', desc: '최고 49층 총 2,911가구로 완성되는 청라의 대규모 브랜드타운' },
-        { num: '02', img: '/apt/cheongna-arkone-prugio-2/life-02-central.webp', alt: '도심 조망 거실 이미지컷', title: '국제업무단지의 센트럴 라이프', desc: '청라의 중심으로 완성되는 국제업무단지의 특별한 주거 가치' },
-        { num: '03', img: '/apt/cheongna-arkone-prugio-2/life-03-view.webp', alt: '오션 시티뷰 거실 이미지컷', title: '오션·시티뷰 조망 특화', desc: '오션·시티뷰를 동시에 누리는 2면 또는 3면 개방구조(일부 세대)' },
-        { num: '04', img: '/apt/cheongna-arkone-prugio-2/life-04-value.webp', alt: '프리미엄 실내 이미지컷', title: '높은 희소가치와 합리적 분양가', desc: '2017년 이후 10년만의 분양가 상한제 공급 아파트' },
-        { num: '05', img: '/apt/cheongna-arkone-prugio-2/life-05-multi.webp', alt: '멀티 라이프 이미지컷', title: '멀티 라이프 플랫폼', desc: '팬트리 2개소 이상, 다양한 공간 활용의 멀티 발코니(OT)' },
+        { num: '01', label: 'VALUE 01', img: '/apt/cheongna-arkone-prugio-2/life-01-brandtown.webp', position: 'center 35%', alt: '청라 아크원 푸르지오 조감도', title: '총 2,911가구 푸르지오 브랜드타운', desc: '최고 49층 총 2,911가구로 완성되는 청라의 대규모 브랜드타운' },
+        { num: '02', label: 'VALUE 02', img: '/apt/cheongna-arkone-prugio-2/life-02-central.webp', alt: '도심 조망 거실 이미지컷', title: '국제업무단지의 센트럴 라이프', desc: '청라의 중심으로 완성되는 국제업무단지의 특별한 주거 가치' },
+        { num: '03', label: 'VALUE 03', img: '/apt/cheongna-arkone-prugio-2/life-03-view.webp', alt: '오션 시티뷰 거실 이미지컷', title: '오션·시티뷰 조망 특화', desc: '오션·시티뷰를 동시에 누리는 2면 또는 3면 개방구조(일부 세대)' },
+        { num: '04', label: 'VALUE 04', img: '/apt/cheongna-arkone-prugio-2/life-04-value.webp', alt: '프리미엄 실내 이미지컷', title: '높은 희소가치와 합리적 분양가', desc: '2017년 이후 10년만의 분양가 상한제 공급 아파트' },
+        { num: '05', label: 'VALUE 05', img: '/apt/cheongna-arkone-prugio-2/life-05-multi.webp', alt: '멀티 라이프 이미지컷', title: '멀티 라이프 플랫폼', desc: '팬트리 2개소 이상, 다양한 공간 활용의 멀티 발코니(OT)' },
       ],
       // 입지환경 — 공식 사이트 입지안내(arkone-prugio.com/pages/location) 구성: 문구 + 입지환경도 원본(2472x2700, 세로형 —
       // 잘리지 않게 contain + 지도 바탕색) + "더 가까워지는 서울!" 노선 인포그래픽 3장(PC는 지도 오른쪽, 모바일은 다음 패널)

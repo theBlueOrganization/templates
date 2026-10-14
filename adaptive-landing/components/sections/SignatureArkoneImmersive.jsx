@@ -347,7 +347,15 @@ export default function SignatureArkoneImmersive({ site }) {
   useEffect(() => {
     const onWheel = (e) => {
       if (blockingOverlay() || !introDone) { e.preventDefault(); return }
-      if (e.target.closest('dialog,.' + styles.mobileMenu + ',.' + styles.contactPanel)) return
+      if (e.target.closest('dialog,.' + styles.mobileMenu)) return
+      // 상담 폼 영역은 폼 안에서 그 방향으로 더 스크롤할 내용이 있을 때만 휠을 양보 —
+      // 폼이 다 보이는 경우(예: PC 가운데 정렬 폼)엔 그대로 다음/이전 패널로 넘어감
+      const panelEl = e.target.closest('.' + styles.contactPanel)
+      if (panelEl) {
+        const canDown = panelEl.scrollTop + panelEl.clientHeight < panelEl.scrollHeight - 1
+        const canUp = panelEl.scrollTop > 0
+        if ((e.deltaY > 0 && canDown) || (e.deltaY < 0 && canUp)) return
+      }
       e.preventDefault()
       const w = wheelRef.current
       const now = performance.now()
@@ -901,14 +909,14 @@ export default function SignatureArkoneImmersive({ site }) {
         </section>
 
         {/* 상담과 예약 */}
-        <section className={panelClass('contact')} id="contact">
+        <section className={cn(panelClass('contact'), hideRequest && styles.contactCentered)} id="contact">
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>{displayName}</p>
               <h2 className={styles.sectionTitle}>관심 있는 정보를<br className={styles.titleBreak} /><span className={styles.gradientText}>상담받아보세요</span></h2>
               <p className={styles.sectionDesc}>상담 유형을 선택하면 입력 화면이 즉시 전환됩니다.</p>
             </header>
-            <div className={styles.contactLayout}>
+            <div className={cn(styles.contactLayout, hideRequest && styles.contactLayoutSingle)}>
               {!hideRequest && (
                 <div className={styles.contactTabs}>
                   <button type="button" className={cn(contactTab === 'visit' && styles.isActive)} onClick={() => setContactTab('visit')}>방문예약</button>

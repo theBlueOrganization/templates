@@ -879,7 +879,7 @@ export default function SignatureArkoneImmersive({ site }) {
         </section>
 
         {/* 청라의 연혁 */}
-        <section className={panelClass('history')} id="history">
+        {showPanel('history') && (<section className={panelClass('history')} id="history">
           <div className={styles.sectionShell}>
             <header className={styles.sectionHead}>
               <p className={styles.eyebrow}>청라의 연혁</p>
@@ -906,7 +906,7 @@ export default function SignatureArkoneImmersive({ site }) {
               </div>
             </div>
           </div>
-        </section>
+        </section>)}
 
         {/* 상담과 예약 */}
         <section className={cn(panelClass('contact'), hideRequest && styles.contactCentered)} id="contact">

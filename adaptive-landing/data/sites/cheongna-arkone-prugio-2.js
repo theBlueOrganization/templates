@@ -112,9 +112,10 @@ const config = {
       // 문구·이미지컷(official-*.webp 원본). reverse/imagesLayout은 공식 페이지 배치(좌우 교차, 03은 위아래)를 따름.
       // 원래 프리미엄 패널은 덮어쓰지 않아 원본 이미지·문구 그대로(요청 반영 2026-10-14)
       unitPremium: {
-        eyebrow: '공간의 특별함도 자부심의 높이도',
-        titleTop: '정점을 넘어',
-        titleAccent: '완성된 라이프로',
+        // 요청 반영(2026-10-14) — 제목에 PREMIUM이 확실히 보이게(공식 카피는 위 작은 문구·첫 키비주얼에 유지)
+        eyebrow: '공간의 특별함도 자부심의 높이도, 정점을 넘어 완성된 라이프로',
+        titleTop: '청라 아크원 푸르지오',
+        titleAccent: 'PREMIUM 6',
         slides: [
           { num: '00', label: 'CHEONGNA ARK-ONE PRUGIO', img: '/apt/cheongna-arkone-prugio-2/official-premium-visual-img.webp', alt: '청라 아크원 푸르지오 이미지컷', title: '정점을 넘어 완성된 라이프로', desc: '공간의 특별함도 자부심의 높이도, 청라 아크원 푸르지오' },
           {

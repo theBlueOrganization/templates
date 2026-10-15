@@ -174,7 +174,7 @@ const config = {
           tag:   "EDUCATION",
           title: "탁월한 교육 인프라",
           titleStrong: "탁월한 교육 인프라",
-          desc:  "도보통학 양산1초(가칭·계획)·양산중('27예정), 세마중·고, 양산도서관 등",
+          desc:  "도보통학 양산중('27예정), 세마중·고, 양산도서관 등",
           image: { src: "/apt/osan-heritage-xi-2/2-3.webp", alt: "탁월한 교육 인프라" },
         },
         {
@@ -231,7 +231,7 @@ const config = {
       items: [
         { icon: "train",   lead: "GTX-C 연장 추진·동탄트램(계획)",     strong: "병점역 미래가치",     image: { src: "/apt/osan-heritage-xi-2/3-1.webp", alt: "병점역 미래가치 이미지컷" } },
         { icon: "road",    lead: "제2순환·오산용인고속도로(계획)",     strong: "쾌속 광역 교통망",    image: { src: "/apt/osan-heritage-xi-2/3-2.webp", alt: "광역 교통망 이미지컷" },     iconTone: "dark", strongTone: "dark" },
-        { icon: "school",  lead: "도보통학 양산1초(가칭·계획)",        strong: "탁월한 교육 인프라",  image: { src: "/apt/osan-heritage-xi-2/3-3.webp", alt: "교육 인프라 이미지컷" },     iconTone: "dark", strongTone: "dark" },
+        { icon: "school",  lead: "도보통학",        strong: "탁월한 교육 인프라",  image: { src: "/apt/osan-heritage-xi-2/3-3.webp", alt: "교육 인프라 이미지컷" },     iconTone: "dark", strongTone: "dark" },
         { icon: "eco",     lead: "단지 앞 대규모 체육공원(계획)",      strong: "센트럴 그린라이프",   image: { src: "/apt/osan-heritage-xi-2/3-4.webp", alt: "그린라이프 이미지컷" } },
         { icon: "diamond", lead: "스카이라운지·피트니스·작은도서관",   strong: "다채로운 커뮤니티",   image: { src: "/apt/osan-heritage-xi-2/3-5.webp", alt: "커뮤니티 이미지컷" } },
         { icon: "city",    lead: "미니신도시급 1,783세대 대단지",      strong: "완성형 新주거타운",   image: { src: "/apt/osan-heritage-xi-2/3-6.webp", alt: "신주거타운 비전 이미지컷" }, iconTone: "dark", strongTone: "dark" },

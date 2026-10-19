@@ -158,17 +158,17 @@ const config = {
       id: 'benefits',
       afterHero: true,
       eyebrow: 'SPECIAL CONDITIONS',
-      titleSmall: '오산헤리티지자이',
+      // 요청 반영(2026-10-19) — 팝업 이미지(특별한 방문 이벤트)와 같은 내용으로 교체: 주말 경품추첨 빼고 3가지 혜택
+      titleSmall: '지금, 현장에서만 만날 수 있는',
       titleBold: '특별한 ',
-      titleScript: '4가지 혜택',
-      desc: '오산헤리티지자이만의 특별한 혜택을 확인하세요.',
+      titleScript: '방문 이벤트',
+      desc: '오산헤리티지자이 현장 방문 시, 다양한 혜택을 만나보세요!',
       // 요청 반영 — 히어로 이미지(글자 포함) 대신 프리미엄 인트로 섹션의 주간 단지 전경 이미지 사용
       bgImage: { src: '/apt/osan-heritage-xi-xi/premium-intro-bg.webp', alt: '오산헤리티지자이 특별 혜택' },
       items: [
-        { num: '01', tag: 'NO.1', title: ['방문이벤트', '와인추첨'], desc: '' },
-        { num: '02', tag: 'NO.2', title: ['주말', '경품추첨'], desc: '' },
-        { num: '03', tag: 'NO.3', title: ['1차 계약금', '500만원'], desc: '' },
-        { num: '04', tag: 'NO.4', title: ['계약시 계약축하금', '100만원'], desc: '' },
+        { num: '01', tag: 'NO.1', title: ['방문이벤트', '와인 추첨'], desc: '현장 방문 고객 대상 와인 추첨 이벤트!' },
+        { num: '02', tag: 'NO.2', title: ['1차 계약금', '500만원'], desc: '계약 시 1차 계약금 500만원 혜택!' },
+        { num: '03', tag: 'NO.3', title: ['계약시 계약축하금', '100만원'], desc: '계약 완료 시 계약축하금 100만원 지급!' },
       ],
     },
 

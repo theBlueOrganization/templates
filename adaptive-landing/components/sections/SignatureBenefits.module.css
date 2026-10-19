@@ -185,6 +185,12 @@
   .card:nth-child(n + 3) {
     padding-top: 28px;
   }
+
+  /* 혜택이 홀수 개(예: 3개)면 마지막 카드를 한 줄 전체로 펼침 */
+  .card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    border-right: none;
+  }
 }
 
 @media (min-width: 1024px) {

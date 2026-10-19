@@ -156,6 +156,8 @@ const config = {
     benefits: {
       id: 'benefits',
       afterHero: true,
+      // 요청 반영(2026-10-19) — 혜택 카드 hover 시 글자색 흰색
+      hoverTextWhite: true,
       eyebrow: 'SPECIAL CONDITIONS',
       // 요청 반영(2026-10-19) — 팝업 이미지(특별한 방문 이벤트)와 같은 내용으로 교체: 주말 경품추첨 빼고 3가지 혜택
       titleSmall: '지금, 현장에서만 만날 수 있는',

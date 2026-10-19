@@ -115,6 +115,14 @@
   border-bottom: none;
 }
 
+/* hoverTextWhite: 카드 hover 시 글자를 흰색으로 유지 */
+.hoverTextWhite .card:hover .tag,
+.hoverTextWhite .card:hover .num,
+.hoverTextWhite .card:hover .cardTitle,
+.hoverTextWhite .card:hover .cardDesc {
+  color: #fff;
+}
+
 .tag {
   display: block;
   font-family: var(--font-montserrat);

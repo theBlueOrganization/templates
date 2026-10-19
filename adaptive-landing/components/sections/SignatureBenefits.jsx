@@ -6,7 +6,10 @@ import styles from './SignatureBenefits.module.css'
 // 히어로 다음 "특별한 4가지 혜택" — 어두운 배경 사진 위에 좌측 타이틀 + 우측 2x2 혜택 그리드
 export default function SignatureBenefits({ benefits }) {
   return (
-    <section id={benefits.id} className={styles.section}>
+    <section
+      id={benefits.id}
+      className={`${styles.section} ${benefits.hoverTextWhite ? styles.hoverTextWhite : ''}`}
+    >
       <div className={styles.bg}>
         <Image src={benefits.bgImage.src} alt={benefits.bgImage.alt} fill sizes="100vw" className={styles.bgImage} />
         <div className={styles.overlay} />

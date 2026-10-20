@@ -49,11 +49,6 @@ const config = {
     subtitle:      "문의) 1600-8048",
     bgColor:       "#1f2023",
     accentKeyword: ["49층", "1,949세대"],
-    // 원조 시티오씨엘 9단지 스타일 인트로 — 원 2개 → 로고 → 원 안 단지 사진 → 전체로 열린 뒤 히어로 시작
-    intro: {
-      logo:   { src: "/apt/city-ociel-9-m/intro-logo.png", alt: "시티오씨엘 9단지 오션파크뷰", width: 668, height: 359 },
-      clipBg: "/apt/city-ociel-9-m/intro-clip-bg.webp",
-    },
     image: {
       src:    "/apt/city-ociel-9-m/1.webp",
       alt:    "시티오씨엘 9단지 오션파크뷰 투시도",

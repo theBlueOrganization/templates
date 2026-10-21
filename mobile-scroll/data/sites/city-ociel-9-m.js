@@ -36,6 +36,12 @@ const config = {
     },
   },
 
+  // 관심고객 전용 링크(?utm_source=관심고객#contact-section) — 팝업 없이 바로 상담신청 섹션으로.
+  // 접수는 같은 시트 탭·알림번호로 들어오고 유입매체가 '관심고객'으로 기록됨
+  popupByUtm: {
+    "관심고객": null,
+  },
+
   // ── 유입 경로 (utm_source) — 관리자 알림 문자에 유입매체 포함 ──
   showUtmInSms: true,
 

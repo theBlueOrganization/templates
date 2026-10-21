@@ -117,16 +117,29 @@ export default function PopupBanner({ popup, popupByUtm }) {
     scrollToAndClose(actionButton.target);
   };
 
+  // 이미지 안에 X가 그려진 팝업 — closeRect(% 기준) 위치에 보이지 않는 닫기 버튼을 두고 기본 ✕ 버튼은 숨김
+  const closeRect = currentImage.closeRect ?? null;
+
   return (
-    <div className={styles.overlay} onClick={handleClose}>
-      <div className={styles.card} onClick={(e) => e.stopPropagation()}>
+    <div
+      className={styles.overlay}
+      style={currentImage.overlayPadding ? { padding: currentImage.overlayPadding } : undefined}
+      onClick={handleClose}
+    >
+      <div
+        className={styles.card}
+        style={currentImage.maxWidth ? { maxWidth: currentImage.maxWidth } : undefined}
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className={styles.closeBtnWrap}>
           {images.length > 1 && (
             <span className={styles.pageIndicator}>{index + 1}/{images.length}</span>
           )}
-          <button className={styles.closeBtn} onClick={handleClose} aria-label="팝업 닫기">
-            ✕
-          </button>
+          {!closeRect && (
+            <button className={styles.closeBtn} onClick={handleClose} aria-label="팝업 닫기">
+              ✕
+            </button>
+          )}
         </div>
         {actionButton ? (
           // 버튼이 있는 팝업은 이미지만 자체 스크롤박스에 넣어, 이미지 길이와 무관하게
@@ -181,6 +194,20 @@ export default function PopupBanner({ popup, popupByUtm }) {
             }}
             onClick={handleCtaClick}
             aria-label="방문예약 상담 신청 섹션으로 이동"
+          />
+        )}
+        {closeRect && (
+          <button
+            type="button"
+            className={styles.ctaHotspot}
+            style={{
+              top:    closeRect.top,
+              left:   closeRect.left,
+              width:  closeRect.width,
+              height: closeRect.height,
+            }}
+            onClick={handleClose}
+            aria-label="팝업 닫기"
           />
         )}
       </div>

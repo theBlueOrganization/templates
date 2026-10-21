@@ -12,6 +12,7 @@ import IntroBannerSection from "../../../components/IntroBannerSection";
 import OfficeShell     from "../../../components/OfficeShell";
 import PopupBanner     from "../../../components/PopupBanner";
 import ExtraContactForm from "../../../components/ExtraContactForm";
+import HashScrollFix   from "../../../components/HashScrollFix";
 import SunguiRaonPrivate2Landing from "../../../components/sungui-raon-private-2/SunguiRaonPrivate2Landing";
 
 export function generateStaticParams() {
@@ -111,6 +112,9 @@ export default async function AptPage({ params }) {
         footerNotice={site.footerNotice}
         theme={site.theme}
       />
+
+      {/* #섹션id 링크로 들어온 경우 이미지 지연 로드로 위치가 밀리지 않게 보정 (해시 없으면 아무 동작 안 함) */}
+      <HashScrollFix />
 
       {site.popup && (
         <PopupBanner popup={site.popup} popupByUtm={site.popupByUtm} />

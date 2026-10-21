@@ -19,6 +19,23 @@ const config = {
   sheetId:      "",
   sheetTab:     "시티오씨엘9단지m",
 
+  // 진입 팝업 — 기본(500px)보다 크게, 이미지 안 X가 닫기, '모델하우스 방문예약' 버튼은 상담신청 섹션으로 이동
+  // maxWidth는 세로가 화면을 넘지 않도록 vh로도 제한(이미지 비율 1152x1252) — 카드가 스크롤되면 핫스폿 위치가 어긋남
+  popup: {
+    enabled: true,
+    image: {
+      src: "/apt/city-ociel-9-m/popup1.webp",
+      alt: "시티오씨엘 9단지 오션파크 — 계약금 5%, 1차 계약금 1,000만원, 예약방문 시 신세계상품권 or 스타벅스 쿠폰 증정",
+      maxWidth: "min(640px, 84vh)",
+      overlayPadding: "6px",
+      closeRect: { top: "0%", left: "90%", width: "10%", height: "8%" },
+      cta: {
+        target: "#contact-section",
+        rect: { top: "91.5%", left: "21%", width: "58%", height: "7.5%" },
+      },
+    },
+  },
+
   // ── 유입 경로 (utm_source) — 관리자 알림 문자에 유입매체 포함 ──
   showUtmInSms: true,
 

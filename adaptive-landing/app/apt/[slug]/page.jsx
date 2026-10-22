@@ -317,7 +317,7 @@ export default async function AptPage({ params }) {
         )}
         {/* 청라 아크원 푸르지오 원본의 청라 핵심 3종(스타필드/아산병원/하나금융) + 미래 교통 계획 */}
         {sig.arkoneLandmarks && <SignatureArkoneLandmarks landmarks={sig.arkoneLandmarks} />}
-        {sig.arkoneNetwork && <SignatureArkoneNetwork network={sig.arkoneNetwork} />}
+        {sig.arkoneNetwork && !sig.arkoneNetwork.afterLocation && <SignatureArkoneNetwork network={sig.arkoneNetwork} />}
         {/* benefits.afterHero — 영상 자리(히어로 바로 다음)에 혜택 섹션을 두는 현장용 */}
         {sig.benefits?.afterHero && <SignatureBenefits benefits={sig.benefits} />}
         {sig.videoSection && <SignatureVideoSection video={sig.videoSection} />}
@@ -340,6 +340,8 @@ export default async function AptPage({ params }) {
         ) : (
           <SignatureLocation location={sig.location} />
         )}
+        {/* arkoneNetwork.afterLocation — 미래 교통 계획을 입지환경 바로 아래에 두는 현장용(예: cheongna-arkone-prugio-3) */}
+        {sig.arkoneNetwork?.afterLocation && <SignatureArkoneNetwork network={sig.arkoneNetwork} />}
         {sig.transitDetail && <SignatureTransitDetail transit={sig.transitDetail} />}
         {sig.story && <SignatureSellingStory story={sig.story} />}
         <SignaturePremiumIntro premiumIntro={sig.premiumIntro} />

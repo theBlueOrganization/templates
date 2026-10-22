@@ -88,7 +88,7 @@ const config = {
     // ↓ 원본(SignatureArkoneImmersive)에서 가져온 히어로·청라핵심·교통 (요청 반영 2026-10-22 — 진입 인트로는 제거)
     hero: {
       // 요청 반영(2026-10-22) — 문구를 이전 포스터형(큰 3줄 영문 → 국문 → 스파클 → ARK-ONE 이니셜 강조 → 안내 카피)으로
-      // 되돌림. 배지는 원본 아크원 히어로 것을 그대로 사용, 배경은 움직임 없는 고정 이미지(요청 반영 2026-10-22 — 배경 영상 제거, hero-video.mp4 8초 지점 장면을 PC 가로형/모바일 세로형으로 저장)
+      // 되돌림. 배지는 원본 아크원 히어로 것을 그대로 사용, 배경은 움직임 없는 고정 이미지(요청 반영 2026-10-22 — 배경 영상 제거, 공식 사이트 메인 비주얼 조감도 PC 가로형/모바일 세로형 사용)
       overlay: false,
       align: 'left',
       contentTop: true,
@@ -113,8 +113,8 @@ const config = {
       eyebrowLine1: '청라의 절대적 기준이 될',
       eyebrowLine2: '단 하나의 주거명작을 상징',
       badge: { small: '10년만의 공급', lines: ['분양가 상한제', '적용단지'] },
-      bgImageMobile: { src: '/apt/cheongna-arkone-prugio-3/hero-still-mobile.webp', alt: '바다 위 빛의 문 속 청라 아크원 푸르지오(모바일) — ABSOLUTE REMARKABLE ONE' },
-      bgImage: { src: '/apt/cheongna-arkone-prugio-3/hero-still.webp', alt: '바다 위 빛의 문 속 청라 아크원 푸르지오 — ABSOLUTE REMARKABLE ONE' },
+      bgImageMobile: { src: '/apt/cheongna-arkone-prugio-3/hero-bg-mobile.webp', alt: '청라 아크원 푸르지오 대표 조감도(모바일) — ABSOLUTE REMARKABLE ONE' },
+      bgImage: { src: '/apt/cheongna-arkone-prugio-3/hero-bg.webp', alt: '청라 아크원 푸르지오 대표 조감도 — ABSOLUTE REMARKABLE ONE' },
       mobileBar: {
         announcements: [{ badge: '안내', textStrong: '청라 아크원 푸르지오', textLight: ' 공식 안내센터입니다.' }],
         bubbleText: '관심고객등록 시 분양소식을 가장 먼저 안내드립니다',

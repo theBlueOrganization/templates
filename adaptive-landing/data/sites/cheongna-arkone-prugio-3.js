@@ -85,22 +85,7 @@ const config = {
       ],
     },
 
-    // ↓ 원본(SignatureArkoneImmersive)에서 가져온 인트로·히어로·청라핵심·교통
-    arkoneIntro: {
-      ariaLabel: '청라의 핵심 인프라와 푸르지오를 소개하는 인트로',
-      scenes: [
-        { img: '/apt/cheongna-arkone-prugio-3/starfield.webp', label: '01 · CULTURE', name: '스타필드 청라 · 돔구장' },
-        { img: '/apt/cheongna-arkone-prugio-3/hospital.webp', label: '02 · MEDICAL', name: '서울아산청라병원 · 의료복합타운' },
-        { img: '/apt/cheongna-arkone-prugio-3/hana.webp', label: '03 · BUSINESS', name: '하나금융그룹 · 청라 본사' },
-      ],
-      copySmall: "CHEONGNA'S NEW AXIS",
-      copyLine1: 'Life meets',
-      copyLine2: 'the One.',
-      symbol: '/apt/cheongna-arkone-prugio-3/prugio-symbol.svg',
-      wordmark: '/apt/cheongna-arkone-prugio-3/logo-white.svg',
-      tagline: 'ABSOLUTE · REMARKABLE · ONE',
-    },
-
+    // ↓ 원본(SignatureArkoneImmersive)에서 가져온 히어로·청라핵심·교통 (요청 반영 2026-10-22 — 진입 인트로는 제거)
     hero: {
       variant: 'arkone',
       video: '/apt/cheongna-arkone-prugio-3/hero-video.mp4',

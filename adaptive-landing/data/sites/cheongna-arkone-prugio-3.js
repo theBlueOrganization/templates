@@ -106,6 +106,8 @@ const config = {
       titleLine2: 'ARK-ONE',
       titleLine3: 'PRUGIO',
       subtitleKr: '청라 아크원 푸르지오',
+      // 요청 반영(2026-10-22) — 국문 이름 아래 별(스파클) 구분선 삭제
+      hideDivider: true,
       taglineLabel: '아크원(ARK-ONE)이란?',
       tagline: [
         { text: 'A', big: true },

@@ -543,9 +543,12 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
                 </motion.p>
               )}
 
-              <motion.div className={styles.posterDivider} custom={0.42} initial="hidden" animate="show" variants={lineVariants} aria-hidden="true">
-                {SPARKLE_ICON}
-              </motion.div>
+              {/* hero.hideDivider — 스파클(별) 구분선을 빼는 현장용(예: cheongna-arkone-prugio-3) */}
+              {!hero.hideDivider && (
+                <motion.div className={styles.posterDivider} custom={0.42} initial="hidden" animate="show" variants={lineVariants} aria-hidden="true">
+                  {SPARKLE_ICON}
+                </motion.div>
+              )}
 
               {hero.taglineLabel && (
                 <motion.p className={styles.posterTaglineLabel} custom={0.5} initial="hidden" animate="show" variants={lineVariants}>

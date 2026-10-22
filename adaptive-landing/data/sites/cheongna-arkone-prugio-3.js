@@ -124,9 +124,12 @@ const config = {
     },
 
     arkoneLandmarks: {
+      // 요청 반영(2026-10-22) — 전체화면 3섹션 대신 이전 인트로 1단계처럼 사진 카드 3장(라벨·이름)으로
+      layout: 'cards',
       items: [
         {
           id: 'starfield', eyebrow: '청라의 여가 중심', titleTop: '스타필드 청라', titleBottom: '바로 앞의 일상',
+          sceneLabel: '01 · CULTURE', sceneName: '스타필드 청라 · 돔구장',
           desc: '돔구장과 350여 개 브랜드가 결합된 복합 문화·쇼핑 공간.',
           img: '/apt/cheongna-arkone-prugio-3/starfield.webp', imgAlt: '스타필드 청라 조감도', objectPosition: 'center',
           cardTitle: '문화·쇼핑·스포츠의 중심', cardDesc: '2027년 말 준공, 2028년 개장을 목표로 추진 중입니다.',
@@ -139,6 +142,7 @@ const config = {
         },
         {
           id: 'hospital', eyebrow: '청라 의료복합타운', titleTop: '서울아산청라병원', titleBottom: '미래 의료의 중심',
+          sceneLabel: '02 · MEDICAL', sceneName: '서울아산청라병원 · 의료복합타운',
           desc: '800병상 규모 종합병원을 포함한 의료복합타운이 조성 중입니다.',
           img: '/apt/cheongna-arkone-prugio-3/hospital.webp', imgAlt: '서울아산청라병원 조감도', objectPosition: '30% center',
           cardTitle: '청라가 기다려온 의료 인프라', cardDesc: '2029년 하반기 준공을 목표로 추진되고 있습니다.',
@@ -151,6 +155,7 @@ const config = {
         },
         {
           id: 'hana', eyebrow: '청라 금융 시대', titleTop: '하나금융그룹 본사', titleBottom: '청라로의 이동',
+          sceneLabel: '03 · BUSINESS', sceneName: '하나금융그룹 · 청라 본사',
           desc: '그룹 헤드쿼터 준공과 관계사 순차 이전이 청라의 업무 중심성을 높입니다.',
           img: '/apt/cheongna-arkone-prugio-3/hana.webp', imgAlt: '하나금융그룹 청라 그룹 헤드쿼터', objectPosition: 'center',
           cardTitle: '청라 금융 업무의 중심', cardDesc: '2026년 5월 준공, 9월부터 10개 관계사가 순차 이전할 예정입니다.',

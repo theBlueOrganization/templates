@@ -184,9 +184,29 @@ function Landmark({ item, index, onSource }) {
   )
 }
 
+// landmarks.layout === 'cards' — 3종을 인트로 1단계(초록 배경 위 사진 카드 + 라벨·이름)처럼 한 섹션에 모아 보여줌
+// (모바일 세로 3단, PC 가로 3열). 라벨·이름은 각 item의 sceneLabel/sceneName. 예: cheongna-arkone-prugio-3
+function LandmarkCards({ items }) {
+  const ref = useRef(null)
+  const inView = useInView(ref)
+  return (
+    <section id={items[0].id} ref={ref} className={cn(styles.landmarkCards, inView && styles.isVisible)}>
+      <div className={styles.landmarkCardList}>
+        {items.map((item) => (
+          <figure key={item.id} className={styles.introScene}>
+            <Image src={item.img} alt={item.imgAlt} fill sizes="(min-width: 1024px) 33vw, 100vw" style={{ objectPosition: item.objectPosition }} />
+            <figcaption><small>{item.sceneLabel}</small><strong>{item.sceneName}</strong></figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+  )
+}
+
 // 청라 핵심 3종 — 섹션마다 사진이 전체 배경(원본 landmark 패널)
 export function SignatureArkoneLandmarks({ landmarks }) {
   const dlg = useSourceDialog()
+  if (landmarks.layout === 'cards') return <LandmarkCards items={landmarks.items} />
   return (
     <>
       {landmarks.items.map((item, i) => (

@@ -253,6 +253,7 @@
   .introCopy b { font-size: 54px; }
   .landmarkCards { height: 100vh; }
   .landmarkCardList { grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr; }
+  .landmarkCards .introScene figcaption { left: 32px; bottom: 32px; }
   .introCopy span { font-size: 12px; }
 
   .landmarkShell { padding: 130px 0 60px; }

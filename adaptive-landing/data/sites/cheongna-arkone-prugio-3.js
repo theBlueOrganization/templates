@@ -58,9 +58,9 @@ const config = {
     header: {
       logo: { src: '/apt/cheongna-arkone-prugio-3/logo-white.svg', alt: '청라 아크원 푸르지오', width: 161, height: 26 },
       logoSize: { base: 96, lg: 130, xl: 150 },
-      gnb: ['청라핵심', '입지환경', '교통호재', '프리미엄', '관심고객등록'],
+      gnb: ['입지환경', '교통호재', '청라핵심', '프리미엄', '관심고객등록'],
       // gnb 라벨과 같은 순서로 이동할 섹션 id (청라핵심 = 첫 랜드마크 스타필드)
-      gnbTargetIds: ['starfield', 'location', 'network', 'premium-value', 'vip-reservation'],
+      gnbTargetIds: ['location', 'network', 'starfield', 'premium-value', 'vip-reservation'],
       quickCtaLabel: '관심고객등록',
       phone: '1533-6480',
     },
@@ -77,9 +77,9 @@ const config = {
       tagline: 'ABSOLUTE REMARKABLE ONE',
       items: [
         { num: '01', label: 'MAIN', sub: '메인페이지', targetId: 'hero' },
-        { num: '02', label: 'VALUE', sub: '청라핵심', targetId: 'starfield' },
-        { num: '03', label: 'LOCATION', sub: '입지환경', targetId: 'location' },
-        { num: '04', label: 'TRAFFIC', sub: '교통호재', targetId: 'network' },
+        { num: '02', label: 'LOCATION', sub: '입지환경', targetId: 'location' },
+        { num: '03', label: 'TRAFFIC', sub: '교통호재', targetId: 'network' },
+        { num: '04', label: 'VALUE', sub: '청라핵심', targetId: 'starfield' },
         { num: '05', label: 'PREMIUM', sub: '프리미엄', targetId: 'premium-value' },
         { num: '06', label: 'CONTACT', sub: '관심고객등록', targetId: 'vip-reservation' },
       ],
@@ -126,6 +126,8 @@ const config = {
     arkoneLandmarks: {
       // 요청 반영(2026-10-22) — 전체화면 3섹션 대신 이전 인트로 1단계처럼 사진 카드 3장(라벨·이름)으로
       layout: 'cards',
+      // 요청 반영(2026-10-22) — 히어로 바로 뒤 대신 교통호재 다음, 프리미엄 바로 앞에 배치
+      beforePremium: true,
       items: [
         {
           id: 'starfield', eyebrow: '청라의 여가 중심', titleTop: '스타필드 청라', titleBottom: '바로 앞의 일상',

@@ -91,10 +91,13 @@ const config = {
       // 되돌림. 배지는 원본 아크원 히어로 것을 그대로 사용, 배경은 움직임 없는 고정 이미지(요청 반영 2026-10-22 — 배경 영상 제거, 공식 사이트 메인 비주얼 조감도 PC 가로형/모바일 세로형 사용)
       // 요청 반영(2026-10-22) — 원본 아크원 히어로 하단처럼 어두운 청록 그라데이션을 깔아 글씨가 잘 보이게(특히 모바일)
       overlayGradient: {
-        mobile: 'linear-gradient(180deg, rgba(3, 38, 34, 0.78) 0%, rgba(3, 38, 34, 0.45) 45%, rgba(3, 38, 34, 0.82) 100%)',
+        // 모바일은 위에서 화면 절반까지만 어둡게(아래 건물은 가리지 않게)
+        mobile: 'linear-gradient(180deg, rgba(3, 38, 34, 0.82) 0%, rgba(3, 38, 34, 0.5) 30%, rgba(3, 38, 34, 0) 50%)',
         desktop: 'linear-gradient(90deg, rgba(3, 38, 34, 0.7) 0%, rgba(3, 38, 34, 0.25) 55%, rgba(3, 38, 34, 0.1) 100%), linear-gradient(180deg, rgba(3, 38, 34, 0) 55%, rgba(3, 38, 34, 0.7) 100%)',
       },
       align: 'left',
+      // 요청 반영(2026-10-22) — 모바일 문구를 왼쪽으로 더 붙임(기본 40px)
+      paddingLeftMobile: '22px',
       contentTop: true,
       contentVariant: 'poster',
       textColor: '#FFFFFF',

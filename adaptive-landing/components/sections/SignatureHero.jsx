@@ -203,6 +203,7 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
     // hero.overlayGradient — 기본 비네트 대신 쓸 오버레이 그라데이션(mobile/desktop 따로). 예: cheongna-arkone-prugio-3
     ...(hero.overlayGradient?.mobile && { '--hero-overlay-bg': hero.overlayGradient.mobile }),
     ...(hero.overlayGradient?.desktop && { '--hero-overlay-bg-desktop': hero.overlayGradient.desktop }),
+    ...(hero.paddingLeftMobile && { '--hero-left-pad-mobile': hero.paddingLeftMobile }),
     ...(hero.titleAccentColor && { '--hero-title-accent': hero.titleAccentColor }),
     ...(hero.titleColor && { '--hero-title-only': hero.titleColor }),
     ...(hero.fontFamily && { '--hero-font': hero.fontFamily }),

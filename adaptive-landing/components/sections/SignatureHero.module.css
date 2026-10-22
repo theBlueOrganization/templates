@@ -53,7 +53,8 @@
    .hero.heroLeft처럼 두 클래스를 겹쳐서 특이도를 높여 순서와 무관하게 항상 이기도록 고침 */
 .hero.heroLeft {
   justify-content: flex-start;
-  padding-left: 40px;
+  /* --hero-left-pad-mobile — hero.paddingLeftMobile로 모바일 좌측 여백만 현장별 조정(예: cheongna-arkone-prugio-3) */
+  padding-left: var(--hero-left-pad-mobile, 40px);
 }
 
 .heroLeft .content {

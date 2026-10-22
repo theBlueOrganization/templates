@@ -58,9 +58,9 @@ const config = {
     header: {
       logo: { src: '/apt/cheongna-arkone-prugio-3/logo-white.svg', alt: '청라 아크원 푸르지오', width: 161, height: 26 },
       logoSize: { base: 96, lg: 130, xl: 150 },
-      gnb: ['청라핵심', '교통호재', '입지환경', '프리미엄', '관심고객등록'],
+      gnb: ['입지환경', '교통호재', '청라핵심', '프리미엄', '관심고객등록'],
       // gnb 라벨과 같은 순서로 이동할 섹션 id (청라핵심 = 첫 랜드마크 스타필드)
-      gnbTargetIds: ['starfield', 'network', 'location', 'premium-value', 'vip-reservation'],
+      gnbTargetIds: ['location', 'network', 'starfield', 'premium-value', 'vip-reservation'],
       quickCtaLabel: '관심고객등록',
       phone: '1533-6480',
     },
@@ -77,39 +77,53 @@ const config = {
       tagline: 'ABSOLUTE REMARKABLE ONE',
       items: [
         { num: '01', label: 'MAIN', sub: '메인페이지', targetId: 'hero' },
-        { num: '02', label: 'VALUE', sub: '청라핵심', targetId: 'starfield' },
+        { num: '02', label: 'LOCATION', sub: '입지환경', targetId: 'location' },
         { num: '03', label: 'TRAFFIC', sub: '교통호재', targetId: 'network' },
-        { num: '04', label: 'LOCATION', sub: '입지환경', targetId: 'location' },
+        { num: '04', label: 'VALUE', sub: '청라핵심', targetId: 'starfield' },
         { num: '05', label: 'PREMIUM', sub: '프리미엄', targetId: 'premium-value' },
         { num: '06', label: 'CONTACT', sub: '관심고객등록', targetId: 'vip-reservation' },
       ],
     },
 
-    // ↓ 원본(SignatureArkoneImmersive)에서 가져온 인트로·히어로·청라핵심·교통
-    arkoneIntro: {
-      ariaLabel: '청라의 핵심 인프라와 푸르지오를 소개하는 인트로',
-      scenes: [
-        { img: '/apt/cheongna-arkone-prugio-3/starfield.webp', label: '01 · CULTURE', name: '스타필드 청라 · 돔구장' },
-        { img: '/apt/cheongna-arkone-prugio-3/hospital.webp', label: '02 · MEDICAL', name: '서울아산청라병원 · 의료복합타운' },
-        { img: '/apt/cheongna-arkone-prugio-3/hana.webp', label: '03 · BUSINESS', name: '하나금융그룹 · 청라 본사' },
-      ],
-      copySmall: "CHEONGNA'S NEW AXIS",
-      copyLine1: 'Life meets',
-      copyLine2: 'the One.',
-      symbol: '/apt/cheongna-arkone-prugio-3/prugio-symbol.svg',
-      wordmark: '/apt/cheongna-arkone-prugio-3/logo-white.svg',
-      tagline: 'ABSOLUTE · REMARKABLE · ONE',
-    },
-
+    // ↓ 원본(SignatureArkoneImmersive)에서 가져온 히어로·청라핵심·교통 (요청 반영 2026-10-22 — 진입 인트로는 제거)
     hero: {
-      variant: 'arkone',
-      video: '/apt/cheongna-arkone-prugio-3/hero-video.mp4',
-      poster: '/apt/cheongna-arkone-prugio-3/hero-bg.webp',
-      badge: { small: '10년만의 공급', line1: '분양가 상한제', line2: '적용단지' },
-      eyebrow: 'ABSOLUTE · REMARKABLE · ONE',
-      titleLine1: '청라의 정점을',
-      titleAccent: '빛내는 단 하나',
-      desc: 'CHEONGNA ARK-ONE PRUGIO',
+      // 요청 반영(2026-10-22) — 문구를 이전 포스터형(큰 3줄 영문 → 국문 → 스파클 → ARK-ONE 이니셜 강조 → 안내 카피)으로
+      // 되돌림. 배지는 원본 아크원 히어로 것을 그대로 사용, 배경은 움직임 없는 고정 이미지(요청 반영 2026-10-22 — 배경 영상 제거, 공식 사이트 메인 비주얼 조감도 PC 가로형/모바일 세로형 사용)
+      // 요청 반영(2026-10-22) — 원본 아크원 히어로 하단처럼 어두운 청록 그라데이션을 깔아 글씨가 잘 보이게(특히 모바일)
+      overlayGradient: {
+        // 모바일은 위에서 화면 절반까지만 어둡게(아래 건물은 가리지 않게)
+        mobile: 'linear-gradient(180deg, rgba(3, 38, 34, 0.82) 0%, rgba(3, 38, 34, 0.5) 30%, rgba(3, 38, 34, 0) 50%)',
+        desktop: 'linear-gradient(90deg, rgba(3, 38, 34, 0.7) 0%, rgba(3, 38, 34, 0.25) 55%, rgba(3, 38, 34, 0.1) 100%), linear-gradient(180deg, rgba(3, 38, 34, 0) 55%, rgba(3, 38, 34, 0.7) 100%)',
+      },
+      align: 'left',
+      // 요청 반영(2026-10-22) — 모바일 문구를 왼쪽으로 더 붙임(기본 40px)
+      paddingLeftMobile: '22px',
+      contentTop: true,
+      contentVariant: 'poster',
+      textColor: '#FFFFFF',
+      keepTextShadow: true,
+      titleLine1: 'CHEONG NA',
+      titleLine2: 'ARK-ONE',
+      titleLine3: 'PRUGIO',
+      subtitleKr: '청라 아크원 푸르지오',
+      // 요청 반영(2026-10-22) — 국문 이름 아래 별(스파클) 구분선 삭제
+      hideDivider: true,
+      taglineLabel: '아크원(ARK-ONE)이란?',
+      tagline: [
+        { text: 'A', big: true },
+        { text: 'bsolute ' },
+        { text: 'R', big: true },
+        { text: 'emar' },
+        { text: 'K', big: true },
+        { text: 'able ' },
+        { text: 'O', big: true },
+        { text: 'ne' },
+      ],
+      eyebrowLine1: '청라의 절대적 기준이 될',
+      eyebrowLine2: '단 하나의 주거명작을 상징',
+      badge: { small: '10년만의 공급', lines: ['분양가 상한제', '적용단지'] },
+      bgImageMobile: { src: '/apt/cheongna-arkone-prugio-3/hero-bg-mobile.webp', alt: '청라 아크원 푸르지오 대표 조감도(모바일) — ABSOLUTE REMARKABLE ONE' },
+      bgImage: { src: '/apt/cheongna-arkone-prugio-3/hero-bg.webp', alt: '청라 아크원 푸르지오 대표 조감도 — ABSOLUTE REMARKABLE ONE' },
       mobileBar: {
         announcements: [{ badge: '안내', textStrong: '청라 아크원 푸르지오', textLight: ' 공식 안내센터입니다.' }],
         bubbleText: '관심고객등록 시 분양소식을 가장 먼저 안내드립니다',
@@ -119,9 +133,14 @@ const config = {
     },
 
     arkoneLandmarks: {
+      // 요청 반영(2026-10-22) — 전체화면 3섹션 대신 이전 인트로 1단계처럼 사진 카드 3장(라벨·이름)으로
+      layout: 'cards',
+      // 요청 반영(2026-10-22) — 히어로 바로 뒤 대신 교통호재 다음, 프리미엄 바로 앞에 배치
+      beforePremium: true,
       items: [
         {
           id: 'starfield', eyebrow: '청라의 여가 중심', titleTop: '스타필드 청라', titleBottom: '바로 앞의 일상',
+          sceneLabel: '01 · CULTURE', sceneName: '스타필드 청라 · 돔구장',
           desc: '돔구장과 350여 개 브랜드가 결합된 복합 문화·쇼핑 공간.',
           img: '/apt/cheongna-arkone-prugio-3/starfield.webp', imgAlt: '스타필드 청라 조감도', objectPosition: 'center',
           cardTitle: '문화·쇼핑·스포츠의 중심', cardDesc: '2027년 말 준공, 2028년 개장을 목표로 추진 중입니다.',
@@ -134,6 +153,7 @@ const config = {
         },
         {
           id: 'hospital', eyebrow: '청라 의료복합타운', titleTop: '서울아산청라병원', titleBottom: '미래 의료의 중심',
+          sceneLabel: '02 · MEDICAL', sceneName: '서울아산청라병원 · 의료복합타운',
           desc: '800병상 규모 종합병원을 포함한 의료복합타운이 조성 중입니다.',
           img: '/apt/cheongna-arkone-prugio-3/hospital.webp', imgAlt: '서울아산청라병원 조감도', objectPosition: '30% center',
           cardTitle: '청라가 기다려온 의료 인프라', cardDesc: '2029년 하반기 준공을 목표로 추진되고 있습니다.',
@@ -146,6 +166,7 @@ const config = {
         },
         {
           id: 'hana', eyebrow: '청라 금융 시대', titleTop: '하나금융그룹 본사', titleBottom: '청라로의 이동',
+          sceneLabel: '03 · BUSINESS', sceneName: '하나금융그룹 · 청라 본사',
           desc: '그룹 헤드쿼터 준공과 관계사 순차 이전이 청라의 업무 중심성을 높입니다.',
           img: '/apt/cheongna-arkone-prugio-3/hana.webp', imgAlt: '하나금융그룹 청라 그룹 헤드쿼터', objectPosition: 'center',
           cardTitle: '청라 금융 업무의 중심', cardDesc: '2026년 5월 준공, 9월부터 10개 관계사가 순차 이전할 예정입니다.',
@@ -160,6 +181,8 @@ const config = {
     },
 
     arkoneNetwork: {
+      // 요청 반영(2026-10-22) — 청라핵심 바로 뒤 대신 입지환경 섹션 바로 아래에 배치
+      afterLocation: true,
       id: 'network',
       eyebrow: '미래 교통 계획',
       titleLine1: '서울을 향한',

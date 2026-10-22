@@ -200,6 +200,10 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
     }),
     ...(hero.accentColor && { '--hero-accent': hero.accentColor }),
     ...(hero.badge?.borderColor && { '--hero-badge-border': hero.badge.borderColor }),
+    // hero.overlayGradient — 기본 비네트 대신 쓸 오버레이 그라데이션(mobile/desktop 따로). 예: cheongna-arkone-prugio-3
+    ...(hero.overlayGradient?.mobile && { '--hero-overlay-bg': hero.overlayGradient.mobile }),
+    ...(hero.overlayGradient?.desktop && { '--hero-overlay-bg-desktop': hero.overlayGradient.desktop }),
+    ...(hero.paddingLeftMobile && { '--hero-left-pad-mobile': hero.paddingLeftMobile }),
     ...(hero.titleAccentColor && { '--hero-title-accent': hero.titleAccentColor }),
     ...(hero.titleColor && { '--hero-title-only': hero.titleColor }),
     ...(hero.fontFamily && { '--hero-font': hero.fontFamily }),
@@ -539,9 +543,12 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
                 </motion.p>
               )}
 
-              <motion.div className={styles.posterDivider} custom={0.42} initial="hidden" animate="show" variants={lineVariants} aria-hidden="true">
-                {SPARKLE_ICON}
-              </motion.div>
+              {/* hero.hideDivider — 스파클(별) 구분선을 빼는 현장용(예: cheongna-arkone-prugio-3) */}
+              {!hero.hideDivider && (
+                <motion.div className={styles.posterDivider} custom={0.42} initial="hidden" animate="show" variants={lineVariants} aria-hidden="true">
+                  {SPARKLE_ICON}
+                </motion.div>
+              )}
 
               {hero.taglineLabel && (
                 <motion.p className={styles.posterTaglineLabel} custom={0.5} initial="hidden" animate="show" variants={lineVariants}>

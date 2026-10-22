@@ -316,8 +316,8 @@ export default async function AptPage({ params }) {
           <SignatureVipForm config={site} sectionId={`${sig.vipForm.id}-early`} />
         )}
         {/* 청라 아크원 푸르지오 원본의 청라 핵심 3종(스타필드/아산병원/하나금융) + 미래 교통 계획 */}
-        {sig.arkoneLandmarks && <SignatureArkoneLandmarks landmarks={sig.arkoneLandmarks} />}
-        {sig.arkoneNetwork && <SignatureArkoneNetwork network={sig.arkoneNetwork} />}
+        {sig.arkoneLandmarks && !sig.arkoneLandmarks.beforePremium && <SignatureArkoneLandmarks landmarks={sig.arkoneLandmarks} />}
+        {sig.arkoneNetwork && !sig.arkoneNetwork.afterLocation && <SignatureArkoneNetwork network={sig.arkoneNetwork} />}
         {/* benefits.afterHero — 영상 자리(히어로 바로 다음)에 혜택 섹션을 두는 현장용 */}
         {sig.benefits?.afterHero && <SignatureBenefits benefits={sig.benefits} />}
         {sig.videoSection && <SignatureVideoSection video={sig.videoSection} />}
@@ -340,8 +340,12 @@ export default async function AptPage({ params }) {
         ) : (
           <SignatureLocation location={sig.location} />
         )}
+        {/* arkoneNetwork.afterLocation — 미래 교통 계획을 입지환경 바로 아래에 두는 현장용(예: cheongna-arkone-prugio-3) */}
+        {sig.arkoneNetwork?.afterLocation && <SignatureArkoneNetwork network={sig.arkoneNetwork} />}
         {sig.transitDetail && <SignatureTransitDetail transit={sig.transitDetail} />}
         {sig.story && <SignatureSellingStory story={sig.story} />}
+        {/* arkoneLandmarks.beforePremium — 청라 핵심 3종을 프리미엄 바로 앞에 두는 현장용(예: cheongna-arkone-prugio-3) */}
+        {sig.arkoneLandmarks?.beforePremium && <SignatureArkoneLandmarks landmarks={sig.arkoneLandmarks} />}
         <SignaturePremiumIntro premiumIntro={sig.premiumIntro} />
         {/* premiumIntroExtras — premiumIntro 바로 다음에 같은 컴포넌트(주로 split)를 여러 개 이어 붙일 때 (예: 청라 더리브 티아모 까사2 PERFECT TRIPLE 01~03) */}
         {sig.premiumIntroExtras?.map((extra, i) => (

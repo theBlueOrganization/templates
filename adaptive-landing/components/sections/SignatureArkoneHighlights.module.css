@@ -2,7 +2,7 @@
    일반 스크롤 페이지용으로 옮긴 것 — 풀페이지 패널(absolute/fixed) 대신 100svh 높이의 일반 섹션으로 배치.
    색·타이포·모션 값은 원본 그대로. */
 
-.intro, .hero, .landmark, .network, .dialog {
+.intro, .hero, .landmark, .landmarkCards, .network, .dialog {
   --ink: #09241f;
   --green: #07594d;
   --lime: #d7f17b;
@@ -182,6 +182,14 @@
 .introScene figcaption { position: absolute; z-index: 2; left: 12px; bottom: 10px; display: flex; flex-direction: column; }
 .introScene small { font-size: 9px; letter-spacing: 0.2em; color: var(--intro-accent, var(--lime)); }
 .introScene strong { margin-top: 3px; font-size: 15px; letter-spacing: -0.04em; }
+/* landmarks.layout === 'cards' — 인트로 1단계 사진 카드(.introScene)를 일반 섹션에 재사용 */
+.landmarkCards { height: 100svh; background: radial-gradient(circle at 50% 35%, #198575 0, #07594d 48%, #032f29 100%); color: #fff; }
+.landmarkCardList { display: grid; grid-template-rows: repeat(3, 1fr); height: 100%; }
+.landmarkCards .introScene { height: 100%; }
+.landmarkCards .introScene:nth-child(1) { transition: opacity 0.58s 0.1s var(--ease), transform 0.58s 0.1s var(--ease); }
+.landmarkCards .introScene:nth-child(2) { transition: opacity 0.58s 0.3s var(--ease), transform 0.58s 0.3s var(--ease); }
+.landmarkCards .introScene:nth-child(3) { transition: opacity 0.58s 0.5s var(--ease), transform 0.58s 0.5s var(--ease); }
+.landmarkCards.isVisible .introScene { opacity: 1; transform: none; }
 .introCopy {
   position: absolute; z-index: 3; left: 6%; right: 6%; bottom: 5%;
   display: flex; align-items: flex-end; justify-content: space-between; opacity: 0;
@@ -243,6 +251,9 @@
   .introScene:nth-child(2) { transform: translateY(24px); }
   .introScene strong { font-size: 24px; }
   .introCopy b { font-size: 54px; }
+  .landmarkCards { height: 100vh; }
+  .landmarkCardList { grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr; }
+  .landmarkCards .introScene figcaption { left: 32px; bottom: 32px; }
   .introCopy span { font-size: 12px; }
 
   .landmarkShell { padding: 130px 0 60px; }

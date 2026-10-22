@@ -87,14 +87,34 @@ const config = {
 
     // ↓ 원본(SignatureArkoneImmersive)에서 가져온 히어로·청라핵심·교통 (요청 반영 2026-10-22 — 진입 인트로는 제거)
     hero: {
-      variant: 'arkone',
-      video: '/apt/cheongna-arkone-prugio-3/hero-video.mp4',
-      poster: '/apt/cheongna-arkone-prugio-3/hero-bg.webp',
-      badge: { small: '10년만의 공급', line1: '분양가 상한제', line2: '적용단지' },
-      eyebrow: 'ABSOLUTE · REMARKABLE · ONE',
-      titleLine1: '청라의 정점을',
-      titleAccent: '빛내는 단 하나',
-      desc: 'CHEONGNA ARK-ONE PRUGIO',
+      // 요청 반영(2026-10-22) — 문구를 이전 포스터형(큰 3줄 영문 → 국문 → 스파클 → ARK-ONE 이니셜 강조 → 안내 카피)으로
+      // 되돌림. 배경 영상·배지는 원본 아크원 히어로 것을 그대로 사용
+      overlay: false,
+      align: 'left',
+      contentTop: true,
+      contentVariant: 'poster',
+      textColor: '#FFFFFF',
+      keepTextShadow: true,
+      titleLine1: 'CHEONG NA',
+      titleLine2: 'ARK-ONE',
+      titleLine3: 'PRUGIO',
+      subtitleKr: '청라 아크원 푸르지오',
+      taglineLabel: '아크원(ARK-ONE)이란?',
+      tagline: [
+        { text: 'A', big: true },
+        { text: 'bsolute ' },
+        { text: 'R', big: true },
+        { text: 'emar' },
+        { text: 'K', big: true },
+        { text: 'able ' },
+        { text: 'O', big: true },
+        { text: 'ne' },
+      ],
+      eyebrowLine1: '청라의 절대적 기준이 될',
+      eyebrowLine2: '단 하나의 주거명작을 상징',
+      badge: { small: '10년만의 공급', lines: ['분양가 상한제', '적용단지'] },
+      bgVideo: { src: '/apt/cheongna-arkone-prugio-3/hero-video.mp4' },
+      bgImage: { src: '/apt/cheongna-arkone-prugio-3/hero-bg.webp', alt: '청라 아크원 푸르지오 대표 조감도 — ABSOLUTE REMARKABLE ONE' },
       mobileBar: {
         announcements: [{ badge: '안내', textStrong: '청라 아크원 푸르지오', textLight: ' 공식 안내센터입니다.' }],
         bubbleText: '관심고객등록 시 분양소식을 가장 먼저 안내드립니다',

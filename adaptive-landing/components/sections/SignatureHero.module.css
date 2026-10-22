@@ -129,7 +129,13 @@
 .overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, rgba(3, 21, 24, 0.3) 0%, rgba(0, 0, 0, 0.85) 100%);
+  background: var(--hero-overlay-bg, radial-gradient(circle at center, rgba(3, 21, 24, 0.3) 0%, rgba(0, 0, 0, 0.85) 100%));
+}
+
+@media (min-width: 1024px) {
+  .overlay {
+    background: var(--hero-overlay-bg-desktop, var(--hero-overlay-bg, radial-gradient(circle at center, rgba(3, 21, 24, 0.3) 0%, rgba(0, 0, 0, 0.85) 100%)));
+  }
 }
 
 .overlayDesktopOnly {

@@ -89,7 +89,11 @@ const config = {
     hero: {
       // 요청 반영(2026-10-22) — 문구를 이전 포스터형(큰 3줄 영문 → 국문 → 스파클 → ARK-ONE 이니셜 강조 → 안내 카피)으로
       // 되돌림. 배지는 원본 아크원 히어로 것을 그대로 사용, 배경은 움직임 없는 고정 이미지(요청 반영 2026-10-22 — 배경 영상 제거, 공식 사이트 메인 비주얼 조감도 PC 가로형/모바일 세로형 사용)
-      overlay: false,
+      // 요청 반영(2026-10-22) — 원본 아크원 히어로 하단처럼 어두운 청록 그라데이션을 깔아 글씨가 잘 보이게(특히 모바일)
+      overlayGradient: {
+        mobile: 'linear-gradient(180deg, rgba(3, 38, 34, 0.78) 0%, rgba(3, 38, 34, 0.45) 45%, rgba(3, 38, 34, 0.82) 100%)',
+        desktop: 'linear-gradient(90deg, rgba(3, 38, 34, 0.7) 0%, rgba(3, 38, 34, 0.25) 55%, rgba(3, 38, 34, 0.1) 100%), linear-gradient(180deg, rgba(3, 38, 34, 0) 55%, rgba(3, 38, 34, 0.7) 100%)',
+      },
       align: 'left',
       contentTop: true,
       contentVariant: 'poster',

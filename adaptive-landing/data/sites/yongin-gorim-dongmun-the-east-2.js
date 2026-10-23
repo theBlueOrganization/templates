@@ -87,13 +87,25 @@ const config = {
       },
     },
 
-    // 진입 시 관심고객 팝업 — 이미지 팝업 없이 방문예약 폼만(파주 호반써밋 이스트파크 초기 구성과 동일)
+    // 진입 팝업 — 혜택 이미지 팝업(계약금 5%·계약축하금 500만원·중도금 무이자, 2026-10-23 사용자 제공 popup.png → webp)을
+    //   먼저 띄우고, 닫으면 방문예약 폼 팝업을 이어서 띄움. 인트로가 없어 0.5초 뒤 바로 표시
     popup: {
-      enabled: false,
+      enabled: true,
+      order: 'imageFirst',
+      hideCloseBar: true,
+      openDelayMs: 500,
+      // 세로형 이미지라 짧은 화면에서 헤더에 가려지지 않게 화면 높이에 맞춰 축소
+      fitViewport: true,
+      images: [
+        {
+          src: '/apt/yongin-gorim-dongmun-the-east-2/popup.webp',
+          alt: '용인 고림 동문 디 이스트 특별한 혜택 — 입주까지 계약금 5%·계약축하금 500만원 지급·중도금 무이자',
+          width: 1024,
+          height: 1536,
+        },
+      ],
       visitForm: {
         enabled: true,
-        // 인트로 없음(2026-10-23 사용자 요청) — 진입 후 기본 지연(1.5초) 뒤 띄움
-        afterIntro: false,
         accentColor: '#2b3153',
         title: '관심고객등록',
         desc: '상담 가능시간 10:00~18:00 (담당자와 조율가능)',

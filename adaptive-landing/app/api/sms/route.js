@@ -17,7 +17,7 @@ function makeSignature(apiKey, apiSecret) {
 }
 
 async function saveToSheet(payload) {
-  const { name, phone, visit_date, visit_time, gift_check, privacy_agree, projectName, sheetId, sheetTab, utmSource, serviceType, ageRange } = payload
+  const { name, phone, visit_date, visit_time, gift_check, privacy_agree, projectName, sheetId, sheetTab, utmSource, serviceType, ageRange, applicant, birth, marketing_agree } = payload
 
   const auth = new google.auth.GoogleAuth({
     credentials: {
@@ -44,6 +44,8 @@ async function saveToSheet(payload) {
     serviceType ?? '',
     ageRange ?? '',
   ]
+  // 청약자·생년월일·마케팅 수신동의(ArkoneApplyForm) — 이 폼을 쓰는 현장만 뒤에 열을 붙임
+  if (applicant) row.push(applicant, birth ?? '', marketing_agree ? '동의함' : '미동의')
 
   try {
     await sheets.spreadsheets.values.append({
@@ -133,6 +135,9 @@ export async function POST(request) {
       showUtmInSms,
       serviceType,
       ageRange,
+      applicant,
+      birth,
+      marketing_agree,
       slug,
     } = body
 
@@ -178,6 +183,10 @@ export async function POST(request) {
 
     const serviceLine = serviceType ? `\n희망서비스: ${serviceType}` : ''
     const ageLine = ageRange ? `\n연령대: ${ageRange}` : ''
+    // 카드형 "방문예약 신청" 폼(ArkoneApplyForm)에서만 오는 값
+    const applyLines = applicant
+      ? `\n청약자: ${applicant}\n생년월일: ${birth || '미입력'}\n마케팅수신: ${marketing_agree ? '동의함' : '미동의'}`
+      : ''
     const giftLine = serviceType ? '' : `\n사은품등록: ${gift_check ? '체크함' : '아님'}`
 
     const siteConfig = slug ? getSiteBySlug(slug) : null
@@ -205,6 +214,7 @@ export async function POST(request) {
       giftLine +
       serviceLine +
       ageLine +
+      applyLines +
       `\n개인정보동의: ${privacy_agree ? '동의함' : '미동의'}` +
       utmLine
 
@@ -234,6 +244,9 @@ export async function POST(request) {
       utmSource,
       serviceType,
       ageRange,
+      applicant,
+      birth,
+      marketing_agree,
     })
       .then(() => true)
       .catch((e) => {

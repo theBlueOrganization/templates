@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { useUtmSource } from '../../lib/useUtmSource'
 import { cn } from '../../lib/utils'
 import styles from './SignatureArkoneImmersive.module.css'
+import ArkoneApplyForm from './ArkoneApplyForm'
 
 // 청라 아크원 푸르지오 전용 풀페이지 몰입형 랜딩 — 참고 시안(cheongna-arkone-prugio-v2-2-mobile-first-standalone.html)의
 // 디자인·인터랙션·이미지를 그대로 이식한 이 현장 전용 컴포넌트. 다른 현장의 Signature* 섹션 조합과
@@ -924,7 +925,9 @@ export default function SignatureArkoneImmersive({ site }) {
                 </div>
               )}
               <div className={styles.contactPanel}>
-                {hideRequest || contactTab === 'visit' ? (
+                {(hideRequest || contactTab === 'visit') && site.applyForm ? (
+                  <ArkoneApplyForm config={site} idPrefix="contactVisit" variant="popup" onSuccess={() => showToast('방문예약이 접수되었습니다.')} />
+                ) : hideRequest || contactTab === 'visit' ? (
                   <LeadForm
                     kind="visit" idPrefix="contactVisit" site={site}
                     onSubmit={submitLead}
@@ -1006,15 +1009,26 @@ export default function SignatureArkoneImmersive({ site }) {
         </dialog>
       )}
       <dialog ref={visitDialogRef} className={styles.dialog} onClick={(e) => e.target === e.currentTarget && closeDialog(visitDialogRef)}>
-        <div className={styles.modal}>
-          <button type="button" className={styles.modalClose} aria-label="닫기" onClick={() => closeDialog(visitDialogRef)}>×</button>
-          <h2>방문예약</h2>
-          <p>모델하우스 관람가능시간 10:00~18:00 (담당자와 조율가능)</p>
-          <LeadForm
-            kind="visit" idPrefix="visitDialog" site={site} showTerms={false}
-            onSubmit={async (kind, form) => { const ok = await submitLead(kind, form); if (ok) closeDialog(visitDialogRef); return ok }}
-          />
-        </div>
+        {/* site.applyForm — 카드형 "방문예약 신청" 폼(청약자·생년월일 포함, 요청 반영 2026-10-23) */}
+        {site.applyForm ? (
+          <div className={cn(styles.modal, styles.applyModal)}>
+            <button type="button" className={styles.modalClose} aria-label="닫기" onClick={() => closeDialog(visitDialogRef)}>×</button>
+            <ArkoneApplyForm
+              config={site} idPrefix="visitDialog" variant="popup"
+              onSuccess={() => { closeDialog(visitDialogRef); showToast('방문예약이 접수되었습니다.') }}
+            />
+          </div>
+        ) : (
+          <div className={styles.modal}>
+            <button type="button" className={styles.modalClose} aria-label="닫기" onClick={() => closeDialog(visitDialogRef)}>×</button>
+            <h2>방문예약</h2>
+            <p>모델하우스 관람가능시간 10:00~18:00 (담당자와 조율가능)</p>
+            <LeadForm
+              kind="visit" idPrefix="visitDialog" site={site} showTerms={false}
+              onSubmit={async (kind, form) => { const ok = await submitLead(kind, form); if (ok) closeDialog(visitDialogRef); return ok }}
+            />
+          </div>
+        )}
       </dialog>
 
       <dialog ref={requestDialogRef} className={styles.dialog} onClick={(e) => e.target === e.currentTarget && closeDialog(requestDialogRef)}>

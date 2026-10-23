@@ -46,6 +46,13 @@ const config = {
     email: 'addup@addup.kr',
   },
 
+  // 관심고객등록 섹션·방문예약 팝업을 카드형 "방문예약 신청" 폼(ArkoneApplyForm)으로 — 요청 반영(2026-10-23)
+  applyForm: {
+    title: '방문예약 신청',
+    desc: '11월 2일 특별공급 · 3일 1순위 청약. 방문 희망일과 시간을 남겨주세요.',
+    submitLabel: '방문예약 신청하기',
+  },
+
   visitTimeOptions: [
     '10:00 ~ 11:00',
     '11:00 ~ 12:00',

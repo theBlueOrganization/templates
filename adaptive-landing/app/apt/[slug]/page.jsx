@@ -59,6 +59,7 @@ import SignatureNotice from '../../../components/sections/SignatureNotice'
 import SignatureFaq from '../../../components/sections/SignatureFaq'
 import SignatureLocationGeomdan from '../../../components/sections/SignatureLocationGeomdan'
 import SignatureFinalInterest from '../../../components/sections/SignatureFinalInterest'
+import { ArkoneApplySection } from '../../../components/sections/ArkoneApplyForm'
 import SignatureBottomDockGeomdan from '../../../components/ui/SignatureBottomDockGeomdan'
 import SignatureArkoneImmersive from '../../../components/sections/SignatureArkoneImmersive'
 import SignatureTiamoImmersive from '../../../components/sections/SignatureTiamoImmersive'
@@ -139,7 +140,9 @@ export default async function AptPage({ params }) {
       sheetTab: site.sheetTab,
       showUtmInSms: site.showUtmInSms,
       visitTimeOptions: site.visitTimeOptions,
-      company: { email: site.company.email },
+      // 카드형 "방문예약 신청" 폼(ArkoneApplyForm) 문구 — 지정한 현장만(예: cheongna-arkone-prugio)
+      applyForm: site.applyForm,
+      company: { name: site.company.name, email: site.company.email },
       signature: {
         footer: {
           companyLines: sig.footer.companyLines,
@@ -394,7 +397,8 @@ export default async function AptPage({ params }) {
         {sig.eventImage && (
           <SignatureNewsImage id={sig.eventImage.id} image={sig.eventImage} title={sig.eventImage.title} maxWidth={sig.eventImage.maxWidth} />
         )}
-        <SignatureVipForm config={site} />
+        {/* site.applyForm — 관심고객등록 섹션을 카드형 "방문예약 신청" 폼(청약자·생년월일 포함)으로. 예: cheongna-arkone-prugio-3 */}
+        {site.applyForm ? <ArkoneApplySection config={site} /> : <SignatureVipForm config={site} />}
       </main>
       <SignatureFooter
         footer={sig.footer}

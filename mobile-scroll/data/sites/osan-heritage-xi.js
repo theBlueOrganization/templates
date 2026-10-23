@@ -41,13 +41,15 @@ const config = {
   popup: {
     enabled: true,
     image: {
-      src: "/apt/osan-heritage-xi/popup2.webp",
-      alt: "오산헤리티지자이 팝업2",
+      src: "/apt/osan-heritage-xi/popup3.webp",
+      alt: "병점역 오산헤리티지자이 마지막 회사보유분 오픈",
       actionButton: {
-        label: "관심고객등록",
+        label: "관심고객 등록하기",
         target: "#contact-section",
-        background: "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 55%, #1e3a5f 100%)",
-        color: "#ffffff",
+        // 팝업 이미지의 다크+골드 톤에 맞춘 강조 버튼 (펄스·광택 애니메이션)
+        background: "linear-gradient(135deg, #fde68a 0%, #f5c451 45%, #d99a1e 100%)",
+        color: "#1a1206",
+        highlight: true,
       },
     },
   },

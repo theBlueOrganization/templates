@@ -161,11 +161,19 @@ export default function PopupBanner({ popup, popupByUtm }) {
         {actionButton && (
           <button
             type="button"
-            className={styles.actionBtn}
+            className={actionButton.highlight ? `${styles.actionBtn} ${styles.actionBtnHighlight}` : styles.actionBtn}
             style={{ background: actionButton.background, color: actionButton.color }}
             onClick={handleActionButtonClick}
           >
-            {actionButton.label}
+            {actionButton.highlight ? (
+              // 강조형 — 라벨 뒤 화살표 + 광택(shine)이 주기적으로 지나가는 효과
+              <span className={styles.actionBtnInner}>
+                {actionButton.label}
+                <span className={styles.actionBtnArrow} aria-hidden="true">→</span>
+              </span>
+            ) : (
+              actionButton.label
+            )}
           </button>
         )}
         {cta && cta.tel && (

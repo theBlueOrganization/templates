@@ -95,6 +95,67 @@
   opacity: 0.85;
 }
 
+/* actionButton.highlight: true — 눈에 띄는 강조형 CTA (크게, 광택 sweep + 은은한 펄스) */
+.actionBtnHighlight {
+  position: relative;
+  overflow: hidden;
+  padding: 18px 14px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), inset 0 -3px 0 rgba(0, 0, 0, 0.18);
+  animation: ctaPulse 1.8s ease-in-out infinite;
+}
+
+.actionBtnHighlight::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, 0.75) 50%, transparent 100%);
+  transform: skewX(-20deg);
+  animation: ctaShine 2.6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.actionBtnInner {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.actionBtnArrow {
+  display: inline-block;
+  animation: ctaArrow 1.2s ease-in-out infinite;
+}
+
+@keyframes ctaPulse {
+  0%, 100% { filter: brightness(1); }
+  50%      { filter: brightness(1.12); }
+}
+
+@keyframes ctaShine {
+  0%       { left: -60%; }
+  60%, 100% { left: 130%; }
+}
+
+@keyframes ctaArrow {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(5px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .actionBtnHighlight,
+  .actionBtnHighlight::after,
+  .actionBtnArrow {
+    animation: none;
+  }
+}
+
 .ctaHotspot {
   display: block;
   position: absolute;

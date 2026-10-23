@@ -33,6 +33,7 @@ import cheongnaThelivTiamoCasa from './sites/cheongna-theliv-tiamo-casa'
 import cheongnaThelivTiamoCasa2 from './sites/cheongna-theliv-tiamo-casa-2'
 import pajuHobanSummitEastpark from './sites/paju-hoban-summit-eastpark'
 import yonginGorimDongmunTheEast from './sites/yongin-gorim-dongmun-the-east'
+import yonginGorimDongmunTheEast2 from './sites/yongin-gorim-dongmun-the-east-2'
 import yeongjongShinilViaafCrest from './sites/yeongjong-shinil-viaaf-crest'
 import yangsanXiParkPaliche from './sites/yangsan-xi-park-paliche'
 
@@ -84,6 +85,7 @@ const sites = [
   cheongnaThelivTiamoCasa2,
   pajuHobanSummitEastpark,
   yonginGorimDongmunTheEast,
+  yonginGorimDongmunTheEast2,
   yeongjongShinilViaafCrest,
   yangsanXiParkPaliche,
 ]

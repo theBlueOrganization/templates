@@ -1010,7 +1010,7 @@ export default function SignatureArkoneImmersive({ site }) {
           </div>
         </dialog>
       )}
-      <dialog ref={visitDialogRef} className={styles.dialog} onClick={(e) => e.target === e.currentTarget && closeDialog(visitDialogRef)}>
+      <dialog ref={visitDialogRef} className={cn(styles.dialog, site.applyForm && styles.applyDialog)} onClick={(e) => e.target === e.currentTarget && closeDialog(visitDialogRef)}>
         {/* site.applyForm — 카드형 "방문예약 신청" 폼(청약자·생년월일 포함, 요청 반영 2026-10-23) */}
         {site.applyForm ? (
           <div className={cn(styles.modal, styles.applyModal)}>

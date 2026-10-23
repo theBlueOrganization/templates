@@ -446,6 +446,8 @@
 .modal > p { margin: 0 0 12px; font-size: 10px; color: #6a7773; }
 /* 방문예약 신청 폼(ArkoneApplyForm) 팝업 — 카드가 자체 여백을 가짐 */
 .applyModal { padding: 0; }
+/* 방문예약 신청 팝업은 폭을 좁게 */
+.applyDialog { width: min(92vw, 400px); }
 .modalClose {
   position: absolute; z-index: 2; right: 12px; top: 12px; width: 34px; height: 34px;
   border-radius: 50%; background: #edf0ee; font-size: 18px;

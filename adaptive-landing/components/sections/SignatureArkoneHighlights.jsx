@@ -289,7 +289,7 @@ export function SignatureArkonePopups({ popups, config }) {
         </div>
       )}
 
-      <dialog ref={visitRef} className={styles.dialog} onClick={(e) => e.target === e.currentTarget && visitRef.current?.close()}>
+      <dialog ref={visitRef} className={cn(styles.dialog, styles.applyDialog)} onClick={(e) => e.target === e.currentTarget && visitRef.current?.close()}>
         <div className={cn(styles.modal, styles.applyModal)}>
           <button type="button" className={styles.modalClose} aria-label="닫기" onClick={() => visitRef.current?.close()}>×</button>
           <ArkoneApplyForm config={config} idPrefix="arkoneVisit" variant="popup" onSuccess={handleSuccess} />

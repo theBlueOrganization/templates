@@ -395,10 +395,11 @@ const config = {
       csHours: 'AM 09:00 ~ PM 19:00',
     },
 
-    // 진입 팝업: 안내(+혜택) → × 닫으면 방문예약 다이얼로그(applyForm 폼). 인트로 뒤에 뜨도록 지연
+    // 진입 팝업: 안내(+혜택) → × 닫으면 방문예약 다이얼로그(applyForm 폼).
+    // 요청 반영(2026-10-23) — 인트로가 빠졌으므로 인트로 대기(6.3초) 없이 바로 띄움
     arkonePopups: {
       notice: {
-        openDelayMs: 6300,
+        openDelayMs: 700,
         image: '/apt/cheongna-arkone-prugio-3/notice-popup.webp',
         title: '청라 아크원 푸르지오',
         desc: '관심고객등록 시 분양 일정과 주요 소식을 가장 먼저 안내해 드립니다.',

@@ -93,8 +93,12 @@ const config = {
       enabled: true,
       order: 'imageFirst',
       openDelayMs: 500,
+      // 하단 '팝업닫기' 바 대신 이미지 오른쪽 위 X 버튼으로 닫기(2026-10-23 사용자 요청)
+      closeIcon: true,
       // 세로형 이미지라 짧은 화면에서 헤더에 가려지지 않게 화면 높이에 맞춰 축소
       fitViewport: true,
+      // 기본(PC 430px)이 너무 커 보여 최대 폭 340px로 축소(2026-10-23 사용자 요청)
+      maxWidth: 340,
       images: [
         {
           src: '/apt/yongin-gorim-dongmun-the-east-2/popup.webp',

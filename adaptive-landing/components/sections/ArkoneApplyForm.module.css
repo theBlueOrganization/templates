@@ -129,6 +129,14 @@ select.input {
   white-space: pre-line;
 }
 
+/* 개인정보 수집 및 이용 안내 표 */
+.terms > .privacyTableWrap { max-height: 300px; padding: 0 12px 12px; white-space: normal; }
+.privacyTitle { margin: 0 0 8px; font-size: 13px; font-weight: 800; color: #222; }
+.privacyTable { width: 100%; border-collapse: collapse; background: #fff; font-size: 12px; line-height: 1.55; word-break: keep-all; }
+.privacyTable th, .privacyTable td { padding: 8px 10px; border: 1px solid #e1e5e3; text-align: left; vertical-align: top; }
+.privacyTable th { width: 34%; background: #f7f8f8; font-weight: 700; color: #333; }
+.privacyTable td { color: #444; }
+
 .notice { margin: 0; font-size: 14px; color: #666; word-break: keep-all; }
 
 .agree {

@@ -69,6 +69,8 @@ const config = {
     // true면 아래 기존 필드 대신 이 컴포넌트로 렌더. 시안의 가짜 접속자 수·가짜 예약 알림·
     // "AI 분양비서"·SEO용 가짜 FAQ/검색어는 고객 기만 소지가 있어 제외함
     arkoneImmersive: true,
+    // 요청 반영(2026-10-23) — 자료요청(상담 탭·PC 플로팅·모바일 하단바) 빼고 방문예약만
+    arkoneImmersiveContent: { hideRequest: true },
     header: {
       // 출처: 공식 사이트 공용 워드마크(/resources/img/common/logotype.svg, 원본 161x26 black) —
       // 헤더 배경이 스크롤 여부와 무관하게 항상 --navy(딥그린 #004B45)라 흰색 버전만 사용

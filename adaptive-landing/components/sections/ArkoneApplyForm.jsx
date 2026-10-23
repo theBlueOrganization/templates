@@ -14,6 +14,8 @@ const APPLICANTS = [
   { value: '가족(세대원)', label: '가족(세대원)이 청약합니다' },
 ]
 
+// variant — 'section'(그림자 카드) | 'popup'(다이얼로그 안) | 'panel'(아크원 풀페이지 상담 패널 안:
+// PC에서는 한 화면에 들어오도록 2열로 배치)
 export default function ArkoneApplyForm({ config, idPrefix, variant = 'section', onSuccess }) {
   const { applyForm, slug, projectName, visitTimeOptions, adminPhones, adminPhonesByUtm, adminPhoneNames, smsMediaLabel, sheetId, sheetTab, showUtmInSms } = config
   const privacyText = config.signature.vipForm.privacyText
@@ -76,20 +78,20 @@ export default function ArkoneApplyForm({ config, idPrefix, variant = 'section',
   }
 
   return (
-    <div className={cn(styles.card, variant === 'popup' && styles.popup)}>
+    <div className={cn(styles.card, variant !== 'section' && styles.popup, variant === 'panel' && styles.panel)}>
       <h2 className={styles.title}>{applyForm.title}</h2>
       <i className={styles.bar} aria-hidden="true" />
       {applyForm.desc && <p className={styles.desc}>{applyForm.desc}</p>}
 
       <form className={styles.form} onSubmit={handleSubmit}>
-        <div className={styles.field}>
+        <div className={cn(styles.field, styles.fName)}>
           <label htmlFor={`${idPrefix}-name`} className={styles.label}>
             성명 <em>*</em> <small>(청약신청자와 동일)</small>
           </label>
           <input id={`${idPrefix}-name`} className={styles.input} name="name" required placeholder="성명" autoComplete="name" />
         </div>
 
-        <div className={styles.field}>
+        <div className={cn(styles.field, styles.fPhone)}>
           <span className={styles.label}>연락처 <em>*</em></span>
           <div className={styles.phoneRow}>
             <input className={styles.input} name="phone1" defaultValue="010" required maxLength={3} inputMode="numeric" aria-label="휴대전화 앞자리" />
@@ -98,7 +100,7 @@ export default function ArkoneApplyForm({ config, idPrefix, variant = 'section',
           </div>
         </div>
 
-        <div className={styles.field} role="radiogroup" aria-labelledby={`${idPrefix}-applicant`}>
+        <div className={cn(styles.field, styles.fApplicant)} role="radiogroup" aria-labelledby={`${idPrefix}-applicant`}>
           <span id={`${idPrefix}-applicant`} className={styles.label}>청약은 누가 하시나요? <em>*</em></span>
           {APPLICANTS.map((a, i) => (
             <label key={a.value} className={styles.choice}>
@@ -108,19 +110,19 @@ export default function ArkoneApplyForm({ config, idPrefix, variant = 'section',
           ))}
         </div>
 
-        <div className={styles.field}>
+        <div className={cn(styles.field, styles.fBirth)}>
           <label htmlFor={`${idPrefix}-birth`} className={styles.label}>
             생년월일 <em>*</em> <small>(청약신청자와 동일)</small>
           </label>
           <input id={`${idPrefix}-birth`} className={styles.input} name="birth" required maxLength={6} inputMode="numeric" placeholder="6자리 (예: 790514)" />
         </div>
 
-        <div className={styles.field}>
+        <div className={cn(styles.field, styles.fDate)}>
           <label htmlFor={`${idPrefix}-date`} className={styles.label}>방문희망일 <em>*</em></label>
           <input id={`${idPrefix}-date`} className={styles.input} name="visit_date" type="date" required />
         </div>
 
-        <div className={styles.field}>
+        <div className={cn(styles.field, styles.fTime)}>
           <label htmlFor={`${idPrefix}-time`} className={styles.label}>희망시간 <em>*</em></label>
           <select id={`${idPrefix}-time`} className={styles.input} name="visit_time" defaultValue="" required>
             <option value="" disabled>시간 선택</option>

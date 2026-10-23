@@ -823,6 +823,11 @@
   .contactLayoutSingle .leadForm .submitButton { height: 50px; font-size: 16px; }
 
 }
+/* 세로가 낮은 PC — 방문예약 신청 폼(ArkoneApplyForm)이 패널 안에 다 들어오도록 바깥 여백 축소 */
+@media (min-width: 1024px) and (max-height: 820px) {
+  .contactLayoutSingle { margin-top: 8px; }
+  .contactLayoutSingle .contactPanel { padding: 10px 18px; }
+}
 /* 탭이 없으니 "상담 유형을 선택하면…" 안내 문구는 숨김(모바일 포함) */
 .contactCentered .sectionDesc { display: none; }
 /* 포스터형 히어로 문구 사용 시 — 뒤의 큰 "ONE" 외곽선 장식이 제목과 겹쳐 지저분해 보여서 숨기고,

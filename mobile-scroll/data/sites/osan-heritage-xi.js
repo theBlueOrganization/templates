@@ -10,7 +10,7 @@ const config = {
   subdomain:   "오산헤리티지자이",
   projectName: "오산헤리티지자이",
   shortName:   "오산헤리티지자이",
-  telNumber:   "1666-1081",
+  telNumber:   "1555-1841",
   ogImage:     "/apt/osan-heritage-xi/share_img.png",
   adminPhones:  ["01032662158"],
   kakao:        true,
@@ -41,13 +41,18 @@ const config = {
   popup: {
     enabled: true,
     image: {
-      src: "/apt/osan-heritage-xi/popup2.webp",
-      alt: "오산헤리티지자이 팝업2",
+      src: "/apt/osan-heritage-xi/popup3.webp",
+      alt: "병점역 오산헤리티지자이 마지막 회사보유분 오픈",
+      // 2:3 세로 이미지 — 버튼(약 64px)+여백을 뺀 화면 높이에 이미지가 통째로 들어가는 너비로 제한해 스크롤 없이 노출
+      maxWidth: "min(340px, calc((100dvh - 120px) * 2 / 3))",
+      fitImage: true,
       actionButton: {
-        label: "관심고객등록",
+        label: "관심고객 등록하기",
         target: "#contact-section",
-        background: "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 55%, #1e3a5f 100%)",
-        color: "#ffffff",
+        // 팝업 이미지의 다크+골드 톤에 맞춘 강조 버튼 (펄스·광택 애니메이션)
+        background: "linear-gradient(135deg, #fde68a 0%, #f5c451 45%, #d99a1e 100%)",
+        color: "#1a1206",
+        highlight: true,
       },
     },
   },

@@ -92,7 +92,6 @@ const config = {
     popup: {
       enabled: true,
       order: 'imageFirst',
-      hideCloseBar: true,
       openDelayMs: 500,
       // 세로형 이미지라 짧은 화면에서 헤더에 가려지지 않게 화면 높이에 맞춰 축소
       fitViewport: true,

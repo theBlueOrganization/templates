@@ -816,6 +816,8 @@
   .contactCentered .sectionHead { text-align: center; }
   .contactLayoutSingle { display: flex; width: min(720px, 100%); margin: 16px auto 0; }
   .contactLayoutSingle .contactPanel { padding: 22px 30px; }
+  /* 큰 화면에서 카드가 패널 높이만큼 늘어나 아래가 비어 보이지 않게 내용 높이에 맞춤(넘치면 그대로 스크롤) */
+  .contactLayoutSingle .contactPanel { flex: 0 1 auto; }
   .contactLayoutSingle .leadForm { gap: 10px 16px; margin-top: 0; }
   .contactLayoutSingle .field label, .contactLayoutSingle .field > span, .contactLayoutSingle .agree { font-size: 13.5px; }
   .contactLayoutSingle .input { height: 44px; font-size: 15px; }
@@ -827,6 +829,9 @@
 @media (min-width: 1024px) and (max-height: 820px) {
   .contactLayoutSingle { margin-top: 8px; }
   .contactLayoutSingle .contactPanel { padding: 10px 18px; }
+}
+@media (min-width: 1024px) and (min-height: 821px) and (max-height: 960px) {
+  .contactLayoutSingle .contactPanel { padding: 12px 26px; }
 }
 /* 탭이 없으니 "상담 유형을 선택하면…" 안내 문구는 숨김(모바일 포함) */
 .contactCentered .sectionDesc { display: none; }

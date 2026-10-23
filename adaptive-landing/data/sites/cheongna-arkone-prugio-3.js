@@ -43,6 +43,13 @@ const config = {
     email: 'addup@addup.kr',
   },
 
+  // 관심고객등록 섹션·방문예약 팝업을 카드형 "방문예약 신청" 폼(ArkoneApplyForm)으로 — 요청 반영(2026-10-23)
+  applyForm: {
+    title: '방문예약 신청',
+    desc: '11월 2일 특별공급 · 3일 1순위 청약. 방문 희망일과 시간을 남겨주세요.',
+    submitLabel: '방문예약 신청하기',
+  },
+
   visitTimeOptions: [
     '10:00 ~ 11:00',
     '11:00 ~ 12:00',
@@ -388,10 +395,11 @@ const config = {
       csHours: 'AM 09:00 ~ PM 19:00',
     },
 
-    // 진입 팝업: 안내(+혜택) → × 닫으면 방문예약 다이얼로그. 인트로 뒤에 뜨도록 지연
+    // 진입 팝업: 안내(+혜택) → × 닫으면 방문예약 다이얼로그(applyForm 폼).
+    // 요청 반영(2026-10-23) — 인트로가 빠졌으므로 인트로 대기(6.3초) 없이 바로 띄움
     arkonePopups: {
       notice: {
-        openDelayMs: 6300,
+        openDelayMs: 700,
         image: '/apt/cheongna-arkone-prugio-3/notice-popup.webp',
         title: '청라 아크원 푸르지오',
         desc: '관심고객등록 시 분양 일정과 주요 소식을 가장 먼저 안내해 드립니다.',
@@ -399,10 +407,6 @@ const config = {
           label: '혜택',
           text: '사전예약 후 방문 상담 고객님들께\n「7만원 상당 고급 와인」 증정!\n(선착순 100명)',
         },
-      },
-      visit: {
-        title: '방문예약',
-        desc: '모델하우스 관람가능시간 10:00~18:00 (담당자와 조율가능)',
       },
     },
   },

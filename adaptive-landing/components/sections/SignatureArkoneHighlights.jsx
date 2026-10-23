@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { cn } from '../../lib/utils'
-import { useUtmSource } from '../../lib/useUtmSource'
+import ArkoneApplyForm from './ArkoneApplyForm'
 import styles from './SignatureArkoneHighlights.module.css'
 
 // 청라 아크원 푸르지오 원본(cheongna-arkone-prugio, SignatureArkoneImmersive)의 인트로·히어로·
@@ -245,17 +245,12 @@ export function SignatureArkoneNetwork({ network }) {
 }
 
 // 진입 팝업 — 원본과 동일한 흐름: 안내 팝업(이미지+현장명+안내문+닫기) → 닫으면 이어서 방문예약 다이얼로그.
-// 방문예약 폼은 원본 LeadForm(kind='visit')과 같은 필드·같은 /api/sms 전송 방식
-const CONSULT_CHECKS = ['방문예약', '모델하우스 위치 전송', '자료요청', '기타문의']
-
+// 방문예약 폼은 config.applyForm이 있으면 원본과 같은 카드형 "방문예약 신청" 폼(ArkoneApplyForm)
 export function SignatureArkonePopups({ popups, config }) {
-  const utmSource = useUtmSource() ?? '직접유입'
-  const resolvedAdminPhones = config.adminPhonesByUtm?.[utmSource] ?? config.adminPhones
   const [noticeOpen, setNoticeOpen] = useState(false)
-  const [submitting, setSubmitting] = useState(false)
   const [toast, setToast] = useState('')
   const visitRef = useRef(null)
-  const { notice, visit } = popups
+  const { notice } = popups
 
   useEffect(() => {
     const t = setTimeout(() => setNoticeOpen(true), notice.openDelayMs ?? 700)
@@ -267,45 +262,10 @@ export function SignatureArkonePopups({ popups, config }) {
     setTimeout(() => visitRef.current?.showModal(), 300)
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    const form = e.currentTarget
-    const fd = new FormData(form)
-    const privacyAgree = fd.get('privacy_agree') === 'on'
-    if (!privacyAgree) { alert('개인정보 수집 및 이용에 동의해 주세요.'); return }
-    setSubmitting(true)
-    const payload = {
-      name: fd.get('name')?.toString().trim() ?? '',
-      phone: ['phone1', 'phone2', 'phone3'].map((k) => fd.get(k)?.toString() ?? '').join('-'),
-      visit_date: fd.get('visit_date')?.toString() ?? '',
-      visit_time: fd.get('visit_time')?.toString() ?? '',
-      privacy_agree: privacyAgree,
-      serviceType: CONSULT_CHECKS.filter((label) => fd.get(label) === 'on').join(', ') || '방문예약',
-      projectName: config.projectName,
-      adminPhones: resolvedAdminPhones,
-      adminPhoneNames: config.adminPhoneNames,
-      smsMediaLabel: config.smsMediaLabel,
-      sheetId: config.sheetId,
-      sheetTab: config.sheetTab,
-      utmSource,
-      showUtmInSms: config.showUtmInSms,
-      slug: config.slug,
-    }
-    try {
-      const res = await fetch('/api/sms', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
-      const data = await res.json()
-      if (data.success) {
-        form.reset()
-        visitRef.current?.close()
-        setToast('방문예약이 접수되었습니다.')
-        setTimeout(() => setToast(''), 2200)
-      } else {
-        alert(data.message ?? '오류가 발생했습니다. 다시 시도해주세요.')
-      }
-    } catch {
-      alert('전송에 실패했습니다. 네트워크 상태를 확인해 주세요.')
-    }
-    setSubmitting(false)
+  const handleSuccess = () => {
+    visitRef.current?.close()
+    setToast('방문예약이 접수되었습니다.')
+    setTimeout(() => setToast(''), 2200)
   }
 
   return (
@@ -329,49 +289,10 @@ export function SignatureArkonePopups({ popups, config }) {
         </div>
       )}
 
-      <dialog ref={visitRef} className={styles.dialog} onClick={(e) => e.target === e.currentTarget && visitRef.current?.close()}>
-        <div className={styles.modal}>
+      <dialog ref={visitRef} className={cn(styles.dialog, styles.applyDialog)} onClick={(e) => e.target === e.currentTarget && visitRef.current?.close()}>
+        <div className={cn(styles.modal, styles.applyModal)}>
           <button type="button" className={styles.modalClose} aria-label="닫기" onClick={() => visitRef.current?.close()}>×</button>
-          <h2>{visit.title}</h2>
-          <p className={styles.modalDesc}>{visit.desc}</p>
-          <form className={styles.leadForm} onSubmit={handleSubmit}>
-            <div className={cn(styles.field, styles.full)}>
-              <label htmlFor="arkoneVisit-name">성함</label>
-              <input id="arkoneVisit-name" className={styles.input} name="name" required placeholder="성함을 입력하세요" />
-            </div>
-            <div className={cn(styles.field, styles.full)}>
-              <span>연락처</span>
-              <div className={styles.phoneGrid}>
-                <input className={styles.input} name="phone1" defaultValue="010" readOnly aria-label="휴대전화 앞자리" />
-                <input className={styles.input} name="phone2" required maxLength={4} inputMode="numeric" aria-label="휴대전화 중간자리" />
-                <input className={styles.input} name="phone3" required maxLength={4} inputMode="numeric" aria-label="휴대전화 뒷자리" />
-              </div>
-            </div>
-            <div className={styles.field}>
-              <label htmlFor="arkoneVisit-date">방문희망일</label>
-              <input id="arkoneVisit-date" className={styles.input} name="visit_date" type="date" />
-            </div>
-            <div className={styles.field}>
-              <label htmlFor="arkoneVisit-time">방문희망시간</label>
-              <select id="arkoneVisit-time" className={styles.input} name="visit_time" defaultValue="">
-                <option value="">선택하세요</option>
-                {config.visitTimeOptions.map((t) => (<option key={t} value={t}>{t}</option>))}
-              </select>
-            </div>
-            <div className={cn(styles.consultGrid, styles.full)}>
-              <p className={styles.consultTitle}>상담 내용 (중복선택 가능)</p>
-              {CONSULT_CHECKS.map((label) => (
-                <label key={label}><input type="checkbox" name={label} />{label}</label>
-              ))}
-            </div>
-            <label className={styles.agree}>
-              <input type="checkbox" name="privacy_agree" required />
-              <span>개인정보 수집 및 이용에 동의합니다. (필수)</span>
-            </label>
-            <button type="submit" className={styles.submitButton} disabled={submitting}>
-              {submitting ? '전송 중...' : '방문예약 등록'}
-            </button>
-          </form>
+          <ArkoneApplyForm config={config} idPrefix="arkoneVisit" variant="popup" onSuccess={handleSuccess} />
         </div>
       </dialog>
 

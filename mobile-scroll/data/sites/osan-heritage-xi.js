@@ -57,6 +57,12 @@ const config = {
     },
   },
 
+  // 관심고객 전용 링크(?utm_source=관심고객#contact-section) — 팝업 없이 바로 상담신청 섹션으로.
+  // 접수는 같은 시트 탭·알림번호로 들어오고 유입매체가 '관심고객'으로 기록됨
+  popupByUtm: {
+    "관심고객": null,
+  },
+
   company: {
     name:      "주식회사 더블루파트너스",
     bizNumber: "789-81-03093",
@@ -81,10 +87,10 @@ const config = {
     eyebrow:       "특별공급｜선착순",
     eyebrowUrgent: 1,
     brand:         "오산헤리티지자이",
-    title:         "병점X동탄 더블생활권\nGTX-C 역세권 대단지\n오산 최초 프리미엄 브랜드",
+    title:         "병점X동탄 더블생활권\n1,783세대 1군브랜드 대단지\n오산 최초 프리미엄 브랜드",
     subtitle:      " GS건설 헤리티지자이",
     bgColor:       "#1e293b",
-    accentKeyword: ["병점X동탄", "역세권", "프리미엄 브랜드"],
+    accentKeyword: ["병점X동탄", "1,783세대", "프리미엄 브랜드"],
     image: {
       src:    "/apt/osan-heritage-xi/main2.webp",
       alt:    "오산헤리티지자이 대표 이미지",

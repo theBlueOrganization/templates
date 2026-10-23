@@ -78,10 +78,17 @@ export default function SignaturePopupBanner({ popup, openDelayMs = 2900, onClos
             className={styles.card}
             // popup.fitViewport — 세로로 긴 이미지가 짧은 화면에서 헤더에 가려지지 않도록, 카드 높이가
             // (화면 높이 − 150px)를 넘지 않게 이미지 비율로 카드 최대 폭을 줄임
+            // popup.maxWidth(px) — 기본 최대 폭(모바일 400px / PC 430px)보다 작게 띄우고 싶은 현장용(예: 용인 고림 동문 디 이스트2)
             style={
               popup.fitViewport && current?.width && current?.height
-                ? { '--fit-max-width': `calc((100dvh - 150px) * ${current.width / current.height})` }
-                : undefined
+                ? {
+                    '--fit-max-width': popup.maxWidth
+                      ? `min(${popup.maxWidth}px, calc((100dvh - 150px) * ${current.width / current.height}))`
+                      : `calc((100dvh - 150px) * ${current.width / current.height})`,
+                  }
+                : popup.maxWidth
+                  ? { '--fit-max-width': `${popup.maxWidth}px` }
+                  : undefined
             }
             initial={{ scale: 0.92, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}

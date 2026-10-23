@@ -87,17 +87,33 @@ const config = {
       },
     },
 
-    // 진입 시 관심고객 팝업 — 이미지 팝업 없이 방문예약 폼만(파주 호반써밋 이스트파크 초기 구성과 동일)
+    // 진입 팝업 — 혜택 이미지 팝업(계약금 5%·계약축하금 500만원·중도금 무이자, 2026-10-23 사용자 제공 popup.png → webp)을
+    //   먼저 띄우고, 닫으면 방문예약 폼 팝업을 이어서 띄움. 인트로가 없어 0.5초 뒤 바로 표시
     popup: {
-      enabled: false,
+      enabled: true,
+      order: 'imageFirst',
+      openDelayMs: 500,
+      // 하단 '팝업닫기' 바 대신 이미지 오른쪽 위 X 버튼으로 닫기(2026-10-23 사용자 요청)
+      closeIcon: true,
+      // 세로형 이미지라 짧은 화면에서 헤더에 가려지지 않게 화면 높이에 맞춰 축소
+      fitViewport: true,
+      // 기본(PC 430px)이 너무 커 보여 최대 폭 340px로 축소(2026-10-23 사용자 요청)
+      maxWidth: 340,
+      images: [
+        {
+          src: '/apt/yongin-gorim-dongmun-the-east-2/popup.webp',
+          alt: '용인 고림 동문 디 이스트 특별한 혜택 — 입주까지 계약금 5%·계약축하금 500만원 지급·중도금 무이자',
+          width: 1024,
+          height: 1536,
+        },
+      ],
       visitForm: {
         enabled: true,
-        // 티아모 까사처럼 인트로가 끝난 뒤(0.7초 후) 띄움
-        afterIntro: true,
         accentColor: '#2b3153',
         title: '관심고객등록',
         desc: '상담 가능시간 10:00~18:00 (담당자와 조율가능)',
-        checks: ['모델하우스 방문예약', '원하는시간 전화예약', '자료요청', '기타문의'],
+        // 자료요청·기타문의 삭제(2026-10-23 사용자 요청)
+        checks: ['모델하우스 방문예약', '원하는시간 전화예약'],
         submitLabel: '관심고객 등록',
       },
     },
@@ -125,46 +141,15 @@ const config = {
       ],
     },
 
-    // 인트로 — 청라 더리브 티아모 까사와 같은 연출(1단계 3분할 이미지+영문 카피 4s → 2단계 링 펄스+브랜드 임팩트, 5.6s 종료). 2026-10-08 사용자 요청
-    //   로고 원본이 137px라 확대하면 흐려서 브랜드 단계는 현장명 텍스트로 표시. 색은 현장 남색/베이지
-    arkoneIntro: {
-      ariaLabel: '용인 고림 동문 디 이스트를 소개하는 인트로',
-      scenes: [
-        { img: '/apt/yongin-gorim-dongmun-the-east/hero-1.webp', label: '01 · VISION', name: '반도체 클러스터 직주근접' },
-        { img: '/apt/yongin-gorim-dongmun-the-east/hero-2.webp', label: '02 · LANDMARK', name: '지상 23층 6개동 총 350세대' },
-        { img: '/apt/yongin-gorim-dongmun-the-east/special-playground.webp', label: '03 · PARK', name: '지상에 차 없는 공원형 단지' },
-      ],
-      copySmall: "YONGIN GORIM'S NEW PLACE",
-      copyLine1: 'Life in',
-      copyLine2: 'Motion.',
-      brandName: '용인 고림 동문 디 이스트',
-      tagline: 'THE EST · DONGMUN',
-      theme: {
-        base: '#2b3153',
-        stageOne: 'radial-gradient(circle at 50% 35%, #46507f 0, #2b3153 48%, #161a30 100%)',
-        stageTwo: 'radial-gradient(circle at center, #3c4570, #2b3153 42%, #171b33 100%)',
-        ring: 'rgba(196, 168, 138, 0.45)',
-        accent: '#c4a88a',
-        sub: '#dfe2ee',
-      },
-    },
-
     // 히어로 — 공식 홈페이지(https://www.yongin-dmapt.co.kr/) 메인과 같은 방식(2026-10-08 사용자 요청):
-    //   메인 영상 한 번 재생(introVideo, 인트로가 끝난 뒤 시작) → 끝나면 영상이 사라지며 정지 화면(투시도) + 문구(estCopy)
-    //   + PC 우상단 회전 '관심고객 등록' 배지가 나타나고, 헤더가 남색 글씨로 바뀜(header.transparentDark).
-    //   영상: 공식 메인 영상(PC vis_mov 1920x1080 17.6s / 모바일 m_vis_mov 466x720 30s)을 ffmpeg로 재압축(3.3MB / 1.2MB, 무음).
+    //   정지 화면(투시도) + 문구(estCopy) + PC 우상단 회전 '관심고객 등록' 배지, 헤더는 남색 글씨(header.transparentDark).
+    //   원본의 메인 영상(introVideo)은 -2에서 제거(2026-10-23 사용자 요청) — 진입하자마자 정지 화면과 문구가 바로 보임.
     //   정지 화면: 사용자 제공 고화질 투시도 원본(@투시도.jpg). 공식 캡처보다 하늘이 좁아 문구가 건물에 겹쳐서 원본 맨 위
     //   하늘 띠를 늘려 위로 이어 붙임(hero-sky.webp 2400x1768 / 모바일 hero-sky-m.webp 103동 중심 세로 크롭). PC는 세로 45% 기준 배치
     hero: {
       hideText: true,
       overlay: false,
       mobileScrollMouse: true,
-      introVideo: {
-        src: '/apt/yongin-gorim-dongmun-the-east/hero-video.mp4',
-        srcMobile: '/apt/yongin-gorim-dongmun-the-east/hero-video-m.mp4',
-        poster: '/apt/yongin-gorim-dongmun-the-east/hero-video-poster.webp',
-        posterMobile: '/apt/yongin-gorim-dongmun-the-east/hero-video-poster-m.webp',
-      },
       bgImage: {
         src: '/apt/yongin-gorim-dongmun-the-east/hero-sky.webp',
         alt: '용인 고림 동문 디 이스트 투시도',

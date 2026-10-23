@@ -92,8 +92,8 @@ const config = {
       enabled: false,
       visitForm: {
         enabled: true,
-        // 티아모 까사처럼 인트로가 끝난 뒤(0.7초 후) 띄움
-        afterIntro: true,
+        // 인트로 없음(2026-10-23 사용자 요청) — 진입 후 기본 지연(1.5초) 뒤 띄움
+        afterIntro: false,
         accentColor: '#2b3153',
         title: '관심고객등록',
         desc: '상담 가능시간 10:00~18:00 (담당자와 조율가능)',
@@ -125,32 +125,8 @@ const config = {
       ],
     },
 
-    // 인트로 — 청라 더리브 티아모 까사와 같은 연출(1단계 3분할 이미지+영문 카피 4s → 2단계 링 펄스+브랜드 임팩트, 5.6s 종료). 2026-10-08 사용자 요청
-    //   로고 원본이 137px라 확대하면 흐려서 브랜드 단계는 현장명 텍스트로 표시. 색은 현장 남색/베이지
-    arkoneIntro: {
-      ariaLabel: '용인 고림 동문 디 이스트를 소개하는 인트로',
-      scenes: [
-        { img: '/apt/yongin-gorim-dongmun-the-east/hero-1.webp', label: '01 · VISION', name: '반도체 클러스터 직주근접' },
-        { img: '/apt/yongin-gorim-dongmun-the-east/hero-2.webp', label: '02 · LANDMARK', name: '지상 23층 6개동 총 350세대' },
-        { img: '/apt/yongin-gorim-dongmun-the-east/special-playground.webp', label: '03 · PARK', name: '지상에 차 없는 공원형 단지' },
-      ],
-      copySmall: "YONGIN GORIM'S NEW PLACE",
-      copyLine1: 'Life in',
-      copyLine2: 'Motion.',
-      brandName: '용인 고림 동문 디 이스트',
-      tagline: 'THE EST · DONGMUN',
-      theme: {
-        base: '#2b3153',
-        stageOne: 'radial-gradient(circle at 50% 35%, #46507f 0, #2b3153 48%, #161a30 100%)',
-        stageTwo: 'radial-gradient(circle at center, #3c4570, #2b3153 42%, #171b33 100%)',
-        ring: 'rgba(196, 168, 138, 0.45)',
-        accent: '#c4a88a',
-        sub: '#dfe2ee',
-      },
-    },
-
     // 히어로 — 공식 홈페이지(https://www.yongin-dmapt.co.kr/) 메인과 같은 방식(2026-10-08 사용자 요청):
-    //   메인 영상 한 번 재생(introVideo, 인트로가 끝난 뒤 시작) → 끝나면 영상이 사라지며 정지 화면(투시도) + 문구(estCopy)
+    //   메인 영상 한 번 재생(introVideo, -2는 인트로 없이 바로 시작) → 끝나면 영상이 사라지며 정지 화면(투시도) + 문구(estCopy)
     //   + PC 우상단 회전 '관심고객 등록' 배지가 나타나고, 헤더가 남색 글씨로 바뀜(header.transparentDark).
     //   영상: 공식 메인 영상(PC vis_mov 1920x1080 17.6s / 모바일 m_vis_mov 466x720 30s)을 ffmpeg로 재압축(3.3MB / 1.2MB, 무음).
     //   정지 화면: 사용자 제공 고화질 투시도 원본(@투시도.jpg). 공식 캡처보다 하늘이 좁아 문구가 건물에 겹쳐서 원본 맨 위

@@ -132,7 +132,21 @@ export default function ArkoneApplyForm({ config, idPrefix, variant = 'section',
 
         <details className={styles.terms}>
           <summary>이용약관 전문 보기</summary>
-          <div>{privacyText}</div>
+          {/* applyForm.privacyTable이 있으면 시행사 요청 형식의 표(항목 | 내용)로, 없으면 기존 동의문 */}
+          {applyForm.privacyTable ? (
+            <div className={styles.privacyTableWrap}>
+              <p className={styles.privacyTitle}>개인정보 수집 및 이용 안내</p>
+              <table className={styles.privacyTable}>
+                <tbody>
+                  {applyForm.privacyTable.map(([label, value]) => (
+                    <tr key={label}><th scope="row">{label}</th><td>{value}</td></tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div>{privacyText}</div>
+          )}
         </details>
 
         <p className={styles.notice}>※ 한 세대에서 두 분 이상 청약하시면 각자 신청해 주세요.</p>

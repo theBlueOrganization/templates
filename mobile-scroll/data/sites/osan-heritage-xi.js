@@ -43,6 +43,9 @@ const config = {
     image: {
       src: "/apt/osan-heritage-xi/popup3.webp",
       alt: "병점역 오산헤리티지자이 마지막 회사보유분 오픈",
+      // 2:3 세로 이미지 — 버튼(약 64px)+여백을 뺀 화면 높이에 이미지가 통째로 들어가는 너비로 제한해 스크롤 없이 노출
+      maxWidth: "min(340px, calc((100dvh - 120px) * 2 / 3))",
+      fitImage: true,
       actionButton: {
         label: "관심고객 등록하기",
         target: "#contact-section",

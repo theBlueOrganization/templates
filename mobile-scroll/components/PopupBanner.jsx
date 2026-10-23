@@ -144,7 +144,8 @@ export default function PopupBanner({ popup, popupByUtm }) {
         {actionButton ? (
           // 버튼이 있는 팝업은 이미지만 자체 스크롤박스에 넣어, 이미지 길이와 무관하게
           // 버튼은 항상 그 아래 고정된 위치에 그대로 보이도록 분리함
-          <div className={styles.imgScroll}>
+          // fitImage: 카드 너비(maxWidth)로 이미지가 화면에 다 들어오게 맞춘 팝업 — 스크롤박스 없이 통째로 노출
+          <div className={currentImage.fitImage ? undefined : styles.imgScroll}>
             <img
               src={currentImage.src}
               alt={currentImage.alt ?? ""}

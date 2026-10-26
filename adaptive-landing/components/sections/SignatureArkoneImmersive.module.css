@@ -906,3 +906,15 @@
 @media (min-width: 1024px) and (max-width: 1719px) {
   .subscriptionPanel .subScroll { margin-right: 64px; }
 }
+/* 요청 반영 — 입지환경(BIG4)·청약안내 왼쪽 칼럼을 오른쪽 이미지 윗선에 맞추고, 라벨·제목·목록 글씨 확대 */
+@media (min-width: 1024px) {
+  .locationSide .locationAside,
+  .subscriptionPanel .subAside { justify-content: flex-start; }
+  .locationSide .eyebrow,
+  .subscriptionPanel .eyebrow { font-size: 18px; margin-bottom: 14px; }
+  .locationSide .sectionTitle,
+  .subscriptionPanel .sectionTitle { font-size: clamp(46px, 4.3vw, 76px); }
+  .locationSide .sectionDesc { font-size: 17px; }
+  .locationSide .mapPins span,
+  .subscriptionPanel .subTabs button { font-size: 19px; padding: 18px 20px; }
+}

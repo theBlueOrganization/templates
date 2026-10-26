@@ -185,7 +185,7 @@ export async function POST(request) {
     const ageLine = ageRange ? `\n연령대: ${ageRange}` : ''
     // 카드형 "방문예약 신청" 폼(ArkoneApplyForm)에서만 오는 값
     const applyLines = applicant
-      ? `\n청약자: ${applicant}\n생년월일: ${birth || '미입력'}\n마케팅수신: ${marketing_agree ? '동의함' : '미동의'}`
+      ? `\n청약자: ${applicant}${birth ? `\n생년월일: ${birth}` : ''}\n마케팅수신:${marketing_agree ? '동의함' : '미동의'}`
       : ''
     const giftLine = serviceType ? '' : `\n사은품등록: ${gift_check ? '체크함' : '아님'}`
 

@@ -193,7 +193,7 @@ select.input {
 }
 
 /* 아크원 풀페이지 상담 패널(PC) — 섹션이 한 화면 단위로 넘어가는 구조라 폼이 패널 높이 안에 다 들어오도록
-   4열 그리드로 가로 배치하고 높이를 줄임 (성명|연락처 / 청약자 2지선다 / 생년월일|방문일|시간 / 약관 / 동의 2줄 / 버튼) */
+   4열 그리드로 가로 배치하고 높이를 줄임 (성명|연락처 / 청약자 2지선다 / 방문일|시간 / 약관 / 동의 2줄 / 버튼) */
 @media (min-width: 1024px) {
   .panel { padding: 22px 30px 20px; }
   .panel .title { font-size: 22px; }
@@ -206,8 +206,7 @@ select.input {
   }
   /* 아래에서 따로 지정한 칸 외(청약자·약관·안내·동의 체크·버튼)는 한 줄 전체 — 동의 체크도 한 줄씩 */
   .panel .form > * { grid-column: 1 / -1; }
-  .panel .fName, .panel .fPhone, .panel .fBirth { grid-column: span 2; }
-  .panel .fDate, .panel .fTime { grid-column: span 1; }
+  .panel .fName, .panel .fPhone, .panel .fDate, .panel .fTime { grid-column: span 2; }
   .panel .field { gap: 6px; }
   .panel .label { font-size: 13.5px; }
   .panel .input { height: 42px; font-size: 15px; }

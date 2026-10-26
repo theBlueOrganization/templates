@@ -490,7 +490,7 @@
   font-size: 16px; font-weight: 600; line-height: 1.5; color: var(--ink);
 }
 .noticeBenefit b { color: var(--green); font-weight: 800; }
-.noticeBenefit span { white-space: pre-line; }
+.noticeBenefit span { white-space: pre-line; word-break: keep-all; }
 .noticeX { position: absolute; z-index: 2; right: 10px; top: 10px; width: 34px; height: 34px; border-radius: 50%; background: #edf0ee; font-size: 18px; }
 
 /* 토스트 */

@@ -87,7 +87,7 @@ const config = {
       },
     },
 
-    // 진입 팝업 — 혜택 이미지 팝업(계약금 5%·계약축하금 500만원·중도금 무이자, 2026-10-23 사용자 제공 popup.png → webp)을
+    // 진입 팝업 — 혜택 이미지 팝업(계약금 5%·계약축하금 500만원·중도금 무이자·지명고객 고급와인 증정, 2026-10-26 사용자 제공 popup.png → popup_v1.webp로 교체)을
     //   먼저 띄우고, 닫으면 방문예약 폼 팝업을 이어서 띄움. 인트로가 없어 0.5초 뒤 바로 표시
     popup: {
       enabled: true,
@@ -101,8 +101,8 @@ const config = {
       maxWidth: 340,
       images: [
         {
-          src: '/apt/yongin-gorim-dongmun-the-east-2/popup.webp',
-          alt: '용인 고림 동문 디 이스트 특별한 혜택 — 입주까지 계약금 5%·계약축하금 500만원 지급·중도금 무이자',
+          src: '/apt/yongin-gorim-dongmun-the-east-2/popup_v1.webp',
+          alt: '용인 고림 동문 디 이스트 특별한 혜택 — 입주까지 계약금 5%·계약축하금 500만원 지급·중도금 무이자·지명고객 고급와인 증정',
           width: 1024,
           height: 1536,
         },

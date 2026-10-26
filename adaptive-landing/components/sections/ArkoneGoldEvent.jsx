@@ -12,7 +12,8 @@ export default function ArkoneGoldEvent({ event, variant = 'band', href, onClick
         <span className={styles.coin} aria-hidden="true">金</span>
         <span><strong className={styles.gold}>{event.highlight}</strong>{event.suffix}</span>
       </span>
-      {event.ctaLabel && <span className={styles.cta}>{event.ctaLabel} →</span>}
+      {/* 모바일은 문구 없이 동그란 → 버튼만(띠 높이를 줄이려고) */}
+      {event.ctaLabel && <span className={styles.cta}><span className={styles.ctaText}>{event.ctaLabel}</span>→</span>}
     </span>
   )
   const className = cn(styles.event, variant === 'hero' && styles.inHero)

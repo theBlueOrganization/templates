@@ -1,4 +1,5 @@
-/* 금1돈 이벤트 배너 — 딥그린 바탕 + 금빛 그라데이션 글자·동전 아이콘 + 빛 지나가는 효과 */
+/* 금1돈 이벤트 배너 — 딥그린 바탕 + 금빛 그라데이션 글자·동전 아이콘 + 빛 지나가는 효과.
+   모바일: 왼쪽 2줄(라벨 / 금1돈을 드립니다) + 오른쪽 동그란 → 버튼의 낮은 띠, PC: 한 줄 가운데 정렬 */
 .event {
   position: relative;
   display: block;
@@ -11,7 +12,7 @@
     linear-gradient(100deg, #022822 0%, #07594d 52%, #033b33 100%);
   color: #fff;
   font: inherit;
-  text-align: center;
+  text-align: left;
   text-decoration: none;
   cursor: pointer;
 }
@@ -37,38 +38,41 @@ div.event { cursor: default; }
 .inner {
   position: relative;
   z-index: 1;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: auto auto;
   align-items: center;
   justify-content: center;
-  gap: 10px 22px;
+  gap: 4px 16px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 22px 16px 24px;
+  padding: 12px 16px;
 }
 .badge {
-  padding: 7px 16px;
+  grid-column: 1;
+  justify-self: start;
+  padding: 2px 9px;
   border: 1px solid rgba(255, 214, 102, 0.7);
   border-radius: 999px;
   background: rgba(255, 214, 102, 0.12);
   color: #ffe08a;
-  font-size: 14px;
+  font-size: 11px;
   font-weight: 800;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   white-space: nowrap;
 }
 .copy {
+  grid-column: 1;
   display: inline-flex;
   align-items: center;
   gap: 0.28em;
-  font-size: clamp(26px, 7vw, 46px);
+  font-size: 19px;
   font-weight: 900;
-  line-height: 1.15;
+  line-height: 1.2;
   letter-spacing: -0.02em;
   white-space: nowrap;
 }
 .gold {
-  font-size: 1.28em;
+  font-size: 1.3em;
   background: linear-gradient(180deg, #fff7cf 0%, #ffd75e 38%, #d9981c 72%, #ffe9a3 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -92,38 +96,48 @@ div.event { cursor: default; }
   line-height: 1;
 }
 .cta {
-  padding: 11px 20px;
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
   border-radius: 999px;
   background: linear-gradient(90deg, #ffe08a, #f2b134);
   color: #072f29;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 900;
   white-space: nowrap;
   box-shadow: 0 6px 18px rgba(242, 177, 52, 0.35);
 }
+.ctaText { display: none; }
 
 /* 몰입형 첫 화면(SignatureArkoneImmersive 히어로) 안 — 제목 아래 반투명 카드 */
 .inHero {
   width: auto;
-  margin-top: 18px;
+  margin-top: 14px;
   border: 1px solid rgba(255, 214, 102, 0.55);
-  border-radius: 20px;
+  border-radius: 16px;
   background:
     radial-gradient(120% 160% at 50% 0%, rgba(255, 214, 102, 0.2) 0%, rgba(255, 214, 102, 0) 60%),
     rgba(2, 36, 31, 0.72);
   backdrop-filter: blur(6px);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
 }
-.inHero .inner { justify-content: flex-start; padding: 16px 18px; gap: 10px 18px; }
-.inHero .copy { font-size: clamp(24px, 6.4vw, 40px); }
+.inHero .inner { justify-content: space-between; }
 
 @media (min-width: 1024px) {
-  .inner { padding: 26px 24px 28px; gap: 12px 28px; }
-  .badge { font-size: 16px; padding: 8px 18px; }
-  .copy { font-size: 50px; }
-  .cta { font-size: 16px; padding: 12px 24px; }
-  .inHero { align-self: flex-start; }
-  .inHero .inner { padding: 18px 26px; }
+  .event { text-align: center; }
+  .inner { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 28px; padding: 26px 24px 28px; }
+  .badge { padding: 8px 18px; font-size: 16px; letter-spacing: 0.06em; }
+  .copy { font-size: 50px; line-height: 1.15; }
+  .gold { font-size: 1.28em; }
+  .cta { width: auto; height: auto; gap: 6px; padding: 12px 24px; font-size: 16px; }
+  .ctaText { display: inline; }
+  /* 몰입형 첫 화면 — 카드를 화면 가운데로 */
+  .inHero { align-self: center; margin-top: 22px; border-radius: 20px; }
+  .inHero .inner { justify-content: center; padding: 18px 28px; }
   .inHero .copy { font-size: 44px; }
 }
 

@@ -1,5 +1,5 @@
 // 청라 아크원 푸르지오3 (청라아크원푸르지오c.addupapt.kr) — 푸르지오2를 복제한 3차 분양팀 사이트.
-// 대표번호·상담 알림(진의원·최용호)·문자 형식은 원본(cheongna-arkone-prugio)과 동일.
+// 대표번호 1666-1050·상담 알림 진의원(2026-10-26 변경), 유입경로 SKT/OK캐쉬백은 아래 *ByUtm 참고.
 // 원본의 인트로·히어로·청라핵심·교통·진입 팝업을 SignatureArkoneHighlights로 가져와 사용하고,
 // 사업개요·단지안내·세대안내 섹션은 뺌. 콘텐츠 출처: 공식 사이트 arkone-prugio.com(2026-09-16).
 const config = {
@@ -10,7 +10,7 @@ const config = {
   projectName: '청라 아크원 푸르지오',
   metaTitle: '청라 아크원 푸르지오',
   shortName: '청라 아크원 푸르지오',
-  telNumber: '1533-6480',
+  telNumber: '1666-1050',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/cheongna-arkone-prugio-3/og.jpg',
   colorTheme: {
     navy: '#004B45',
@@ -25,14 +25,28 @@ const config = {
     family: "'SUIT', 'Pretendard', var(--font-noto-sans-kr, 'Noto Sans KR'), sans-serif",
     cssUrl: 'https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css',
   },
-  adminPhones: ['01071901052', '01049851470'],
-  // 문자에 "매체+담당자"(예: 현대+진의원) 표기용
+  // 요청 반영(2026-10-26) — 대표번호 1666-1050, 직접유입 상담 알림은 진의원에게만
+  adminPhones: ['01071901052'],
+  // 추가 유입경로(2026-10-26) — ?utm_source=SKT / okcashbag 로 들어오면 화면 번호·문자 제목·수신자를 바꿈
+  telNumberByUtm: {
+    SKT: '1666-1050',
+    okcashbag: '1800-2261',
+  },
+  // 문자 제목 "[청라 아크원 푸르지오 +SKT] 신규 상담 신청"
+  smsProjectNameByUtm: {
+    SKT: 'SKT',
+    okcashbag: 'OK캐쉬백',
+  },
+  adminPhonesByUtm: {
+    SKT: ['01048086474', '01090447402', '01071901052'], // 이수지, 최현정, 진의원
+    okcashbag: ['01048086474', '01090447402', '01071901052'],
+  },
+  // 문자에 "매체+담당자"(예: SKT+진의원, utm 없으면 직접유입+진의원) 표기용
   adminPhoneNames: {
     '01071901052': '진의원',
-    '01049851470': '최용호',
+    '01048086474': '이수지',
+    '01090447402': '최현정',
   },
-  // 직접유입일 때의 매체명(utm_source 있으면 그 값 사용)
-  smsMediaLabel: '현대',
   sheetId: '',
   sheetTab: '청라아크원푸르지오',
   showUtmInSms: true,
@@ -77,17 +91,17 @@ const config = {
     header: {
       logo: { src: '/apt/cheongna-arkone-prugio-3/logo-white.svg', alt: '청라 아크원 푸르지오', width: 161, height: 26 },
       logoSize: { base: 96, lg: 130, xl: 150 },
-      gnb: ['입지환경', '교통호재', '청라핵심', '프리미엄', '관심고객등록'],
+      gnb: ['입지환경', '교통호재', '청라핵심', '프리미엄', '청약안내', '관심고객등록'],
       // gnb 라벨과 같은 순서로 이동할 섹션 id (청라핵심 = 첫 랜드마크 스타필드)
-      gnbTargetIds: ['location', 'network', 'starfield', 'premium-value', 'vip-reservation'],
+      gnbTargetIds: ['location', 'network', 'starfield', 'premium-value', 'subscription', 'vip-reservation'],
       quickCtaLabel: '관심고객등록',
-      phone: '1533-6480',
+      phone: '1666-1050',
     },
 
     quickMenu: {
       brand: '청라 아크원 푸르지오',
       phoneLabel: '분양문의',
-      phone: '1533-6480',
+      phone: '1666-1050',
       favoriteLabel: '관심고객',
       menuLabel: 'MENU',
       ctaTargetId: 'vip-reservation',
@@ -100,7 +114,8 @@ const config = {
         { num: '03', label: 'TRAFFIC', sub: '교통호재', targetId: 'network' },
         { num: '04', label: 'VALUE', sub: '청라핵심', targetId: 'starfield' },
         { num: '05', label: 'PREMIUM', sub: '프리미엄', targetId: 'premium-value' },
-        { num: '06', label: 'CONTACT', sub: '관심고객등록', targetId: 'vip-reservation' },
+        { num: '06', label: 'INFORMATION', sub: '청약안내', targetId: 'subscription' },
+        { num: '07', label: 'CONTACT', sub: '관심고객등록', targetId: 'vip-reservation' },
       ],
     },
 
@@ -362,6 +377,21 @@ const config = {
       },
     ],
 
+    // 요청 반영(2026-10-26) — 공식 사이트(arkone-prugio.com/pages/changeinfo·docspecial·docnormal)와 같은 청약안내 3탭
+    subscriptionTabs: {
+      id: 'subscription',
+      eyebrow: 'INFORMATION',
+      titlePlain: '청약',
+      titleAccent: '안내',
+      tabColumns: 3,
+      zoomLightbox: true,
+      tabs: [
+        { label: '변경된 청약정보', image: { src: '/apt/cheongna-arkone-prugio-3/subscription-changeinfo.webp', alt: '변경된 청약제도 안내', width: 2000, height: 4790 } },
+        { label: '특별공급 안내', image: { src: '/apt/cheongna-arkone-prugio-3/subscription-docspecial.webp', alt: '특별공급 청약 안내', width: 2000, height: 2930 } },
+        { label: '일반공급 안내', image: { src: '/apt/cheongna-arkone-prugio-3/subscription-docnormal.webp', alt: '일반공급 청약 안내', width: 2000, height: 2750 } },
+      ],
+    },
+
     vipForm: {
       id: 'vip-reservation',
       bgColor: '#e7f1ea',
@@ -386,7 +416,7 @@ const config = {
       logoAlign: 'center',
       logoWidth: 170,
       logoAlignDesktop: 'center',
-      highlightText: '분양문의 1533-6480',
+      highlightText: '분양문의 1666-1050',
       agencySlogan: '분양완판 전문가 그룹, (주) 더블루파트너스',
       companyLines: [
         { label: '시행', value: '(주)청라스마트시티' },
@@ -403,7 +433,7 @@ const config = {
         '※ 사업지 인근의 개발사업과 관련된 사항은 지자체, 개발주체 및 관계기관의 사정에 따라 변경될 수 있습니다.',
         '※ 제작, 편집, 인쇄과정상 오탈자 등의 오류가 있을 수 있으니, 계약 전 반드시 견본주택 관계자에게 문의하시기 바랍니다.',
       ],
-      csPhone: '1533-6480',
+      csPhone: '1666-1050',
       csHours: 'AM 09:00 ~ PM 19:00',
     },
 

@@ -856,3 +856,65 @@
   font-weight: 800;
   letter-spacing: -0.01em;
 }
+
+/* content.locationSide(예: 청라 아크원 푸르지오) — 입지 문구 + BIG4 목록은 왼쪽, 광역지도는 오른쪽에
+   잘리지 않게(contain) 전체 표시. 모바일은 문구 → 목록 → 지도 순으로 위아래 */
+.locationAside { display: flex; flex-direction: column; flex: none; }
+.locationSide .mapPins span b { margin-right: 8px; color: var(--green); font-weight: 900; }
+@media (min-width: 1024px) {
+  .locationSide .sectionShell { display: grid; grid-template-columns: minmax(300px, 0.62fr) 1.7fr; gap: 36px; }
+  .locationSide .locationAside { justify-content: center; }
+  .locationSide .sectionTitle { font-size: clamp(38px, 3.6vw, 62px); }
+  .locationSide .locationBody { min-height: 0; }
+  .locationSide .visual { margin-top: 0; border: 1px solid var(--line); }
+  .locationSide .mapPins { grid-template-columns: 1fr; gap: 10px; margin-top: 28px; }
+  .locationSide .mapPins span { text-align: left; padding: 14px 18px; font-size: 16px; }
+}
+
+/* content.subscription — 청약안내 3탭(변경된 청약정보·특별공급·일반공급), 이미지는 박스 안에서 세로 스크롤 */
+.subTabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 14px; flex: none; }
+.subTabs button {
+  height: 40px; padding: 0 4px; border: 1px solid var(--line); border-radius: 9px; background: #fff;
+  color: var(--ink); font-size: 12px; font-weight: 900; word-break: keep-all;
+}
+.subTabs button.isActive { background: var(--green); color: #fff; border-color: var(--green); }
+.subScroll {
+  flex: 1; min-height: 0; margin-top: 10px; border: 1px solid var(--line); border-radius: 15px; background: #fff;
+  overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
+}
+.subScroll :global(img) { display: block; width: 100%; max-width: 1100px; height: auto; margin: 0 auto; }
+@media (min-width: 1024px) {
+  .subTabs { width: min(660px, 100%); margin-top: 20px; gap: 10px; }
+  .subTabs button { height: 50px; font-size: 14px; }
+  .subScroll { margin-top: 14px; border-radius: 22px; }
+}
+/* 우측 플로팅 바(방문예약/F&A/TOP)가 지도 오른쪽 끝을 가리지 않게 — 플로팅 바가 콘텐츠 영역 안에 겹치는 폭에서만 */
+@media (min-width: 1024px) and (max-width: 1719px) {
+  .locationSide .locationBody { padding-right: 64px; }
+}
+/* 청약안내 PC — 제목 + 탭(세로 목록)은 왼쪽, 안내 이미지는 오른쪽 칼럼 폭에 꽉 차게(좌우 여백 없이) */
+.subAside { display: flex; flex-direction: column; flex: none; }
+@media (min-width: 1024px) {
+  .subscriptionPanel .sectionShell { display: grid; grid-template-columns: minmax(300px, 0.62fr) 1.7fr; gap: 36px; }
+  .subscriptionPanel .subAside { justify-content: center; }
+  .subscriptionPanel .sectionTitle { font-size: clamp(38px, 3.6vw, 62px); }
+  .subscriptionPanel .subTabs { grid-template-columns: 1fr; width: 100%; gap: 10px; margin-top: 28px; }
+  .subscriptionPanel .subTabs button { height: auto; padding: 16px 18px; text-align: left; font-size: 16px; }
+  .subscriptionPanel .subScroll { margin-top: 0; }
+  .subscriptionPanel .subScroll :global(img) { max-width: none; }
+}
+@media (min-width: 1024px) and (max-width: 1719px) {
+  .subscriptionPanel .subScroll { margin-right: 64px; }
+}
+/* 요청 반영 — 입지환경(BIG4)·청약안내 왼쪽 칼럼을 오른쪽 이미지 윗선에 맞추고, 라벨·제목·목록 글씨 확대 */
+@media (min-width: 1024px) {
+  .locationSide .locationAside,
+  .subscriptionPanel .subAside { justify-content: flex-start; }
+  .locationSide .eyebrow,
+  .subscriptionPanel .eyebrow { font-size: 18px; margin-bottom: 14px; }
+  .locationSide .sectionTitle,
+  .subscriptionPanel .sectionTitle { font-size: clamp(46px, 4.3vw, 76px); }
+  .locationSide .sectionDesc { font-size: 17px; }
+  .locationSide .mapPins span,
+  .subscriptionPanel .subTabs button { font-size: 19px; padding: 18px 20px; }
+}

@@ -4,7 +4,8 @@
 // - 화면: signature.arkoneImmersive=true → SignatureArkoneImmersive(풀페이지 몰입형) 전용 렌더.
 //   아래 hero/summary 등 기존 signature 필드는 되돌릴 때를 위해 남겨둔 것(현재 화면엔 안 쓰임)
 // - 콘텐츠·이미지·브랜드 컬러(token.css)/폰트(SUIT): 공식 사이트 arkone-prugio.com 원문(2026-09-16)
-// - 연락처: 대표번호 1533-6480, 상담 알림은 진의원·최용호에게 "매체+담당자"(예: 현대+진의원) 표기로 발송
+// - 연락처: 대표번호 1533-6480, 상담 알림은 진의원에게 "매체+담당자"(예: SKT+진의원, utm 없으면 직접유입+진의원) 표기로 발송
+//   (유입경로 롯데온/마미톡은 아래 *ByUtm — 번호·수신자 별도)
 const config = {
   slug: 'cheongna-arkone-prugio',
   subdomain: '청라아크원푸르지오',
@@ -25,17 +26,29 @@ const config = {
     family: "'SUIT', 'Pretendard', var(--font-noto-sans-kr, 'Noto Sans KR'), sans-serif",
     cssUrl: 'https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css',
   },
-  // 요청 반영(2026-09-23) — 진의원·최용호
-  adminPhones: ['01071901052', '01049851470'],
-  // 문자 본문에 "매체+담당자" 표기(예: "현대+진의원")를 붙이기 위한 수신번호→담당자명 매핑
+  // 요청 반영(2026-10-26) — 최용호 삭제, 진의원만
+  adminPhones: ['01071901052'],
+  // 문자 본문에 "매체+담당자" 표기(예: "롯데온+진의원", utm 없으면 "직접유입+진의원")를 붙이기 위한 수신번호→담당자명 매핑
   adminPhoneNames: {
     '01071901052': '진의원',
-    '01049851470': '최용호',
+    '01048086474': '이수지',
+    '01090447402': '최현정',
   },
-  // 위 표기의 "매체" 부분 — 직접유입(utm_source 없음)일 때만 "현대"로 고정 표시.
-  // 추후 이 현장에 실제 유입경로(예: ?utm_source=lpoint)가 생기면 그 값이 자동으로 매체명이 되어
-  // "엘포인트+진의원"처럼 구분되고, 이 "현대" 값은 직접유입 몫으로만 그대로 남아 서로 꼬이지 않음
-  smsMediaLabel: '현대',
+  // 추가 유입경로(2026-10-26) — ?utm_source=lotteon / mamitalk 로 들어오면 화면 번호·문자 제목·수신자를 바꿈
+  // (직접유입은 위 1533-6480·진의원 그대로)
+  telNumberByUtm: {
+    lotteon: '1666-1050',
+    mamitalk: '1800-2261',
+  },
+  // 문자 제목 "[청라 아크원 푸르지오 +롯데온] 신규 상담 신청"
+  smsProjectNameByUtm: {
+    lotteon: '롯데온',
+    mamitalk: '마미톡',
+  },
+  adminPhonesByUtm: {
+    lotteon: ['01048086474', '01090447402', '01071901052'], // 이수지, 최현정, 진의원
+    mamitalk: ['01048086474', '01090447402', '01071901052'],
+  },
   sheetId: '',
   sheetTab: '청라아크원푸르지오',
   showUtmInSms: true,
@@ -82,7 +95,25 @@ const config = {
     // "AI 분양비서"·SEO용 가짜 FAQ/검색어는 고객 기만 소지가 있어 제외함
     arkoneImmersive: true,
     // 요청 반영(2026-10-23) — 자료요청(상담 탭·PC 플로팅·모바일 하단바) 빼고 방문예약만
-    arkoneImmersiveContent: { hideRequest: true },
+    arkoneImmersiveContent: {
+      hideRequest: true,
+      // 요청 반영(2026-10-26) — 유니트 패널 숨김
+      hidePanels: ['unit'],
+      // 요청 반영(2026-10-26) — 입지환경: 제목 "청라를 완성하는 BIG4", PC는 문구(+BIG4 목록) 왼쪽·광역지도 전체 오른쪽
+      location: { eyebrow: '입지환경', titleTop: '청라를 완성하는', titleAccent: 'BIG4', desc: '문화·의료·금융·교통이 연결되는 청라국제업무단지의 중심.' },
+      locationSide: true,
+      // 요청 반영(2026-10-26) — 공식 사이트(arkone-prugio.com/pages/changeinfo·docspecial·docnormal)와 같은 청약안내 3탭
+      subscription: {
+        eyebrow: '청약안내',
+        titleTop: '한눈에 보는',
+        titleAccent: '청약안내',
+        tabs: [
+          { key: 'change', label: '변경된 청약정보', src: '/apt/cheongna-arkone-prugio/subscription-changeinfo.webp', width: 2000, height: 4790 },
+          { key: 'special', label: '특별공급 안내', src: '/apt/cheongna-arkone-prugio/subscription-docspecial.webp', width: 2000, height: 2930 },
+          { key: 'normal', label: '일반공급 안내', src: '/apt/cheongna-arkone-prugio/subscription-docnormal.webp', width: 2000, height: 2750 },
+        ],
+      },
+    },
     header: {
       // 출처: 공식 사이트 공용 워드마크(/resources/img/common/logotype.svg, 원본 161x26 black) —
       // 헤더 배경이 스크롤 여부와 무관하게 항상 --navy(딥그린 #004B45)라 흰색 버전만 사용

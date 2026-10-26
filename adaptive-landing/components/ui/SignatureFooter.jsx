@@ -11,6 +11,8 @@ export default function SignatureFooter({ footer, telNumber, telNumberByUtm, pro
   // telNumberByUtm에 등록된 utm_source로 들어온 경우에만 노출 전화번호를 덮어씀 (SignatureHeader/SignatureHero와 동일 규칙)
   const utmSource = useUtmSource()
   const resolvedTelNumber = telNumberByUtm?.[utmSource] ?? telNumber
+  // highlightText/csPhone 문구 안의 대표번호도 유입경로 번호로 바꿔 표시(예: "분양문의 1666-1050")
+  const withTel = (text) => (telNumber && text ? text.replace(telNumber, resolvedTelNumber) : text)
 
   return (
     // footer.bgColor가 있으면 기본 네이비 오버레이 없이 그 단색으로 배경을 칠함(없는 현장은 기존 그대로)
@@ -18,7 +20,7 @@ export default function SignatureFooter({ footer, telNumber, telNumberByUtm, pro
       <div className={styles.container}>
         <div className={styles.topRow}>
           <div className={styles.gnbWrap}>
-            <p className={styles.highlightText}>{footer.highlightText}</p>
+            <p className={styles.highlightText}>{withTel(footer.highlightText)}</p>
             <a href={`tel:${resolvedTelNumber}`} className={styles.callBtn} aria-label="전화상담">
               📞
             </a>
@@ -65,7 +67,7 @@ export default function SignatureFooter({ footer, telNumber, telNumberByUtm, pro
             </p>
           </div>
           <div className={styles.cs}>
-            <p className={styles.csPhone}>{footer.csPhone}</p>
+            <p className={styles.csPhone}>{withTel(footer.csPhone)}</p>
             <p className={styles.csHours}>{footer.csHours}</p>
           </div>
         </div>

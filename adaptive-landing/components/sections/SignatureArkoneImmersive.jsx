@@ -27,6 +27,7 @@ const NAV_ITEMS = [
   { id: 'location', label: '입지환경', num: '02', code: 'LOCATION' },
   { id: 'brand', label: '사업개요', num: '03', code: 'OVERVIEW' },
   { id: 'premium', label: '프리미엄', num: '04', code: 'PREMIUM' },
+  { id: 'subscription', label: '청약안내', num: '04', code: 'INFORMATION' },
   { id: 'unit', label: '유니트', num: '05', code: 'UNIT' },
   { id: 'community', label: '커뮤니티', num: '06', code: 'COMMUNITY' },
   { id: 'contact', label: '방문예약', num: '07', code: 'CONTACT' },
@@ -34,13 +35,13 @@ const NAV_ITEMS = [
 
 const PANEL_ORDER = [
   'hero', 'brand', 'visit', 'starfield', 'hospital', 'hana', 'network',
-  'location', 'unit', 'plan', 'community', 'premium', 'history', 'contact', 'footer',
+  'location', 'unit', 'plan', 'community', 'premium', 'subscription', 'history', 'contact', 'footer',
 ]
 
 const TONE = {
   brand: 'toneA', visit: 'toneB', starfield: 'toneC', hospital: 'toneB', hana: 'toneA',
   network: 'toneC', location: 'toneB', seoul: 'toneA', unit: 'toneA', plan: 'toneB', community: 'toneC',
-  premium: 'toneA', history: 'toneB', contact: 'toneA',
+  premium: 'toneA', subscription: 'toneB', history: 'toneB', contact: 'toneA',
 }
 
 // 참고 시안 그대로 — 패널마다 진입(is-active) 시 sectionHead가 다른 방식으로 나타남
@@ -48,7 +49,7 @@ const TONE = {
 const MOTION = {
   hero: 'motionScale', brand: 'motionLeft', visit: 'motionClip', starfield: 'motionScale',
   hospital: 'motionSoft', hana: 'motionLeft', network: 'motionClip', location: 'motionScale', seoul: 'motionSoft',
-  unit: 'motionSoft', plan: 'motionLeft', community: 'motionClip', premium: 'motionScale',
+  unit: 'motionSoft', plan: 'motionLeft', community: 'motionClip', premium: 'motionScale', subscription: 'motionLeft',
   history: 'motionSoft', contact: 'motionLeft', footer: 'motionSoft',
 }
 
@@ -179,7 +180,6 @@ const TRANSITION_MS = 520
 
 export default function SignatureArkoneImmersive({ site }) {
   const sig = site.signature
-  const telNumber = site.telNumber
   // 다른 아크원 현장(예: cheongna-arkone-prugio-2)이 같은 화면을 쓰면서 일부 콘텐츠만 바꿀 때
   // sig.arkoneImmersiveContent로 덮어씀 — 없으면 원본(cheongna-arkone-prugio) 콘텐츠 그대로
   const content = sig.arkoneImmersiveContent ?? {}
@@ -199,6 +199,10 @@ export default function SignatureArkoneImmersive({ site }) {
   const locationHead = content.location ?? { eyebrow: '입지환경', titleTop: '청라의 변화가', titleAccent: '한곳에 모이다', desc: '문화·의료·금융·교통이 연결되는 청라국제업무단지의 중심.' }
   // 입지환경 패널 안에 지도와 함께(PC 좌우·모바일 위아래) 보여줄 노선 인포그래픽 — 예: 청라 아크원 푸르지오2
   const seoulRoutes = content.seoulRoutes ?? null
+  // PC에서 입지 문구(+핀 목록)는 왼쪽, 광역지도는 오른쪽에 잘림 없이(contain) 전체 표시 — 예: 청라 아크원 푸르지오
+  const locationSide = !!content.locationSide
+  // 공식 사이트 "청약안내"(변경된 청약제도·특별공급·일반공급) 탭 패널 — 있을 때만 패널·메뉴에 추가
+  const subscription = content.subscription ?? null
   // 유니트 자리에 넣을 프리미엄 슬라이드(공식 사이트 프리미엄 페이지 형식) — 예: 청라 아크원 푸르지오2
   const unitPremium = content.unitPremium ?? null
   const heroCopy = content.heroCopy ?? null
@@ -213,9 +217,9 @@ export default function SignatureArkoneImmersive({ site }) {
   }, [])
   const panelOrder = PANEL_ORDER
     .flatMap((id) => (id === 'location' && seoulRoutes && isMobile ? ['location', 'seoul'] : [id]))
-    .filter((id) => !hidePanels.includes(id))
+    .filter((id) => !hidePanels.includes(id) && (id !== 'subscription' || subscription))
   const navItems = NAV_ITEMS
-    .filter((item) => !hidePanels.includes(item.id))
+    .filter((item) => !hidePanels.includes(item.id) && (item.id !== 'subscription' || subscription))
     .map((item) => (content.navLabels?.[item.id] ? { ...item, label: content.navLabels[item.id] } : item))
   const showPanel = (id) => !hidePanels.includes(id)
   const noticeBenefit = content.noticeBenefit === undefined
@@ -223,6 +227,8 @@ export default function SignatureArkoneImmersive({ site }) {
     : content.noticeBenefit
   const utmSource = useUtmSource() ?? '직접유입'
   const resolvedAdminPhones = site.adminPhonesByUtm?.[utmSource] ?? site.adminPhones
+  // 유입경로(utm_source)별 화면 전화번호 — 등록 안 된 유입은 대표번호 그대로
+  const telNumber = site.telNumberByUtm?.[utmSource] ?? site.telNumber
 
   const [index, setIndex] = useState(0)
   const [introDone, setIntroDone] = useState(false)
@@ -232,6 +238,7 @@ export default function SignatureArkoneImmersive({ site }) {
   const [unitIndex, setUnitIndex] = useState(0)
   const [unitKey, setUnitKey] = useState(unitTabs[0].key)
   const [contactTab, setContactTab] = useState('visit')
+  const [subTab, setSubTab] = useState(subscription?.tabs[0].key)
   const [noticeOpen, setNoticeOpen] = useState(false)
   const [sourceInfo, setSourceInfo] = useState(null)
   const [faqIndex, setFaqIndex] = useState(0)
@@ -246,6 +253,7 @@ export default function SignatureArkoneImmersive({ site }) {
   const faqDialogRef = useRef(null)
   const openDialogCountRef = useRef(0)
   const interestDialogRef = useRef(null)
+  const subScrollRef = useRef(null)
 
   const transitioningRef = useRef(false)
   const wheelRef = useRef({ sum: 0, dir: 0, consumed: false, lastAt: 0 })
@@ -353,7 +361,7 @@ export default function SignatureArkoneImmersive({ site }) {
       if (blockingOverlay() || !introDone) { e.preventDefault(); return }
       // 상담 폼 영역은 폼 안에서 그 방향으로 더 스크롤할 내용이 있을 때만 휠을 양보 —
       // 폼이 다 보이는 경우(예: PC 가운데 정렬 폼)엔 그대로 다음/이전 패널로 넘어감
-      const panelEl = e.target.closest('.' + styles.contactPanel)
+      const panelEl = e.target.closest('.' + styles.contactPanel + ',.' + styles.subScroll)
       if (panelEl) {
         const canDown = panelEl.scrollTop + panelEl.clientHeight < panelEl.scrollHeight - 1
         const canUp = panelEl.scrollTop > 0
@@ -377,11 +385,16 @@ export default function SignatureArkoneImmersive({ site }) {
     }
     const onTouchStart = (e) => {
       touchRef.current.blocked = !!e.target.closest('dialog,.' + styles.mobileMenu + ',.' + styles.contactPanel)
+      // 청약안내 이미지 박스는 안에서 스크롤하다가 맨 위/아래 끝에서 한 번 더 밀면 이전/다음 패널로
+      const scrollEl = e.target.closest('.' + styles.subScroll)
+      touchRef.current.scrollEdge = scrollEl
+        ? { top: scrollEl.scrollTop <= 0, bottom: scrollEl.scrollTop + scrollEl.clientHeight >= scrollEl.scrollHeight - 1 }
+        : null
       if (touchRef.current.blocked || e.touches.length !== 1) return
       touchRef.current.y = e.touches[0].clientY
       touchRef.current.x = e.touches[0].clientX
     }
-    const onTouchMove = (e) => { if (!touchRef.current.blocked) e.preventDefault() }
+    const onTouchMove = (e) => { if (!touchRef.current.blocked && !touchRef.current.scrollEdge) e.preventDefault() }
     const onTouchEnd = (e) => {
       if (touchRef.current.blocked) { touchRef.current.blocked = false; return }
       if (blockingOverlay() || !introDone || transitioningRef.current || !e.changedTouches[0]) return
@@ -389,6 +402,8 @@ export default function SignatureArkoneImmersive({ site }) {
       const dx = touchRef.current.x - e.changedTouches[0].clientX
       const threshold = window.innerHeight * 0.15
       if (Math.abs(dy) < threshold || Math.abs(dy) < Math.abs(dx) * 1.2) return
+      const edge = touchRef.current.scrollEdge
+      if (edge && !(dy > 0 ? edge.bottom : edge.top)) return
       move(Math.sign(dy))
     }
     window.addEventListener('wheel', onWheel, { passive: false })
@@ -538,6 +553,14 @@ export default function SignatureArkoneImmersive({ site }) {
   }
 
   const unit = unitTabs.find((u) => u.key === unitKey)
+
+  const locationHeadEl = (
+    <header className={styles.sectionHead}>
+      <p className={styles.eyebrow}>{locationHead.eyebrow}</p>
+      <h2 className={styles.sectionTitle}>{locationHead.titleTop}<br className={styles.titleBreak} />{' '}<span className={styles.gradientText}>{locationHead.titleAccent}</span></h2>
+      {locationHead.desc && <p className={styles.sectionDesc}>{locationHead.desc}</p>}
+    </header>
+  )
 
   // 프리미엄 슬라이드 한 장 — images가 있으면 공식 사이트 프리미엄 페이지 형식(문구 + 이미지컷 1~2장,
   // imagesLayout 'stack'이면 위아래, reverse면 PC 좌우 반전), 없으면 원본처럼 풀블리드 사진 + 캡션
@@ -730,17 +753,22 @@ export default function SignatureArkoneImmersive({ site }) {
         </section>)}
 
         {/* 입지환경 */}
-        <section className={cn(panelClass('location'), styles.locationPanel)} id="location">
+        <section className={cn(panelClass('location'), styles.locationPanel, locationSide && styles.locationSide)} id="location">
           <div className={styles.sectionShell}>
-            <header className={styles.sectionHead}>
-              <p className={styles.eyebrow}>{locationHead.eyebrow}</p>
-              <h2 className={styles.sectionTitle}>{locationHead.titleTop}<br className={styles.titleBreak} />{' '}<span className={styles.gradientText}>{locationHead.titleAccent}</span></h2>
-              {locationHead.desc && <p className={styles.sectionDesc}>{locationHead.desc}</p>}
-            </header>
+            {locationSide ? (
+              <div className={styles.locationAside}>
+                {locationHeadEl}
+                {mapPins.length > 0 && (
+                  <div className={styles.mapPins}>
+                    {mapPins.map((p, k) => (<span key={p}><b>{String(k + 1).padStart(2, '0')}</b>{p}</span>))}
+                  </div>
+                )}
+              </div>
+            ) : locationHeadEl}
             {/* PC에서 seoulRoutes가 있으면 지도(왼쪽) + 노선 인포그래픽(오른쪽)을 한 패널에 */}
             <div className={cn(styles.locationBody, seoulRoutes && !isMobile && styles.locationSplit)}>
-              <div className={styles.visual} style={{ background: locationMap.bg }} role="button" tabIndex={0} onClick={() => openDialog(mapDialogRef)} onKeyDown={(e) => e.key === 'Enter' && openDialog(mapDialogRef)}>
-                <Image src={locationMap.src} alt="청라 아크원 푸르지오 위치 안내도" fill sizes="100vw" style={{ objectFit: locationMap.fit, objectPosition: locationMap.position }} />
+              <div className={styles.visual} style={{ background: locationMap.bg ?? (locationSide ? '#fff' : undefined) }} role="button" tabIndex={0} onClick={() => openDialog(mapDialogRef)} onKeyDown={(e) => e.key === 'Enter' && openDialog(mapDialogRef)}>
+                <Image src={locationMap.src} alt="청라 아크원 푸르지오 위치 안내도" fill sizes="100vw" style={{ objectFit: locationMap.fit ?? (locationSide ? 'contain' : undefined), objectPosition: locationMap.position }} />
                 <button type="button" className={styles.mapZoom} onClick={(e) => { e.stopPropagation(); openDialog(mapDialogRef) }}>＋ 지도 확대</button>
               </div>
               {seoulRoutes && !isMobile && (
@@ -754,7 +782,7 @@ export default function SignatureArkoneImmersive({ site }) {
             </div>
             {/* 요청 반영 — 지도 이미지 하단에 겹쳐 놓으면 지도 자체의 지명 라벨과 겹쳐 보여서
                 이미지 밖 별도 목록으로 분리 */}
-            {mapPins.length > 0 && (
+            {!locationSide && mapPins.length > 0 && (
               <div className={styles.mapPins}>
                 {mapPins.map((p) => (<span key={p}>{p}</span>))}
               </div>
@@ -880,6 +908,35 @@ export default function SignatureArkoneImmersive({ site }) {
             </div>
           </div>
         </section>
+
+        {/* 청약안내 — 공식 사이트 청약안내 3개 페이지(이미지)를 탭으로 전환, 이미지 박스 안에서 세로 스크롤 */}
+        {subscription && (
+          <section className={cn(panelClass('subscription'), styles.subscriptionPanel)} id="subscription">
+            <div className={styles.sectionShell}>
+              {/* PC는 제목 + 탭을 왼쪽 칼럼, 안내 이미지를 오른쪽 칼럼으로(입지환경 locationSide와 같은 배치) */}
+              <div className={styles.subAside}>
+                <header className={styles.sectionHead}>
+                  <p className={styles.eyebrow}>{subscription.eyebrow}</p>
+                  <h2 className={styles.sectionTitle}>{subscription.titleTop}<br className={styles.titleBreak} />{' '}<span className={styles.gradientText}>{subscription.titleAccent}</span></h2>
+                </header>
+                <div className={styles.subTabs} role="tablist">
+                  {subscription.tabs.map((t) => (
+                    <button
+                      key={t.key} type="button" role="tab" aria-selected={t.key === subTab}
+                      className={cn(t.key === subTab && styles.isActive)}
+                      onClick={() => { setSubTab(t.key); if (subScrollRef.current) subScrollRef.current.scrollTop = 0 }}
+                    >{t.label}</button>
+                  ))}
+                </div>
+              </div>
+              <div className={styles.subScroll} ref={subScrollRef} role="tabpanel">
+                {subscription.tabs.filter((t) => t.key === subTab).map((t) => (
+                  <Image key={t.key} src={t.src} alt={t.label} width={t.width} height={t.height} sizes="(min-width: 1024px) 1000px, 92vw" />
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* 청라의 연혁 */}
         {showPanel('history') && (<section className={panelClass('history')} id="history">

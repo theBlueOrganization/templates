@@ -227,7 +227,8 @@ export async function POST(request) {
     const buildMessage = (to) => {
       const recipientName = adminPhoneNames?.[to]
       if (!recipientName) return adminMessage
-      const mediaLabel = isNoUtm ? smsMediaLabel || '직접유입' : utmSource
+      // utm 유입은 smsProjectNameByUtm의 한글 매체명(예: okcashbag → OK캐쉬백)이 있으면 그걸로 표기
+      const mediaLabel = isNoUtm ? smsMediaLabel || '직접유입' : utmProjectSuffix || utmSource
       return `${adminMessage}\n수신: ${mediaLabel}+${recipientName}`
     }
 

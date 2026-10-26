@@ -128,6 +128,7 @@ export default async function AptPage({ params }) {
     const immersiveSite = {
       slug: site.slug,
       telNumber: site.telNumber,
+      telNumberByUtm: site.telNumberByUtm,
       projectName: site.projectName,
       // 화면 표기용 현장명 — projectName이 문자 구분용으로 "...2"처럼 다를 때(예: 청라 아크원 푸르지오2) displayName 사용
       displayName: site.displayName,
@@ -359,6 +360,8 @@ export default async function AptPage({ params }) {
         {sig.premiumSplits?.map((split, i) => (
           <SignaturePremiumSplit key={i} split={split} />
         ))}
+        {/* subscriptionTabs — 청약안내(변경된 청약정보·특별공급·일반공급) 이미지 탭. 예: cheongna-arkone-prugio-3 */}
+        {sig.subscriptionTabs && <SignatureUnitPlanTabs unitPlan={sig.subscriptionTabs} />}
         {sig.infrastructure && <SignatureInfrastructure infrastructure={sig.infrastructure} />}
         {sig.landscapeGeomdan && <SignatureLandscapeGeomdan landscape={sig.landscapeGeomdan} />}
         {sig.landscape && <SignatureLandscape landscape={sig.landscape} />}

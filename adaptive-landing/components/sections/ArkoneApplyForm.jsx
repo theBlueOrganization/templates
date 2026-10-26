@@ -9,7 +9,7 @@ import styles from './ArkoneApplyForm.module.css'
 // 청약 일정에 맞춰 성명·연락처·청약자(본인/가족)·방문희망일시·약관·동의 순서의 카드형 폼
 // (생년월일 칸은 요청 반영(2026-10-26)으로 삭제).
 // 문구는 사이트 config.applyForm(title/desc/submitLabel)에서 받고, /api/sms에
-// applicant/marketing_agree를 추가로 실어 보낸다.
+// applicant를 추가로 실어 보낸다. ((선택) 신규 분양정보 수신 체크는 요청 반영(2026-10-26)으로 삭제)
 const APPLICANTS = [
   { value: '본인', label: '본인이 청약합니다' },
   { value: '가족(세대원)', label: '가족(세대원)이 청약합니다' },
@@ -45,7 +45,6 @@ export default function ArkoneApplyForm({ config, idPrefix, variant = 'section',
           privacy_agree: true,
           serviceType: '방문예약',
           applicant: fd.get('applicant')?.toString() ?? '',
-          marketing_agree: fd.get('marketing_agree') === 'on',
           projectName,
           adminPhones: resolvedAdminPhones,
           adminPhoneNames,
@@ -142,10 +141,6 @@ export default function ArkoneApplyForm({ config, idPrefix, variant = 'section',
         <label className={styles.agree}>
           <input type="checkbox" name="privacy_agree" required />
           <span>개인정보 수집 및 이용에 동의합니다.</span>
-        </label>
-        <label className={cn(styles.agree, styles.agreeOptional)}>
-          <input type="checkbox" name="marketing_agree" />
-          <span>(선택) {config.company.name}의 전국 신규 분양정보를 정기적으로 받아보겠습니다.</span>
         </label>
 
         <button type="submit" className={styles.submit} disabled={submitting}>

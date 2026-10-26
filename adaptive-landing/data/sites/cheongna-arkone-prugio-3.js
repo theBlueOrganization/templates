@@ -161,6 +161,9 @@ const config = {
       mobileBar: {
         announcements: [{ badge: '안내', textStrong: '청라 아크원 푸르지오', textLight: ' 공식 안내센터입니다.' }],
         bubbleText: '관심고객등록 시 분양소식을 가장 먼저 안내드립니다',
+        // 요청 반영(2026-10-26) — 히어로 아래 "관심고객등록" 버튼을 갈색(--gold) 대신 다른 CTA와 같은 연두 그라데이션으로
+        visitBg: 'linear-gradient(90deg, #cfea77, #9bd3bd)',
+        visitColor: '#073a32',
         callLabel: '전화상담',
         visitLabel: '관심고객등록',
       },

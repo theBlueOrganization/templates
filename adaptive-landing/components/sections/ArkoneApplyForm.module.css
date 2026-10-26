@@ -149,7 +149,6 @@ select.input {
   cursor: pointer;
 }
 .agree input { width: 20px; height: 20px; margin: 1px 0 0; flex: none; accent-color: var(--apply-accent); }
-.agreeOptional { margin-top: -4px; font-size: 13.5px; color: #777; }
 
 /* .card를 붙여 우선순위를 올림 — 아크원 풀페이지(.root :where(button) 초기화)에서 배경·글자색이 지워지던 문제 */
 .card .submit {
@@ -183,7 +182,6 @@ select.input {
 .popup .notice { font-size: 12px; }
 .popup .agree { gap: 8px; font-size: 13px; }
 .popup .agree input { width: 18px; height: 18px; }
-.popup .agreeOptional { font-size: 12px; }
 .popup .submit { height: 46px; font-size: 16px; }
 
 @media (min-width: 768px) {
@@ -214,7 +212,6 @@ select.input {
   .panel .terms summary { padding: 9px 16px; font-size: 13px; }
   .panel .notice { font-size: 12.5px; }
   .panel .agree { font-size: 13.5px; }
-  .panel .agreeOptional { margin-top: -6px; font-size: 12.5px; }
   .panel .submit { height: 48px; margin-top: 4px; font-size: 17px; }
 }
 /* 노트북처럼 세로가 낮은 PC 화면(예: 1366x768) — 패널 안에서 잘리지 않게 한 단계 더 압축 */

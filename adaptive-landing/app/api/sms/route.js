@@ -45,7 +45,8 @@ async function saveToSheet(payload) {
     ageRange ?? '',
   ]
   // 청약자·생년월일·마케팅 수신동의(ArkoneApplyForm) — 이 폼을 쓰는 현장만 뒤에 열을 붙임
-  if (applicant) row.push(applicant, birth ?? '', marketing_agree ? '동의함' : '미동의')
+  // (생년월일·마케팅 동의 칸은 폼에서 빠져 값이 없으면 빈칸 — 기존 시트 열 위치는 그대로 유지)
+  if (applicant) row.push(applicant, birth ?? '', marketing_agree === undefined ? '' : marketing_agree ? '동의함' : '미동의')
 
   try {
     await sheets.spreadsheets.values.append({
@@ -185,7 +186,7 @@ export async function POST(request) {
     const ageLine = ageRange ? `\n연령대: ${ageRange}` : ''
     // 카드형 "방문예약 신청" 폼(ArkoneApplyForm)에서만 오는 값
     const applyLines = applicant
-      ? `\n청약자: ${applicant}${birth ? `\n생년월일: ${birth}` : ''}\n마케팅수신:${marketing_agree ? '동의함' : '미동의'}`
+      ? `\n청약자: ${applicant}${birth ? `\n생년월일: ${birth}` : ''}${marketing_agree === undefined ? '' : `\n마케팅수신: ${marketing_agree ? '동의함' : '미동의'}`}`
       : ''
     const giftLine = serviceType ? '' : `\n사은품등록: ${gift_check ? '체크함' : '아님'}`
 

@@ -39,13 +39,13 @@ div.event { cursor: default; }
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 1fr auto;
   align-items: center;
   justify-content: center;
-  gap: 4px 16px;
+  gap: 7px 16px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 12px 16px;
+  padding: 14px 20px;
 }
 .badge {
   grid-column: 1;

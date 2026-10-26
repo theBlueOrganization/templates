@@ -636,7 +636,7 @@ export default function SignatureArkoneImmersive({ site }) {
 
       <main className={styles.viewport} ref={viewportRef}>
         {/* 히어로 */}
-        <section className={cn(panelClass('hero'), styles.hero, heroCopy && styles.heroPosterMode)} id="hero">
+        <section className={cn(panelClass('hero'), styles.hero, heroCopy && styles.heroPosterMode, content.goldEvent && styles.heroWithEvent)} id="hero">
           <video className={styles.heroVideo} src={ASSET('hero-video.mp4')} autoPlay muted loop playsInline preload="metadata" />
           <div className={styles.heroOne} aria-hidden="true">ONE</div>
           <div className={styles.capBadge}><div><small>10년만의 공급</small><b>분양가 상한제<br />적용단지</b></div></div>

@@ -827,7 +827,13 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
                 </svg>
                 {mobileBar.callLabel}
               </a>
-              <button type="button" className={styles.visitBtn} onClick={scrollToVisit}>
+              {/* mobileBar.visitBg/visitColor — 이 버튼만 현장 CTA 색으로(미지정 현장은 기존 --gold 그대로). 예: cheongna-arkone-prugio-3 */}
+              <button
+                type="button"
+                className={styles.visitBtn}
+                onClick={scrollToVisit}
+                style={mobileBar.visitBg ? { background: mobileBar.visitBg, borderTopColor: 'transparent', color: mobileBar.visitColor } : undefined}
+              >
                 <svg width="22" height="22" viewBox="0 0 15 14.0625" fill="none" aria-hidden="true">
                   <path
                     d="M12.1875 1.75781H11.6016V0.585938H10.4297V1.75781H4.57031V0.585938H3.39844V1.75781H2.8125C2.16797 1.75781 1.64062 2.28516 1.64062 2.92969V12.3047C1.64062 12.9492 2.16797 13.4766 2.8125 13.4766H12.1875C12.832 13.4766 13.3594 12.9492 13.3594 12.3047V2.92969C13.3594 2.28516 12.832 1.75781 12.1875 1.75781ZM12.1875 12.3047H2.8125V4.6875H12.1875V12.3047Z"

@@ -918,3 +918,7 @@
   .locationSide .mapPins span,
   .subscriptionPanel .subTabs button { font-size: 19px; padding: 18px 20px; }
 }
+/* 금1돈 배너가 있는 첫 화면(모바일) — 첫 화면엔 하단 고정바가 아직 안 떠서 그 자리만큼 비어 보이므로 배너를 화면 하단 가까이로 */
+@media (max-width: 1023px) {
+  .heroWithEvent .sectionShell { bottom: calc(var(--safe-bottom) + 18px); }
+}

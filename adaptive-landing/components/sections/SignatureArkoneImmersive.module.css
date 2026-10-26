@@ -892,3 +892,17 @@
 @media (min-width: 1024px) and (max-width: 1719px) {
   .locationSide .locationBody { padding-right: 64px; }
 }
+/* 청약안내 PC — 제목 + 탭(세로 목록)은 왼쪽, 안내 이미지는 오른쪽 칼럼 폭에 꽉 차게(좌우 여백 없이) */
+.subAside { display: flex; flex-direction: column; flex: none; }
+@media (min-width: 1024px) {
+  .subscriptionPanel .sectionShell { display: grid; grid-template-columns: minmax(300px, 0.62fr) 1.7fr; gap: 36px; }
+  .subscriptionPanel .subAside { justify-content: center; }
+  .subscriptionPanel .sectionTitle { font-size: clamp(38px, 3.6vw, 62px); }
+  .subscriptionPanel .subTabs { grid-template-columns: 1fr; width: 100%; gap: 10px; margin-top: 28px; }
+  .subscriptionPanel .subTabs button { height: auto; padding: 16px 18px; text-align: left; font-size: 16px; }
+  .subscriptionPanel .subScroll { margin-top: 0; }
+  .subscriptionPanel .subScroll :global(img) { max-width: none; }
+}
+@media (min-width: 1024px) and (max-width: 1719px) {
+  .subscriptionPanel .subScroll { margin-right: 64px; }
+}

@@ -913,22 +913,25 @@ export default function SignatureArkoneImmersive({ site }) {
         {subscription && (
           <section className={cn(panelClass('subscription'), styles.subscriptionPanel)} id="subscription">
             <div className={styles.sectionShell}>
-              <header className={styles.sectionHead}>
-                <p className={styles.eyebrow}>{subscription.eyebrow}</p>
-                <h2 className={styles.sectionTitle}>{subscription.titleTop}<br className={styles.titleBreak} />{' '}<span className={styles.gradientText}>{subscription.titleAccent}</span></h2>
-              </header>
-              <div className={styles.subTabs} role="tablist">
-                {subscription.tabs.map((t) => (
-                  <button
-                    key={t.key} type="button" role="tab" aria-selected={t.key === subTab}
-                    className={cn(t.key === subTab && styles.isActive)}
-                    onClick={() => { setSubTab(t.key); if (subScrollRef.current) subScrollRef.current.scrollTop = 0 }}
-                  >{t.label}</button>
-                ))}
+              {/* PC는 제목 + 탭을 왼쪽 칼럼, 안내 이미지를 오른쪽 칼럼으로(입지환경 locationSide와 같은 배치) */}
+              <div className={styles.subAside}>
+                <header className={styles.sectionHead}>
+                  <p className={styles.eyebrow}>{subscription.eyebrow}</p>
+                  <h2 className={styles.sectionTitle}>{subscription.titleTop}<br className={styles.titleBreak} />{' '}<span className={styles.gradientText}>{subscription.titleAccent}</span></h2>
+                </header>
+                <div className={styles.subTabs} role="tablist">
+                  {subscription.tabs.map((t) => (
+                    <button
+                      key={t.key} type="button" role="tab" aria-selected={t.key === subTab}
+                      className={cn(t.key === subTab && styles.isActive)}
+                      onClick={() => { setSubTab(t.key); if (subScrollRef.current) subScrollRef.current.scrollTop = 0 }}
+                    >{t.label}</button>
+                  ))}
+                </div>
               </div>
               <div className={styles.subScroll} ref={subScrollRef} role="tabpanel">
                 {subscription.tabs.filter((t) => t.key === subTab).map((t) => (
-                  <Image key={t.key} src={t.src} alt={t.label} width={t.width} height={t.height} sizes="(min-width: 1024px) 1100px, 92vw" />
+                  <Image key={t.key} src={t.src} alt={t.label} width={t.width} height={t.height} sizes="(min-width: 1024px) 1000px, 92vw" />
                 ))}
               </div>
             </div>

@@ -4,15 +4,15 @@
 // - 화면: signature.arkoneImmersive=true → SignatureArkoneImmersive(풀페이지 몰입형) 전용 렌더.
 //   아래 hero/summary 등 기존 signature 필드는 되돌릴 때를 위해 남겨둔 것(현재 화면엔 안 쓰임)
 // - 콘텐츠·이미지·브랜드 컬러(token.css)/폰트(SUIT): 공식 사이트 arkone-prugio.com 원문(2026-09-16)
-// - 연락처: 대표번호 1533-6480, 상담 알림은 진의원에게 "매체+담당자"(예: SKT+진의원, utm 없으면 직접유입+진의원) 표기로 발송
+// - 연락처: 대표번호 1666-1050, 상담 알림은 진의원에게 "매체+담당자"(예: SKT+진의원, utm 없으면 직접유입+진의원) 표기로 발송
 //   (유입경로 롯데온/마미톡은 아래 *ByUtm — 번호·수신자 별도)
 const config = {
   slug: 'cheongna-arkone-prugio',
   subdomain: '청라아크원푸르지오',
   projectName: '청라 아크원 푸르지오',
   shortName: '청라 아크원 푸르지오',
-  // 요청 반영(2026-09-23) — 대표 문의전화 변경
-  telNumber: '1533-6480',
+  // 요청 반영(2026-10-26) — 대표 문의전화 1533-6480 → 1666-1050
+  telNumber: '1666-1050',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/cheongna-arkone-prugio/og.jpg',
   // 출처: 공식 사이트 token.css 원문(2026-09-16) — primary-500/primary-900/secondary-500/secondary-100
   colorTheme: {
@@ -35,7 +35,7 @@ const config = {
     '01090447402': '최현정',
   },
   // 추가 유입경로(2026-10-26) — ?utm_source=lotteon / mamitalk 로 들어오면 화면 번호·문자 제목·수신자를 바꿈
-  // (직접유입은 위 1533-6480·진의원 그대로)
+  // (직접유입은 위 1666-1050·진의원 그대로)
   telNumberByUtm: {
     lotteon: '1666-1050',
     mamitalk: '1800-2261',
@@ -71,7 +71,7 @@ const config = {
       ['개인정보처리자', '㈜청라스마트시티'],
       ['개인정보 처리 수탁자', '㈜더블루파트너스 (홈페이지 운영, 관심고객 접수 및 관리)'],
       ['수집방법', '공식 홈페이지 고객 등록, 현장 QR 및 고객이 직접 동의한 접수 경로'],
-      ['수집 항목', '성명, 휴대전화번호, 청약자 구분, 생년월일, 방문희망일시'],
+      ['수집 항목', '성명, 휴대전화번호, 청약자 구분, 방문희망일시'],
       ['이용 목적', '분양상담, 견본주택 오픈, 분양일정, 청약·계약, 미분양·잔여세대 및 분양 관련 이벤트 안내 등 분양 홍보와 판매 권유'],
       ['보유·이용기간', '아파트·오피스텔·상업시설 중 마지막 상품의 전 세대 분양계약 체결일로부터 90일까지. 단, 동의 철회 또는 이용 목적 달성 시 지체 없이 파기'],
       ['동의 거부 권리', '개인정보 수집 및 이용에 대한 동의를 거부할 수 있으며, 거부 시 방문예약 접수가 제한될 수 있습니다.'],
@@ -97,6 +97,10 @@ const config = {
     // 요청 반영(2026-10-23) — 자료요청(상담 탭·PC 플로팅·모바일 하단바) 빼고 방문예약만
     arkoneImmersiveContent: {
       hideRequest: true,
+      // 첫 화면 제목 아래 "사전 청약 이벤트 금1돈" 배너 — 요청 반영(2026-10-26)
+      goldEvent: { label: '사전 청약 이벤트', highlight: '금1돈', suffix: '을 드립니다', ctaLabel: '사전예약 하기' },
+      // 진입 팝업 혜택 문구 — 요청 반영(2026-10-26): 경품 이벤트 추가, 선착순 100명 삭제
+      noticeBenefit: '사전예약 후 방문 상담 고객님들께\n「7만원 상당 고급 와인」 증정!\n+ 경품 이벤트 진행중\n1등 트롬세탁기/LG디오스 인덕션/아이패드에어',
       // 요청 반영(2026-10-26) — 유니트 패널 숨김
       hidePanels: ['unit'],
       // 요청 반영(2026-10-26) — 입지환경: 제목 "청라를 완성하는 BIG4", PC는 문구(+BIG4 목록) 왼쪽·광역지도 전체 오른쪽
@@ -123,7 +127,7 @@ const config = {
       logoSize: { base: 96, lg: 130, xl: 150 },
       gnb: ['사업개요', '입지환경', '프리미엄', '단지안내', '세대안내', '관심고객등록'],
       quickCtaLabel: '관심고객등록',
-      phone: '1533-6480',
+      phone: '1666-1050',
     },
 
     // PC 우측 고정 사이드 퀵메뉴 — 공식 사이트가 fullPage.js 기반 풀스크린 스크롤 구조라 화면
@@ -131,7 +135,7 @@ const config = {
     quickMenu: {
       brand: '청라 아크원 푸르지오',
       phoneLabel: '분양문의',
-      phone: '1533-6480',
+      phone: '1666-1050',
       favoriteLabel: '관심고객',
       menuLabel: 'MENU',
       ctaTargetId: 'vip-reservation',
@@ -455,7 +459,7 @@ const config = {
     footer: {
       logo: { src: '/apt/cheongna-arkone-prugio/logo-white.svg', alt: '청라 아크원 푸르지오', width: 130, height: 21 },
       logoAlign: 'center',
-      highlightText: '분양문의 1533-6480',
+      highlightText: '분양문의 1666-1050',
       agencySlogan: '분양완판 전문가 그룹, (주) 더블루파트너스',
       companyLines: [
         { label: '시행', value: '(주)청라스마트시티' },
@@ -474,7 +478,7 @@ const config = {
         '※ 사업지 인근의 개발사업과 관련된 사항은 지자체, 개발주체 및 관계기관의 사정에 따라 변경될 수 있습니다.',
         '※ 제작, 편집, 인쇄과정상 오탈자 등의 오류가 있을 수 있으니, 계약 전 반드시 견본주택 관계자에게 문의하시기 바랍니다.',
       ],
-      csPhone: '1533-6480',
+      csPhone: '1666-1050',
       csHours: 'AM 09:00 ~ PM 19:00',
     },
   },

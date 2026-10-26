@@ -6,6 +6,7 @@ import { useUtmSource } from '../../lib/useUtmSource'
 import { cn } from '../../lib/utils'
 import styles from './SignatureArkoneImmersive.module.css'
 import ArkoneApplyForm from './ArkoneApplyForm'
+import ArkoneGoldEvent from './ArkoneGoldEvent'
 
 // 청라 아크원 푸르지오 전용 풀페이지 몰입형 랜딩 — 참고 시안(cheongna-arkone-prugio-v2-2-mobile-first-standalone.html)의
 // 디자인·인터랙션·이미지를 그대로 이식한 이 현장 전용 컴포넌트. 다른 현장의 Signature* 섹션 조합과
@@ -657,8 +658,11 @@ export default function SignatureArkoneImmersive({ site }) {
                 <p className={styles.sectionDesc}>CHEONGNA ARK-ONE PRUGIO</p>
               </header>
             )}
+            {/* content.goldEvent — 첫 화면 제목 아래 "사전 청약 이벤트 금1돈" 배너(누르면 방문예약). 예: 청라 아크원 푸르지오 */}
+            {content.goldEvent && <ArkoneGoldEvent event={content.goldEvent} variant="hero" onClick={() => openDialog(visitDialogRef)} />}
           </div>
-          <div className={styles.scrollCue}><i /><span>SCROLL</span></div>
+          {/* 금1돈 배너가 있으면 SCROLL 표시와 겹쳐서 숨김 */}
+          {!content.goldEvent && <div className={styles.scrollCue}><i /><span>SCROLL</span></div>}
         </section>
 
         {/* 아크원 이야기 */}
@@ -1068,7 +1072,7 @@ export default function SignatureArkoneImmersive({ site }) {
         </dialog>
       )}
       <dialog ref={visitDialogRef} className={cn(styles.dialog, site.applyForm && styles.applyDialog)} onClick={(e) => e.target === e.currentTarget && closeDialog(visitDialogRef)}>
-        {/* site.applyForm — 카드형 "방문예약 신청" 폼(청약자·생년월일 포함, 요청 반영 2026-10-23) */}
+        {/* site.applyForm — 카드형 "방문예약 신청" 폼(청약자 구분 포함, 요청 반영 2026-10-23) */}
         {site.applyForm ? (
           <div className={cn(styles.modal, styles.applyModal)}>
             <button type="button" className={styles.modalClose} aria-label="닫기" onClick={() => closeDialog(visitDialogRef)}>×</button>

@@ -62,6 +62,7 @@ import SignatureFinalInterest from '../../../components/sections/SignatureFinalI
 import { ArkoneApplySection } from '../../../components/sections/ArkoneApplyForm'
 import SignatureBottomDockGeomdan from '../../../components/ui/SignatureBottomDockGeomdan'
 import SignatureArkoneImmersive from '../../../components/sections/SignatureArkoneImmersive'
+import ArkoneGoldEvent from '../../../components/sections/ArkoneGoldEvent'
 import SignatureTiamoImmersive from '../../../components/sections/SignatureTiamoImmersive'
 import SignatureViaafImmersive from '../../../components/sections/SignatureViaafImmersive'
 import {
@@ -315,6 +316,8 @@ export default async function AptPage({ params }) {
             holdForIntro={!!sig.circleIntro || !!sig.arkoneIntro}
           />
         )}
+        {/* goldEvent — 히어로 바로 아래 "사전 청약 이벤트 금1돈" 배너(누르면 관심고객등록으로). 예: cheongna-arkone-prugio-3 */}
+        {sig.goldEvent && <ArkoneGoldEvent event={sig.goldEvent} href={`#${sig.vipForm.id}`} />}
         {/* vipForm.showAfterHero — 관심고객등록 폼을 히어로 바로 다음(영상보다 위)에 두는 현장용. 예: 호반써밋 첨단3지구-2 */}
         {sig.vipForm.showAfterHero && (
           <SignatureVipForm config={site} sectionId={`${sig.vipForm.id}-early`} />
@@ -400,7 +403,7 @@ export default async function AptPage({ params }) {
         {sig.eventImage && (
           <SignatureNewsImage id={sig.eventImage.id} image={sig.eventImage} title={sig.eventImage.title} maxWidth={sig.eventImage.maxWidth} />
         )}
-        {/* site.applyForm — 관심고객등록 섹션을 카드형 "방문예약 신청" 폼(청약자·생년월일 포함)으로. 예: cheongna-arkone-prugio-3 */}
+        {/* site.applyForm — 관심고객등록 섹션을 카드형 "방문예약 신청" 폼(청약자 구분 포함)으로. 예: cheongna-arkone-prugio-3 */}
         {site.applyForm ? <ArkoneApplySection config={site} /> : <SignatureVipForm config={site} />}
       </main>
       <SignatureFooter

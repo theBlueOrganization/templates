@@ -299,7 +299,7 @@
   display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 16px; font-weight: 600; line-height: 1.5; color: var(--ink);
 }
 .noticeBenefit b { color: var(--green); font-weight: 800; }
-.noticeBenefit span { white-space: pre-line; }
+.noticeBenefit span { white-space: pre-line; word-break: keep-all; }
 
 /* 방문예약 신청 폼(ArkoneApplyForm) 팝업 — 카드가 자체 여백을 가짐 */
 .applyModal { padding: 0; }

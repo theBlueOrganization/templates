@@ -6,9 +6,10 @@ import { cn } from '../../lib/utils'
 import styles from './ArkoneApplyForm.module.css'
 
 // 청라 아크원 푸르지오(원본·3) 관심고객등록 섹션/팝업 공용 "방문예약 신청" 폼 — 요청 반영(2026-10-23),
-// 청약 일정에 맞춰 성명·연락처·청약자(본인/가족)·생년월일·방문희망일시·약관·동의 순서의 카드형 폼.
+// 청약 일정에 맞춰 성명·연락처·청약자(본인/가족)·방문희망일시·약관·동의 순서의 카드형 폼
+// (생년월일 칸은 요청 반영(2026-10-26)으로 삭제).
 // 문구는 사이트 config.applyForm(title/desc/submitLabel)에서 받고, /api/sms에
-// applicant/birth/marketing_agree를 추가로 실어 보낸다.
+// applicant/marketing_agree를 추가로 실어 보낸다.
 const APPLICANTS = [
   { value: '본인', label: '본인이 청약합니다' },
   { value: '가족(세대원)', label: '가족(세대원)이 청약합니다' },
@@ -27,11 +28,6 @@ export default function ArkoneApplyForm({ config, idPrefix, variant = 'section',
     e.preventDefault()
     const form = e.currentTarget
     const fd = new FormData(form)
-    const birth = fd.get('birth')?.toString().trim() ?? ''
-    if (!/^\d{6}$/.test(birth)) {
-      alert('생년월일을 6자리 숫자로 입력해 주세요. (예: 790514)')
-      return
-    }
     if (fd.get('privacy_agree') !== 'on') {
       alert('개인정보 수집 및 이용에 동의해 주세요.')
       return
@@ -49,7 +45,6 @@ export default function ArkoneApplyForm({ config, idPrefix, variant = 'section',
           privacy_agree: true,
           serviceType: '방문예약',
           applicant: fd.get('applicant')?.toString() ?? '',
-          birth,
           marketing_agree: fd.get('marketing_agree') === 'on',
           projectName,
           adminPhones: resolvedAdminPhones,
@@ -108,13 +103,6 @@ export default function ArkoneApplyForm({ config, idPrefix, variant = 'section',
               <span>{a.label}</span>
             </label>
           ))}
-        </div>
-
-        <div className={cn(styles.field, styles.fBirth)}>
-          <label htmlFor={`${idPrefix}-birth`} className={styles.label}>
-            생년월일 <em>*</em> <small>(청약신청자와 동일)</small>
-          </label>
-          <input id={`${idPrefix}-birth`} className={styles.input} name="birth" required maxLength={6} inputMode="numeric" placeholder="6자리 (예: 790514)" />
         </div>
 
         <div className={cn(styles.field, styles.fDate)}>

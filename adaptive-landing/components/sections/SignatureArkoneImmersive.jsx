@@ -230,6 +230,8 @@ export default function SignatureArkoneImmersive({ site }) {
   const resolvedAdminPhones = site.adminPhonesByUtm?.[utmSource] ?? site.adminPhones
   // 유입경로(utm_source)별 화면 전화번호 — 등록 안 된 유입은 대표번호 그대로
   const telNumber = site.telNumberByUtm?.[utmSource] ?? site.telNumber
+  // content.posterPopup.byTel — 안내 팝업 대신 유입경로 번호에 맞는 전단 이미지 팝업을 띄움(예: 청라 아크원 푸르지오)
+  const posterSrc = content.posterPopup?.byTel?.[telNumber]
 
   const [index, setIndex] = useState(0)
   const [introDone, setIntroDone] = useState(false)
@@ -1163,6 +1165,12 @@ export default function SignatureArkoneImmersive({ site }) {
       {noticeOpen && (
         <div className={cn(styles.popupOverlay, styles.isOpen)} role="dialog" aria-modal="true" aria-label="주요 안내">
           <div className={styles.popupShell}>
+            {posterSrc ? (
+              <article className={styles.posterCard}>
+                <button type="button" className={styles.noticeX} aria-label="닫기" onClick={closeNotice}>×</button>
+                <Image src={assetSrc(posterSrc)} alt={`${displayName} 사전 방문 예약 / 청약 상담 문의 ${telNumber}`} width={913} height={1284} sizes="420px" priority />
+              </article>
+            ) : (
             <article className={styles.noticeCard}>
               <button type="button" className={styles.noticeX} aria-label="닫기" onClick={closeNotice}>×</button>
               <div className={styles.noticeImageWrap}>
@@ -1178,6 +1186,7 @@ export default function SignatureArkoneImmersive({ site }) {
                 </div>
               )}
             </article>
+            )}
           </div>
         </div>
       )}

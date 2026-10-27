@@ -96,6 +96,14 @@ const config = {
     arkoneImmersive: true,
     // 요청 반영(2026-10-23) — 자료요청(상담 탭·PC 플로팅·모바일 하단바) 빼고 방문예약만
     arkoneImmersiveContent: {
+      // 요청 반영(2026-10-27) — 사전예약 안내 팝업 대신 전단 이미지 팝업 → 닫으면 관심고객등록(방문예약) 팝업.
+      // 유입경로 번호(telNumberByUtm)에 맞는 이미지: 기본·롯데온 1666-1050 / 마미톡 1800-2261
+      posterPopup: {
+        byTel: {
+          '1666-1050': 'poster-popup-1666-1050.png',
+          '1800-2261': 'poster-popup-1800-2261.png',
+        },
+      },
       hideRequest: true,
       // 첫 화면 제목 아래 "사전 청약 이벤트 금1돈" 배너 — 요청 반영(2026-10-26)
       goldEvent: { label: '사전 청약 이벤트', highlight: '금1돈', suffix: '을 드립니다', ctaLabel: '사전예약 하기' },

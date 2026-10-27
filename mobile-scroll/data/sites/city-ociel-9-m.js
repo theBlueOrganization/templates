@@ -14,7 +14,8 @@ const config = {
   projectName: "시티오씨엘 9단지 오션파크뷰",
   shortName:   "시티오씨엘 9단지",
   telNumber:   "1600-8048",
-  ogImage:     "/apt/city-ociel-9-m/share_img.png",
+  // 카카오톡 공유 미리보기 — 원형 로고(800x800). 카카오 캐시를 피하려고 기존 share_img.png와 다른 파일명 사용
+  ogImage:     "/apt/city-ociel-9-m/share_logo.png",
   adminPhones:  ["01020698339"],
   sheetId:      "",
   sheetTab:     "시티오씨엘9단지m",

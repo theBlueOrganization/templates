@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
+import { useUtmSource } from '../../lib/useUtmSource'
 import { cn } from '../../lib/utils'
 import ArkoneApplyForm from './ArkoneApplyForm'
 import styles from './SignatureArkoneHighlights.module.css'
@@ -251,6 +252,10 @@ export function SignatureArkonePopups({ popups, config }) {
   const [toast, setToast] = useState('')
   const visitRef = useRef(null)
   const { notice } = popups
+  // notice.posterByTel — 안내 카드 대신 유입경로 번호(telNumberByUtm)에 맞는 전단 이미지 한 장을 띄움
+  const utmSource = useUtmSource()
+  const telNumber = config.telNumberByUtm?.[utmSource] ?? config.telNumber
+  const posterSrc = notice.posterByTel?.[telNumber]
 
   useEffect(() => {
     const t = setTimeout(() => setNoticeOpen(true), notice.openDelayMs ?? 700)
@@ -272,6 +277,12 @@ export function SignatureArkonePopups({ popups, config }) {
     <>
       {noticeOpen && (
         <div className={styles.popupOverlay} role="dialog" aria-modal="true" aria-label="주요 안내">
+          {posterSrc ? (
+            <article className={styles.posterCard}>
+              <button type="button" className={styles.noticeX} aria-label="닫기" onClick={closeNotice}>×</button>
+              <Image src={posterSrc} alt={`${notice.title} 사전 방문 예약 / 청약 상담 문의 ${telNumber}`} width={913} height={1284} sizes="420px" priority />
+            </article>
+          ) : (
           <article className={styles.noticeCard}>
             <button type="button" className={styles.noticeX} aria-label="닫기" onClick={closeNotice}>×</button>
             <div className={styles.noticeImageWrap}>
@@ -286,6 +297,7 @@ export function SignatureArkonePopups({ popups, config }) {
               </div>
             )}
           </article>
+          )}
         </div>
       )}
 

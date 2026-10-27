@@ -491,6 +491,13 @@
 }
 .noticeBenefit b { color: var(--green); font-weight: 800; }
 .noticeBenefit span { white-space: pre-line; word-break: keep-all; }
+/* content.posterPopup — 전단 이미지 한 장을 화면 높이 안에 통째로 보이게 */
+.popupShell:has(.posterCard) { width: auto; }
+.posterCard { position: relative; line-height: 0; }
+.posterCard img {
+  display: block; width: auto; height: auto; border-radius: 12px;
+  max-width: min(calc(100vw - 24px), 520px); max-height: calc(100svh - 24px);
+}
 .noticeX { position: absolute; z-index: 2; right: 10px; top: 10px; width: 34px; height: 34px; border-radius: 50%; background: #edf0ee; font-size: 18px; }
 
 /* 토스트 */

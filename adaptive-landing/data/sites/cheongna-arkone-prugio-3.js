@@ -451,6 +451,12 @@ const config = {
     arkonePopups: {
       notice: {
         openDelayMs: 700,
+        // 요청 반영(2026-10-27) — 사전예약 안내 팝업 대신 전단 이미지 팝업 → 닫으면 관심고객등록 팝업.
+        // 유입경로 번호(telNumberByUtm)에 맞는 이미지: 기본·SKT 1666-1050 / OK캐쉬백·롯데온2 1800-2261
+        posterByTel: {
+          '1666-1050': '/apt/cheongna-arkone-prugio-3/poster-popup-1666-1050.png',
+          '1800-2261': '/apt/cheongna-arkone-prugio-3/poster-popup-1800-2261.png',
+        },
         image: '/apt/cheongna-arkone-prugio-3/notice-popup.webp',
         title: '청라 아크원 푸르지오',
         desc: '관심고객등록 시 분양 일정과 주요 소식을 가장 먼저 안내해 드립니다.',

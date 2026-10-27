@@ -287,6 +287,12 @@
 .noticeImageWrap :global(img) { object-fit: cover; }
 .noticeCard h3 { margin: 14px 0 6px; font-family: Georgia, 'Noto Serif KR', serif; font-size: 26px; }
 .noticeCard > p { margin: 0; font-size: 11px; color: #62716d; }
+/* notice.posterByTel — 전단 이미지 한 장을 화면 높이 안에 통째로 보이게 */
+.posterCard { position: relative; line-height: 0; }
+.posterCard img {
+  display: block; width: auto; height: auto; border-radius: 12px;
+  max-width: min(calc(100vw - 24px), 520px); max-height: calc(100svh - 24px);
+}
 .noticeX {
   position: absolute; z-index: 2; right: 10px; top: 10px; width: 34px; height: 34px;
   border: 0; border-radius: 50%; background: #edf0ee; font-size: 18px; cursor: pointer;

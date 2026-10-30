@@ -289,6 +289,11 @@ export async function POST(request) {
     if (failed.length > 0) {
       failed.forEach((r) => console.error('[SMS] Solapi 발송 실패:', r.reason?.message ?? r.reason))
     }
+    // 시트에는 이미 저장됐는데 담당자 문자만 전부 실패한 경우, 고객에게 오류를 띄우면 다시 제출해서 시트에 중복 접수가 쌓인다
+    // (2026-10-30 청라 아크원 푸르지오 사례). 접수 자체는 된 것이므로 고객에게는 성공으로 응답하고 실패는 로그로만 남긴다
+    if (failed.length === recipients.length && sheetSaved) {
+      return NextResponse.json({ success: true, sheetSaved, smsFailed: true })
+    }
     if (failed.length === recipients.length) {
       return NextResponse.json(
         { success: false, message: '문자 발송에 실패했습니다. 잠시 후 다시 시도해 주세요.', sheetSaved },

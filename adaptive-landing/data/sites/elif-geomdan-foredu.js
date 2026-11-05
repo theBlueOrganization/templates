@@ -78,8 +78,7 @@ const config = {
         height: 25,
       },
       logoSize: { base: 132, lg: 160, xl: 176 },
-      // 상단 메뉴의 '방문예약상담' 항목은 빼달라는 요청(2026-11-05)
-      gnb: ['사업안내', '위치안내', '프리미엄', '단지안내', '세대안내'],
+      gnb: ['사업안내', '위치안내', '프리미엄', '단지안내', '세대안내', '방문예약상담'],
       // 헤더 우측 '방문예약상담' 버튼 — 한때 뺐다가 복구 요청(2026-11-05). 빈 값('')이면 숨김
       quickCtaLabel: '방문예약상담',
       phone: '1666-0035',
@@ -625,10 +624,9 @@ const config = {
       maxWidth: 760,
     },
 
-    // 방문예약상담 폼 — 히어로 다음 + 페이지 맨 아래 두 번 렌더링
+    // 방문예약상담 폼 — 페이지 맨 아래에만(히어로 바로 다음 폼(showAfterVideo)은 지워달라는 요청으로 제거, 2026-11-05)
     vipForm: {
       id: 'vip-reservation',
-      showAfterVideo: true,
       eyebrow: 'VISIT RESERVATION',
       titleLine1: '엘리프 검단 포레듀',
       titleLine2: '방문예약상담',

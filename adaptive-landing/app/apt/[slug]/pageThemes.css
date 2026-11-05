@@ -45,3 +45,352 @@
   background-clip: text;
   color: transparent;
 }
+
+/* 'elif' — 엘리프 검단 포레듀(2026-11-05 사용자 요청): 공식 홈페이지 모바일 하단처럼 3색을 섞어 씀
+   차콜(#302f2e, 푸터·안내띠·평면 스테이지) + 딥그린(#054438, 헤더·프리미엄·상담폼·전화버튼) + 웜그레이(#787472, 방문예약상담 CTA)
+   각 색은 같은 계열 그라데이션으로 깔고, 밝은 섹션은 흰색/아이보리(#f2f0ea)를 번갈아 */
+[data-page-theme='elif'] {
+  --elif-charcoal: #302f2e;
+  --elif-green: #054438;
+  --elif-gray: #787472;
+  --elif-grad-charcoal: linear-gradient(160deg, #3d3c3a 0%, #302f2e 55%, #222120 100%);
+  --elif-grad-green: linear-gradient(135deg, #0b5a49 0%, #054438 55%, #03302a 100%);
+  --elif-grad-gray: linear-gradient(135deg, #8d8885 0%, #787472 55%, #625e5c 100%);
+  --elif-ivory: #f6f4ef;
+  --vipform-bg: var(--elif-grad-green);
+  background: var(--elif-ivory);
+}
+
+/* 섹션 배경(2026-11-05 사용자 요청 "배경이 아쉬움") — 단색 회색 대신 공식 홈페이지 톤:
+   아이보리 바탕 + 은은한 초록/웜그레이 빛 번짐 + 딥그린 패널(물결 무늬는 어지럽다는 요청으로 제외). 장식은 ::before/::after(z-index -1, isolation)로 깔아
+   섹션 안 콘텐츠는 건드리지 않음 */
+[data-page-theme='elif'] #overview,
+[data-page-theme='elif'] #complex,
+[data-page-theme='elif'] #unit-plan,
+[data-page-theme='elif'] #event,
+[data-page-theme='elif'] section[class*='SignaturePremiumIntro_sectionSplit'] {
+  position: relative;
+  isolation: isolate;
+}
+
+/* 사업개요 — 섹션 자체가 가운데 폭 제한(max-width)이라 배경은 화면 전체 폭으로 ::before에 깔기 */
+[data-page-theme='elif'] #overview {
+  background: transparent;
+}
+
+[data-page-theme='elif'] #overview::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  background:
+    radial-gradient(ellipse 60% 45% at 92% 6%, rgba(5, 68, 56, 0.13), rgba(5, 68, 56, 0) 70%),
+    radial-gradient(ellipse 55% 40% at 4% 96%, rgba(120, 116, 114, 0.18), rgba(120, 116, 114, 0) 70%),
+    linear-gradient(180deg, #fbfaf7 0%, #f3f0e9 100%);
+}
+
+/* 사업개요 아래쪽 — 딥그린 패널(왼쪽 위만 크게 둥근 공식 홈페이지 모양), 스펙표 뒤 아래 일부만.
+   모바일은 스펙표가 섹션 맨 아래까지 차서 글자와 겹치므로 768px 이상에서만 */
+[data-page-theme='elif'] #overview::after {
+  content: '';
+  display: none;
+  position: absolute;
+  z-index: -1;
+  bottom: 0;
+  right: calc(50% - 50vw);
+  width: 62vw;
+  height: 90px;
+  border-top-left-radius: 90px;
+  background: var(--elif-grad-green);
+}
+
+@media (min-width: 768px) {
+  [data-page-theme='elif'] #overview::after {
+    display: block;
+  }
+}
+
+/* 프리미엄 인트로(사진+카피) — 아이보리에 초록 빛 번짐 */
+[data-page-theme='elif'] section[class*='SignaturePremiumIntro_sectionSplit'] {
+  background:
+    radial-gradient(ellipse 50% 60% at 100% 50%, rgba(5, 68, 56, 0.1), rgba(5, 68, 56, 0) 70%),
+    #f3f0e9;
+}
+
+/* 단지안내 — 배치도·동호표 등 도면 이미지가 잘 보이도록 흰 배경(2026-11-05 사용자 요청) */
+[data-page-theme='elif'] #complex {
+  background: #fff;
+}
+
+/* 세대안내 — 아이보리 + 평면 스테이지 뒤 큰 원형 빛 번짐과 가는 원형 라인 */
+[data-page-theme='elif'] #unit-plan {
+  background:
+    radial-gradient(circle at 72% 55%, rgba(5, 68, 56, 0.12) 0, rgba(5, 68, 56, 0) 38%),
+    linear-gradient(180deg, #f8f6f1 0%, #ece8e0 100%);
+}
+
+[data-page-theme='elif'] #unit-plan::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: 900px;
+  height: 900px;
+  right: -260px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  border: 1px solid rgba(5, 68, 56, 0.14);
+  box-shadow: 0 0 0 70px rgba(255, 255, 255, 0.18), 0 0 0 71px rgba(120, 116, 114, 0.16);
+}
+
+/* 사은품 이미지 — 차콜 패널 위에 초록 이미지가 돋보이게 */
+[data-page-theme='elif'] #event {
+  background: var(--elif-grad-charcoal);
+  padding-top: 56px;
+  padding-bottom: 56px;
+}
+
+[data-page-theme='elif'] #event img {
+  border-radius: 14px;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.35);
+}
+
+/* 위치안내(location.variant 'story' → SignatureSellingStory) — 더샵 검단 핵심가치 디자인(네이비 + 하늘색)을
+   엘리프 톤으로: 바탕은 진한 차콜, 포인트(제목 강조·숫자·태그)는 세이지그린, 사진 아래 그라데이션도 차콜 */
+[data-page-theme='elif'] #location {
+  background: linear-gradient(180deg, #1f1e1d 0%, #2a2928 55%, #302f2e 100%);
+}
+
+[data-page-theme='elif'] #location [class*='SignatureSellingStory_eyebrow__'] {
+  color: #b9b4ae;
+}
+
+[data-page-theme='elif'] #location h2 em,
+[data-page-theme='elif'] #location [class*='SignatureSellingStory_numberItem__'] strong {
+  color: #a9c9ba;
+}
+
+[data-page-theme='elif'] #location [class*='SignatureSellingStory_sceneCopy__'] span {
+  color: #c4dccf;
+}
+
+[data-page-theme='elif'] #location [class*='SignatureSellingStory_scene__']::after,
+[data-page-theme='elif'] #location [class*='SignatureSellingStory_sceneWide__']::after {
+  background: linear-gradient(transparent 38%, rgba(24, 23, 22, 0.92));
+}
+
+/* 프리미엄6 — 딥그린 그라데이션(카드 이미지는 투명 모서리 알약형이라 그라데이션 위에서도 자연스러움) */
+[data-page-theme='elif'] #premium-value {
+  background: var(--elif-grad-green);
+}
+
+/* 세대안내 평면 스테이지 — 차콜 그라데이션 */
+[data-page-theme='elif'] [class*='SignatureUnitPlan_circleStage'] {
+  background: var(--elif-grad-charcoal);
+}
+
+/* 헤더(스크롤 후 배경) — 딥그린 그라데이션 */
+[data-page-theme='elif'] header[class*='SignatureHeader_header']:not([class*='Transparent']),
+[data-page-theme='elif'] [class*='SignatureHeader_mobileMenu'] {
+  background-image: var(--elif-grad-green);
+}
+
+/* 푸터 — 차콜(공식 홈페이지 모바일 푸터 톤) */
+[data-page-theme='elif'] [class*='SignatureFooter_footer'] {
+  background: var(--elif-grad-charcoal);
+}
+
+/* 모바일 하단 바 — 전화상담 딥그린 / 관심고객등록 웜그레이 그라데이션 */
+[data-page-theme='elif'] [class*='SignatureMobileBottomBar_callBtn'] {
+  background: var(--elif-grad-green);
+  color: #fff;
+}
+
+[data-page-theme='elif'] [class*='SignatureMobileBottomBar_visitBtn'] {
+  background: var(--elif-grad-gray);
+  color: #fff;
+}
+
+/* PC 우측 퀵메뉴 — 분양문의 딥그린 / 관심고객 웜그레이 / MENU 차콜 */
+[data-page-theme='elif'] [class*='SignatureQuickMenu_barCall'] {
+  background: var(--elif-grad-green);
+}
+
+[data-page-theme='elif'] [class*='SignatureQuickMenu_barFavorite'] {
+  background: var(--elif-grad-gray);
+}
+
+[data-page-theme='elif'] [class*='SignatureQuickMenu_barMenu'] {
+  background: var(--elif-grad-charcoal);
+}
+
+/* 세대안내 원형 라인 장식은 PC(원형 스테이지)에서만 — 모바일은 제목·탭 위로 선이 지나가 어수선함 */
+@media (max-width: 1023px) {
+  [data-page-theme='elif'] #unit-plan::before {
+    display: none;
+  }
+}
+
+/* 사은품 이미지 — 모바일은 화면 가로를 꽉 채워(여백·모서리·그림자 없이) 전체가 크게 보이게 */
+@media (max-width: 767px) {
+  [data-page-theme='elif'] #event {
+    padding: 0;
+  }
+
+  [data-page-theme='elif'] #event img {
+    width: 100%;
+    max-width: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+/* PREMIUM 6 모바일 — 사진 카드형(2026-11-05 사용자 요청: 위치안내 사진 씬처럼). 직사각형 모바일 이미지(card.imageMobile)를
+   카드 전체에 깔고, 아래쪽 어두운 그라데이션 위에 'PREMIUM 01.'·제목·설명을 얹음.
+   display는 모바일 목록(mobileList) 카드에만 — 오른쪽 칼럼 카드(PC용, 모바일에서 숨김)까지 보이면 04~06이 중복됨 */
+@media (max-width: 767px) {
+  [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_item__'] {
+    position: relative;
+    min-height: 280px;
+    margin-bottom: 14px;
+    padding: 0;
+    border-top: 0;
+    overflow: hidden;
+  }
+
+  [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_mobileList__'] [class*='SignaturePremiumZigzag_item__'] {
+    display: block;
+    min-height: 280px;
+    margin-bottom: 14px;
+    padding: 0;
+    border-top: 0;
+    overflow: hidden;
+  }
+
+  [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_item__']::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    background: linear-gradient(transparent 30%, rgba(20, 20, 19, 0.92));
+  }
+
+  [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_visual__'] {
+    position: absolute;
+    inset: 0;
+    max-width: none;
+  }
+
+  [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_visual__'] img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_text__'] {
+    position: absolute;
+    z-index: 2;
+    left: 20px;
+    right: 20px;
+    bottom: 22px;
+  }
+
+  [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_label__'] {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: #c4dccf;
+  }
+
+  [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_itemTitle__'] {
+    margin-top: 8px;
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 20px;
+    color: #fff;
+  }
+
+  [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_desc__'] {
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_desc__'] span {
+    display: inline;
+  }
+
+  [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_desc__'] span + span::before {
+    content: ' ';
+  }
+}
+
+/* 히어로 윗줄('단지 앞 초등학교(계획), 수변공원까지') — 공식 홈페이지처럼 굵지 않게 */
+[data-page-theme='elif'] #hero [class*='SignatureHero_estBrand__'] {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+@media (min-width: 768px) {
+  [data-page-theme='elif'] #hero [class*='SignatureHero_estBrand__'] {
+    font-size: clamp(20px, 1.5vw, 28px);
+  }
+}
+
+/* 위치안내(location.variant 'infrastructure' → SignatureInfrastructure) — 짙은 회색(차콜) 배경 + 흰 글씨(2026-11-05 사용자 요청).
+   포인트(작은 영문·번호·제목 둘째 줄)는 차콜 위에서 잘 보이는 연한 세이지그린 */
+[data-page-theme='elif'] #location {
+  background: var(--elif-grad-charcoal);
+}
+
+[data-page-theme='elif'] #location h2,
+[data-page-theme='elif'] #location [class*='SignatureInfrastructure_list__'] h3 {
+  color: #fff;
+}
+
+[data-page-theme='elif'] #location [class*='SignatureInfrastructure_eyebrow__'],
+[data-page-theme='elif'] #location h2 em,
+[data-page-theme='elif'] #location [class*='SignatureInfrastructure_list__'] span {
+  color: #a9c9ba;
+}
+
+[data-page-theme='elif'] #location [class*='SignatureInfrastructure_desc__'],
+[data-page-theme='elif'] #location [class*='SignatureInfrastructure_list__'] p,
+[data-page-theme='elif'] #location [class*='SignatureInfrastructure_sourceNote__'] {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+[data-page-theme='elif'] #location [class*='SignatureInfrastructure_list__'],
+[data-page-theme='elif'] #location [class*='SignatureInfrastructure_list__'] article {
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* 위치안내 PC — 항목이 4개라 리스트가 지도 박스보다 길어 아래 끝이 어긋났음(2026-11-05 사용자 지적).
+   지도 박스와 리스트를 같은 높이로 늘이고, 4개 항목을 그 높이에 고르게 나눠 위·아래 끝선을 지도와 맞춤 */
+@media (min-width: 1024px) {
+  [data-page-theme='elif'] #location [class*='SignatureInfrastructure_layout__'] {
+    align-items: stretch;
+  }
+
+  [data-page-theme='elif'] #location [class*='SignatureInfrastructure_list__'] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  [data-page-theme='elif'] #location [class*='SignatureInfrastructure_list__'] article {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 16px 0;
+  }
+
+  [data-page-theme='elif'] #location [class*='SignatureInfrastructure_list__'] h3 {
+    margin: 6px 0 8px;
+  }
+}

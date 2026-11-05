@@ -119,6 +119,8 @@ const adaptiveLandingPointers = [
   { slug: "yeongjong-shinil-viaaf-crest", subdomain: "영종신일비아프크레스트", template: "adaptive-landing" },
   // 양산자이 파크팰리체(2026-10-13) — 한글도메인 양산자이파크팰리체.addupapt.kr
   { slug: "yangsan-xi-park-paliche", subdomain: "양산자이파크팰리체", template: "adaptive-landing" },
+  // 엘리프 검단 포레듀(2026-11-05) — 한글도메인 엘리프검단포레듀.addupapt.kr
+  { slug: "elif-geomdan-foredu", subdomain: "엘리프검단포레듀", template: "adaptive-landing" },
 ];
 
 const allSites = [...sites, ...adaptiveLandingPointers];

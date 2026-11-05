@@ -149,8 +149,19 @@ export default function SignatureUnitPlan({ unitPlan }) {
                     width={type.image.width || 508}
                     height={type.image.height || 373}
                     sizes="(min-width: 1024px) 508px, 80vw"
-                    className={styles.planImage}
+                    className={type.imageMobile ? `${styles.planImage} ${styles.planImageDesktopOnly}` : styles.planImage}
                   />
+                  {/* type.imageMobile — 1023px 이하 전용 세로형 평면(공식 홈페이지 모바일 버전). 예: elif-geomdan-foredu */}
+                  {type.imageMobile && (
+                    <Image
+                      src={type.imageMobile.src}
+                      alt={type.imageMobile.alt}
+                      width={type.imageMobile.width}
+                      height={type.imageMobile.height}
+                      sizes="90vw"
+                      className={`${styles.planImage} ${styles.planImageMobileOnly}`}
+                    />
+                  )}
                 </div>
                 <div className={styles.typeTitle}>
                   <h3>

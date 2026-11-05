@@ -36,6 +36,7 @@ import yonginGorimDongmunTheEast from './sites/yongin-gorim-dongmun-the-east'
 import yonginGorimDongmunTheEast2 from './sites/yongin-gorim-dongmun-the-east-2'
 import yeongjongShinilViaafCrest from './sites/yeongjong-shinil-viaaf-crest'
 import yangsanXiParkPaliche from './sites/yangsan-xi-park-paliche'
+import elifGeomdanForedu from './sites/elif-geomdan-foredu'
 
 /**
  * 새 현장 추가 방법:
@@ -88,6 +89,7 @@ const sites = [
   yonginGorimDongmunTheEast2,
   yeongjongShinilViaafCrest,
   yangsanXiParkPaliche,
+  elifGeomdanForedu,
 ]
 
 // slug로 현장 하나를 찾음 (app/apt/[slug]/page.jsx에서 사용)

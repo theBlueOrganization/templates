@@ -421,7 +421,11 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
           <motion.p className={styles.estBrand} custom={0.2} variants={lineVariants}>
             {hero.estCopy.brand}
           </motion.p>
-          <motion.h1 className={styles.estTitle} custom={0.4} variants={lineVariants}>
+          <motion.h1
+            className={cn(styles.estTitle, hero.estCopy.serifTitle && styles.estTitleSerif)}
+            custom={0.4}
+            variants={lineVariants}
+          >
             {hero.estCopy.lines.map((line, i) => (
               <span key={i} className={styles.estLine}>
                 <span className={styles.estLight}>{line.light}</span>
@@ -436,8 +440,18 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
               </span>
             ))}
           </motion.h1>
+          {/* estCopy.name — 제목 아래 짧은 가로선 + 현장명 한 줄(공식 홈페이지 메인 문구 구성). 예: elif-geomdan-foredu */}
+          {hero.estCopy.name && (
+            <motion.p className={styles.estName} custom={0.5} variants={lineVariants}>
+              {hero.estCopy.name}
+            </motion.p>
+          )}
           {hero.estCopy.badge && (
-            <motion.p className={styles.estBadge} custom={0.6} variants={lineVariants}>
+            <motion.p
+              className={cn(styles.estBadge, hero.estCopy.badgeBox && styles.estBadgeBox)}
+              custom={0.6}
+              variants={lineVariants}
+            >
               {hero.estCopy.badge}
             </motion.p>
           )}

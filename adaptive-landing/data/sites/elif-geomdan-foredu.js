@@ -79,7 +79,8 @@ const config = {
       },
       logoSize: { base: 132, lg: 160, xl: 176 },
       gnb: ['사업안내', '위치안내', '프리미엄', '단지안내', '세대안내', '방문예약상담'],
-      quickCtaLabel: '방문예약상담',
+      // 헤더 우측 '방문예약상담' 버튼은 빼달라는 요청(2026-11-05) — 빈 값이면 숨김(전화번호만)
+      quickCtaLabel: '',
       phone: '1666-0035',
       // 히어로는 위쪽을 어둡게 깐 슬라이드 3장이라 투명 구간에서도 흰 로고·메뉴
       transparentDark: false,
@@ -203,12 +204,13 @@ const config = {
       estCopy: {
         color: '#ffffff',
         shadow: '0 2px 18px rgba(0, 0, 0, 0.45)',
-        brand: 'ELIF 엘리프 검단 포레듀',
-        lines: [
-          { light: '검단신도시의 ', strong: '자부심이 되다', dots: 4 },
-          { light: '분양가 상한제 ', strong: '적용단지', dots: 4 },
-        ],
-        badge: '선착순 동·호지정',
+        // 공식 홈페이지 메인 문구 그대로(2026-11-05 사용자 전달): 윗줄 → 명조 제목 → 짧은 선 + 현장명 → 테두리 박스
+        brand: '단지 앞 초등학교(계획), 수변공원까지',
+        serifTitle: true,
+        lines: [{ light: '', strong: '검단신도시의 자부심', dots: 0 }],
+        name: '엘리프 검단 포레듀',
+        badge: '분양가 상한제 적용단지',
+        badgeBox: true,
         ctaBadge: {
           ringText: 'ELIF · VISIT RESERVATION · ',
           label: ['방문예약', '상담'],
@@ -249,7 +251,7 @@ const config = {
     },
 
     // 위치안내 — 2026-11-05 사용자 요청으로 더샵 검단 레이크파크 핵심가치(story) 디자인으로 교체:
-    //   큰 명조 제목 + 오른쪽 설명 → 숫자 3칸 → 사진 씬(넓게 1 + 반반 2). 색은 pageThemes.css 'elif'(차콜 + 세이지그린)
+    //   큰 명조 제목 + 오른쪽 설명 → 숫자 3칸 → 사진 씬 4개(교통·생활·교육·분양가). 색은 pageThemes.css 'elif'(차콜 + 세이지그린)
     //   아래 eyebrowPlain~features(기존 위치도·입지 카드)는 variant 'story'에서는 쓰지 않음(되돌릴 때를 위해 남겨둠)
     location: {
       id: 'location',
@@ -257,36 +259,45 @@ const config = {
       variant: 'story',
       story: {
         eyebrow: 'ELIF SPECIAL LOCATION',
-        titleLine1: '교육·수변·가치,',
-        titleAccent: '세 가지 가치가 한곳에',
-        desc: '단지 바로 앞 초등학교(계획)와 유치원(계획), 나진포천 수변공원과 근린공원, 그리고 분양가 상한제까지. 앞으로가 더 기대되는 검단의 프리미엄을 더 크게 누립니다.',
+        // 제목·설명·씬 4개 문구는 공식 홈페이지 입지환경(location-environment) 문구 그대로(2026-11-05 사용자 확인 요청)
+        titleLine1: '앞으로가 더 기대되는',
+        titleSize: 'clamp(30px, 3vw, 46px)',
+        titleAccent: '검단의 프리미엄을 더 크게',
+        desc: '단지 앞 초등학교(계획)와 수변공원을 품은 아파트, 분양가 상한제 적용단지로 합리적 내 집 마련의 기회',
         numbers: [
           { value: '669', label: '전용 64·84·98·110㎡ 총 세대수' },
           { value: '20', label: '중소형부터 중대형까지 평면 타입' },
           { value: '11', label: '지하 3층~지상 15층 단지 동수' },
         ],
+        // 4개 항목 — PC 2×2, 모바일 1열
         scenes: [
           {
             type: 'image',
-            wide: true,
+            image: { src: '/apt/elif-geomdan-foredu/hero-2.webp', alt: '엘리프 검단 포레듀 항공 조감도와 주변 도로망' },
+            tag: '01 · TRAFFIC',
+            title: '교통 프리미엄',
+            desc: '검단호수공원역 개통 및 서부권 광역급행철도 GTX-D(예정), 인천 2호선 연장 계획 등 높아지는 교통 비전',
+          },
+          {
+            type: 'image',
             image: { src: '/apt/elif-geomdan-foredu/hero-1.webp', alt: '나진포천 수변공원 옆 엘리프 검단 포레듀 투시도' },
-            tag: '01 · WATERFRONT',
-            title: '매일 가까이 누리는 수변의 여유',
+            tag: '02 · NATURE',
+            title: '쾌적한 생활',
             desc: '단지를 둘러싼 근린공원과 나진포천 수변공원, 자연친화 조경까지 친환경 라이프',
           },
           {
             type: 'image',
             image: { src: '/apt/elif-geomdan-foredu/hero-3.webp', alt: '등굣길 이미지컷' },
-            tag: '02 · EDUCATION',
-            title: '단지 바로 앞 초등학교(계획)',
-            desc: '유치원(계획)과 가까운 학원가까지, 아이 키우기 좋은 교육환경',
+            tag: '03 · EDUCATION',
+            title: '우수한 교육',
+            desc: '단지 바로 앞 초등학교(계획)와 유치원(계획) 및 가까운 학원가로 아이 키우기 좋은 교육환경',
           },
           {
             type: 'image',
-            image: { src: '/apt/elif-geomdan-foredu/hero-2.webp', alt: '엘리프 검단 포레듀 항공 조감도' },
-            tag: '03 · VALUE',
-            title: '더 합리적으로 누리는 분양가',
-            desc: '분양가 상한제 적용단지, 검단호수공원역·GTX-D(예정) 등 높아지는 교통 비전',
+            image: { src: '/apt/elif-geomdan-foredu/feature-price.webp', alt: '도시 야경을 바라보는 여성 이미지컷' },
+            tag: '04 · VALUE',
+            title: '분양가 상한제',
+            desc: '더 높아질 검단 프리미엄을 더 합리적으로 누릴 분양가 상한제 적용단지의 기회',
           },
         ],
       },

@@ -106,9 +106,12 @@ export default function SignatureHeader({
         </nav>
 
         <div className={styles.quick}>
-          <button type="button" className={styles.quickCta} onClick={() => scrollTo(ctaTargetId)}>
-            {header.quickCtaLabel}
-          </button>
+          {/* header.quickCtaLabel을 비우면('') 헤더 우측 CTA 버튼을 숨김. 예: elif-geomdan-foredu(2026-11-05 사용자 요청) */}
+          {header.quickCtaLabel && (
+            <button type="button" className={styles.quickCta} onClick={() => scrollTo(ctaTargetId)}>
+              {header.quickCtaLabel}
+            </button>
+          )}
           <button
             type="button"
             className={styles.quickPhone}
@@ -139,9 +142,11 @@ export default function SignatureHeader({
               {label}
             </button>
           ))}
-          <button type="button" className={styles.mobileMenuCta} onClick={() => scrollTo(ctaTargetId)}>
-            {header.quickCtaLabel}
-          </button>
+          {header.quickCtaLabel && (
+            <button type="button" className={styles.mobileMenuCta} onClick={() => scrollTo(ctaTargetId)}>
+              {header.quickCtaLabel}
+            </button>
+          )}
         </div>
       )}
 

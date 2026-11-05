@@ -78,8 +78,8 @@ const config = {
         height: 25,
       },
       logoSize: { base: 132, lg: 160, xl: 176 },
-      gnb: ['사업안내', '위치안내', '프리미엄', '단지안내', '세대안내', '관심고객등록'],
-      quickCtaLabel: '관심고객등록',
+      gnb: ['사업안내', '위치안내', '프리미엄', '단지안내', '세대안내', '방문예약상담'],
+      quickCtaLabel: '방문예약상담',
       phone: '1666-0035',
       // 히어로는 위쪽을 어둡게 깐 슬라이드 3장이라 투명 구간에서도 흰 로고·메뉴
       transparentDark: false,
@@ -113,10 +113,10 @@ const config = {
       visitForm: {
         enabled: true,
         accentColor: '#054438',
-        title: '관심고객등록',
+        title: '방문예약상담',
         desc: '상담 가능시간 10:00~18:00 (담당자와 조율가능)',
         checks: ['모델하우스 방문예약', '원하는시간 전화예약', '자료요청', '기타문의'],
-        submitLabel: '관심고객 등록',
+        submitLabel: '방문예약상담 신청',
       },
     },
 
@@ -125,7 +125,7 @@ const config = {
       brand: 'ELIF',
       phoneLabel: '분양문의',
       phone: '1666-0035',
-      favoriteLabel: '관심고객',
+      favoriteLabel: '방문예약',
       menuLabel: 'MENU',
       menuBg: '#302f2e',
       ctaTargetId: 'vip-reservation',
@@ -139,7 +139,7 @@ const config = {
         { num: '04', label: 'PREMIUM', sub: '프리미엄', targetId: 'premium-value' },
         { num: '05', label: 'COMPLEX', sub: '단지안내', targetId: 'complex' },
         { num: '06', label: 'UNIT', sub: '세대안내', targetId: 'unit-plan' },
-        { num: '07', label: 'CONTACT', sub: '관심고객등록', targetId: 'vip-reservation' },
+        { num: '07', label: 'CONTACT', sub: '방문예약상담', targetId: 'vip-reservation' },
       ],
     },
 
@@ -208,8 +208,8 @@ const config = {
         ],
         badge: '선착순 동·호지정',
         ctaBadge: {
-          ringText: 'ELIF · CUSTOMERS INTEREST · ',
-          label: ['관심고객', '등록'],
+          ringText: 'ELIF · VISIT RESERVATION · ',
+          label: ['방문예약', '상담'],
         },
       },
       mobileBar: {
@@ -217,10 +217,10 @@ const config = {
           { badge: '안내', textStrong: '엘리프 검단 포레듀', textLight: ' 공식 안내센터입니다.' },
         ],
         announceBg: '#302f2e',
-        bubbleText: '관심고객등록',
+        bubbleText: '방문예약상담',
         dotColor: '#787472',
         callLabel: '전화상담',
-        visitLabel: '관심고객등록',
+        visitLabel: '방문예약상담',
       },
     },
 
@@ -488,6 +488,8 @@ const config = {
       watermark: 'ELIF',
       titlePlain: 'UNIT ',
       titleAccent: 'PLAN',
+      // 타입이 20개라 면적대(64·84·98·110㎡) 탭을 먼저 고르고 그 아래 타입 칩을 고르는 방식(2026-11-05 모바일 칩 잘림 수정)
+      tabbedGroups: true,
       subtitleLines: [
         '실속형 64㎡부터',
         '품격 있는 110㎡까지',
@@ -538,7 +540,7 @@ const config = {
       ],
     },
 
-    // 관심고객등록(맨 아래) 바로 위 이미지 — 사용자 제공 '모델하우스 방문예약 고객 특별 사은품 VIP 건강검진권'(2026-11-05)
+    // 방문예약상담(맨 아래, 2026-11-05 '관심고객등록'에서 명칭 변경) 바로 위 이미지 — 사용자 제공 '모델하우스 방문예약 고객 특별 사은품 VIP 건강검진권'(2026-11-05)
     eventImage: {
       id: 'event',
       src: '/apt/elif-geomdan-foredu/event-gift.webp',
@@ -548,14 +550,14 @@ const config = {
       maxWidth: 760,
     },
 
-    // 관심고객등록 폼 — 히어로 다음 + 페이지 맨 아래 두 번 렌더링
+    // 방문예약상담 폼 — 히어로 다음 + 페이지 맨 아래 두 번 렌더링
     vipForm: {
       id: 'vip-reservation',
       showAfterVideo: true,
       eyebrow: 'VISIT RESERVATION',
       titleLine1: '엘리프 검단 포레듀',
-      titleLine2: '관심고객등록',
-      desc: '간단한 정보를 남겨주시면 「엘리프 검단 포레듀」의 분양 정보와 상세 안내를 가장 빠르게 전해드립니다.',
+      titleLine2: '방문예약상담',
+      desc: '간단한 정보를 남겨주시면 「엘리프 검단 포레듀」 모델하우스 방문 예약과 상담 일정을 가장 빠르게 안내해 드립니다.',
       serviceOptions: ['모델하우스 방문예약', '원하는시간 전화예약'],
       ageOptions: ['20대 이하', '30대', '40대', '50대', '60대 이상'],
       privacyText: `[개인정보 수집 및 이용에 관한 안내] 주식회사 더블루파트너스는 귀하의 개인정보를 소중하게 생각하며, 『개인정보보호법』 등 관련 법규를 철저히 준수하고 있습니다. 당사는 분양 정보 제공 및 방문 예약 서비스의 원활한 이행을 위하여 아래와 같이 개인정보를 수집 및 이용합니다.
@@ -575,7 +577,7 @@ const config = {
       },
       logoAlign: 'center',
       logoWidth: 188,
-      highlightText: '단지 앞 초등학교(계획), 수변공원까지\n검단신도시의 자부심\n엘리프 검단 포레듀',
+      highlightText: '단지 앞 초등학교(계획),\n수변공원까지 검단신도시의 자부심\n엘리프 검단 포레듀',
       agencySlogan: '분양완판 전문가 그룹, (주) 더블루파트너스',
       companyLines: [
         { label: '시공', value: '계룡건설산업(주)' },

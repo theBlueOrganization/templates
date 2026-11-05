@@ -47,7 +47,7 @@
 }
 
 /* 'elif' — 엘리프 검단 포레듀(2026-11-05 사용자 요청): 공식 홈페이지 모바일 하단처럼 3색을 섞어 씀
-   차콜(#302f2e, 푸터·안내띠·평면 스테이지) + 딥그린(#054438, 헤더·프리미엄·상담폼·전화버튼) + 웜그레이(#787472, 관심고객 CTA)
+   차콜(#302f2e, 푸터·안내띠·평면 스테이지) + 딥그린(#054438, 헤더·프리미엄·상담폼·전화버튼) + 웜그레이(#787472, 방문예약상담 CTA)
    각 색은 같은 계열 그라데이션으로 깔고, 밝은 섹션은 흰색/아이보리(#f2f0ea)를 번갈아 */
 [data-page-theme='elif'] {
   --elif-charcoal: #302f2e;
@@ -56,22 +56,125 @@
   --elif-grad-charcoal: linear-gradient(160deg, #3d3c3a 0%, #302f2e 55%, #222120 100%);
   --elif-grad-green: linear-gradient(135deg, #0b5a49 0%, #054438 55%, #03302a 100%);
   --elif-grad-gray: linear-gradient(135deg, #8d8885 0%, #787472 55%, #625e5c 100%);
+  --elif-ivory: #f6f4ef;
   --vipform-bg: var(--elif-grad-green);
-  background: #fff;
+  background: var(--elif-ivory);
 }
 
-/* 밝은 섹션 배경 — 흰색 대신 웜그레이 계열 옅은 그라데이션(2026-11-05 사용자 요청 "전체적으로 배경색 변경") */
-[data-page-theme='elif'] #overview {
-  background: linear-gradient(180deg, #ffffff 0%, #f1f0ec 100%);
-}
-
-[data-page-theme='elif'] #complex {
-  background: linear-gradient(180deg, #ecebe6 0%, #e2e0da 100%);
-}
-
+/* 섹션 배경(2026-11-05 사용자 요청 "배경이 아쉬움") — 단색 회색 대신 공식 홈페이지 톤:
+   아이보리 바탕 + 은은한 초록/웜그레이 빛 번짐 + 딥그린 패널(물결 무늬는 어지럽다는 요청으로 제외). 장식은 ::before/::after(z-index -1, isolation)로 깔아
+   섹션 안 콘텐츠는 건드리지 않음 */
+[data-page-theme='elif'] #overview,
+[data-page-theme='elif'] #complex,
 [data-page-theme='elif'] #unit-plan,
+[data-page-theme='elif'] #event,
+[data-page-theme='elif'] section[class*='SignaturePremiumIntro_sectionSplit'] {
+  position: relative;
+  isolation: isolate;
+}
+
+/* 사업개요 — 섹션 자체가 가운데 폭 제한(max-width)이라 배경은 화면 전체 폭으로 ::before에 깔기 */
+[data-page-theme='elif'] #overview {
+  background: transparent;
+}
+
+[data-page-theme='elif'] #overview::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  background:
+    radial-gradient(ellipse 60% 45% at 92% 6%, rgba(5, 68, 56, 0.13), rgba(5, 68, 56, 0) 70%),
+    radial-gradient(ellipse 55% 40% at 4% 96%, rgba(120, 116, 114, 0.18), rgba(120, 116, 114, 0) 70%),
+    linear-gradient(180deg, #fbfaf7 0%, #f3f0e9 100%);
+}
+
+/* 사업개요 아래쪽 — 딥그린 패널(왼쪽 위만 크게 둥근 공식 홈페이지 모양), 스펙표 뒤 아래 일부만.
+   모바일은 스펙표가 섹션 맨 아래까지 차서 글자와 겹치므로 768px 이상에서만 */
+[data-page-theme='elif'] #overview::after {
+  content: '';
+  display: none;
+  position: absolute;
+  z-index: -1;
+  bottom: 0;
+  right: calc(50% - 50vw);
+  width: 62vw;
+  height: 90px;
+  border-top-left-radius: 90px;
+  background: var(--elif-grad-green);
+}
+
+@media (min-width: 768px) {
+  [data-page-theme='elif'] #overview::after {
+    display: block;
+  }
+}
+
+/* 프리미엄 인트로(사진+카피) — 아이보리에 초록 빛 번짐 */
+[data-page-theme='elif'] section[class*='SignaturePremiumIntro_sectionSplit'] {
+  background:
+    radial-gradient(ellipse 50% 60% at 100% 50%, rgba(5, 68, 56, 0.1), rgba(5, 68, 56, 0) 70%),
+    #f3f0e9;
+}
+
+/* 단지안내 — 아이보리 위쪽, 아래 40%는 딥그린 패널(배치도 이미지가 패널에 걸쳐 올라앉는 공식 홈페이지 구성) */
+[data-page-theme='elif'] #complex {
+  background:
+    radial-gradient(ellipse 50% 35% at 0% 0%, rgba(120, 116, 114, 0.16), rgba(120, 116, 114, 0) 70%),
+    linear-gradient(180deg, #f7f5f0 0%, #efece5 100%);
+}
+
+[data-page-theme='elif'] #complex::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 38%;
+  border-top-right-radius: 160px;
+  background: var(--elif-grad-green);
+}
+
+[data-page-theme='elif'] #complex [class*='SignatureComplexBlocks_disclaimer'] {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* 세대안내 — 아이보리 + 평면 스테이지 뒤 큰 원형 빛 번짐과 가는 원형 라인 */
+[data-page-theme='elif'] #unit-plan {
+  background:
+    radial-gradient(circle at 72% 55%, rgba(5, 68, 56, 0.12) 0, rgba(5, 68, 56, 0) 38%),
+    linear-gradient(180deg, #f8f6f1 0%, #ece8e0 100%);
+}
+
+[data-page-theme='elif'] #unit-plan::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: 900px;
+  height: 900px;
+  right: -260px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  border: 1px solid rgba(5, 68, 56, 0.14);
+  box-shadow: 0 0 0 70px rgba(255, 255, 255, 0.18), 0 0 0 71px rgba(120, 116, 114, 0.16);
+}
+
+/* 사은품 이미지 — 차콜 패널 위에 초록 이미지가 돋보이게 */
 [data-page-theme='elif'] #event {
-  background: linear-gradient(180deg, #f5f4f0 0%, #e9e7e1 100%);
+  background: var(--elif-grad-charcoal);
+  padding-top: 56px;
+  padding-bottom: 56px;
+}
+
+[data-page-theme='elif'] #event img {
+  border-radius: 14px;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.35);
 }
 
 /* 위치안내 — 공식 모바일 'SPECIAL LOCATION'처럼 위는 옅은 하늘빛, 아래로 갈수록 노을 투시도가 드러나는 배경(이미지 위쪽은 투명 페이드로 구워둠).
@@ -155,4 +258,40 @@
 
 [data-page-theme='elif'] [class*='SignatureQuickMenu_barMenu'] {
   background: var(--elif-grad-charcoal);
+}
+
+/* 세대안내 원형 라인 장식은 PC(원형 스테이지)에서만 — 모바일은 제목·탭 위로 선이 지나가 어수선함 */
+@media (max-width: 1023px) {
+  [data-page-theme='elif'] #unit-plan::before {
+    display: none;
+  }
+}
+
+/* 사은품 이미지 — 모바일은 화면 가로를 꽉 채워(여백·모서리·그림자 없이) 전체가 크게 보이게 */
+@media (max-width: 767px) {
+  [data-page-theme='elif'] #event {
+    padding: 0;
+  }
+
+  [data-page-theme='elif'] #event img {
+    width: 100%;
+    max-width: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+/* PREMIUM 6 — 모바일은 이미지가 오른쪽에 작게(38%) 붙어 답답해서, 이미지를 위에 가로 꽉 차게 크게 두고 문구를 아래로 */
+@media (max-width: 767px) {
+  [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_item__'] {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 22px;
+  }
+
+  [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_visual__'] {
+    flex: none;
+    width: 100%;
+    max-width: none;
+  }
 }

@@ -6,6 +6,14 @@
 //   세대정보(space/*_250829 — 상단 면적표는 텍스트로 옮기고 평면 부분만 크롭, 하단 유상옵션 목록 제외)
 //   이미지를 받아 크롭/webp 변환(public/apt/elif-geomdan-foredu/). 로고는 공식 logo1(흰색) 원본, 녹색 로고는 같은 파일을 #0b4a3a로 칠함.
 // 대표번호 1666-0035, 상담 접수 알림 010-2266-9007 — 2026-11-05 사용자 전달값.
+// 모바일 평면 이미지 높이(가로 580px) — public/apt/elif-geomdan-foredu/unit-*-m.webp
+const MOBILE_UNIT_HEIGHTS = {
+  'unit-64a': 1076, 'unit-64b': 1275, 'unit-64c': 995, 'unit-64d': 1268,
+  'unit-84a': 1117, 'unit-84b': 1223, 'unit-84c': 1036, 'unit-84c1': 1036, 'unit-84d': 1082, 'unit-84e': 1117, 'unit-84f': 1174,
+  'unit-98a': 980, 'unit-98b': 1094, 'unit-98b1': 1091, 'unit-98c': 941,
+  'unit-110p1': 965, 'unit-110p2': 992, 'unit-110p3': 978, 'unit-110s1': 1855, 'unit-110s2': 1670,
+}
+
 const config = {
   slug: 'elif-geomdan-foredu',
   // 엘리프검단포레듀.addupapt.kr → /apt/elif-geomdan-foredu (middleware.js)
@@ -22,15 +30,17 @@ const config = {
   // 상담 접수 알림을 카카오 알림톡으로 발송(실패 시 SMS 자동 폴백)
   kakao: true,
 
-  // 공식 홈페이지 톤 — 딥그린(#0b4a3a) + 샌드 베이지(#b59f7e) + 아이보리
+  // 공식 홈페이지 모바일 하단 톤 3색 — 딥그린(#054438) + 차콜(#302f2e) + 웜그레이(#787472). 2026-11-05 사용자 요청
+  //   섹션별 그라데이션·배경 배치와 위치안내 폰트 통일은 app/apt/[slug]/pageThemes.css의 'elif' 프리셋
   colorTheme: {
-    navy: '#0b4a3a',
-    ink: '#0b4a3a',
-    cream: '#f4f1ea',
-    gold: '#b59f7e',
-    visitBtnBg: '#0b4a3a',
+    navy: '#054438',
+    ink: '#302f2e',
+    cream: '#f2f0ea',
+    gold: '#787472',
+    visitBtnBg: '#787472',
     visitBtnColor: '#ffffff',
   },
+  pageTheme: 'elif',
 
   webfont: {
     family: "'Pretendard', var(--font-noto-sans-kr, 'Noto Sans KR'), sans-serif",
@@ -71,8 +81,8 @@ const config = {
       gnb: ['사업안내', '위치안내', '프리미엄', '단지안내', '세대안내', '관심고객등록'],
       quickCtaLabel: '관심고객등록',
       phone: '1666-0035',
-      // 히어로(노을 하늘 투시도) 위 투명 구간에서는 녹색 메뉴·전화번호 + 녹색 로고
-      transparentDark: true,
+      // 히어로는 위쪽을 어둡게 깐 슬라이드 3장이라 투명 구간에서도 흰 로고·메뉴
+      transparentDark: false,
       logoDark: {
         src: '/apt/elif-geomdan-foredu/logo-color.png',
         alt: 'ELIF 검단 포레듀',
@@ -88,7 +98,7 @@ const config = {
         enabled: true,
         // 인트로가 끝난 뒤(0.7초 후) 띄움
         afterIntro: true,
-        accentColor: '#0b4a3a',
+        accentColor: '#054438',
         title: '관심고객등록',
         desc: '상담 가능시간 10:00~18:00 (담당자와 조율가능)',
         checks: ['모델하우스 방문예약', '원하는시간 전화예약', '자료요청', '기타문의'],
@@ -103,7 +113,7 @@ const config = {
       phone: '1666-0035',
       favoriteLabel: '관심고객',
       menuLabel: 'MENU',
-      menuBg: '#0b4a3a',
+      menuBg: '#302f2e',
       ctaTargetId: 'vip-reservation',
       deskText: '엘리프 검단 포레듀\n분양 상담을 도와드립니다.',
       address: '인천광역시 서구 검단신도시 AA32BL',
@@ -119,7 +129,7 @@ const config = {
       ],
     },
 
-    // 인트로 — 용인 고림 동문 디 이스트와 같은 연출(3분할 이미지+영문 카피 → 링 펄스+브랜드). 색은 현장 딥그린/베이지
+    // 인트로 — 용인 고림 동문 디 이스트와 같은 연출(3분할 이미지+영문 카피 → 링 펄스+브랜드). 색은 공식 모바일 푸터의 진한 차콜(2026-11-05 사용자 요청)
     arkoneIntro: {
       ariaLabel: '엘리프 검단 포레듀를 소개하는 인트로',
       scenes: [
@@ -133,31 +143,50 @@ const config = {
       brandName: '엘리프 검단 포레듀',
       tagline: 'ELIF · GEOMDAN FOREDU',
       theme: {
-        base: '#0b4a3a',
-        stageOne: 'radial-gradient(circle at 50% 35%, #1d6b56 0, #0b4a3a 48%, #05261e 100%)',
-        stageTwo: 'radial-gradient(circle at center, #17604c, #0b4a3a 42%, #062a21 100%)',
-        ring: 'rgba(214, 196, 164, 0.45)',
-        accent: '#d6c4a4',
-        sub: '#e3ece8',
+        base: '#302f2e',
+        stageOne: 'radial-gradient(circle at 50% 35%, #4a4846 0, #302f2e 48%, #1a1918 100%)',
+        stageTwo: 'radial-gradient(circle at center, #42403e, #302f2e 42%, #1c1b1a 100%)',
+        ring: 'rgba(221, 219, 207, 0.4)',
+        accent: '#dddbcf',
+        sub: '#b9b4ae',
       },
     },
 
-    // 히어로 — 공식 메인 비주얼 투시도(노을) 정지 화면 + 문구(estCopy). 영상 없음
+    // 히어로 — 공식 메인 비주얼 3장 자동 슬라이드(투시도·항공조감도·등굣길 이미지컷) + 고정 문구(estCopy). 2026-11-05 사용자 요청
+    //   모바일은 공식 모바일 사이트(m/images/visual1~3) 세로 이미지. 위쪽을 어둡게 깔고 흰 글씨
     hero: {
       hideText: true,
-      overlay: false,
+      fullHeightSlides: true,
       mobileScrollMouse: true,
+      overlayGradient: {
+        mobile: 'linear-gradient(180deg, rgba(28, 27, 26, 0.72) 0%, rgba(28, 27, 26, 0.35) 42%, rgba(28, 27, 26, 0) 68%)',
+        desktop: 'linear-gradient(180deg, rgba(28, 27, 26, 0.62) 0%, rgba(28, 27, 26, 0.22) 40%, rgba(28, 27, 26, 0) 62%)',
+      },
+      slides: [
+        {
+          bgImage: { src: '/apt/elif-geomdan-foredu/hero-1.webp', alt: '엘리프 검단 포레듀 투시도' },
+          bgImageMobile: { src: '/apt/elif-geomdan-foredu/hero-1-m.webp', alt: '엘리프 검단 포레듀 투시도' },
+        },
+        {
+          bgImage: { src: '/apt/elif-geomdan-foredu/hero-2.webp', alt: '엘리프 검단 포레듀 항공 조감도' },
+          bgImageMobile: { src: '/apt/elif-geomdan-foredu/hero-2-m.webp', alt: '엘리프 검단 포레듀 항공 조감도' },
+        },
+        {
+          bgImage: { src: '/apt/elif-geomdan-foredu/hero-3.webp', alt: '단지 앞 초등학교(계획) 등굣길 이미지컷' },
+          bgImageMobile: { src: '/apt/elif-geomdan-foredu/hero-3-m.webp', alt: '단지 앞 초등학교(계획) 등굣길 이미지컷' },
+        },
+      ],
       bgImage: {
         src: '/apt/elif-geomdan-foredu/hero-1.webp',
         alt: '엘리프 검단 포레듀 투시도',
       },
-      bgPositionY: '70%',
       bgImageMobile: {
         src: '/apt/elif-geomdan-foredu/hero-1-m.webp',
         alt: '엘리프 검단 포레듀 투시도',
       },
       estCopy: {
-        color: '#0b4a3a',
+        color: '#ffffff',
+        shadow: '0 2px 18px rgba(0, 0, 0, 0.45)',
         brand: 'ELIF 엘리프 검단 포레듀',
         lines: [
           { light: '검단신도시의 ', strong: '자부심이 되다', dots: 4 },
@@ -173,9 +202,9 @@ const config = {
         announcements: [
           { badge: '안내', textStrong: '엘리프 검단 포레듀', textLight: ' 공식 안내센터입니다.' },
         ],
-        announceBg: '#0b4a3a',
+        announceBg: '#302f2e',
         bubbleText: '관심고객등록',
-        dotColor: '#b59f7e',
+        dotColor: '#787472',
         callLabel: '전화상담',
         visitLabel: '관심고객등록',
       },
@@ -290,10 +319,10 @@ const config = {
       titleAccent: 'PREMIUM',
       titleNumber: '6',
       colors: {
-        bg: '#0b4a3a',
+        bg: 'linear-gradient(135deg, #0b5a49 0%, #054438 55%, #03302a 100%)',
         head: '#a9c4b8',
-        accentOdd: '#d6c4a4',
-        accentEven: '#a9c4b8',
+        accentOdd: '#dddbcf',
+        accentEven: '#b9b4ae',
         line: '#2f6656',
       },
       cards: [
@@ -359,6 +388,12 @@ const config = {
                 width: 1300,
                 height: 1100,
               },
+              imageMobile: {
+                src: '/apt/elif-geomdan-foredu/complex-siteplan-m.webp',
+                alt: '엘리프 검단 포레듀 단지배치도(모바일)',
+                width: 580,
+                height: 500,
+              },
             },
           ],
         },
@@ -375,6 +410,12 @@ const config = {
                 width: 1300,
                 height: 1010,
               },
+              imageMobile: {
+                src: '/apt/elif-geomdan-foredu/complex-dong-m.webp',
+                alt: '엘리프 검단 포레듀 동·호배치도(모바일)',
+                width: 580,
+                height: 1460,
+              },
             },
           ],
         },
@@ -390,6 +431,12 @@ const config = {
                 width: 1300,
                 height: 2101,
               },
+              imageMobile: {
+                src: '/apt/elif-geomdan-foredu/complex-design-m.webp',
+                alt: '엘리프 검단 포레듀 단지설계(모바일)',
+                width: 580,
+                height: 1963,
+              },
             },
           ],
         },
@@ -404,6 +451,12 @@ const config = {
                 alt: '커뮤니티 — 다함께 돌봄센터, 경로당, 어린이집, 재택오피스·실내놀이터, 주민운동시설, 실내정원, 웰컴라운지, 작은도서관',
                 width: 1300,
                 height: 5040,
+              },
+              imageMobile: {
+                src: '/apt/elif-geomdan-foredu/complex-community-m.webp',
+                alt: '엘리프 검단 포레듀 커뮤니티(모바일)',
+                width: 580,
+                height: 5247,
               },
             },
           ],
@@ -529,6 +582,13 @@ function unit(letter, count, file, height, [exclusive, common, supply, otherComm
       alt: `${name} 타입 평면도(확장옵션형·확장기본형)`,
       width: 1300,
       height,
+    },
+    // 1023px 이하 — 공식 모바일 사이트 세로형 평면(확장옵션형·확장기본형 세로 배치)
+    imageMobile: {
+      src: `/apt/elif-geomdan-foredu/${file}-m.webp`,
+      alt: `${name} 타입 평면도(확장옵션형·확장기본형)`,
+      width: 580,
+      height: MOBILE_UNIT_HEIGHTS[file],
     },
     specs: { exclusive, common, supply, otherCommon, contract },
   }

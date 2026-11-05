@@ -408,7 +408,15 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
           className={cn(styles.estCopy, !videoDone && styles.estOnVideo)}
           initial="hidden"
           animate="show"
-          style={hero.estCopy.color ? { '--est-color': hero.estCopy.color } : undefined}
+          style={
+            hero.estCopy.color || hero.estCopy.shadow
+              ? {
+                  ...(hero.estCopy.color && { '--est-color': hero.estCopy.color }),
+                  // estCopy.shadow — 어두운 사진 위 흰 글씨일 때 기본 흰 빛 번짐 대신 어두운 그림자. 예: elif-geomdan-foredu
+                  ...(hero.estCopy.shadow && { '--est-shadow': hero.estCopy.shadow }),
+                }
+              : undefined
+          }
         >
           <motion.p className={styles.estBrand} custom={0.2} variants={lineVariants}>
             {hero.estCopy.brand}

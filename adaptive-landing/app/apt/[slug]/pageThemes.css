@@ -45,3 +45,113 @@
   background-clip: text;
   color: transparent;
 }
+
+/* 'elif' — 엘리프 검단 포레듀(2026-11-05 사용자 요청): 공식 홈페이지 모바일 하단처럼 3색을 섞어 씀
+   차콜(#302f2e, 푸터·안내띠·평면 스테이지) + 딥그린(#054438, 헤더·프리미엄·상담폼·전화버튼) + 웜그레이(#787472, 관심고객 CTA)
+   각 색은 같은 계열 그라데이션으로 깔고, 밝은 섹션은 흰색/아이보리(#f2f0ea)를 번갈아 */
+[data-page-theme='elif'] {
+  --elif-charcoal: #302f2e;
+  --elif-green: #054438;
+  --elif-gray: #787472;
+  --elif-grad-charcoal: linear-gradient(160deg, #3d3c3a 0%, #302f2e 55%, #222120 100%);
+  --elif-grad-green: linear-gradient(135deg, #0b5a49 0%, #054438 55%, #03302a 100%);
+  --elif-grad-gray: linear-gradient(135deg, #8d8885 0%, #787472 55%, #625e5c 100%);
+  --vipform-bg: var(--elif-grad-green);
+  background: #fff;
+}
+
+/* 밝은 섹션 배경 — 흰색 대신 웜그레이 계열 옅은 그라데이션(2026-11-05 사용자 요청 "전체적으로 배경색 변경") */
+[data-page-theme='elif'] #overview {
+  background: linear-gradient(180deg, #ffffff 0%, #f1f0ec 100%);
+}
+
+[data-page-theme='elif'] #complex {
+  background: linear-gradient(180deg, #ecebe6 0%, #e2e0da 100%);
+}
+
+[data-page-theme='elif'] #unit-plan {
+  background: linear-gradient(180deg, #f5f4f0 0%, #e9e7e1 100%);
+}
+
+/* 위치안내 — 공식 모바일 'SPECIAL LOCATION'처럼 위는 옅은 하늘빛, 아래로 갈수록 노을 투시도가 드러나는 배경(이미지 위쪽은 투명 페이드로 구워둠).
+   지도·입지 카드 아래로 투시도가 보이도록 아래 여백을 넉넉히 */
+[data-page-theme='elif'] #location {
+  background:
+    url('/apt/elif-geomdan-foredu/location-bg-m.webp') center bottom / 100% auto no-repeat,
+    #eef0f1;
+  padding-bottom: 92vw;
+}
+
+@media (min-width: 768px) {
+  [data-page-theme='elif'] #location {
+    background:
+      url('/apt/elif-geomdan-foredu/location-bg.webp') center bottom / 100% auto no-repeat,
+      #eef0f1;
+    padding-bottom: 34vw;
+  }
+}
+
+/* 위치안내 머리 문구 — 폰트를 본문(Pretendard)으로 통일하고 자간 정리, 색은 딥그린·웜그레이 */
+[data-page-theme='elif'] #location [class*='SignatureLocation_eyebrow'] {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--elif-gray);
+}
+
+[data-page-theme='elif'] #location [class*='SignatureLocation_eyebrow'] strong {
+  color: var(--elif-green);
+}
+
+[data-page-theme='elif'] #location [class*='SignatureLocation_title'] {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--elif-green);
+}
+
+/* 프리미엄6 — 딥그린 그라데이션(카드 이미지는 투명 모서리 알약형이라 그라데이션 위에서도 자연스러움) */
+[data-page-theme='elif'] #premium-value {
+  background: var(--elif-grad-green);
+}
+
+/* 세대안내 평면 스테이지 — 차콜 그라데이션 */
+[data-page-theme='elif'] [class*='SignatureUnitPlan_circleStage'] {
+  background: var(--elif-grad-charcoal);
+}
+
+/* 헤더(스크롤 후 배경) — 딥그린 그라데이션 */
+[data-page-theme='elif'] header[class*='SignatureHeader_header']:not([class*='Transparent']),
+[data-page-theme='elif'] [class*='SignatureHeader_mobileMenu'] {
+  background-image: var(--elif-grad-green);
+}
+
+/* 푸터 — 차콜(공식 홈페이지 모바일 푸터 톤) */
+[data-page-theme='elif'] [class*='SignatureFooter_footer'] {
+  background: var(--elif-grad-charcoal);
+}
+
+/* 모바일 하단 바 — 전화상담 딥그린 / 관심고객등록 웜그레이 그라데이션 */
+[data-page-theme='elif'] [class*='SignatureMobileBottomBar_callBtn'] {
+  background: var(--elif-grad-green);
+  color: #fff;
+}
+
+[data-page-theme='elif'] [class*='SignatureMobileBottomBar_visitBtn'] {
+  background: var(--elif-grad-gray);
+  color: #fff;
+}
+
+/* PC 우측 퀵메뉴 — 분양문의 딥그린 / 관심고객 웜그레이 / MENU 차콜 */
+[data-page-theme='elif'] [class*='SignatureQuickMenu_barCall'] {
+  background: var(--elif-grad-green);
+}
+
+[data-page-theme='elif'] [class*='SignatureQuickMenu_barFavorite'] {
+  background: var(--elif-grad-gray);
+}
+
+[data-page-theme='elif'] [class*='SignatureQuickMenu_barMenu'] {
+  background: var(--elif-grad-charcoal);
+}

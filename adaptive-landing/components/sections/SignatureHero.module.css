@@ -1431,7 +1431,7 @@ img.bgImageMobileOnly {
   text-align: center;
   color: var(--est-color);
   pointer-events: none;
-  text-shadow: 0 0 14px rgba(255, 255, 255, 0.6);
+  text-shadow: var(--est-shadow, 0 0 14px rgba(255, 255, 255, 0.6));
 }
 .estBrand {
   margin: 0;

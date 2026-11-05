@@ -195,6 +195,21 @@
   height: auto;
 }
 
+/* type.imageMobile이 있을 때 — 1023px 이하는 모바일 세로형 평면, 1024px 이상(원형 스테이지)은 기존 평면 */
+.planImageDesktopOnly {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .planImageDesktopOnly {
+    display: block;
+  }
+
+  .planImageMobileOnly {
+    display: none;
+  }
+}
+
 .typeTitle {
   display: flex;
   flex-direction: column;

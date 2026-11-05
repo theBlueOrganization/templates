@@ -255,7 +255,7 @@
 @media (max-width: 767px) {
   [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_item__'] {
     position: relative;
-    min-height: 330px;
+    min-height: 280px;
     margin-bottom: 14px;
     padding: 0;
     border-top: 0;
@@ -264,7 +264,7 @@
 
   [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_mobileList__'] [class*='SignaturePremiumZigzag_item__'] {
     display: block;
-    min-height: 330px;
+    min-height: 280px;
     margin-bottom: 14px;
     padding: 0;
     border-top: 0;
@@ -300,7 +300,7 @@
   }
 
   [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_label__'] {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 800;
     letter-spacing: 0.2em;
     color: #c4dccf;
@@ -310,14 +310,14 @@
     margin-top: 8px;
     font-family: var(--font-serif);
     font-weight: 500;
-    font-size: 24px;
+    font-size: 20px;
     color: #fff;
   }
 
   [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_desc__'] {
-    margin-top: 10px;
-    font-size: 13px;
-    line-height: 1.7;
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 1.65;
     color: rgba(255, 255, 255, 0.75);
   }
 

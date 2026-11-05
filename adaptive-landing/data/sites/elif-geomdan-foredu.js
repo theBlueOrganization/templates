@@ -42,15 +42,13 @@ const config = {
   },
   pageTheme: 'elif',
 
+  // 폰트는 Pretendard 하나로 통일(2026-11-05 사용자 요청 "폰트가 너무 많음") — 명조·Montserrat 등은
+  //   pageThemes.css 'elif'에서 전부 Pretendard로 덮어씀
   webfont: {
     family: "'Pretendard', var(--font-noto-sans-kr, 'Noto Sans KR'), sans-serif",
-    serifFamily: "'Nanum Myeongjo', var(--font-noto-serif-kr, 'Noto Serif KR'), serif",
     cssUrl:
       'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css',
   },
-  extraFontLinks: [
-    'https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap',
-  ],
 
   company: {
     name: '주식회사 더블루파트너스',
@@ -211,10 +209,7 @@ const config = {
         name: '엘리프 검단 포레듀',
         badge: '분양가 상한제 적용단지',
         badgeBox: true,
-        ctaBadge: {
-          ringText: 'ELIF · VISIT RESERVATION · ',
-          label: ['방문예약', '상담'],
-        },
+        // PC 우상단 회전 원형 '방문예약 상담' 배지(ctaBadge)는 빼달라는 요청으로 제거(2026-11-05)
       },
       mobileBar: {
         announcements: [
@@ -250,13 +245,29 @@ const config = {
       ],
     },
 
-    // 위치안내 — 2026-11-05 사용자 요청으로 더샵 검단 레이크파크 핵심가치(story) 디자인으로 교체:
-    //   큰 명조 제목 + 오른쪽 설명 → 숫자 3칸 → 사진 씬 4개(교통·생활·교육·분양가). 색은 pageThemes.css 'elif'(차콜 + 세이지그린)
-    //   아래 eyebrowPlain~features(기존 위치도·입지 카드)는 variant 'story'에서는 쓰지 않음(되돌릴 때를 위해 남겨둠)
+    // 위치안내(입지분석) — 2026-11-05 사용자 요청으로 더샵 검단 레이크파크 교통·입지(infrastructure) 디자인:
+    //   제목 2줄 + 설명 → 왼쪽 공식 광역 위치도(클릭 확대) / 오른쪽 번호 항목 4개. 색은 pageThemes.css 'elif'(딥그린)
+    //   story(사진 씬 디자인)·eyebrowPlain~features(기존 위치도·입지 카드)는 지금 쓰지 않음(variant만 바꾸면 되돌릴 수 있게 남겨둠)
     location: {
       id: 'location',
       navLabel: '위치안내',
-      variant: 'story',
+      variant: 'infrastructure',
+      infrastructure: {
+        eyebrow: 'ELIF SPECIAL LOCATION',
+        titlePlain: '앞으로가 더 기대되는',
+        titleAccent: '검단의 프리미엄을 더 크게',
+        desc: '단지 앞 초등학교(계획)와 수변공원을 품은 아파트, 분양가 상한제 적용단지로 합리적 내 집 마련의 기회',
+        mapImage: { src: '/apt/elif-geomdan-foredu/location-map.webp', alt: '엘리프 검단 포레듀 광역 위치도 — 검단호수공원역·인천1·2호선·GTX-D(계획) 등 교통망과 주변 생활 인프라' },
+        mapCaption: '공식 광역 위치도 · 노선 및 시설의 예정·계획 표기는 관계기관 계획에 따라 변경될 수 있습니다.',
+        // 항목 문구는 공식 홈페이지 입지환경(location-environment) 4가지 그대로
+        items: [
+          { num: '01', category: '교통', title: '교통 프리미엄', desc: '검단호수공원역 개통 및 서부권 광역급행철도 GTX-D(예정), 인천 2호선 연장 계획 등 높아지는 교통 비전' },
+          { num: '02', category: '자연', title: '쾌적한 생활', desc: '단지를 둘러싼 근린공원과 나진포천 수변공원, 자연친화 조경까지 친환경 라이프' },
+          { num: '03', category: '교육', title: '우수한 교육', desc: '단지 바로 앞 초등학교(계획)와 유치원(계획) 및 가까운 학원가로 아이 키우기 좋은 교육환경' },
+          { num: '04', category: '가치', title: '분양가 상한제', desc: '더 높아질 검단 프리미엄을 더 합리적으로 누릴 분양가 상한제 적용단지의 기회' },
+        ],
+        sourceNote: '※ 지역도는 소비자의 이해를 돕기 위해 제작한 것으로 실제와 차이가 있습니다. 개발 및 교통계획 관련 사항은 관계기관의 사정에 따라 변경 및 취소될 수 있으며, 학교 관련 사항은 해당 교육청의 결정사항으로 당사와 무관합니다.',
+      },
       story: {
         eyebrow: 'ELIF SPECIAL LOCATION',
         // 제목·설명·씬 4개 문구는 공식 홈페이지 입지환경(location-environment) 문구 그대로(2026-11-05 사용자 확인 요청)
@@ -394,36 +405,42 @@ const config = {
         {
           num: '01',
           image: { src: '/apt/elif-geomdan-foredu/premium6-01.webp', alt: '도심 속 공원 이미지컷', width: 640, height: 345 },
+          imageMobile: { src: '/apt/elif-geomdan-foredu/premium6-01-m.webp', alt: '도심 속 공원 이미지컷', width: 430, height: 300 },
           title: '자연을 누리는 에코라이프',
           desc: ['쾌적한 주거환경-어린이공원(계획),', '단지와 인접한 근린공원(계획), 수변공원(계획)'],
         },
         {
           num: '02',
           image: { src: '/apt/elif-geomdan-foredu/premium6-02.webp', alt: '뛰어노는 아이들 이미지컷', width: 640, height: 345 },
+          imageMobile: { src: '/apt/elif-geomdan-foredu/premium6-02-m.webp', alt: '뛰어노는 아이들 이미지컷', width: 430, height: 300 },
           title: '돋보이는 우수한 교육환경',
           desc: ['단지 앞 초등학교(검단 12초 계획),', '유치원(검단 유10 계획) 안심 등·하교'],
         },
         {
           num: '03',
           image: { src: '/apt/elif-geomdan-foredu/premium6-03.webp', alt: '전철 이미지컷', width: 634, height: 345 },
+          imageMobile: { src: '/apt/elif-geomdan-foredu/premium6-03-m.webp', alt: '전철 이미지컷', width: 430, height: 300 },
           title: '더 편리해지는 교통망',
           desc: ['인천지하철 1호선 검단연장선 개통,', 'GTX-D·인천2호선 고양연장선(계획) 등'],
         },
         {
           num: '04',
           image: { src: '/apt/elif-geomdan-foredu/premium6-04.webp', alt: '공원에서 운동하는 여성 이미지컷', width: 640, height: 345 },
+          imageMobile: { src: '/apt/elif-geomdan-foredu/premium6-04-m.webp', alt: '공원에서 운동하는 여성 이미지컷', width: 430, height: 300 },
           title: '기대감을 높이는 다양한 생활인프라',
           desc: ['학교·공원 앞 커낼콤플렉스(계획),', '워라밸빌리지(계획), 검단구청(계획) 등'],
         },
         {
           num: '05',
           image: { src: '/apt/elif-geomdan-foredu/premium6-05.webp', alt: '상승 그래프 이미지컷', width: 636, height: 345 },
+          imageMobile: { src: '/apt/elif-geomdan-foredu/premium6-05-m.webp', alt: '상승 그래프 이미지컷', width: 430, height: 300 },
           title: '더 합리적으로 누릴 분양가',
           desc: ['분양가 상한제 적용단지로', '더 높아질 검단 프리미엄!'],
         },
         {
           num: '06',
           image: { src: '/apt/elif-geomdan-foredu/premium6-06.webp', alt: '도시 야경 이미지컷', width: 636, height: 345 },
+          imageMobile: { src: '/apt/elif-geomdan-foredu/premium6-06-m.webp', alt: '도시 야경 이미지컷', width: 430, height: 300 },
           title: '검단신도시의 무수한 미래가치',
           desc: ['지역 개발을 통한 체계적인 인프라 구축과', '우수한 생활편의시설 등'],
         },

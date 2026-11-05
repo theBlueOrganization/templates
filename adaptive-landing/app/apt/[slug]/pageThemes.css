@@ -249,11 +249,84 @@
   }
 }
 
-/* PREMIUM 6 — 모바일 이미지가 오른쪽에 작게(38%, 최대 170px) 붙어 있어, 옆 배치는 그대로 두고 조금만 키움(46%, 최대 210px) */
+/* PREMIUM 6 모바일 — 사진 카드형(2026-11-05 사용자 요청: 위치안내 사진 씬처럼). 직사각형 모바일 이미지(card.imageMobile)를
+   카드 전체에 깔고, 아래쪽 어두운 그라데이션 위에 'PREMIUM 01.'·제목·설명을 얹음.
+   display는 모바일 목록(mobileList) 카드에만 — 오른쪽 칼럼 카드(PC용, 모바일에서 숨김)까지 보이면 04~06이 중복됨 */
 @media (max-width: 767px) {
+  [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_item__'] {
+    position: relative;
+    min-height: 330px;
+    margin-bottom: 14px;
+    padding: 0;
+    border-top: 0;
+    overflow: hidden;
+  }
+
+  [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_mobileList__'] [class*='SignaturePremiumZigzag_item__'] {
+    display: block;
+    min-height: 330px;
+    margin-bottom: 14px;
+    padding: 0;
+    border-top: 0;
+    overflow: hidden;
+  }
+
+  [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_item__']::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    background: linear-gradient(transparent 30%, rgba(20, 20, 19, 0.92));
+  }
+
   [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_visual__'] {
-    flex: 0 0 46%;
-    max-width: 210px;
+    position: absolute;
+    inset: 0;
+    max-width: none;
+  }
+
+  [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_visual__'] img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_text__'] {
+    position: absolute;
+    z-index: 2;
+    left: 20px;
+    right: 20px;
+    bottom: 22px;
+  }
+
+  [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_label__'] {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: #c4dccf;
+  }
+
+  [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_itemTitle__'] {
+    margin-top: 8px;
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 24px;
+    color: #fff;
+  }
+
+  [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_desc__'] {
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_desc__'] span {
+    display: inline;
+  }
+
+  [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_desc__'] span + span::before {
+    content: ' ';
   }
 }
 
@@ -267,4 +340,33 @@
   [data-page-theme='elif'] #hero [class*='SignatureHero_estBrand__'] {
     font-size: clamp(20px, 1.5vw, 28px);
   }
+}
+
+/* 위치안내(location.variant 'infrastructure' → SignatureInfrastructure) — 더샵 검단 네이비 포인트를 엘리프 딥그린으로 */
+[data-page-theme='elif'] #location {
+  background: #f6f4ef;
+}
+
+[data-page-theme='elif'] #location [class*='SignatureInfrastructure_eyebrow__'],
+[data-page-theme='elif'] #location h2 em,
+[data-page-theme='elif'] #location [class*='SignatureInfrastructure_list__'] span {
+  color: var(--elif-green);
+}
+
+[data-page-theme='elif'] #location h2,
+[data-page-theme='elif'] #location [class*='SignatureInfrastructure_list__'] h3 {
+  color: var(--elif-charcoal);
+}
+
+/* 폰트 통일(2026-11-05 사용자 요청) — 명조(--font-serif)·Montserrat·Cormorant·Georgia 등 섹션마다 다른 글꼴을
+   전부 현장 웹폰트(Pretendard, --font-sans)로. 공용 컴포넌트를 건드리지 않도록 이 테마 안에서만 덮어씀 */
+[data-page-theme='elif'] {
+  --font-serif: var(--font-sans);
+  --font-montserrat: var(--font-sans);
+  --font-cormorant: var(--font-sans);
+}
+
+[data-page-theme='elif'],
+[data-page-theme='elif'] * {
+  font-family: var(--font-sans) !important;
 }

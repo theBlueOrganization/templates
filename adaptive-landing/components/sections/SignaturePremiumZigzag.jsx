@@ -34,7 +34,25 @@ export default function SignaturePremiumZigzag({ premiumValue }) {
           </p>
         </div>
         <div className={styles.visual}>
-          <Image src={card.image.src} alt={card.image.alt} width={card.image.width} height={card.image.height} sizes="(max-width: 767px) 40vw, 260px" />
+          <Image
+            src={card.image.src}
+            alt={card.image.alt}
+            width={card.image.width}
+            height={card.image.height}
+            sizes="(max-width: 767px) 40vw, 260px"
+            className={card.imageMobile ? styles.visualDesktopImg : undefined}
+          />
+          {/* card.imageMobile — 767px 이하 전용 직사각형 이미지(모바일 사진 카드형 배치용). 예: elif-geomdan-foredu */}
+          {card.imageMobile && (
+            <Image
+              src={card.imageMobile.src}
+              alt={card.imageMobile.alt}
+              width={card.imageMobile.width}
+              height={card.imageMobile.height}
+              sizes="100vw"
+              className={styles.visualMobileImg}
+            />
+          )}
         </div>
       </Reveal>
     )

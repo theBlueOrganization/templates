@@ -60,3 +60,10 @@
   .desc { margin-top: 22px; font-size: 18px; }
   .visual { flex-basis: 44%; max-width: 250px; }
 }
+
+/* card.imageMobile — 767px 이하에서는 모바일 전용 이미지, 그 이상은 기존 카드 이미지 */
+.visualMobileImg { display: none !important; }
+@media (max-width: 767px) {
+  .visualMobileImg { display: block !important; }
+  .visualDesktopImg { display: none !important; }
+}

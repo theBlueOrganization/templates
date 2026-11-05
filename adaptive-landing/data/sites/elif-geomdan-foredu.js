@@ -235,7 +235,7 @@ const config = {
       navLabel: 'overview',
       title: 'overview',
       photo: {
-        src: '/apt/elif-geomdan-foredu/overview-photo.webp',
+        src: '/apt/elif-geomdan-foredu/overview-photo-v2.webp',
         alt: '엘리프 검단 포레듀 투시도',
       },
       notice: '※ 본 페이지에 사용된 CG, 이미지 및 내용은 인·허가 과정 중 변경될 수 있습니다.',

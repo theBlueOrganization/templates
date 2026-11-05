@@ -342,18 +342,30 @@
   }
 }
 
-/* 위치안내(location.variant 'infrastructure' → SignatureInfrastructure) — 더샵 검단 네이비 포인트를 엘리프 딥그린으로 */
+/* 위치안내(location.variant 'infrastructure' → SignatureInfrastructure) — 짙은 회색(차콜) 배경 + 흰 글씨(2026-11-05 사용자 요청).
+   포인트(작은 영문·번호·제목 둘째 줄)는 차콜 위에서 잘 보이는 연한 세이지그린 */
 [data-page-theme='elif'] #location {
-  background: #f6f4ef;
+  background: var(--elif-grad-charcoal);
+}
+
+[data-page-theme='elif'] #location h2,
+[data-page-theme='elif'] #location [class*='SignatureInfrastructure_list__'] h3 {
+  color: #fff;
 }
 
 [data-page-theme='elif'] #location [class*='SignatureInfrastructure_eyebrow__'],
 [data-page-theme='elif'] #location h2 em,
 [data-page-theme='elif'] #location [class*='SignatureInfrastructure_list__'] span {
-  color: var(--elif-green);
+  color: #a9c9ba;
 }
 
-[data-page-theme='elif'] #location h2,
-[data-page-theme='elif'] #location [class*='SignatureInfrastructure_list__'] h3 {
-  color: var(--elif-charcoal);
+[data-page-theme='elif'] #location [class*='SignatureInfrastructure_desc__'],
+[data-page-theme='elif'] #location [class*='SignatureInfrastructure_list__'] p,
+[data-page-theme='elif'] #location [class*='SignatureInfrastructure_sourceNote__'] {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+[data-page-theme='elif'] #location [class*='SignatureInfrastructure_list__'],
+[data-page-theme='elif'] #location [class*='SignatureInfrastructure_list__'] article {
+  border-color: rgba(255, 255, 255, 0.18);
 }

@@ -357,16 +357,3 @@
 [data-page-theme='elif'] #location [class*='SignatureInfrastructure_list__'] h3 {
   color: var(--elif-charcoal);
 }
-
-/* 폰트 통일(2026-11-05 사용자 요청) — 명조(--font-serif)·Montserrat·Cormorant·Georgia 등 섹션마다 다른 글꼴을
-   전부 현장 웹폰트(Pretendard, --font-sans)로. 공용 컴포넌트를 건드리지 않도록 이 테마 안에서만 덮어씀 */
-[data-page-theme='elif'] {
-  --font-serif: var(--font-sans);
-  --font-montserrat: var(--font-sans);
-  --font-cormorant: var(--font-sans);
-}
-
-[data-page-theme='elif'],
-[data-page-theme='elif'] * {
-  font-family: var(--font-sans) !important;
-}

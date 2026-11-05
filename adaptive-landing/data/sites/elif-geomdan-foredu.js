@@ -42,13 +42,15 @@ const config = {
   },
   pageTheme: 'elif',
 
-  // 폰트는 Pretendard 하나로 통일(2026-11-05 사용자 요청 "폰트가 너무 많음") — 명조·Montserrat 등은
-  //   pageThemes.css 'elif'에서 전부 Pretendard로 덮어씀
   webfont: {
     family: "'Pretendard', var(--font-noto-sans-kr, 'Noto Sans KR'), sans-serif",
+    serifFamily: "'Nanum Myeongjo', var(--font-noto-serif-kr, 'Noto Serif KR'), serif",
     cssUrl:
       'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css',
   },
+  extraFontLinks: [
+    'https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap',
+  ],
 
   company: {
     name: '주식회사 더블루파트너스',

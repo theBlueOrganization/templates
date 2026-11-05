@@ -171,6 +171,8 @@ const config = {
     hero: {
       hideText: true,
       fullHeightSlides: true,
+      // 모바일 세로 이미지 맨 아래 건물이 하단 안내띠에 가려 잘려 보여서, 이미지를 안내띠 위에서 끝나게(2026-11-05)
+      mobileBgBottomInset: 40,
       mobileScrollMouse: true,
       overlayGradient: {
         mobile: 'linear-gradient(180deg, rgba(28, 27, 26, 0.72) 0%, rgba(28, 27, 26, 0.35) 42%, rgba(28, 27, 26, 0) 68%)',
@@ -246,10 +248,48 @@ const config = {
       ],
     },
 
-    // 위치안내 — 입지환경(location-environment) 광역 위치도 + 4가지 입지 항목
+    // 위치안내 — 2026-11-05 사용자 요청으로 더샵 검단 레이크파크 핵심가치(story) 디자인으로 교체:
+    //   큰 명조 제목 + 오른쪽 설명 → 숫자 3칸 → 사진 씬(넓게 1 + 반반 2). 색은 pageThemes.css 'elif'(차콜 + 세이지그린)
+    //   아래 eyebrowPlain~features(기존 위치도·입지 카드)는 variant 'story'에서는 쓰지 않음(되돌릴 때를 위해 남겨둠)
     location: {
       id: 'location',
       navLabel: '위치안내',
+      variant: 'story',
+      story: {
+        eyebrow: 'ELIF SPECIAL LOCATION',
+        titleLine1: '교육·수변·가치,',
+        titleAccent: '세 가지 가치가 한곳에',
+        desc: '단지 바로 앞 초등학교(계획)와 유치원(계획), 나진포천 수변공원과 근린공원, 그리고 분양가 상한제까지. 앞으로가 더 기대되는 검단의 프리미엄을 더 크게 누립니다.',
+        numbers: [
+          { value: '669', label: '전용 64·84·98·110㎡ 총 세대수' },
+          { value: '20', label: '중소형부터 중대형까지 평면 타입' },
+          { value: '11', label: '지하 3층~지상 15층 단지 동수' },
+        ],
+        scenes: [
+          {
+            type: 'image',
+            wide: true,
+            image: { src: '/apt/elif-geomdan-foredu/hero-1.webp', alt: '나진포천 수변공원 옆 엘리프 검단 포레듀 투시도' },
+            tag: '01 · WATERFRONT',
+            title: '매일 가까이 누리는 수변의 여유',
+            desc: '단지를 둘러싼 근린공원과 나진포천 수변공원, 자연친화 조경까지 친환경 라이프',
+          },
+          {
+            type: 'image',
+            image: { src: '/apt/elif-geomdan-foredu/hero-3.webp', alt: '등굣길 이미지컷' },
+            tag: '02 · EDUCATION',
+            title: '단지 바로 앞 초등학교(계획)',
+            desc: '유치원(계획)과 가까운 학원가까지, 아이 키우기 좋은 교육환경',
+          },
+          {
+            type: 'image',
+            image: { src: '/apt/elif-geomdan-foredu/hero-2.webp', alt: '엘리프 검단 포레듀 항공 조감도' },
+            tag: '03 · VALUE',
+            title: '더 합리적으로 누리는 분양가',
+            desc: '분양가 상한제 적용단지, 검단호수공원역·GTX-D(예정) 등 높아지는 교통 비전',
+          },
+        ],
+      },
       eyebrowPlain: '앞으로가 더 기대되는 ',
       eyebrowAccent: '검단의 프리미엄',
       title: 'Special Location',

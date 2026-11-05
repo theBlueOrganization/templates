@@ -121,27 +121,9 @@
     #f3f0e9;
 }
 
-/* 단지안내 — 아이보리 위쪽, 아래 40%는 딥그린 패널(배치도 이미지가 패널에 걸쳐 올라앉는 공식 홈페이지 구성) */
+/* 단지안내 — 배치도·동호표 등 도면 이미지가 잘 보이도록 흰 배경(2026-11-05 사용자 요청) */
 [data-page-theme='elif'] #complex {
-  background:
-    radial-gradient(ellipse 50% 35% at 0% 0%, rgba(120, 116, 114, 0.16), rgba(120, 116, 114, 0) 70%),
-    linear-gradient(180deg, #f7f5f0 0%, #efece5 100%);
-}
-
-[data-page-theme='elif'] #complex::after {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 38%;
-  border-top-right-radius: 160px;
-  background: var(--elif-grad-green);
-}
-
-[data-page-theme='elif'] #complex [class*='SignatureComplexBlocks_disclaimer'] {
-  color: rgba(255, 255, 255, 0.6);
+  background: #fff;
 }
 
 /* 세대안내 — 아이보리 + 평면 스테이지 뒤 큰 원형 빛 번짐과 가는 원형 라인 */
@@ -177,42 +159,28 @@
   box-shadow: 0 24px 50px rgba(0, 0, 0, 0.35);
 }
 
-/* 위치안내 — 공식 모바일 'SPECIAL LOCATION'처럼 위는 옅은 하늘빛, 아래로 갈수록 노을 투시도가 드러나는 배경(이미지 위쪽은 투명 페이드로 구워둠).
-   지도·입지 카드 아래로 투시도가 보이도록 아래 여백을 넉넉히 */
+/* 위치안내(location.variant 'story' → SignatureSellingStory) — 더샵 검단 핵심가치 디자인(네이비 + 하늘색)을
+   엘리프 톤으로: 바탕은 진한 차콜, 포인트(제목 강조·숫자·태그)는 세이지그린, 사진 아래 그라데이션도 차콜 */
 [data-page-theme='elif'] #location {
-  background:
-    url('/apt/elif-geomdan-foredu/location-bg-m.webp') center bottom / 100% auto no-repeat,
-    #eef0f1;
-  padding-bottom: 92vw;
+  background: linear-gradient(180deg, #1f1e1d 0%, #2a2928 55%, #302f2e 100%);
 }
 
-@media (min-width: 768px) {
-  [data-page-theme='elif'] #location {
-    background:
-      url('/apt/elif-geomdan-foredu/location-bg.webp') center bottom / 100% auto no-repeat,
-      #eef0f1;
-    padding-bottom: 34vw;
-  }
+[data-page-theme='elif'] #location [class*='SignatureSellingStory_eyebrow__'] {
+  color: #b9b4ae;
 }
 
-/* 위치안내 머리 문구 — 폰트를 본문(Pretendard)으로 통일하고 자간 정리, 색은 딥그린·웜그레이 */
-[data-page-theme='elif'] #location [class*='SignatureLocation_eyebrow'] {
-  font-family: var(--font-sans);
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  color: var(--elif-gray);
+[data-page-theme='elif'] #location h2 em,
+[data-page-theme='elif'] #location [class*='SignatureSellingStory_numberItem__'] strong {
+  color: #a9c9ba;
 }
 
-[data-page-theme='elif'] #location [class*='SignatureLocation_eyebrow'] strong {
-  color: var(--elif-green);
+[data-page-theme='elif'] #location [class*='SignatureSellingStory_sceneCopy__'] span {
+  color: #c4dccf;
 }
 
-[data-page-theme='elif'] #location [class*='SignatureLocation_title'] {
-  font-family: var(--font-sans);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--elif-green);
+[data-page-theme='elif'] #location [class*='SignatureSellingStory_scene__']::after,
+[data-page-theme='elif'] #location [class*='SignatureSellingStory_sceneWide__']::after {
+  background: linear-gradient(transparent 38%, rgba(24, 23, 22, 0.92));
 }
 
 /* 프리미엄6 — 딥그린 그라데이션(카드 이미지는 투명 모서리 알약형이라 그라데이션 위에서도 자연스러움) */
@@ -281,17 +249,10 @@
   }
 }
 
-/* PREMIUM 6 — 모바일은 이미지가 오른쪽에 작게(38%) 붙어 답답해서, 이미지를 위에 가로 꽉 차게 크게 두고 문구를 아래로 */
+/* PREMIUM 6 — 모바일 이미지가 오른쪽에 작게(38%, 최대 170px) 붙어 있어, 옆 배치는 그대로 두고 조금만 키움(46%, 최대 210px) */
 @media (max-width: 767px) {
-  [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_item__'] {
-    flex-direction: column-reverse;
-    align-items: stretch;
-    gap: 22px;
-  }
-
   [data-page-theme='elif'] #premium-value [class*='SignaturePremiumZigzag_visual__'] {
-    flex: none;
-    width: 100%;
-    max-width: none;
+    flex: 0 0 46%;
+    max-width: 210px;
   }
 }

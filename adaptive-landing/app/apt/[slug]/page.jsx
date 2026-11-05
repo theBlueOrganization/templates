@@ -342,7 +342,10 @@ export default async function AptPage({ params }) {
         {sig.vipForm.showAfterSummary && (
           <SignatureVipForm config={site} sectionId={`${sig.vipForm.id}-early`} />
         )}
-        {sig.location.variant === 'vision' ? (
+        {/* location.variant 'story' — 위치안내 자리를 핵심가치(SignatureSellingStory, 더샵 검단 디자인)로 대체. 예: elif-geomdan-foredu */}
+        {sig.location.variant === 'story' ? (
+          <SignatureSellingStory story={{ ...sig.location.story, id: sig.location.id }} />
+        ) : sig.location.variant === 'vision' ? (
           <SignatureLocationVision location={sig.location} />
         ) : (
           <SignatureLocation location={sig.location} />

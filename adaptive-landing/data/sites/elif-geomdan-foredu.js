@@ -91,13 +91,27 @@ const config = {
       },
     },
 
-    // 진입 시 관심고객 팝업 — 이미지 팝업 없이 방문예약 폼만
+    // 진입 팝업 — 1번 사용자 제공 이미지(검단신도시 마지막 내집마련 특급찬스, 2026-11-05) → 닫으면 2번 방문예약 폼
+    //   이미지는 원본 popup.png의 바깥 어두운 테두리를 잘라내고 둥근 모서리로(popup-1.webp)
     popup: {
-      enabled: false,
+      enabled: true,
+      order: 'imageFirst',
+      // 전체화면 인트로가 끝난 뒤에 띄움
+      afterIntro: true,
+      openDelayMs: 700,
+      closeIcon: true,
+      fitViewport: true,
+      maxWidth: 380,
+      images: [
+        {
+          src: '/apt/elif-geomdan-foredu/popup-1.webp',
+          alt: '검단신도시 마지막 내집마련 특급찬스 — 검단신도시 최저분양가, 분양가 상한제 아파트, 청약통장 없이 선착순 계약, 수변공원·근린공원 친환경, 유치원·단지앞 초등학교. 전화 1666-0035',
+          width: 1013,
+          height: 1468,
+        },
+      ],
       visitForm: {
         enabled: true,
-        // 인트로가 끝난 뒤(0.7초 후) 띄움
-        afterIntro: true,
         accentColor: '#054438',
         title: '관심고객등록',
         desc: '상담 가능시간 10:00~18:00 (담당자와 조율가능)',
@@ -522,6 +536,16 @@ const config = {
           ],
         },
       ],
+    },
+
+    // 관심고객등록(맨 아래) 바로 위 이미지 — 사용자 제공 '모델하우스 방문예약 고객 특별 사은품 VIP 건강검진권'(2026-11-05)
+    eventImage: {
+      id: 'event',
+      src: '/apt/elif-geomdan-foredu/event-gift.webp',
+      alt: '모델하우스 방문 예약 고객님께 드리는 특별 사은품 혜택 — 방문예약 후 모델하우스 방문 시 VIP 건강검진권 증정. 사은품은 방문예약하신 담당자를 통해서만 직접방문시 제공됩니다.',
+      width: 1254,
+      height: 1254,
+      maxWidth: 760,
     },
 
     // 관심고객등록 폼 — 히어로 다음 + 페이지 맨 아래 두 번 렌더링

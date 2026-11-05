@@ -69,7 +69,8 @@
   background: linear-gradient(180deg, #ecebe6 0%, #e2e0da 100%);
 }
 
-[data-page-theme='elif'] #unit-plan {
+[data-page-theme='elif'] #unit-plan,
+[data-page-theme='elif'] #event {
   background: linear-gradient(180deg, #f5f4f0 0%, #e9e7e1 100%);
 }
 

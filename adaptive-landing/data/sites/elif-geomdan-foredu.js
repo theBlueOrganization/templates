@@ -5,7 +5,7 @@
 //   단지설계(plan1), 단지배치도(layout1), 동호배치도(building-layout1), 커뮤니티(community1),
 //   세대정보(space/*_250829 — 상단 면적표는 텍스트로 옮기고 평면 부분만 크롭, 하단 유상옵션 목록 제외)
 //   이미지를 받아 크롭/webp 변환(public/apt/elif-geomdan-foredu/). 로고는 공식 logo1(흰색) 원본, 녹색 로고는 같은 파일을 #0b4a3a로 칠함.
-// 대표번호 1666-0035, 상담 접수 알림 010-2266-9007 — 2026-11-05 사용자 전달값.
+// 대표번호 1666-7008, 상담 접수 알림 010-2266-9007 — 2026-11-05 사용자 전달값.
 // 모바일 평면 이미지 높이(가로 580px) — public/apt/elif-geomdan-foredu/unit-*-m.webp
 const MOBILE_UNIT_HEIGHTS = {
   'unit-64a': 1076, 'unit-64b': 1275, 'unit-64c': 995, 'unit-64d': 1268,
@@ -20,7 +20,7 @@ const config = {
   subdomain: '엘리프검단포레듀',
   projectName: '엘리프 검단 포레듀',
   shortName: '엘리프 검단 포레듀',
-  telNumber: '1666-0035',
+  telNumber: '1666-7008',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/elif-geomdan-foredu/og.jpg',
   // 상담신청 알림 수신번호
   adminPhones: ['01022669007'],
@@ -81,7 +81,7 @@ const config = {
       gnb: ['사업안내', '위치안내', '프리미엄', '단지안내', '세대안내', '방문예약상담'],
       // 헤더 우측 '방문예약상담' 버튼 — 한때 뺐다가 복구 요청(2026-11-05). 빈 값('')이면 숨김
       quickCtaLabel: '방문예약상담',
-      phone: '1666-0035',
+      phone: '1666-7008',
       // 히어로는 위쪽을 어둡게 깐 슬라이드 3장이라 투명 구간에서도 흰 로고·메뉴
       transparentDark: false,
       logoDark: {
@@ -106,7 +106,7 @@ const config = {
       images: [
         {
           src: '/apt/elif-geomdan-foredu/popup-1.webp',
-          alt: '검단신도시 마지막 내집마련 특급찬스 — 검단신도시 최저분양가, 분양가 상한제 아파트, 청약통장 없이 선착순 계약, 수변공원·근린공원 친환경, 유치원·단지앞 초등학교. 전화 1666-0035',
+          alt: '검단신도시 마지막 내집마련 특급찬스 — 검단신도시 최저분양가, 분양가 상한제 아파트, 청약통장 없이 선착순 계약, 수변공원·근린공원 친환경, 유치원·단지앞 초등학교. 전화 1666-7008',
           width: 1013,
           height: 1468,
         },
@@ -125,7 +125,7 @@ const config = {
     quickMenu: {
       brand: 'ELIF',
       phoneLabel: '분양문의',
-      phone: '1666-0035',
+      phone: '1666-7008',
       favoriteLabel: '방문예약',
       menuLabel: 'MENU',
       menuBg: '#302f2e',
@@ -665,7 +665,7 @@ const config = {
         '※ 본 자료에 표현된 현황, 개발계획, 예정사항 등은 관계기관의 홈페이지 및 해당기관의 고시 등을 참조하여 작성된 것으로 사업계획 및 일정은 당사자와는 무관하며 사업주체 및 해당관청의 사정에 의해 지연, 변경 또는 취소될 수 있습니다.',
         '※ 제작, 편집, 인쇄과정상 오탈자 등의 오류가 있을 수 있으니, 계약 전 반드시 견본주택 관계자에게 문의하시기 바랍니다.',
       ],
-      csPhone: '1666-0035',
+      csPhone: '1666-7008',
       csHours: 'AM 09:00 ~ PM 19:00',
     },
   },

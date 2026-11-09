@@ -757,3 +757,38 @@
 [data-page-theme='centreville'] #promo-checklist {
   background: #0b1a4a;
 }
+
+/* 모바일 히어로 문구를 위로 — 투시도 건물과 겹치지 않게 하늘 영역 위쪽에 배치 */
+@media (max-width: 1023px) {
+  [data-page-theme='centreville'] [class*='SignatureHero_estCopy'] {
+    top: calc(var(--header-h, 64px) + 1.5vh);
+  }
+  [data-page-theme='centreville'] [class*='SignatureHero_estName']::before {
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+  [data-page-theme='centreville'] [class*='SignatureHero_estBadgeBox'] {
+    margin-top: 14px;
+  }
+}
+
+/* 위치안내 제목·항목 제목 — 명조(serif) 대신 프리텐다드 고딕 */
+[data-page-theme='centreville'] [class*='SignatureInfrastructure_heading'] h2,
+[data-page-theme='centreville'] [class*='SignatureInfrastructure_list'] h3 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+[data-page-theme='centreville'] [class*='SignatureInfrastructure_list'] h3 {
+  font-size: clamp(21px, 2.1vw, 26px);
+}
+
+/* 푸터 강조 문구 — 단어 중간('대단/지')에서 끊기지 않게 */
+[data-page-theme='centreville'] [class*='SignatureFooter_highlightText'] {
+  word-break: keep-all;
+}
+@media (max-width: 480px) {
+  [data-page-theme='centreville'] [class*='SignatureFooter_highlightText'] {
+    font-size: 17px;
+  }
+}

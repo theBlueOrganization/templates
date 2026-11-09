@@ -244,7 +244,7 @@ const config = {
       ],
       imageBadge: '이미지컷',
       bgImage: {
-        src: '/apt/geomdan-centreville-educity/premium-split.webp',
+        src: '/apt/geomdan-centreville-educity/premium-split-v2.webp',
         alt: '센트레 그랜드 파크 티하우스 라운지 이미지컷',
       },
     },
@@ -282,8 +282,8 @@ const config = {
         },
         {
           num: '03',
-          image: { src: '/apt/geomdan-centreville-educity/premium-03.webp', alt: '스포웰 피트니스 이미지컷', width: 640, height: 345 },
-          imageMobile: { src: '/apt/geomdan-centreville-educity/premium-03-m.webp', alt: '스포웰 피트니스 이미지컷', width: 430, height: 300 },
+          image: { src: '/apt/geomdan-centreville-educity/premium-03-v2.webp', alt: '스포웰 피트니스 이미지컷', width: 640, height: 345 },
+          imageMobile: { src: '/apt/geomdan-centreville-educity/premium-03-m-v2.webp', alt: '스포웰 피트니스 이미지컷', width: 430, height: 300 },
           title: '센트웰 프레스티지 커뮤니티',
           desc: ['스포웰 / 컬트웰 / 에듀웰 / 키즈웰로 구성된', '센트웰 프레스티지 커뮤니티'],
         },

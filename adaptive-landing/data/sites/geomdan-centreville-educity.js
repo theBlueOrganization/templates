@@ -363,16 +363,6 @@ const config = {
       ],
     },
 
-    // 방문예약상담 바로 위 — 원본 '이 곳 홈페이지를 통한 방문예약자 및 계약자에게 특별선물 증정'
-    eventImage: {
-      id: 'event',
-      src: '/apt/geomdan-centreville-educity/event-gift.webp',
-      alt: '이 곳 홈페이지를 통한 방문예약자 및 계약자에게 특별선물 증정 — Surprise Gift',
-      width: 964,
-      height: 796,
-      maxWidth: 760,
-    },
-
     vipForm: {
       id: 'vip-reservation',
       eyebrow: 'VISIT RESERVATION',

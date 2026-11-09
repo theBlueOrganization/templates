@@ -134,7 +134,7 @@ const config = {
         desktop: 'linear-gradient(180deg, rgba(11, 26, 74, 0.3) 0%, rgba(11, 26, 74, 0) 45%)',
       },
       bgImage: {
-        src: '/apt/geomdan-centreville-educity/hero-1.webp',
+        src: '/apt/geomdan-centreville-educity/hero-1-v2.webp',
         alt: '검단 센트레빌 에듀시티 투시도',
       },
       bgImageMobile: {

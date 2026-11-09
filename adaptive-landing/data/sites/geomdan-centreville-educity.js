@@ -113,7 +113,7 @@ const config = {
       ctaTargetId: 'vip-reservation',
       deskText: '검단 센트레빌 에듀시티\n분양 상담을 도와드립니다.',
       address: '인천광역시 서구 당하동 검단지구 AB8블록',
-      tagline: '단지 앞 유·초·중·고, 검단신도시 1,534세대 브랜드 대단지',
+      tagline: '검단신도시 1,534세대 브랜드 대단지',
       items: [
         { num: '01', label: 'MAIN', sub: '메인페이지', targetId: 'hero' },
         { num: '02', label: 'OVERVIEW', sub: '사업안내', targetId: 'overview' },
@@ -282,8 +282,8 @@ const config = {
         },
         {
           num: '03',
-          image: { src: '/apt/geomdan-centreville-educity/premium-03.webp', alt: '커뮤니티 라운지 이미지컷', width: 640, height: 345 },
-          imageMobile: { src: '/apt/geomdan-centreville-educity/premium-03-m.webp', alt: '커뮤니티 라운지 이미지컷', width: 430, height: 300 },
+          image: { src: '/apt/geomdan-centreville-educity/premium-03.webp', alt: '스포웰 피트니스 이미지컷', width: 640, height: 345 },
+          imageMobile: { src: '/apt/geomdan-centreville-educity/premium-03-m.webp', alt: '스포웰 피트니스 이미지컷', width: 430, height: 300 },
           title: '센트웰 프레스티지 커뮤니티',
           desc: ['스포웰 / 컬트웰 / 에듀웰 / 키즈웰로 구성된', '센트웰 프레스티지 커뮤니티'],
         },
@@ -315,7 +315,7 @@ const config = {
       titleAccent: '안내',
       categories: [
         complexTab('단지배치도', 'siteplan', 'complex-siteplan', 990, 675, '검단 센트레빌 에듀시티 단지배치도(1601~1617동) — 365m 대형 중앙광장과 2,000m 산책로, 총 1,534세대'),
-        complexTab('마스터플랜', 'masterplan', 'complex-masterplan', 1211, 673, '검단 센트레빌 에듀시티 마스터플랜 — 365m 중앙광장, 2,000m 산책로'),
+        complexTab('마스터플랜', 'masterplan', 'complex-masterplan', 1336, 830, '검단 내 최대 규모를 자랑하는 센트레 그랜드 파크 — GRAND 365(365M 대형중앙광장), PROMENADE 2000(2,000M 산책로를 따라 조성되는 20개의 테마 정원)'),
         complexTab('조경', 'landscape', 'complex-landscape', 1200, 1542, '조경 — 시그니처 게이트, 그랜드 365(365m 대형 중앙광장), 프롬나드 2000(2,000m 산책로를 따라 조성되는 20개의 테마정원)'),
         complexTab('동·호수배치', 'dong', 'complex-dong', 1080, 3357, '입주자 중심의 차별화된 동·호수 배치 — 74㎡A 149세대, 74㎡B 71세대, 84㎡A 579세대, 84㎡B 261세대, 101㎡A 275세대, 101㎡B 66세대, 101㎡C 125세대, 120㎡(P) 8세대'),
         complexTab('커뮤니티', 'community', 'complex-community', 1300, 3380, '센트웰 프레스티지 커뮤니티 — 스포웰(피트니스·스크린골프·GX룸·사우나), 에듀&키즈웰(독서실·작은도서관·키즈 플레이 클럽·어린이집), 컬트웰(티하우스·아너스라운지·게스트하우스)'),
@@ -388,7 +388,7 @@ const config = {
       },
       logoAlign: 'center',
       logoWidth: 170,
-      highlightText: '단지 앞 유·초·중·고,\n검단신도시 1,534세대 브랜드 대단지\n검단 센트레빌 에듀시티',
+      highlightText: '검단신도시 1,534세대 브랜드 대단지\n검단 센트레빌 에듀시티',
       agencySlogan: '분양완판 전문가 그룹, (주) 더블루파트너스',
       companyLines: [
         { label: '시공', value: '동부건설(주)' },

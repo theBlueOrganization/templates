@@ -8,7 +8,7 @@ export default function SiteFooter({ company, telNumber, hideLeadContact, footer
           <p className={styles.leadContact}><span className={styles.leadKey}>대표 분양 상담 문의</span>{telNumber}</p>
         )}
 
-        <p className={styles.agencyLabel}>홈페이지 운영·관리 대행사</p>
+        <p className={styles.agencyLabel}>{company.label || "홈페이지 운영·관리 대행사"}</p>
         <div className={styles.info}>
           <span className={styles.key}>담당회사</span>
           <span className={styles.value}>{company.name}</span>

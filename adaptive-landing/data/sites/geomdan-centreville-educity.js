@@ -3,7 +3,7 @@
 // 출처: 분양 홍보 페이지(https://showhouse.iwinv.net/0226/) 이미지 — 분양조건(이 조건 지금만 가능)·체크포인트·위치도·방문 전 체크리스트,
 //   PREMIUM 5, 커뮤니티(센트웰), 단지배치도·마스터플랜·조경·동호수배치, 평면(84A·84B·101A·101B·101C·120P)을 받아 크롭/webp 변환
 //   (public/apt/geomdan-centreville-educity/). 74㎡A·B 평면은 원본 페이지에 없어 세대안내에서 제외.
-//   히어로는 분양조건 이미지의 단지 투시도 띠 위로 남색 하늘을 이어 붙여 합성. 로고는 텍스트 로고(logo-white/color.png).
+//   히어로는 분양조건 이미지의 단지 투시도 띠 위로 남색 하늘을 이어 붙여 합성. 로고는 원본 홍보물의 센트레빌 로고를 투명 배경으로 다시 그림(logo-white/color.png, 1200×320).
 // 대표번호 1866-1040, 상담 접수 알림 010-5178-0565 — 2026-11-09 사용자 전달값.
 const config = {
   slug: 'geomdan-centreville-educity',
@@ -21,13 +21,13 @@ const config = {
   // 상담 접수 알림을 카카오 알림톡으로 발송(실패 시 SMS 자동 폴백)
   kakao: true,
 
-  // 홍보물 톤 3색 — 남색(#13204a) + 블루(#0b5fae) + 골드(#a68a5b). 섹션 배치는 app/apt/[slug]/pageThemes.css의 'centreville' 프리셋
+  // 사용자 제공 시안(Development Business, 2026-11-09) 톤 — 딥네이비(#0b1a4a) + 스틸블루(#2f5584) + 라이트 스틸블루(#5b7ca6). 섹션 배치는 app/apt/[slug]/pageThemes.css의 'centreville' 프리셋
   colorTheme: {
-    navy: '#0b5fae',
-    ink: '#13204a',
-    cream: '#f2f0ea',
-    gold: '#a68a5b',
-    visitBtnBg: '#a68a5b',
+    navy: '#2f5584',
+    ink: '#0b1a4a',
+    cream: '#eef2f7',
+    gold: '#5b7ca6',
+    visitBtnBg: '#5b7ca6',
     visitBtnColor: '#ffffff',
   },
   pageTheme: 'centreville',
@@ -60,10 +60,10 @@ const config = {
       logo: {
         src: '/apt/geomdan-centreville-educity/logo-white.png',
         alt: '검단 센트레빌 에듀시티',
-        width: 560,
-        height: 96,
+        width: 1200,
+        height: 320,
       },
-      logoSize: { base: 150, lg: 180, xl: 200 },
+      logoSize: { base: 120, lg: 140, xl: 150 },
       gnb: ['사업안내', '위치안내', '프리미엄', '단지안내', '세대안내', '방문예약상담'],
       quickCtaLabel: '방문예약상담',
       phone: '1866-1040',
@@ -71,8 +71,8 @@ const config = {
       logoDark: {
         src: '/apt/geomdan-centreville-educity/logo-color.png',
         alt: '검단 센트레빌 에듀시티',
-        width: 560,
-        height: 96,
+        width: 1200,
+        height: 320,
       },
     },
 
@@ -94,7 +94,7 @@ const config = {
       ],
       visitForm: {
         enabled: true,
-        accentColor: '#0b5fae',
+        accentColor: '#2f5584',
         title: '방문예약상담',
         desc: '상담 가능시간 10:00~18:00 (담당자와 조율가능)',
         checks: ['모델하우스 방문예약', '원하는시간 전화예약'],
@@ -109,7 +109,7 @@ const config = {
       phone: '1866-1040',
       favoriteLabel: '방문예약',
       menuLabel: 'MENU',
-      menuBg: '#13204a',
+      menuBg: '#0b1a4a',
       ctaTargetId: 'vip-reservation',
       deskText: '검단 센트레빌 에듀시티\n분양 상담을 도와드립니다.',
       address: '인천광역시 서구 당하동 검단지구 AB8블록',
@@ -130,8 +130,8 @@ const config = {
       hideText: true,
       mobileScrollMouse: true,
       overlayGradient: {
-        mobile: 'linear-gradient(180deg, rgba(11, 20, 51, 0.35) 0%, rgba(11, 20, 51, 0) 50%)',
-        desktop: 'linear-gradient(180deg, rgba(11, 20, 51, 0.3) 0%, rgba(11, 20, 51, 0) 45%)',
+        mobile: 'linear-gradient(180deg, rgba(11, 26, 74, 0.35) 0%, rgba(11, 26, 74, 0) 50%)',
+        desktop: 'linear-gradient(180deg, rgba(11, 26, 74, 0.3) 0%, rgba(11, 26, 74, 0) 45%)',
       },
       bgImage: {
         src: '/apt/geomdan-centreville-educity/hero-1.webp',
@@ -158,9 +158,9 @@ const config = {
         announcements: [
           { badge: '안내', textStrong: '검단 센트레빌 에듀시티', textLight: ' 선착순 동·호 지정 계약 중' },
         ],
-        announceBg: '#13204a',
+        announceBg: '#0b1a4a',
         bubbleText: '방문예약상담',
-        dotColor: '#a68a5b',
+        dotColor: '#5b7ca6',
         callLabel: '전화상담',
         visitLabel: '방문예약상담',
       },
@@ -259,11 +259,11 @@ const config = {
       titleAccent: 'PREMIUM',
       titleNumber: '5',
       colors: {
-        bg: 'linear-gradient(135deg, #1474c9 0%, #0b5fae 55%, #084682 100%)',
-        head: '#cfe2f5',
-        accentOdd: '#f0dfb8',
-        accentEven: '#e2cc9c',
-        line: '#3d82c4',
+        bg: 'linear-gradient(135deg, #3d6491 0%, #2f5584 55%, #223f66 100%)',
+        head: '#d6e3f3',
+        accentOdd: '#d6e3f3',
+        accentEven: '#b9cde6',
+        line: '#4f709b',
       },
       cards: [
         {
@@ -393,11 +393,11 @@ const config = {
       logo: {
         src: '/apt/geomdan-centreville-educity/logo-white.png',
         alt: '검단 센트레빌 에듀시티',
-        width: 560,
-        height: 96,
+        width: 1200,
+        height: 320,
       },
       logoAlign: 'center',
-      logoWidth: 220,
+      logoWidth: 170,
       highlightText: '단지 앞 유·초·중·고,\n검단신도시 1,534세대 브랜드 대단지\n검단 센트레빌 에듀시티',
       agencySlogan: '분양완판 전문가 그룹, (주) 더블루파트너스',
       companyLines: [

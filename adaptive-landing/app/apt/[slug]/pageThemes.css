@@ -396,15 +396,15 @@
 }
 
 /* 'centreville' — 검단 센트레빌 에듀시티(2026-11-09): 'elif' 프리셋 구성을 그대로 쓰고 색만 분양 홍보물 톤으로
-   남색(#13204a, 푸터·위치안내·사은품·평면 스테이지) + 블루(#0b5fae, 헤더·프리미엄·상담폼·전화버튼) + 골드(#a68a5b, 방문예약 CTA) */
+   딥네이비(#0b1a4a, 푸터·위치안내·사은품·평면 스테이지) + 스틸블루(#2f5584, 헤더·프리미엄·상담폼·전화버튼) + 라이트 스틸블루(#5b7ca6, 방문예약 CTA) — 2026-11-09 사용자 제공 'Development Business' 시안 톤 */
 [data-page-theme='centreville'] {
-  --cv-charcoal: #13204a;
-  --cv-green: #0b5fae;
-  --cv-gray: #a68a5b;
-  --cv-grad-charcoal: linear-gradient(160deg, #1f2f66 0%, #13204a 55%, #0b1433 100%);
-  --cv-grad-green: linear-gradient(135deg, #1474c9 0%, #0b5fae 55%, #084682 100%);
-  --cv-grad-gray: linear-gradient(135deg, #bb9f6e 0%, #a68a5b 55%, #8a7148 100%);
-  --cv-ivory: #f6f4ef;
+  --cv-charcoal: #0b1a4a;
+  --cv-green: #2f5584;
+  --cv-gray: #5b7ca6;
+  --cv-grad-charcoal: linear-gradient(160deg, #13286a 0%, #0b1a4a 55%, #06102e 100%);
+  --cv-grad-green: linear-gradient(135deg, #3d6491 0%, #2f5584 55%, #223f66 100%);
+  --cv-grad-gray: linear-gradient(135deg, #6f8fb5 0%, #5b7ca6 55%, #476790 100%);
+  --cv-ivory: #f3f5f9;
   --vipform-bg: var(--cv-grad-green);
   background: var(--cv-ivory);
 }
@@ -436,9 +436,9 @@
   width: 100vw;
   transform: translateX(-50%);
   background:
-    radial-gradient(ellipse 60% 45% at 92% 6%, rgba(11, 95, 174, 0.13), rgba(11, 95, 174, 0) 70%),
-    radial-gradient(ellipse 55% 40% at 4% 96%, rgba(166, 138, 91, 0.18), rgba(166, 138, 91, 0) 70%),
-    linear-gradient(180deg, #fbfaf7 0%, #f3f0e9 100%);
+    radial-gradient(ellipse 60% 45% at 92% 6%, rgba(47, 85, 132, 0.13), rgba(47, 85, 132, 0) 70%),
+    radial-gradient(ellipse 55% 40% at 4% 96%, rgba(91, 124, 166, 0.18), rgba(91, 124, 166, 0) 70%),
+    linear-gradient(180deg, #f9fafc 0%, #eef2f7 100%);
 }
 
 /* 사업개요 아래쪽 — 딥그린 패널(왼쪽 위만 크게 둥근 공식 홈페이지 모양), 스펙표 뒤 아래 일부만.
@@ -465,8 +465,8 @@
 /* 프리미엄 인트로(사진+카피) — 아이보리에 초록 빛 번짐 */
 [data-page-theme='centreville'] section[class*='SignaturePremiumIntro_sectionSplit'] {
   background:
-    radial-gradient(ellipse 50% 60% at 100% 50%, rgba(11, 95, 174, 0.1), rgba(11, 95, 174, 0) 70%),
-    #f3f0e9;
+    radial-gradient(ellipse 50% 60% at 100% 50%, rgba(47, 85, 132, 0.1), rgba(47, 85, 132, 0) 70%),
+    #eef2f7;
 }
 
 /* 단지안내 — 배치도·동호표 등 도면 이미지가 잘 보이도록 흰 배경(2026-11-05 사용자 요청) */
@@ -477,8 +477,8 @@
 /* 세대안내 — 아이보리 + 평면 스테이지 뒤 큰 원형 빛 번짐과 가는 원형 라인 */
 [data-page-theme='centreville'] #unit-plan {
   background:
-    radial-gradient(circle at 72% 55%, rgba(11, 95, 174, 0.12) 0, rgba(11, 95, 174, 0) 38%),
-    linear-gradient(180deg, #f8f6f1 0%, #ece8e0 100%);
+    radial-gradient(circle at 72% 55%, rgba(47, 85, 132, 0.12) 0, rgba(47, 85, 132, 0) 38%),
+    linear-gradient(180deg, #f6f8fb 0%, #e6ebf2 100%);
 }
 
 [data-page-theme='centreville'] #unit-plan::before {
@@ -491,8 +491,8 @@
   top: 50%;
   transform: translateY(-50%);
   border-radius: 50%;
-  border: 1px solid rgba(11, 95, 174, 0.14);
-  box-shadow: 0 0 0 70px rgba(255, 255, 255, 0.18), 0 0 0 71px rgba(166, 138, 91, 0.16);
+  border: 1px solid rgba(47, 85, 132, 0.14);
+  box-shadow: 0 0 0 70px rgba(255, 255, 255, 0.18), 0 0 0 71px rgba(91, 124, 166, 0.16);
 }
 
 /* 사은품 이미지 — 차콜 패널 위에 초록 이미지가 돋보이게 */
@@ -510,25 +510,25 @@
 /* 위치안내(location.variant 'story' → SignatureSellingStory) — 더샵 검단 핵심가치 디자인(네이비 + 하늘색)을
    엘리프 톤으로: 바탕은 진한 차콜, 포인트(제목 강조·숫자·태그)는 세이지그린, 사진 아래 그라데이션도 차콜 */
 [data-page-theme='centreville'] #location {
-  background: linear-gradient(180deg, #0b1433 0%, #101b40 55%, #13204a 100%);
+  background: linear-gradient(180deg, #06102e 0%, #0b1a4a 55%, #0b1a4a 100%);
 }
 
 [data-page-theme='centreville'] #location [class*='SignatureSellingStory_eyebrow__'] {
-  color: #c9b48c;
+  color: #a9bdd6;
 }
 
 [data-page-theme='centreville'] #location h2 em,
 [data-page-theme='centreville'] #location [class*='SignatureSellingStory_numberItem__'] strong {
-  color: #e2cc9c;
+  color: #b9cde6;
 }
 
 [data-page-theme='centreville'] #location [class*='SignatureSellingStory_sceneCopy__'] span {
-  color: #f0dfb8;
+  color: #d6e3f3;
 }
 
 [data-page-theme='centreville'] #location [class*='SignatureSellingStory_scene__']::after,
 [data-page-theme='centreville'] #location [class*='SignatureSellingStory_sceneWide__']::after {
-  background: linear-gradient(transparent 38%, rgba(10, 18, 45, 0.92));
+  background: linear-gradient(transparent 38%, rgba(6, 16, 46, 0.92));
 }
 
 /* 프리미엄6 — 딥그린 그라데이션(카드 이미지는 투명 모서리 알약형이라 그라데이션 위에서도 자연스러움) */
@@ -624,7 +624,7 @@
     position: absolute;
     z-index: 1;
     inset: 0;
-    background: linear-gradient(transparent 30%, rgba(10, 18, 45, 0.92));
+    background: linear-gradient(transparent 30%, rgba(6, 16, 46, 0.92));
   }
 
   [data-page-theme='centreville'] #premium-value [class*='SignaturePremiumZigzag_visual__'] {
@@ -651,7 +651,7 @@
     font-size: 10px;
     font-weight: 800;
     letter-spacing: 0.2em;
-    color: #f0dfb8;
+    color: #d6e3f3;
   }
 
   [data-page-theme='centreville'] #premium-value [class*='SignaturePremiumZigzag_itemTitle__'] {
@@ -704,7 +704,7 @@
 [data-page-theme='centreville'] #location [class*='SignatureInfrastructure_eyebrow__'],
 [data-page-theme='centreville'] #location h2 em,
 [data-page-theme='centreville'] #location [class*='SignatureInfrastructure_list__'] span {
-  color: #e2cc9c;
+  color: #b9cde6;
 }
 
 [data-page-theme='centreville'] #location [class*='SignatureInfrastructure_desc__'],
@@ -755,5 +755,5 @@
 }
 
 [data-page-theme='centreville'] #promo-checklist {
-  background: #0f1d4a;
+  background: #0b1a4a;
 }

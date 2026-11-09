@@ -316,6 +316,10 @@ export default async function AptPage({ params }) {
             holdForIntro={!!sig.circleIntro || !!sig.arkoneIntro}
           />
         )}
+        {/* promoImages — 히어로 바로 아래 분양 조건·체크포인트 등 홍보 이미지를 순서대로 여러 장. 예: geomdan-centreville-educity */}
+        {sig.promoImages?.map((img) => (
+          <SignatureNewsImage key={img.src} id={img.id} image={img} title={img.title} maxWidth={img.maxWidth} />
+        ))}
         {/* goldEvent — 히어로 바로 아래 "사전 청약 이벤트 금1돈" 배너(누르면 관심고객등록으로). 예: cheongna-arkone-prugio-3 */}
         {sig.goldEvent && <ArkoneGoldEvent event={sig.goldEvent} href={`#${sig.vipForm.id}`} />}
         {/* vipForm.showAfterHero — 관심고객등록 폼을 히어로 바로 다음(영상보다 위)에 두는 현장용. 예: 호반써밋 첨단3지구-2 */}

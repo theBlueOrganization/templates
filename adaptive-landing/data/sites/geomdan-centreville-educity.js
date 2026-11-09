@@ -144,8 +144,8 @@ const config = {
       estCopy: {
         color: '#ffffff',
         shadow: '0 2px 18px rgba(0, 0, 0, 0.45)',
-        brand: '검단신도시 1,534세대 브랜드 대단지',
-        lines: [{ light: '단지 앞 ', strong: '유·초·중·고 학세권', dots: 0 }],
+        brand: '검단신도시 1,534세대 대단지',
+        lines: [{ light: '검단 마지막 ', strong: '5억대~', dots: 0 }],
         name: '검단 센트레빌 에듀시티',
         badge: '1차 계약금 500만원 · 입주시까지 계약금 5%',
         badgeBox: true,

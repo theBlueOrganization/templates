@@ -1,9 +1,9 @@
-// 검단 센트레빌 에듀시티 — 인천 서구 당하동 검단지구 AB8블록. 시공 동부건설(센트레빌).
+﻿// 검단 센트레빌 에듀시티 — 인천 서구 당하동 검단지구 AB8블록. 시공 동부건설(센트레빌).
 // 지하 2층~지상 25층 17개동(1601~1617동), 전용 74·84·101·120㎡ 총 1,534세대. 분양가 상한제 적용단지.
 // 출처: 분양 홍보 페이지(https://showhouse.iwinv.net/0226/) 이미지 — 분양조건(이 조건 지금만 가능)·체크포인트·위치도·방문 전 체크리스트,
 //   PREMIUM 5, 커뮤니티(센트웰), 단지배치도·마스터플랜·조경·동호수배치, 평면(84A·84B·101A·101B·101C·120P)을 받아 크롭/webp 변환
 //   (public/apt/geomdan-centreville-educity/). 74㎡A·B 평면은 원본 페이지에 없어 세대안내에서 제외.
-//   히어로는 분양조건 이미지의 단지 투시도 띠 위로 남색 하늘을 이어 붙여 합성. 로고는 원본 홍보물의 센트레빌 로고를 투명 배경으로 다시 그림(logo-white/color.png, 1200×320).
+//   히어로·OG·개요·프리미엄02/05는 사용자 제공 고화질 원본(정면 투시도·조감도·펫스쿨 조경, 2026-11-09)으로 제작. 로고는 원본 홍보물의 센트레빌 로고를 투명 배경으로 다시 그림(logo-white/color.png, 1200×320).
 // 대표번호 1866-1040, 상담 접수 알림 010-5178-0565 — 2026-11-09 사용자 전달값.
 const config = {
   slug: 'geomdan-centreville-educity',
@@ -198,7 +198,7 @@ const config = {
       title: 'overview',
       photo: {
         src: '/apt/geomdan-centreville-educity/overview-photo.webp',
-        alt: '365m 센트레 그랜드 파크 중앙광장 이미지컷',
+        alt: '검단 센트레빌 에듀시티 단지 조감도',
       },
       notice: '※ 본 페이지에 사용된 CG, 이미지 및 내용은 인·허가 과정 중 변경될 수 있습니다.',
       specItems: [
@@ -275,8 +275,8 @@ const config = {
         },
         {
           num: '02',
-          image: { src: '/apt/geomdan-centreville-educity/premium-02.webp', alt: '365m 센트레 그랜드 파크 이미지컷', width: 640, height: 345 },
-          imageMobile: { src: '/apt/geomdan-centreville-educity/premium-02-m.webp', alt: '365m 센트레 그랜드 파크 이미지컷', width: 430, height: 300 },
+          image: { src: '/apt/geomdan-centreville-educity/premium-02.webp', alt: '펫스쿨 테마조경 이미지컷', width: 640, height: 345 },
+          imageMobile: { src: '/apt/geomdan-centreville-educity/premium-02-m.webp', alt: '펫스쿨 테마조경 이미지컷', width: 430, height: 300 },
           title: '365M 센트레 그랜드 파크',
           desc: ['365m 대형 중앙광장에서 외부공원 연결', '20개 테마 조경시설'],
         },
@@ -296,8 +296,8 @@ const config = {
         },
         {
           num: '05',
-          image: { src: '/apt/geomdan-centreville-educity/premium-05.webp', alt: '도시 전경 이미지컷', width: 640, height: 345 },
-          imageMobile: { src: '/apt/geomdan-centreville-educity/premium-05-m.webp', alt: '도시 전경 이미지컷', width: 430, height: 300 },
+          image: { src: '/apt/geomdan-centreville-educity/premium-05.webp', alt: '검단 센트레빌 에듀시티 조감도', width: 640, height: 345 },
+          imageMobile: { src: '/apt/geomdan-centreville-educity/premium-05-m.webp', alt: '검단 센트레빌 에듀시티 조감도', width: 430, height: 300 },
           title: '브랜드 대단지',
           desc: ['인천 검단의 자부심이 되는', '1,534세대 센트레빌 브랜드 대단지'],
         },

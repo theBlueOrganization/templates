@@ -121,6 +121,8 @@ const adaptiveLandingPointers = [
   { slug: "yangsan-xi-park-paliche", subdomain: "양산자이파크팰리체", template: "adaptive-landing" },
   // 엘리프 검단 포레듀(2026-11-05) — 한글도메인 엘리프검단포레듀.addupapt.kr
   { slug: "elif-geomdan-foredu", subdomain: "엘리프검단포레듀", template: "adaptive-landing" },
+  // 검단 센트레빌 에듀시티(2026-11-09) — 한글도메인 검단센트레빌에듀시티.addupapt.kr
+  { slug: "geomdan-centreville-educity", subdomain: "검단센트레빌에듀시티", template: "adaptive-landing" },
 ];
 
 const allSites = [...sites, ...adaptiveLandingPointers];

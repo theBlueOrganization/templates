@@ -3,7 +3,7 @@
 // 출처: 분양 홍보 페이지(https://showhouse.iwinv.net/0226/) 이미지 — 분양조건(이 조건 지금만 가능)·체크포인트·위치도·방문 전 체크리스트,
 //   PREMIUM 5, 커뮤니티(센트웰), 단지배치도·마스터플랜·조경·동호수배치, 평면(84A·84B·101A·101B·101C·120P)을 받아 크롭/webp 변환
 //   (public/apt/geomdan-centreville-educity/). 74㎡A·B 평면은 원본 페이지에 없어 세대안내에서 제외.
-//   히어로·OG·개요·프리미엄02/05는 사용자 제공 고화질 원본(정면 투시도·조감도·펫스쿨 조경, 2026-11-09)으로 제작. 로고는 원본 홍보물의 센트레빌 로고를 투명 배경으로 다시 그림(logo-white/color.png, 1200×320).
+//   히어로·OG·개요·프리미엄02/05는 사용자 제공 고화질 원본(정면 투시도·조감도·펫스쿨 조경, 2026-11-09)으로 제작. 로고는 사용자 제공 "검단 센트레빌 에듀시티" 워드마크(로고1.png → logo-name-white/navy.png, 416×144).
 // 대표번호 1866-1040, 상담 접수 알림 010-5178-0565 — 2026-11-09 사용자 전달값.
 const config = {
   slug: 'geomdan-centreville-educity',
@@ -58,10 +58,10 @@ const config = {
   signature: {
     header: {
       logo: {
-        src: '/apt/geomdan-centreville-educity/logo-white.png',
+        src: '/apt/geomdan-centreville-educity/logo-name-white.png',
         alt: '검단 센트레빌 에듀시티',
-        width: 1200,
-        height: 320,
+        width: 416,
+        height: 144,
       },
       logoSize: { base: 120, lg: 140, xl: 150 },
       gnb: ['사업안내', '위치안내', '프리미엄', '단지안내', '세대안내', '방문예약상담'],
@@ -69,10 +69,10 @@ const config = {
       phone: '1866-1040',
       transparentDark: false,
       logoDark: {
-        src: '/apt/geomdan-centreville-educity/logo-color.png',
+        src: '/apt/geomdan-centreville-educity/logo-name-navy.png',
         alt: '검단 센트레빌 에듀시티',
-        width: 1200,
-        height: 320,
+        width: 416,
+        height: 144,
       },
     },
 
@@ -381,10 +381,10 @@ const config = {
 
     footer: {
       logo: {
-        src: '/apt/geomdan-centreville-educity/logo-white.png',
+        src: '/apt/geomdan-centreville-educity/logo-name-white.png',
         alt: '검단 센트레빌 에듀시티',
-        width: 1200,
-        height: 320,
+        width: 416,
+        height: 144,
       },
       logoAlign: 'center',
       logoWidth: 170,

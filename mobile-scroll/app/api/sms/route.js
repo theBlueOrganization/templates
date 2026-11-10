@@ -16,7 +16,7 @@ function makeSignature(apiKey, apiSecret) {
   };
 }
 
-async function saveToSheet({ name, phone, visit_date, visit_time, gift_check, privacy_agree, projectName, sheetId, sheetTab, utmSource, officeLabel }) {
+async function saveToSheet({ name, phone, visit_date, visit_time, gift_check, privacy_agree, projectName, sheetId, sheetTab, utmSource, officeLabel, consentTexts = [] }) {
   const auth = new google.auth.GoogleAuth({
     credentials: {
       client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
@@ -31,7 +31,8 @@ async function saveToSheet({ name, phone, visit_date, visit_time, gift_check, pr
   const privacyText = privacy_agree ? "동의함" : "미동의";
   const tab = sheetTab ?? process.env.GOOGLE_SHEET_DEFAULT_TAB ?? "상담신청";
   const targetSpreadsheetId = sheetId || process.env.GOOGLE_SHEET_ID;
-  const row = [now, projectName, name, phone, visit_date ?? "", visit_time ?? "", giftText, privacyText, utmSource ?? "미확인", officeLabel ?? ""];
+  // 선택 동의(optionalConsents)가 있는 현장만 기존 열 뒤에 동의 결과 열이 추가됨
+  const row = [now, projectName, name, phone, visit_date ?? "", visit_time ?? "", giftText, privacyText, utmSource ?? "미확인", officeLabel ?? "", ...consentTexts.map((c) => `${c.label}: ${c.value}`)];
 
   try {
     await sheets.spreadsheets.values.append({
@@ -103,7 +104,7 @@ export async function POST(request) {
     const {
       name, phone, visit_date, visit_time, gift_check, privacy_agree,
       projectName, adminPhones, sheetId, sheetTab, utmSource, showUtmInSms,
-      slug, officeLabel,
+      slug, officeLabel, consents,
     } = body;
 
     if (!name || !phone) {
@@ -152,6 +153,15 @@ export async function POST(request) {
     const resolvedTemplateId = utmKakaoTemplateId || siteConfig?.kakaoTemplateId || process.env.KAKAO_TEMPLATE_ID;
     const useKakao = Boolean(utmKakaoTemplateId) || (siteConfig?.kakao === true && Boolean(resolvedTemplateId));
 
+    // 선택 동의 결과 — 문구·매체 목록은 서버의 현장 설정 기준으로만 기록(클라이언트 값은 체크 여부만 사용)
+    const consentTexts = (siteConfig?.optionalConsents ?? []).map((c) => {
+      const agreed = Boolean(consents?.[c.key]);
+      const sent = consents?.[`${c.key}_channels`];
+      const picked = Array.isArray(sent) ? (c.channels ?? []).filter((ch) => sent.includes(ch)) : [];
+      const value = agreed ? `동의함${picked.length ? ` (${picked.join(", ")})` : ""}` : "미동의";
+      return { label: c.sheetLabel ?? c.key, value };
+    });
+
     const utmProjectSuffix = siteConfig?.smsProjectNameByUtm?.[utmSource];
     const isNoUtm = !utmSource || utmSource === "미확인";
     const smsProjectName = utmProjectSuffix
@@ -168,9 +178,10 @@ export async function POST(request) {
       `방문예약시간: ${visit_time || "미입력"}\n` +
       `사은품등록: ${giftText}\n` +
       `개인정보동의: ${privacyText}` +
+      consentTexts.map((c) => `\n${c.label}: ${c.value}`).join("") +
       utmLine;
 
-    const sheetPromise = saveToSheet({ name, phone, visit_date, visit_time, gift_check, privacy_agree, projectName, sheetId, sheetTab, utmSource, officeLabel })
+    const sheetPromise = saveToSheet({ name, phone, visit_date, visit_time, gift_check, privacy_agree, projectName, sheetId, sheetTab, utmSource, officeLabel, consentTexts })
       .then(() => true)
       .catch((e) => {
         console.error("[SHEET] 저장 실패:", e);

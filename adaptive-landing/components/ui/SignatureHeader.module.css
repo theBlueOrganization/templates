@@ -104,6 +104,74 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
+/* header.mobileQuick — 모바일 우측 전화번호 + 원형 사람 아이콘(1024px 이상에서는 숨김) */
+.mobileQuick {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+  margin-right: 14px;
+  color: rgba(255, 255, 255, 0.94);
+}
+.mqPhone {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: inherit;
+  text-decoration: none;
+}
+.mqPhone svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.mqPhone b {
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+.mqUser {
+  display: block;
+  width: 30px;
+  height: 30px;
+  color: inherit;
+}
+.mqUser svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+/* mobileQuick과 함께 쓰는 얇은 햄버거 */
+.menuToggleThin {
+  width: 24px;
+  gap: 6px;
+}
+.menuToggleThin span {
+  height: 1.5px;
+}
+.menuToggleThin.menuToggleOpen span:nth-child(1) {
+  transform: translateY(7.5px) rotate(45deg);
+}
+.menuToggleThin.menuToggleOpen span:nth-child(3) {
+  transform: translateY(-7.5px) rotate(-45deg);
+}
+.headerTransparentDark .mobileQuick {
+  color: var(--ink, #1c2340);
+}
+@media (min-width: 1024px) {
+  .mobileQuick {
+    display: none;
+  }
+}
+
 .mobileMenu {
   display: flex;
   flex-direction: column;

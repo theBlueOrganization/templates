@@ -7,6 +7,10 @@ const PHONE_FIELDS = ["phone1", "phone2", "phone3"];
 
 export default function ContactForm({ config, instanceId }) {
   const { projectName, visitTimeOptions, privacyText, adminPhones, sheetId, sheetTab, theme, kakao, slug, officeLabel, disabled, inquiryCountOffset } = config;
+  // 현장별 선택 동의 체크박스(미설정 현장은 기존과 동일하게 필수 동의만 노출)
+  const optionalConsents = config.optionalConsents ?? [];
+  // { [key]: true/false, [`${key}_channels`]: ["문자...", ...] }
+  const [consents, setConsents] = useState({});
   // 실제 상담 건수에 더해 표시할 심리적 안전 수치 — 미설정 시 기존 +20 그대로 유지
   const countOffset = inquiryCountOffset ?? 20;
   const th = theme ?? {};
@@ -68,6 +72,10 @@ export default function ContactForm({ config, instanceId }) {
     e.preventDefault();
     if (disabled) return;
     if (!form.privacy_agree) { alert("개인정보 수집·이용에 동의해 주세요."); return; }
+    const missingChannel = optionalConsents.find(
+      (c) => c.channels?.length && consents[c.key] && !(consents[`${c.key}_channels`]?.length)
+    );
+    if (missingChannel) { alert("광고성 정보 희망 수신 매체를 1개 이상 선택해 주세요."); return; }
     // 비제어 입력이라 state가 아니라 실제 입력창(DOM) 값을 직접 읽음
     const phone = phoneRefs.map((r) => r.current?.value ?? "").join("-");
     setSubmitting(true);
@@ -79,6 +87,7 @@ export default function ContactForm({ config, instanceId }) {
           name: form.name, phone,
           visit_date: form.visit_date, visit_time: form.visit_time,
           gift_check: form.gift_check, privacy_agree: form.privacy_agree,
+          consents,
           projectName,
           adminPhones,
           sheetId,
@@ -110,6 +119,7 @@ export default function ContactForm({ config, instanceId }) {
         alert("상담 신청이 완료되었습니다. 확인 후 연락드리겠습니다.");
         setInquiryCount((prev) => (prev ?? countOffset) + 1);
         setForm({ name: "", visit_date: "", visit_time: "", gift_check: false, privacy_agree: false });
+        setConsents({});
         // 비제어 입력이라 state 초기화로는 안 지워지므로 DOM 값을 직접 비움
         phoneRefs.forEach((r) => { if (r.current) r.current.value = ""; });
       } else {
@@ -166,14 +176,59 @@ export default function ContactForm({ config, instanceId }) {
         </label>
 
         <div className={styles.privacySection}>
-          <p className={styles.privacyTitle}>개인정보 수집·이용 및 처리 위탁에 관한 동의 (필수)</p>
+          <p className={styles.privacyTitle}>개인정보 수집·이용 및 처리 위탁에 관한 동의{optionalConsents.length ? "" : " (필수)"}</p>
           <textarea className={styles.privacyText} readOnly aria-label="개인정보 수집·이용 동의 내용" value={privacyText} />
         </div>
 
         <label className={styles.checkLabel}>
           <input className={styles.checkbox} type="checkbox" name="privacy_agree" checked={form.privacy_agree} onChange={handleChange} required />
-          개인정보 수집·이용에 동의합니다
+          {optionalConsents.length ? "[필수] " : ""}개인정보 수집·이용에 동의합니다
         </label>
+
+        {optionalConsents.map((c) => {
+          const channelsKey = `${c.key}_channels`;
+          const selected = consents[channelsKey] ?? [];
+          return (
+            <div key={c.key}>
+              <label className={styles.checkLabel}>
+                <input
+                  className={styles.checkbox}
+                  type="checkbox"
+                  checked={Boolean(consents[c.key])}
+                  onChange={(e) => {
+                    const on = e.target.checked;
+                    // 동의 해제 시 선택했던 수신 매체도 함께 해제
+                    setConsents((prev) => ({ ...prev, [c.key]: on, ...(c.channels ? { [channelsKey]: on ? (prev[channelsKey] ?? []) : [] } : {}) }));
+                  }}
+                />
+                {c.label}
+              </label>
+              {c.channels?.length > 0 && (
+                <div className={styles.channelRow}>
+                  {c.channels.map((ch) => (
+                    <label key={ch} className={styles.channelLabel}>
+                      <input
+                        className={styles.checkbox}
+                        type="checkbox"
+                        checked={selected.includes(ch)}
+                        onChange={(e) => {
+                          const on = e.target.checked;
+                          setConsents((prev) => {
+                            const cur = prev[channelsKey] ?? [];
+                            const next = on ? [...cur, ch] : cur.filter((v) => v !== ch);
+                            // 매체를 고르면 광고 수신 동의도 자동 체크
+                            return { ...prev, [channelsKey]: next, ...(on ? { [c.key]: true } : {}) };
+                          });
+                        }}
+                      />
+                      {ch}
+                    </label>
+                  ))}
+                </div>
+              )}
+            </div>
+          );
+        })}
 
         <div className={styles.submitWrap}>
           <button

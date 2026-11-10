@@ -135,6 +135,23 @@
   accent-color: #3b82f6;
 }
 
+/* 선택 동의(광고성 정보 수신) 하위 수신 매체 체크박스 */
+.channelRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin: -6px 0 14px 26px;
+}
+
+.channelLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: #64748b;
+  cursor: pointer;
+}
+
 /* ─── 개인정보 동의 ─────────────────────────────────── */
 .privacySection {
   margin-top: 24px;

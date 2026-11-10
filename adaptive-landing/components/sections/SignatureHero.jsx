@@ -405,7 +405,7 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
           강조 앞 글자 위에 점) → | GRAND OPEN |). PC·모바일 공통으로 화면 위쪽 하늘 영역 가운데. 예: 용인 고림 동문 디 이스트 */}
       {hero.estCopy && (
         <motion.div
-          className={cn(styles.estCopy, !videoDone && styles.estOnVideo)}
+          className={cn(styles.estCopy, !videoDone && styles.estOnVideo, hero.estCopy.serifAll && styles.estSerifAll)}
           initial="hidden"
           animate="show"
           style={
@@ -454,6 +454,36 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
             >
               {hero.estCopy.badge}
             </motion.p>
+          )}
+          {/* estCopy.desc — 제목 아래 설명 문단(줄 배열). descColor로 제목과 다른 색. 예: uijeongbu-feliztower-yangwoo */}
+          {hero.estCopy.desc && (
+            <motion.p
+              className={styles.estDesc}
+              custom={0.6}
+              variants={lineVariants}
+              style={hero.estCopy.descColor ? { color: hero.estCopy.descColor } : undefined}
+            >
+              {hero.estCopy.desc.map((l) => (
+                <span key={l}>{l}</span>
+              ))}
+            </motion.p>
+          )}
+          {/* estCopy.logo — 세로선 아래 현장 워드마크 이미지(lineColor로 세로선 색). 예: uijeongbu-feliztower-yangwoo */}
+          {hero.estCopy.logo && (
+            <motion.div
+              className={styles.estLogo}
+              custom={0.8}
+              variants={lineVariants}
+              style={hero.estCopy.lineColor ? { '--est-line-color': hero.estCopy.lineColor } : undefined}
+            >
+              <Image
+                src={hero.estCopy.logo.src}
+                alt={hero.estCopy.logo.alt}
+                width={hero.estCopy.logo.width}
+                height={hero.estCopy.logo.height}
+                priority
+              />
+            </motion.div>
           )}
         </motion.div>
       )}
@@ -793,7 +823,7 @@ export default function SignatureHero({ hero, telNumber, telNumberByUtm, visitTa
           transition={{ duration: 0.8, delay: 1.1 }}
         >
           <div className={styles.announceBar} style={mobileBar.announceBg ? { background: mobileBar.announceBg } : undefined}>
-            <div className={styles.announceTrack} style={{ transform: `translateY(-${announceIndex * 100}%)` }}>
+            <div className={styles.announceTrack} style={{ transform: `translateY(-${(announceIndex * 100) / mobileBar.announcements.length}%)` }}>
               {mobileBar.announcements.map((a, i) => (
                 <div key={i} className={styles.announceItem}>
                   <span className={styles.announceBadge}>{a.badge}</span>

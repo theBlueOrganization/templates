@@ -122,9 +122,30 @@ export default function SignatureHeader({
           </button>
         </div>
 
+        {/* header.mobileQuick — 모바일 우측: 전화 아이콘 + 굵은 번호(tel 링크) + 원형 사람 아이콘(방문예약 폼으로) + 얇은 햄버거.
+            공식 홈페이지 모바일 헤더 구성. phoneDisplay로 번호 표기('1588.4643')만 바꿀 수 있음. 예: uijeongbu-feliztower-yangwoo */}
+        {header.mobileQuick && (
+          <div className={styles.mobileQuick}>
+            <a href={`tel:${phone}`} className={styles.mqPhone} aria-label={`전화상담 ${phone}`}>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6.6 3.5 9 3.2l1.6 4-1.9 1.5a11 11 0 0 0 6.6 6.6l1.5-1.9 4 1.6-.3 2.4a2 2 0 0 1-2.2 1.7C10.6 18.4 5.6 13.4 4.9 5.7a2 2 0 0 1 1.7-2.2Z" />
+                <path d="M14.5 3.5a6 6 0 0 1 6 6M14.5 6.8a2.8 2.8 0 0 1 2.7 2.7" />
+              </svg>
+              <b>{header.mobileQuick.phoneDisplay ?? phone}</b>
+            </a>
+            <button type="button" className={styles.mqUser} aria-label={header.quickCtaLabel || '방문예약상담'} onClick={() => scrollTo(ctaTargetId)}>
+              <svg viewBox="0 0 32 32" aria-hidden="true">
+                <circle cx="16" cy="16" r="15" />
+                <circle cx="16" cy="12.6" r="4.6" />
+                <path d="M8.4 25.6a8.2 8.2 0 0 1 15.2 0" />
+              </svg>
+            </button>
+          </div>
+        )}
+
         <button
           type="button"
-          className={cn(styles.menuToggle, menuOpen && styles.menuToggleOpen)}
+          className={cn(styles.menuToggle, menuOpen && styles.menuToggleOpen, header.mobileQuick && styles.menuToggleThin)}
           aria-label="메뉴 열기"
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((v) => !v)}

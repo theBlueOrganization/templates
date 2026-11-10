@@ -815,3 +815,550 @@
   [data-page-theme='centreville'] [class*='SignatureHero_estName'] { font-size: clamp(20px, 1.5vw, 28px); }
   [data-page-theme='centreville'] [class*='SignatureHero_estBadgeBox'] { padding: 8px 24px; font-size: clamp(14px, 1vw, 17px); }
 }
+
+/* 'feliz' — 의정부역 펠리스타워 양우내안愛(2026-11-10): 'centreville' 프리셋 구성을 그대로 복제하고 색만 공식 홈페이지 톤으로
+   공식 홈페이지 CSS 색(2026-11-10 사용자 요청) — 브론즈 #84654f(메인) · 딥브라운 #472122 · 다크브라운 #614332 · 라이트브론즈 #b9967b · 토프 #897766 · 연회색 #f3f3f3 */
+[data-page-theme='feliz'] {
+  --cv-charcoal: #472122;
+  --cv-green: #84654f;
+  --cv-gray: #b9967b;
+  --cv-grad-charcoal: linear-gradient(160deg, #5a2c2d 0%, #472122 55%, #2e1516 100%);
+  --cv-grad-green: linear-gradient(135deg, #96755d 0%, #84654f 55%, #614332 100%);
+  --cv-grad-gray: linear-gradient(135deg, #cbb09a 0%, #b9967b 55%, #614332 100%);
+  --cv-ivory: #f5f3f0;
+  --vipform-bg: var(--cv-grad-green);
+  background: var(--cv-ivory);
+}
+
+/* 섹션 배경(2026-11-05 사용자 요청 "배경이 아쉬움") — 단색 회색 대신 공식 홈페이지 톤:
+   아이보리 바탕 + 은은한 초록/웜그레이 빛 번짐 + 딥그린 패널(물결 무늬는 어지럽다는 요청으로 제외). 장식은 ::before/::after(z-index -1, isolation)로 깔아
+   섹션 안 콘텐츠는 건드리지 않음 */
+[data-page-theme='feliz'] #overview,
+[data-page-theme='feliz'] #complex,
+[data-page-theme='feliz'] #unit-plan,
+[data-page-theme='feliz'] #event,
+[data-page-theme='feliz'] section[class*='SignaturePremiumIntro_sectionSplit'] {
+  position: relative;
+  isolation: isolate;
+}
+
+/* 사업개요 — 섹션 자체가 가운데 폭 제한(max-width)이라 배경은 화면 전체 폭으로 ::before에 깔기 */
+[data-page-theme='feliz'] #overview {
+  background: transparent;
+}
+
+[data-page-theme='feliz'] #overview::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  background:
+    radial-gradient(ellipse 60% 45% at 92% 6%, rgba(132, 101, 79, 0.13), rgba(132, 101, 79, 0) 70%),
+    radial-gradient(ellipse 55% 40% at 4% 96%, rgba(185, 150, 123, 0.18), rgba(185, 150, 123, 0) 70%),
+    linear-gradient(180deg, #fbfaf8 0%, #f3f3f3 100%);
+}
+
+/* 사업개요 아래쪽 — 딥그린 패널(왼쪽 위만 크게 둥근 공식 홈페이지 모양), 스펙표 뒤 아래 일부만.
+   모바일은 스펙표가 섹션 맨 아래까지 차서 글자와 겹치므로 768px 이상에서만 */
+[data-page-theme='feliz'] #overview::after {
+  content: '';
+  display: none;
+  position: absolute;
+  z-index: -1;
+  bottom: 0;
+  right: calc(50% - 50vw);
+  width: 62vw;
+  height: 90px;
+  border-top-left-radius: 90px;
+  background: var(--cv-grad-green);
+}
+
+@media (min-width: 768px) {
+  [data-page-theme='feliz'] #overview::after {
+    display: block;
+  }
+}
+
+/* 프리미엄 인트로(사진+카피) — 아이보리에 초록 빛 번짐 */
+[data-page-theme='feliz'] section[class*='SignaturePremiumIntro_sectionSplit'] {
+  background:
+    radial-gradient(ellipse 50% 60% at 100% 50%, rgba(132, 101, 79, 0.1), rgba(132, 101, 79, 0) 70%),
+    #f3f3f3;
+}
+
+/* 단지안내 — 배치도·동호표 등 도면 이미지가 잘 보이도록 흰 배경(2026-11-05 사용자 요청) */
+[data-page-theme='feliz'] #complex {
+  background: #fff;
+}
+
+/* 세대안내 — 아이보리 + 평면 스테이지 뒤 큰 원형 빛 번짐과 가는 원형 라인 */
+[data-page-theme='feliz'] #unit-plan {
+  background:
+    radial-gradient(circle at 72% 55%, rgba(132, 101, 79, 0.12) 0, rgba(132, 101, 79, 0) 38%),
+    linear-gradient(180deg, #f8f6f4 0%, #e9e6e2 100%);
+}
+
+[data-page-theme='feliz'] #unit-plan::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: 900px;
+  height: 900px;
+  right: -260px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  border: 1px solid rgba(132, 101, 79, 0.14);
+  box-shadow: 0 0 0 70px rgba(255, 255, 255, 0.18), 0 0 0 71px rgba(185, 150, 123, 0.16);
+}
+
+/* 사은품 이미지 — 차콜 패널 위에 초록 이미지가 돋보이게 */
+[data-page-theme='feliz'] #event {
+  background: var(--cv-grad-charcoal);
+  padding-top: 56px;
+  padding-bottom: 56px;
+}
+
+[data-page-theme='feliz'] #event img {
+  border-radius: 14px;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.35);
+}
+
+/* 위치안내(location.variant 'story' → SignatureSellingStory) — 더샵 검단 핵심가치 디자인(네이비 + 하늘색)을
+   엘리프 톤으로: 바탕은 진한 차콜, 포인트(제목 강조·숫자·태그)는 세이지그린, 사진 아래 그라데이션도 차콜 */
+[data-page-theme='feliz'] #location {
+  background: linear-gradient(180deg, #24100f 0%, #2e1516 55%, #2e1516 100%);
+}
+
+[data-page-theme='feliz'] #location [class*='SignatureSellingStory_eyebrow__'] {
+  color: #ddcbbd;
+}
+
+[data-page-theme='feliz'] #location h2 em,
+[data-page-theme='feliz'] #location [class*='SignatureSellingStory_numberItem__'] strong {
+  color: #e2d2c4;
+}
+
+[data-page-theme='feliz'] #location [class*='SignatureSellingStory_sceneCopy__'] span {
+  color: #efe6de;
+}
+
+[data-page-theme='feliz'] #location [class*='SignatureSellingStory_scene__']::after,
+[data-page-theme='feliz'] #location [class*='SignatureSellingStory_sceneWide__']::after {
+  background: linear-gradient(transparent 38%, rgba(36, 16, 15, 0.92));
+}
+
+/* 프리미엄6 — 딥그린 그라데이션(카드 이미지는 투명 모서리 알약형이라 그라데이션 위에서도 자연스러움) */
+[data-page-theme='feliz'] #premium-value {
+  background: var(--cv-grad-green);
+}
+
+/* 세대안내 평면 스테이지 — 차콜 그라데이션 */
+[data-page-theme='feliz'] [class*='SignatureUnitPlan_circleStage'] {
+  background: var(--cv-grad-charcoal);
+}
+
+/* 헤더(스크롤 후 배경) — 딥그린 그라데이션 */
+[data-page-theme='feliz'] header[class*='SignatureHeader_header']:not([class*='Transparent']),
+[data-page-theme='feliz'] [class*='SignatureHeader_mobileMenu'] {
+  background-image: var(--cv-grad-green);
+}
+
+/* 푸터 — 차콜(공식 홈페이지 모바일 푸터 톤) */
+[data-page-theme='feliz'] [class*='SignatureFooter_footer'] {
+  background: var(--cv-grad-charcoal);
+}
+
+/* 모바일 하단 바 — 전화상담 딥그린 / 관심고객등록 웜그레이 그라데이션 */
+[data-page-theme='feliz'] [class*='SignatureMobileBottomBar_callBtn'] {
+  background: var(--cv-grad-green);
+  color: #fff;
+}
+
+[data-page-theme='feliz'] [class*='SignatureMobileBottomBar_visitBtn'] {
+  background: var(--cv-grad-gray);
+  color: #fff;
+}
+
+/* PC 우측 퀵메뉴 — 분양문의 딥그린 / 관심고객 웜그레이 / MENU 차콜 */
+[data-page-theme='feliz'] [class*='SignatureQuickMenu_barCall'] {
+  background: var(--cv-grad-green);
+}
+
+[data-page-theme='feliz'] [class*='SignatureQuickMenu_barFavorite'] {
+  background: var(--cv-grad-gray);
+}
+
+[data-page-theme='feliz'] [class*='SignatureQuickMenu_barMenu'] {
+  background: var(--cv-grad-charcoal);
+}
+
+/* 세대안내 원형 라인 장식은 PC(원형 스테이지)에서만 — 모바일은 제목·탭 위로 선이 지나가 어수선함 */
+@media (max-width: 1023px) {
+  [data-page-theme='feliz'] #unit-plan::before {
+    display: none;
+  }
+}
+
+/* 사은품 이미지 — 모바일은 화면 가로를 꽉 채워(여백·모서리·그림자 없이) 전체가 크게 보이게 */
+@media (max-width: 767px) {
+  [data-page-theme='feliz'] #event {
+    padding: 0;
+  }
+
+  [data-page-theme='feliz'] #event img {
+    width: 100%;
+    max-width: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+/* PREMIUM 6 모바일 — 사진 카드형(2026-11-05 사용자 요청: 위치안내 사진 씬처럼). 직사각형 모바일 이미지(card.imageMobile)를
+   카드 전체에 깔고, 아래쪽 어두운 그라데이션 위에 'PREMIUM 01.'·제목·설명을 얹음.
+   display는 모바일 목록(mobileList) 카드에만 — 오른쪽 칼럼 카드(PC용, 모바일에서 숨김)까지 보이면 04~06이 중복됨 */
+@media (max-width: 767px) {
+  [data-page-theme='feliz'] #premium-value [class*='SignaturePremiumZigzag_item__'] {
+    position: relative;
+    min-height: 280px;
+    margin-bottom: 14px;
+    padding: 0;
+    border-top: 0;
+    overflow: hidden;
+  }
+
+  [data-page-theme='feliz'] #premium-value [class*='SignaturePremiumZigzag_mobileList__'] [class*='SignaturePremiumZigzag_item__'] {
+    display: block;
+    min-height: 280px;
+    margin-bottom: 14px;
+    padding: 0;
+    border-top: 0;
+    overflow: hidden;
+  }
+
+  [data-page-theme='feliz'] #premium-value [class*='SignaturePremiumZigzag_item__']::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    background: linear-gradient(transparent 30%, rgba(36, 16, 15, 0.92));
+  }
+
+  [data-page-theme='feliz'] #premium-value [class*='SignaturePremiumZigzag_visual__'] {
+    position: absolute;
+    inset: 0;
+    max-width: none;
+  }
+
+  [data-page-theme='feliz'] #premium-value [class*='SignaturePremiumZigzag_visual__'] img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  [data-page-theme='feliz'] #premium-value [class*='SignaturePremiumZigzag_text__'] {
+    position: absolute;
+    z-index: 2;
+    left: 20px;
+    right: 20px;
+    bottom: 22px;
+  }
+
+  [data-page-theme='feliz'] #premium-value [class*='SignaturePremiumZigzag_label__'] {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: #efe6de;
+  }
+
+  [data-page-theme='feliz'] #premium-value [class*='SignaturePremiumZigzag_itemTitle__'] {
+    margin-top: 8px;
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 20px;
+    color: #fff;
+  }
+
+  [data-page-theme='feliz'] #premium-value [class*='SignaturePremiumZigzag_desc__'] {
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  [data-page-theme='feliz'] #premium-value [class*='SignaturePremiumZigzag_desc__'] span {
+    display: inline;
+  }
+
+  [data-page-theme='feliz'] #premium-value [class*='SignaturePremiumZigzag_desc__'] span + span::before {
+    content: ' ';
+  }
+}
+
+/* 히어로 윗줄('단지 앞 초등학교(계획), 수변공원까지') — 공식 홈페이지처럼 굵지 않게 */
+[data-page-theme='feliz'] #hero [class*='SignatureHero_estBrand__'] {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+@media (min-width: 768px) {
+  [data-page-theme='feliz'] #hero [class*='SignatureHero_estBrand__'] {
+    font-size: clamp(20px, 1.5vw, 28px);
+  }
+}
+
+/* 위치안내(location.variant 'infrastructure' → SignatureInfrastructure) — 짙은 회색(차콜) 배경 + 흰 글씨(2026-11-05 사용자 요청).
+   포인트(작은 영문·번호·제목 둘째 줄)는 차콜 위에서 잘 보이는 연한 세이지그린 */
+[data-page-theme='feliz'] #location {
+  background: var(--cv-grad-charcoal);
+}
+
+[data-page-theme='feliz'] #location h2,
+[data-page-theme='feliz'] #location [class*='SignatureInfrastructure_list__'] h3 {
+  color: #fff;
+}
+
+[data-page-theme='feliz'] #location [class*='SignatureInfrastructure_eyebrow__'],
+[data-page-theme='feliz'] #location h2 em,
+[data-page-theme='feliz'] #location [class*='SignatureInfrastructure_list__'] span {
+  color: #e2d2c4;
+}
+
+[data-page-theme='feliz'] #location [class*='SignatureInfrastructure_desc__'],
+[data-page-theme='feliz'] #location [class*='SignatureInfrastructure_list__'] p,
+[data-page-theme='feliz'] #location [class*='SignatureInfrastructure_sourceNote__'] {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+[data-page-theme='feliz'] #location [class*='SignatureInfrastructure_list__'],
+[data-page-theme='feliz'] #location [class*='SignatureInfrastructure_list__'] article {
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* 위치안내 PC — 항목이 4개라 리스트가 지도 박스보다 길어 아래 끝이 어긋났음(2026-11-05 사용자 지적).
+   지도 박스와 리스트를 같은 높이로 늘이고, 4개 항목을 그 높이에 고르게 나눠 위·아래 끝선을 지도와 맞춤 */
+@media (min-width: 1024px) {
+  [data-page-theme='feliz'] #location [class*='SignatureInfrastructure_layout__'] {
+    align-items: stretch;
+  }
+
+  [data-page-theme='feliz'] #location [class*='SignatureInfrastructure_list__'] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  [data-page-theme='feliz'] #location [class*='SignatureInfrastructure_list__'] article {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 16px 0;
+  }
+
+  [data-page-theme='feliz'] #location [class*='SignatureInfrastructure_list__'] h3 {
+    margin: 6px 0 8px;
+  }
+}
+
+/* 검단 센트레빌 에듀시티 — 히어로 아래 홍보 이미지(promoImages: 분양 조건·체크포인트·방문 전 체크리스트)는
+   여백 없이 이어 붙여 한 장의 전단처럼. PC는 가운데 폭 제한, 바깥은 아이보리 */
+[data-page-theme='feliz'] section[id^='promo-'] {
+  padding: 0;
+  background: #fff;
+}
+
+[data-page-theme='feliz'] section[id^='promo-'] img {
+  max-width: var(--news-image-max, 760px);
+}
+
+[data-page-theme='feliz'] #promo-checklist {
+  background: #2e1516;
+}
+
+/* 모바일 히어로 문구를 위로 — 투시도 건물과 겹치지 않게 하늘 영역 위쪽에 배치 */
+@media (max-width: 1023px) {
+  [data-page-theme='feliz'] [class*='SignatureHero_estCopy'] {
+    top: calc(var(--header-h, 64px) + 1.5vh);
+  }
+  [data-page-theme='feliz'] [class*='SignatureHero_estName']::before {
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+  [data-page-theme='feliz'] [class*='SignatureHero_estBadgeBox'] {
+    margin-top: 14px;
+  }
+}
+
+/* 위치안내 제목·항목 제목 — 명조(serif) 대신 프리텐다드 고딕 */
+[data-page-theme='feliz'] [class*='SignatureInfrastructure_heading'] h2,
+[data-page-theme='feliz'] [class*='SignatureInfrastructure_list'] h3 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+[data-page-theme='feliz'] [class*='SignatureInfrastructure_list'] h3 {
+  font-size: clamp(21px, 2.1vw, 26px);
+}
+
+/* 푸터 강조 문구 — 단어 중간('대단/지')에서 끊기지 않게 */
+[data-page-theme='feliz'] [class*='SignatureFooter_highlightText'] {
+  word-break: keep-all;
+}
+@media (max-width: 480px) {
+  [data-page-theme='feliz'] [class*='SignatureFooter_highlightText'] {
+    font-size: 17px;
+  }
+}
+
+/* PC 히어로 문구 — 투시도 건물과 겹치지 않게 위치를 올리고 줄 간격을 좁힘 */
+@media (min-width: 1024px) {
+  [data-page-theme='feliz'] [class*='SignatureHero_estCopy'] {
+    top: calc(var(--header-h, 96px) + 1vh);
+  }
+  [data-page-theme='feliz'] [class*='SignatureHero_estTitle'] {
+    margin-top: 6px;
+    line-height: 1.25;
+  }
+  [data-page-theme='feliz'] [class*='SignatureHero_estName']::before {
+    margin: 14px auto 12px;
+  }
+  [data-page-theme='feliz'] [class*='SignatureHero_estBadgeBox'] {
+    margin-top: 14px;
+  }
+}
+@media (min-width: 1024px) {
+  [data-page-theme='feliz'] [class*='SignatureHero_estBrand'] { font-size: clamp(18px, 1.35vw, 26px); }
+  [data-page-theme='feliz'] [class*='SignatureHero_estTitle'] { font-size: clamp(34px, 2.9vw, 56px); }
+  [data-page-theme='feliz'] [class*='SignatureHero_estName'] { font-size: clamp(20px, 1.5vw, 28px); }
+  [data-page-theme='feliz'] [class*='SignatureHero_estBadgeBox'] { padding: 8px 24px; font-size: clamp(14px, 1vw, 17px); }
+}
+
+/* 히어로 문구 — 공식 홈페이지 메인(index.html .main_tit_box) 글씨체·크기·위치 그대로(2026-11-10 사용자 요청)
+   h3 Noto Serif KR 300 35px / h2 Noto Serif KR 600 66px(#897766, 줄간 100%, 간격 14px)
+   p Noto Sans KR 18px 줄간 194% rgba(0,0,0,.7) 간격 34px / 세로선 1×60px #472122 간격 26px / 로고 352px 간격 32px
+   PC: 화면 왼쪽 1122px 영역 세로 가운데에서 4rem 위. 모바일(html 12px 기준): 18/31.5/13.5px, 세로선 없음, 로고 216px */
+[data-page-theme='feliz'] #hero [class*='SignatureHero_estCopy'] {
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.55);
+}
+[data-page-theme='feliz'] #hero [class*='SignatureHero_estBrand__'] {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0;
+  color: #897766;
+}
+[data-page-theme='feliz'] #hero [class*='SignatureHero_estTitle'] {
+  margin-top: 10.5px;
+  font-size: 31.5px;
+  line-height: 1;
+  letter-spacing: 0;
+  color: #897766;
+}
+[data-page-theme='feliz'] #hero [class*='SignatureHero_estTitle'] strong {
+  font-weight: 600;
+}
+[data-page-theme='feliz'] #hero [class*='SignatureHero_estDesc'] {
+  margin-top: 25.5px;
+  font-family: 'Noto Sans KR', var(--font-sans);
+  font-size: 13.5px;
+  font-weight: 400;
+  line-height: 1.94;
+  letter-spacing: 0;
+}
+[data-page-theme='feliz'] #hero [class*='SignatureHero_estLogo'] {
+  margin-top: 30px;
+}
+[data-page-theme='feliz'] #hero [class*='SignatureHero_estLogo']::before {
+  display: none;
+}
+[data-page-theme='feliz'] #hero [class*='SignatureHero_estLogo'] img {
+  width: 216px;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.9));
+}
+
+@media (min-width: 1024px) {
+  [data-page-theme='feliz'] #hero [class*='SignatureHero_estCopy'] {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: auto;
+    width: min(1122px, 78%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 8rem; /* 공식 홈페이지 translateY(-4rem)와 같은 효과 */
+  }
+  [data-page-theme='feliz'] #hero [class*='SignatureHero_estBrand__'] { font-size: clamp(28px, 1.82vw, 35px); }
+  [data-page-theme='feliz'] #hero [class*='SignatureHero_estTitle'] { margin-top: 14px; font-size: clamp(52px, 3.44vw, 66px); line-height: 1; }
+  [data-page-theme='feliz'] #hero [class*='SignatureHero_estDesc'] { margin-top: 34px; font-size: 18px; line-height: 1.94; }
+  [data-page-theme='feliz'] #hero [class*='SignatureHero_estLogo'] { margin-top: 26px; }
+  [data-page-theme='feliz'] #hero [class*='SignatureHero_estLogo']::before {
+    display: block;
+    height: 60px;
+    margin-bottom: 32px;
+    background: #472122;
+    transform-origin: top;
+    animation: felizLineGrow 1.7s 0.6s both;
+  }
+  [data-page-theme='feliz'] #hero [class*='SignatureHero_estLogo'] img { width: 352px; }
+}
+/* 세로선이 위에서 아래로 자라나는 공식 홈페이지 연출 */
+@keyframes felizLineGrow {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+/* 프리미엄 인트로(split) PC — 이미지 아래 24px 빈틈 제거 + 이미지가 섹션 높이를 꽉 채우게(2026-11-10 사용자 요청) */
+@media (min-width: 1024px) {
+  [data-page-theme='feliz'] section[class*='SignaturePremiumIntro_sectionSplit'] {
+    align-items: stretch;
+    padding-bottom: 0;
+  }
+  [data-page-theme='feliz'] [class*='SignaturePremiumIntro_splitImageWrap'] {
+    aspect-ratio: auto;
+    min-height: calc(64vw * 694 / 1118);
+  }
+  [data-page-theme='feliz'] [class*='SignaturePremiumIntro_splitText'] {
+    padding-bottom: 60px;
+  }
+}
+
+/* 단지안내 이미지 탭(투시도·부감도·상가 A·상가 B·어린이놀이터) — 5칸 균등 그리드에선 모바일에서 '어린이놀이터'가 두 줄로 깨져서,
+   글자 길이만큼 폭을 잡고 넘치면 다음 줄로 넘김(2026-11-10 사용자 요청) */
+[data-page-theme='feliz'] [class*='SignatureComplexBlocks_blockTabs'] {
+  display: flex;
+  flex-wrap: wrap;
+}
+[data-page-theme='feliz'] [class*='SignatureComplexBlocks_blockTab__'] {
+  flex: 1 1 auto;
+  padding: 0 14px;
+  white-space: nowrap;
+}
+@media (max-width: 767px) {
+  [data-page-theme='feliz'] [class*='SignatureComplexBlocks_blockTab__'] {
+    padding: 0 6px;
+    font-size: 14px;
+    letter-spacing: -0.03em;
+  }
+}
+
+/* 프리미엄(지그재그) — 제목이 '랜드마/크'처럼 글자 중간에서 끊기지 않게 단어 단위 줄바꿈,
+   설명은 강제 2줄 대신 이어서 흐르게 해 좁은 칸에서 '일상을 담은'만 덩그러니 남는 줄이 없게(2026-11-10 사용자 요청) */
+[data-page-theme='feliz'] [class*='SignaturePremiumZigzag_itemTitle'],
+[data-page-theme='feliz'] [class*='SignaturePremiumZigzag_desc'] {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+@media (min-width: 768px) {
+  [data-page-theme='feliz'] [class*='SignaturePremiumZigzag_desc'] span {
+    display: inline;
+  }
+  [data-page-theme='feliz'] [class*='SignaturePremiumZigzag_desc'] span + span::before {
+    content: ' ';
+  }
+}

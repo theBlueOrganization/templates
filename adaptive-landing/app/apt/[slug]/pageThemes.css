@@ -1346,3 +1346,19 @@
     letter-spacing: -0.03em;
   }
 }
+
+/* 프리미엄(지그재그) — 제목이 '랜드마/크'처럼 글자 중간에서 끊기지 않게 단어 단위 줄바꿈,
+   설명은 강제 2줄 대신 이어서 흐르게 해 좁은 칸에서 '일상을 담은'만 덩그러니 남는 줄이 없게(2026-11-10 사용자 요청) */
+[data-page-theme='feliz'] [class*='SignaturePremiumZigzag_itemTitle'],
+[data-page-theme='feliz'] [class*='SignaturePremiumZigzag_desc'] {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+@media (min-width: 768px) {
+  [data-page-theme='feliz'] [class*='SignaturePremiumZigzag_desc'] span {
+    display: inline;
+  }
+  [data-page-theme='feliz'] [class*='SignaturePremiumZigzag_desc'] span + span::before {
+    content: ' ';
+  }
+}

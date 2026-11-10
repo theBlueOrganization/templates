@@ -8,6 +8,7 @@
 // 대표번호 1588-4643 — 2026-11-10 사용자 전달값(홈페이지 번호 1577-3197 아님).
 const config = {
   slug: 'uijeongbu-feliztower-yangwoo',
+  subdomain: '양우펠리스타워',
   projectName: '의정부역 펠리스타워 양우내안愛',
   shortName: '의정부역 펠리스타워',
   telNumber: '1588-4643',

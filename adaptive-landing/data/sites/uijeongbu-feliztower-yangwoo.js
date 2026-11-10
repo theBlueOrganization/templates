@@ -14,7 +14,7 @@ const config = {
   telNumber: '1588-4643',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/uijeongbu-feliztower-yangwoo/og.jpg',
   // 상담신청 알림 수신번호 — 전달받으면 추가
-  adminPhones: [],
+  adminPhones: ['15884643'],
   sheetId: '',
   sheetTab: '의정부펠리스타워',
   showUtmInSms: true,

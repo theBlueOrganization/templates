@@ -125,6 +125,8 @@ const adaptiveLandingPointers = [
   { slug: "geomdan-centreville-educity", subdomain: "검단센트레빌에듀시티", template: "adaptive-landing" },
   // 의정부역 펠리스타워 양우내안愛(2026-11-10) — 한글도메인 양우펠리스타워.addupapt.kr
   { slug: "uijeongbu-feliztower-yangwoo", subdomain: "양우펠리스타워", template: "adaptive-landing" },
+  // 남성역 헤르니티(2026-11-10) — 한글도메인 남성역헤르니티.addupapt.kr
+  { slug: "namseong-hernity", subdomain: "남성역헤르니티", template: "adaptive-landing" },
 ];
 
 const allSites = [...sites, ...adaptiveLandingPointers];

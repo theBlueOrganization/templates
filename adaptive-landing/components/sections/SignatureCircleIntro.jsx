@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { useCallback, useEffect, useState } from 'react'
 import { cn } from '../../lib/utils'
+import { isDirectLink, scrollToHashTarget } from '../../lib/directLink'
 import styles from './SignatureCircleIntro.module.css'
 
 // 원형 인트로 오버레이(sig.circleIntro) — 시티오씨엘 9단지(SignatureHeroOciel) 인트로 연출을 일반 히어로(SignatureHero)
@@ -31,6 +32,13 @@ export default function SignatureCircleIntro({ intro }) {
 
   useEffect(() => {
     window.__circleIntroEnded = false
+    // 다이렉트 링크(#앵커로 진입)면 인트로 없이 해당 섹션으로 바로 이동
+    if (isDirectLink()) {
+      setDone(true)
+      notifyEnd()
+      requestAnimationFrame(scrollToHashTarget)
+      return
+    }
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       setDone(true)
       notifyEnd()

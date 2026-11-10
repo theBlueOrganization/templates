@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { isDirectLink } from '../../lib/directLink'
 import SignatureInterestPopup from './SignatureInterestPopup'
 import SignaturePopupBanner from './SignaturePopupBanner'
 import SignatureVisitPopupTiamo from './SignatureVisitPopupTiamo'
@@ -15,6 +16,11 @@ export default function SignaturePopupSequence({ popup, config }) {
   const [firstClosed, setFirstClosed] = useState(imageFirst ? !popup?.enabled : !popup?.interest?.enabled)
   // 이미지 팝업 안 hotspot으로 섹션 이동(#앵커)한 경우 — 방문예약 폼 팝업이 그 섹션을 가리지 않게 생략
   const [navigated, setNavigated] = useState(false)
+  // 다이렉트 링크(#앵커로 진입, 예: 관심고객등록 #vip-reservation)면 진입 팝업을 전부 띄우지 않음
+  const [direct, setDirect] = useState(false)
+  useEffect(() => setDirect(isDirectLink()), [])
+
+  if (direct) return null
 
   if (imageFirst) {
     return (

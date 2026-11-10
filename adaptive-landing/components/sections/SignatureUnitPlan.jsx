@@ -74,6 +74,8 @@ export default function SignatureUnitPlan({ unitPlan }) {
                   </button>
                 ))}
               </div>
+              {/* 타입이 하나뿐이고 letter가 비어 있으면('') 타입 칩 줄을 숨김 — 예: uijeongbu-feliztower-yangwoo 59㎡ */}
+              {!(group.types.length === 1 && !group.types[0].letter) && (
               <div className={styles.chipWrap}>
                 {group.types.map((t, ti) => (
                   <button
@@ -87,6 +89,7 @@ export default function SignatureUnitPlan({ unitPlan }) {
                   </button>
                 ))}
               </div>
+              )}
             </>
           ) : (
             <div className={styles.tabsLayout}>

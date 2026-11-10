@@ -194,12 +194,15 @@ export default function ContactForm({ config, instanceId }) {
           사은품 증정 고객 등록하기
         </label>
 
-        <div className={styles.privacySection}>
-          <p className={styles.privacyTitle}>개인정보 수집·이용 및 처리 위탁에 관한 동의{optionalConsents.length ? "" : " (필수)"}</p>
-          {!optionalConsents.length && (
+        {/* 선택 동의 현장은 제목·텍스트 박스 없이 항목별 "보기"로만 노출 */}
+        {optionalConsents.length ? (
+          <div className={styles.privacySection} />
+        ) : (
+          <div className={styles.privacySection}>
+            <p className={styles.privacyTitle}>개인정보 수집·이용 및 처리 위탁에 관한 동의 (필수)</p>
             <textarea className={styles.privacyText} readOnly aria-label="개인정보 수집·이용 동의 내용" value={privacyText} />
-          )}
-        </div>
+          </div>
+        )}
 
         <div className={styles.consentRow}>
           <label className={styles.checkLabel}>

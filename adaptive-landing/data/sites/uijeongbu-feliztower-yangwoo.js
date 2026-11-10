@@ -369,7 +369,6 @@ const config = {
         { label: '현장', value: '경기도 의정부시 의정부동 424번지 일원' },
         { label: '견본주택', value: '경기도 의정부시 호원동 434번지' },
         { label: '광고 운영·관리 대행사', value: '더블루파트너스', dividerBefore: true },
-        { label: '전화번호', value: '1666-1755' },
         { label: '사업자등록번호', value: '789-81-03093' },
         { label: '이메일', value: 'addup@addup.kr' },
       ],

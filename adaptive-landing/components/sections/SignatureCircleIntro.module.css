@@ -234,3 +234,8 @@
     bottom: 40px;
   }
 }
+
+/* 다이렉트 링크(#앵커로 진입) — 하이드레이션 전부터 인트로 오버레이를 숨김(app/layout.jsx 인라인 스크립트, lib/directLink.js) */
+:global(html.direct-link) .intro {
+  display: none;
+}

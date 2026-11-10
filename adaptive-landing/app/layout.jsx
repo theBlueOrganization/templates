@@ -20,8 +20,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="ko">
+    // suppressHydrationWarning — 아래 인라인 스크립트가 하이드레이션 전에 <html>에 클래스를 붙이므로
+    <html lang="ko" suppressHydrationWarning>
       <head>
+        {/* 다이렉트 링크(#앵커로 진입)면 하이드레이션 전에 인트로 오버레이를 CSS로 숨겨 검은 화면 깜빡임 방지 — lib/directLink.js */}
+        <script dangerouslySetInnerHTML={{ __html: "if(location.hash.length>1)document.documentElement.classList.add('direct-link')" }} />
         <GoogleAnalytics />
       </head>
       <body>{children}</body>

@@ -271,8 +271,16 @@ const config = {
   // 상담폼의 "사은품 증정 고객 등록하기" 체크박스 숨김 (2026-11-10 요청)
   hideGiftCheck: true,
 
-  // 개인정보 동의를 체크박스 1개 대신 "□동의 □미동의" 중 선택하도록 표시 (2026-11-10 요청)
-  privacyAgreeChoice: true,
+  // 필수 동의 아래에 노출할 선택 동의 체크박스 (2026-11-10 요청). 결과는 구글시트 끝 열·SMS 본문에 기록
+  optionalConsents: [
+    { key: "marketing_agree", label: "[선택] 마케팅 목적 개인정보 수집·이용에 동의합니다", sheetLabel: "마케팅동의" },
+    {
+      key: "ad_agree",
+      label: "[선택] 영리목적 광고성 정보 수신에 동의합니다",
+      sheetLabel: "광고수신동의",
+      channels: ["문자메시지(SMS·LMS·MMS)", "전화(음성)", "카카오톡"],
+    },
+  ],
 };
 
 export default config;

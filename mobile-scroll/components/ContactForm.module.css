@@ -143,9 +143,41 @@
   gap: 8px;
 }
 
-.consentRow .checkLabel {
+.consentItem {
+  padding: 12px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.consentTitle {
   flex: 1;
   min-width: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.consentChoiceRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px 12px;
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #475569;
+}
+
+.consentChoices {
+  display: flex;
+  gap: 16px;
+}
+
+.consentItem .detailBox {
+  margin: 8px 0 0;
+}
+
+.consentItem .channelRow {
+  margin: 10px 0 0;
 }
 
 .detailBtn {

@@ -13,8 +13,18 @@ export default function ContactForm({ config, instanceId }) {
   const [consents, setConsents] = useState({});
   // 선택 동의가 있으면 privacyText를 빈 줄 기준으로 나눠 항목별 "보기"로 노출
   // (0번 = 필수 동의, 1번부터 = optionalConsents 순서). 각 덩어리의 첫 줄(제목)은 체크박스 라벨과 겹치므로 제외
-  const consentDetails = optionalConsents.length
-    ? (privacyText ?? "").split(/\n\s*\n/).map((sec) => sec.split("\n").slice(1).join("\n").trim())
+  const sections = optionalConsents.length
+    ? (privacyText ?? "").split(/\n\s*\n/).map((sec) => {
+        const [title, ...rest] = sec.trim().split("\n");
+        return { title, detail: rest.join("\n").trim() };
+      })
+    : [];
+  // 필수 동의 + 선택 동의를 같은 형태로 나열 (제목은 privacyText 각 덩어리의 첫 줄)
+  const consentItems = optionalConsents.length
+    ? [
+        { key: "privacy_agree", title: sections[0]?.title, detail: sections[0]?.detail },
+        ...optionalConsents.map((c, i) => ({ ...c, title: sections[i + 1]?.title ?? c.label, detail: c.detail ?? sections[i + 1]?.detail })),
+      ]
     : [];
   const [openDetail, setOpenDetail] = useState(null);
   const detailToggle = (key, detail) => detail ? (
@@ -90,7 +100,11 @@ export default function ContactForm({ config, instanceId }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (disabled) return;
-    if (!form.privacy_agree) { alert("개인정보 수집·이용에 동의해 주세요."); return; }
+    if (optionalConsents.length) {
+      // 모든 항목에 동의함/동의안함 중 하나를 고르게 하고, 필수 항목은 동의함이어야 접수
+      if (consentItems.some((c) => consents[c.key] === undefined)) { alert("각 개인정보 동의 항목의 동의 여부를 선택해 주세요."); return; }
+      if (consents.privacy_agree !== true) { alert("[필수] 개인정보 수집·이용에 동의하셔야 상담 신청이 가능합니다."); return; }
+    } else if (!form.privacy_agree) { alert("개인정보 수집·이용에 동의해 주세요."); return; }
     const missingChannel = optionalConsents.find(
       (c) => c.channels?.length && consents[c.key] && !(consents[`${c.key}_channels`]?.length)
     );
@@ -105,7 +119,8 @@ export default function ContactForm({ config, instanceId }) {
         body: JSON.stringify({
           name: form.name, phone,
           visit_date: form.visit_date, visit_time: form.visit_time,
-          gift_check: form.gift_check, privacy_agree: form.privacy_agree,
+          gift_check: form.gift_check,
+          privacy_agree: optionalConsents.length ? consents.privacy_agree === true : form.privacy_agree,
           consents,
           projectName,
           adminPhones,
@@ -206,39 +221,43 @@ export default function ContactForm({ config, instanceId }) {
           </div>
         )}
 
-        <div className={styles.consentRow}>
+        {!optionalConsents.length && (
           <label className={styles.checkLabel}>
             <input className={styles.checkbox} type="checkbox" name="privacy_agree" checked={form.privacy_agree} onChange={handleChange} required />
-            {optionalConsents.length ? "[필수] " : ""}개인정보 수집·이용에 동의합니다
+            개인정보 수집·이용에 동의합니다
           </label>
-          {detailToggle("privacy_agree", consentDetails[0])}
-        </div>
-        {detailBox("privacy_agree", consentDetails[0])}
+        )}
 
-        {optionalConsents.map((c, i) => {
+        {/* 선택 동의 현장: 항목마다 제목 + [보기] + "위의 사항에 동의하십니까? □동의함 □동의안함" */}
+        {consentItems.map((c) => {
           const channelsKey = `${c.key}_channels`;
           const selected = consents[channelsKey] ?? [];
-          const detail = c.detail ?? consentDetails[i + 1];
+          const choose = (value) => (e) => {
+            // 같은 칸을 다시 누르면 선택 해제(미선택), 동의안함이면 수신 매체도 해제
+            const v = e.target.checked ? value : undefined;
+            setConsents((prev) => ({ ...prev, [c.key]: v, ...(c.channels && v !== true ? { [channelsKey]: [] } : {}) }));
+          };
           return (
-            <div key={c.key}>
+            <div key={c.key} className={styles.consentItem}>
               <div className={styles.consentRow}>
-              <label className={styles.checkLabel}>
-                <input
-                  className={styles.checkbox}
-                  type="checkbox"
-                  checked={Boolean(consents[c.key])}
-                  onChange={(e) => {
-                    const on = e.target.checked;
-                    // 동의 해제 시 선택했던 수신 매체도 함께 해제
-                    setConsents((prev) => ({ ...prev, [c.key]: on, ...(c.channels ? { [channelsKey]: on ? (prev[channelsKey] ?? []) : [] } : {}) }));
-                  }}
-                />
-                {c.label}
-              </label>
-              {detailToggle(c.key, detail)}
+                <span className={styles.consentTitle}>{c.title}</span>
+                {detailToggle(c.key, c.detail)}
               </div>
-              {detailBox(c.key, detail)}
-              {c.channels?.length > 0 && (
+              {detailBox(c.key, c.detail)}
+              <div className={styles.consentChoiceRow}>
+                <span>위의 사항에 동의하십니까?</span>
+                <span className={styles.consentChoices}>
+                  <label className={styles.channelLabel}>
+                    <input className={styles.checkbox} type="checkbox" checked={consents[c.key] === true} onChange={choose(true)} />
+                    동의함
+                  </label>
+                  <label className={styles.channelLabel}>
+                    <input className={styles.checkbox} type="checkbox" checked={consents[c.key] === false} onChange={choose(false)} />
+                    동의안함
+                  </label>
+                </span>
+              </div>
+              {c.channels?.length > 0 && consents[c.key] === true && (
                 <div className={styles.channelRow}>
                   {c.channels.map((ch) => (
                     <label key={ch} className={styles.channelLabel}>
@@ -250,9 +269,7 @@ export default function ContactForm({ config, instanceId }) {
                           const on = e.target.checked;
                           setConsents((prev) => {
                             const cur = prev[channelsKey] ?? [];
-                            const next = on ? [...cur, ch] : cur.filter((v) => v !== ch);
-                            // 매체를 고르면 광고 수신 동의도 자동 체크
-                            return { ...prev, [channelsKey]: next, ...(on ? { [c.key]: true } : {}) };
+                            return { ...prev, [channelsKey]: on ? [...cur, ch] : cur.filter((v) => v !== ch) };
                           });
                         }}
                       />

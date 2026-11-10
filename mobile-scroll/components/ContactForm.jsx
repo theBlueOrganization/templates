@@ -228,7 +228,7 @@ export default function ContactForm({ config, instanceId }) {
           </label>
         )}
 
-        {/* 선택 동의 현장: 항목마다 제목 + [보기] + "위의 사항에 동의하십니까? □동의함 □동의안함" */}
+        {/* 선택 동의 현장: 항목마다 제목 + [보기] + □동의함 □동의안함 */}
         {consentItems.map((c) => {
           const channelsKey = `${c.key}_channels`;
           const selected = consents[channelsKey] ?? [];
@@ -245,7 +245,6 @@ export default function ContactForm({ config, instanceId }) {
               </div>
               {detailBox(c.key, c.detail)}
               <div className={styles.consentChoiceRow}>
-                <span>위의 사항에 동의하십니까?</span>
                 <span className={styles.consentChoices}>
                   <label className={styles.channelLabel}>
                     <input className={styles.checkbox} type="checkbox" checked={consents[c.key] === true} onChange={choose(true)} />

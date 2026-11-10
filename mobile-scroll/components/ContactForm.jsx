@@ -189,10 +189,12 @@ export default function ContactForm({ config, instanceId }) {
           </select>
         </div>
 
-        <label className={styles.checkLabel}>
-          <input className={styles.checkbox} type="checkbox" name="gift_check" checked={form.gift_check} onChange={handleChange} />
-          사은품 증정 고객 등록하기
-        </label>
+        {!config.hideGiftCheck && (
+          <label className={styles.checkLabel}>
+            <input className={styles.checkbox} type="checkbox" name="gift_check" checked={form.gift_check} onChange={handleChange} />
+            사은품 증정 고객 등록하기
+          </label>
+        )}
 
         {/* 선택 동의 현장은 제목·텍스트 박스 없이 항목별 "보기"로만 노출 */}
         {optionalConsents.length ? (

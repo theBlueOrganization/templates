@@ -56,6 +56,7 @@ export default async function AptPage({ params }) {
     visitTimeOptions: site.visitTimeOptions,
     privacyText:      site.privacyText,
     optionalConsents: site.optionalConsents,
+    hideGiftCheck:    site.hideGiftCheck,
     sheetId:         site.sheetId,
     sheetTab:         site.sheetTab,
     showUtmInSms:     site.showUtmInSms,

@@ -135,6 +135,43 @@
   accent-color: #3b82f6;
 }
 
+/* 동의 항목별 "보기" 버튼 + 펼침 내용 */
+.consentRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.consentRow .checkLabel {
+  flex: 1;
+  min-width: 0;
+}
+
+.detailBtn {
+  flex-shrink: 0;
+  padding: 3px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  background: #fff;
+  color: #64748b;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.detailBox {
+  margin: -6px 0 14px;
+  padding: 10px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  white-space: pre-line;
+  word-break: keep-all;
+}
+
 /* 선택 동의(광고성 정보 수신) 하위 수신 매체 체크박스 */
 .channelRow {
   display: flex;

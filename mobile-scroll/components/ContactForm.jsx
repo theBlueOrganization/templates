@@ -11,6 +11,25 @@ export default function ContactForm({ config, instanceId }) {
   const optionalConsents = config.optionalConsents ?? [];
   // { [key]: true/false, [`${key}_channels`]: ["문자...", ...] }
   const [consents, setConsents] = useState({});
+  // 선택 동의가 있으면 privacyText를 빈 줄 기준으로 나눠 항목별 "보기"로 노출
+  // (0번 = 필수 동의, 1번부터 = optionalConsents 순서). 각 덩어리의 첫 줄(제목)은 체크박스 라벨과 겹치므로 제외
+  const consentDetails = optionalConsents.length
+    ? (privacyText ?? "").split(/\n\s*\n/).map((sec) => sec.split("\n").slice(1).join("\n").trim())
+    : [];
+  const [openDetail, setOpenDetail] = useState(null);
+  const detailToggle = (key, detail) => detail ? (
+    <button
+      type="button"
+      className={styles.detailBtn}
+      aria-expanded={openDetail === key}
+      onClick={() => setOpenDetail((prev) => (prev === key ? null : key))}
+    >
+      {openDetail === key ? "닫기" : "보기"}
+    </button>
+  ) : null;
+  const detailBox = (key, detail) => (openDetail === key && detail
+    ? <div className={styles.detailBox}>{detail}</div>
+    : null);
   // 실제 상담 건수에 더해 표시할 심리적 안전 수치 — 미설정 시 기존 +20 그대로 유지
   const countOffset = inquiryCountOffset ?? 20;
   const th = theme ?? {};
@@ -177,19 +196,27 @@ export default function ContactForm({ config, instanceId }) {
 
         <div className={styles.privacySection}>
           <p className={styles.privacyTitle}>개인정보 수집·이용 및 처리 위탁에 관한 동의{optionalConsents.length ? "" : " (필수)"}</p>
-          <textarea className={styles.privacyText} readOnly aria-label="개인정보 수집·이용 동의 내용" value={privacyText} />
+          {!optionalConsents.length && (
+            <textarea className={styles.privacyText} readOnly aria-label="개인정보 수집·이용 동의 내용" value={privacyText} />
+          )}
         </div>
 
-        <label className={styles.checkLabel}>
-          <input className={styles.checkbox} type="checkbox" name="privacy_agree" checked={form.privacy_agree} onChange={handleChange} required />
-          {optionalConsents.length ? "[필수] " : ""}개인정보 수집·이용에 동의합니다
-        </label>
+        <div className={styles.consentRow}>
+          <label className={styles.checkLabel}>
+            <input className={styles.checkbox} type="checkbox" name="privacy_agree" checked={form.privacy_agree} onChange={handleChange} required />
+            {optionalConsents.length ? "[필수] " : ""}개인정보 수집·이용에 동의합니다
+          </label>
+          {detailToggle("privacy_agree", consentDetails[0])}
+        </div>
+        {detailBox("privacy_agree", consentDetails[0])}
 
-        {optionalConsents.map((c) => {
+        {optionalConsents.map((c, i) => {
           const channelsKey = `${c.key}_channels`;
           const selected = consents[channelsKey] ?? [];
+          const detail = c.detail ?? consentDetails[i + 1];
           return (
             <div key={c.key}>
+              <div className={styles.consentRow}>
               <label className={styles.checkLabel}>
                 <input
                   className={styles.checkbox}
@@ -203,6 +230,9 @@ export default function ContactForm({ config, instanceId }) {
                 />
                 {c.label}
               </label>
+              {detailToggle(c.key, detail)}
+              </div>
+              {detailBox(c.key, detail)}
               {c.channels?.length > 0 && (
                 <div className={styles.channelRow}>
                   {c.channels.map((ch) => (

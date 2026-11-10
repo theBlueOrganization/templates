@@ -138,9 +138,10 @@
 /* 동의 항목별 "보기" 버튼 + 펼침 내용 */
 .consentRow {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 6px 12px;
 }
 
 .consentItem {
@@ -149,27 +150,26 @@
 }
 
 .consentTitle {
-  flex: 1;
   min-width: 0;
   font-size: 1rem;
   font-weight: 600;
   color: #475569;
 }
 
-.consentChoiceRow {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 6px 12px;
-  margin-top: 8px;
-  font-size: 0.9rem;
-  color: #475569;
+/* [보기] 버튼은 제목 글자 바로 옆에 붙음 */
+.consentTitle .detailBtn {
+  margin-left: 6px;
+  vertical-align: middle;
 }
 
+/* 동의함/동의안함은 오른쪽 정렬 (화면이 좁아 줄바꿈되어도 오른쪽 유지) */
 .consentChoices {
   display: flex;
-  gap: 16px;
+  gap: 14px;
+  margin-left: auto;
+  flex-shrink: 0;
+  font-size: 0.9rem;
+  color: #475569;
 }
 
 .consentItem .detailBox {

@@ -239,12 +239,12 @@ export default function ContactForm({ config, instanceId }) {
           };
           return (
             <div key={c.key} className={styles.consentItem}>
+              {/* 왼쪽: 제목 + [보기](글자 바로 옆) / 오른쪽: □동의함 □동의안함 */}
               <div className={styles.consentRow}>
-                <span className={styles.consentTitle}>{c.title}</span>
-                {detailToggle(c.key, c.detail)}
-              </div>
-              {detailBox(c.key, c.detail)}
-              <div className={styles.consentChoiceRow}>
+                <span className={styles.consentTitle}>
+                  {c.title}
+                  {detailToggle(c.key, c.detail)}
+                </span>
                 <span className={styles.consentChoices}>
                   <label className={styles.channelLabel}>
                     <input className={styles.checkbox} type="checkbox" checked={consents[c.key] === true} onChange={choose(true)} />
@@ -256,6 +256,7 @@ export default function ContactForm({ config, instanceId }) {
                   </label>
                 </span>
               </div>
+              {detailBox(c.key, c.detail)}
               {c.channels?.length > 0 && consents[c.key] === true && (
                 <div className={styles.channelRow}>
                   {c.channels.map((ch) => (

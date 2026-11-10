@@ -7,39 +7,6 @@ const PHONE_FIELDS = ["phone1", "phone2", "phone3"];
 
 export default function ContactForm({ config, instanceId }) {
   const { projectName, visitTimeOptions, privacyText, adminPhones, sheetId, sheetTab, theme, kakao, slug, officeLabel, disabled, inquiryCountOffset } = config;
-  // 현장별 선택 동의 체크박스(미설정 현장은 기존과 동일하게 필수 동의만 노출)
-  const optionalConsents = config.optionalConsents ?? [];
-  // { [key]: true/false, [`${key}_channels`]: ["문자...", ...] }
-  const [consents, setConsents] = useState({});
-  // 선택 동의가 있으면 privacyText를 빈 줄 기준으로 나눠 항목별 "보기"로 노출
-  // (0번 = 필수 동의, 1번부터 = optionalConsents 순서). 각 덩어리의 첫 줄(제목)은 체크박스 라벨과 겹치므로 제외
-  const sections = optionalConsents.length
-    ? (privacyText ?? "").split(/\n\s*\n/).map((sec) => {
-        const [title, ...rest] = sec.trim().split("\n");
-        return { title, detail: rest.join("\n").trim() };
-      })
-    : [];
-  // 필수 동의 + 선택 동의를 같은 형태로 나열 (제목은 privacyText 각 덩어리의 첫 줄)
-  const consentItems = optionalConsents.length
-    ? [
-        { key: "privacy_agree", title: sections[0]?.title, detail: sections[0]?.detail },
-        ...optionalConsents.map((c, i) => ({ ...c, title: sections[i + 1]?.title ?? c.label, detail: c.detail ?? sections[i + 1]?.detail })),
-      ]
-    : [];
-  const [openDetail, setOpenDetail] = useState(null);
-  const detailToggle = (key, detail) => detail ? (
-    <button
-      type="button"
-      className={styles.detailBtn}
-      aria-expanded={openDetail === key}
-      onClick={() => setOpenDetail((prev) => (prev === key ? null : key))}
-    >
-      {openDetail === key ? "닫기" : "보기"}
-    </button>
-  ) : null;
-  const detailBox = (key, detail) => (openDetail === key && detail
-    ? <div className={styles.detailBox}>{detail}</div>
-    : null);
   // 실제 상담 건수에 더해 표시할 심리적 안전 수치 — 미설정 시 기존 +20 그대로 유지
   const countOffset = inquiryCountOffset ?? 20;
   const th = theme ?? {};
@@ -90,6 +57,14 @@ export default function ContactForm({ config, instanceId }) {
     visit_date: "", visit_time: "", gift_check: false, privacy_agree: false,
   });
 
+  // privacyAgreeChoice 현장: 동의(true) / 미동의(false) / 미선택(null)
+  const [privacyChoice, setPrivacyChoice] = useState(null);
+  const choosePrivacy = (value) => (e) => {
+    const v = e.target.checked ? value : null;
+    setPrivacyChoice(v);
+    setForm((prev) => ({ ...prev, privacy_agree: v === true }));
+  };
+
   const [utmSource, setUtmSource] = useState("미확인");
 
   useEffect(() => {
@@ -100,15 +75,8 @@ export default function ContactForm({ config, instanceId }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (disabled) return;
-    if (optionalConsents.length) {
-      // 모든 항목에 동의함/동의안함 중 하나를 고르게 하고, 필수 항목은 동의함이어야 접수
-      if (consentItems.some((c) => consents[c.key] === undefined)) { alert("각 개인정보 동의 항목의 동의 여부를 선택해 주세요."); return; }
-      if (consents.privacy_agree !== true) { alert("[필수] 개인정보 수집·이용에 동의하셔야 상담 신청이 가능합니다."); return; }
-    } else if (!form.privacy_agree) { alert("개인정보 수집·이용에 동의해 주세요."); return; }
-    const missingChannel = optionalConsents.find(
-      (c) => c.channels?.length && consents[c.key] && !(consents[`${c.key}_channels`]?.length)
-    );
-    if (missingChannel) { alert("광고성 정보 희망 수신 매체를 1개 이상 선택해 주세요."); return; }
+    if (config.privacyAgreeChoice && privacyChoice === null) { alert("개인정보 수집·이용 동의 여부를 선택해 주세요."); return; }
+    if (!form.privacy_agree) { alert("개인정보 수집·이용에 동의해 주세요."); return; }
     // 비제어 입력이라 state가 아니라 실제 입력창(DOM) 값을 직접 읽음
     const phone = phoneRefs.map((r) => r.current?.value ?? "").join("-");
     setSubmitting(true);
@@ -119,9 +87,7 @@ export default function ContactForm({ config, instanceId }) {
         body: JSON.stringify({
           name: form.name, phone,
           visit_date: form.visit_date, visit_time: form.visit_time,
-          gift_check: form.gift_check,
-          privacy_agree: optionalConsents.length ? consents.privacy_agree === true : form.privacy_agree,
-          consents,
+          gift_check: form.gift_check, privacy_agree: form.privacy_agree,
           projectName,
           adminPhones,
           sheetId,
@@ -153,7 +119,7 @@ export default function ContactForm({ config, instanceId }) {
         alert("상담 신청이 완료되었습니다. 확인 후 연락드리겠습니다.");
         setInquiryCount((prev) => (prev ?? countOffset) + 1);
         setForm({ name: "", visit_date: "", visit_time: "", gift_check: false, privacy_agree: false });
-        setConsents({});
+        setPrivacyChoice(null);
         // 비제어 입력이라 state 초기화로는 안 지워지므로 DOM 값을 직접 비움
         phoneRefs.forEach((r) => { if (r.current) r.current.value = ""; });
       } else {
@@ -211,76 +177,31 @@ export default function ContactForm({ config, instanceId }) {
           </label>
         )}
 
-        {/* 선택 동의 현장은 제목·텍스트 박스 없이 항목별 "보기"로만 노출 */}
-        {optionalConsents.length ? (
-          <div className={styles.privacySection} />
-        ) : (
-          <div className={styles.privacySection}>
-            <p className={styles.privacyTitle}>개인정보 수집·이용 및 처리 위탁에 관한 동의 (필수)</p>
-            <textarea className={styles.privacyText} readOnly aria-label="개인정보 수집·이용 동의 내용" value={privacyText} />
-          </div>
-        )}
+        <div className={styles.privacySection}>
+          <p className={styles.privacyTitle}>개인정보 수집·이용 및 처리 위탁에 관한 동의 (필수)</p>
+          <textarea className={styles.privacyText} readOnly aria-label="개인정보 수집·이용 동의 내용" value={privacyText} />
+        </div>
 
-        {!optionalConsents.length && (
+        {config.privacyAgreeChoice ? (
+          <div className={styles.agreeChoiceRow}>
+            <span>개인정보 수집·이용에 동의합니다</span>
+            <span className={styles.agreeChoices}>
+              <label className={styles.agreeChoice}>
+                <input className={styles.checkbox} type="checkbox" checked={privacyChoice === true} onChange={choosePrivacy(true)} />
+                동의
+              </label>
+              <label className={styles.agreeChoice}>
+                <input className={styles.checkbox} type="checkbox" checked={privacyChoice === false} onChange={choosePrivacy(false)} />
+                미동의
+              </label>
+            </span>
+          </div>
+        ) : (
           <label className={styles.checkLabel}>
             <input className={styles.checkbox} type="checkbox" name="privacy_agree" checked={form.privacy_agree} onChange={handleChange} required />
             개인정보 수집·이용에 동의합니다
           </label>
         )}
-
-        {/* 선택 동의 현장: 항목마다 제목 + [보기] + □동의함 □동의안함 */}
-        {consentItems.map((c) => {
-          const channelsKey = `${c.key}_channels`;
-          const selected = consents[channelsKey] ?? [];
-          const choose = (value) => (e) => {
-            // 같은 칸을 다시 누르면 선택 해제(미선택), 동의안함이면 수신 매체도 해제
-            const v = e.target.checked ? value : undefined;
-            setConsents((prev) => ({ ...prev, [c.key]: v, ...(c.channels && v !== true ? { [channelsKey]: [] } : {}) }));
-          };
-          return (
-            <div key={c.key} className={styles.consentItem}>
-              {/* 왼쪽: 제목 + [보기](글자 바로 옆) / 오른쪽: □동의함 □동의안함 */}
-              <div className={styles.consentRow}>
-                <span className={styles.consentTitle}>
-                  {c.title}
-                  {detailToggle(c.key, c.detail)}
-                </span>
-                <span className={styles.consentChoices}>
-                  <label className={styles.channelLabel}>
-                    <input className={styles.checkbox} type="checkbox" checked={consents[c.key] === true} onChange={choose(true)} />
-                    동의함
-                  </label>
-                  <label className={styles.channelLabel}>
-                    <input className={styles.checkbox} type="checkbox" checked={consents[c.key] === false} onChange={choose(false)} />
-                    동의안함
-                  </label>
-                </span>
-              </div>
-              {detailBox(c.key, c.detail)}
-              {c.channels?.length > 0 && consents[c.key] === true && (
-                <div className={styles.channelRow}>
-                  {c.channels.map((ch) => (
-                    <label key={ch} className={styles.channelLabel}>
-                      <input
-                        className={styles.checkbox}
-                        type="checkbox"
-                        checked={selected.includes(ch)}
-                        onChange={(e) => {
-                          const on = e.target.checked;
-                          setConsents((prev) => {
-                            const cur = prev[channelsKey] ?? [];
-                            return { ...prev, [channelsKey]: on ? [...cur, ch] : cur.filter((v) => v !== ch) };
-                          });
-                        }}
-                      />
-                      {ch}
-                    </label>
-                  ))}
-                </div>
-              )}
-            </div>
-          );
-        })}
 
         <div className={styles.submitWrap}>
           <button

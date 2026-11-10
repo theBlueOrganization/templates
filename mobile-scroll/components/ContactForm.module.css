@@ -135,89 +135,29 @@
   accent-color: #3b82f6;
 }
 
-/* 동의 항목별 "보기" 버튼 + 펼침 내용 */
-.consentRow {
+/* privacyAgreeChoice 현장: "개인정보 수집·이용에 동의합니다  □동의 □미동의" */
+.agreeChoiceRow {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 6px 12px;
-}
-
-.consentItem {
-  padding: 12px 0;
-  border-bottom: 1px solid #e2e8f0;
-}
-
-.consentTitle {
-  min-width: 0;
+  margin: 14px 0;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 500;
   color: #475569;
 }
 
-/* [보기] 버튼은 제목 글자 바로 옆에 붙음 */
-.consentTitle .detailBtn {
-  margin-left: 6px;
-  vertical-align: middle;
-}
-
-/* 동의함/동의안함은 오른쪽 정렬 (화면이 좁아 줄바꿈되어도 오른쪽 유지) */
-.consentChoices {
+.agreeChoices {
   display: flex;
   gap: 14px;
   margin-left: auto;
-  flex-shrink: 0;
-  font-size: 0.9rem;
-  color: #475569;
 }
 
-.consentItem .detailBox {
-  margin: 8px 0 0;
-}
-
-.consentItem .channelRow {
-  margin: 10px 0 0;
-}
-
-.detailBtn {
-  flex-shrink: 0;
-  padding: 3px 10px;
-  border: 1px solid #cbd5e1;
-  border-radius: 4px;
-  background: #fff;
-  color: #64748b;
-  font-size: 0.8rem;
-  cursor: pointer;
-}
-
-.detailBox {
-  margin: -6px 0 14px;
-  padding: 10px 12px;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  background: #f8fafc;
-  color: #64748b;
-  font-size: 0.85rem;
-  line-height: 1.6;
-  white-space: pre-line;
-  word-break: keep-all;
-}
-
-/* 선택 동의(광고성 정보 수신) 하위 수신 매체 체크박스 */
-.channelRow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 16px;
-  margin: -6px 0 14px 26px;
-}
-
-.channelLabel {
+.agreeChoice {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.9rem;
-  color: #64748b;
   cursor: pointer;
 }
 

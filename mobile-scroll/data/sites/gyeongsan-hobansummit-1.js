@@ -17,20 +17,26 @@ const config = {
   sheetId:      "",
   sheetTab:     "경산상방공원호반써밋1단지",
 
-  // 히어로 다음 이미지 섹션("highlight") 바로 아래에 상담신청 폼을 하나 더 노출
+  // 히어로 다음 프로모션 배너 섹션("promo") 바로 아래에 상담신청 폼을 하나 더 노출
   // excludeUtmValues를 빈 배열로 두면 utm_source와 무관하게 모든 방문자에게 노출됨
   extraContactFormExcludeUtm: [],
-  extraContactFormAfterSectionId: "highlight",
+  extraContactFormAfterSectionId: "promo",
+
+  // 관심고객 전용 링크(?utm_source=관심고객#contact-section) — 팝업 없이 바로 상담신청 섹션으로.
+  // 접수는 같은 시트 탭·알림번호로 들어오고 유입매체가 '관심고객'으로 기록됨
+  popupByUtm: {
+    "관심고객": null,
+  },
 
   popup: {
     enabled: true,
     image: {
-      src: "/apt/gyeongsan-hobansummit-1/popup0.webp",
-      alt: "경산 호반써밋 선착순 동·호 지정중 팝업",
+      src: "/apt/gyeongsan-hobansummit-1/popup1.webp",
+      alt: "경산 호반써밋 마지막 34평형 4억대 기회 팝업",
       cta: {
         target: "#contact-section",
-        // 이미지 하단 "모델하우스 방문예약하기" 버튼 영역만 클릭 핫스팟으로 지정
-        rect: { top: "87%", left: "13%", width: "74%", height: "10%" },
+        // 이미지 하단 "상담 및 동·호수 안내" 전화번호 박스 영역만 클릭 핫스팟으로 지정
+        rect: { top: "75%", left: "2%", width: "96%", height: "22%" },
       },
     },
   },
@@ -71,14 +77,11 @@ const config = {
 
   sections: [
     {
-      id:         "highlight",
+      id:         "promo",
       type:       "image",
       showHeader: false,
-      // 바로 아래 관심고객등록(방문예약) 폼과 배경색을 맞춰 이어지는 느낌을 주기 위해
-      // theme.contactSection.background와 동일한 색으로 지정 (기본 흰색 대신)
-      sectionBg:  "#1e293b",
       images: [
-        { src: "/apt/gyeongsan-hobansummit-1/1-3.webp?v=0904-2", alt: "경산 상방공원 호반써밋 1단지", scale: 1.15 },
+        { src: "/apt/gyeongsan-hobansummit-1/1-4.webp", alt: "경산 호반써밋 34평형 4억대 마지막 기회 · 계약금 1,000만원 정액제" },
       ],
     },
     {

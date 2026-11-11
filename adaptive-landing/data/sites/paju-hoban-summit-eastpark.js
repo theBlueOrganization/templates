@@ -92,9 +92,9 @@ const config = {
       images: [
         {
           src: '/apt/paju-hoban-summit-eastpark/popup1.webp',
-          alt: '파주 호반써밋 회사보유분 세대 — 실제 세대 직접 확인 후 입주 가능. 방문예약 후 상담 완료 고객 고급와인 증정(2026.10.08~소진 시까지, 선착순 20명)',
+          alt: '파주 호반써밋 회사보유분 세대 — 실제 세대 직접 확인 후 입주 가능. 방문예약 후 상담 완료 고객 고급와인(4만원 상당) 증정(2026.11.19~소진 시까지, 선착순 20명)',
           width: 1024,
-          height: 1536,
+          height: 1535,
           hotspots: [
             { link: '#vip-reservation', label: '방문 예약 하러가기 — 관심고객등록', left: 14, top: 89, width: 72, height: 8 },
           ],

@@ -28,12 +28,12 @@ const config = {
   popup: {
     enabled: true,
     image: {
-      src: "/apt/dongtan-herium-central/popup-1112.webp",
+      src: "/apt/dongtan-herium-central/popup-1111.webp",
       alt: "동탄헤리움센트럴 팝업",
       cta: {
         target: "#contact-section",
         // 이미지 하단 "방문 예약 하러 가기" 버튼 영역만 클릭 핫스팟으로 지정
-        rect: { top: "86%", left: "16%", width: "68%", height: "9.5%" },
+        rect: { top: "85.5%", left: "16%", width: "68%", height: "10%" },
       },
     },
   },

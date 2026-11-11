@@ -117,6 +117,14 @@ const config = {
       ],
     },
 
+    // 인트로(2026-11-11 요청) — 원 2개 드로잉 → 로고 → 원이 화면 전체로 열리며 히어로 (SignatureCircleIntro)
+    //   배경은 히어로와 같은 투시도라 열린 뒤 히어로로 그대로 이어짐
+    circleIntro: {
+      logo: { src: '/apt/namseong-hernity/logo-white.png', alt: '남성역 헤르니티', width: 1252, height: 308 },
+      bgImage: '/apt/namseong-hernity/hero.webp',
+      bgImageMobile: '/apt/namseong-hernity/hero-m.webp',
+    },
+
     // 히어로 — PC: 광역 조감도(한강·남산 + 단지) / 모바일: 투시도(타워 + 위쪽 하늘). 문구는 참고 홈페이지 메인 카피
     hero: {
       hideText: true,

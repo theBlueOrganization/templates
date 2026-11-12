@@ -119,7 +119,7 @@ export default async function AptPage({ params }) {
       <HashScrollFix />
 
       {site.popup && (
-        <PopupBanner popup={site.popup} popupByUtm={site.popupByUtm} />
+        <PopupBanner popup={site.popup} popupByUtm={site.popupByUtm} popupHideOnHash={site.popupHideOnHash} />
       )}
     </>
   );

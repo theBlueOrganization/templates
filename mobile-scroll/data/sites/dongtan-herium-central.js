@@ -38,6 +38,9 @@ const config = {
     },
   },
 
+  // 상담신청·방문예약 다이렉트 링크(...addupapt.kr/#contact-section)로 들어오면 팝업 숨김
+  popupHideOnHash: ["#contact-section"],
+
   // 선착순 파격 할인 분양(sub-visual) 섹션 다음에 관심고객등록(상담신청) 폼을 하나 더 노출 (하단 상담신청 섹션과 합쳐 총 2개)
   extraContactFormExcludeUtm: [],
   extraContactFormAfterSectionId: "sub-visual",

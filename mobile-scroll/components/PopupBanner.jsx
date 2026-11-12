@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./PopupBanner.module.css";
 
-export default function PopupBanner({ popup, popupByUtm }) {
+export default function PopupBanner({ popup, popupByUtm, popupHideOnHash }) {
   // popup은 단일 객체(기존 방식) 또는 배열(순차 표시, 여러 개)을 모두 지원
   const basePopups = (Array.isArray(popup) ? popup : popup ? [popup] : []).filter((p) => p?.enabled);
   const baseImages = basePopups.map((p) => p.image ?? null);
@@ -21,6 +21,12 @@ export default function PopupBanner({ popup, popupByUtm }) {
     // - 객체: 첫 번째 팝업 이미지만 교체, 나머지는 기존 순서 유지 (기존 단일 팝업 현장과 호환)
     // - null: 팝업 자체를 숨김
     // baseImages가 비어 있어도(기본 팝업 미설정) override는 항상 평가해야 함
+    // popupHideOnHash에 등록된 해시(예: "#contact-section")로 바로 들어온 경우 팝업을 띄우지 않음
+    // (상담신청·방문예약 다이렉트 링크에서 팝업이 폼을 가리지 않도록)
+    if (Array.isArray(popupHideOnHash) && popupHideOnHash.includes(window.location.hash)) {
+      setImages([]);
+      return;
+    }
     let resolvedImages = baseImages;
     if (popupByUtm) {
       const utm = new URLSearchParams(window.location.search).get("utm_source");

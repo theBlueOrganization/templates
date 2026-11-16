@@ -8,6 +8,8 @@
 // 대표번호 1877-3569, 상담 접수 알림 010-2918-3185 — 2026-11-16 사용자 전달값(리플렛 번호 1555-3734 아님).
 const config = {
   slug: 'yeowol-jungang-heights-arbiche',
+  // 여월중앙하이츠아르비채.addupapt.kr → /apt/yeowol-jungang-heights-arbiche (middleware.js)
+  subdomain: '여월중앙하이츠아르비채',
   projectName: '여월 중앙하이츠 아르비채',
   shortName: '여월 중앙하이츠 아르비채',
   telNumber: '1877-3569',

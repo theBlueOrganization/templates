@@ -41,6 +41,12 @@ const config = {
   // 상담신청·방문예약 다이렉트 링크(...addupapt.kr/#contact-section)로 들어오면 팝업 숨김
   popupHideOnHash: ["#contact-section"],
 
+  // NA 전용 링크(...addupapt.kr/?utm_source=NA#contact-section)로 들어온 상담은 알림톡 현장명 뒤에 "+NA"를 붙여서 접수
+  // 문의처(telNumber)·알림 수신번호(adminPhones)·시트 탭은 기존과 동일, 시트에는 유입매체 "NA"로 기록됨
+  smsProjectNameByUtm: {
+    NA: "NA",
+  },
+
   // 선착순 파격 할인 분양(sub-visual) 섹션 다음에 관심고객등록(상담신청) 폼을 하나 더 노출 (하단 상담신청 섹션과 합쳐 총 2개)
   extraContactFormExcludeUtm: [],
   extraContactFormAfterSectionId: "sub-visual",

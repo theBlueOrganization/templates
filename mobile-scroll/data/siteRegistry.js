@@ -130,6 +130,8 @@ const adaptiveLandingPointers = [
   { slug: "namseong-hernity", subdomain: "남성역헤르니티", template: "adaptive-landing" },
   // 여월 중앙하이츠 아르비채(2026-11-16) — 한글도메인 여월중앙하이츠아르비채.addupapt.kr
   { slug: "yeowol-jungang-heights-arbiche", subdomain: "여월중앙하이츠아르비채", template: "adaptive-landing" },
+  // 서초 PH1603(2026-11-17) — 한글도메인 서초ph1603.addupapt.kr
+  { slug: "seocho-ph1603", subdomain: "서초ph1603", template: "adaptive-landing" },
 ];
 
 const allSites = [...sites, ...adaptiveLandingPointers];

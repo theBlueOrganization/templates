@@ -2348,3 +2348,977 @@
     content: none;
   }
 }
+
+/* 'ph1603' — 서초 PH1603(2026-11-17): 'arbiche' 프리셋 구성을 그대로 복제하고 색만 PH1603 공식 톤으로
+   웜 차콜 #2b2522(푸터·위치안내·평면 스테이지) · 다크 토프 #4a3f38(헤더·프리미엄·상담폼·전화버튼) · 브론즈 #a3825e(방문예약 CTA·포인트) */
+[data-page-theme='ph1603'] {
+  --cv-charcoal: #2b2522;
+  --cv-green: #4a3f38;
+  --cv-gray: #a3825e;
+  --cv-grad-charcoal: linear-gradient(160deg, #3a322d 0%, #2b2522 55%, #1d1916 100%);
+  --cv-grad-green: linear-gradient(135deg, #5a4c43 0%, #4a3f38 55%, #362e29 100%);
+  --cv-grad-gray: linear-gradient(135deg, #bb9c78 0%, #a3825e 55%, #86684a 100%);
+  --cv-ivory: #f6f3ef;
+  --vipform-bg: var(--cv-grad-green);
+  background: var(--cv-ivory);
+}
+
+/* 섹션 배경(2026-11-05 사용자 요청 "배경이 아쉬움") — 단색 회색 대신 공식 홈페이지 톤:
+   아이보리 바탕 + 은은한 초록/웜그레이 빛 번짐 + 딥그린 패널(물결 무늬는 어지럽다는 요청으로 제외). 장식은 ::before/::after(z-index -1, isolation)로 깔아
+   섹션 안 콘텐츠는 건드리지 않음 */
+[data-page-theme='ph1603'] #overview,
+[data-page-theme='ph1603'] #complex,
+[data-page-theme='ph1603'] #unit-plan,
+[data-page-theme='ph1603'] #event,
+[data-page-theme='ph1603'] section[class*='SignaturePremiumIntro_sectionSplit'] {
+  position: relative;
+  isolation: isolate;
+}
+
+/* 사업개요 — 섹션 자체가 가운데 폭 제한(max-width)이라 배경은 화면 전체 폭으로 ::before에 깔기 */
+[data-page-theme='ph1603'] #overview {
+  background: transparent;
+}
+
+[data-page-theme='ph1603'] #overview::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  background:
+    radial-gradient(ellipse 60% 45% at 92% 6%, rgba(74, 63, 56, 0.13), rgba(74, 63, 56, 0) 70%),
+    radial-gradient(ellipse 55% 40% at 4% 96%, rgba(163, 130, 94, 0.18), rgba(163, 130, 94, 0) 70%),
+    linear-gradient(180deg, #fafafa 0%, #f3efea 100%);
+}
+
+/* 사업개요 아래쪽 — 딥그린 패널(왼쪽 위만 크게 둥근 공식 홈페이지 모양), 스펙표 뒤 아래 일부만.
+   모바일은 스펙표가 섹션 맨 아래까지 차서 글자와 겹치므로 768px 이상에서만 */
+[data-page-theme='ph1603'] #overview::after {
+  content: '';
+  display: none;
+  position: absolute;
+  z-index: -1;
+  bottom: 0;
+  right: calc(50% - 50vw);
+  width: 62vw;
+  height: 90px;
+  border-top-left-radius: 90px;
+  background: var(--cv-grad-green);
+}
+
+@media (min-width: 768px) {
+  [data-page-theme='ph1603'] #overview::after {
+    display: block;
+  }
+}
+
+/* 프리미엄 인트로(사진+카피) — 아이보리에 초록 빛 번짐 */
+[data-page-theme='ph1603'] section[class*='SignaturePremiumIntro_sectionSplit'] {
+  background:
+    radial-gradient(ellipse 50% 60% at 100% 50%, rgba(74, 63, 56, 0.1), rgba(74, 63, 56, 0) 70%),
+    #f3efea;
+}
+
+/* 단지안내 — 배치도·동호표 등 도면 이미지가 잘 보이도록 흰 배경(2026-11-05 사용자 요청) */
+[data-page-theme='ph1603'] #complex {
+  background: #fff;
+}
+
+/* 세대안내 — 아이보리 + 평면 스테이지 뒤 큰 원형 빛 번짐과 가는 원형 라인 */
+[data-page-theme='ph1603'] #unit-plan {
+  background:
+    radial-gradient(circle at 72% 55%, rgba(74, 63, 56, 0.12) 0, rgba(74, 63, 56, 0) 38%),
+    linear-gradient(180deg, #f8f5f1 0%, #ece6df 100%);
+}
+
+[data-page-theme='ph1603'] #unit-plan::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: 900px;
+  height: 900px;
+  right: -260px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  border: 1px solid rgba(74, 63, 56, 0.14);
+  box-shadow: 0 0 0 70px rgba(255, 255, 255, 0.18), 0 0 0 71px rgba(163, 130, 94, 0.16);
+}
+
+/* 사은품 이미지 — 차콜 패널 위에 초록 이미지가 돋보이게 */
+[data-page-theme='ph1603'] #event {
+  background: var(--cv-grad-charcoal);
+  padding-top: 56px;
+  padding-bottom: 56px;
+}
+
+[data-page-theme='ph1603'] #event img {
+  border-radius: 14px;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.35);
+}
+
+/* 위치안내(location.variant 'story' → SignatureSellingStory) — 더샵 검단 핵심가치 디자인(네이비 + 하늘색)을
+   엘리프 톤으로: 바탕은 진한 차콜, 포인트(제목 강조·숫자·태그)는 세이지그린, 사진 아래 그라데이션도 차콜 */
+[data-page-theme='ph1603'] #location {
+  background: linear-gradient(180deg, #1d1916 0%, #2b2522 55%, #2b2522 100%);
+}
+
+[data-page-theme='ph1603'] #location [class*='SignatureSellingStory_eyebrow__'] {
+  color: #cdb393;
+}
+
+[data-page-theme='ph1603'] #location h2 em,
+[data-page-theme='ph1603'] #location [class*='SignatureSellingStory_numberItem__'] strong {
+  color: #d2b48f;
+}
+
+[data-page-theme='ph1603'] #location [class*='SignatureSellingStory_sceneCopy__'] span {
+  color: #eadbc6;
+}
+
+[data-page-theme='ph1603'] #location [class*='SignatureSellingStory_scene__']::after,
+[data-page-theme='ph1603'] #location [class*='SignatureSellingStory_sceneWide__']::after {
+  background: linear-gradient(transparent 38%, rgba(29, 25, 22, 0.92));
+}
+
+/* 프리미엄6 — 딥그린 그라데이션(카드 이미지는 투명 모서리 알약형이라 그라데이션 위에서도 자연스러움) */
+[data-page-theme='ph1603'] #premium-value {
+  background: var(--cv-grad-green);
+}
+
+/* 세대안내 평면 스테이지 — 차콜 그라데이션 */
+[data-page-theme='ph1603'] [class*='SignatureUnitPlan_circleStage'] {
+  background: var(--cv-grad-charcoal);
+}
+
+/* 헤더(스크롤 후 배경) — 딥그린 그라데이션 */
+[data-page-theme='ph1603'] header[class*='SignatureHeader_header']:not([class*='Transparent']),
+[data-page-theme='ph1603'] [class*='SignatureHeader_mobileMenu'] {
+  background-image: var(--cv-grad-green);
+}
+
+/* 푸터 — 차콜(공식 홈페이지 모바일 푸터 톤) */
+[data-page-theme='ph1603'] [class*='SignatureFooter_footer'] {
+  background: var(--cv-grad-charcoal);
+}
+
+/* 모바일 하단 바 — 전화상담 딥그린 / 관심고객등록 웜그레이 그라데이션 */
+[data-page-theme='ph1603'] [class*='SignatureMobileBottomBar_callBtn'] {
+  background: var(--cv-grad-green);
+  color: #fff;
+}
+
+[data-page-theme='ph1603'] [class*='SignatureMobileBottomBar_visitBtn'] {
+  background: var(--cv-grad-gray);
+  color: #fff;
+}
+
+/* PC 우측 퀵메뉴 — 분양문의 딥그린 / 관심고객 웜그레이 / MENU 차콜 */
+[data-page-theme='ph1603'] [class*='SignatureQuickMenu_barCall'] {
+  background: var(--cv-grad-green);
+}
+
+[data-page-theme='ph1603'] [class*='SignatureQuickMenu_barFavorite'] {
+  background: var(--cv-grad-gray);
+}
+
+[data-page-theme='ph1603'] [class*='SignatureQuickMenu_barMenu'] {
+  background: var(--cv-grad-charcoal);
+}
+
+/* 세대안내 원형 라인 장식은 PC(원형 스테이지)에서만 — 모바일은 제목·탭 위로 선이 지나가 어수선함 */
+@media (max-width: 1023px) {
+  [data-page-theme='ph1603'] #unit-plan::before {
+    display: none;
+  }
+}
+
+/* 사은품 이미지 — 모바일은 화면 가로를 꽉 채워(여백·모서리·그림자 없이) 전체가 크게 보이게 */
+@media (max-width: 767px) {
+  [data-page-theme='ph1603'] #event {
+    padding: 0;
+  }
+
+  [data-page-theme='ph1603'] #event img {
+    width: 100%;
+    max-width: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+/* PREMIUM 6 모바일 — 사진 카드형(2026-11-05 사용자 요청: 위치안내 사진 씬처럼). 직사각형 모바일 이미지(card.imageMobile)를
+   카드 전체에 깔고, 아래쪽 어두운 그라데이션 위에 'PREMIUM 01.'·제목·설명을 얹음.
+   display는 모바일 목록(mobileList) 카드에만 — 오른쪽 칼럼 카드(PC용, 모바일에서 숨김)까지 보이면 04~06이 중복됨 */
+@media (max-width: 767px) {
+  [data-page-theme='ph1603'] #premium-value [class*='SignaturePremiumZigzag_item__'] {
+    position: relative;
+    min-height: 280px;
+    margin-bottom: 14px;
+    padding: 0;
+    border-top: 0;
+    overflow: hidden;
+  }
+
+  [data-page-theme='ph1603'] #premium-value [class*='SignaturePremiumZigzag_mobileList__'] [class*='SignaturePremiumZigzag_item__'] {
+    display: block;
+    min-height: 280px;
+    margin-bottom: 14px;
+    padding: 0;
+    border-top: 0;
+    overflow: hidden;
+  }
+
+  [data-page-theme='ph1603'] #premium-value [class*='SignaturePremiumZigzag_item__']::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    background: linear-gradient(transparent 30%, rgba(29, 25, 22, 0.92));
+  }
+
+  [data-page-theme='ph1603'] #premium-value [class*='SignaturePremiumZigzag_visual__'] {
+    position: absolute;
+    inset: 0;
+    max-width: none;
+  }
+
+  [data-page-theme='ph1603'] #premium-value [class*='SignaturePremiumZigzag_visual__'] img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  [data-page-theme='ph1603'] #premium-value [class*='SignaturePremiumZigzag_text__'] {
+    position: absolute;
+    z-index: 2;
+    left: 20px;
+    right: 20px;
+    bottom: 22px;
+  }
+
+  [data-page-theme='ph1603'] #premium-value [class*='SignaturePremiumZigzag_label__'] {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: #eadbc6;
+  }
+
+  [data-page-theme='ph1603'] #premium-value [class*='SignaturePremiumZigzag_itemTitle__'] {
+    margin-top: 8px;
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 20px;
+    color: #fff;
+  }
+
+  [data-page-theme='ph1603'] #premium-value [class*='SignaturePremiumZigzag_desc__'] {
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  [data-page-theme='ph1603'] #premium-value [class*='SignaturePremiumZigzag_desc__'] span {
+    display: inline;
+  }
+
+  [data-page-theme='ph1603'] #premium-value [class*='SignaturePremiumZigzag_desc__'] span + span::before {
+    content: ' ';
+  }
+}
+
+/* 히어로 윗줄('단지 앞 초등학교(계획), 수변공원까지') — 공식 홈페이지처럼 굵지 않게 */
+[data-page-theme='ph1603'] #hero [class*='SignatureHero_estBrand__'] {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+@media (min-width: 768px) {
+  [data-page-theme='ph1603'] #hero [class*='SignatureHero_estBrand__'] {
+    font-size: clamp(20px, 1.5vw, 28px);
+  }
+}
+
+/* 위치안내(location.variant 'infrastructure' → SignatureInfrastructure) — 짙은 회색(차콜) 배경 + 흰 글씨(2026-11-05 사용자 요청).
+   포인트(작은 영문·번호·제목 둘째 줄)는 차콜 위에서 잘 보이는 연한 세이지그린 */
+[data-page-theme='ph1603'] #location {
+  background: var(--cv-grad-charcoal);
+}
+
+[data-page-theme='ph1603'] #location h2,
+[data-page-theme='ph1603'] #location [class*='SignatureInfrastructure_list__'] h3 {
+  color: #fff;
+}
+
+[data-page-theme='ph1603'] #location [class*='SignatureInfrastructure_eyebrow__'],
+[data-page-theme='ph1603'] #location h2 em,
+[data-page-theme='ph1603'] #location [class*='SignatureInfrastructure_list__'] span {
+  color: #d2b48f;
+}
+
+[data-page-theme='ph1603'] #location [class*='SignatureInfrastructure_desc__'],
+[data-page-theme='ph1603'] #location [class*='SignatureInfrastructure_list__'] p,
+[data-page-theme='ph1603'] #location [class*='SignatureInfrastructure_sourceNote__'] {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+[data-page-theme='ph1603'] #location [class*='SignatureInfrastructure_list__'],
+[data-page-theme='ph1603'] #location [class*='SignatureInfrastructure_list__'] article {
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* 위치안내 PC — 항목이 4개라 리스트가 지도 박스보다 길어 아래 끝이 어긋났음(2026-11-05 사용자 지적).
+   지도 박스와 리스트를 같은 높이로 늘이고, 4개 항목을 그 높이에 고르게 나눠 위·아래 끝선을 지도와 맞춤 */
+@media (min-width: 1024px) {
+  [data-page-theme='ph1603'] #location [class*='SignatureInfrastructure_layout__'] {
+    align-items: stretch;
+  }
+
+  [data-page-theme='ph1603'] #location [class*='SignatureInfrastructure_list__'] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  [data-page-theme='ph1603'] #location [class*='SignatureInfrastructure_list__'] article {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 16px 0;
+  }
+
+  [data-page-theme='ph1603'] #location [class*='SignatureInfrastructure_list__'] h3 {
+    margin: 6px 0 8px;
+  }
+}
+
+/* 위치안내 사진 카드(listStyle 'photoCards', 2026-11-17 사용자 요청 — 리플렛 '더 ~한 ~의 중심' 4칸) — 골드 제목 · 흰 설명 · 흰 점선 */
+[data-page-theme='ph1603'] #location [class*='SignatureInfrastructure_photoCardText__'] h3 {
+  color: #d2b48f;
+}
+
+[data-page-theme='ph1603'] #location [class*='SignatureInfrastructure_photoCardText__'] p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+[data-page-theme='ph1603'] #location [class*='SignatureInfrastructure_photoCard__'] {
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+/* 모바일 히어로 문구를 위로 — 투시도 건물과 겹치지 않게 하늘 영역 위쪽에 배치 */
+@media (max-width: 1023px) {
+  [data-page-theme='ph1603'] [class*='SignatureHero_estCopy'] {
+    top: calc(var(--header-h, 64px) + 1.5vh);
+  }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estName']::before {
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estBadgeBox'] {
+    margin-top: 14px;
+  }
+}
+
+/* 위치안내 제목·항목 제목 — 명조(serif) 대신 프리텐다드 고딕 */
+[data-page-theme='ph1603'] [class*='SignatureInfrastructure_heading'] h2,
+[data-page-theme='ph1603'] [class*='SignatureInfrastructure_list'] h3 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+[data-page-theme='ph1603'] [class*='SignatureInfrastructure_list'] h3 {
+  font-size: clamp(21px, 2.1vw, 26px);
+}
+
+/* 푸터 강조 문구 — 단어 중간('대단/지')에서 끊기지 않게 */
+[data-page-theme='ph1603'] [class*='SignatureFooter_highlightText'] {
+  word-break: keep-all;
+}
+@media (max-width: 480px) {
+  [data-page-theme='ph1603'] [class*='SignatureFooter_highlightText'] {
+    font-size: 17px;
+  }
+}
+
+/* PC 히어로 문구 — 투시도 건물과 겹치지 않게 위치를 올리고 줄 간격을 좁힘 */
+@media (min-width: 1024px) {
+  [data-page-theme='ph1603'] [class*='SignatureHero_estCopy'] {
+    top: calc(var(--header-h, 96px) + 1vh);
+  }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estTitle'] {
+    margin-top: 6px;
+    line-height: 1.25;
+  }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estName']::before {
+    margin: 14px auto 12px;
+  }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estBadgeBox'] {
+    margin-top: 14px;
+  }
+}
+@media (min-width: 1024px) {
+  [data-page-theme='ph1603'] [class*='SignatureHero_estBrand'] { font-size: clamp(18px, 1.35vw, 26px); }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estTitle'] { font-size: clamp(34px, 2.9vw, 56px); }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estName'] { font-size: clamp(20px, 1.5vw, 28px); }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estBadgeBox'] { padding: 8px 24px; font-size: clamp(14px, 1vw, 17px); }
+}
+
+/* 프리미엄(지그재그) — 'feliz'와 같이 단어 단위 줄바꿈('조/성', '동/작고'처럼 글자 중간에서 끊기지 않게),
+   PC는 설명을 강제 2줄 대신 이어서 흐르게 */
+[data-page-theme='ph1603'] [class*='SignaturePremiumZigzag_itemTitle'],
+[data-page-theme='ph1603'] [class*='SignaturePremiumZigzag_desc'],
+[data-page-theme='ph1603'] [class*='SignatureInfrastructure_list'] p {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+@media (min-width: 768px) {
+  [data-page-theme='ph1603'] [class*='SignaturePremiumZigzag_desc'] span {
+    display: inline;
+  }
+  [data-page-theme='ph1603'] [class*='SignaturePremiumZigzag_desc'] span + span::before {
+    content: ' ';
+  }
+}
+
+/* PC 히어로(투시도) — 문구를 조금 작고 촘촘하게 해 하늘 영역 안에 두고, 그만큼 이미지 아래쪽(저층부·도로)이 더 보이게(2026-11-10 사용자 요청) */
+@media (min-width: 1024px) {
+  [data-page-theme='ph1603'] [class*='SignatureHero_estCopy'] { top: calc(var(--header-h, 96px) - 8px); }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estBrand'] { font-size: clamp(16px, 1.2vw, 22px); }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estTitle'] { margin-top: 2px; font-size: clamp(30px, 2.5vw, 46px); line-height: 1.2; }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estName'] { font-size: clamp(18px, 1.3vw, 24px); }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estName']::before { margin: 10px auto 8px; }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estBadgeBox'] { margin-top: 10px; padding: 6px 20px; font-size: clamp(13px, 0.95vw, 16px); }
+}
+/* 세로가 짧은 PC(노트북 1280×720·1366×768 등) — 타워 꼭대기가 더 위로 올라오므로 문구를 한 단계 더 작게 */
+@media (min-width: 1024px) and (max-height: 820px) {
+  [data-page-theme='ph1603'] [class*='SignatureHero_estCopy'] { top: calc(var(--header-h, 96px) - 14px); }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estBrand'] { font-size: 15px; }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estTitle'] { font-size: 28px; }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estName'] { font-size: 16px; }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estName']::before { margin: 6px auto 5px; }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estBadgeBox'] { margin-top: 7px; padding: 4px 14px; font-size: 12px; }
+}
+
+/* 모바일 히어로 — 투시도 위쪽 하늘이 좁아 세로가 짧은 폰(약 630px)에서 문구가 타워와 겹쳤음(2026-11-10 사용자 지적).
+   이미지(hero-m)는 하늘을 늘려 타워를 아래로 내리고, 문구는 헤더 바로 아래로 붙여 한 단계 작게 */
+@media (max-width: 1023px) {
+  [data-page-theme='ph1603'] [class*='SignatureHero_estCopy'] { top: calc(var(--header-h, 64px) + 1vh); }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estBrand'] { font-size: 14px; }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estTitle'] { margin-top: 4px; font-size: 27px; line-height: 1.25; }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estName'] { font-size: 17px; }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estName']::before { margin: 9px auto 8px; }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estBadgeBox'] { margin-top: 9px; padding: 5px 12px; font-size: 12px; }
+}
+
+/* 세대안내 장식 원(#unit-plan::before)이 PC에서 오른쪽으로 260px 넘쳐 가로 스크롤이 생김 — 섹션 밖은 잘라냄 */
+[data-page-theme='ph1603'] #unit-plan {
+  overflow-x: clip;
+}
+
+/* 서초 PH1603 위치안내(location.variant 'image') — 입지환경 이미지가 흰 바탕이라 섹션도 흰색으로, 모바일은 가로 꽉 차게 */
+[data-page-theme='ph1603'] #location {
+  background: #fff;
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+@media (max-width: 767px) {
+  [data-page-theme='ph1603'] #location {
+    padding: 40px 0;
+  }
+
+  [data-page-theme='ph1603'] #location img {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+/* ───────── 서초 PH1603 고급화(2026-11-17 사용자 요청 "전체적으로 고급지게") ─────────
+   브랜드 콘셉트 '프라이빗 갤러리' — 에스프레소 블랙 + 샴페인 골드. 한글은 참고 사이트(ph1603.com) 카피 이미지처럼 가는 고딕(Pretendard Light),
+   영문만 Cormorant 세리프(2026-11-17 사용자 요청 — 명조 대신 참고 사이트 폰트 톤으로),
+   굵은 글씨 대신 가는 획 + 넓은 자간, 섹션 구분은 얇은 골드 헤어라인 */
+[data-page-theme='ph1603'] {
+  --cv-charcoal: #14110f;
+  --cv-green: #221d19;
+  --cv-gray: #b39468;
+  --cv-grad-charcoal: linear-gradient(170deg, #1b1714 0%, #14110f 55%, #0c0a08 100%);
+  --cv-grad-green: linear-gradient(160deg, #2a241f 0%, #1c1815 55%, #12100d 100%);
+  --cv-grad-gray: linear-gradient(135deg, #c8ab7c 0%, #b39468 55%, #977a52 100%);
+  --cv-ivory: #f7f4ef;
+  --ph-gold: #b39468;
+  --ph-gold-soft: #d9c29b;
+  --ph-hairline: rgba(179, 148, 104, 0.35);
+  --vipform-bg: var(--cv-grad-charcoal);
+}
+
+/* 공통 — 영문 아이브로는 Cormorant 대문자 + 넓은 자간 */
+[data-page-theme='ph1603'] [class*='_eyebrow'],
+[data-page-theme='ph1603'] [class*='SignaturePremiumIntro_splitEyebrow'] {
+  font-family: var(--font-cormorant);
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  color: var(--ph-gold);
+}
+
+/* 히어로 — 명조 제목, 가는 골드 라인, 배지는 골드 테두리 */
+[data-page-theme='ph1603'] [class*='SignatureHero_estBrand'] {
+  font-weight: 300;
+  letter-spacing: 0.08em;
+}
+[data-page-theme='ph1603'] [class*='SignatureHero_estTitle'] {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+}
+[data-page-theme='ph1603'] [class*='SignatureHero_estTitle'] strong {
+  font-family: var(--font-sans);
+  font-weight: 600;
+}
+[data-page-theme='ph1603'] [class*='SignatureHero_estName'] {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: var(--ph-gold-soft);
+}
+[data-page-theme='ph1603'] [class*='SignatureHero_estName']::before {
+  background: var(--ph-gold);
+}
+[data-page-theme='ph1603'] [class*='SignatureHero_estBadgeBox'] {
+  border-color: rgba(217, 194, 155, 0.75);
+  background: rgba(20, 17, 15, 0.35);
+  backdrop-filter: blur(4px);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+}
+
+/* 4대 특장점 — 남색 오버레이·손글씨체 대신 에스프레소 블랙 + 명조, 카드는 골드 헤어라인 */
+[data-page-theme='ph1603'] [class*='SignatureBenefits_overlay'] {
+  background: linear-gradient(180deg, rgba(12, 10, 8, 0.96) 0%, rgba(20, 17, 15, 0.86) 40%, rgba(12, 10, 8, 0.93) 100%);
+}
+[data-page-theme='ph1603'] [class*='SignatureBenefits_titleSmall'] {
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.7);
+}
+[data-page-theme='ph1603'] [class*='SignatureBenefits_title'] span {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
+}
+[data-page-theme='ph1603'] [class*='SignatureBenefits_title'] strong {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: clamp(34px, 3.4vw, 48px);
+  letter-spacing: -0.02em;
+  color: var(--ph-gold-soft);
+}
+[data-page-theme='ph1603'] [class*='SignatureBenefits_desc'] {
+  font-weight: 300;
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.62);
+  word-break: keep-all;
+}
+[data-page-theme='ph1603'] [class*='SignatureBenefits_card'] {
+  border-color: var(--ph-hairline) !important;
+}
+[data-page-theme='ph1603'] [class*='SignatureBenefits_num'] {
+  font-weight: 400;
+  color: var(--ph-gold);
+}
+[data-page-theme='ph1603'] [class*='SignatureBenefits_tag'] {
+  font-family: var(--font-cormorant);
+  letter-spacing: 0.24em;
+  color: rgba(217, 194, 155, 0.6);
+}
+[data-page-theme='ph1603'] [class*='SignatureBenefits_cardTitle'] {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+[data-page-theme='ph1603'] [class*='SignatureBenefits_cardDesc'] {
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* 섹션 제목 — overview / 단지안내 / UNIT PLAN 을 같은 결의 명조·Cormorant로 */
+[data-page-theme='ph1603'] [class*='SignatureSummary_heading'] {
+  font-family: var(--font-cormorant);
+  font-weight: 400;
+  font-size: clamp(30px, 3vw, 44px);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cv-charcoal);
+}
+[data-page-theme='ph1603'] [class*='SignatureSummary_heading']::after {
+  content: '';
+  display: block;
+  width: 36px;
+  height: 1px;
+  margin: 18px auto 0;
+  background: var(--ph-gold);
+}
+[data-page-theme='ph1603'] [class*='SignatureComplexBlocks_sectionTitle'],
+[data-page-theme='ph1603'] [class*='SignatureComplexBlocks_title'] {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+[data-page-theme='ph1603'] [class*='SignatureComplexBlocks_sectionTitle'] strong,
+[data-page-theme='ph1603'] [class*='SignatureComplexBlocks_sectionTitle'] em {
+  font-weight: 600;
+  font-style: normal;
+}
+[data-page-theme='ph1603'] [class*='SignatureUnitPlanTabs_title'] {
+  font-family: var(--font-cormorant);
+  font-weight: 300;
+  letter-spacing: 0.18em;
+}
+[data-page-theme='ph1603'] [class*='SignatureUnitPlanTabs_title'] strong {
+  font-weight: 600;
+  color: var(--ph-gold);
+}
+[data-page-theme='ph1603'] [class*='SignatureUnitPlanTabs_subtitle'] {
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+/* 사업개요 — 아이보리 바탕, 사진에 깊은 그림자 */
+[data-page-theme='ph1603'] #overview::before {
+  background: linear-gradient(180deg, #fbf9f5 0%, #f3eee6 100%);
+}
+[data-page-theme='ph1603'] #overview [class*='SignatureSummary_mainPhoto'] {
+  border-radius: 2px;
+  box-shadow: 0 30px 60px -30px rgba(20, 17, 15, 0.45);
+}
+
+/* 위치안내(이미지) 위 골드 헤어라인 */
+[data-page-theme='ph1603'] #location {
+  background: #fff;
+  border-top: 1px solid rgba(179, 148, 104, 0.25);
+}
+
+/* 프리미엄 인트로(스플릿) — 명조 타이틀, 골드 세로선 */
+[data-page-theme='ph1603'] section[class*='SignaturePremiumIntro_sectionSplit'] {
+  background: linear-gradient(180deg, #faf7f2 0%, #f1ebe2 100%);
+}
+[data-page-theme='ph1603'] [class*='SignaturePremiumIntro_splitTitle'] {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: clamp(24px, 2.2vw, 34px);
+  letter-spacing: -0.01em;
+  color: var(--cv-charcoal);
+}
+[data-page-theme='ph1603'] [class*='SignaturePremiumIntro_splitLine'] {
+  background: var(--ph-gold);
+}
+[data-page-theme='ph1603'] [class*='SignaturePremiumIntro_splitPara'] {
+  font-weight: 300;
+  line-height: 1.9;
+  color: #5b524b;
+}
+
+/* PREMIUM 6 — 블랙 바탕 위 명조 제목 */
+[data-page-theme='ph1603'] [class*='SignaturePremiumZigzag_title'] {
+  font-family: var(--font-cormorant);
+  font-weight: 300;
+  letter-spacing: 0.16em;
+}
+[data-page-theme='ph1603'] [class*='SignaturePremiumZigzag_itemTitle'] {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
+}
+[data-page-theme='ph1603'] [class*='SignaturePremiumZigzag_label'] {
+  font-family: var(--font-cormorant);
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  color: var(--ph-gold);
+}
+[data-page-theme='ph1603'] [class*='SignaturePremiumZigzag_desc'] {
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.66);
+}
+
+/* 단지안내 — 아이보리 바탕 */
+[data-page-theme='ph1603'] #complex {
+  background: #fbf9f5;
+}
+
+/* 방문예약 폼 — 블랙 카드 + 골드 헤어라인 + 골드 버튼 */
+[data-page-theme='ph1603'] #vip-reservation [class*='SignatureVipForm_card'] {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--ph-hairline);
+  border-radius: 2px;
+  box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.7);
+}
+[data-page-theme='ph1603'] #vip-reservation [class*='SignatureVipForm_title'] {
+  font-weight: 300;
+}
+[data-page-theme='ph1603'] #vip-reservation [class*='SignatureVipForm_submitBtn'] {
+  background: var(--cv-grad-gray);
+  border-radius: 2px;
+  letter-spacing: 0.2em;
+  font-weight: 500;
+}
+
+/* 푸터 — 블랙 + 골드 헤어라인, 강조 문구 명조 */
+[data-page-theme='ph1603'] [class*='SignatureFooter_footer'] {
+  background: #0d0b09;
+  border-top: 1px solid var(--ph-hairline);
+}
+[data-page-theme='ph1603'] [class*='SignatureFooter_highlightText'] {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  color: var(--ph-gold-soft);
+}
+
+/* 서초 PH1603 푸터 전화 버튼 — 기본 📞 이모지(분홍)를 골드 단색으로(글자색으로는 이모지 색이 안 바뀌어 filter 사용) */
+[data-page-theme='ph1603'] [class*='SignatureFooter_callBtn'] {
+  background: transparent;
+  border: 1px solid var(--ph-gold);
+  filter: grayscale(1) sepia(0.6) brightness(1.15);
+}
+
+/* 서초 PH1603 타이포 2차(2026-11-17) — 참고 사이트 카피 구성: 밑줄 친 영문 세리프 아이브로 → 가는 고딕 2줄 제목 → 작은 회색 본문.
+   한글은 Light(300) 위주, 강조만 Medium(500), 줄간격 넉넉히 */
+[data-page-theme='ph1603'] [class*='_eyebrow'],
+[data-page-theme='ph1603'] [class*='SignaturePremiumIntro_splitEyebrow'] {
+  display: inline-block;
+  padding-bottom: 3px;
+  border-bottom: 1px solid currentColor;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+[data-page-theme='ph1603'] [class*='SignatureHero_estTitle'] {
+  font-weight: 200;
+  letter-spacing: -0.03em;
+}
+[data-page-theme='ph1603'] [class*='SignatureHero_estTitle'] strong {
+  font-weight: 500;
+}
+[data-page-theme='ph1603'] [class*='SignatureHero_estBrand'] {
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  opacity: 0.92;
+}
+
+[data-page-theme='ph1603'] [class*='SignatureBenefits_title'] strong {
+  font-weight: 200;
+  letter-spacing: -0.03em;
+}
+
+[data-page-theme='ph1603'] [class*='SignatureComplexBlocks_sectionTitle'],
+[data-page-theme='ph1603'] [class*='SignatureComplexBlocks_title'],
+[data-page-theme='ph1603'] [class*='SignatureComplexBlocks'] h2,
+[data-page-theme='ph1603'] [class*='SignatureComplexBlocks'] h3 {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+[data-page-theme='ph1603'] [class*='SignatureComplexBlocks'] h2 strong,
+[data-page-theme='ph1603'] [class*='SignatureComplexBlocks'] h2 em,
+[data-page-theme='ph1603'] [class*='SignatureComplexBlocks'] h2 b {
+  font-weight: 500;
+  font-style: normal;
+}
+
+[data-page-theme='ph1603'] [class*='SignaturePremiumIntro_splitTitle'] {
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.45;
+}
+[data-page-theme='ph1603'] [class*='SignaturePremiumIntro_splitPara'] {
+  letter-spacing: -0.01em;
+}
+
+/* 본문 — 작은 회색 Light, 넉넉한 줄간격 */
+[data-page-theme='ph1603'] [class*='SignatureSummary_table'] dd,
+[data-page-theme='ph1603'] [class*='SignatureSummary_table'] td,
+[data-page-theme='ph1603'] [class*='SignatureUnitPlanTabs_subtitle'],
+[data-page-theme='ph1603'] [class*='SignatureComplexBlocks_disclaimer'] {
+  font-weight: 300;
+  line-height: 1.75;
+}
+[data-page-theme='ph1603'] [class*='SignatureSummary_table'] dt,
+[data-page-theme='ph1603'] [class*='SignatureSummary_table'] th {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* 방문예약 폼 제목 — 가는 고딕 + 골드 둘째 줄 */
+[data-page-theme='ph1603'] #vip-reservation h2 {
+  font-family: var(--font-sans);
+  font-weight: 200;
+  letter-spacing: -0.03em;
+}
+[data-page-theme='ph1603'] #vip-reservation h2 strong,
+[data-page-theme='ph1603'] #vip-reservation h2 span:last-child {
+  font-weight: 400;
+}
+
+/* PC — 섹션 사이 여백을 넉넉히(갤러리 같은 호흡) */
+@media (min-width: 1024px) {
+  [data-page-theme='ph1603'] #benefits,
+  [data-page-theme='ph1603'] #overview,
+  [data-page-theme='ph1603'] #premium-value,
+  [data-page-theme='ph1603'] #complex,
+  [data-page-theme='ph1603'] #unit-plan,
+  [data-page-theme='ph1603'] #vip-reservation {
+    padding-top: 140px;
+    padding-bottom: 140px;
+  }
+  [data-page-theme='ph1603'] #location {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+}
+
+/* 타이포 2차 보정 — 아이브로 크기(모바일 12 / PC 13), PREMIUM 6 상단 'PH1603' 장식 글자는 원래 크게, 히어로 제목 앞부분 가늘게 */
+@media (min-width: 1024px) {
+  [data-page-theme='ph1603'] [class*='_eyebrow'],
+  [data-page-theme='ph1603'] [class*='SignaturePremiumIntro_splitEyebrow'] {
+    font-size: 13px;
+  }
+}
+[data-page-theme='ph1603'] [class*='SignaturePremiumZigzag_eyebrow'] {
+  display: block;
+  padding-bottom: 0;
+  border-bottom: 0;
+  font-size: 34px;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+}
+[data-page-theme='ph1603'] [class*='SignatureHero_estLight'] {
+  font-weight: 200;
+}
+
+/* 모바일 PREMIUM 6 사진 카드 제목 — 'arbiche' 복제 규칙(#premium-value … 명조)보다 우선해 가는 고딕으로 */
+@media (max-width: 767px) {
+  [data-page-theme='ph1603'] #premium-value [class*='SignaturePremiumZigzag_itemTitle__'] {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+  }
+  [data-page-theme='ph1603'] #premium-value [class*='SignaturePremiumZigzag_label__'] {
+    font-family: var(--font-cormorant);
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    color: var(--ph-gold-soft);
+  }
+}
+
+/* 서초 PH1603 위치안내(SignatureLocationImage) — 컴포넌트가 여백을 직접 관리, 복제 규칙의 흰 제목색·모바일 여백 무효화 */
+[data-page-theme='ph1603'] #location h2,
+[data-page-theme='ph1603'] #location h3 {
+  color: var(--cv-charcoal);
+}
+@media (max-width: 767px) {
+  [data-page-theme='ph1603'] #location {
+    padding: 0;
+  }
+}
+
+/* 서초 PH1603 PC 히어로 — 문구를 오른쪽 정렬(2026-11-17 사용자 요청, 참고 사이트 메인 배치). 타워가 화면 왼쪽(약 38%)이라 겹치지 않음.
+   우상단 회전 배지·우측 퀵메뉴를 피해 오른쪽 여백 확보, 구분선도 오른쪽 끝에 맞춤 */
+@media (min-width: 1024px) {
+  [data-page-theme='ph1603'] [class*='SignatureHero_estCopy'] {
+    left: auto;
+    right: calc(150px + 6vw);
+    width: min(620px, 48vw);
+    padding: 0;
+    text-align: right;
+    top: calc(var(--header-h, 96px) + 7vh);
+  }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estName']::before {
+    margin-left: auto;
+    margin-right: 0;
+  }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estBadgeBox'] {
+    display: inline-block;
+  }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estTitle'] {
+    font-size: clamp(34px, 2.8vw, 52px);
+    line-height: 1.3;
+  }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estBrand'] {
+    font-size: clamp(16px, 1.15vw, 21px);
+  }
+}
+@media (min-width: 1024px) and (max-height: 820px) {
+  [data-page-theme='ph1603'] [class*='SignatureHero_estCopy'] {
+    top: calc(var(--header-h, 96px) + 3vh);
+  }
+}
+
+/* 서초 PH1603 줄바꿈(2026-11-17 사용자 지적 "줄바꿈이 안 되어 있음") —
+   데이터의 \n을 실제 줄바꿈으로(특장점 설명·PREMIUM 6 제목·방문예약 안내문), 나머지 문구는 단어 단위 + 균형 줄바꿈으로
+   마지막 단어 하나만 다음 줄로 떨어지지 않게 */
+[data-page-theme='ph1603'] [class*='SignatureBenefits_desc'],
+[data-page-theme='ph1603'] [class*='SignaturePremiumZigzag_itemTitle'],
+[data-page-theme='ph1603'] #vip-reservation [class*='SignatureVipForm_desc'] {
+  white-space: pre-line;
+}
+
+[data-page-theme='ph1603'] main h2,
+[data-page-theme='ph1603'] main h3,
+[data-page-theme='ph1603'] main p,
+[data-page-theme='ph1603'] main li,
+[data-page-theme='ph1603'] main figcaption,
+[data-page-theme='ph1603'] main dd,
+[data-page-theme='ph1603'] main td {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+}
+
+[data-page-theme='ph1603'] main h2,
+[data-page-theme='ph1603'] main h3,
+[data-page-theme='ph1603'] #location li,
+[data-page-theme='ph1603'] [class*='SignaturePremiumZigzag_desc'] {
+  text-wrap: balance;
+}
+
+/* 모바일 PREMIUM 6 설명 — 배열 두 줄을 한 줄로 이어 붙이던 규칙 대신, 화면 폭에 맞춰 균형 있게 */
+@media (max-width: 767px) {
+  [data-page-theme='ph1603'] #premium-value [class*='SignaturePremiumZigzag_itemTitle__'] {
+    white-space: pre-line;
+    line-height: 1.4;
+  }
+}
+
+/* 서초 PH1603 특권 섹션 — 모바일에서 제목 둘째 줄은 한 단계 작게 */
+@media (max-width: 767px) {
+  [data-page-theme='ph1603'] [class*='SignatureBenefits_title'] strong {
+    font-size: 30px;
+  }
+}
+/* 특권 섹션 제목 첫 줄('오직 서초 PH1603만이')이 PC 좁은 왼쪽 칼럼에서 두 줄로 끊겨 한 줄 유지 */
+[data-page-theme='ph1603'] [class*='SignatureBenefits_title'] span {
+  white-space: nowrap;
+}
+@media (min-width: 1024px) {
+  [data-page-theme='ph1603'] [class*='SignatureBenefits_title'] span {
+    font-size: clamp(26px, 2.1vw, 34px);
+  }
+  [data-page-theme='ph1603'] [class*='SignatureBenefits_title'] strong {
+    font-size: clamp(26px, 2.1vw, 34px);
+  }
+}
+@media (max-width: 380px) {
+  [data-page-theme='ph1603'] [class*='SignatureBenefits_title'] span {
+    font-size: 27px;
+  }
+}
+/* 계약조건 제외(2026-11-17) — 비어 있는 설명 줄 숨김 */
+[data-page-theme='ph1603'] [class*='SignatureBenefits_desc']:empty {
+  display: none;
+}

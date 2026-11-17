@@ -2325,3 +2325,26 @@
     font-size: 16px;
   }
 }
+
+/* 모바일 줄바꿈(2026-11-17 사용자 요청 "모바일에서 글 줄바꿈이 전혀 안 됨") —
+   한글이 단어 중간에서 끊기지 않게 keep-all, 데이터에 넣은 줄바꿈 문자는 그대로 살림.
+   PREMIUM 6 설명은 데이터의 줄 단위(span)를 모바일에서도 한 줄씩 보이게(기존 inline 이어붙이기 해제) */
+@media (max-width: 767px) {
+  [data-page-theme='arbiche'] :is(p, h2, h3, li, dd, dt, td, th, span, strong, em) {
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  [data-page-theme='arbiche'] #premium-value [class*='SignaturePremiumZigzag_itemTitle__'],
+  [data-page-theme='arbiche'] #unit-plan [class*='SignatureUnitPlanTabs_subtitle__'] {
+    white-space: pre-line;
+  }
+
+  [data-page-theme='arbiche'] #premium-value [class*='SignaturePremiumZigzag_desc__'] span {
+    display: block;
+  }
+
+  [data-page-theme='arbiche'] #premium-value [class*='SignaturePremiumZigzag_desc__'] span + span::before {
+    content: none;
+  }
+}

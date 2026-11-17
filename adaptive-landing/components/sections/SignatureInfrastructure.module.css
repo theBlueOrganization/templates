@@ -33,6 +33,8 @@
 
 .desc {
   margin: 0;
+  /* 데이터 문자열의 줄바꿈 문자 위치에서 줄바꿈(없으면 기존과 동일) */
+  white-space: pre-line;
   font-size: 14px;
   line-height: 1.85;
   color: #5a6670;
@@ -289,6 +291,7 @@
 
 .photoCardText p {
   margin: 0;
+  white-space: pre-line;
   font-size: 13px;
   line-height: 1.75;
   color: #52616a;

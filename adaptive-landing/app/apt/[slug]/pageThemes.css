@@ -2164,6 +2164,19 @@
   }
 }
 
+/* 위치안내 사진 카드(listStyle 'photoCards', 2026-11-17 사용자 요청 — 리플렛 '더 ~한 ~의 중심' 4칸) — 골드 제목 · 흰 설명 · 흰 점선 */
+[data-page-theme='arbiche'] #location [class*='SignatureInfrastructure_photoCardText__'] h3 {
+  color: #d4c09a;
+}
+
+[data-page-theme='arbiche'] #location [class*='SignatureInfrastructure_photoCardText__'] p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+[data-page-theme='arbiche'] #location [class*='SignatureInfrastructure_photoCard__'] {
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
 /* 모바일 히어로 문구를 위로 — 투시도 건물과 겹치지 않게 하늘 영역 위쪽에 배치 */
 @media (max-width: 1023px) {
   [data-page-theme='arbiche'] [class*='SignatureHero_estCopy'] {

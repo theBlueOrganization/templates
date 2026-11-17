@@ -118,6 +118,8 @@ const config = {
     hero: {
       hideText: true,
       mobileScrollMouse: true,
+      // 모바일 배경 하단을 안내 바(약 36px) 위에서 끝내 건물 아랫부분이 가리지 않게
+      mobileBgBottomInset: 36,
       overlayGradient: {
         mobile: 'linear-gradient(180deg, rgba(10, 22, 56, 0.6) 0%, rgba(10, 22, 56, 0.22) 34%, rgba(10, 22, 56, 0) 52%)',
         desktop: 'linear-gradient(180deg, rgba(10, 22, 56, 0.62) 0%, rgba(10, 22, 56, 0.28) 32%, rgba(10, 22, 56, 0) 55%)',
@@ -127,7 +129,7 @@ const config = {
         alt: '여월 중앙하이츠 아르비채 투시도',
       },
       bgImageMobile: {
-        src: '/apt/yeowol-jungang-heights-arbiche/hero-m.webp',
+        src: '/apt/yeowol-jungang-heights-arbiche/hero-mobile.webp',
         alt: '여월 중앙하이츠 아르비채 투시도',
       },
       estCopy: {

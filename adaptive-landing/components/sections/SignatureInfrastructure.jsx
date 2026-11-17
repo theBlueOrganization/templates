@@ -88,7 +88,7 @@ export default function SignatureInfrastructure({ infrastructure }) {
                   <p>{item.desc}</p>
                 </div>
                 <div className={styles.photoCardImage}>
-                  <Image src={item.image.src} alt={item.image.alt} fill sizes="(min-width: 1024px) 240px, 36vw" />
+                  <Image src={item.image.src} alt={item.image.alt} fill sizes="(min-width: 1024px) 240px, 100vw" />
                 </div>
               </article>
             ))}

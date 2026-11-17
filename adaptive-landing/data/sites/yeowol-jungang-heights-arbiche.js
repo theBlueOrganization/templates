@@ -22,11 +22,11 @@ const config = {
   // 상담 접수 알림을 카카오 알림톡으로 발송(실패 시 SMS 자동 폴백)
   kakao: true,
 
-  // 리플렛 톤 — 중앙하이츠 딥네이비 #10204f · 로열 네이비 #1b3272 · 아르비채 골드 #a08559. 섹션 배치는 pageThemes.css의 'arbiche' 프리셋
+  // 리플렛 톤 — 리플렛 남색 #002e6f · 딥네이비 #00245a · 아르비채 골드 #a08559. 섹션 배치는 pageThemes.css의 'arbiche' 프리셋
   colorTheme: {
-    navy: '#1b3272',
-    ink: '#10204f',
-    cream: '#f1f2f4',
+    navy: '#002e6f',
+    ink: '#00245a',
+    cream: '#eceef1',
     gold: '#a08559',
     visitBtnBg: '#a08559',
     visitBtnColor: '#ffffff',
@@ -83,7 +83,7 @@ const config = {
       enabled: false,
       visitForm: {
         enabled: true,
-        accentColor: '#1b3272',
+        accentColor: '#002e6f',
         title: '방문예약상담',
         desc: '현장 및 구경하는집은 예약제로 운영됩니다 (상담 10:00~18:00, 주말 동일)',
         checks: ['구경하는집 방문예약', '원하는시간 전화예약'],
@@ -98,7 +98,7 @@ const config = {
       phone: '1877-3569',
       favoriteLabel: '방문예약',
       menuLabel: 'MENU',
-      menuBg: '#10204f',
+      menuBg: '#00245a',
       ctaTargetId: 'vip-reservation',
       deskText: '여월 중앙하이츠 아르비채\n상담을 도와드립니다.',
       address: '경기도 부천시 오정구 여월동 8-9',
@@ -149,7 +149,7 @@ const config = {
           { badge: '혜택', textStrong: '계약금 5%로 입주시까지', textLight: ' · 4년 전 수준 분양가' },
           { badge: '옵션', textStrong: '14가지 유상옵션(2,960만원 상당)', textLight: ' 무상제공' },
         ],
-        announceBg: '#10204f',
+        announceBg: '#00245a',
         bubbleText: '방문예약상담',
         dotColor: '#a08559',
         callLabel: '전화상담',
@@ -233,11 +233,11 @@ const config = {
       titleAccent: 'PREMIUM',
       titleNumber: '6',
       colors: {
-        bg: 'linear-gradient(135deg, #2a4590 0%, #1b3272 55%, #13265c 100%)',
+        bg: 'linear-gradient(135deg, #003781 0%, #002e6f 55%, #002763 100%)',
         head: '#e8dcc4',
         accentOdd: '#e8dcc4',
         accentEven: '#d4c09a',
-        line: '#3d5596',
+        line: 'rgba(255, 255, 255, 0.2)',
       },
       cards: [
         premium('01', '부천여월초·부천여월중·북부도서관 주변 조감도', 'Special EDU · 도보로 누리는 교육인프라', ['여월초·여월중·까치울중 등 도보권,', '1km 이내 부천북고 등 우수한 교육환경']),

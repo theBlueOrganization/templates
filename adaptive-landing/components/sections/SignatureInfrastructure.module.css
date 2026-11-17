@@ -263,9 +263,10 @@
   grid-template-columns: 1fr;
 }
 
+/* 모바일 — 사진을 위로 크게(옆에 두면 사진이 작고 글이 좁게 끼어 보임, 2026-11-17 사용자 지적) */
 .photoCard {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 36%;
+  grid-template-columns: 1fr;
   align-items: center;
   gap: 16px;
   padding: 22px 0;
@@ -295,6 +296,7 @@
 }
 
 .photoCardImage {
+  order: -1;
   position: relative;
   aspect-ratio: 3 / 2;
   overflow: hidden;
@@ -314,6 +316,10 @@
   .photoCards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     column-gap: 56px;
+  }
+
+  .photoCardImage {
+    order: 0;
   }
 
   .photoCard {

@@ -1819,13 +1819,16 @@
 /* 'arbiche' — 여월 중앙하이츠 아르비채(2026-11-16): 'hernity' 프리셋 구성을 그대로 복제하고 색만 리플렛(중앙하이츠 딥네이비·아르비채 골드) 톤으로
    딥네이비 #10204f(푸터·위치안내·평면 스테이지) · 로열 네이비 #1b3272(헤더·프리미엄·상담폼·전화버튼) · 아르비채 골드 #a08559(방문예약 CTA·포인트) */
 [data-page-theme='arbiche'] {
-  --cv-charcoal: #10204f;
-  --cv-green: #1b3272;
+  --cv-charcoal: #00245a;
+  --cv-green: #002e6f;
   --cv-gray: #a08559;
-  --cv-grad-charcoal: linear-gradient(160deg, #1a2d63 0%, #10204f 55%, #0a1638 100%);
-  --cv-grad-green: linear-gradient(135deg, #2a4590 0%, #1b3272 55%, #13265c 100%);
+  --cv-grad-charcoal: linear-gradient(160deg, #00347a 0%, #002a66 55%, #002058 100%);
+  --cv-grad-green: linear-gradient(135deg, #003781 0%, #002e6f 55%, #002763 100%);
+  /* 리플렛 모서리의 연회색 삼각형 선 패턴(2026-11-17 사용자 요청) */
+  --arb-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='300' viewBox='0 0 360 300'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='1.2'%3E%3Cpath d='M0 40 L110 0 L95 120 Z M110 0 L240 60 L95 120 M240 60 L360 20 M240 60 L300 170 L360 20 M95 120 L180 210 L300 170 M95 120 L0 190 L180 210 M0 190 L60 300 L180 210 L230 300 M300 170 L360 260 L230 300 M300 170 L230 300'/%3E%3C/g%3E%3C/svg%3E");
+  --arb-light: #eceef1;
   --cv-grad-gray: linear-gradient(135deg, #b89c6e 0%, #a08559 55%, #836b45 100%);
-  --cv-ivory: #f5f5f3;
+  --cv-ivory: #f3f4f6;
   --vipform-bg: var(--cv-grad-green);
   background: var(--cv-ivory);
 }
@@ -1857,9 +1860,10 @@
   width: 100vw;
   transform: translateX(-50%);
   background:
-    radial-gradient(ellipse 60% 45% at 92% 6%, rgba(27, 50, 114, 0.13), rgba(27, 50, 114, 0) 70%),
+    radial-gradient(ellipse 60% 45% at 92% 6%, rgba(0, 46, 111, 0.13), rgba(0, 46, 111, 0) 70%),
     radial-gradient(ellipse 55% 40% at 4% 96%, rgba(160, 133, 89, 0.18), rgba(160, 133, 89, 0) 70%),
-    linear-gradient(180deg, #fafafa 0%, #f1f2f4 100%);
+    var(--arb-pattern) 0 0 / 360px 300px,
+    var(--arb-light);
 }
 
 /* 사업개요 아래쪽 — 딥그린 패널(왼쪽 위만 크게 둥근 공식 홈페이지 모양), 스펙표 뒤 아래 일부만.
@@ -1886,8 +1890,9 @@
 /* 프리미엄 인트로(사진+카피) — 아이보리에 초록 빛 번짐 */
 [data-page-theme='arbiche'] section[class*='SignaturePremiumIntro_sectionSplit'] {
   background:
-    radial-gradient(ellipse 50% 60% at 100% 50%, rgba(27, 50, 114, 0.1), rgba(27, 50, 114, 0) 70%),
-    #f1f2f4;
+    radial-gradient(ellipse 50% 60% at 100% 50%, rgba(0, 46, 111, 0.1), rgba(0, 46, 111, 0) 70%),
+    var(--arb-pattern) 0 0 / 360px 300px,
+    var(--arb-light);
 }
 
 /* 단지안내 — 배치도·동호표 등 도면 이미지가 잘 보이도록 흰 배경(2026-11-05 사용자 요청) */
@@ -1898,8 +1903,9 @@
 /* 세대안내 — 아이보리 + 평면 스테이지 뒤 큰 원형 빛 번짐과 가는 원형 라인 */
 [data-page-theme='arbiche'] #unit-plan {
   background:
-    radial-gradient(circle at 72% 55%, rgba(27, 50, 114, 0.12) 0, rgba(27, 50, 114, 0) 38%),
-    linear-gradient(180deg, #f7f7f6 0%, #e9eaec 100%);
+    radial-gradient(circle at 72% 55%, rgba(0, 46, 111, 0.12) 0, rgba(0, 46, 111, 0) 38%),
+    var(--arb-pattern) 0 0 / 360px 300px,
+    var(--arb-light);
 }
 
 [data-page-theme='arbiche'] #unit-plan::before {
@@ -1912,7 +1918,7 @@
   top: 50%;
   transform: translateY(-50%);
   border-radius: 50%;
-  border: 1px solid rgba(27, 50, 114, 0.14);
+  border: 1px solid rgba(0, 46, 111, 0.14);
   box-shadow: 0 0 0 70px rgba(255, 255, 255, 0.18), 0 0 0 71px rgba(160, 133, 89, 0.16);
 }
 
@@ -1931,7 +1937,7 @@
 /* 위치안내(location.variant 'story' → SignatureSellingStory) — 더샵 검단 핵심가치 디자인(네이비 + 하늘색)을
    엘리프 톤으로: 바탕은 진한 차콜, 포인트(제목 강조·숫자·태그)는 세이지그린, 사진 아래 그라데이션도 차콜 */
 [data-page-theme='arbiche'] #location {
-  background: linear-gradient(180deg, #0a1638 0%, #10204f 55%, #10204f 100%);
+  background: var(--cv-grad-charcoal);
 }
 
 [data-page-theme='arbiche'] #location [class*='SignatureSellingStory_eyebrow__'] {
@@ -1949,7 +1955,7 @@
 
 [data-page-theme='arbiche'] #location [class*='SignatureSellingStory_scene__']::after,
 [data-page-theme='arbiche'] #location [class*='SignatureSellingStory_sceneWide__']::after {
-  background: linear-gradient(transparent 38%, rgba(10, 22, 56, 0.92));
+  background: linear-gradient(transparent 38%, rgba(0, 28, 70, 0.92));
 }
 
 /* 프리미엄6 — 딥그린 그라데이션(카드 이미지는 투명 모서리 알약형이라 그라데이션 위에서도 자연스러움) */
@@ -2045,7 +2051,7 @@
     position: absolute;
     z-index: 1;
     inset: 0;
-    background: linear-gradient(transparent 30%, rgba(10, 22, 56, 0.92));
+    background: linear-gradient(transparent 30%, rgba(0, 28, 70, 0.92));
   }
 
   [data-page-theme='arbiche'] #premium-value [class*='SignaturePremiumZigzag_visual__'] {
@@ -2285,4 +2291,37 @@
 /* 세대안내 장식 원(#unit-plan::before)이 PC에서 오른쪽으로 260px 넘쳐 가로 스크롤이 생김 — 섹션 밖은 잘라냄 */
 [data-page-theme='arbiche'] #unit-plan {
   overflow-x: clip;
+}
+
+/* PREMIUM 6 PC — 사진이 250px로 작고 크기가 제각각이라(2026-11-17 사용자 지적) 카드 위에 같은 비율(16:9)로 크게 */
+@media (min-width: 768px) {
+  [data-page-theme='arbiche'] #premium-value [class*='SignaturePremiumZigzag_item__'] {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 26px;
+    padding: 56px 0;
+  }
+
+  [data-page-theme='arbiche'] #premium-value [class*='SignaturePremiumZigzag_visual__'] {
+    flex: none;
+    width: 100%;
+    max-width: none;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+
+  [data-page-theme='arbiche'] #premium-value [class*='SignaturePremiumZigzag_visual__'] img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  [data-page-theme='arbiche'] #premium-value [class*='SignaturePremiumZigzag_itemTitle__'] {
+    margin-top: 14px;
+  }
+
+  [data-page-theme='arbiche'] #premium-value [class*='SignaturePremiumZigzag_desc__'] {
+    margin-top: 14px;
+    font-size: 16px;
+  }
 }

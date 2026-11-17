@@ -23,6 +23,7 @@ import SignatureSummary from '../../../components/sections/SignatureSummary'
 import SignatureSummaryTabs from '../../../components/sections/SignatureSummaryTabs'
 import SignatureLocation from '../../../components/sections/SignatureLocation'
 import SignatureLocationVision from '../../../components/sections/SignatureLocationVision'
+import SignatureLocationImage from '../../../components/sections/SignatureLocationImage'
 import SignaturePremiumIntro from '../../../components/sections/SignaturePremiumIntro'
 import SignatureNewsImage from '../../../components/sections/SignatureNewsImage'
 import SignaturePremiumValue from '../../../components/sections/SignaturePremiumValue'
@@ -348,7 +349,10 @@ export default async function AptPage({ params }) {
         )}
         {/* location.variant 'story' — 위치안내 자리를 핵심가치(SignatureSellingStory, 더샵 검단 디자인)로 대체. 예: elif-geomdan-foredu */}
         {/* location.variant 'infrastructure' — 위치안내 자리를 입지 안내도 + 번호 항목 리스트(SignatureInfrastructure, 더샵 검단 디자인)로 대체 */}
-        {sig.location.variant === 'infrastructure' ? (
+        {/* location.variant 'image' — 위치안내 자리를 참고 사이트 입지환경 이미지 한 장으로(PC), 모바일은 location.mobile 텍스트 구성(SignatureLocationImage). 예: seocho-ph1603 */}
+        {sig.location.variant === 'image' ? (
+          <SignatureLocationImage location={sig.location} />
+        ) : sig.location.variant === 'infrastructure' ? (
           <SignatureInfrastructure infrastructure={{ ...sig.location.infrastructure, id: sig.location.id }} />
         ) : sig.location.variant === 'story' ? (
           <SignatureSellingStory story={{ ...sig.location.story, id: sig.location.id }} />

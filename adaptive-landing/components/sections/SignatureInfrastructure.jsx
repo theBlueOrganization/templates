@@ -33,6 +33,8 @@ const CLOCK_ICON = (
 // 교통·입지(#infrastructure) — 공식 입지 안내도 + 번호가 매겨진 3항목 리스트
 export default function SignatureInfrastructure({ infrastructure }) {
   const [zoomOpen, setZoomOpen] = useState(false)
+  // listStyle 'photoCards' — 지도 아래 2×2 사진 카드(제목·설명 + 오른쪽 사진)
+  const isPhotoCards = infrastructure.listStyle === 'photoCards'
 
   return (
     <section id={infrastructure.id} className={styles.section} aria-labelledby="infrastructure-title">
@@ -46,7 +48,7 @@ export default function SignatureInfrastructure({ infrastructure }) {
         <p className={styles.desc}>{infrastructure.desc}</p>
       </Reveal>
 
-      <div className={styles.layout}>
+      <div className={isPhotoCards ? `${styles.layout} ${styles.layoutStacked}` : styles.layout}>
         <Reveal delay={0.05} className={styles.mapFigure}>
           <button
             type="button"
@@ -77,17 +79,33 @@ export default function SignatureInfrastructure({ infrastructure }) {
           )}
         </Reveal>
 
-        <Reveal delay={0.1} className={styles.list}>
-          {infrastructure.items.map((item) => (
-            <article key={item.num}>
-              <span>
-                {item.num} · {item.category}
-              </span>
-              <h3>{item.title}</h3>
-              <p>{item.desc}</p>
-            </article>
-          ))}
-        </Reveal>
+        {isPhotoCards ? (
+          <Reveal delay={0.1} className={styles.photoCards}>
+            {infrastructure.items.map((item) => (
+              <article key={item.num} className={styles.photoCard}>
+                <div className={styles.photoCardText}>
+                  <h3>{item.title}</h3>
+                  <p>{item.desc}</p>
+                </div>
+                <div className={styles.photoCardImage}>
+                  <Image src={item.image.src} alt={item.image.alt} fill sizes="(min-width: 1024px) 240px, 100vw" />
+                </div>
+              </article>
+            ))}
+          </Reveal>
+        ) : (
+          <Reveal delay={0.1} className={styles.list}>
+            {infrastructure.items.map((item) => (
+              <article key={item.num}>
+                <span>
+                  {item.num} · {item.category}
+                </span>
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+              </article>
+            ))}
+          </Reveal>
+        )}
       </div>
 
       <p className={styles.sourceNote}>{infrastructure.sourceNote}</p>

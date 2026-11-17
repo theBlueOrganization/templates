@@ -22,11 +22,11 @@ const config = {
   // 상담 접수 알림을 카카오 알림톡으로 발송(실패 시 SMS 자동 폴백)
   kakao: true,
 
-  // 리플렛 톤 — 중앙하이츠 딥네이비 #10204f · 로열 네이비 #1b3272 · 아르비채 골드 #a08559. 섹션 배치는 pageThemes.css의 'arbiche' 프리셋
+  // 리플렛 톤 — 리플렛 남색 #002e6f · 딥네이비 #00245a · 아르비채 골드 #a08559. 섹션 배치는 pageThemes.css의 'arbiche' 프리셋
   colorTheme: {
-    navy: '#1b3272',
-    ink: '#10204f',
-    cream: '#f1f2f4',
+    navy: '#002e6f',
+    ink: '#00245a',
+    cream: '#eceef1',
     gold: '#a08559',
     visitBtnBg: '#a08559',
     visitBtnColor: '#ffffff',
@@ -83,10 +83,10 @@ const config = {
       enabled: false,
       visitForm: {
         enabled: true,
-        accentColor: '#1b3272',
+        accentColor: '#002e6f',
         title: '방문예약상담',
         desc: '현장 및 구경하는집은 예약제로 운영됩니다 (상담 10:00~18:00, 주말 동일)',
-        checks: ['구경하는집 방문예약', '원하는시간 전화예약'],
+        checks: ['모델하우스예약', '원하는시간 전화예약'],
         submitLabel: '방문예약상담 신청',
       },
     },
@@ -98,7 +98,7 @@ const config = {
       phone: '1877-3569',
       favoriteLabel: '방문예약',
       menuLabel: 'MENU',
-      menuBg: '#10204f',
+      menuBg: '#00245a',
       ctaTargetId: 'vip-reservation',
       deskText: '여월 중앙하이츠 아르비채\n상담을 도와드립니다.',
       address: '경기도 부천시 오정구 여월동 8-9',
@@ -118,6 +118,8 @@ const config = {
     hero: {
       hideText: true,
       mobileScrollMouse: true,
+      // 모바일 배경 하단을 안내 바(약 36px) 위에서 끝내 건물 아랫부분이 가리지 않게
+      mobileBgBottomInset: 36,
       overlayGradient: {
         mobile: 'linear-gradient(180deg, rgba(10, 22, 56, 0.6) 0%, rgba(10, 22, 56, 0.22) 34%, rgba(10, 22, 56, 0) 52%)',
         desktop: 'linear-gradient(180deg, rgba(10, 22, 56, 0.62) 0%, rgba(10, 22, 56, 0.28) 32%, rgba(10, 22, 56, 0) 55%)',
@@ -127,7 +129,7 @@ const config = {
         alt: '여월 중앙하이츠 아르비채 투시도',
       },
       bgImageMobile: {
-        src: '/apt/yeowol-jungang-heights-arbiche/hero-m.webp',
+        src: '/apt/yeowol-jungang-heights-arbiche/hero-mobile.webp',
         alt: '여월 중앙하이츠 아르비채 투시도',
       },
       estCopy: {
@@ -149,7 +151,7 @@ const config = {
           { badge: '혜택', textStrong: '계약금 5%로 입주시까지', textLight: ' · 4년 전 수준 분양가' },
           { badge: '옵션', textStrong: '14가지 유상옵션(2,960만원 상당)', textLight: ' 무상제공' },
         ],
-        announceBg: '#10204f',
+        announceBg: '#00245a',
         bubbleText: '방문예약상담',
         dotColor: '#a08559',
         callLabel: '전화상담',
@@ -163,21 +165,21 @@ const config = {
       navLabel: 'overview',
       title: 'overview',
       photo: {
-        src: '/apt/yeowol-jungang-heights-arbiche/overview-photo.webp',
+        src: '/apt/yeowol-jungang-heights-arbiche/overview-aerial.webp',
         alt: '여월 중앙하이츠 아르비채 조감도',
       },
       notice: '※ 상기 사업개요의 수치는 인·허가 과정 및 실제 시공 시 일부 변경될 수 있습니다.',
       specItems: [
         { label: '단지명', value: '여월 중앙하이츠 아르비채' },
         { label: '사업명', value: '여월동 광남 복지 가로주택정비사업' },
-        { label: '대지위치', value: '경기도 부천시 오정구 여월동 8-9번지 외 4필지' },
+        { label: '대지위치', value: ['경기도 부천시 오정구', '여월동 8-9번지 외 4필지'] },
         { label: '건축규모', value: '지하 2층 ~ 지상 13층, 2개 동' },
         { label: '세대수', value: '총 102세대' },
-        { label: '주택형', value: ['59㎡ · 63㎡ · 84㎡ · 108㎡', '(59㎡ 16세대 · 63㎡ 36세대 · 84㎡ 48세대 · 108㎡ 2세대)'] },
+        { label: '주택형', value: ['59㎡ · 63㎡ · 84㎡ · 108㎡', '(59㎡ 16세대 · 63㎡ 36세대', '84㎡ 48세대 · 108㎡ 2세대)'] },
         { label: '대지/건축면적', value: '4,014.90㎡ / 1,519.01㎡' },
         { label: '건폐율/용적률', value: '37.83% / 249.95%' },
         { label: '주차대수', value: '121대 (세대당 1.19대)' },
-        { label: '시행/시공', value: ['여월동광남복지가로주택정비사업조합', 'CA이앤씨㈜ (중앙하이츠)'] },
+        { label: '시행/시공', value: ['여월동광남복지', '가로주택정비사업조합', 'CA이앤씨㈜ (중앙하이츠)'] },
       ],
     },
 
@@ -190,17 +192,19 @@ const config = {
         eyebrow: 'ARBICHE LOCATION',
         titlePlain: '서해선을 따라 중심으로,',
         titleAccent: '더 크고 편하게',
-        desc: '서해선 원종역과 부천종합운동장역 더블 생활권, 홈플러스·원종종합시장과 여월초·여월중을 도보로 누리는 여월동 중심 입지',
+        desc: '서해선 원종역과 부천종합운동장역 더블 생활권,\n홈플러스·원종종합시장과 여월초·여월중을\n도보로 누리는 여월동 중심 입지',
         mapImage: {
           src: '/apt/yeowol-jungang-heights-arbiche/location-map.webp',
           alt: '여월 중앙하이츠 아르비채 위치도 — 서해선 원종역, 대장-홍대선(예정), 부천종합운동장역(7호선·GTX-B 예정), 경인고속도로 지하화(예정), S-BRT(예정), 부천대장 공공주택지구, 홈플러스, 부천우리병원, 여월초·여월중·까치울중',
         },
         mapCaption: '지역도는 소비자의 이해를 돕기 위한 것으로 실제와 차이가 있으며, 노선 및 시설의 예정·계획 표기는 관계기관 계획에 따라 변경될 수 있습니다.',
+        // 리플렛 '더 ~한 ~의 중심' 4칸 — 지도 아래 2×2 사진 카드
+        listStyle: 'photoCards',
         items: [
-          { num: '01', category: '교통', title: '서해선 원종역 도보권', desc: '원종역(서해선·대장-홍대선 예정) 직선 650m, 부천종합운동장역(7호선·GTX-B·서부광역급행철도 예정) 차량 3분' },
-          { num: '02', category: '생활', title: '홈플러스 도보 1분', desc: '원종종합시장·부천우리병원·오정구청 인접, 상동·중동 상권 차량 15분대' },
-          { num: '03', category: '교육', title: '여월초·여월중 도보 통학', desc: '여월초·여월중·까치울중 도보권, 도당고·부천북고 1km 이내, 꿈여울도서관·북부도서관' },
-          { num: '04', category: '자연', title: '도당수목원·여월공원', desc: '가마골어린이공원·여월체육공원 도보권, 도당수목원·은데미근린공원·춘의산 인접' },
+          { num: '01', category: '교통', title: '더 빨라질 교통의 중심', desc: '서해선 원종역과 연결되는 대장홍대선(예정),\n부천종합운동장역에서 만나는 GTX-B노선(예정)\n및 서부광역급행철도(예정), S-BRT(예정) 등', image: { src: '/apt/yeowol-jungang-heights-arbiche/location-card-01.webp', alt: '교통 이미지컷(지하철)' } },
+          { num: '02', category: '생활', title: '더 풍부한 생활의 중심', desc: '홈플러스, 오정구청, 중앙시장, 대형병원,\n금융기관 등 잘 갖춰진 원도심 생활 인프라와\n가마골 어린이공원, 여월공원, 도당수목원,\n은데미공원 등 쾌적한 자연환경', image: { src: '/apt/yeowol-jungang-heights-arbiche/location-card-02.webp', alt: '생활 이미지컷' } },
+          { num: '03', category: '교육', title: '더 우수한 교육의 중심', desc: '단지 인근 여월초, 여월중, 까치울중, 도당고,\n부천북고 등 도보 통학이 가능한 안심학세권에\n꿈여울도서관, 북부도서관 등 남다른 교육환경', image: { src: '/apt/yeowol-jungang-heights-arbiche/location-card-03.webp', alt: '교육 이미지컷' } },
+          { num: '04', category: '개발', title: '더 빛나는 개발의 중심', desc: '부천종합운동장 역세권융복합개발 및\n성곡지구개발, 3기 신도시 부천대장지구,\n오정군부대 이전개발 등 다양한 개발호재로\n내일이 더욱 기대되는 미래가치', image: { src: '/apt/yeowol-jungang-heights-arbiche/location-card-04.webp', alt: '도시 이미지컷' } },
         ],
         sourceNote: '※ 개발 및 교통계획 관련 사항은 관계기관의 사정에 따라 변경 및 취소될 수 있으며, 학교 배정 관련 사항은 해당 교육청의 결정사항으로 당사와 무관합니다.',
       },
@@ -231,19 +235,19 @@ const config = {
       titleAccent: 'PREMIUM',
       titleNumber: '6',
       colors: {
-        bg: 'linear-gradient(135deg, #2a4590 0%, #1b3272 55%, #13265c 100%)',
+        bg: 'linear-gradient(135deg, #003781 0%, #002e6f 55%, #002763 100%)',
         head: '#e8dcc4',
         accentOdd: '#e8dcc4',
         accentEven: '#d4c09a',
-        line: '#3d5596',
+        line: 'rgba(255, 255, 255, 0.2)',
       },
       cards: [
-        premium('01', '부천여월초·부천여월중·북부도서관 주변 조감도', 'Special EDU · 도보로 누리는 교육인프라', ['여월초·여월중·까치울중 등 도보권,', '1km 이내 부천북고 등 우수한 교육환경']),
-        premium('02', '부천 광역 교통망 위치도', 'Transit Convenience · 사통팔달 교통망', ['원종역(서해선·대장홍대선 예정) 더블역, 부천종합운동장역', '(서부권광역급행·GTX-B 예정, 7호선), S-BRT 신설 등']),
-        premium('03', '경인고속·성오로 방향 조감도', 'All-in one · 15분 내로 모든 것을', ['홈플러스·중앙시장·우리병원은 물론', '차량 이용 상동·중동 상권까지 15분 내 생활']),
-        premium('04', '단지 저층부 상가·벚나무 가로 투시도', 'High life · 여월 정주여건의 정점', ['춘의산·도당수목원·여월공원·가마골어린이공원 등 힐링 라이프,', '성곡파출소·성곡행정복지센터 등']),
-        premium('05', '부천대장·원종 공공주택지구, 오정 군부대 이전부지 방향 조감도', 'More Vision · 오정구의 변화를 앞서', ['부천대장신도시·원종택지지구·오정구 군부대 이전부지,', '성곡도시개발구역 등 더 기대되는 입지']),
-        premium('06', '여월 중앙하이츠 아르비채 투시도', 'High Value · 비교불가 상품가치', ['중소형 평형 위주 공급, 에너지절감 시스템·층간소음 저감,', '지하주차장 자동환기·LED 조명, 개방형 발코니·테라스(일부 세대)']),
+        premium('01', '교육 이미지컷', 'Special EDU ·\n도보로 누리는 교육인프라', ['여월초·여월중·까치울중 등 도보권,', '1km 이내 부천북고 등 우수한 교육환경']),
+        premium('02', '교통 이미지컷', 'Transit Convenience ·\n사통팔달 교통망', ['원종역(서해선·대장홍대선 예정) 더블역,', '부천종합운동장역(7호선·GTX-B 예정),', '서부권광역급행철도(예정)·S-BRT 신설 등']),
+        premium('03', '생활 이미지컷', 'All-in one ·\n15분 내로 모든 것을', ['홈플러스·중앙시장·우리병원은 물론', '차량 이용 상동·중동 상권까지 15분 내 생활']),
+        premium('04', '공원 이미지컷', 'High life ·\n여월 정주여건의 정점', ['춘의산·도당수목원·여월공원 등 힐링 라이프,', '가마골어린이공원·성곡파출소·성곡행정복지센터 등']),
+        premium('05', '도시 이미지컷', 'More Vision ·\n오정구의 변화를 앞서', ['부천대장신도시·원종택지지구,', '오정구 군부대 이전부지·성곡도시개발구역 등', '더 기대되는 입지']),
+        premium('06', '여월 중앙하이츠 아르비채 투시도', 'High Value ·\n비교불가 상품가치', ['중소형 평형 위주 공급, 에너지절감 시스템,', '층간소음 저감, 지하주차장 자동환기·LED 조명,', '개방형 발코니·테라스(일부 세대)']),
       ],
     },
 
@@ -285,7 +289,7 @@ const config = {
       variant: 'imageTabs',
       titlePlain: 'UNIT ',
       titleAccent: 'PLAN',
-      subtitle: '3Bay 판상형 남향 위주 배치, 맞통풍 구조와 넉넉한 수납공간 — 59·63·84·108㎡ 총 102세대',
+      subtitle: '3Bay 판상형 남향 위주 배치,\n맞통풍 구조와 넉넉한 수납공간\n59·63·84·108㎡ 총 102세대',
       tabColumns: 4,
       tabColumnsMobile: 4,
       zoomLightbox: true,
@@ -303,7 +307,7 @@ const config = {
       titleLine1: '여월 중앙하이츠 아르비채',
       titleLine2: '방문예약상담',
       desc: '원활한 관람을 위해 현장 및 구경하는집은 방문예약제로 운영됩니다. 간단한 정보를 남겨주시면 방문 예약과 상담 일정을 가장 빠르게 안내해 드립니다.',
-      serviceOptions: ['구경하는집 방문예약', '원하는시간 전화예약'],
+      serviceOptions: ['모델하우스예약', '원하는시간 전화예약'],
       ageOptions: ['20대 이하', '30대', '40대', '50대', '60대 이상'],
       privacyText: `[개인정보 수집 및 이용에 관한 안내] 주식회사 더블루파트너스는 귀하의 개인정보를 소중하게 생각하며, 『개인정보보호법』 등 관련 법규를 철저히 준수하고 있습니다. 당사는 분양 정보 제공 및 방문 예약 서비스의 원활한 이행을 위하여 아래와 같이 개인정보를 수집 및 이용합니다.
 
@@ -345,11 +349,11 @@ const config = {
   },
 }
 
-// 프리미엄 카드 한 장 — PC 1280×690 / 모바일 860×600(교육자료 CG·위치도 크롭)
+// 프리미엄 카드 한 장 — PC 1280×720 / 모바일 860×600(01~05 이미지컷, 06 투시도)
 function premium(num, imgAlt, title, desc) {
   return {
     num,
-    image: { src: `/apt/yeowol-jungang-heights-arbiche/premium-${num}.webp`, alt: imgAlt, width: 640, height: 345 },
+    image: { src: `/apt/yeowol-jungang-heights-arbiche/premium-${num}.webp`, alt: imgAlt, width: 640, height: 360 },
     imageMobile: { src: `/apt/yeowol-jungang-heights-arbiche/premium-${num}-m.webp`, alt: imgAlt, width: 430, height: 300 },
     title,
     desc,

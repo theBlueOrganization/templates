@@ -33,6 +33,8 @@
 
 .desc {
   margin: 0;
+  /* 데이터 문자열의 줄바꿈 문자 위치에서 줄바꿈(없으면 기존과 동일) */
+  white-space: pre-line;
   font-size: 14px;
   line-height: 1.85;
   color: #5a6670;
@@ -250,5 +252,99 @@
     border-left: 0;
     border-bottom: 1px solid rgba(19, 35, 45, 0.17);
     padding: 26px 0;
+  }
+}
+
+/* listStyle 'photoCards' — 지도는 위, 그 아래 2×2 사진 카드(왼쪽 제목·설명 + 오른쪽 사진, 점선 구분) */
+.layoutStacked {
+  grid-template-columns: 1fr;
+}
+
+.photoCards {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+/* 모바일 — 사진을 위로 크게(옆에 두면 사진이 작고 글이 좁게 끼어 보임, 2026-11-17 사용자 지적) */
+.photoCard {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 0;
+  border-bottom: 1px dashed rgba(19, 35, 45, 0.25);
+}
+
+.photoCard:last-child {
+  border-bottom: 0;
+}
+
+.photoCardText h3 {
+  margin: 0 0 10px;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.03em;
+  color: #214d78;
+  word-break: keep-all;
+}
+
+.photoCardText p {
+  margin: 0;
+  white-space: pre-line;
+  font-size: 13px;
+  line-height: 1.75;
+  color: #52616a;
+  word-break: keep-all;
+}
+
+.photoCardImage {
+  order: -1;
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.photoCardImage img {
+  object-fit: cover;
+}
+
+@media (min-width: 1024px) {
+  .layoutStacked {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .photoCards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 56px;
+  }
+
+  .photoCardImage {
+    order: 0;
+  }
+
+  .photoCard {
+    grid-template-columns: minmax(0, 1fr) 42%;
+    gap: 24px;
+    padding: 30px 0;
+  }
+
+  .photoCard:nth-child(n + 3) {
+    border-bottom: 0;
+  }
+
+  .photoCard:nth-child(-n + 2) {
+    border-bottom: 1px dashed rgba(19, 35, 45, 0.25);
+  }
+
+  .photoCardText h3 {
+    font-size: 24px;
+    margin-bottom: 14px;
+  }
+
+  .photoCardText p {
+    font-size: 15px;
   }
 }

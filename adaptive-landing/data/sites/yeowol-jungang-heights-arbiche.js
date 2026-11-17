@@ -165,7 +165,7 @@ const config = {
       navLabel: 'overview',
       title: 'overview',
       photo: {
-        src: '/apt/yeowol-jungang-heights-arbiche/overview-photo.webp',
+        src: '/apt/yeowol-jungang-heights-arbiche/overview-aerial.webp',
         alt: '여월 중앙하이츠 아르비채 조감도',
       },
       notice: '※ 상기 사업개요의 수치는 인·허가 과정 및 실제 시공 시 일부 변경될 수 있습니다.',

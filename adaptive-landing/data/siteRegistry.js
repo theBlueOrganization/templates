@@ -41,6 +41,8 @@ import geomdanCentrevilleEducity from './sites/geomdan-centreville-educity'
 import uijeongbuFeliztowerYangwoo from './sites/uijeongbu-feliztower-yangwoo'
 import namseongHernity from './sites/namseong-hernity'
 import yeowolJungangHeightsArbiche from './sites/yeowol-jungang-heights-arbiche'
+import yeowolJungangHeightsArbiche2 from './sites/yeowol-jungang-heights-arbiche-2'
+import yeowolJungangHeightsArbiche3 from './sites/yeowol-jungang-heights-arbiche-3'
 
 /**
  * 새 현장 추가 방법:
@@ -98,6 +100,8 @@ const sites = [
   uijeongbuFeliztowerYangwoo,
   namseongHernity,
   yeowolJungangHeightsArbiche,
+  yeowolJungangHeightsArbiche2,
+  yeowolJungangHeightsArbiche3,
 ]
 
 // slug로 현장 하나를 찾음 (app/apt/[slug]/page.jsx에서 사용)

@@ -78,9 +78,25 @@ const config = {
       },
     },
 
-    // 진입 팝업 — 팝업 이미지가 없어 방문예약 폼 팝업만
+    // 진입 팝업 — 1번 이미지 팝업(2026-11-17 사용자 제공 POPUP.png → popup.webp, 방문 혜택 안내),
+    // 닫으면 2번 방문예약 폼 팝업. 이미지 하단 '1666-9338' 버튼 자리에만 전화 연결 hotspot(이미지 대비 %)
     popup: {
-      enabled: false,
+      enabled: true,
+      // 이미지 팝업 → 닫으면 방문예약 폼 팝업(SignaturePopupSequence imageFirst)
+      order: 'imageFirst',
+      images: [
+        {
+          src: '/apt/seocho-ph1603/popup.webp',
+          alt: 'PH1603 방문만 해도 특별한 혜택을 드립니다 — 방문예약 시 신세계상품권 1만원 증정, 계약 시 황금바 증정, 문의 1666-9338',
+          width: 1024,
+          height: 1535,
+          hotspots: [
+            { link: 'tel:1666-9338', label: '1666-9338 전화 연결', left: 6, top: 87.4, width: 88, height: 9.2 },
+          ],
+        },
+      ],
+      // 하단 '팝업닫기' 바 대신 이미지 오른쪽 위 X 버튼(2026-11-17 사용자 요청)
+      closeIcon: true,
       visitForm: {
         enabled: true,
         accentColor: '#221d19',

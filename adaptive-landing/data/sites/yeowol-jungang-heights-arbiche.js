@@ -199,7 +199,7 @@ const config = {
         // 리플렛 '더 ~한 ~의 중심' 4칸 — 지도 아래 2×2 사진 카드
         listStyle: 'photoCards',
         items: [
-          { num: '01', category: '교통', title: '더 빨라질 교통의 중심', desc: '서해선 원종역과 연결되는 대장홍대선(예정), 부천종합운동장역에서 만나는 GTX-B노선(예정) 및 서부광역급행철도(예정), S-BRT(예정) 등', image: { src: '/apt/yeowol-jungang-heights-arbiche/location-card-01.webp', alt: '교통 이미지컷' } },
+          { num: '01', category: '교통', title: '더 빨라질 교통의 중심', desc: '서해선 원종역과 연결되는 대장홍대선(예정), 부천종합운동장역에서 만나는 GTX-B노선(예정) 및 서부광역급행철도(예정), S-BRT(예정) 등', image: { src: '/apt/yeowol-jungang-heights-arbiche/location-card-01.webp', alt: '교통 이미지컷(지하철)' } },
           { num: '02', category: '생활', title: '더 풍부한 생활의 중심', desc: '홈플러스, 오정구청, 중앙시장, 대형병원, 금융기관 등 잘 갖춰진 원도심 생활 인프라와 가마골 어린이공원, 여월공원, 도당수목원, 은데미공원 등 쾌적한 자연환경', image: { src: '/apt/yeowol-jungang-heights-arbiche/location-card-02.webp', alt: '생활 이미지컷' } },
           { num: '03', category: '교육', title: '더 우수한 교육의 중심', desc: '단지 인근 여월초, 여월중, 까치울중, 도당고, 부천북고 등 도보 통학이 가능한 안심학세권에 꿈여울도서관, 북부도서관 등 남다른 교육환경', image: { src: '/apt/yeowol-jungang-heights-arbiche/location-card-03.webp', alt: '교육 이미지컷' } },
           { num: '04', category: '개발', title: '더 빛나는 개발의 중심', desc: '부천종합운동장 역세권융복합개발 및 성곡지구개발, 3기 신도시 부천대장지구, 오정군부대 이전개발 등 다양한 개발호재로 내일이 더욱 기대되는 미래가치', image: { src: '/apt/yeowol-jungang-heights-arbiche/location-card-04.webp', alt: '도시 이미지컷' } },
@@ -240,11 +240,11 @@ const config = {
         line: 'rgba(255, 255, 255, 0.2)',
       },
       cards: [
-        premium('01', '부천여월초·부천여월중·북부도서관 주변 조감도', 'Special EDU · 도보로 누리는 교육인프라', ['여월초·여월중·까치울중 등 도보권,', '1km 이내 부천북고 등 우수한 교육환경']),
-        premium('02', '부천 광역 교통망 위치도', 'Transit Convenience · 사통팔달 교통망', ['원종역(서해선·대장홍대선 예정) 더블역, 부천종합운동장역', '(서부권광역급행·GTX-B 예정, 7호선), S-BRT 신설 등']),
-        premium('03', '경인고속·성오로 방향 조감도', 'All-in one · 15분 내로 모든 것을', ['홈플러스·중앙시장·우리병원은 물론', '차량 이용 상동·중동 상권까지 15분 내 생활']),
-        premium('04', '단지 저층부 상가·벚나무 가로 투시도', 'High life · 여월 정주여건의 정점', ['춘의산·도당수목원·여월공원·가마골어린이공원 등 힐링 라이프,', '성곡파출소·성곡행정복지센터 등']),
-        premium('05', '부천대장·원종 공공주택지구, 오정 군부대 이전부지 방향 조감도', 'More Vision · 오정구의 변화를 앞서', ['부천대장신도시·원종택지지구·오정구 군부대 이전부지,', '성곡도시개발구역 등 더 기대되는 입지']),
+        premium('01', '교육 이미지컷', 'Special EDU · 도보로 누리는 교육인프라', ['여월초·여월중·까치울중 등 도보권,', '1km 이내 부천북고 등 우수한 교육환경']),
+        premium('02', '교통 이미지컷', 'Transit Convenience · 사통팔달 교통망', ['원종역(서해선·대장홍대선 예정) 더블역, 부천종합운동장역', '(서부권광역급행·GTX-B 예정, 7호선), S-BRT 신설 등']),
+        premium('03', '생활 이미지컷', 'All-in one · 15분 내로 모든 것을', ['홈플러스·중앙시장·우리병원은 물론', '차량 이용 상동·중동 상권까지 15분 내 생활']),
+        premium('04', '공원 이미지컷', 'High life · 여월 정주여건의 정점', ['춘의산·도당수목원·여월공원·가마골어린이공원 등 힐링 라이프,', '성곡파출소·성곡행정복지센터 등']),
+        premium('05', '도시 이미지컷', 'More Vision · 오정구의 변화를 앞서', ['부천대장신도시·원종택지지구·오정구 군부대 이전부지,', '성곡도시개발구역 등 더 기대되는 입지']),
         premium('06', '여월 중앙하이츠 아르비채 투시도', 'High Value · 비교불가 상품가치', ['중소형 평형 위주 공급, 에너지절감 시스템·층간소음 저감,', '지하주차장 자동환기·LED 조명, 개방형 발코니·테라스(일부 세대)']),
       ],
     },
@@ -347,11 +347,11 @@ const config = {
   },
 }
 
-// 프리미엄 카드 한 장 — PC 1280×690 / 모바일 860×600(교육자료 CG·위치도 크롭)
+// 프리미엄 카드 한 장 — PC 1280×720 / 모바일 860×600(01~05 이미지컷, 06 투시도)
 function premium(num, imgAlt, title, desc) {
   return {
     num,
-    image: { src: `/apt/yeowol-jungang-heights-arbiche/premium-${num}.webp`, alt: imgAlt, width: 640, height: 345 },
+    image: { src: `/apt/yeowol-jungang-heights-arbiche/premium-${num}.webp`, alt: imgAlt, width: 640, height: 360 },
     imageMobile: { src: `/apt/yeowol-jungang-heights-arbiche/premium-${num}-m.webp`, alt: imgAlt, width: 430, height: 300 },
     title,
     desc,

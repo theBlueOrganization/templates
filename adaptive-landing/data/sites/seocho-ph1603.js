@@ -308,6 +308,21 @@ const config = {
       sourceNote: '※ 개발계획은 관계기관의 공식 발표 및 보도자료를 기초로 작성되었으며, 향후 정책 및 사업 추진 상황에 따라 변경 또는 취소될 수 있습니다.',
     },
 
+    // 프리미엄 유상옵션 — 세대안내 바로 아래. 단위세대 제안서 PDF 36~38쪽 캡처(2026-11-18 사용자 제공, 2200×1556)
+    premiumOptions: {
+      id: 'premium-options',
+      eyebrow: 'PREMIUM OPTION',
+      titlePlain: '머무는 것만으로 건강해지는',
+      titleAccent: '프리미엄 유상옵션',
+      desc: '청정 산소 빌트인 · 바이탈 메이트 · 나노 방진망',
+      images: [
+        premiumOption(1, '프리미엄 옵션 01 청정 산소 빌트인 — 엔에프(NF) 청정산소 공급 시스템, 밀폐된 침실에서도 산소 농도 21~22% 유지, PSA 공법 90% 순수 산소 농축, 안방·서재·홈짐 구역별 맞춤 설계'),
+        premiumOption(2, '프리미엄 옵션 02 바이탈 메이트 — 액자 속 레이더 센서가 심박·호흡·수면을 24시간 비접촉 측정, 담당 간호사가 매일 아침 리포트를 카카오톡으로 발송, 미국 FDA Class II 인증 센서'),
+        premiumOption(3, '프리미엄 옵션 03 나노 방진망 — 자연환기는 그대로 미세먼지 91.7%·꽃가루 99% 차단, 자외선 67~69% 차단, 3-Layer 특허 구조, KC 어린이제품 공통안전 기준 합격'),
+      ],
+      sourceNote: '※ 유상옵션으로 별도 비용이 발생하며, 대표 이미지는 이해를 돕기 위한 연출 이미지입니다. 세부 사양·가격은 현장에 문의해 주시기 바랍니다.',
+    },
+
     // 프리미엄 인트로 — 왼쪽 59A 거실 인테리어 + 오른쪽 카피(참고 사이트 인테리어 카피)
     premiumIntro: {
       split: true,
@@ -511,6 +526,11 @@ function cm(name, width, height, alt, caption) {
 // 주변 개발이슈 캡처 한 장 — 브리핑북 페이지 크롭(1800×1146)
 function devIssue(n, alt) {
   return { src: `/apt/seocho-ph1603/dev-issue-0${n}.webp`, alt, width: 1800, height: 1146 }
+}
+
+// 프리미엄 유상옵션 캡처 한 장 — 단위세대 제안서 PDF 36~38쪽(2200×1556)
+function premiumOption(n, alt) {
+  return { src: `/apt/seocho-ph1603/premium-option-0${n}.webp`, alt, width: 2200, height: 1556 }
 }
 
 // 단지안내 커뮤니티 탭 — PC는 참고 사이트 완성 이미지 1장, 모바일은 mobileStory(문구 텍스트 + 사진 조각)

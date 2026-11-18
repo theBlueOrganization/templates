@@ -2815,6 +2815,19 @@
   [data-page-theme='ph1603'] [class*='SignatureHero_estBadgeBox'] { margin-top: 9px; padding: 5px 12px; font-size: 12px; }
 }
 
+/* 아주 좁은 폰(약 300~360px) — 히어로 문구가 잘리거나 어색하게 줄바꿈돼서(2026-11-18 사용자 지적)
+   각 줄을 한 줄로 고정하고 글자 크기를 화면 폭에 맞춰 줄임. 390px 이상은 위 크기 그대로 */
+@media (max-width: 380px) {
+  [data-page-theme='ph1603'] [class*='SignatureHero_estBrand'],
+  [data-page-theme='ph1603'] [class*='SignatureHero_estTitle'],
+  [data-page-theme='ph1603'] [class*='SignatureHero_estName'],
+  [data-page-theme='ph1603'] [class*='SignatureHero_estBadgeBox'] { white-space: nowrap; }
+  [data-page-theme='ph1603'] #hero [class*='SignatureHero_estBrand'] { font-size: 3.8vw; letter-spacing: 0; }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estTitle'] { font-size: 7.1vw; }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estName'] { font-size: 4.4vw; }
+  [data-page-theme='ph1603'] [class*='SignatureHero_estBadgeBox'] { padding: 5px 10px; font-size: 3.15vw; }
+}
+
 /* 세대안내 장식 원(#unit-plan::before)이 PC에서 오른쪽으로 260px 넘쳐 가로 스크롤이 생김 — 섹션 밖은 잘라냄 */
 [data-page-theme='ph1603'] #unit-plan {
   overflow-x: clip;
@@ -3066,6 +3079,19 @@
   border-radius: 2px;
   letter-spacing: 0.2em;
   font-weight: 500;
+}
+/* '지금 신청하고 혜택 받기'(vipForm.submitLabel) — 버튼 글자를 크게 (2026-11-18 사용자 요청) */
+[data-page-theme='ph1603'] #vip-reservation [class*='SignatureVipForm_submitBtnLarge'] {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.35;
+  white-space: pre-line;
+}
+@media (min-width: 768px) {
+  [data-page-theme='ph1603'] #vip-reservation [class*='SignatureVipForm_submitBtnLarge'] {
+    font-size: 24px;
+  }
 }
 
 /* 푸터 — 블랙 + 골드 헤어라인, 강조 문구 명조 */

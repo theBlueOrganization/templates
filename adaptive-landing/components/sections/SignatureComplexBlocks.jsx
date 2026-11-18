@@ -5,6 +5,7 @@ import { useState } from 'react'
 import Reveal from '../motion/Reveal'
 import { cn } from '../../lib/utils'
 import SignatureLightbox from '../ui/SignatureLightbox'
+import MobileStoryBlocks from './MobileStoryBlocks'
 import styles from './SignatureComplexBlocks.module.css'
 
 // 단지안내(카테고리 × 블록) — complex.variant === 'blockTabs'일 때 렌더
@@ -95,13 +96,13 @@ export default function SignatureComplexBlocks({ complex }) {
           {/* block.imageMobile — 모바일(767px 이하) 전용 세로형 이미지(공식 홈페이지 모바일 버전). 확대 보기도 화면에 맞는 쪽으로 */}
           <button
             type="button"
-            className={styles.imageBtn}
             onClick={() =>
               setZoom(
                 block.imageMobile && window.matchMedia('(max-width: 767px)').matches ? block.imageMobile : block.image
               )
             }
             aria-label={`${block.image.alt} 크게 보기`}
+            className={block.mobileStory ? `${styles.imageBtn} ${styles.imageDesktopOnly}` : styles.imageBtn}
           >
             <Image
               src={block.image.src}
@@ -122,6 +123,8 @@ export default function SignatureComplexBlocks({ complex }) {
               />
             )}
           </button>
+          {/* block.mobileStory — 글씨가 든 긴 이미지는 모바일(767px 이하)에서 문구 텍스트 + 사진 조각으로 대신 보여줌 */}
+          {block.mobileStory && <MobileStoryBlocks blocks={block.mobileStory} className={styles.mobileOnly} />}
         </div>
 
         {complex.disclaimer && <p className={styles.disclaimer}>{complex.disclaimer}</p>}

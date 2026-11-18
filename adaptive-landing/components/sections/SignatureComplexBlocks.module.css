@@ -342,9 +342,17 @@
   display: none;
 }
 
+.mobileOnly {
+  display: none;
+}
+
 @media (max-width: 767px) {
   .imageDesktopOnly {
     display: none;
+  }
+
+  .mobileOnly {
+    display: flex;
   }
 
   .imageMobileOnly {

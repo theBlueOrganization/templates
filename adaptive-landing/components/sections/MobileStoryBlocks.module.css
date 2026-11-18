@@ -1,0 +1,85 @@
+/* 밝은 배경용 — 글자는 --ink, 포인트는 --gold(현장 colorTheme) */
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  text-align: left;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  color: var(--gold, #b39468);
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 12px;
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: -0.03em;
+  color: var(--ink, #14110f);
+}
+
+.desc {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 16px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #6b625a;
+}
+
+.bullets {
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid rgba(179, 148, 104, 0.5);
+}
+
+.bullets li {
+  padding: 12px 2px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #7a6447;
+  border-bottom: 1px solid rgba(179, 148, 104, 0.5);
+  word-break: keep-all;
+}
+
+.photos {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.photo {
+  margin: 0;
+}
+
+.photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.grid .photo img {
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.photo figcaption {
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #7d746b;
+  word-break: keep-all;
+}

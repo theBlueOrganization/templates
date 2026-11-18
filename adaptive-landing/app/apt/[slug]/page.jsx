@@ -400,6 +400,8 @@ export default async function AptPage({ params }) {
           ) : (
             <SignatureUnitPlan unitPlan={sig.unitPlan} />
           ))}
+        {/* premiumOptions — 세대안내 바로 아래 유상옵션 소개 자료 캡처(devIssues와 같은 이미지 나열 레이아웃). 예: seocho-ph1603 */}
+        {sig.premiumOptions && <SignatureDevIssues devIssues={sig.premiumOptions} />}
         {sig.smarthome && <SignatureSmartHome smarthome={sig.smarthome} />}
         {sig.communityBlocks ? (
           <SignatureCommunityGeomdan community={sig.communityBlocks} />

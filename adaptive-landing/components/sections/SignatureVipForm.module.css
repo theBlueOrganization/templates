@@ -295,3 +295,33 @@
 .light .dateInput,
 .light .selectInput,
 .light .phoneInput { border: 1px solid #cdd7d3; }
+
+/* vipForm.inquiryBadge — 제출 버튼 위 "오늘까지 N명이 문의했습니다" 알약 배지 */
+.badgeWrap {
+  margin-top: 8px;
+  text-align: center;
+}
+
+.badge {
+  display: inline-block;
+  padding: 9px 22px;
+  border: 1px solid #f1e3c8;
+  border-radius: 999px;
+  background: #fdf6e7;
+  color: #333;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.badge strong {
+  color: #dc2626;
+  font-weight: 800;
+}
+
+@media (min-width: 768px) {
+  .badge {
+    padding: 10px 26px;
+    font-size: 17px;
+  }
+}

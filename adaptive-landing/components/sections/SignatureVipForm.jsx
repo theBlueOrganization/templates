@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Reveal from '../motion/Reveal'
 import { useUtmSource } from '../../lib/useUtmSource'
 import { cn } from '../../lib/utils'
@@ -41,6 +41,21 @@ export default function SignatureVipForm({ config, sectionId }) {
   const utmSource = useUtmSource() ?? '직접유입'
   // adminPhonesByUtm에 등록된 utm_source로 들어온 경우에만 SMS 수신번호를 덮어씀
   const resolvedAdminPhones = adminPhonesByUtm?.[utmSource] ?? adminPhones
+
+  // vipForm.inquiryBadge — mobile-scroll ContactForm과 같은 "🔥 오늘까지 N명이 문의했습니다" 배지.
+  // 시트 실제 접수 건수(/api/count) + offset(미지정 시 20). 설정 안 한 현장은 배지 없이 기존 그대로
+  const inquiryBadge = vipForm.inquiryBadge
+  const [inquiryCount, setInquiryCount] = useState(null)
+  useEffect(() => {
+    if (!inquiryBadge) return
+    const offset = inquiryBadge.offset ?? 20
+    const params = new URLSearchParams({ sheetTab: sheetTab ?? '' })
+    if (sheetId) params.set('sheetId', sheetId)
+    fetch(`/api/count?${params}`)
+      .then((r) => r.json())
+      .then((d) => setInquiryCount((d.count ?? 0) + offset))
+      .catch(() => setInquiryCount(offset))
+  }, [inquiryBadge, sheetTab, sheetId])
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target
@@ -205,8 +220,17 @@ export default function SignatureVipForm({ config, sectionId }) {
             )}
           </div>
 
+          {inquiryBadge && (
+            <div className={styles.badgeWrap}>
+              <span className={styles.badge}>
+                🔥 오늘까지 <strong>{inquiryCount ?? '...'}</strong>명이 문의했습니다
+              </span>
+            </div>
+          )}
+
+          {/* vipForm.submitLabel — 제출 버튼 문구(예: '지금 신청하고 혜택 받기'). 미지정 시 기존 '예약완료' */}
           <button type="submit" disabled={submitting} className={cn(styles.submitBtn, serif && styles.submitBtnSerif)}>
-            {submitting ? '전송 중...' : '예약완료'}
+            {submitting ? '전송 중...' : vipForm.submitLabel ?? '예약완료'}
           </button>
         </form>
       </Reveal>

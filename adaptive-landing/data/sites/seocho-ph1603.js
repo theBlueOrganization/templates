@@ -78,20 +78,20 @@ const config = {
       },
     },
 
-    // 진입 팝업 — 1번 이미지 팝업(2026-11-17 사용자 제공 POPUP.png → popup.webp, 방문 혜택 안내),
-    // 닫으면 2번 방문예약 폼 팝업. 이미지 하단 '1666-9338' 버튼 자리에만 전화 연결 hotspot(이미지 대비 %)
+    // 진입 팝업 — 1번 이미지 팝업(2026-11-18 사용자 제공 popup1.png → popup1.webp, 코스트코 회원권·골드바 혜택 안내),
+    // 닫으면 2번 방문예약 폼 팝업. 이미지 오른쪽 아래 '1666-9338' 문구 자리에만 전화 연결 hotspot(이미지 대비 %)
     popup: {
       enabled: true,
       // 이미지 팝업 → 닫으면 방문예약 폼 팝업(SignaturePopupSequence imageFirst)
       order: 'imageFirst',
       images: [
         {
-          src: '/apt/seocho-ph1603/popup.webp',
-          alt: 'PH1603 방문만 해도 특별한 혜택을 드립니다 — 방문예약 시 신세계상품권 1만원 증정, 계약 시 황금바 증정, 문의 1666-9338',
-          width: 1024,
-          height: 1535,
+          src: '/apt/seocho-ph1603/popup1.webp',
+          alt: 'PH1603 예약 방문 시 코스트코 회원권을 드립니다 — 예약방문 시 코스트코 회원권 4만5000원 증정, 계약 시 골드바 증정, 문의 1666-9338',
+          width: 765,
+          height: 1024,
           hotspots: [
-            { link: 'tel:1666-9338', label: '1666-9338 전화 연결', left: 6, top: 87.4, width: 88, height: 9.2 },
+            { link: 'tel:1666-9338', label: '1666-9338 전화 연결', left: 54, top: 91.5, width: 44, height: 8 },
           ],
         },
       ],

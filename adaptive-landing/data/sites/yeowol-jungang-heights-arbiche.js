@@ -78,9 +78,25 @@ const config = {
       },
     },
 
-    // 진입 팝업 — 팝업 이미지가 없어 방문예약 폼 팝업만
+    // 진입 팝업 — 요청 반영(2026-11-18): 이미지 팝업(popup.png)을 먼저 띄우고, 닫은 뒤 방문예약 폼 팝업을 이어서.
+    //   이미지 하단 '상담 문의하기 1877-3569' 영역만 탭하면 전화 연결(hotspot)
     popup: {
-      enabled: false,
+      enabled: true,
+      order: 'imageFirst',
+      openDelayMs: 1200,
+      fitViewport: true,
+      closeIcon: true,
+      images: [
+        {
+          src: '/apt/yeowol-jungang-heights-arbiche/popup.png',
+          alt: '중앙하이츠 아르비채 — 부천역세권 신축 아파트, 25평 마지막 4억대~, 주변 신축 대비 최대 1억 저렴. 즉시입주, 계약금 5%, 선착순 특별지원(5천만원 상당 지원·15가지 옵션 무상제공). 상담 문의하기 1877-3569',
+          width: 1086,
+          height: 1448,
+          hotspots: [
+            { link: 'tel:18773569', label: '상담 문의하기 1877-3569 전화 연결', left: 3, top: 91, width: 94, height: 8 },
+          ],
+        },
+      ],
       visitForm: {
         enabled: true,
         accentColor: '#002e6f',

@@ -13,6 +13,7 @@ import styles from './SignatureUnitPlanTabs.module.css'
 // tabColumns / tabColumnsMobile로 한 줄 탭 개수, tab.zoomable이면 이미지를 누를 때 원본을 새 창으로 열어 크게 보기.
 // tabLayout: 'side'면 PC(1024px 이상)에서 탭을 왼쪽 세로 목록(스크롤 시 고정)으로, 이미지는 오른쪽에 배치 — 모바일은 그대로 가로 탭
 // zoomLightbox: true면 모든 탭 이미지 오른쪽 위에 돋보기 버튼 — 누르면 같은 화면에서 확대 모달(SignatureLightbox)로 보기
+// stacked: true면 탭 버튼 없이 모든 탭 이미지를 라벨과 함께 위아래로 쭉 나열(예: seocho-ph1603 세대안내)
 const MAGNIFIER_ICON = (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <circle cx="11" cy="11" r="7" />
@@ -36,8 +37,24 @@ function PanelImage({ image }) {
 export default function SignatureUnitPlanTabs({ unitPlan }) {
   const cols = unitPlan.tabColumns ?? 5
   const [index, setIndex] = useState(0)
-  const [zoomOpen, setZoomOpen] = useState(false)
+  // 확대 모달에 띄울 이미지(null이면 닫힘)
+  const [zoomImage, setZoomImage] = useState(null)
   const tab = unitPlan.tabs[index]
+
+  const renderImage = (t) =>
+    unitPlan.zoomLightbox ? (
+      <button type="button" className={styles.zoomTrigger} onClick={() => setZoomImage(t.image)} aria-label={`${t.label} 크게 보기`}>
+        <PanelImage image={t.image} />
+        <span className={styles.zoomIcon}>{MAGNIFIER_ICON}</span>
+      </button>
+    ) : t.zoomable ? (
+      <a href={t.image.src} target="_blank" rel="noopener noreferrer" className={styles.zoomLink}>
+        <PanelImage image={t.image} />
+        <span className={styles.zoomHint}>이미지를 누르면 크게 볼 수 있습니다</span>
+      </a>
+    ) : (
+      <PanelImage image={t.image} />
+    )
 
   return (
     <section
@@ -59,7 +76,18 @@ export default function SignatureUnitPlanTabs({ unitPlan }) {
         {unitPlan.subtitle && <p className={styles.subtitle}>{unitPlan.subtitle}</p>}
       </Reveal>
 
-      {/* tabStyle: 'circle' — 탭을 원형 썸네일(tab.thumb) + 라벨로, 가운데 정렬 */}
+      {/* stacked — 탭 버튼 없이 모든 이미지를 라벨과 함께 위아래로 나열 */}
+      {unitPlan.stacked ? (
+        <div className={cn(styles.inner, styles.stacked)}>
+          {unitPlan.tabs.map((t) => (
+            <Reveal key={t.label} className={styles.stackItem}>
+              <h3 className={styles.stackLabel}>{t.label}</h3>
+              {renderImage(t)}
+            </Reveal>
+          ))}
+        </div>
+      ) : (
+      /* tabStyle: 'circle' — 탭을 원형 썸네일(tab.thumb) + 라벨로, 가운데 정렬 */
       <div className={cn(styles.inner, unitPlan.tabLayout === 'side' && styles.side, unitPlan.tabStyle === 'circle' && styles.circle)}>
         <ul className={styles.tabs} role="tablist">
           {unitPlan.tabs.map((t, i) => (
@@ -91,24 +119,13 @@ export default function SignatureUnitPlanTabs({ unitPlan }) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
           >
-            {unitPlan.zoomLightbox ? (
-              <button type="button" className={styles.zoomTrigger} onClick={() => setZoomOpen(true)} aria-label={`${tab.label} 크게 보기`}>
-                <PanelImage image={tab.image} />
-                <span className={styles.zoomIcon}>{MAGNIFIER_ICON}</span>
-              </button>
-            ) : tab.zoomable ? (
-              <a href={tab.image.src} target="_blank" rel="noopener noreferrer" className={styles.zoomLink}>
-                <PanelImage image={tab.image} />
-                <span className={styles.zoomHint}>이미지를 누르면 크게 볼 수 있습니다</span>
-              </a>
-            ) : (
-              <PanelImage image={tab.image} />
-            )}
+            {renderImage(tab)}
           </motion.div>
         </AnimatePresence>
       </div>
+      )}
 
-      {unitPlan.zoomLightbox && <SignatureLightbox image={zoomOpen ? tab.image : null} onClose={() => setZoomOpen(false)} />}
+      {unitPlan.zoomLightbox && <SignatureLightbox image={zoomImage} onClose={() => setZoomImage(null)} />}
     </section>
   )
 }

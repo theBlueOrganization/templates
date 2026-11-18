@@ -24,6 +24,7 @@ import SignatureSummaryTabs from '../../../components/sections/SignatureSummaryT
 import SignatureLocation from '../../../components/sections/SignatureLocation'
 import SignatureLocationVision from '../../../components/sections/SignatureLocationVision'
 import SignatureLocationImage from '../../../components/sections/SignatureLocationImage'
+import SignatureDevIssues from '../../../components/sections/SignatureDevIssues'
 import SignaturePremiumIntro from '../../../components/sections/SignaturePremiumIntro'
 import SignatureNewsImage from '../../../components/sections/SignatureNewsImage'
 import SignaturePremiumValue from '../../../components/sections/SignaturePremiumValue'
@@ -361,6 +362,8 @@ export default async function AptPage({ params }) {
         ) : (
           <SignatureLocation location={sig.location} />
         )}
+        {/* devIssues — 위치안내 바로 아래 주변 개발이슈(자료 캡처 이미지 나열, 클릭 시 확대). 예: seocho-ph1603 */}
+        {sig.devIssues && <SignatureDevIssues devIssues={sig.devIssues} />}
         {/* arkoneNetwork.afterLocation — 미래 교통 계획을 입지환경 바로 아래에 두는 현장용(예: cheongna-arkone-prugio-3) */}
         {sig.arkoneNetwork?.afterLocation && <SignatureArkoneNetwork network={sig.arkoneNetwork} />}
         {sig.transitDetail && <SignatureTransitDetail transit={sig.transitDetail} />}

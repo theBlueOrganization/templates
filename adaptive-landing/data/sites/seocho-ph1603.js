@@ -276,6 +276,25 @@ const config = {
       },
     },
 
+    // 주변 개발이슈 — 2026-11-18 사용자 요청. 위치안내 바로 아래. 사용자 제공 'PH1603 브리핑 북_VER6.pdf' 46·47·49~52쪽 캡처
+    // (상단 대행사 로고 줄·하단 저작권 줄은 잘라냄, public/apt/seocho-ph1603/dev-issue-0N.webp)
+    devIssues: {
+      id: 'dev-issues',
+      eyebrow: 'DEVELOPMENT',
+      titlePlain: '눈부신 변화의 중심,',
+      titleAccent: '주변 개발이슈',
+      desc: '서초의 미래가치를 바꿀 대형 개발이 PH1603 주변에서 이어집니다',
+      images: [
+        devIssue(1, 'GTX-C 노선·경부고속도로 지하화 — 광역 교통망 확충과 도시공간 재편'),
+        devIssue(2, '서리풀 복합개발·양재 R&CD 플랫폼시티 — 국제업무·첨단산업 거점'),
+        devIssue(3, '남부터미널 일대 복합개발 본격 구상 — 서초 동남권의 새로운 도시거점'),
+        devIssue(4, '남부터미널 일대 핵심 개발방향 — 교통·업무·문화·주거가 연결되는 미래형 복합도시'),
+        devIssue(5, '남부터미널 개발 로드맵 — 2026 기본구상 발표부터 2031 이후 단계별 완공까지'),
+        devIssue(6, '남부터미널 일대 활성화의 미래 — PH1603 주변 개발 구상도'),
+      ],
+      sourceNote: '※ 개발계획은 관계기관의 공식 발표 및 보도자료를 기초로 작성되었으며, 향후 정책 및 사업 추진 상황에 따라 변경 또는 취소될 수 있습니다.',
+    },
+
     // 프리미엄 인트로 — 왼쪽 59A 거실 인테리어 + 오른쪽 카피(참고 사이트 인테리어 카피)
     premiumIntro: {
       split: true,
@@ -318,7 +337,8 @@ const config = {
       ],
     },
 
-    // 단지안내 — 참고 사이트 동호수 배치도·층고 현황·타입별 면적표·토지거래허가제 안내·부티크 가든을 원형 썸네일 탭으로
+    // 단지안내 — 참고 사이트 '단지정보'(ph1603.com/page/page88)의 동호수 배치도 · 층고 현황 + 커뮤니티(부티크 가든 · 웰빙 커뮤니티)를 원형 썸네일 탭으로
+    // (2026-11-18 사용자 요청. 이전 타입별 면적표·토지거래허가제·부티크 가든(투시도 1장) 탭은 뺌, 이미지 파일은 남겨둠)
     complex: {
       id: 'complex',
       variant: 'blockTabs',
@@ -328,20 +348,48 @@ const config = {
       titlePlain: '단지',
       titleAccent: '안내',
       categories: [
-        complexTab('동호수배치도', 'dongho', [
-          ['complex-dongho', 1200, 904, '서초 PH1603 동·호수 배치도 — 1~16층, 59㎡A 84세대 · 59㎡B 29세대 · 59㎡C 1세대 · 59㎡GA 4세대 · 59㎡PA 3세대 · 59㎡PB 2세대 · 127㎡P 1세대, 총 124세대', '동호수배치도'],
-        ]),
-        complexTab('타입별 면적표', 'area', [
-          ['complex-area', 1200, 312, '서초 PH1603 타입별 면적표 — 59A·59B·59GA·59PA·59PB·59C·127P 전용·공급·계약면적, 합계 124세대'],
+        complexTab('동·호수 배치도', 'dongho', [
+          ['complex-dongho', 1200, 904, '서초 PH1603 동·호수 배치도 — 1~16층, 59㎡A 84세대 · 59㎡B 29세대 · 59㎡C 1세대 · 59㎡GA 4세대 · 59㎡PA 3세대 · 59㎡PB 2세대 · 127㎡P 1세대, 총 124세대', '동·호수 배치도'],
         ]),
         complexTab('층고 현황', 'elevation', [
-          ['complex-elevation', 1200, 1310, '서초 PH1603 층고 현황 입면도 — 지하 1층 ~ 지상 16층, 옥탑층'],
+          ['complex-elevation', 1200, 1296, '서초 PH1603 층고 현황 입면도 — 지하 1층 ~ 지상 16층, 옥탑층'],
         ]),
-        complexTab('토지거래허가제', 'regulation', [
-          ['complex-regulation', 1200, 720, 'PH1603 토지거래허가제 미해당 — 별도허가 불필요, 실거주 의무 없음, 갭투자 가능'],
+        // 커뮤니티 2탭 — 참고 사이트 커뮤니티(ph1603.com/page/page35) 이미지 2장. PC는 이미지 그대로,
+        // 모바일은 글씨가 안 읽혀 mobileStory(이미지 속 문구를 텍스트로 + 사진 조각 community-m-*)로 대신 보여줌
+        communityTab('부티크 가든', 'boutique', 'community-01', 3003, '인클로즈드 부티크 가든 — 완벽한 프라이버시를 보장하는 도심 속 헤리티지 정원, 지하 2층 선큰광장', [
+
+            {
+              eyebrow: 'BOUTIQUE GARDEN',
+              titleLines: ['완벽한 프라이버시를 보장하는', '도심 속 헤리티지 정원', '인클로즈드 부티크 가든'],
+              photos: [cm('garden', 1200, 800, '인클로즈드 부티크 가든 선큰광장', 'B2(선큰) 시설물_벤치, 파라솔, 플랜트(식재), 차양막')],
+            },
+            {
+              titleLines: ['누려보지 못한 힐링이 숨쉬다'],
+              descLines: ['외부의 소음과 시선으로부터 완벽하게 차단된', '오직 나만을 위해 숨겨진 보석 같은 정원에서', '온전하게 힐링 라이프를 누리다.'],
+              photos: [cm('garden-side', 984, 748, '부티크 가든 별동측면 투시도', '별동측면')],
+            },
+            {
+              titleLines: ['도심 속 치유의 은신처,', '인클로즈드 부티크 가든'],
+              bullets: ['자연광과 함께 개방감을 불어넣는 지하 2층 선큰광장', '하늘만큼 푸른 자연의 향기로 가득 채우는 외부 편의시설', '도시와 아름답게 호흡하는 조형물과 4계절을 오롯이 경험하는 조경'],
+              grid: true,
+              photos: [cm('garden-s1', 343, 240, '부티크 가든 산책로'), cm('garden-s2', 374, 240, "미술장식품 '바람의 정원'", "미술장식품 '바람의 정원'")],
+            },
         ]),
-        complexTab('부티크 가든', 'garden', [
-          ['complex-garden', 990, 750, '서초 PH1603 인클로즈드 부티크 가든 별동측면 투시도'],
+        communityTab('웰빙 커뮤니티', 'wellness', 'community-02', 2807, '웰빙 커뮤니티 — 첨단 수경재배 시스템 메인 라운지, 비즈니스 라운지, 피트니스 라운지, 요가룸', [
+            {
+              eyebrow: 'WELLNESS COMMUNITY',
+              titleLines: ['첨단 수경재배 시스템으로', '독창적이면서 독보적인', '웰빙 커뮤니티'],
+              photos: [cm('lounge', 1200, 530, "메인 라운지 '첨단 수경재배 시스템'", "메인 라운지 '첨단 수경재배 시스템'")],
+            },
+            {
+              titleLines: ['만나보지 못한 웰빙을 맛보다'],
+              descLines: ['단순한 운동시설을 넘어 청정 인삼 재배시설로', '새로운 웰빙문화까지 맛볼 수 있는', '240여 평에 달하는 하이테크 커뮤니티에서', '보다 건강하게 여가를 가꾸다.'],
+              photos: [
+                cm('business', 682, 336, '비즈니스 라운지', '비즈니스 라운지'),
+                cm('fitness', 682, 336, '피트니스 라운지', '피트니스 라운지'),
+                cm('yoga', 682, 336, '요가룸', '요가룸'),
+              ],
+            },
         ]),
       ],
       disclaimer:
@@ -356,8 +404,8 @@ const config = {
       titlePlain: 'UNIT ',
       titleAccent: 'PLAN',
       subtitle: '전용 59㎡(실사용 24평) · 방2 욕실2 거실1 · 천정고 2.8m — 총 124세대',
-      tabColumns: 3,
-      tabColumnsMobile: 3,
+      // 2026-11-18 사용자 요청 — 타입 버튼 없이 평면도 3장을 쭉 나열
+      stacked: true,
       zoomLightbox: true,
       tabs: [
         { label: '59㎡A', image: { src: '/apt/seocho-ph1603/unit-59a.webp', alt: '59㎡A 타입(84세대) 평면 — 전용 59.70㎡, 공급 84.74㎡, 계약 149.56㎡', width: 700, height: 520 } },
@@ -434,6 +482,26 @@ function complexTab(label, thumb, images) {
       label: blockLabel ?? 'PH1603',
       image: { src: `/apt/seocho-ph1603/${file}.webp`, alt, width, height },
     })),
+  }
+}
+
+// 커뮤니티 모바일 사진 조각 한 장 — 참고 사이트 커뮤니티 이미지에서 크롭(community-m-*.webp)
+function cm(name, width, height, alt, caption) {
+  return { src: `/apt/seocho-ph1603/community-m-${name}.webp`, alt, width, height, caption }
+}
+
+// 주변 개발이슈 캡처 한 장 — 브리핑북 페이지 크롭(1800×1146)
+function devIssue(n, alt) {
+  return { src: `/apt/seocho-ph1603/dev-issue-0${n}.webp`, alt, width: 1800, height: 1146 }
+}
+
+// 단지안내 커뮤니티 탭 — PC는 참고 사이트 완성 이미지 1장, 모바일은 mobileStory(문구 텍스트 + 사진 조각)
+function communityTab(label, thumb, file, height, alt, mobileStory) {
+  return {
+    label,
+    thumb: `/apt/seocho-ph1603/complex-thumb-${thumb}.webp`,
+    title: label,
+    blocks: [{ label, image: { src: `/apt/seocho-ph1603/${file}.webp`, alt, width: 1200, height }, mobileStory }],
   }
 }
 

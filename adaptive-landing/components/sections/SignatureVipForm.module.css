@@ -91,6 +91,8 @@
   gap: 10px;
   font-size: 14px;
   color: #fff;
+  /* 좁은 화면에서 '동/의합니다'처럼 단어 중간에서 끊기지 않게 */
+  word-break: keep-all;
 }
 
 .checkLabel input {
@@ -304,14 +306,15 @@
 
 .badge {
   display: inline-block;
-  padding: 9px 22px;
+  padding: 9px clamp(10px, 4vw, 22px);
   border: 1px solid #f1e3c8;
   border-radius: 999px;
   background: #fdf6e7;
   color: #333;
-  font-size: 15px;
+  font-size: clamp(12px, 4.3vw, 15px);
   font-weight: 600;
   letter-spacing: -0.02em;
+  white-space: nowrap;
 }
 
 .badge strong {
@@ -323,5 +326,18 @@
   .badge {
     padding: 10px 26px;
     font-size: 17px;
+  }
+}
+
+/* vipForm.submitLabel을 쓰는 현장(예: 서초 PH1603 '지금 신청하고 혜택 받기') — 버튼 문구를 크게 */
+.submitBtn.submitBtnLarge {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+@media (min-width: 768px) {
+  .submitBtn.submitBtnLarge {
+    font-size: 24px;
   }
 }

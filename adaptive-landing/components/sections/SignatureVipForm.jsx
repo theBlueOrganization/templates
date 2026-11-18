@@ -229,7 +229,7 @@ export default function SignatureVipForm({ config, sectionId }) {
           )}
 
           {/* vipForm.submitLabel — 제출 버튼 문구(예: '지금 신청하고 혜택 받기'). 미지정 시 기존 '예약완료' */}
-          <button type="submit" disabled={submitting} className={cn(styles.submitBtn, serif && styles.submitBtnSerif)}>
+          <button type="submit" disabled={submitting} className={cn(styles.submitBtn, serif && styles.submitBtnSerif, vipForm.submitLabel && styles.submitBtnLarge)}>
             {submitting ? '전송 중...' : vipForm.submitLabel ?? '예약완료'}
           </button>
         </form>

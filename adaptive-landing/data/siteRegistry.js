@@ -30,6 +30,7 @@ import chumdan3HobanSummit from './sites/chumdan3-hoban-summit'
 import chumdan3HobanSummit2 from './sites/chumdan3-hoban-summit-2'
 import bukOsanXiDeforet from './sites/buk-osan-xi-deforet'
 import bukOsanXiDeforet2 from './sites/buk-osan-xi-deforet-2'
+import bukOsanXiDeforet3 from './sites/buk-osan-xi-deforet-3'
 import cheongnaThelivTiamoCasa from './sites/cheongna-theliv-tiamo-casa'
 import cheongnaThelivTiamoCasa2 from './sites/cheongna-theliv-tiamo-casa-2'
 import pajuHobanSummitEastpark from './sites/paju-hoban-summit-eastpark'
@@ -89,6 +90,7 @@ const sites = [
   chumdan3HobanSummit2,
   bukOsanXiDeforet,
   bukOsanXiDeforet2,
+  bukOsanXiDeforet3,
   cheongnaThelivTiamoCasa,
   cheongnaThelivTiamoCasa2,
   pajuHobanSummitEastpark,

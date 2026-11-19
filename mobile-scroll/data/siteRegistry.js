@@ -108,6 +108,7 @@ const adaptiveLandingPointers = [
   { slug: "chumdan3-hoban-summit-2", subdomain: "호반써밋첨단3지구", template: "adaptive-landing" },
   { slug: "buk-osan-xi-deforet", subdomain: "북오산자이드포레", template: "adaptive-landing" },
   { slug: "buk-osan-xi-deforet-2", subdomain: "북오산자이드포레-2", template: "adaptive-landing" },
+  { slug: "buk-osan-xi-deforet-3", subdomain: "북오산자이드포레-3", template: "adaptive-landing" },
   { slug: "cheongna-theliv-tiamo-casa", subdomain: "청라더리브티아모까사", template: "adaptive-landing" },
   { slug: "cheongna-theliv-tiamo-casa-2", subdomain: "청라더리브티아모casa", template: "adaptive-landing" },
   // 파주 호반써밋 이스트파크(2026-10-02) — 한글도메인 호반써밋이스트파크.addupapt.kr

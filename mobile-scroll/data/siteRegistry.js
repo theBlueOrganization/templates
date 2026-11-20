@@ -95,6 +95,7 @@ const adaptiveLandingPointers = [
   { slug: "osan-heritage-xi-xi-3", subdomain: "오산헤리티지자이-xi-3", template: "adaptive-landing" },
   { slug: "osan-heritage-xi-xi-3-s", subdomain: "오산헤리티지자이3-s", template: "adaptive-landing" },
   { slug: "osan-heritage-xi-xi-4", subdomain: "오산헤리티지자이-xi-4", template: "adaptive-landing" },
+  { slug: "osan-heritage-xi-xi-5", subdomain: "오산헤리티지자이-xi-5", template: "adaptive-landing" },
   { slug: "osan-heritage-xi-xi1", subdomain: "오산헤리티지자이xi1", template: "adaptive-landing" },
   { slug: "cheongna-arkone-prugio", subdomain: "청라아크원푸르지오", template: "adaptive-landing" },
   { slug: "cheongna-arkone-prugio-2", subdomain: "청라아크원푸르지오2", template: "adaptive-landing" },

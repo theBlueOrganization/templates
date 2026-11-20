@@ -18,6 +18,7 @@ import osanHeritageXiXi2 from './sites/osan-heritage-xi-xi-2'
 import osanHeritageXiXi3 from './sites/osan-heritage-xi-xi-3'
 import osanHeritageXiXi3S from './sites/osan-heritage-xi-xi-3-s'
 import osanHeritageXiXi4 from './sites/osan-heritage-xi-xi-4'
+import osanHeritageXiXi5 from './sites/osan-heritage-xi-xi-5'
 import osanHeritageXiXi1 from './sites/osan-heritage-xi-xi1'
 import cheongnaArkonePrugio from './sites/cheongna-arkone-prugio'
 import cheongnaArkonePrugio2 from './sites/cheongna-arkone-prugio-2'
@@ -78,6 +79,7 @@ const sites = [
   osanHeritageXiXi3,
   osanHeritageXiXi3S,
   osanHeritageXiXi4,
+  osanHeritageXiXi5,
   osanHeritageXiXi1,
   cheongnaArkonePrugio,
   cheongnaArkonePrugio2,

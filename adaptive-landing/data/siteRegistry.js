@@ -39,6 +39,7 @@ import yonginGorimDongmunTheEast from './sites/yongin-gorim-dongmun-the-east'
 import yonginGorimDongmunTheEast2 from './sites/yongin-gorim-dongmun-the-east-2'
 import yeongjongShinilViaafCrest from './sites/yeongjong-shinil-viaaf-crest'
 import yangsanXiParkPaliche from './sites/yangsan-xi-park-paliche'
+import yangsanXiParkPaliche2 from './sites/yangsan-xi-park-paliche-2'
 import elifGeomdanForedu from './sites/elif-geomdan-foredu'
 import geomdanCentrevilleEducity from './sites/geomdan-centreville-educity'
 import uijeongbuFeliztowerYangwoo from './sites/uijeongbu-feliztower-yangwoo'
@@ -100,6 +101,7 @@ const sites = [
   yonginGorimDongmunTheEast2,
   yeongjongShinilViaafCrest,
   yangsanXiParkPaliche,
+  yangsanXiParkPaliche2,
   elifGeomdanForedu,
   geomdanCentrevilleEducity,
   uijeongbuFeliztowerYangwoo,

@@ -3348,3 +3348,412 @@
 [data-page-theme='ph1603'] [class*='SignatureBenefits_desc']:empty {
   display: none;
 }
+
+/* 'eileen' — 덕은 DMC 에일린의 뜰 3차(2026-11-22): 'arbiche' 프리셋 구성을 그대로 복제하고 색만 카탈로그 톤으로
+   네이비 #13233a(푸터·위치안내·평면 스테이지) · 딥그린 #1d5a44(헤더·프리미엄·상담폼·전화버튼) · 로고 그린 #36a94b(방문예약 CTA·포인트) */
+[data-page-theme='eileen'] {
+  --cv-charcoal: #13233a;
+  --cv-green: #1d5a44;
+  --cv-gray: #36a94b;
+  --cv-grad-charcoal: linear-gradient(160deg, #1a2f4c 0%, #142640 55%, #0f1d33 100%);
+  --cv-grad-green: linear-gradient(135deg, #22694f 0%, #1d5a44 55%, #174a38 100%);
+  /* 리플렛 모서리의 연회색 삼각형 선 패턴(2026-11-17 사용자 요청) */
+  --arb-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='300' viewBox='0 0 360 300'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='1.2'%3E%3Cpath d='M0 40 L110 0 L95 120 Z M110 0 L240 60 L95 120 M240 60 L360 20 M240 60 L300 170 L360 20 M95 120 L180 210 L300 170 M95 120 L0 190 L180 210 M0 190 L60 300 L180 210 L230 300 M300 170 L360 260 L230 300 M300 170 L230 300'/%3E%3C/g%3E%3C/svg%3E");
+  --arb-light: #eef2ee;
+  --cv-grad-gray: linear-gradient(135deg, #4cc25e 0%, #36a94b 55%, #2a8c3c 100%);
+  --cv-ivory: #f4f6f3;
+  --vipform-bg: var(--cv-grad-green);
+  background: var(--cv-ivory);
+}
+
+/* 섹션 배경(2026-11-05 사용자 요청 "배경이 아쉬움") — 단색 회색 대신 공식 홈페이지 톤:
+   아이보리 바탕 + 은은한 초록/웜그레이 빛 번짐 + 딥그린 패널(물결 무늬는 어지럽다는 요청으로 제외). 장식은 ::before/::after(z-index -1, isolation)로 깔아
+   섹션 안 콘텐츠는 건드리지 않음 */
+[data-page-theme='eileen'] #overview,
+[data-page-theme='eileen'] #complex,
+[data-page-theme='eileen'] #unit-plan,
+[data-page-theme='eileen'] #event,
+[data-page-theme='eileen'] section[class*='SignaturePremiumIntro_sectionSplit'] {
+  position: relative;
+  isolation: isolate;
+}
+
+/* 사업개요 — 섹션 자체가 가운데 폭 제한(max-width)이라 배경은 화면 전체 폭으로 ::before에 깔기 */
+[data-page-theme='eileen'] #overview {
+  background: transparent;
+}
+
+[data-page-theme='eileen'] #overview::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  background:
+    radial-gradient(ellipse 60% 45% at 92% 6%, rgba(29, 90, 68, 0.13), rgba(29, 90, 68, 0) 70%),
+    radial-gradient(ellipse 55% 40% at 4% 96%, rgba(54, 169, 75, 0.18), rgba(54, 169, 75, 0) 70%),
+    var(--arb-pattern) 0 0 / 360px 300px,
+    var(--arb-light);
+}
+
+/* 사업개요 아래쪽 — 딥그린 패널(왼쪽 위만 크게 둥근 공식 홈페이지 모양), 스펙표 뒤 아래 일부만.
+   모바일은 스펙표가 섹션 맨 아래까지 차서 글자와 겹치므로 768px 이상에서만 */
+[data-page-theme='eileen'] #overview::after {
+  content: '';
+  display: none;
+  position: absolute;
+  z-index: -1;
+  bottom: 0;
+  right: calc(50% - 50vw);
+  width: 62vw;
+  height: 90px;
+  border-top-left-radius: 90px;
+  background: var(--cv-grad-green);
+}
+
+@media (min-width: 768px) {
+  [data-page-theme='eileen'] #overview::after {
+    display: block;
+  }
+}
+
+/* 프리미엄 인트로(사진+카피) — 아이보리에 초록 빛 번짐 */
+[data-page-theme='eileen'] section[class*='SignaturePremiumIntro_sectionSplit'] {
+  background:
+    radial-gradient(ellipse 50% 60% at 100% 50%, rgba(29, 90, 68, 0.1), rgba(29, 90, 68, 0) 70%),
+    var(--arb-pattern) 0 0 / 360px 300px,
+    var(--arb-light);
+}
+
+/* 단지안내 — 배치도·동호표 등 도면 이미지가 잘 보이도록 흰 배경(2026-11-05 사용자 요청) */
+[data-page-theme='eileen'] #complex {
+  background: #fff;
+}
+
+/* 세대안내 — 아이보리 + 평면 스테이지 뒤 큰 원형 빛 번짐과 가는 원형 라인 */
+[data-page-theme='eileen'] #unit-plan {
+  background:
+    radial-gradient(circle at 72% 55%, rgba(29, 90, 68, 0.12) 0, rgba(29, 90, 68, 0) 38%),
+    var(--arb-pattern) 0 0 / 360px 300px,
+    var(--arb-light);
+}
+
+[data-page-theme='eileen'] #unit-plan::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: 900px;
+  height: 900px;
+  right: -260px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  border: 1px solid rgba(29, 90, 68, 0.14);
+  box-shadow: 0 0 0 70px rgba(255, 255, 255, 0.18), 0 0 0 71px rgba(54, 169, 75, 0.16);
+}
+
+/* 사은품 이미지 — 차콜 패널 위에 초록 이미지가 돋보이게 */
+[data-page-theme='eileen'] #event {
+  background: var(--cv-grad-charcoal);
+  padding-top: 56px;
+  padding-bottom: 56px;
+}
+
+[data-page-theme='eileen'] #event img {
+  border-radius: 14px;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.35);
+}
+
+/* 위치안내(location.variant 'story' → SignatureSellingStory) — 더샵 검단 핵심가치 디자인(네이비 + 하늘색)을
+   엘리프 톤으로: 바탕은 진한 차콜, 포인트(제목 강조·숫자·태그)는 세이지그린, 사진 아래 그라데이션도 차콜 */
+[data-page-theme='eileen'] #location {
+  background: var(--cv-grad-charcoal);
+}
+
+[data-page-theme='eileen'] #location [class*='SignatureSellingStory_eyebrow__'] {
+  color: #7fd3a0;
+}
+
+[data-page-theme='eileen'] #location h2 em,
+[data-page-theme='eileen'] #location [class*='SignatureSellingStory_numberItem__'] strong {
+  color: #8fdcae;
+}
+
+[data-page-theme='eileen'] #location [class*='SignatureSellingStory_sceneCopy__'] span {
+  color: #c8eed6;
+}
+
+[data-page-theme='eileen'] #location [class*='SignatureSellingStory_scene__']::after,
+[data-page-theme='eileen'] #location [class*='SignatureSellingStory_sceneWide__']::after {
+  background: linear-gradient(transparent 38%, rgba(15, 29, 51, 0.92));
+}
+
+/* 프리미엄6 — 딥그린 그라데이션(카드 이미지는 투명 모서리 알약형이라 그라데이션 위에서도 자연스러움) */
+[data-page-theme='eileen'] #premium-value {
+  background: var(--cv-grad-green);
+}
+
+/* 세대안내 평면 스테이지 — 차콜 그라데이션 */
+[data-page-theme='eileen'] [class*='SignatureUnitPlan_circleStage'] {
+  background: var(--cv-grad-charcoal);
+}
+
+/* 헤더(스크롤 후 배경) — 딥그린 그라데이션 */
+[data-page-theme='eileen'] header[class*='SignatureHeader_header']:not([class*='Transparent']),
+[data-page-theme='eileen'] [class*='SignatureHeader_mobileMenu'] {
+  background-image: var(--cv-grad-green);
+}
+
+/* 푸터 — 차콜(공식 홈페이지 모바일 푸터 톤) */
+[data-page-theme='eileen'] [class*='SignatureFooter_footer'] {
+  background: var(--cv-grad-charcoal);
+}
+
+/* 모바일 하단 바 — 전화상담 딥그린 / 관심고객등록 웜그레이 그라데이션 */
+[data-page-theme='eileen'] [class*='SignatureMobileBottomBar_callBtn'] {
+  background: var(--cv-grad-green);
+  color: #fff;
+}
+
+[data-page-theme='eileen'] [class*='SignatureMobileBottomBar_visitBtn'] {
+  background: var(--cv-grad-gray);
+  color: #fff;
+}
+
+/* PC 우측 퀵메뉴 — 분양문의 딥그린 / 관심고객 웜그레이 / MENU 차콜 */
+[data-page-theme='eileen'] [class*='SignatureQuickMenu_barCall'] {
+  background: var(--cv-grad-green);
+}
+
+[data-page-theme='eileen'] [class*='SignatureQuickMenu_barFavorite'] {
+  background: var(--cv-grad-gray);
+}
+
+[data-page-theme='eileen'] [class*='SignatureQuickMenu_barMenu'] {
+  background: var(--cv-grad-charcoal);
+}
+
+/* 세대안내 원형 라인 장식은 PC(원형 스테이지)에서만 — 모바일은 제목·탭 위로 선이 지나가 어수선함 */
+@media (max-width: 1023px) {
+  [data-page-theme='eileen'] #unit-plan::before {
+    display: none;
+  }
+}
+
+/* 사은품 이미지 — 모바일은 화면 가로를 꽉 채워(여백·모서리·그림자 없이) 전체가 크게 보이게 */
+@media (max-width: 767px) {
+  [data-page-theme='eileen'] #event {
+    padding: 0;
+  }
+
+  [data-page-theme='eileen'] #event img {
+    width: 100%;
+    max-width: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+/* PREMIUM 6 모바일 — 사진 카드형(2026-11-05 사용자 요청: 위치안내 사진 씬처럼). 직사각형 모바일 이미지(card.imageMobile)를
+   카드 전체에 깔고, 아래쪽 어두운 그라데이션 위에 'PREMIUM 01.'·제목·설명을 얹음.
+   display는 모바일 목록(mobileList) 카드에만 — 오른쪽 칼럼 카드(PC용, 모바일에서 숨김)까지 보이면 04~06이 중복됨 */
+@media (max-width: 767px) {
+  [data-page-theme='eileen'] #premium-value [class*='SignaturePremiumZigzag_item__'] {
+    position: relative;
+    min-height: 280px;
+    margin-bottom: 14px;
+    padding: 0;
+    border-top: 0;
+    overflow: hidden;
+  }
+
+  [data-page-theme='eileen'] #premium-value [class*='SignaturePremiumZigzag_mobileList__'] [class*='SignaturePremiumZigzag_item__'] {
+    display: block;
+    min-height: 280px;
+    margin-bottom: 14px;
+    padding: 0;
+    border-top: 0;
+    overflow: hidden;
+  }
+
+  [data-page-theme='eileen'] #premium-value [class*='SignaturePremiumZigzag_item__']::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    background: linear-gradient(transparent 30%, rgba(15, 29, 51, 0.92));
+  }
+
+  [data-page-theme='eileen'] #premium-value [class*='SignaturePremiumZigzag_visual__'] {
+    position: absolute;
+    inset: 0;
+    max-width: none;
+  }
+
+  [data-page-theme='eileen'] #premium-value [class*='SignaturePremiumZigzag_visual__'] img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  [data-page-theme='eileen'] #premium-value [class*='SignaturePremiumZigzag_text__'] {
+    position: absolute;
+    z-index: 2;
+    left: 20px;
+    right: 20px;
+    bottom: 22px;
+  }
+
+  [data-page-theme='eileen'] #premium-value [class*='SignaturePremiumZigzag_label__'] {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: #c8eed6;
+  }
+
+  [data-page-theme='eileen'] #premium-value [class*='SignaturePremiumZigzag_itemTitle__'] {
+    margin-top: 8px;
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 20px;
+    color: #fff;
+  }
+
+  [data-page-theme='eileen'] #premium-value [class*='SignaturePremiumZigzag_desc__'] {
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  [data-page-theme='eileen'] #premium-value [class*='SignaturePremiumZigzag_desc__'] span {
+    display: inline;
+  }
+
+  [data-page-theme='eileen'] #premium-value [class*='SignaturePremiumZigzag_desc__'] span + span::before {
+    content: ' ';
+  }
+}
+
+/* 히어로 윗줄('단지 앞 초등학교(계획), 수변공원까지') — 공식 홈페이지처럼 굵지 않게 */
+[data-page-theme='eileen'] #hero [class*='SignatureHero_estBrand__'] {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+@media (min-width: 768px) {
+  [data-page-theme='eileen'] #hero [class*='SignatureHero_estBrand__'] {
+    font-size: clamp(20px, 1.5vw, 28px);
+  }
+}
+
+/* 위치안내(location.variant 'infrastructure' → SignatureInfrastructure) — 짙은 회색(차콜) 배경 + 흰 글씨(2026-11-05 사용자 요청).
+   포인트(작은 영문·번호·제목 둘째 줄)는 차콜 위에서 잘 보이는 연한 세이지그린 */
+[data-page-theme='eileen'] #location {
+  background: var(--cv-grad-charcoal);
+}
+
+[data-page-theme='eileen'] #location h2,
+[data-page-theme='eileen'] #location [class*='SignatureInfrastructure_list__'] h3 {
+  color: #fff;
+}
+
+[data-page-theme='eileen'] #location [class*='SignatureInfrastructure_eyebrow__'],
+[data-page-theme='eileen'] #location h2 em,
+[data-page-theme='eileen'] #location [class*='SignatureInfrastructure_list__'] span {
+  color: #8fdcae;
+}
+
+[data-page-theme='eileen'] #location [class*='SignatureInfrastructure_desc__'],
+[data-page-theme='eileen'] #location [class*='SignatureInfrastructure_list__'] p,
+[data-page-theme='eileen'] #location [class*='SignatureInfrastructure_sourceNote__'] {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+[data-page-theme='eileen'] #location [class*='SignatureInfrastructure_list__'],
+[data-page-theme='eileen'] #location [class*='SignatureInfrastructure_list__'] article {
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* 위치안내 PC — 항목이 4개라 리스트가 지도 박스보다 길어 아래 끝이 어긋났음(2026-11-05 사용자 지적).
+   지도 박스와 리스트를 같은 높이로 늘이고, 4개 항목을 그 높이에 고르게 나눠 위·아래 끝선을 지도와 맞춤 */
+@media (min-width: 1024px) {
+  [data-page-theme='eileen'] #location [class*='SignatureInfrastructure_layout__'] {
+    align-items: stretch;
+  }
+
+  [data-page-theme='eileen'] #location [class*='SignatureInfrastructure_list__'] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  [data-page-theme='eileen'] #location [class*='SignatureInfrastructure_list__'] article {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 16px 0;
+  }
+
+  [data-page-theme='eileen'] #location [class*='SignatureInfrastructure_list__'] h3 {
+    margin: 6px 0 8px;
+  }
+}
+
+/* 위치안내 사진 카드(listStyle 'photoCards', 2026-11-17 사용자 요청 — 리플렛 '더 ~한 ~의 중심' 4칸) — 골드 제목 · 흰 설명 · 흰 점선 */
+[data-page-theme='eileen'] #location [class*='SignatureInfrastructure_photoCardText__'] h3 {
+  color: #8fdcae;
+}
+
+[data-page-theme='eileen'] #location [class*='SignatureInfrastructure_photoCardText__'] p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+[data-page-theme='eileen'] #location [class*='SignatureInfrastructure_photoCard__'] {
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+/* 모바일 히어로 문구를 위로 — 투시도 건물과 겹치지 않게 하늘 영역 위쪽에 배치 */
+@media (max-width: 1023px) {
+  [data-page-theme='eileen'] [class*='SignatureHero_estCopy'] {
+    top: calc(var(--header-h, 64px) + 1.5vh);
+  }
+  [data-page-theme='eileen'] [class*='SignatureHero_estName']::before {
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+  [data-page-theme='eileen'] [class*='SignatureHero_estBadgeBox'] {
+    margin-top: 14px;
+  }
+}
+
+/* 위치안내 제목·항목 제목 — 명조(serif) 대신 프리텐다드 고딕 */
+[data-page-theme='eileen'] [class*='SignatureInfrastructure_heading'] h2,
+[data-page-theme='eileen'] [class*='SignatureInfrastructure_list'] h3 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+[data-page-theme='eileen'] [class*='SignatureInfrastructure_list'] h3 {
+  font-size: clamp(21px, 2.1vw, 26px);
+}
+
+/* 푸터 강조 문구 — 단어 중간('대단/지')에서 끊기지 않게 */
+[data-page-theme='eileen'] [class*='SignatureFooter_highlightText'] {
+  word-break: keep-all;
+}
+
+/* 덕은 에일린의 뜰 — 프리미엄 카드 제목은 영문 한 줄 + 한글 한 줄(\n), 한글이 단어 중간('프/리미엄')에서 끊기지 않게 */
+[data-page-theme='eileen'] #premium-value [class*='SignaturePremiumZigzag_itemTitle__'] {
+  white-space: pre-line;
+  word-break: keep-all;
+}
+
+[data-page-theme='eileen'] #premium-value [class*='SignaturePremiumZigzag_desc__'],
+[data-page-theme='eileen'] #benefits h2,
+[data-page-theme='eileen'] section[class*='SignaturePremiumIntro_sectionSplit'] h2 {
+  word-break: keep-all;
+}

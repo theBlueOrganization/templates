@@ -100,6 +100,8 @@ const adaptiveLandingPointers = [
   { slug: "cheongna-arkone-prugio", subdomain: "청라아크원푸르지오", template: "adaptive-landing" },
   { slug: "cheongna-arkone-prugio-2", subdomain: "청라아크원푸르지오2", template: "adaptive-landing" },
   { slug: "cheongna-arkone-prugio-3", subdomain: "청라아크원푸르지오c", template: "adaptive-landing" },
+  // 청라 아크원 푸르지오4(2026-11-22) — 한글도메인 청라아크원푸르지오d.addupapt.kr
+  { slug: "cheongna-arkone-prugio-4", subdomain: "청라아크원푸르지오d", template: "adaptive-landing" },
   { slug: "forena-incheon-hagik", subdomain: "포레나인천학익", template: "adaptive-landing" },
   { slug: "city-ociel-9", subdomain: "시티오씨엘9단지", template: "adaptive-landing" },
   { slug: "city-ociel-9-2", subdomain: "c시티오씨엘9단지", template: "adaptive-landing" },

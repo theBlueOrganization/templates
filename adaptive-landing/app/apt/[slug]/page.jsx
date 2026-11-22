@@ -64,6 +64,7 @@ import SignatureFinalInterest from '../../../components/sections/SignatureFinalI
 import { ArkoneApplySection } from '../../../components/sections/ArkoneApplyForm'
 import SignatureBottomDockGeomdan from '../../../components/ui/SignatureBottomDockGeomdan'
 import SignatureArkoneImmersive from '../../../components/sections/SignatureArkoneImmersive'
+import SignatureArkoneOfficial from '../../../components/sections/SignatureArkoneOfficial'
 import ArkoneGoldEvent from '../../../components/sections/ArkoneGoldEvent'
 import SignatureTiamoImmersive from '../../../components/sections/SignatureTiamoImmersive'
 import SignatureViaafImmersive from '../../../components/sections/SignatureViaafImmersive'
@@ -123,6 +124,32 @@ export default async function AptPage({ params }) {
   // 패널 흐름·디자인은 아크원과 동일하고 콘텐츠만 다른 전용 컴포넌트(SignatureTiamoImmersive)를 렌더
   // 영종국제도시 신일 비아프 크레스트(yeongjong-shinil-viaaf-crest)도 티아모 까사 구조를 그대로 쓰는
   // 전용 컴포넌트(SignatureViaafImmersive)로 분기(sig.viaafImmersive)
+  // 청라 아크원 푸르지오4(cheongna-arkone-prugio-4) — 공식 홈페이지(arkone-prugio.com) 메인을 따른 일반 스크롤 전용 화면.
+  // 폼(ArkoneApplyForm)·푸터에 필요한 값만 추려서 넘김
+  if (sig.arkoneOfficial) {
+    const officialSite = {
+      slug: site.slug,
+      telNumber: site.telNumber,
+      telNumberByUtm: site.telNumberByUtm,
+      projectName: site.projectName,
+      adminPhones: site.adminPhones,
+      adminPhonesByUtm: site.adminPhonesByUtm,
+      adminPhoneNames: site.adminPhoneNames,
+      smsMediaLabel: site.smsMediaLabel,
+      sheetId: site.sheetId,
+      sheetTab: site.sheetTab,
+      showUtmInSms: site.showUtmInSms,
+      visitTimeOptions: site.visitTimeOptions,
+      applyForm: site.applyForm,
+      signature: {
+        footer: { companyLines: sig.footer.companyLines, disclaimers: sig.footer.disclaimers },
+        vipForm: { privacyText: sig.vipForm.privacyText },
+        arkoneOfficialContent: sig.arkoneOfficialContent,
+      },
+    }
+    return <SignatureArkoneOfficial site={officialSite} />
+  }
+
   if (sig.arkoneImmersive || sig.tiamoImmersive || sig.viaafImmersive) {
     // 이 페이지는 telNumber/adminPhones/sheetId 등 라우팅용 설정과, 재사용하는 개인정보
     // 동의문·회사정보 몇 개만 필요 — site 전체를 그대로 넘기면 안 쓰는 legacy signature.*

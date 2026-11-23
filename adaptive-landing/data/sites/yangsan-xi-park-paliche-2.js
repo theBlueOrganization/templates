@@ -347,7 +347,7 @@ const config = {
       introTitle: '공세권의 특권을 누리는\n프리미엄 주거공간',
       introLines: ['Park(공원) + Palace(대저택) + Riche(부유한),\n남동·남서향 배치의 842세대 브랜드 대단지에서 여유로운 라이프가 시작됩니다.'],
       cards: [
-        { num: '01', image: '/apt/yangsan-xi-park-paliche-2/overview-aerial.webp', alt: '양산자이 파크팰리체 조감도', en: 'BRAND LANDMARK', title: '양산 첫 번째 자이, 842세대', desc: '지하 2층~지상 최고 29층 6개동 총 842세대, 84㎡부터 168㎡P까지 다양한 평형의 GS건설 자이 브랜드 대단지' },
+        { num: '01', image: '/apt/yangsan-xi-park-paliche-2/overview-aerial.webp', alt: '양산자이 파크팰리체 조감도', en: 'BRAND LANDMARK', title: '양산 첫 번째 자이, 842세대', desc: '지하 2층~지상 최고 29층 6개동 총 842세대, 84㎡부터 120㎡까지 다양한 평형의 GS건설 자이 브랜드 대단지' },
         { num: '02', image: '/apt/yangsan-xi-park-paliche-2/premium5-traffic.webp', alt: '도심 도로 야경 이미지컷', en: 'TRAFFIC', title: '한발빠른 교통망', desc: '웅상대로와 7번 국도로 부산 및 울산 이동이 편리하며, 1028호 국도(계획) 등 편리한 광역 교통망을 갖추고 있습니다.' },
         { num: '03', image: '/apt/yangsan-xi-park-paliche-2/premium5-eco.webp', alt: '공원 잔디밭을 뛰노는 아이들 이미지컷', en: 'ECO LIFE', title: '친환경 에코특권', desc: '단지 바로 옆 웅상센트럴파크 조성으로 365일 쾌적함이 돋보이는 친환경 공원 라이프를 누릴 수 있습니다.' },
         { num: '04', image: '/apt/yangsan-xi-park-paliche-2/premium5-infra.webp', alt: '마트 쇼핑카트 이미지컷', en: 'INFRA', title: '풍요로운 인프라', desc: '이마트 트레이더스, 웅상문화체육센터, 동부행정타운(계획), 양산 웅상출장소, 일반상업지역 내 시설 등을 편리하게 이용할 수 있습니다.' },
@@ -372,7 +372,7 @@ const config = {
           thumb: '/apt/yangsan-xi-park-paliche-2/complex-thumb-siteplan.webp',
           title: '단지배치도',
           blocks: [
-            { label: '배치도', image: { src: '/apt/yangsan-xi-park-paliche-2/complex-siteplan.webp', alt: '단지 배치도(101~106동, 84A 334세대 / 84B 174세대 / 84C 160세대 / 120 171세대 / 168P 3세대)', width: 2000, height: 1338 } },
+            { label: '배치도', image: { src: '/apt/yangsan-xi-park-paliche-2/complex-siteplan.webp', alt: '단지 배치도(101~106동, 84A 334세대 / 84B 174세대 / 84C 160세대 / 120 171세대)', width: 2000, height: 1338 } },
             { label: '조감도', image: { src: '/apt/yangsan-xi-park-paliche-2/overview-aerial.webp', alt: '양산자이 파크팰리체 조감도', width: 1207, height: 1018 } },
           ],
         },
@@ -423,7 +423,7 @@ const config = {
         '※ 상기 이미지는 소비자의 이해를 돕기 위한 것으로 실제와 차이가 있을 수 있으며, 인·허가 과정 및 실제 시공 시 변경될 수 있습니다.',
     },
 
-    // 세대안내 — 84㎡A·B·C / 120㎡ / 168㎡P. 평면은 공식 홈페이지 세대안내의 확장형(별도계약), 면적은 교육자료 p3
+    // 세대안내 — 84㎡A·B·C / 120㎡ (168㎡P 펜트하우스는 노출 제외). 평면은 공식 홈페이지 세대안내의 확장형(별도계약), 면적은 교육자료 p3
     unitPlan: {
       id: 'unit-plan',
       navLabel: '세대안내',
@@ -471,17 +471,6 @@ const config = {
             },
           ],
         },
-        {
-          area: '168㎡',
-          types: [
-            {
-              letter: 'P',
-              countText: '3세대',
-              image: { src: '/apt/yangsan-xi-park-paliche-2/unit-168p.webp', alt: '168㎡P(펜트하우스) 타입 평면도', width: 1825, height: 1004 },
-              specs: { exclusive: '168.9129', supply: '215.2025' },
-            },
-          ],
-        },
       ],
     },
 
@@ -523,7 +512,7 @@ const config = {
       disclaimers: [
         '※ 본 사이트에 사용된 이미지들은 소비자의 이해를 돕기 위해 제작된 것으로 실제와 다를 수 있습니다.',
         '※ 본 자료에 표현된 현황, 개발계획, 예정사항 등은 관계기관의 홈페이지 및 해당기관의 고시 등을 참조하여 작성된 것으로 사업계획 및 일정은 당사자와는 무관하며 사업주체 및 해당관청의 사정에 의해 지연, 변경 또는 취소될 수 있습니다.',
-        '※ 84㎡형, 120㎡형, 168㎡형은 이해를 돕기 위한 호칭이며, 정확한 전용면적 및 공급면적 등은 모집공고와 견본주택에서 확인하시기 바랍니다.',
+        '※ 84㎡형, 120㎡형은 이해를 돕기 위한 호칭이며, 정확한 전용면적 및 공급면적 등은 모집공고와 견본주택에서 확인하시기 바랍니다.',
         '※ 제작, 편집, 인쇄과정상 오탈자 등의 오류가 있을 수 있으니, 계약 전 반드시 견본주택 관계자에게 문의하시기 바랍니다.',
       ],
       csPhone: '1551-0960',

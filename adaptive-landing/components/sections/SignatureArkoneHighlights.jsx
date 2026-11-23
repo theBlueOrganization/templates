@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { useUtmSource } from '../../lib/useUtmSource'
 import { cn } from '../../lib/utils'
+import { isDirectLink, scrollToHashTarget } from '../../lib/directLink'
 import ArkoneApplyForm from './ArkoneApplyForm'
 import styles from './SignatureArkoneHighlights.module.css'
 
@@ -36,6 +37,9 @@ export function SignatureArkoneIntro({ intro }) {
   const [done, setDone] = useState(false)
 
   useEffect(() => {
+    // 다이렉트 링크(#앵커로 진입, 예: 관심고객등록 #vip-reservation)면 인트로 없이 해당 섹션으로 바로 이동
+    // (스크롤 잠금이 풀린 뒤 이동해야 하므로 스크롤은 아래 done 이펙트에서 처리)
+    if (isDirectLink()) { setDone(true); return }
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { setDone(true); return }
     const raf = requestAnimationFrame(() => setReady(true))
     const t = setTimeout(() => setDone(true), 5600)
@@ -48,6 +52,7 @@ export function SignatureArkoneIntro({ intro }) {
       // SignatureCircleIntro와 같은 신호를 보냄
       window.__circleIntroEnded = true
       window.dispatchEvent(new Event('circleintro:end'))
+      if (isDirectLink()) requestAnimationFrame(scrollToHashTarget)
       return
     }
     document.documentElement.classList.add(styles.lockScroll)

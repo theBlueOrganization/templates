@@ -65,6 +65,7 @@ import { ArkoneApplySection } from '../../../components/sections/ArkoneApplyForm
 import SignatureBottomDockGeomdan from '../../../components/ui/SignatureBottomDockGeomdan'
 import SignatureArkoneImmersive from '../../../components/sections/SignatureArkoneImmersive'
 import SignatureArkoneOfficial from '../../../components/sections/SignatureArkoneOfficial'
+import SignatureLuxeOfficial from '../../../components/sections/SignatureLuxeOfficial'
 import ArkoneGoldEvent from '../../../components/sections/ArkoneGoldEvent'
 import SignatureTiamoImmersive from '../../../components/sections/SignatureTiamoImmersive'
 import SignatureViaafImmersive from '../../../components/sections/SignatureViaafImmersive'
@@ -126,6 +127,29 @@ export default async function AptPage({ params }) {
   // 전용 컴포넌트(SignatureViaafImmersive)로 분기(sig.viaafImmersive)
   // 청라 아크원 푸르지오4(cheongna-arkone-prugio-4) — 공식 홈페이지(arkone-prugio.com) 메인을 따른 일반 스크롤 전용 화면.
   // 폼(ArkoneApplyForm)·푸터에 필요한 값만 추려서 넘김
+  // 공식 홈페이지형 일반 스크롤 화면(아크원4 구성 참고, 데이터 기반) — sig.luxe가 있으면 전용 렌더.
+  // 폼·푸터에 필요한 값만 추려서 넘김. 사용 현장: deokeun-dmc-eileens-garden-3
+  if (sig.luxe) {
+    const luxeSite = {
+      slug: site.slug,
+      telNumber: site.telNumber,
+      telNumberByUtm: site.telNumberByUtm,
+      projectName: site.projectName,
+      adminPhones: site.adminPhones,
+      adminPhonesByUtm: site.adminPhonesByUtm,
+      adminPhoneNames: site.adminPhoneNames,
+      smsMediaLabel: site.smsMediaLabel,
+      sheetId: site.sheetId,
+      sheetTab: site.sheetTab,
+      showUtmInSms: site.showUtmInSms,
+      visitTimeOptions: site.visitTimeOptions,
+      privacyText: sig.vipForm.privacyText,
+      footer: { companyLines: sig.footer.companyLines, disclaimers: sig.footer.disclaimers, agencySlogan: sig.footer.agencySlogan },
+      luxe: sig.luxe,
+    }
+    return <SignatureLuxeOfficial site={luxeSite} />
+  }
+
   if (sig.arkoneOfficial) {
     const officialSite = {
       slug: site.slug,

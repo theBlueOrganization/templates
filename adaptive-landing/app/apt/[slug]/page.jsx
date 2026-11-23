@@ -147,7 +147,13 @@ export default async function AptPage({ params }) {
       footer: { companyLines: sig.footer.companyLines, disclaimers: sig.footer.disclaimers, agencySlogan: sig.footer.agencySlogan },
       luxe: sig.luxe,
     }
-    return <SignatureLuxeOfficial site={luxeSite} />
+    // arkoneIntro가 있으면 3분할 인트로(SignatureArkoneIntro)를 먼저 띄우고, 진입 팝업은 인트로가 끝난 뒤 열림
+    return (
+      <>
+        {sig.arkoneIntro && <SignatureArkoneIntro intro={sig.arkoneIntro} />}
+        <SignatureLuxeOfficial site={luxeSite} holdForIntro={!!sig.arkoneIntro} />
+      </>
+    )
   }
 
   if (sig.arkoneOfficial) {

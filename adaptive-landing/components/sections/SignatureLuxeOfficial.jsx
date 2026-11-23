@@ -196,7 +196,8 @@ function VisitForm({ site, luxe, idPrefix, onSuccess }) {
   )
 }
 
-export default function SignatureLuxeOfficial({ site }) {
+// holdForIntro — 인트로(SignatureArkoneIntro)가 앞에 뜰 때, 끝 신호(circleintro:end) 뒤에 진입 팝업을 연다
+export default function SignatureLuxeOfficial({ site, holdForIntro = false }) {
   const luxe = site.luxe
   const footer = site.footer
   const utmSource = useUtmSource() ?? '직접유입'
@@ -222,9 +223,17 @@ export default function SignatureLuxeOfficial({ site }) {
   // 진입 팝업 — 홍보 이미지 → 닫으면 방문예약 폼(기존 사이트 popup.order 'imageFirst'와 같은 흐름)
   useEffect(() => {
     if (!luxe.popup) return
-    const t = setTimeout(() => { const d = popupDialogRef.current; if (d && !d.open) d.showModal() }, luxe.popup.delayMs ?? 1000)
-    return () => clearTimeout(t)
-  }, [luxe.popup])
+    let t
+    const schedule = () => {
+      t = setTimeout(() => { const d = popupDialogRef.current; if (d && !d.open) d.showModal() }, holdForIntro ? 500 : (luxe.popup.delayMs ?? 1000))
+    }
+    if (holdForIntro && !window.__circleIntroEnded) {
+      window.addEventListener('circleintro:end', schedule, { once: true })
+    } else {
+      schedule()
+    }
+    return () => { clearTimeout(t); window.removeEventListener('circleintro:end', schedule) }
+  }, [luxe.popup, holdForIntro])
 
   const openForm = () => {
     popupDialogRef.current?.close()
@@ -558,9 +567,33 @@ export default function SignatureLuxeOfficial({ site }) {
       {luxe.popup && (
         <dialog ref={popupDialogRef} className={cn(styles.dialog, styles.popupDialog)} onClick={(e) => { if (e.target === popupDialogRef.current) closePopup() }}>
           <div className={styles.popupBody}>
-            <button type="button" className={styles.popupImgBtn} onClick={openForm} aria-label="방문예약 신청하기">
-              <Image src={luxe.popup.image.src} alt={luxe.popup.image.alt} width={luxe.popup.image.width} height={luxe.popup.image.height} sizes="(max-width: 600px) 92vw, 440px" />
-            </button>
+            {/* popup.card — 이미지 대신 사진 배경 + 텍스트로 그리는 팝업(사이트 톤에 맞춤), 없으면 popup.image 그대로 */}
+            {luxe.popup.card ? (
+              <button type="button" className={styles.popupCard} onClick={openForm} aria-label="방문예약 신청하기">
+                <Image className={styles.popupCardBg} src={luxe.popup.card.bg} alt="" fill sizes="(max-width: 600px) 92vw, 440px" aria-hidden="true" />
+                <span className={styles.popupCardTop}>
+                  <em>{luxe.popup.card.topLeft}</em>
+                  <em>{luxe.popup.card.topRight}</em>
+                </span>
+                <span className={styles.popupCardCopy}>
+                  <small>{luxe.popup.card.eyebrow}</small>
+                  <span className={styles.popupCardLight}>{luxe.popup.card.titleLight}</span>
+                  <strong><Lines text={luxe.popup.card.titleStrong} /></strong>
+                  <Image className={styles.popupCardLogo} src={logo.light.src} alt={logo.light.alt} width={logo.light.width} height={logo.light.height} />
+                </span>
+                <span className={styles.popupCardBottom}>
+                  <b>{luxe.popup.card.badge}</b>
+                  <span className={styles.popupCardPoints}>
+                    {luxe.popup.card.points.map(([t, d]) => (<span key={t}><i>{t}</i><small>{d}</small></span>))}
+                  </span>
+                  <span className={styles.popupCardFoot}><em>{luxe.popup.card.footLeft}</em><em>{luxe.popup.card.footRight}</em></span>
+                </span>
+              </button>
+            ) : (
+              <button type="button" className={styles.popupImgBtn} onClick={openForm} aria-label="방문예약 신청하기">
+                <Image src={luxe.popup.image.src} alt={luxe.popup.image.alt} width={luxe.popup.image.width} height={luxe.popup.image.height} sizes="(max-width: 600px) 92vw, 440px" />
+              </button>
+            )}
             <div className={styles.popupActions}>
               <button type="button" onClick={closePopup}>닫기</button>
               <button type="button" onClick={openForm}>방문예약 신청</button>

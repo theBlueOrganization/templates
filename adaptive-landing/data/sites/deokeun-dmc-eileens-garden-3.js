@@ -77,12 +77,14 @@ const config = {
       ],
       popup: {
         delayMs: 1200,
-        formAfterClose: true,
+        // 2026-11-23 '팝업 나타나는 순서가 이상' — 이미지 팝업을 닫으면 그냥 닫히고 폼이 이어서 뜨지 않게(방문예약 신청 버튼을 누를 때만 폼)
+        formAfterClose: false,
+        // 2026-11-23 '팝업이미지 꼭 핑크색이어야 할까' — 핑크 보정본(popup.webp) 대신 6P 카탈로그 1쪽 표지(하늘색 하늘) 원본 렌더(popup-catalog.webp)
         image: {
-          src: '/apt/deokeun-dmc-eileens-garden-3/popup.webp',
+          src: '/apt/deokeun-dmc-eileens-garden-3/popup-catalog.webp',
           alt: '지금 바로 입주하는 한강 뷰 오피스텔 — 전망도 가치도 눈부신 마지막 한강 프리미엄, 덕은 DMC 에일린의 뜰 한강. 건설사 보유 로열층 한정 특별 분양: 즉시 입주(준공 완료), 실물 세대 확인, 청약통장 無(만 19세 이상), 본사 직접 계약(아이에스동서). 6·7BL 오피스텔 총 168실',
           width: 900,
-          height: 1272,
+          height: 1271,
         },
       },
       // 카탈로그 메인 카피

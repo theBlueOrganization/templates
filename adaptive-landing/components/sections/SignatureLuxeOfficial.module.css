@@ -410,6 +410,8 @@
 /* ── 모바일 정렬 통일(2026-11-23 요청) — 섹션 제목·설명은 전부 가운데, 항목 목록(입지 4가지·혜택·사업개요 표)은 왼쪽, 커뮤니티 시설 6칸은 가운데 ── */
 @media (max-width: 1023px) {
   .heroCopy { text-align: center; }
+  /* 컨셉 텍스트 — conceptInner가 align-items: flex-start라 내용 폭만큼만 왼쪽에 붙어 가운데 정렬이 어긋나던 것, 전체 폭으로 */
+  .conceptText { align-self: stretch; }
   .conceptText, .overviewLeft, .overviewCatch, .centralText, .lifeLeftText, .premiumIntro, .communityText, .formEyebrow, .formTitle, .formDesc { text-align: center; }
   .points, .lifeList, .stats, .spec, .note, .smallNote, .lifeNote { text-align: left; }
   .lifeLeft { min-height: 0; padding-bottom: 64px; }

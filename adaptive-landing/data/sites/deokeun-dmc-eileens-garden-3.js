@@ -110,7 +110,7 @@ const config = {
       overview: {
         bg: { src: '/apt/deokeun-dmc-eileens-garden-3/overview-photo.webp' },
         small: '가양대교 북단 한강변,\n준공을 마치고 기다리는',
-        lead: '지금 바로 입주하는 한강 뷰 아파텔',
+        lead: '지금 바로 입주하는\n한강 뷰 아파텔',
         word: 'HANGANG',
         catch: '서울과 한강 사이,\n매일 한강을 소유하는 자리',
         stats: [

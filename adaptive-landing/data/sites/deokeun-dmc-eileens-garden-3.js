@@ -82,7 +82,7 @@ const config = {
         // 2026-11-23 '팝업이미지 꼭 핑크색이어야 할까' — 핑크 보정본(popup.webp) 대신 6P 카탈로그 1쪽 표지(하늘색 하늘) 원본 렌더(popup-catalog.webp)
         image: {
           src: '/apt/deokeun-dmc-eileens-garden-3/popup-catalog.webp',
-          alt: '지금 바로 입주하는 한강 뷰 오피스텔 — 전망도 가치도 눈부신 마지막 한강 프리미엄, 덕은 DMC 에일린의 뜰 한강. 건설사 보유 로열층 한정 특별 분양: 즉시 입주(준공 완료), 실물 세대 확인, 청약통장 無(만 19세 이상), 본사 직접 계약(아이에스동서). 6·7BL 오피스텔 총 168실',
+          alt: '지금 바로 입주하는 한강 뷰 아파텔 — 전망도 가치도 눈부신 마지막 한강 프리미엄, 덕은 DMC 에일린의 뜰 한강. 건설사 보유 로열층 한정 특별 분양: 즉시 입주(준공 완료), 실물 세대 확인, 청약통장 無(만 19세 이상), 본사 직접 계약(아이에스동서). 6·7BL 아파텔 총 168실',
           width: 900,
           height: 1271,
         },
@@ -110,7 +110,7 @@ const config = {
       overview: {
         bg: { src: '/apt/deokeun-dmc-eileens-garden-3/overview-photo.webp' },
         small: '가양대교 북단 한강변,\n준공을 마치고 기다리는',
-        lead: '지금 바로 입주하는 한강 뷰 오피스텔',
+        lead: '지금 바로 입주하는 한강 뷰 아파텔',
         word: 'HANGANG',
         catch: '서울과 한강 사이,\n매일 한강을 소유하는 자리',
         stats: [
@@ -124,7 +124,7 @@ const config = {
           { label: '사업명', value: '고양 덕은지구 업무시설 6,7BL 복합시설' },
           { label: '대지위치', value: '경기도 고양시 덕양구 덕은동\n(고양덕은 도시개발사업지구 업무6,7BL)' },
           { label: '건축규모', value: '지하 4층 ~ 지상 25층' },
-          { label: '공급규모', value: '오피스텔 2개 동 총 168실\n(301동 96실 · 302동 72실)' },
+          { label: '공급규모', value: '아파텔 2개 동 총 168실\n(301동 96실 · 302동 72실)' },
           { label: '전용면적', value: '84㎡ 6타입 (84A·84B·84C·84D·84A-1·84B-1)' },
           { label: '주차대수', value: '215대' },
           { label: '시행·시공', value: '아이에스동서㈜ (본사 직접 계약)' },
@@ -188,9 +188,9 @@ const config = {
       complex: {
         eyebrow: 'COMPLEX',
         title: '단지안내',
-        desc: '6·7BL 오피스텔 301동 · 302동, 총 168실',
+        desc: '6·7BL 아파텔 301동 · 302동, 총 168실',
         tabs: [
-          { label: '단지배치도', image: { src: '/apt/deokeun-dmc-eileens-garden-3/complex-siteplan.webp', width: 2000, height: 1414, alt: '덕은 DMC 에일린의 뜰 한강 단지배치도 — 6·7BL 오피스텔 301동·302동(총 168실), 지식산업센터 A·B동, 근린생활시설, 옥상정원·티하우스·바닥분수·잔디마당' } },
+          { label: '단지배치도', image: { src: '/apt/deokeun-dmc-eileens-garden-3/complex-siteplan.webp', width: 2000, height: 1414, alt: '덕은 DMC 에일린의 뜰 한강 단지배치도 — 6·7BL 아파텔 301동·302동(총 168실), 지식산업센터 A·B동, 근린생활시설, 옥상정원·티하우스·바닥분수·잔디마당' } },
           {
             label: '동별 평면도',
             images: [
@@ -287,7 +287,7 @@ const config = {
       images: [
         {
           src: '/apt/deokeun-dmc-eileens-garden-3/popup.webp',
-          alt: '지금 바로 입주하는 한강 뷰 오피스텔 — 전망도 가치도 눈부신 마지막 한강 프리미엄, 덕은 DMC 에일린의 뜰 한강. 건설사 보유 로열층 한정 특별 분양: 즉시 입주(준공 완료), 실물 세대 확인, 청약통장 無(만 19세 이상), 본사 직접 계약(아이에스동서). 6·7BL 오피스텔 총 168실',
+          alt: '지금 바로 입주하는 한강 뷰 아파텔 — 전망도 가치도 눈부신 마지막 한강 프리미엄, 덕은 DMC 에일린의 뜰 한강. 건설사 보유 로열층 한정 특별 분양: 즉시 입주(준공 완료), 실물 세대 확인, 청약통장 無(만 19세 이상), 본사 직접 계약(아이에스동서). 6·7BL 아파텔 총 168실',
           width: 900,
           height: 1272,
         },
@@ -313,7 +313,7 @@ const config = {
       ctaTargetId: 'vip-reservation',
       deskText: '덕은 DMC 에일린의 뜰 한강\n상담을 도와드립니다.',
       address: '경기도 고양시 덕양구 으뜸로 50',
-      tagline: '한강 뷰 오피스텔 · 즉시 입주',
+      tagline: '한강 뷰 아파텔 · 즉시 입주',
       items: [
         { num: '01', label: 'MAIN', sub: '메인페이지', targetId: 'hero' },
         { num: '02', label: 'OVERVIEW', sub: '사업안내', targetId: 'overview' },
@@ -329,9 +329,11 @@ const config = {
     // 인트로(2026-11-22 요청 '3개로 된 걸로') — 3분할 이미지 → 브랜드 임팩트(SignatureArkoneIntro, 엘리프 검단 포레듀와 같은 형식).
     //   장면 이미지: 1 야경 CG(사용자 추가 1.jpg) · 2 상담북 한강 사진 · 3 상담북 주간 CG, 각 900×560 크롭
     arkoneIntro: {
+      // 2026-11-23 요청 — 3분할 이미지 단계 3초 연장(4s→7s), 뒤 로고 단계 2초(1.6s→2s)
+      timing: { sceneSec: 7, brandSec: 2 },
       ariaLabel: '덕은 DMC 에일린의 뜰 한강을 소개하는 인트로',
       scenes: [
-        { img: '/apt/deokeun-dmc-eileens-garden-3/intro-1.webp', label: '01 · HANGANG VIEW', name: '한강 뷰 오피스텔 총 168실' },
+        { img: '/apt/deokeun-dmc-eileens-garden-3/intro-1.webp', label: '01 · HANGANG VIEW', name: '한강 뷰 아파텔 총 168실' },
         { img: '/apt/deokeun-dmc-eileens-garden-3/intro-2.webp', label: '02 · HANGANG PARK', name: '한강공원을 곁에 품은 자리' },
         { img: '/apt/deokeun-dmc-eileens-garden-3/intro-3.webp', label: '03 · READY TO LIVE', name: '준공 완료 · 즉시 입주' },
       ],
@@ -370,7 +372,7 @@ const config = {
       estCopy: {
         color: '#ffffff',
         shadow: '0 2px 18px rgba(0, 0, 0, 0.45)',
-        brand: '지금 바로 입주하는 한강 뷰 오피스텔',
+        brand: '지금 바로 입주하는 한강 뷰 아파텔',
         // 카탈로그 '전망도 가치도 눈부신 마지막 한강 프리미엄' — 한 줄로는 모바일 폭을 넘쳐 큰 글씨는 '마지막 한강 프리미엄'만
         lines: [{ light: '마지막 ', strong: '한강 프리미엄', dots: 0 }],
         name: '덕은 DMC 에일린의 뜰 한강',
@@ -430,9 +432,9 @@ const config = {
         { label: '사업명', value: '고양 덕은지구 업무시설 6,7BL 복합시설' },
         { label: '대지위치', value: ['경기도 고양시 덕양구 덕은동', '(고양덕은 도시개발사업지구 업무6,7BL)'] },
         { label: '건축규모', value: '지하 4층 ~ 지상 25층' },
-        { label: '공급규모', value: ['오피스텔 2개 동 총 168실', '(301동 96실 · 302동 72실)', '지식산업센터 A·B동, 근린생활시설'] },
+        { label: '공급규모', value: ['아파텔 2개 동 총 168실', '(301동 96실 · 302동 72실)', '지식산업센터 A·B동, 근린생활시설'] },
         { label: '전용면적', value: ['84㎡ 6타입', '(84A·84B·84C·84D·84A-1·84B-1)'] },
-        { label: '연면적', value: '오피스텔 31,081.8083㎡' },
+        { label: '연면적', value: '아파텔 31,081.8083㎡' },
         { label: '주차대수', value: '215대' },
         { label: '입주시점', value: '준공 완료 · 즉시 입주' },
         { label: '시행/시공', value: '아이에스동서㈜ (본사 직접 계약)' },
@@ -516,7 +518,7 @@ const config = {
       titleAccent: '안내',
       categories: [
         complexTab('단지배치도', 'siteplan', [
-          ['complex-siteplan', 2000, 1414, '덕은 DMC 에일린의 뜰 한강 단지배치도 — 6·7BL 오피스텔 301동·302동(총 168실), 지식산업센터 A·B동, 근린생활시설, 옥상정원·티하우스·바닥분수·잔디마당', '단지배치도'],
+          ['complex-siteplan', 2000, 1414, '덕은 DMC 에일린의 뜰 한강 단지배치도 — 6·7BL 아파텔 301동·302동(총 168실), 지식산업센터 A·B동, 근린생활시설, 옥상정원·티하우스·바닥분수·잔디마당', '단지배치도'],
         ]),
         complexTab('동별 평면도', 'dong', [
           ['complex-dong-301', 1600, 835, '301동 기준층 평면도 — 1호 84D, 2호 84B-1, 3호 84A-1, 4호 84B-1, 총 96실', '301동'],

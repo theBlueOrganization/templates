@@ -32,6 +32,10 @@ function useInView(ref) {
 
 // 인트로 — 원본 IntroOverlay와 동일한 타이밍(1단계 3분할 이미지 4s → 2단계 브랜드 임팩트, 5.6s 종료).
 // 인트로가 떠 있는 동안만 페이지 스크롤을 잠근다
+function introTotalMs(timing) {
+  return ((timing?.sceneSec ?? 4) + (timing?.brandSec ?? 1.6)) * 1000
+}
+
 export function SignatureArkoneIntro({ intro }) {
   const [ready, setReady] = useState(false)
   const [done, setDone] = useState(false)
@@ -42,7 +46,8 @@ export function SignatureArkoneIntro({ intro }) {
     if (isDirectLink()) { setDone(true); return }
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { setDone(true); return }
     const raf = requestAnimationFrame(() => setReady(true))
-    const t = setTimeout(() => setDone(true), 5600)
+    // intro.timing — 1단계(3분할 이미지)·2단계(브랜드 로고) 길이(초). 없으면 원본 4s + 1.6s
+    const t = setTimeout(() => setDone(true), introTotalMs(intro.timing))
     return () => { cancelAnimationFrame(raf); clearTimeout(t) }
   }, [])
 
@@ -67,13 +72,16 @@ export function SignatureArkoneIntro({ intro }) {
 
   // intro.theme — 현장 브랜드 색으로 바꿀 때만 지정(없으면 원본 아크원 그린). 예: 오산헤리티지자이 xi-3는 티아모 까사 네이비/골드
   const t = intro.theme
-  const themeStyle = t && {
-    ...(t.base && { '--intro-base': t.base }),
-    ...(t.stageOne && { '--intro-one-bg': t.stageOne }),
-    ...(t.stageTwo && { '--intro-two-bg': t.stageTwo }),
-    ...(t.ring && { '--intro-ring': t.ring }),
-    ...(t.accent && { '--intro-accent': t.accent }),
-    ...(t.sub && { '--intro-sub': t.sub }),
+  const tm = intro.timing
+  const themeStyle = (t || tm) && {
+    ...(tm?.sceneSec && { '--intro-one': `${tm.sceneSec}s` }),
+    ...(tm?.brandSec && { '--intro-two': `${tm.brandSec}s` }),
+    ...(t?.base && { '--intro-base': t.base }),
+    ...(t?.stageOne && { '--intro-one-bg': t.stageOne }),
+    ...(t?.stageTwo && { '--intro-two-bg': t.stageTwo }),
+    ...(t?.ring && { '--intro-ring': t.ring }),
+    ...(t?.accent && { '--intro-accent': t.accent }),
+    ...(t?.sub && { '--intro-sub': t.sub }),
   }
 
   return (

@@ -158,22 +158,23 @@
 .sourceLinks { display: grid; gap: 7px; margin-top: 10px; }
 .sourceLinks a { padding-bottom: 4px; border-bottom: 1px solid var(--line); font-size: 12px; color: var(--green); text-decoration: none; }
 
-/* 인트로 — 원본 타이밍/구조 그대로: 1단계(3분할 이미지+태그라인) 4s 뒤 2단계(링 펄스+브랜드 임팩트), 5.6s 종료 */
+/* 인트로 — 원본 타이밍/구조 그대로: 1단계(3분할 이미지+태그라인) 4s 뒤 2단계(링 펄스+브랜드 임팩트), 5.6s 종료.
+   현장별로 intro.timing(sceneSec·brandSec)을 주면 --intro-one/--intro-two로 1·2단계 길이만 바뀜(기본값은 원본 4s/1.6s) */
 .intro {
   position: fixed; inset: 0; z-index: 800; background: var(--intro-base, var(--green)); color: #fff; overflow: hidden;
 }
 /* 다이렉트 링크(#앵커로 진입) — 하이드레이션 전부터 인트로 오버레이를 숨김(app/layout.jsx 인라인 스크립트, lib/directLink.js) */
 :global(html.direct-link) .intro { display: none; }
 .introStage { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
-.intro.ready .introOne { animation: stageOne 4s linear both; }
-.intro.ready .introTwo { animation: stageTwo 1.6s 4s linear both; }
+.intro.ready .introOne { animation: stageOne var(--intro-one, 4s) linear both; }
+.intro.ready .introTwo { animation: stageTwo var(--intro-two, 1.6s) var(--intro-one, 4s) linear both; }
 .introOne { background: var(--intro-one-bg, radial-gradient(circle at 50% 35%, #198575 0, #07594d 48%, #032f29 100%)); }
 .introOne::after {
   content: ''; position: absolute; inset: 0;
   background: linear-gradient(130deg, transparent 20%, rgba(255, 255, 255, 0.12) 48%, transparent 62%);
   transform: translateX(-130%);
 }
-.intro.ready .introOne::after { animation: introSweep 3.8s 0.1s var(--ease) both; }
+.intro.ready .introOne::after { animation: introSweep calc(var(--intro-one, 4s) - 0.2s) 0.1s var(--ease) both; }
 .introScenes { position: absolute; z-index: 2; inset: 6.5% 6% 18%; display: grid; grid-template-rows: repeat(3, 1fr); gap: 7px; }
 .introScene { position: relative; margin: 0; min-height: 0; overflow: hidden; opacity: 0; transform: translate3d(0, 22px, 0) scale(0.985); }
 .introScene :global(img) { object-fit: cover; object-position: center; }
@@ -201,8 +202,8 @@
 .introCopy b { font-family: Georgia, serif; font-size: 26px; font-weight: 400; line-height: 0.9; }
 .introTwo { display: grid; place-items: center; background: var(--intro-two-bg, radial-gradient(circle at center, #0f7a6a, #07594d 42%, #03372f 100%)); }
 .introRing { position: absolute; width: 38vmax; height: 38vmax; border: 1px solid var(--intro-ring, rgba(215, 241, 123, 0.4)); border-radius: 50%; opacity: 0; }
-.intro.ready .introTwo .ringA { animation: ringPulse 1.25s 4.08s var(--ease) both; }
-.intro.ready .introTwo .ringB { animation: ringPulse 1.25s 4.28s var(--ease) both; }
+.intro.ready .introTwo .ringA { animation: ringPulse 1.25s calc(var(--intro-one, 4s) + 0.08s) var(--ease) both; }
+.intro.ready .introTwo .ringB { animation: ringPulse 1.25s calc(var(--intro-one, 4s) + 0.28s) var(--ease) both; }
 .introBrand {
   position: relative; z-index: 2; width: min(74vw, 340px); display: grid; justify-items: center;
   opacity: 0; transform: scale(0.3);
@@ -212,7 +213,7 @@
 /* intro.brandName — 워드마크 이미지가 없는 현장(예: 오산헤리티지자이 xi-3)은 현장명을 텍스트로 표기 */
 .introBrand .wordText { margin: 18px 0 0; font-size: clamp(24px, 7vw, 34px); font-weight: 700; letter-spacing: -0.03em; white-space: nowrap; }
 .introBrand p { margin: 13px 0 0; font-size: 10px; letter-spacing: 0.24em; color: var(--intro-sub, #d8f2e9); }
-.intro.ready .introBrand { animation: brandImpact 1.45s 4.04s var(--ease) both; }
+.intro.ready .introBrand { animation: brandImpact calc(var(--intro-two, 1.6s) - 0.15s) calc(var(--intro-one, 4s) + 0.04s) var(--ease) both; }
 .introSkip {
   position: absolute; z-index: 5; right: 16px; bottom: calc(16px + var(--safe-bottom)); color: #fff; font: inherit; font-size: 10px;
   padding: 8px 14px; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 999px; background: rgba(2, 42, 35, 0.38); cursor: pointer;

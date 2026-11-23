@@ -340,7 +340,7 @@ export default function SignatureLuxeOfficial({ site, holdForIntro = false }) {
           <div className={styles.overviewInner}>
             <div className={cn(styles.overviewLeft, styles.reveal)}>
               <p className={styles.overviewSmall}><Lines text={overview.small} /></p>
-              <p className={styles.overviewLead}>{overview.lead}</p>
+              <p className={styles.overviewLead}><Lines text={overview.lead} /></p>
               <h2 className={styles.bigWord}>{overview.word}</h2>
             </div>
             <div className={cn(styles.overviewRight, styles.reveal)}>

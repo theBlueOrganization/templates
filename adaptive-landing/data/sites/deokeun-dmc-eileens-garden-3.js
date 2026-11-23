@@ -22,13 +22,13 @@ const config = {
   // 상담 접수 알림을 카카오 알림톡으로 발송(실패 시 SMS 자동 폴백)
   kakao: true,
 
-  // 카탈로그 톤 — 딥그린 #1d5a44 · 네이비 #13233a · 에일린의 뜰 로고 그린 #36a94b. 섹션 배치는 pageThemes.css의 'eileen' 프리셋
+  // 2026-11-23 요청 '하늘색 위주로 고급스럽게' — 스틸 스카이블루 #2b6d9e · 딥네이비 #0e2a47 · 스카이블루 #5aa9dc. 섹션 배치는 pageThemes.css의 'eileen' 프리셋
   colorTheme: {
-    navy: '#1d5a44',
-    ink: '#13233a',
-    cream: '#eef2ee',
-    gold: '#36a94b',
-    visitBtnBg: '#36a94b',
+    navy: '#2b6d9e',
+    ink: '#0e2a47',
+    cream: '#eaf4fb',
+    gold: '#5aa9dc',
+    visitBtnBg: '#5aa9dc',
     visitBtnColor: '#ffffff',
   },
   pageTheme: 'eileen',
@@ -57,6 +57,203 @@ const config = {
   ],
 
   signature: {
+    // 2026-11-23 요청 '청라아크원푸르지오4 구조를 참고해 고급지게, 하늘색 위주로' — 공식 홈페이지형 일반 스크롤 화면
+    // (components/sections/SignatureLuxeOfficial, page.jsx의 sig.luxe 분기). 이 값이 있으면 아래 header/hero/summary 등
+    // 기존 signature 필드는 화면에 쓰이지 않고 vipForm.privacyText·footer.companyLines/disclaimers/agencySlogan만 쓰임(되돌릴 땐 luxe만 지우면 됨).
+    luxe: {
+      logo: {
+        light: { src: '/apt/deokeun-dmc-eileens-garden-3/logo-white.png', alt: '덕은 DMC 에일린의 뜰 한강', width: 808, height: 266 },
+        dark: { src: '/apt/deokeun-dmc-eileens-garden-3/logo-dark.png', alt: '덕은 DMC 에일린의 뜰 한강', width: 808, height: 266 },
+      },
+      nav: [
+        { id: 'overview', label: '사업개요' },
+        { id: 'location', label: '입지환경' },
+        { id: 'lifestyle', label: '분양혜택' },
+        { id: 'premium', label: '프리미엄' },
+        { id: 'complex', label: '단지안내' },
+        { id: 'unit', label: '세대안내' },
+        { id: 'community', label: '커뮤니티' },
+        { id: 'contact', label: '방문예약' },
+      ],
+      popup: {
+        delayMs: 1200,
+        formAfterClose: true,
+        image: {
+          src: '/apt/deokeun-dmc-eileens-garden-3/popup.webp',
+          alt: '지금 바로 입주하는 한강 뷰 오피스텔 — 전망도 가치도 눈부신 마지막 한강 프리미엄, 덕은 DMC 에일린의 뜰 한강. 건설사 보유 로열층 한정 특별 분양: 즉시 입주(준공 완료), 실물 세대 확인, 청약통장 無(만 19세 이상), 본사 직접 계약(아이에스동서). 6·7BL 오피스텔 총 168실',
+          width: 900,
+          height: 1272,
+        },
+      },
+      // 카탈로그 메인 카피
+      hero: {
+        bg: { src: '/apt/deokeun-dmc-eileens-garden-3/hero.webp', alt: '덕은 DMC 에일린의 뜰 한강 한강변 야경 투시도' },
+        bgMobile: { src: '/apt/deokeun-dmc-eileens-garden-3/hero-m.webp', alt: '덕은 DMC 에일린의 뜰 한강 한강변 석양 투시도' },
+        eyebrow: 'THE LAST HANGANG PREMIUM',
+        titleLight: '전망도 가치도 눈부신',
+        titleStrong: '마지막 한강 프리미엄',
+        name: '덕은 DMC 에일린의 뜰 한강',
+        badge: '건설사 보유 로열층 한정 특별 분양',
+        ringText: "EILEEN'S GARDEN · HANGANG · VISIT · ",
+        circleInfo: ['준공 완료', '즉시 입주'],
+      },
+      // A4 전단 메인 카피
+      concept: {
+        image: { src: '/apt/deokeun-dmc-eileens-garden-3/logo-dark.png', alt: "덕은 DMC 에일린의 뜰 한강 EILEEN'S GARDEN", width: 808, height: 266 },
+        title: '에일린의 뜰 한강이 드리는 가치',
+        acronym: [['T', 'HE LAST'], ['H', 'ANGANG'], ['P', 'REMIUM']],
+        desc: '누군가는 한강을 바라보고,\n누군가는 한강을 소유합니다.\n거실 창 가득, 매일 만나는 한강 파노라마',
+      },
+      // 상담북 사업개요 + 카탈로그 단지 정보
+      overview: {
+        bg: { src: '/apt/deokeun-dmc-eileens-garden-3/overview-photo.webp' },
+        small: '가양대교 북단 한강변,\n준공을 마치고 기다리는',
+        lead: '지금 바로 입주하는 한강 뷰 오피스텔',
+        word: 'HANGANG',
+        catch: '서울과 한강 사이,\n매일 한강을 소유하는 자리',
+        stats: [
+          { label: '공급규모', value: '168', unit: '실' },
+          { label: '전용면적', value: '84', unit: '㎡' },
+          { label: '평면타입', value: '6', unit: '타입' },
+          { label: '건축규모', pre: '최고', value: '25', unit: '층' },
+        ],
+        specs: [
+          { label: '단지명', value: '덕은 DMC 에일린의 뜰 한강' },
+          { label: '사업명', value: '고양 덕은지구 업무시설 6,7BL 복합시설' },
+          { label: '대지위치', value: '경기도 고양시 덕양구 덕은동\n(고양덕은 도시개발사업지구 업무6,7BL)' },
+          { label: '건축규모', value: '지하 4층 ~ 지상 25층' },
+          { label: '공급규모', value: '오피스텔 2개 동 총 168실\n(301동 96실 · 302동 72실)' },
+          { label: '전용면적', value: '84㎡ 6타입 (84A·84B·84C·84D·84A-1·84B-1)' },
+          { label: '주차대수', value: '215대' },
+          { label: '시행·시공', value: '아이에스동서㈜ (본사 직접 계약)' },
+        ],
+        notice: '※ 상기 사업개요의 수치는 소비자의 이해를 돕기 위한 것으로 인·허가 및 현장 사정에 따라 변경될 수 있으니 계약 전 반드시 확인하시기 바랍니다.',
+      },
+      // A4 전단 위치도 + 카탈로그 교통·프리미엄 문구
+      location: {
+        band: { src: '/apt/deokeun-dmc-eileens-garden-3/premium-split.webp' },
+        bandTop: 'SEOUL · HANGANG · DMC',
+        bandWord: 'RIVERSIDE',
+        eyebrow: 'HANGANG LOCATION',
+        title: '상암 DMC와 맞닿은\n서울 생활권 한강변',
+        desc: '가양대교 북단 한강변, 상암 DMC와 맞닿은\n덕은지구에서 누리는 서울 생활권',
+        points: [
+          { num: '01', category: '교통', title: '서울 업무지구로 출근하는 거리', desc: '차로 상암 5분 · 마곡 10분 · 여의도 15분, 강변북로·자유로 5분. 대장홍대선 덕은역 2031년 개통 예정' },
+          { num: '02', category: '생활', title: '주소는 경기도, 지역번호 02', desc: '서울 광역중심 상암·수색과 맞닿은 사실상 서울 생활권' },
+          { num: '03', category: '자연', title: '한강공원과 월드컵공원을 곁에', desc: '난지한강공원 약 77만㎡, 월드컵공원 약 350만㎡. 리버파크 브릿지로 한강공원까지 도보로' },
+          { num: '04', category: '교육', title: '아이 손잡고 걷는 등굣길', desc: '덕은노을유치원 · 덕은한강초 · 덕은한강중, 유치원부터 중학교까지 동네 안에서' },
+        ],
+        map: {
+          src: '/apt/deokeun-dmc-eileens-garden-3/location-map.webp',
+          alt: '덕은 DMC 에일린의 뜰 한강 위치도 — 대장홍대선 덕은역(2031년 개통예정), 디지털미디어시티역, 가양역, 덕은한강육교 버스정류장, 난지한강공원, 월드컵공원. 자가 이용시 상암 5분, 마곡 10분, 여의도 15분',
+          width: 1600,
+          height: 980,
+        },
+        note: '※ 지역도는 소비자의 이해를 돕기 위한 것으로 실제와 차이가 있으며, 개발 및 교통계획은 관계기관 사정에 따라 변경·취소될 수 있습니다. 학교 배정은 해당 교육청의 결정사항입니다.',
+      },
+      // 카탈로그 06쪽 분양 혜택
+      lifestyle: {
+        bg: { src: '/apt/deokeun-dmc-eileens-garden-3/intro-1.webp' },
+        kicker: '건설사 보유 로열층 한정 특별 분양',
+        title: '기다림 없이,\n오늘 보고 바로 삽니다',
+        visual: { src: '/apt/deokeun-dmc-eileens-garden-3/intro-3.webp', alt: '덕은 DMC 에일린의 뜰 한강 주간 투시도', width: 900, height: 560 },
+        eyebrow: 'SPECIAL OFFER',
+        items: [
+          { num: '01', tag: 'MOVE-IN', title: '즉시 입주', desc: '준공 완료 단지, 원하는 날 바로 입주' },
+          { num: '02', tag: 'REAL VIEW', title: '실물 세대 관람', desc: '한강 조망·마감 확인 후 마음에 드는 호실 지정' },
+          { num: '03', tag: 'NO SUBSCRIPTION', title: '청약 조건 無', desc: '만 19세 이상 누구나, 청약통장·거주지 무관' },
+          { num: '04', tag: 'DIRECT CONTRACT', title: '본사 직접 계약', desc: '아이에스동서㈜ 직영, 위탁수수료 제로' },
+        ],
+        note: '사전 호실 지정금 입금 순으로 마감됩니다. 실물 호실을 직접 보고 계약하시도록 관람 예약을 권해 드려요.',
+      },
+      // 카탈로그 'PREMIUM 7 살수록 더 빛나는 일곱 가지 가치'를 6장으로
+      premium: {
+        headBg: { src: '/apt/deokeun-dmc-eileens-garden-3/premium-06.webp' },
+        headTitle: "EILEEN'S GARDEN\nPREMIUM",
+        headSub: '살수록 더 빛나는 여섯 가지 가치',
+        introTitle: '한강을 품은 일상,\n그 이상의 프리미엄',
+        introLines: ['6가지 84타입, 직접 보시고 마음에 드는 한강뷰를 고르세요.'],
+        cards: [
+          { num: '01', image: '/apt/deokeun-dmc-eileens-garden-3/premium-01.webp', alt: '덕은 DMC 에일린의 뜰 한강 앞 한강 전경', en: 'HANGANG VIEW', title: '한강 프리미엄', desc: '가양대교 북단 한강변, 타입별 한강 조망. 경기 한강벨트로 함께 꼽히는 덕은' },
+          { num: '02', image: '/apt/deokeun-dmc-eileens-garden-3/premium-02.webp', alt: '덕은지구 및 상암·여의도 방면 조감도', en: 'BUSINESS ACCESS', title: '서울 업무지구로 출근하는 거리', desc: '차로 상암 5분 · 마곡 10분 · 여의도 15분, 가양대교 · 강변북로로 바로 연결' },
+          { num: '03', image: '/apt/deokeun-dmc-eileens-garden-3/premium-03.webp', alt: '덕은DMC·상암DMC 개발 지도', en: 'FUTURE VALUE', title: '서울 광역중심 상암·수색 옆', desc: '2040 서울도시기본계획 7광역중심 중 상암·수색과 맞닿은 자리, 대장홍대선 덕은역(2031 개통 예정)' },
+          { num: '04', image: '/apt/deokeun-dmc-eileens-garden-3/premium-04.webp', alt: '난지한강공원 및 한강 다목적운동장 전경', en: 'GREEN LIFE', title: '한강공원과 월드컵공원을 곁에', desc: '난지한강공원 약 77만㎡, 월드컵공원 약 350만㎡' },
+          { num: '05', image: '/apt/deokeun-dmc-eileens-garden-3/premium-05.webp', alt: '덕은 DMC 에일린의 뜰 한강 야간 투시도', en: 'SEOUL LIFE', title: '경기도 주소, 지역번호 02', desc: '주소는 고양시, 전화는 서울 번호. 덕은노을유치원·덕은한강초·덕은한강중 도보 등굣길' },
+          { num: '06', image: '/apt/deokeun-dmc-eileens-garden-3/premium-06.webp', alt: '덕은 DMC 에일린의 뜰 한강 야경 투시도', en: 'READY TO LIVE', title: '준공·입주 완료 & 본사 직계약', desc: '2025년 12월 입주 시작, 실물 확인 후 계약. 아이에스동서 본사 직접 계약' },
+        ],
+        note: '※ 상기 이미지는 소비자의 이해를 돕기 위한 것으로 실제와 차이가 있을 수 있습니다.',
+      },
+      complex: {
+        eyebrow: 'COMPLEX',
+        title: '단지안내',
+        desc: '6·7BL 오피스텔 301동 · 302동, 총 168실',
+        tabs: [
+          { label: '단지배치도', image: { src: '/apt/deokeun-dmc-eileens-garden-3/complex-siteplan.webp', width: 2000, height: 1414, alt: '덕은 DMC 에일린의 뜰 한강 단지배치도 — 6·7BL 오피스텔 301동·302동(총 168실), 지식산업센터 A·B동, 근린생활시설, 옥상정원·티하우스·바닥분수·잔디마당' } },
+          {
+            label: '동별 평면도',
+            images: [
+              { label: '301동', src: '/apt/deokeun-dmc-eileens-garden-3/complex-dong-301.webp', width: 1600, height: 835, alt: '301동 기준층 평면도 — 1호 84D, 2호 84B-1, 3호 84A-1, 4호 84B-1, 총 96실' },
+              { label: '302동', src: '/apt/deokeun-dmc-eileens-garden-3/complex-dong-302.webp', width: 1600, height: 835, alt: '302동 기준층 평면도 — 1호 84B, 2호 84A, 3호 84C, 총 72실' },
+            ],
+          },
+          { label: '조감도', image: { src: '/apt/deokeun-dmc-eileens-garden-3/complex-bird.webp', width: 1800, height: 797, alt: '덕은지구 조감도 — 덕은 DMC 에일린의 뜰 한강, 덕은역(예정), 가양대교, 월드컵경기장, 하늘공원, 노을공원, 난지한강공원, 여의도 업무지구' } },
+          { label: '개발 지도', image: { src: '/apt/deokeun-dmc-eileens-garden-3/complex-dmcmap.webp', width: 2000, height: 1369, alt: '서울 도심이 더 가까운 덕은DMC — 덕은역(대장홍대선 2031년 하반기 개통 예정), 상암DMC, 국방대 이전부지, 리버파크브릿지, 주변 단지 및 신규 개발(상암 DMC 롯데몰, 수색비행장 비행안전구역 해제, 서울링)' } },
+        ],
+        note: '※ 상기 이미지는 소비자의 이해를 돕기 위한 것으로 실제와 차이가 있을 수 있으며, 동·호 배치는 입주자모집공고(2024950033) 기준입니다.',
+      },
+      unit: {
+        eyebrow: 'UNIT PLAN',
+        title: '세대안내',
+        desc: '같은 84㎡, 여섯 가지 구성\n301동 96실 · 302동 72실, 총 168실',
+        tabs: [
+          luxeUnit('84A', '84a', 906, '302동 24실 · 한강 조망', '전용 84.9426㎡ · 공급 113.5462㎡ · 계약 185.5073㎡'),
+          luxeUnit('84B', '84b', 906, '302동 24실 · 한강 조망', '전용 84.9332㎡ · 공급 112.7427㎡ · 계약 184.6958㎡'),
+          luxeUnit('84C', '84c', 908, '302동 24실 · 한강 조망', '전용 84.9322㎡ · 공급 112.9684㎡ · 계약 184.9206㎡'),
+          luxeUnit('84D', '84d', 908, '301동 24실 · 한강 조망', '전용 84.9880㎡ · 공급 113.0514㎡ · 계약 185.0510㎡'),
+          luxeUnit('84A-1', '84a-1', 910, '301동 24실 · 한강 조망', '전용 84.9426㎡ · 공급 113.5462㎡ · 계약 185.5073㎡'),
+          luxeUnit('84B-1', '84b-1', 912, '301동 48실 · 일부 세대 한강 조망', '전용 84.9332㎡ · 공급 112.7427㎡ · 계약 184.6958㎡'),
+        ],
+        note: '※ 평면 이미지는 소비자의 이해를 돕기 위한 것으로 실제와 차이가 있을 수 있으니 실물 세대에서 확인하시기 바랍니다.',
+      },
+      // 지도전단 '일상을 채우는 6가지 커뮤니티' — 배치도는 같은 전단에서 평면만 크롭
+      community: {
+        eyebrow: 'COMMUNITY',
+        title: '일상을 채우는\n6가지 커뮤니티',
+        desc: '피트니스부터 회의실까지,\n단지 안에서 누리는 입주민 전용 라이프 공간',
+        items: [
+          { name: '피트니스', desc: '다양한 운동기구를 갖추어 누구나 체력을 키울 수 있는 공간' },
+          { name: 'G.X룸', desc: '요가, 필라테스 등 그룹 운동으로 건강을 즐기는 힐링 공간' },
+          { name: '휴게실', desc: '가벼운 담소와 여유로운 휴식이 함께하는 공간' },
+          { name: '취미실', desc: '바쁜 일상에서 잠시 벗어나 활력을 더해주는 공간' },
+          { name: '회의실', desc: '입주민회의, 소모임 등 함께 모여 소통하는 공간' },
+          { name: '코인세탁실', desc: '이불, 겨울옷, 운동화 등 특별한 세탁이 가능한 런드리 공간' },
+        ],
+        plan: {
+          src: '/apt/deokeun-dmc-eileens-garden-3/community-plan.webp',
+          alt: '에일린의 뜰 한강 커뮤니티 배치도 — 피트니스, G.X룸, 휴게실, 취미실, 회의실, 코인세탁실, 탈의실',
+          width: 820,
+          height: 935,
+        },
+        note: '※ 본 CG는 소비자의 이해를 돕기 위해 제작된 것으로 실제와 다르며, 인허가 과정 시 변경될 수 있습니다. 커뮤니티 시설은 입주자 대표회의 구성 후 입주민이 자체적으로 유지관리 및 운영합니다.',
+      },
+      contact: {
+        bg: { src: '/apt/deokeun-dmc-eileens-garden-3/premium-05.webp' },
+        sub: '모델하우스 관람은 방문예약제로 운영됩니다.\n간단한 정보를 남겨주시면 가장 빠르게 안내해 드립니다.',
+        places: [
+          { label: '현장', addr: '경기도 고양시 덕양구 으뜸로 50' },
+          { label: '견본주택', addr: '경기도 고양시 덕양구 덕은동 700' },
+        ],
+        hours: '10:00 ~ 18:00 (주말 동일)',
+        form: {
+          title: '방문예약상담',
+          desc: '방문 희망일과 시간을 남겨주시면 확인 후 연락드립니다.',
+          serviceOptions: ['모델하우스 방문예약', '원하는시간 전화예약'],
+          ageOptions: ['20대 이하', '30대', '40대', '50대', '60대 이상'],
+          submitLabel: '방문예약상담 신청',
+        },
+      },
+    },
+
     header: {
       logo: {
         src: '/apt/deokeun-dmc-eileens-garden-3/logo-white.png',
@@ -65,7 +262,7 @@ const config = {
         height: 266,
       },
       logoSize: { base: 104, lg: 124, xl: 132 },
-      gnb: ['사업안내', '위치안내', '프리미엄', '단지안내', '세대안내', '방문예약상담'],
+      gnb: ['사업안내', '위치안내', '프리미엄', '단지안내', '세대안내', '커뮤니티', '방문예약상담'],
       quickCtaLabel: '방문예약상담',
       phone: '1551-4727',
       mobileQuick: { phoneDisplay: '1551.4727' },
@@ -95,10 +292,10 @@ const config = {
       ],
       visitForm: {
         enabled: true,
-        accentColor: '#1d5a44',
+        accentColor: '#2b6d9e',
         title: '방문예약상담',
-        desc: '실물 세대 관람은 예약제로 운영됩니다 (상담 10:00~18:00, 주말 동일)',
-        checks: ['실물세대 방문예약', '원하는시간 전화예약'],
+        desc: '모델하우스 관람은 예약제로 운영됩니다 (상담 10:00~18:00, 주말 동일)',
+        checks: ['모델하우스 방문예약', '원하는시간 전화예약'],
         submitLabel: '방문예약상담 신청',
       },
     },
@@ -110,7 +307,7 @@ const config = {
       phone: '1551-4727',
       favoriteLabel: '방문예약',
       menuLabel: 'MENU',
-      menuBg: '#13233a',
+      menuBg: '#0e2a47',
       ctaTargetId: 'vip-reservation',
       deskText: '덕은 DMC 에일린의 뜰 한강\n상담을 도와드립니다.',
       address: '경기도 고양시 덕양구 으뜸로 50',
@@ -122,7 +319,8 @@ const config = {
         { num: '04', label: 'PREMIUM', sub: '프리미엄', targetId: 'premium-value' },
         { num: '05', label: 'COMPLEX', sub: '단지안내', targetId: 'complex' },
         { num: '06', label: 'UNIT', sub: '세대안내', targetId: 'unit-plan' },
-        { num: '07', label: 'CONTACT', sub: '방문예약상담', targetId: 'vip-reservation' },
+        { num: '07', label: 'COMMUNITY', sub: '커뮤니티', targetId: 'community' },
+        { num: '08', label: 'CONTACT', sub: '방문예약상담', targetId: 'vip-reservation' },
       ],
     },
 
@@ -141,12 +339,12 @@ const config = {
       brandName: '덕은 DMC 에일린의 뜰 한강',
       tagline: "EILEEN'S GARDEN · HANGANG",
       theme: {
-        base: '#13233a',
-        stageOne: 'radial-gradient(circle at 50% 35%, #22694f 0, #13233a 48%, #0b1626 100%)',
-        stageTwo: 'radial-gradient(circle at center, #1d5a44, #13233a 42%, #0b1626 100%)',
-        ring: 'rgba(54, 169, 75, 0.45)',
-        accent: '#8fdcae',
-        sub: '#d8e6dd',
+        base: '#0e2a47',
+        stageOne: 'radial-gradient(circle at 50% 35%, #357fb3 0, #0e2a47 48%, #081d33 100%)',
+        stageTwo: 'radial-gradient(circle at center, #2b6d9e, #0e2a47 42%, #081d33 100%)',
+        ring: 'rgba(90, 169, 220, 0.45)',
+        accent: '#a9d8f5',
+        sub: '#dbe9f4',
       },
     },
 
@@ -156,8 +354,8 @@ const config = {
       mobileScrollMouse: true,
       mobileBgBottomInset: 36,
       overlayGradient: {
-        mobile: 'linear-gradient(180deg, rgba(19, 35, 58, 0.62) 0%, rgba(19, 35, 58, 0.24) 36%, rgba(19, 35, 58, 0) 54%)',
-        desktop: 'linear-gradient(180deg, rgba(19, 35, 58, 0.62) 0%, rgba(19, 35, 58, 0.26) 32%, rgba(19, 35, 58, 0) 55%)',
+        mobile: 'linear-gradient(180deg, rgba(14, 42, 71, 0.62) 0%, rgba(14, 42, 71, 0.24) 36%, rgba(14, 42, 71, 0) 54%)',
+        desktop: 'linear-gradient(180deg, rgba(14, 42, 71, 0.62) 0%, rgba(14, 42, 71, 0.26) 32%, rgba(14, 42, 71, 0) 55%)',
       },
       bgImage: {
         src: '/apt/deokeun-dmc-eileens-garden-3/hero.webp',
@@ -187,9 +385,9 @@ const config = {
           { badge: '혜택', textStrong: '청약통장 無 · 만 19세 이상', textLight: ' 누구나 계약 가능' },
           { badge: '특장점', textStrong: '실물 세대 확인 후', textLight: ' · 아이에스동서 본사 직접 계약' },
         ],
-        announceBg: '#13233a',
+        announceBg: '#0e2a47',
         bubbleText: '방문예약상담',
-        dotColor: '#36a94b',
+        dotColor: '#5aa9dc',
         callLabel: '전화상담',
         visitLabel: '방문예약상담',
       },
@@ -289,10 +487,10 @@ const config = {
       titleAccent: 'PREMIUM',
       titleNumber: '6',
       colors: {
-        bg: 'linear-gradient(135deg, #22694f 0%, #1d5a44 55%, #174a38 100%)',
-        head: '#c8eed6',
-        accentOdd: '#c8eed6',
-        accentEven: '#8fdcae',
+        bg: 'linear-gradient(135deg, #357fb3 0%, #2b6d9e 55%, #1f5682 100%)',
+        head: '#d6edfb',
+        accentOdd: '#d6edfb',
+        accentEven: '#a9d8f5',
         line: 'rgba(255, 255, 255, 0.2)',
       },
       cards: [
@@ -321,9 +519,6 @@ const config = {
         complexTab('동별 평면도', 'dong', [
           ['complex-dong-301', 1600, 835, '301동 기준층 평면도 — 1호 84D, 2호 84B-1, 3호 84A-1, 4호 84B-1, 총 96실', '301동'],
           ['complex-dong-302', 1600, 835, '302동 기준층 평면도 — 1호 84B, 2호 84A, 3호 84C, 총 72실', '302동'],
-        ]),
-        complexTab('커뮤니티', 'community', [
-          ['complex-community', 1600, 1102, '일상을 채우는 6가지 커뮤니티 — 휴게실, 취미실, 회의실, 피트니스, G.X룸, 코인세탁실', '커뮤니티'],
         ]),
         complexTab('조감도', 'bird', [
           ['complex-bird', 1800, 797, '덕은지구 조감도 — 덕은 DMC 에일린의 뜰 한강, 덕은역(예정), 가양대교, 월드컵경기장, 하늘공원, 노을공원, 난지한강공원, 여의도 업무지구', '조감도'],
@@ -362,8 +557,8 @@ const config = {
       eyebrow: 'VISIT RESERVATION',
       titleLine1: '덕은 DMC 에일린의 뜰 한강',
       titleLine2: '방문예약상담',
-      desc: '실물 세대 관람은 방문예약제로 운영됩니다.\n간단한 정보를 남겨주시면 방문 예약과 상담 일정을 가장 빠르게 안내해 드립니다.',
-      serviceOptions: ['실물세대 방문예약', '원하는시간 전화예약'],
+      desc: '모델하우스 관람은 방문예약제로 운영됩니다.\n간단한 정보를 남겨주시면 방문 예약과 상담 일정을 가장 빠르게 안내해 드립니다.',
+      serviceOptions: ['모델하우스 방문예약', '원하는시간 전화예약'],
       ageOptions: ['20대 이하', '30대', '40대', '50대', '60대 이상'],
       privacyText: `[개인정보 수집 및 이용에 관한 안내] 주식회사 더블루파트너스는 귀하의 개인정보를 소중하게 생각하며, 『개인정보보호법』 등 관련 법규를 철저히 준수하고 있습니다. 당사는 분양 정보 제공 및 방문 예약 서비스의 원활한 이행을 위하여 아래와 같이 개인정보를 수집 및 이용합니다.
 
@@ -403,6 +598,15 @@ const config = {
       csHours: 'AM 10:00 ~ PM 18:00',
     },
   },
+}
+
+// luxe 세대안내 탭 한 칸 — 카탈로그 타입 안내 아이소메트릭 평면(1000폭)
+function luxeUnit(label, file, height, where, area) {
+  return {
+    label,
+    info: `${where}\n${area}`,
+    image: { src: `/apt/deokeun-dmc-eileens-garden-3/unit-${file}.webp`, alt: `${label} 타입(${where}) — ${area}`, width: 1000, height },
+  }
 }
 
 // 프리미엄 카드 한 장 — PC 1280×720 / 모바일 860×600(자료 CG·사진 크롭)

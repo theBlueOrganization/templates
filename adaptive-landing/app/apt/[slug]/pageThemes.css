@@ -3349,19 +3349,19 @@
   display: none;
 }
 
-/* 'eileen' — 덕은 DMC 에일린의 뜰 3차(2026-11-22): 'arbiche' 프리셋 구성을 그대로 복제하고 색만 카탈로그 톤으로
-   네이비 #13233a(푸터·위치안내·평면 스테이지) · 딥그린 #1d5a44(헤더·프리미엄·상담폼·전화버튼) · 로고 그린 #36a94b(방문예약 CTA·포인트) */
+/* 'eileen' — 덕은 DMC 에일린의 뜰 3차(2026-11-22): 'arbiche' 프리셋 구성을 그대로 복제하고 색은 2026-11-23 요청으로 하늘색 톤
+   네이비 #0e2a47(푸터·위치안내·평면 스테이지) · 스틸 스카이블루 #2b6d9e(헤더·프리미엄·상담폼·전화버튼) · 스카이블루 #5aa9dc(방문예약 CTA·포인트) */
 [data-page-theme='eileen'] {
-  --cv-charcoal: #13233a;
-  --cv-green: #1d5a44;
-  --cv-gray: #36a94b;
-  --cv-grad-charcoal: linear-gradient(160deg, #1a2f4c 0%, #142640 55%, #0f1d33 100%);
-  --cv-grad-green: linear-gradient(135deg, #22694f 0%, #1d5a44 55%, #174a38 100%);
+  --cv-charcoal: #0e2a47;
+  --cv-green: #2b6d9e;
+  --cv-gray: #5aa9dc;
+  --cv-grad-charcoal: linear-gradient(160deg, #183a5e 0%, #12304f 55%, #0c2340 100%);
+  --cv-grad-green: linear-gradient(135deg, #357fb3 0%, #2b6d9e 55%, #1f5682 100%);
   /* 리플렛 모서리의 연회색 삼각형 선 패턴(2026-11-17 사용자 요청) */
   --arb-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='300' viewBox='0 0 360 300'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='1.2'%3E%3Cpath d='M0 40 L110 0 L95 120 Z M110 0 L240 60 L95 120 M240 60 L360 20 M240 60 L300 170 L360 20 M95 120 L180 210 L300 170 M95 120 L0 190 L180 210 M0 190 L60 300 L180 210 L230 300 M300 170 L360 260 L230 300 M300 170 L230 300'/%3E%3C/g%3E%3C/svg%3E");
-  --arb-light: #eef2ee;
-  --cv-grad-gray: linear-gradient(135deg, #4cc25e 0%, #36a94b 55%, #2a8c3c 100%);
-  --cv-ivory: #f4f6f3;
+  --arb-light: #eaf4fb;
+  --cv-grad-gray: linear-gradient(135deg, #7cc0ea 0%, #5aa9dc 55%, #3f8fc4 100%);
+  --cv-ivory: #f4f9fd;
   --vipform-bg: var(--cv-grad-green);
   background: var(--cv-ivory);
 }
@@ -3393,8 +3393,8 @@
   width: 100vw;
   transform: translateX(-50%);
   background:
-    radial-gradient(ellipse 60% 45% at 92% 6%, rgba(29, 90, 68, 0.13), rgba(29, 90, 68, 0) 70%),
-    radial-gradient(ellipse 55% 40% at 4% 96%, rgba(54, 169, 75, 0.18), rgba(54, 169, 75, 0) 70%),
+    radial-gradient(ellipse 60% 45% at 92% 6%, rgba(43, 109, 158, 0.13), rgba(43, 109, 158, 0) 70%),
+    radial-gradient(ellipse 55% 40% at 4% 96%, rgba(90, 169, 220, 0.18), rgba(90, 169, 220, 0) 70%),
     var(--arb-pattern) 0 0 / 360px 300px,
     var(--arb-light);
 }
@@ -3423,7 +3423,7 @@
 /* 프리미엄 인트로(사진+카피) — 아이보리에 초록 빛 번짐 */
 [data-page-theme='eileen'] section[class*='SignaturePremiumIntro_sectionSplit'] {
   background:
-    radial-gradient(ellipse 50% 60% at 100% 50%, rgba(29, 90, 68, 0.1), rgba(29, 90, 68, 0) 70%),
+    radial-gradient(ellipse 50% 60% at 100% 50%, rgba(43, 109, 158, 0.1), rgba(43, 109, 158, 0) 70%),
     var(--arb-pattern) 0 0 / 360px 300px,
     var(--arb-light);
 }
@@ -3436,7 +3436,7 @@
 /* 세대안내 — 아이보리 + 평면 스테이지 뒤 큰 원형 빛 번짐과 가는 원형 라인 */
 [data-page-theme='eileen'] #unit-plan {
   background:
-    radial-gradient(circle at 72% 55%, rgba(29, 90, 68, 0.12) 0, rgba(29, 90, 68, 0) 38%),
+    radial-gradient(circle at 72% 55%, rgba(43, 109, 158, 0.12) 0, rgba(43, 109, 158, 0) 38%),
     var(--arb-pattern) 0 0 / 360px 300px,
     var(--arb-light);
 }
@@ -3451,8 +3451,8 @@
   top: 50%;
   transform: translateY(-50%);
   border-radius: 50%;
-  border: 1px solid rgba(29, 90, 68, 0.14);
-  box-shadow: 0 0 0 70px rgba(255, 255, 255, 0.18), 0 0 0 71px rgba(54, 169, 75, 0.16);
+  border: 1px solid rgba(43, 109, 158, 0.14);
+  box-shadow: 0 0 0 70px rgba(255, 255, 255, 0.18), 0 0 0 71px rgba(90, 169, 220, 0.16);
 }
 
 /* 사은품 이미지 — 차콜 패널 위에 초록 이미지가 돋보이게 */
@@ -3474,21 +3474,21 @@
 }
 
 [data-page-theme='eileen'] #location [class*='SignatureSellingStory_eyebrow__'] {
-  color: #7fd3a0;
+  color: #9dd0f0;
 }
 
 [data-page-theme='eileen'] #location h2 em,
 [data-page-theme='eileen'] #location [class*='SignatureSellingStory_numberItem__'] strong {
-  color: #8fdcae;
+  color: #a9d8f5;
 }
 
 [data-page-theme='eileen'] #location [class*='SignatureSellingStory_sceneCopy__'] span {
-  color: #c8eed6;
+  color: #d6edfb;
 }
 
 [data-page-theme='eileen'] #location [class*='SignatureSellingStory_scene__']::after,
 [data-page-theme='eileen'] #location [class*='SignatureSellingStory_sceneWide__']::after {
-  background: linear-gradient(transparent 38%, rgba(15, 29, 51, 0.92));
+  background: linear-gradient(transparent 38%, rgba(12, 35, 64, 0.92));
 }
 
 /* 프리미엄6 — 딥그린 그라데이션(카드 이미지는 투명 모서리 알약형이라 그라데이션 위에서도 자연스러움) */
@@ -3584,7 +3584,7 @@
     position: absolute;
     z-index: 1;
     inset: 0;
-    background: linear-gradient(transparent 30%, rgba(15, 29, 51, 0.92));
+    background: linear-gradient(transparent 30%, rgba(12, 35, 64, 0.92));
   }
 
   [data-page-theme='eileen'] #premium-value [class*='SignaturePremiumZigzag_visual__'] {
@@ -3611,7 +3611,7 @@
     font-size: 10px;
     font-weight: 800;
     letter-spacing: 0.2em;
-    color: #c8eed6;
+    color: #d6edfb;
   }
 
   [data-page-theme='eileen'] #premium-value [class*='SignaturePremiumZigzag_itemTitle__'] {
@@ -3664,7 +3664,7 @@
 [data-page-theme='eileen'] #location [class*='SignatureInfrastructure_eyebrow__'],
 [data-page-theme='eileen'] #location h2 em,
 [data-page-theme='eileen'] #location [class*='SignatureInfrastructure_list__'] span {
-  color: #8fdcae;
+  color: #a9d8f5;
 }
 
 [data-page-theme='eileen'] #location [class*='SignatureInfrastructure_desc__'],
@@ -3705,7 +3705,7 @@
 
 /* 위치안내 사진 카드(listStyle 'photoCards', 2026-11-17 사용자 요청 — 리플렛 '더 ~한 ~의 중심' 4칸) — 골드 제목 · 흰 설명 · 흰 점선 */
 [data-page-theme='eileen'] #location [class*='SignatureInfrastructure_photoCardText__'] h3 {
-  color: #8fdcae;
+  color: #a9d8f5;
 }
 
 [data-page-theme='eileen'] #location [class*='SignatureInfrastructure_photoCardText__'] p {
@@ -3756,4 +3756,84 @@
 [data-page-theme='eileen'] #benefits h2,
 [data-page-theme='eileen'] section[class*='SignaturePremiumIntro_sectionSplit'] h2 {
   word-break: keep-all;
+}
+
+/* 'eileen' 커뮤니티(#community, SignatureCommunityGeomdan) — 2026-11-23 '커뮤니티 부분 다시':
+   딥네이비 바탕에 하늘색 빛 번짐, 흰 카드(시설 6가지 목록 + 배치도). 블록이 1개라 1280px 이상에서도 한 줄 전체 폭 */
+[data-page-theme='eileen'] #community {
+  background:
+    radial-gradient(ellipse 55% 45% at 88% 8%, rgba(90, 169, 220, 0.28), rgba(90, 169, 220, 0) 70%),
+    radial-gradient(ellipse 50% 40% at 6% 96%, rgba(169, 216, 245, 0.14), rgba(169, 216, 245, 0) 70%),
+    var(--cv-grad-charcoal);
+}
+
+[data-page-theme='eileen'] #community [class*='SignatureCommunityGeomdan_eyebrow__'] {
+  color: #9dd0f0;
+}
+
+[data-page-theme='eileen'] #community h2 {
+  font-family: var(--font-sans, inherit);
+  font-weight: 300;
+}
+
+[data-page-theme='eileen'] #community h2 em {
+  font-weight: 700;
+  color: #a9d8f5;
+}
+
+[data-page-theme='eileen'] #community [class*='SignatureCommunityGeomdan_list__'] {
+  grid-template-columns: 1fr;
+}
+
+[data-page-theme='eileen'] #community [class*='SignatureCommunityGeomdan_card__'] {
+  border-radius: 6px;
+  box-shadow: 0 30px 60px rgba(4, 16, 32, 0.35);
+}
+
+[data-page-theme='eileen'] #community [class*='SignatureCommunityGeomdan_copy__'] > span {
+  color: #3f8fc4;
+}
+
+[data-page-theme='eileen'] #community [class*='SignatureCommunityGeomdan_copy__'] h3 {
+  font-family: inherit;
+  font-weight: 700;
+  color: #0e2a47;
+}
+
+[data-page-theme='eileen'] #community [class*='SignatureCommunityGeomdan_group__'] {
+  border-top-color: rgba(43, 109, 158, 0.16);
+}
+
+[data-page-theme='eileen'] #community [class*='SignatureCommunityGeomdan_group__'] strong {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #2b6d9e;
+}
+
+[data-page-theme='eileen'] #community [class*='SignatureCommunityGeomdan_group__'] p {
+  margin-top: 4px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #4d5d6c;
+  word-break: keep-all;
+}
+
+[data-page-theme='eileen'] #community [class*='SignatureCommunityGeomdan_plan__'] {
+  background: linear-gradient(180deg, #f4f9fd 0%, #e3f0fa 100%);
+}
+
+[data-page-theme='eileen'] #community [class*='SignatureCommunityGeomdan_note__'] {
+  color: rgba(219, 233, 244, 0.6);
+}
+
+@media (min-width: 1024px) {
+  [data-page-theme='eileen'] #community [class*='SignatureCommunityGeomdan_card__'] {
+    grid-template-columns: minmax(340px, 0.85fr) minmax(0, 1.15fr);
+  }
+
+  [data-page-theme='eileen'] #community [class*='SignatureCommunityGeomdan_plan__'] {
+    padding: 28px;
+  }
 }

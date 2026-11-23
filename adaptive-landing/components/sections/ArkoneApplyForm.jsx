@@ -17,7 +17,8 @@ const APPLICANTS = [
 
 // variant — 'section'(그림자 카드) | 'popup'(다이얼로그 안) | 'panel'(아크원 풀페이지 상담 패널 안:
 // PC에서는 한 화면에 들어오도록 2열로 배치)
-export default function ArkoneApplyForm({ config, idPrefix, variant = 'section', onSuccess }) {
+// compact — popup을 한 단계 더 촘촘하게(세로가 짧은 폰에서도 팝업 안 스크롤 없이). 예: cheongna-arkone-prugio-4
+export default function ArkoneApplyForm({ config, idPrefix, variant = 'section', compact = false, onSuccess }) {
   const { applyForm, slug, projectName, visitTimeOptions, adminPhones, adminPhonesByUtm, adminPhoneNames, smsMediaLabel, sheetId, sheetTab, showUtmInSms } = config
   const privacyText = config.signature.vipForm.privacyText
   const utmSource = useUtmSource() ?? '직접유입'
@@ -72,7 +73,7 @@ export default function ArkoneApplyForm({ config, idPrefix, variant = 'section',
   }
 
   return (
-    <div className={cn(styles.card, variant !== 'section' && styles.popup, variant === 'panel' && styles.panel)}>
+    <div className={cn(styles.card, variant !== 'section' && styles.popup, variant === 'panel' && styles.panel, compact && styles.compact)}>
       <h2 className={styles.title}>{applyForm.title}</h2>
       <i className={styles.bar} aria-hidden="true" />
       {applyForm.desc && <p className={styles.desc}>{applyForm.desc}</p>}

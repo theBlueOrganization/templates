@@ -42,11 +42,21 @@ const LIFESTYLE = [
   { title: '높은 희소가치와 합리적 분양가', desc: ['청라가 기다려온 신규공급', '2017년 이후 약 10년 만의 분양가 상한제 공급 아파트'], note: '※ 500세대 이상 대단지 기준' },
 ]
 
+// "더 가까워지는 서울!" 노선 — 예전엔 공식 사이트 노선 이미지(lifestyle-route-img-1~3.webp) 3장만 세로로
+// 놓여 있어 글자가 흐리고 허전했음 → 이미지 속 문구 그대로 HTML 카드로 재구성
 const ROUTES = [
-  { src: 'lifestyle-route-img-1.webp', alt: '청라국제도시역 — 공항철도·9호선 직결(계획) — 마곡나루역, 서울 최대 R&D 마곡업무지구를 한 번에' },
-  { src: 'lifestyle-route-img-2.webp', alt: '국제업무단지역 — 7호선 청라연장선(예정) — 강남구청역, 강남권역도 환승 없이 한 번에' },
-  { src: 'lifestyle-route-img-3.webp', alt: '남청라IC — 경인고속국도 지하화(예정) & 신월여의지하도로 — 여의도, 여의도를 더 빠르게' },
+  { catch: '서울 최대 R&D 마곡업무지구를 한 번에!', from: '청라국제\n도시역', to: '마곡\n나루역', icon: 'train', line: '공항철도·9호선 직결', status: '계획' },
+  { catch: '강남권역도 환승 없이 한 번에!', from: '국제업무\n단지역', to: '강남\n구청역', icon: 'train', line: '7호선 청라연장선', status: '예정' },
+  { catch: '여의도를 더 빠르게!', from: '남청라IC', to: '여의도', icon: 'car', line: '경인고속국도 지하화 & 신월여의지하도로', status: '예정' },
 ]
+
+function RouteIcon({ type }) {
+  return type === 'car' ? (
+    <svg viewBox="0 0 48 24" width="44" height="22" aria-hidden="true"><path fill="currentColor" d="M8 10.5 12.2 4.6A4 4 0 0 1 15.5 3h14.3a4 4 0 0 1 3.1 1.5l4.6 5.7 5.1 1.1A3 3 0 0 1 45 14.2V18a1 1 0 0 1-1 1h-3a4.5 4.5 0 0 0-9 0H17a4.5 4.5 0 0 0-9 0H5a2 2 0 0 1-2-2v-3.4a3 3 0 0 1 2.3-2.9Zm6.6-.5h8.4V5.5h-5.3a2 2 0 0 0-1.7.9Zm11.4 0h8.6l-2.6-3.6a2 2 0 0 0-1.6-.9H26ZM12.5 22a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm24 0a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg>
+  ) : (
+    <svg viewBox="0 0 48 24" width="44" height="22" aria-hidden="true"><path fill="currentColor" d="M6 4a3 3 0 0 1 3-3h24c6.6 0 12 5.4 12 12v4a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3Zm4 1v6h7V5Zm10 0v6h7V5Zm10 0v6h6.4A9 9 0 0 0 33 5ZM3 22.5h43v1.5H3Z" /></svg>
+  )
+}
 
 const PREMIUM = [
   { src: 'premium-visual-img-01.webp', title: '오션·시티뷰를 품은 거실', desc: '탁 트인 개방감 위로 펼쳐지는 청라의 풍경' },
@@ -58,6 +68,14 @@ const BRAND = [
   { src: 'brand-img-01.webp', title: '가장 나에 가까운 본연의 모습', desc: '지친 하루를 마치고 가장 나에게 가까운 본연의 모습으로 돌아와 누리는 세련된 편안함.' },
   { src: 'brand-img-02.webp', title: '가장 편안한 상태로 살아가길', desc: '공기, 소리, 빛, 삶의 모든 순간이 가장 자연스러운 상태로 머무는 곳.' },
   { src: 'brand-img-03.webp', title: '나를 닮은 우리 집', desc: '보이지 않는 곳 디테일까지 당신을 위해 설계된 공간, 그 이상의 감동.' },
+]
+
+// CENTRAL LOCATION 왼쪽 빈 공간을 채우는 입지 핵심 4가지 — 문구는 site config signature.location.features(공식 입지 페이지 원문)와 동일
+const LOCATION_POINTS = [
+  { tag: '교통', title: '서울-인천-경기를 잇는 쾌속교통망', desc: '7호선 국제업무단지역 초역세권(예정), GTX-D·E(계획), 청라하늘대교, 제2외곽순환도로' },
+  { tag: '개발', title: '완성되고 있는 핵심 개발비전', desc: "하나드림타운('26년 예정), 영상문화복합단지('31년 계획), 인천로봇랜드(예정)" },
+  { tag: '생활', title: '눈앞에 다가온 생활특권', desc: "스타필드 청라('28년 개장 예정), 서울아산청라병원('29년 예정), 코스트코 청라점" },
+  { tag: '교육', title: '단지 앞 안심 교육환경', desc: '도보 5분 초교 신설(예정), 중교 신설(계획), 경연초·중교, 청라달튼외국인학교' },
 ]
 
 const PLACES = [
@@ -89,6 +107,7 @@ export default function SignatureArkoneOfficial({ site }) {
 
   const rootRef = useRef(null)
   const dialogRef = useRef(null)
+  const eventRef = useRef(null)
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const heroBadge = content.heroBadge ?? '분양가 상한제 적용단지'
@@ -102,20 +121,26 @@ export default function SignatureArkoneOfficial({ site }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // 진입 팝업 — 인트로 없이 첫 화면이 뜬 뒤 방문예약 신청 폼(다른 아크원 현장과 같은 흐름)
+  // 진입 팝업 — 첫 화면이 뜬 뒤 "예약 방문 시 신세계상품권 증정" 이벤트 안내(요청 반영 2026-11-23).
+  // 하단 "방문예약" 버튼을 누르면 이벤트 팝업을 닫고 관심고객 등록(방문예약 신청) 폼 팝업으로 이동
   useEffect(() => {
     if (content.entryPopup === false) return
-    const t = setTimeout(() => openForm(), 900)
+    const t = setTimeout(() => {
+      const d = eventRef.current
+      if (d && !d.open && !dialogRef.current?.open) d.showModal()
+    }, 900)
     return () => clearTimeout(t)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const openForm = () => {
+    eventRef.current?.close()
     const d = dialogRef.current
     if (d && !d.open) d.showModal()
     setMenuOpen(false)
   }
   const closeForm = () => dialogRef.current?.close()
+  const closeEvent = () => eventRef.current?.close()
 
   const go = (id) => (e) => {
     e.preventDefault()
@@ -235,27 +260,55 @@ export default function SignatureArkoneOfficial({ site }) {
             <div className={styles.arkSplitGray} />
             <p className={styles.arkSplitWord} aria-hidden="true"><span className={styles.wordLight}>ARK</span><span className={styles.wordDash}>-</span><span className={styles.wordDark}>ONE</span></p>
             <p className={styles.absolute} aria-hidden="true">ABSOLUTE&nbsp;&nbsp;&nbsp;&nbsp;REMARKABLE</p>
+            {/* PC 오른쪽 회색 면이 비어 보여서 아크원의 뜻을 하단에 짧게 */}
+            <div className={styles.arkSplitCopy}>
+              <p className={styles.arkSplitEn}><b>A</b>BSOLUTE <b>R</b>EMAR<b>K</b>ABLE <b>ONE</b></p>
+              <p className={styles.arkSplitKr}>청라의 절대적 기준이 될<br />단 하나의 주거명작</p>
+            </div>
           </div>
           <div className={styles.central}>
             <div className={cn(styles.centralText, styles.reveal)}>
               <h2>CENTRAL LOCATION</h2>
               <p>청라가 기다려온 프리미엄의 완성,<br />그 모든 가치가 모이는 자리</p>
+              <ul className={styles.points}>
+                {LOCATION_POINTS.map((pt, i) => (
+                  <li key={pt.tag}>
+                    <span className={styles.pointNum}>{String(i + 1).padStart(2, '0')}<em>{pt.tag}</em></span>
+                    <strong>{pt.title}</strong>
+                    <small>{pt.desc}</small>
+                  </li>
+                ))}
+              </ul>
             </div>
             <div className={cn(styles.centralMap, styles.reveal)}>
-              <Image src={A('location-map.webp')} alt="청라국제도시 내 청라 아크원 푸르지오 위치" width={1920} height={1960} sizes="(max-width: 1023px) 100vw, 55vw" />
+              <Image src={A('location-map-crop.webp')} alt="청라국제도시 내 청라 아크원 푸르지오 위치" width={1220} height={1200} sizes="(max-width: 1023px) 100vw, 55vw" />
               <span className={styles.mapBubble}>청라 아크원 푸르지오</span>
             </div>
           </div>
           <div className={styles.routes}>
-            <div className={cn(styles.routesInner, styles.reveal)}>
-              <p className={styles.eyebrowEn}>CENTRAL LOCATION</p>
-              <h3>더 가까워지는 서울!</h3>
-              <ul>
+            <div className={styles.routesInner}>
+              <div className={cn(styles.routesHead, styles.reveal)}>
+                <p className={styles.eyebrowEn}>CENTRAL LOCATION</p>
+                <h3>더 가까워지는 서울!</h3>
+                <p className={styles.routesDesc}>마곡·강남·여의도,<br />서울 핵심 업무지구로 이어지는<br />철도·도로 교통망</p>
+                <p className={styles.smallNote}>※ 교통 계획은 관계기관 발표 자료 기준으로 향후 변경될 수 있습니다.</p>
+              </div>
+              <ul className={styles.routeList}>
                 {ROUTES.map((r) => (
-                  <li key={r.src}><Image src={A(r.src)} alt={r.alt} width={960} height={246} sizes="(max-width: 1023px) 92vw, 760px" /></li>
+                  <li key={r.catch} className={cn(styles.routeCard, styles.reveal)}>
+                    <p className={styles.routeCatch}>{r.catch}</p>
+                    <div className={styles.routeLine}>
+                      <span className={styles.routeStop}>{r.from}</span>
+                      <span className={styles.routeTrack}>
+                        <RouteIcon type={r.icon} />
+                        <i aria-hidden="true" />
+                        <em>{r.line}<small>({r.status})</small></em>
+                      </span>
+                      <span className={cn(styles.routeStop, styles.routeStopEnd)}>{r.to}</span>
+                    </div>
+                  </li>
                 ))}
               </ul>
-              <p className={styles.smallNote}>※ 교통 계획은 관계기관 발표 자료 기준으로 향후 변경될 수 있습니다.</p>
             </div>
           </div>
         </section>
@@ -342,15 +395,6 @@ export default function SignatureArkoneOfficial({ site }) {
               <p className={styles.brandKr}>본연이 지니는 고귀함</p>
               <p className={styles.brandSmall}>견고한 기본에 더해진 세련된 편안함, 내 삶의 본연을 집에서 찾다</p>
             </div>
-            <div className={styles.arc} aria-hidden="true">
-              <svg viewBox="0 0 1000 420" preserveAspectRatio="xMidYMax meet">
-                <defs><path id="arkArcPath" d="M 120 420 A 380 380 0 0 1 880 420" /></defs>
-                <path d="M 0 420 A 500 400 0 0 1 1000 420 Z" fill="#06525a" />
-                <text fill="#fff" fontSize="64" letterSpacing="10" fontFamily="Aboreto, serif">
-                  <textPath href="#arkArcPath" startOffset="50%" textAnchor="middle">THE NATURAL NOBILITY</textPath>
-                </text>
-              </svg>
-            </div>
           </div>
           <div className={styles.brandStory}>
             <div className={cn(styles.brandStoryHead, styles.reveal)}>
@@ -435,10 +479,36 @@ export default function SignatureArkoneOfficial({ site }) {
         <button type="button" className={styles.mBarReg} onClick={openForm}>관심고객등록 <span aria-hidden="true">→</span></button>
       </div>
 
+      {/* 진입 이벤트 팝업 — 예약 방문 시 신세계상품권 증정 → 하단 "방문예약"으로 등록 폼 팝업 이동 */}
+      <dialog ref={eventRef} className={cn(styles.dialog, styles.eventDialog)} aria-labelledby="arkoneEventTitle" onClick={(e) => { if (e.target === eventRef.current) closeEvent() }}>
+        <button type="button" className={styles.dialogClose} onClick={closeEvent} aria-label="닫기">팝업닫기 ✕</button>
+        <div className={styles.eventCard}>
+          <div className={styles.eventTop}>
+            <p className={styles.eventEyebrow}>VISIT EVENT</p>
+            <p className={styles.eventName}>청라 아크원 푸르지오</p>
+            <h2 id="arkoneEventTitle" className={styles.eventTitle}>예약 방문 시<br /><strong>신세계상품권 증정</strong></h2>
+            <div className={styles.giftCard} aria-hidden="true">
+              <span className={styles.giftChip} />
+              <span className={styles.giftLabel}>GIFT CARD</span>
+              <span className={styles.giftName}>신세계상품권</span>
+            </div>
+          </div>
+          <div className={styles.eventBottom}>
+            <ol className={styles.eventSteps}>
+              <li><b>01</b>방문예약 신청</li>
+              <li><b>02</b>견본주택 방문</li>
+              <li><b>03</b>상품권 증정</li>
+            </ol>
+            <p className={styles.eventNote}>※ 사전 방문예약 후 견본주택을 방문하신 고객께 드립니다.<br />※ 증정 조건 및 수량은 현장 사정에 따라 변경·조기 종료될 수 있습니다.</p>
+          </div>
+          <button type="button" className={styles.eventCta} onClick={openForm} autoFocus>방문예약 <span aria-hidden="true">→</span></button>
+        </div>
+      </dialog>
+
       <dialog ref={dialogRef} className={styles.dialog} onClick={(e) => { if (e.target === dialogRef.current) closeForm() }}>
         <div className={styles.dialogBody}>
           <button type="button" className={styles.dialogClose} onClick={closeForm} aria-label="닫기">팝업닫기 ✕</button>
-          <ArkoneApplyForm config={site} idPrefix="officialPopup" variant="popup" onSuccess={() => { closeForm(); alert('방문예약이 접수되었습니다. 확인 후 연락드리겠습니다.') }} />
+          <ArkoneApplyForm config={site} idPrefix="officialPopup" variant="popup" compact onSuccess={() => { closeForm(); alert('방문예약이 접수되었습니다. 확인 후 연락드리겠습니다.') }} />
         </div>
       </dialog>
     </div>

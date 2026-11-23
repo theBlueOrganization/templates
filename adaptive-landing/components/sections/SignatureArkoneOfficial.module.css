@@ -47,7 +47,7 @@
 .reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 
-.eyebrowEn { font-family: var(--en); letter-spacing: 0.4em; font-size: 13px; }
+.eyebrowEn { font-family: var(--en); letter-spacing: 0.4em; font-size: 14px; }
 
 /* ── HEADER ─────────────────────────────── */
 .header { position: fixed; inset: 0 0 auto; z-index: 50; height: 64px; color: #fff; transition: background 0.3s, color 0.3s, box-shadow 0.3s; border-bottom: 1px solid rgba(255, 255, 255, 0.25); }
@@ -71,13 +71,15 @@
 
 /* ── HERO ─────────────────────────────── */
 .hero { position: relative; height: 100svh; min-height: 620px; overflow: hidden; background: #6f88a6; }
-.heroBg { object-fit: cover; object-position: 50% 82%; }
+/* 원본(1920x3600)은 위 3/4이 하늘이라 모바일에선 그대로 두면 단지가 바닥에 작게만 보임 —
+   아래 기준으로 1.65배 크게 깔아 단지가 화면 아래 절반을 채우게 함 */
+.heroBg { object-fit: cover; object-position: 66% 100%; top: auto !important; height: 165% !important; }
 .heroCopy { position: absolute; z-index: 2; left: 24px; right: 24px; top: 21%; color: var(--s900); }
 .heroStar { position: absolute; left: -14px; top: -30px; width: 26px; height: auto; }
 .heroTitle { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 7vw, 34px); line-height: 1.38; display: flex; flex-direction: column; letter-spacing: -0.02em; }
 .heroTitle strong { font-weight: 600; }
 .heroName { margin-top: 14px !important; font-family: var(--serif); font-size: clamp(18px, 5vw, 24px); }
-.heroBadgeText { display: inline-block; margin-top: 18px; padding: 8px 18px; border-radius: 999px; border: 1px solid rgba(28, 27, 26, 0.25); background: rgba(255, 255, 255, 0.35); backdrop-filter: blur(4px); font-size: 13px; font-weight: 600; }
+.heroBadgeText { display: inline-block; margin-top: 18px; padding: 9px 20px; border-radius: 999px; border: 1px solid rgba(28, 27, 26, 0.25); background: rgba(255, 255, 255, 0.35); backdrop-filter: blur(4px); font-size: 14px; font-weight: 600; }
 .heroCircles { position: absolute; z-index: 3; right: 14px; top: 84px; display: flex; flex-direction: column; gap: 10px; }
 .circle { position: relative; width: 84px; height: 84px; border-radius: 50%; display: grid; place-items: center; border: 0; padding: 0; color: #fff; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18); }
 .circle img { width: 100%; height: 100%; }
@@ -96,71 +98,93 @@
 .concept { background: #fff; padding: 72px 24px 80px; }
 .conceptInner { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; align-items: flex-start; gap: 28px; }
 .conceptEmblem { width: 62vw; max-width: 300px; height: auto; align-self: center; }
-.conceptText h2 { margin-top: 12px; font-size: 17px; font-weight: 700; }
+.conceptText h2 { margin-top: 12px; font-size: 19px; font-weight: 700; }
 .acronym { margin-top: 14px !important; display: flex; flex-direction: column; font-family: var(--en); font-size: 22px; letter-spacing: 0.04em; line-height: 1.25; color: #555; }
 .acronym b { color: var(--s900); font-weight: 400; font-size: 1.25em; }
-.conceptDesc { margin-top: 18px !important; font-size: 15px; line-height: 1.7; color: #444; }
+.conceptDesc { margin-top: 18px !important; font-size: 16px; line-height: 1.7; color: #444; }
 
 /* ── OVERVIEW ─────────────────────────────── */
 .overview { position: relative; background: #0d0b0a; color: #fff; overflow: hidden; }
 .overviewInner { position: relative; z-index: 1; max-width: 1440px; margin: 0 auto; padding: 96px 24px; display: flex; flex-direction: column; gap: 72px; }
-.overviewSmall { font-size: 13px; line-height: 1.7; opacity: 0.8; }
-.overviewLead { margin-top: 14px !important; font-size: 18px; font-weight: 700; }
+.overviewSmall { font-size: 15px; line-height: 1.7; opacity: 0.8; }
+.overviewLead { margin-top: 14px !important; font-size: 20px; font-weight: 700; }
 .arkWord { margin-top: 26px; font-family: var(--en); font-weight: 400; font-size: clamp(48px, 14vw, 92px); letter-spacing: 0.04em; line-height: 1; }
-.overviewCatch { font-size: 20px; font-weight: 700; line-height: 1.45; }
+.overviewCatch { font-size: 22px; font-weight: 700; line-height: 1.45; }
 .overviewLogo { margin-top: 18px; width: 150px; height: auto; }
-.stats { margin-top: 48px; }
+.page .stats { margin-top: 48px; }
 .stats > div { display: flex; align-items: baseline; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.35); }
-.stats dt { font-size: 13px; opacity: 0.85; }
+.stats dt { font-size: 15px; opacity: 0.85; }
 .stats dd { display: flex; align-items: baseline; gap: 8px; }
-.stats small { font-size: 11px; opacity: 0.7; }
+.stats small { font-size: 13px; opacity: 0.7; }
 .stats strong { font-size: clamp(30px, 9vw, 40px); font-weight: 400; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
-.stats em { font-style: normal; font-size: 11px; opacity: 0.7; min-width: 22px; }
+.stats em { font-style: normal; font-size: 13px; opacity: 0.7; min-width: 22px; }
 
 /* ── LOCATION ─────────────────────────────── */
 .location { background: #fff; }
 .arkSplit { position: relative; display: grid; grid-template-columns: 1fr; overflow: hidden; }
-.arkSplitDark { background: #000; aspect-ratio: 1 / 0.9; display: grid; place-items: center; overflow: hidden; }
-.sphere { width: 115%; max-width: none; height: auto; }
+/* 모바일 — 예전엔 구슬 그림 위에 ARK-ONE 글자가 겹쳐 하이픈이 구슬에 가리고 위아래가 잘렸음 →
+   구슬 그림은 위쪽에 온전히, 글자는 그 아래 검은 여백에 */
+.arkSplitDark { background: #000; aspect-ratio: 1 / 1.24; display: grid; place-items: start center; padding-top: 34px; overflow: hidden; }
+.sphere { width: 94%; max-width: none; height: auto; }
 .arkSplitGray { display: none; background: #8a9399; }
 .arkSplitWord { position: absolute; left: 0; right: 0; bottom: 8%; text-align: center; font-family: var(--en); font-size: clamp(56px, 16vw, 150px); letter-spacing: 0.12em; line-height: 1; white-space: nowrap; }
+.arkSplitWord { bottom: 6%; font-size: clamp(44px, 13.5vw, 150px); }
 .wordLight { color: #fff; }
 .wordDash { color: #fff; }
 .wordDark { color: #fff; }
 .absolute { position: absolute; top: 22px; left: 0; right: 0; text-align: center; font-family: var(--en); color: #fff; font-size: 11px; letter-spacing: 0.5em; opacity: 0.85; }
 .central { background: #8a9399; color: #fff; padding: 56px 24px 48px; display: flex; flex-direction: column; gap: 28px; }
 .centralText h2 { font-family: var(--en); font-weight: 400; font-size: clamp(26px, 7vw, 44px); letter-spacing: 0.04em; }
-.centralText p { margin-top: 14px !important; font-size: 14px; line-height: 1.7; opacity: 0.95; }
+.centralText p { margin-top: 14px !important; font-size: 16px; line-height: 1.7; opacity: 0.95; }
+/* 입지 핵심 4가지 — CENTRAL LOCATION 왼쪽 빈 공간 채움 (.page ul 초기화보다 우선하도록 .page 접두) */
+.page .points { margin-top: 32px; display: grid; gap: 18px; }
+.points li { padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.4); }
+.pointNum { display: flex; align-items: center; gap: 10px; font-family: var(--en); font-size: 14px; letter-spacing: 0.1em; }
+.pointNum em { font-style: normal; font-family: var(--base); font-size: 12px; font-weight: 700; letter-spacing: 0; padding: 2px 9px; border-radius: 999px; background: rgba(0, 75, 69, 0.85); }
+.points strong { display: block; margin-top: 8px; font-size: 17px; font-weight: 800; }
+.points small { display: block; margin-top: 6px; font-size: 14px; line-height: 1.6; opacity: 0.9; }
+.arkSplitCopy { display: none; }
 .centralMap { position: relative; }
 .centralMap img { width: 100%; height: auto; }
-.mapBubble { position: absolute; left: 41%; top: 26%; transform: translate(-50%, -100%); background: #111; color: #fff; font-size: 11px; font-weight: 700; padding: 6px 10px; border-radius: 4px; white-space: nowrap; }
+.mapBubble { position: absolute; left: 32.5%; top: 31%; transform: translate(-50%, -100%); background: #111; color: #fff; font-size: 12px; font-weight: 700; padding: 6px 10px; border-radius: 4px; white-space: nowrap; }
 .mapBubble::after { content: ''; position: absolute; left: 50%; bottom: -5px; transform: translateX(-50%); border: 5px solid transparent; border-top-color: #111; border-bottom: 0; }
-.routes { background: var(--teal); color: #fff; padding: 64px 16px; }
-.routesInner { max-width: 820px; margin: 0 auto; text-align: center; }
-.routes h3 { margin-top: 14px; font-size: 22px; font-weight: 800; }
-.routes ul { margin-top: 30px; display: flex; flex-direction: column; }
-.routes li { padding: 14px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.18); }
-.routes li:last-child { border-bottom: 0; }
-.routes li img { width: 100%; height: auto; }
-.smallNote { margin-top: 18px !important; font-size: 11px; opacity: 0.65; }
+/* "더 가까워지는 서울!" — 노선 이미지 3장 대신 HTML 노선 카드 */
+.routes { background: var(--teal); color: #fff; padding: 72px 18px; }
+.routesInner { max-width: 1240px; margin: 0 auto; }
+.routesHead { text-align: center; }
+.routes h3 { margin-top: 14px; font-size: 26px; font-weight: 800; }
+.routesDesc { margin-top: 14px !important; font-size: 15px; line-height: 1.7; opacity: 0.9; }
+.smallNote { margin-top: 14px !important; font-size: 12px; opacity: 0.65; }
+.page .routeList { margin-top: 32px; display: grid; gap: 14px; }
+.routeCard { background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 14px; padding: 18px 16px 22px; }
+.page .routeCatch { position: relative; display: inline-block; background: #c9b49c; color: #2b2420; font-size: 13.5px; font-weight: 800; padding: 5px 12px; border-radius: 4px; }
+.routeCatch::after { content: ''; position: absolute; left: 16px; bottom: -6px; border: 6px solid transparent; border-top-color: #c9b49c; border-bottom: 0; }
+.routeLine { margin-top: 18px; display: grid; grid-template-columns: 80px 1fr 80px; align-items: center; gap: 8px; }
+.routeStop { width: 80px; height: 80px; border-radius: 50%; background: #e7e8ea; color: #2a2a2a; display: grid; place-items: center; text-align: center; padding: 8px; font-size: 13px; font-weight: 800; line-height: 1.3; white-space: pre-line; }
+.routeStopEnd { background: #fff; box-shadow: 0 0 0 3px #c9b49c; }
+.routeTrack { min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 6px; color: #d8c6b1; text-align: center; }
+.routeTrack i { position: relative; width: 100%; height: 2px; background: linear-gradient(90deg, rgba(255, 255, 255, 0.3), #d8c6b1); }
+.routeTrack i::after { content: ''; position: absolute; right: -1px; top: 50%; transform: translateY(-50%); border: 5px solid transparent; border-left: 7px solid #d8c6b1; border-right: 0; }
+.routeTrack em { font-style: normal; color: #fff; font-size: 13px; font-weight: 700; line-height: 1.4; }
+.routeTrack small { margin-left: 2px; font-size: 11px; font-weight: 500; opacity: 0.75; }
 
 /* ── LIFESTYLE ─────────────────────────────── */
 .lifestyle { display: flex; flex-direction: column; background: #fff; }
 .lifeLeft { position: relative; min-height: 560px; background: #3d332e; color: #fff; overflow: hidden; padding: 72px 24px 0; }
-.lifeLeft::before { content: ''; position: absolute; inset: 0; z-index: 1; background: rgba(61, 51, 46, 0.86); }
+.lifeLeft::before { content: ''; position: absolute; inset: 0; z-index: 1; background: rgba(40, 33, 29, 0.55); }
 .lifeLeftText { position: relative; z-index: 2; }
 .lifeLeftText img { width: 26px; height: auto; }
-.lifeLeftText p { margin-top: 14px !important; font-family: var(--serif); font-size: 17px; opacity: 0.95; }
+.lifeLeftText p { margin-top: 14px !important; font-family: var(--serif); font-size: 18px; opacity: 0.95; }
 .lifeLeftText h2 { margin-top: 16px; font-family: var(--serif); font-weight: 600; font-size: clamp(26px, 7.4vw, 34px); line-height: 1.4; }
 .lifeVisual { position: relative; z-index: 2; margin: 40px 0 0 auto !important; width: 62%; max-width: 300px; }
 .lifeVisual img { width: 100%; height: auto; display: block; }
 .page figure figcaption { position: absolute; right: 8px; bottom: 6px; font-size: 9px; color: rgba(255, 255, 255, 0.85); }
 .lifeRight { padding: 64px 24px 72px; }
-.perfect { font-family: var(--en); font-size: 13px; letter-spacing: 0.6em; text-align: center; color: #333; }
+.perfect { font-family: var(--en); font-size: 14px; letter-spacing: 0.6em; text-align: center; color: #333; }
 .lifeList { margin-top: 36px !important; display: flex; flex-direction: column; gap: 30px; }
-.lifeList h3 { font-size: 17px; font-weight: 800; }
-.lifeList p { margin-top: 10px !important; display: flex; flex-direction: column; font-size: 13.5px; line-height: 1.7; color: #666; }
-.lifeList small { display: block; margin-top: 6px; font-size: 11px; color: #999; }
+.lifeList h3 { font-size: 19px; font-weight: 800; }
+.lifeList p { margin-top: 10px !important; display: flex; flex-direction: column; font-size: 15px; line-height: 1.7; color: #555; }
+.lifeList small { display: block; margin-top: 6px; font-size: 12px; color: #999; }
 .lifeThumbs { margin-top: 40px; display: flex; gap: 10px; justify-content: flex-end; }
 .lifeThumbs figure { position: relative; width: 44%; max-width: 160px; }
 .lifeThumbs img { width: 100%; height: auto; display: block; }
@@ -170,13 +194,13 @@
 .premiumHead { position: relative; min-height: 320px; display: grid; place-items: center; text-align: center; background: #7d6650; overflow: hidden; }
 .premiumHead::before { content: ''; position: absolute; inset: 0; z-index: 1; background: rgba(125, 102, 80, 0.55); }
 .premiumHeadText { position: relative; z-index: 2; }
-.premiumHeadText h2 { margin-top: 14px; font-family: var(--en); font-weight: 400; font-size: 18px; letter-spacing: 0.18em; line-height: 1.5; }
+.premiumHeadText h2 { margin-top: 14px; font-family: var(--en); font-weight: 400; font-size: 24px; letter-spacing: 0.18em; line-height: 1.5; }
 .premiumBody { position: relative; background: #f3f2f0; color: var(--s900); padding: 64px 16px 56px; overflow: hidden; }
 .premiumBody > * { position: relative; z-index: 1; }
 .premiumBody > .bgCover { position: absolute; z-index: 0; }
 .premiumIntro { padding: 0 8px; }
-.premiumIntro h3 { font-family: var(--serif); font-weight: 600; font-size: 26px; line-height: 1.4; }
-.premiumIntro p { margin-top: 14px !important; font-size: 13px; line-height: 1.7; color: #666; }
+.premiumIntro h3 { font-family: var(--serif); font-weight: 600; font-size: 28px; line-height: 1.4; }
+.premiumIntro p { margin-top: 14px !important; font-size: 15px; line-height: 1.7; color: #555; }
 .premiumGrid { margin-top: 36px; display: flex; flex-direction: column; gap: 12px; }
 .premiumMain { position: relative; }
 .premiumMain img { width: 100%; height: auto; display: block; }
@@ -187,33 +211,33 @@
 .premiumCardImg { position: relative; aspect-ratio: 4 / 3; overflow: hidden; }
 .premiumCardImg img { object-fit: cover; transition: transform 1.2s var(--ease); }
 .premiumCards li:hover .premiumCardImg img { transform: scale(1.04); }
-.premiumCards strong { display: block; margin-top: 16px; font-family: var(--serif); font-weight: 600; font-size: 19px; }
-.premiumCards span { display: block; margin-top: 6px; font-size: 13px; color: #777; }
-.aiNote { margin-top: 28px !important; font-size: 11px; color: #999; text-align: right; }
+.premiumCards strong { display: block; margin-top: 16px; font-family: var(--serif); font-weight: 600; font-size: 20px; }
+.premiumCards span { display: block; margin-top: 8px; font-size: 15px; color: #666; }
+.aiNote { margin-top: 28px !important; font-size: 12px; color: #999; text-align: right; }
 
 /* ── BRAND ─────────────────────────────── */
 .brand { background: #fff; }
-.brandTop { position: relative; min-height: 640px; overflow: hidden; text-align: center; color: #333; display: flex; flex-direction: column; }
-.brandTopText { position: relative; z-index: 1; padding: 90px 20px 0; }
+/* 하단 반원 + 호 글자 장식은 요청으로 제거 — 문구만 세로 가운데에 둠 */
+.brandTop { position: relative; min-height: 460px; overflow: hidden; text-align: center; color: #333; display: flex; flex-direction: column; justify-content: center; }
+.brandTopText { position: relative; z-index: 1; padding: 90px 20px; }
 .brandTopText img { width: 28px; height: auto; }
 .brandPrugio { margin-top: 18px !important; font-family: var(--en); font-size: 16px; letter-spacing: 0.08em; color: #555; }
 .brandTopText h2 { margin-top: 14px; font-family: var(--en); font-weight: 400; font-size: clamp(20px, 6vw, 36px); letter-spacing: 0.12em; }
-.brandKr { margin-top: 18px !important; font-size: 18px; font-weight: 600; }
-.brandSmall { margin-top: 10px !important; font-size: 12px; color: #666; }
-.arc { position: relative; z-index: 1; margin-top: auto; width: 100%; }
-.arc svg { display: block; width: 110%; margin-left: -5%; height: auto; }
+.brandKr { margin-top: 18px !important; font-size: 20px; font-weight: 600; }
+.brandSmall { margin-top: 10px !important; font-size: 14px; color: #555; }
 .brandStory { padding: 72px 24px 88px; max-width: 1200px; margin: 0 auto; }
 .brandStoryHead { text-align: center; }
 .brandStoryHead .eyebrowEn { color: var(--s500); }
-.brandStoryHead h3 { margin-top: 14px; font-family: var(--serif); font-weight: 600; font-size: 22px; }
-.brandStoryHead p:last-child { margin-top: 14px !important; font-size: 13px; line-height: 1.8; color: #666; }
-.brandCards { margin-top: 44px !important; display: grid; gap: 36px; }
-.brandCards li { text-align: center; }
-.brandCards img { width: 72%; height: auto; border-radius: 50%; }
-.brandCards strong { display: block; margin-top: 18px; font-family: var(--serif); font-weight: 600; font-size: 18px; }
-.brandCards span { display: block; margin-top: 8px; font-size: 13px; line-height: 1.7; color: #777; }
+.brandStoryHead h3 { margin-top: 14px; font-family: var(--serif); font-weight: 600; font-size: 24px; }
+.brandStoryHead p:last-child { margin-top: 14px !important; font-size: 15px; line-height: 1.8; color: #666; }
+/* 모바일 — 원형 사진이 화면 폭 72%로 하나씩 쌓이면 너무 커서, 작은 원(104px) 왼쪽 + 문구 오른쪽 목록형으로 */
+.brandCards { margin-top: 40px !important; display: grid; gap: 22px; }
+.brandCards li { display: grid; grid-template-columns: 104px 1fr; column-gap: 18px; align-items: center; text-align: left; }
+.brandCards img { grid-row: span 2; width: 104px; height: 104px; object-fit: cover; border-radius: 50%; }
+.brandCards strong { display: block; align-self: end; margin-top: 0; font-family: var(--serif); font-weight: 600; font-size: 18px; }
+.brandCards span { display: block; align-self: start; margin-top: 6px; font-size: 14.5px; line-height: 1.7; color: #777; }
 .brandClosing { margin-top: 64px; text-align: center; }
-.brandClosing p { font-size: 14px; color: #555; }
+.brandClosing p { font-size: 16px; color: #555; }
 .brandClosing img { margin-top: 20px; width: 70%; max-width: 520px; height: auto; }
 
 /* ── CONTACT ─────────────────────────────── */
@@ -225,11 +249,12 @@
 .contactForm { color: var(--s900); }
 .contactSide { display: flex; flex-direction: column; gap: 14px; }
 .contactMap { width: 100%; height: auto; background: rgba(30, 28, 27, 0.55); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 10px; padding: 14px; }
-.places { background: rgba(30, 28, 27, 0.55); border: 1px solid rgba(255, 255, 255, 0.12); backdrop-filter: blur(6px); border-radius: 10px; padding: 6px 20px; }
+/* .page ul/dl 초기화(padding·margin 0)가 단일 클래스보다 우선해서 여백이 사라졌던 것 — .page를 붙여 우선순위를 맞춤 */
+.page .places { background: rgba(30, 28, 27, 0.55); border: 1px solid rgba(255, 255, 255, 0.12); backdrop-filter: blur(6px); border-radius: 10px; padding: 6px 20px; }
 .places li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.16); }
 .places li:last-child { border-bottom: 0; }
-.places strong { display: block; font-size: 15px; }
-.places span { display: block; margin-top: 4px; font-size: 12px; opacity: 0.85; }
+.places strong { display: block; font-size: 16px; }
+.places span { display: block; margin-top: 4px; font-size: 14px; opacity: 0.85; }
 .placeLinks { display: flex; gap: 8px; flex-shrink: 0; }
 .placeLinks a { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; }
 .naver { background: #8b7f71; }
@@ -238,7 +263,7 @@
 .contactTel small { font-size: 13px; font-weight: 600; opacity: 0.85; }
 
 /* ── FOOTER ─────────────────────────────── */
-.footer { background: #fff; border-top: 1px solid #e5e5e5; padding: 44px 20px 110px; color: #777; font-size: 12px; line-height: 1.8; }
+.footer { background: #fff; border-top: 1px solid #e5e5e5; padding: 44px 20px 110px; color: #666; font-size: 13px; line-height: 1.8; }
 .footerInner { max-width: 1440px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
 .footerLogo { width: 110px; height: auto; opacity: 0.75; }
 .footerLines { display: flex; flex-wrap: wrap; column-gap: 14px; }
@@ -254,7 +279,7 @@
 .top i { width: 1px; height: 22px; background: currentColor; order: -1; }
 .topShow { opacity: 1; pointer-events: auto; }
 
-.mBar { position: fixed; z-index: 45; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: 1fr 1.6fr; height: 58px; box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.12); }
+.mBar { position: fixed; z-index: 45; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: 1fr 1fr; height: 58px; box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.12); }
 .mBarTel { display: grid; place-items: center; background: var(--s500); color: #fff; font-weight: 700; font-size: 16px; }
 .mBarReg { border: 0; background: var(--p900); color: #fff; font-weight: 800; font-size: 17px; }
 
@@ -264,6 +289,28 @@
 .dialogBody { max-height: calc(100dvh - 70px); overflow-y: auto; border-radius: 12px; margin-top: 40px; }
 .dialog[open] { display: block; }
 .dialogClose { position: absolute; top: 0; right: 0; border: 0; background: none; color: #fff; font-size: 15px; font-weight: 700; padding: 6px 0; }
+
+/* ── 진입 이벤트 팝업(예약 방문 시 신세계상품권 증정) ─────────────────────────────── */
+.eventDialog { max-width: min(360px, calc(100vw - 56px)); }
+.eventCard { position: relative; margin-top: 40px; border-radius: 16px; overflow: hidden; background: #fff; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35); }
+.eventTop { position: relative; padding: 24px 20px 22px; text-align: center; color: #fff; background: radial-gradient(120% 90% at 50% 0%, #0b6a61 0%, var(--p500) 45%, var(--p900) 100%); }
+.page .eventEyebrow { font-family: var(--en); font-size: 11px; letter-spacing: 0.4em; color: #d9c7ae; }
+.page .eventName { margin-top: 8px; font-size: 13px; font-weight: 600; opacity: 0.85; }
+.page .eventTitle { margin-top: 8px; font-family: var(--serif); font-weight: 400; font-size: 20px; line-height: 1.4; }
+.eventTitle strong { display: block; font-weight: 600; font-size: 1.28em; color: #f1dfc2; }
+.giftCard { position: relative; display: block; width: 156px; height: 96px; margin: 16px auto 0; border-radius: 12px; text-align: left; color: #3a2e22; background: linear-gradient(135deg, #f6e7cd 0%, #d9b98a 48%, #f3dfbd 70%, #c9a46f 100%); box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.45); transform: rotate(-4deg); }
+.giftChip { position: absolute; left: 14px; top: 16px; width: 22px; height: 16px; border-radius: 4px; background: linear-gradient(135deg, #fff6e2, #b8925b); }
+.giftLabel { position: absolute; right: 12px; top: 14px; font-family: var(--en); font-size: 9px; letter-spacing: 0.25em; opacity: 0.75; }
+.giftName { position: absolute; left: 14px; bottom: 12px; font-family: var(--serif); font-size: 15px; font-weight: 600; }
+.eventBottom { padding: 16px 16px 14px; color: var(--s900); }
+.page .eventSteps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.eventSteps li { position: relative; padding: 9px 2px; border-radius: 8px; background: var(--s100); text-align: center; font-size: 12px; font-weight: 700; }
+.eventSteps b { display: block; margin-bottom: 2px; font-family: var(--en); font-weight: 400; font-size: 10.5px; letter-spacing: 0.1em; color: var(--s500); }
+.page .eventNote { margin-top: 10px; font-size: 11px; line-height: 1.6; color: #777; }
+.eventCta { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; height: 50px; border: 0; background: var(--p900); color: #fff; font-size: 17px; font-weight: 800; letter-spacing: 0.02em; transition: background 0.2s; }
+.eventCta:hover { background: var(--p500); }
+.eventCta span { transition: transform 0.2s; }
+.eventCta:hover span { transform: translateX(4px); }
 
 /* ── PC ─────────────────────────────── */
 @media (min-width: 1024px) {
@@ -278,83 +325,125 @@
   .mTel, .burger, .mMenu { display: none; }
 
   .hero { min-height: 760px; }
-  .heroBg { object-position: 50% 80%; }
+  /* 원본(1920x3600)은 위 3/4이 하늘이라 단지·지면까지 보이도록 하단 기준으로 맞춤 */
+  .heroBg { object-position: 50% 100%; top: 0 !important; height: 100% !important; }
   .heroCopy { left: 8.5%; right: auto; top: 26%; }
   .heroStar { left: -28px; top: -34px; width: 30px; }
-  .heroTitle { font-size: 34px; }
-  .heroName { font-size: 28px; margin-top: 22px !important; }
-  .heroBadgeText { margin-top: 22px; font-size: 15px; padding: 10px 22px; }
+  .heroTitle { font-size: 46px; }
+  .heroName { font-size: 32px; margin-top: 24px !important; }
+  .heroBadgeText { margin-top: 28px; font-size: 17px; padding: 12px 26px; }
   .heroCircles { right: 5.5%; top: 110px; gap: 16px; }
   .circle { width: 110px; height: 110px; }
 
   .concept { padding: 120px 56px; }
   .conceptInner { flex-direction: row-reverse; align-items: center; justify-content: space-between; }
   .conceptEmblem { width: 420px; max-width: none; align-self: auto; }
-  .conceptText h2 { font-size: 20px; }
-  .acronym { font-size: 32px; }
-  .conceptDesc { font-size: 17px; }
+  .conceptText h2 { font-size: 24px; }
+  .acronym { font-size: 40px; }
+  .conceptDesc { font-size: 19px; }
 
   .overview { min-height: 100vh; display: flex; align-items: center; }
   .overviewInner { width: 100%; flex-direction: row; justify-content: space-between; align-items: stretch; padding: 120px 8.5%; }
   .overviewLeft { align-self: flex-end; }
-  .arkWord { font-size: 84px; }
+  .overviewSmall { font-size: 17px; }
+  .overviewLead { font-size: 24px; }
+  .arkWord { font-size: 96px; }
   .overviewRight { width: 420px; display: flex; flex-direction: column; }
-  .overviewCatch { font-size: 24px; }
+  .overviewCatch { font-size: 30px; }
   .overviewLogo { width: 170px; }
-  .stats { margin-top: auto; padding-top: 80px; }
-  .stats strong { font-size: 42px; }
+  .page .stats { margin-top: auto; padding-top: 80px; }
+  .stats dt { font-size: 17px; }
+  .stats strong { font-size: 46px; }
+  .stats em, .stats small { font-size: 15px; }
 
-  .arkSplit { grid-template-columns: 1fr 1fr; height: 100vh; min-height: 640px; }
-  .arkSplitDark { aspect-ratio: auto; }
-  .sphere { width: 100%; }
+  .arkSplit { grid-template-columns: 1fr 1fr; height: 76vh; min-height: 600px; }
+  .arkSplitDark { aspect-ratio: auto; place-items: center; padding-top: 0; }
+  /* 정사각형 그림을 칸 폭에 맞추면 칸 높이보다 커져 위아래가 잘리고 구슬이 아래로 쏠려 보였음 → 높이에 맞춰 전체가 보이게 */
+  .sphere { width: auto; height: max(76vh, 600px); max-width: 100%; object-fit: contain; }
   .arkSplitGray { display: block; }
   .arkSplitWord { top: 50%; bottom: auto; transform: translateY(-50%); font-size: clamp(90px, 10vw, 160px); letter-spacing: 0.3em; }
   .wordDash, .wordDark { color: #111; }
   .absolute { top: 40px; letter-spacing: 0.8em; font-size: 12px; }
-  .central { flex-direction: row; align-items: center; padding: 100px 8.5%; gap: 60px; min-height: 100vh; }
-  .centralText { flex: 0 0 34%; }
+  .central { flex-direction: row; align-items: center; padding: 110px 8.5%; gap: 60px; }
+  .centralText { flex: 0 0 44%; }
+  .page .points { margin-top: 48px; grid-template-columns: 1fr 1fr; gap: 30px 36px; }
+  .points strong { font-size: 19px; }
+  .points small { font-size: 15px; }
+  .arkSplitCopy { display: block; position: absolute; left: calc(50% + 6%); right: 6%; bottom: 9%; color: var(--s900); }
+  .arkSplitEn { font-family: var(--en); font-size: 16px; letter-spacing: 0.28em; }
+  .arkSplitEn b { font-weight: 400; font-size: 1.5em; }
+  .arkSplitKr { margin-top: 14px !important; font-family: var(--serif); font-size: 22px; line-height: 1.6; }
   .centralText h2 { font-size: 46px; }
-  .centralText p { font-size: 16px; }
-  .centralMap { flex: 1; max-width: 760px; }
-  .mapBubble { font-size: 13px; padding: 8px 14px; }
-  .routes { padding: 110px 40px; }
-  .routes h3 { font-size: 30px; }
+  .centralText p { font-size: 19px; }
+  .centralMap { flex: 1; max-width: 820px; }
+  .mapBubble { font-size: 15px; padding: 9px 16px; }
+  .routes { padding: 120px 8.5%; }
+  .routesInner { display: grid; grid-template-columns: 0.8fr 1.5fr; gap: 72px; align-items: center; }
+  .routesHead { text-align: left; }
+  .routes h3 { font-size: 40px; }
+  .routesDesc { font-size: 19px; margin-top: 20px !important; }
+  .page .routeList { margin-top: 0; gap: 18px; }
+  .routeCard { padding: 24px 32px 28px; }
+  .page .routeCatch { font-size: 16px; padding: 6px 14px; }
+  .routeLine { margin-top: 22px; grid-template-columns: 124px 1fr 124px; gap: 22px; }
+  .routeStop { width: 124px; height: 124px; font-size: 18px; padding: 12px; }
+  .routeTrack { gap: 8px; }
+  .routeTrack em { font-size: 17px; }
+  .routeTrack small { font-size: 13px; }
+  .eyebrowEn { font-size: 15px; }
+  .smallNote { font-size: 13px; }
 
   .lifestyle { flex-direction: row; min-height: 100vh; }
   .lifeLeft { flex: 0 0 50%; padding: 15vh 0 0 8.5%; }
-  .lifeLeftText p { font-size: 20px; }
-  .lifeLeftText h2 { font-size: 36px; }
-  .lifeVisual { position: absolute; right: -6%; top: 25%; margin: 0 !important; width: 260px; }
+  .lifeLeftText p { font-size: 22px; }
+  .lifeLeftText h2 { font-size: 44px; }
+  /* 예전엔 right:-6%로 칸 밖으로 밀려 overflow:hidden에 잘렸음 — 칸 안쪽 하단에 온전히 배치 */
+  .lifeVisual { position: absolute; right: 8%; bottom: 10%; margin: 0 !important; width: 32%; max-width: 340px; }
   .lifeRight { flex: 1; padding: 15vh 6% 80px 12%; }
-  .perfect { text-align: left; letter-spacing: 0.7em; font-size: 15px; }
-  .lifeList { gap: 26px; margin-top: 44px !important; }
-  .lifeList h3 { font-size: 17px; }
-  .lifeList p { font-size: 13px; }
+  .perfect { text-align: left; letter-spacing: 0.7em; font-size: 17px; }
+  .lifeList { gap: 32px; margin-top: 48px !important; }
+  .lifeList h3 { font-size: 22px; }
+  .lifeList p { font-size: 16px; }
+  .lifeList small { font-size: 13px; }
+  .lifeThumbs figure { max-width: 200px; }
 
-  .premiumHead { min-height: 70vh; }
-  .premiumHeadText h2 { font-size: 22px; }
-  .premiumBody { padding: 120px 8.5% 100px; display: grid; grid-template-columns: 0.9fr 1.1fr; column-gap: 60px; align-items: start; }
-  .premiumIntro { padding-top: 40px; }
-  .premiumIntro h3 { font-size: 34px; }
-  .premiumIntro p { font-size: 14px; }
-  .premiumGrid { margin-top: 0; display: grid; grid-template-columns: 1.4fr 1fr; gap: 16px; align-items: end; }
-  .premiumSmall { flex-direction: column; }
-  .premiumCards { grid-column: 1 / -1; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 90px !important; }
-  .aiNote { grid-column: 1 / -1; }
+  /* 배경이 무늬 텍스처뿐이라 높이를 줄이고 제목을 키움 */
+  .premiumHead { min-height: 48vh; }
+  .premiumHeadText img { width: 36px; height: auto; }
+  .premiumHeadText h2 { font-size: 44px; letter-spacing: 0.16em; line-height: 1.35; }
+  /* 예전엔 좌(문구)·우(사진) 2칸이라 문구 아래가 크게 비고 사진이 오른쪽에 몰렸음 —
+     문구를 위 한 줄로, 사진 3장을 같은 높이로 가로 배치 */
+  .premiumBody { padding: 120px 8.5% 100px; }
+  .premiumIntro { display: grid; grid-template-columns: 1.2fr 1fr 1fr; column-gap: 48px; align-items: end; padding: 0; }
+  .premiumIntro h3 { font-size: 44px; }
+  .premiumIntro p { margin-top: 0 !important; font-size: 18px; line-height: 1.75; }
+  .premiumGrid { margin-top: 56px; display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 16px; height: clamp(420px, 36vw, 620px); }
+  .premiumSmall { display: contents; }
+  .premiumMain, .premiumSmall figure { height: 100%; overflow: hidden; }
+  .premiumMain img, .premiumSmall img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: auto; }
+  .premiumCards { grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 90px !important; }
+  .premiumCards strong { font-size: 24px; margin-top: 20px; }
+  .premiumCards span { font-size: 16px; }
+  .aiNote { font-size: 13px; }
 
-  .brandTop { min-height: 100vh; }
-  .brandTopText { padding-top: 16vh; }
+  .brandTop { min-height: 72vh; }
+  .brandTopText { padding: 120px 20px; }
   .brandTopText img { width: 36px; }
-  .brandPrugio { font-size: 18px; }
-  .brandTopText h2 { font-size: 40px; }
-  .brandKr { font-size: 22px; }
-  .brandSmall { font-size: 13px; }
-  .arc svg { width: 86%; margin: 0 auto; }
+  .brandPrugio { font-size: 20px; }
+  .brandTopText h2 { font-size: 48px; }
+  .brandKr { font-size: 26px; }
+  .brandSmall { font-size: 16px; }
   .brandStory { padding: 120px 56px; }
-  .brandStoryHead h3 { font-size: 30px; }
-  .brandStoryHead p:last-child { font-size: 15px; }
+  .brandStoryHead h3 { font-size: 36px; }
+  .brandStoryHead p:last-child { font-size: 18px; }
+  .brandCards strong { font-size: 22px; }
+  .brandCards span { font-size: 16px; }
+  .brandClosing p { font-size: 18px; }
   .brandCards { grid-template-columns: repeat(3, 1fr); gap: 48px; }
-  .brandCards img { width: 80%; }
+  .brandCards li { display: block; text-align: center; }
+  .brandCards img { width: 80%; height: auto; }
+  .brandCards strong { margin-top: 18px; }
+  .brandCards img { margin-left: auto; margin-right: auto; }
 
   .contactInner { padding: 120px 56px; }
   .contactTitle { font-size: 40px; }
@@ -362,7 +451,7 @@
   .contactForm { flex: 1.1; }
   .contactSide { flex: 0.9; position: sticky; top: 100px; }
 
-  .footer { padding: 56px 56px 60px; }
+  .footer { padding: 56px 56px 60px; font-size: 14px; }
   .footerInner { flex-direction: row; align-items: flex-start; gap: 48px; }
   .footerLogo { width: 128px; flex-shrink: 0; }
   .footerInfo { flex: 1; }
@@ -375,5 +464,5 @@
 }
 
 /* Tailwind preflight가 img를 display:block으로 바꿔 text-align:center가 안 먹는 이미지들 — 가운데 정렬 */
-.premiumHeadText img, .brandTopText img, .brandCards img, .brandClosing img, .conceptEmblem { margin-left: auto; margin-right: auto; }
+.premiumHeadText img, .brandTopText img, .brandClosing img, .conceptEmblem { margin-left: auto; margin-right: auto; }
 .lifeLeftText img, .conceptText img { margin: 0; }

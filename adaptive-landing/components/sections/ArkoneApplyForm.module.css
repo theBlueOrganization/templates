@@ -183,6 +183,22 @@ select.input {
 .popup .agree { gap: 8px; font-size: 13px; }
 .popup .agree input { width: 18px; height: 18px; }
 .popup .submit { height: 46px; font-size: 16px; }
+/* compact — 팝업을 한 단계 더 촘촘하게(세로 667px 폰에서도 스크롤 없이). 요청 반영(2026-11-23, cheongna-arkone-prugio-4) */
+.popup.compact { padding: 16px 14px 14px; }
+.compact .title { font-size: 18px; }
+.compact .bar { width: 32px; height: 2px; margin: 7px auto 6px; }
+.compact .desc { margin-bottom: 8px; font-size: 12px; line-height: 1.5; }
+.compact .form { gap: 7px; }
+.compact .field { gap: 3px; }
+.compact .label { font-size: 13px; }
+.compact .input { height: 36px; font-size: 14px; }
+.compact .fApplicant { gap: 3px 6px; }
+.compact .choice { min-height: 36px; padding: 3px 10px; font-size: 13px; }
+.compact .terms summary { padding: 6px 12px; font-size: 12.5px; }
+.compact .notice { font-size: 11.5px; line-height: 1.45; }
+.compact .agree { font-size: 12.5px; }
+.compact .agree input { width: 16px; height: 16px; }
+.card.compact .submit { height: 42px; margin-top: 2px; font-size: 15.5px; }
 
 @media (min-width: 768px) {
   .section { padding: 96px 24px 110px; }

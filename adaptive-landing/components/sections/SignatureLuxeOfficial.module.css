@@ -417,3 +417,35 @@
   .tab { font-size: 14px; }
   .facilities li { padding: 20px 8px; text-align: center; }
 }
+
+/* ── 진입 팝업 카드(popup.card) — 핑크 카탈로그 표지 대신 사이트 톤(네이비·하늘색) 사진 카드, 2026-11-23 ── */
+.popupCard { position: relative; display: flex; flex-direction: column; width: 100%; aspect-ratio: 900 / 1180; background: linear-gradient(180deg, #0c2340 0%, #12304f 45%, #081d33 100%); max-height: calc(100dvh - 120px); padding: 26px 26px 20px; border: 0; overflow: hidden; color: #fff; text-align: left; cursor: pointer; }
+.popupCardBg { object-fit: contain; object-position: 50% 64%; z-index: 0; -webkit-mask-image: linear-gradient(180deg, transparent 30%, #000 50%); mask-image: linear-gradient(180deg, transparent 30%, #000 50%); }
+.popupCardBottom > b { text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55); }
+.popupCard::after { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(8, 29, 51, 0.55) 0%, rgba(8, 29, 51, 0) 30%, rgba(8, 29, 51, 0) 62%, rgba(8, 29, 51, 0.7) 80%, rgba(8, 29, 51, 0.9) 100%); }
+.popupCard > span { position: relative; z-index: 2; }
+.popupCardTop { display: flex; justify-content: space-between; font-size: 11px; letter-spacing: 0.04em; opacity: 0.85; }
+.popupCardTop em, .popupCardFoot em { font-style: normal; }
+.popupCardCopy { display: flex; flex-direction: column; margin-top: 30px; padding-left: 14px; border-left: 2px solid var(--sky); }
+.popupCardCopy small { font-size: 12px; font-weight: 700; color: var(--skyLight); }
+.popupCardLight { margin-top: 12px; font-family: var(--serif); font-size: 19px; opacity: 0.95; }
+.popupCardCopy strong { margin-top: 6px; font-family: var(--serif); font-weight: 600; font-size: 34px; line-height: 1.3; letter-spacing: -0.02em; }
+.popupCardLogo { margin-top: 16px; width: 112px; height: auto; }
+.popupCardBottom { margin-top: auto; }
+.popupCardBottom > b { display: block; font-family: var(--serif); font-weight: 500; font-size: 19px; }
+.popupCardPoints { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 14px; padding: 12px 0; border-top: 1px solid rgba(169, 216, 245, 0.35); border-bottom: 1px solid rgba(169, 216, 245, 0.35); }
+.popupCardPoints > span { display: flex; flex-direction: column; gap: 3px; padding: 0 8px; border-left: 1px solid rgba(255, 255, 255, 0.2); }
+.popupCardPoints > span:first-child { padding-left: 0; border-left: 0; }
+.popupCardPoints i { font-style: normal; font-size: 12.5px; font-weight: 700; color: var(--skyLight); }
+.popupCardPoints small { font-size: 10.5px; opacity: 0.75; }
+.popupCardFoot { display: flex; justify-content: space-between; margin-top: 12px; font-size: 11px; opacity: 0.75; }
+@media (max-width: 400px) {
+  .popupCard { padding: 22px 20px 18px; }
+  .popupCardCopy strong { font-size: 29px; }
+  .popupCardPoints i { font-size: 11.5px; }
+}
+@media (max-width: 600px) {
+  .popupCard { aspect-ratio: auto; min-height: min(560px, calc(100dvh - 120px)); }
+  .popupCardPoints { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 10px; }
+  .popupCardPoints > span:nth-child(3) { padding-left: 0; border-left: 0; }
+}

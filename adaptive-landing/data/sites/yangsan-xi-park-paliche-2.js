@@ -228,27 +228,36 @@ const config = {
       },
     },
 
-    // 사업개요 — 교육자료 p2 표 + 주간 투시도(p4, 옥탑 Xi 로고 지움)
+    // 사업개요 — 2026-11-23 사용자 요청 '덕은 DMC 현장과 같은 구조(overview)': 덕은 DMC 에일린의 뜰 3차 공식 홈페이지형 사업개요
+    //   (variant 'luxe' → components/sections/SignatureLuxeBlocks LuxeOverview — 배경 투시도 + 큰 영문 워드 + 핵심 수치 + 개요표).
+    //   수치·개요표는 교육자료 p2 표 그대로, 색은 양산2 네이비/아이스 블루(theme)
     summary: {
       id: 'overview',
-      navLabel: 'overview',
-      title: 'overview',
-      photo: {
-        src: '/apt/yangsan-xi-park-paliche-2/overview-photo.webp',
-        alt: '양산자이 파크팰리체 투시도',
-      },
-      notice: '※ 본 페이지에 사용된 CG, 이미지 및 내용은 인·허가 과정 중 변경될 수 있습니다.',
-      specItems: [
+      variant: 'luxe',
+      theme: { navy: '#0b1340', navy2: '#0c1e44', steel: '#2b6a9c', sky: '#4a8fc4', skyLight: '#8fc3e8', ice: '#eaf2f8' },
+      bg: { src: '/apt/yangsan-xi-park-paliche-2/overview-photo.webp' },
+      small: '웅상센트럴파크 앞,\n양산에 처음 들어서는',
+      lead: '공원을 품은 브랜드 대단지',
+      word: 'PALICHE',
+      catch: '스케일이 다른 공원,\n클래스가 다른 자이',
+      stats: [
+        { label: '공급규모', value: '842', unit: '세대' },
+        { label: '건축규모', value: '6', unit: '개동' },
+        { label: '최고층수', pre: '지상', value: '29', unit: '층' },
+        { label: '입주예정', value: '2028', unit: '.07' },
+      ],
+      specs: [
         { label: '사업명', value: '양산자이 파크팰리체' },
         { label: '대지위치', value: '경상남도 양산시 평산동 47-1번지 일대' },
         { label: '지역지구', value: '제2종 일반주거지역' },
-        { label: '건축규모', value: ['지하 2층~지상 18~29층, 6개동', '총 842세대'] },
+        { label: '건축규모', value: '지하 2층 ~ 지상 18~29층, 6개동\n총 842세대' },
         { label: '대지면적', value: '43,516㎡(13,164평)' },
-        { label: '건축/연면적', value: ['5,894㎡(1,783평) /', '99,198㎡(30,007평)'] },
+        { label: '건축/연면적', value: '5,894㎡(1,783평) /\n99,198㎡(30,007평)' },
         { label: '건폐율/용적률', value: '13.77% / 231.77%' },
         { label: '주차대수', value: '1,173대(세대당 1.39대)' },
         { label: '입주예정', value: '2028년 7월 예정' },
       ],
+      notice: '※ 본 페이지에 사용된 CG, 이미지 및 내용은 인·허가 과정 중 변경될 수 있습니다.',
     },
 
     // 위치안내 — 공식 홈페이지 입지환경(광역 위치도 + 교통·자연·생활·교육 인프라 이미지컷)
@@ -323,93 +332,29 @@ const config = {
         '※ 지역도는 소비자의 이해를 돕기 위해 제작한 것으로 실제와 차이가 있습니다. 개발 및 교통계획 관련 사항은 관계기관의 사정에 따라 변경 및 취소될 수 있으며, 학교 관련 사항은 해당 교육청의 결정사항으로 당사와 무관합니다.',
     },
 
-    // 프리미엄 인트로 — 왼쪽 조경 투시도(p8) + 오른쪽 카피
-    premiumIntro: {
-      split: true,
-      eyebrow: 'Timeless prestige',
-      eyebrowColor: '#2b6a9c',
-      titleLine1: '공세권의 특권을 누리는\n프리미엄 주거공간',
-      paragraphs: [
-        ['Park(공원) + Palace(궁전, 대저택)', '+ Riche(부유한)', '총 842세대 브랜드 대단지'],
-        ['남동·남서향 배치와 전용 84㎡ 위주,', '지역 내 희소성 높은 중대형 구성으로', '여유로운 라이프가 시작됩니다'],
-      ],
-      imageBadge: '조경 투시도',
-      bgImage: {
-        src: '/apt/yangsan-xi-park-paliche-2/premium-split.webp',
-        alt: '양산자이 파크팰리체 조경 투시도',
-      },
-    },
-
-    // 프리미엄 인트로 바로 다음 split 섹션 2개(2026-10-14 사용자 요청 — 현장 핵심 포인트) — 브랜드 대단지·교통 / 커뮤니티·조경
-    premiumIntroExtras: [
-      {
-        split: true,
-        reverse: true,
-        eyebrow: 'Brand Landmark',
-        eyebrowColor: '#2b6a9c',
-        titleLine1: '양산 첫 번째 자이,\n842세대 브랜드 대단지',
-        paragraphs: [
-          { head: 'GS건설 자이 브랜드 프리미엄', lines: ['지하 2층~지상 최고 29층', '6개동 총 842세대,', '84㎡부터 168㎡P까지', '다양한 평형 구성'] },
-          { head: '부울경 메가시티 교통 중심', lines: ['웅상대로·7번 국도와', '부울경 광역철도(계획)로', '부산·울산 생활권을 더 가깝게'] },
-        ],
-        imageBadge: '조감도',
-        bgImage: { src: '/apt/yangsan-xi-park-paliche-2/overview-aerial.webp', alt: '양산자이 파크팰리체 조감도' },
-      },
-      {
-        split: true,
-        eyebrow: 'Club Xian',
-        eyebrowColor: '#2b6a9c',
-        titleLine1: '단지 안에서 누리는\n품격 있는 일상',
-        paragraphs: [
-          { head: '지하 1·2층 프리미엄 커뮤니티', lines: ['골프연습장(GDR 8타석)·스크린골프', '피트니스·사우나', '작은도서관(교보문고 북 큐레이션)', '독서실·북카페'] },
-          { head: '공원 같은 단지 조경', lines: ['중앙 잔디마당·산책로', '테마정원·수경공간으로', '집 앞에서 즐기는 힐링 라이프'] },
-        ],
-        imageBadge: '커뮤니티 광장 투시도',
-        bgImage: { src: '/apt/yangsan-xi-park-paliche-2/landscape-club.webp', alt: '양산자이 파크팰리체 커뮤니티 앞 광장 투시도' },
-      },
-    ],
-
-    // 프리미엄 가치 — 2026-10-14 사용자 요청으로 PREMIUM 5로 교체: 문구는 사용자 제공, 사진은 https://megacitymh.co.kr/ 프리미엄 섹션 원본(1300×800)
+    // 프리미엄 — 2026-11-23 사용자 요청 '덕은 DMC 현장과 같은 구조(프리미엄 부분)': 덕은 DMC 에일린의 뜰 3차 공식 홈페이지형 프리미엄
+    //   (variant 'luxe' → components/sections/SignatureLuxeBlocks LuxePremium — 조경 투시도 배너 + 인트로 카피 + 사진 카드 6장).
+    //   기존 프리미엄 인트로(split)·브랜드 대단지/클럽자이안 split 2개·PREMIUM 5 카드를 이 한 섹션으로 합침 —
+    //   카드 01은 브랜드 대단지(조감도), 02~06은 기존 PREMIUM 5 문구·사진(https://megacitymh.co.kr/ 원본 1300×800) 그대로.
+    //   커뮤니티(클럽자이안)는 단지안내 탭에 그대로 있음.
     premiumValue: {
       id: 'premium-value',
-      navLabel: '프리미엄가치',
-      eyebrow: 'PREMIUM LIFE',
-      titlePlain: '양산자이 파크팰리체 ',
-      titleAccent: 'PREMIUM 5',
-      accentColor: '#2b6a9c',
-      columns: 5,
+      variant: 'luxe',
+      theme: { navy: '#0b1340', navy2: '#0c1e44', steel: '#2b6a9c', sky: '#4a8fc4', skyLight: '#8fc3e8', ice: '#eaf2f8' },
+      headBg: { src: '/apt/yangsan-xi-park-paliche-2/premium-split.webp' },
+      headTitle: 'PARK PALICHE\nPREMIUM',
+      headSub: '살수록 더 빛나는 여섯 가지 가치',
+      introTitle: '공세권의 특권을 누리는\n프리미엄 주거공간',
+      introLines: ['Park(공원) + Palace(대저택) + Riche(부유한),\n남동·남서향 배치의 842세대 브랜드 대단지에서 여유로운 라이프가 시작됩니다.'],
       cards: [
-        {
-          num: '01',
-          image: { src: '/apt/yangsan-xi-park-paliche-2/premium5-traffic.webp', alt: '도심 도로 야경 이미지컷' },
-          title: ['한발빠른 교통망'],
-          desc: ['웅상대로와 7번 국도로 부산 및 울산 이동이 편리하며, 1028호 국도(계획) 등 편리한 광역 교통망을 갖추고 있습니다.'],
-        },
-        {
-          num: '02',
-          image: { src: '/apt/yangsan-xi-park-paliche-2/premium5-eco.webp', alt: '공원 잔디밭을 뛰노는 아이들 이미지컷' },
-          title: ['친환경 에코특권'],
-          desc: ['단지 바로 옆 웅상센트럴파크 조성으로 365일 쾌적함이 돋보이는 친환경 공원 라이프를 누릴 수 있습니다.'],
-        },
-        {
-          num: '03',
-          image: { src: '/apt/yangsan-xi-park-paliche-2/premium5-infra.webp', alt: '마트 쇼핑카트 이미지컷' },
-          title: ['풍요로운 인프라'],
-          desc: ['이마트 트레이더스, 웅상문화체육센터, 동부행정타운(계획), 양산 웅상출장소, 일반상업지역 내 시설 등을 편리하게 이용할 수 있습니다.'],
-        },
-        {
-          num: '04',
-          image: { src: '/apt/yangsan-xi-park-paliche-2/premium5-education.webp', alt: '교실에서 손 드는 학생 이미지컷' },
-          title: ['가까운 교육시설'],
-          desc: ['단지 앞 평산초등학교가 도보 거리에 있어 안심하고 통학할 수 있으며, 웅상도서관 등 가깝고 우수한 교육 환경을 제공합니다.'],
-        },
-        {
-          num: '05',
-          image: { src: '/apt/yangsan-xi-park-paliche-2/premium5-work.webp', alt: '출근하는 직장인 이미지컷' },
-          title: ['직주근접 라이프'],
-          desc: ['소주공업지구, 서창일반산단, 덕계일반산단 등 인근 13개 산단(조성 계획 포함)을 품은 직주근접 프리미엄을 갖추고 있습니다.'],
-        },
+        { num: '01', image: '/apt/yangsan-xi-park-paliche-2/overview-aerial.webp', alt: '양산자이 파크팰리체 조감도', en: 'BRAND LANDMARK', title: '양산 첫 번째 자이, 842세대', desc: '지하 2층~지상 최고 29층 6개동 총 842세대, 84㎡부터 168㎡P까지 다양한 평형의 GS건설 자이 브랜드 대단지' },
+        { num: '02', image: '/apt/yangsan-xi-park-paliche-2/premium5-traffic.webp', alt: '도심 도로 야경 이미지컷', en: 'TRAFFIC', title: '한발빠른 교통망', desc: '웅상대로와 7번 국도로 부산 및 울산 이동이 편리하며, 1028호 국도(계획) 등 편리한 광역 교통망을 갖추고 있습니다.' },
+        { num: '03', image: '/apt/yangsan-xi-park-paliche-2/premium5-eco.webp', alt: '공원 잔디밭을 뛰노는 아이들 이미지컷', en: 'ECO LIFE', title: '친환경 에코특권', desc: '단지 바로 옆 웅상센트럴파크 조성으로 365일 쾌적함이 돋보이는 친환경 공원 라이프를 누릴 수 있습니다.' },
+        { num: '04', image: '/apt/yangsan-xi-park-paliche-2/premium5-infra.webp', alt: '마트 쇼핑카트 이미지컷', en: 'INFRA', title: '풍요로운 인프라', desc: '이마트 트레이더스, 웅상문화체육센터, 동부행정타운(계획), 양산 웅상출장소, 일반상업지역 내 시설 등을 편리하게 이용할 수 있습니다.' },
+        { num: '05', image: '/apt/yangsan-xi-park-paliche-2/premium5-education.webp', alt: '교실에서 손 드는 학생 이미지컷', en: 'EDUCATION', title: '가까운 교육시설', desc: '단지 앞 평산초등학교가 도보 거리에 있어 안심하고 통학할 수 있으며, 웅상도서관 등 가깝고 우수한 교육 환경을 제공합니다.' },
+        { num: '06', image: '/apt/yangsan-xi-park-paliche-2/premium5-work.webp', alt: '출근하는 직장인 이미지컷', en: 'WORK & LIFE', title: '직주근접 라이프', desc: '소주공업지구, 서창일반산단, 덕계일반산단 등 인근 13개 산단(조성 계획 포함)을 품은 직주근접 프리미엄을 갖추고 있습니다.' },
       ],
+      note: '※ 상기 이미지는 소비자의 이해를 돕기 위한 이미지컷으로 실제와 차이가 있을 수 있습니다.',
     },
 
     // 단지안내 — 공식 홈페이지 단지배치도·동호배치도·커뮤니티·시스템 + 교육자료 조감도(p2)·조경(p7~8)

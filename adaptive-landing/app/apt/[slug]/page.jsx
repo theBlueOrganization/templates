@@ -48,6 +48,7 @@ import SignatureVisitReservation from '../../../components/sections/SignatureVis
 import SignatureOverviewGeomdan from '../../../components/sections/SignatureOverviewGeomdan'
 import SignatureSellingStory from '../../../components/sections/SignatureSellingStory'
 import SignaturePremiumDuo from '../../../components/sections/SignaturePremiumDuo'
+import { LuxeOverview, LuxePremium } from '../../../components/sections/SignatureLuxeBlocks'
 import SignatureInfrastructure from '../../../components/sections/SignatureInfrastructure'
 import SignatureValueBand from '../../../components/sections/SignatureValueBand'
 import SignatureLivingSpaces from '../../../components/sections/SignatureLivingSpaces'
@@ -396,8 +397,11 @@ export default async function AptPage({ params }) {
         )}
         {sig.benefits && !sig.benefits.afterHero && <SignatureBenefits benefits={sig.benefits} />}
         {sig.visitReservation && <SignatureVisitReservation visitReservation={sig.visitReservation} config={site} />}
+        {/* summary.variant 'luxe' — 덕은 DMC 에일린의 뜰 3차 공식 홈페이지형 사업개요(배경 사진 + 큰 영문 워드 + 수치 + 개요표, SignatureLuxeBlocks). 예: yangsan-xi-park-paliche-2 */}
         {sig.summary &&
-          (sig.summary.variant === 'tabs' ? (
+          (sig.summary.variant === 'luxe' ? (
+            <LuxeOverview overview={sig.summary} />
+          ) : sig.summary.variant === 'tabs' ? (
             <SignatureSummaryTabs summary={sig.summary} />
           ) : (
             <SignatureSummary summary={sig.summary} />
@@ -427,13 +431,19 @@ export default async function AptPage({ params }) {
         {sig.story && <SignatureSellingStory story={sig.story} />}
         {/* arkoneLandmarks.beforePremium — 청라 핵심 3종을 프리미엄 바로 앞에 두는 현장용(예: cheongna-arkone-prugio-3) */}
         {sig.arkoneLandmarks?.beforePremium && <SignatureArkoneLandmarks landmarks={sig.arkoneLandmarks} />}
-        <SignaturePremiumIntro premiumIntro={sig.premiumIntro} />
+        {/* premiumValue.variant 'luxe' — 프리미엄 인트로·가치를 덕은 DMC 에일린의 뜰 3차 공식 홈페이지형 프리미엄(배너 + 카드, SignatureLuxeBlocks)
+            한 섹션으로 대체 — 이때 premiumIntro는 렌더하지 않음. 예: yangsan-xi-park-paliche-2 */}
+        {sig.premiumValue.variant !== 'luxe' && <SignaturePremiumIntro premiumIntro={sig.premiumIntro} />}
         {/* premiumIntroExtras — premiumIntro 바로 다음에 같은 컴포넌트(주로 split)를 여러 개 이어 붙일 때 (예: 청라 더리브 티아모 까사2 PERFECT TRIPLE 01~03) */}
         {sig.premiumIntroExtras?.map((extra, i) => (
           <SignaturePremiumIntro key={i} premiumIntro={extra} />
         ))}
         {sig.newsImage && <SignatureNewsImage image={sig.newsImage} maxWidth={sig.newsImage.maxWidth} />}
-        <SignaturePremiumValue premiumValue={sig.premiumValue} />
+        {sig.premiumValue.variant === 'luxe' ? (
+          <LuxePremium premium={sig.premiumValue} />
+        ) : (
+          <SignaturePremiumValue premiumValue={sig.premiumValue} />
+        )}
         {sig.premiumSplits?.map((split, i) => (
           <SignaturePremiumSplit key={i} split={split} />
         ))}

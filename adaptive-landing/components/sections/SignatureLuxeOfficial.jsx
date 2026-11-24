@@ -197,6 +197,26 @@ function VisitForm({ site, luxe, idPrefix, onSuccess }) {
 }
 
 // holdForIntro — 인트로(SignatureArkoneIntro)가 앞에 뜰 때, 끝 신호(circleintro:end) 뒤에 진입 팝업을 연다
+// 화면에 들어오면 재생, 벗어나면 일시정지 — 페이지 첫 로딩 때 영상을 받지 않도록 preload="none"
+function LuxeVideo({ video }) {
+  const ref = useRef(null)
+  useEffect(() => {
+    const v = ref.current
+    if (!v || typeof IntersectionObserver === 'undefined') return
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) v.play().catch(() => {})
+      else v.pause()
+    }, { threshold: 0.35 })
+    io.observe(v)
+    return () => io.disconnect()
+  }, [])
+  return (
+    <div className={styles.videoFrame}>
+      <video ref={ref} src={video.src} poster={video.poster} muted loop playsInline preload="none" controls={!!video.controls} aria-label={video.alt} />
+    </div>
+  )
+}
+
 export default function SignatureLuxeOfficial({ site, holdForIntro = false }) {
   const luxe = site.luxe
   const footer = site.footer
@@ -339,6 +359,17 @@ export default function SignatureLuxeOfficial({ site, holdForIntro = false }) {
             </div>
           </div>
         </section>
+
+        {/* luxe.video — 브랜드 소개 다음 전체폭 영상(화면에 보일 때만 재생, 소리 없음) */}
+        {luxe.video && (
+          <section id="video" className={styles.videoSec}>
+            <div className={cn(styles.videoHead, styles.reveal)}>
+              {luxe.video.eyebrow && <p className={styles.eyebrowEn}>{luxe.video.eyebrow}</p>}
+              {luxe.video.title && <h2><Lines text={luxe.video.title} /></h2>}
+            </div>
+            <LuxeVideo video={luxe.video} />
+          </section>
+        )}
 
         {/* 2. OVERVIEW */}
         <section id="overview" className={styles.overview}>

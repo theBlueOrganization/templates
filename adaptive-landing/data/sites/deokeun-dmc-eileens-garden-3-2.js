@@ -245,10 +245,11 @@ const config = {
           src: '/apt/deokeun-dmc-eileens-garden-3-2/unit-tour.mp4',
           poster: '/apt/deokeun-dmc-eileens-garden-3-2/unit-tour-poster.webp',
           eyebrow: 'UNIT TOUR',
-          title: '실물 세대 둘러보기',
-          alt: '덕은 DMC 에일린의 뜰 한강 오피스텔 세대 내부(현관·주방·거실·창밖 조망) 투어 영상',
+          title: '유니트 둘러보기',
+          alt: '덕은 DMC 에일린의 뜰 한강 유니트 내부(현관·주방·거실·창밖 조망) 투어 영상 — 소형 평형 유니트',
           controls: true,
-          note: '※ 영상 속 가구·소품은 연출용으로 분양 품목에 포함되지 않을 수 있습니다.',
+          // 2026-11-24 현장 요청 '해당 유니트는 작은평수 영상이라고 조그맣게 기재' — 하단 작은 안내문으로 표기
+          note: '※ 본 영상은 작은 평형 유니트 영상으로, 84㎡ 타입과 면적·구성이 다릅니다. 영상 속 가구·소품은 연출용입니다.',
         },
       },
       // 지도전단 '일상을 채우는 6가지 커뮤니티' — 배치도는 같은 전단에서 평면만 크롭

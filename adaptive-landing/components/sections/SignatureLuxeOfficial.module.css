@@ -296,8 +296,19 @@
 .popupActions button:first-child { background: #eef2f6; color: #5f6d7b; }
 .popupActions button:last-child { background: var(--navy); color: #fff; }
 
+.videoSec { background: var(--navy); color: #fff; padding: 64px 0 0; text-align: center; }
+.videoHead { padding: 0 24px 28px; }
+.videoHead h2 { margin-top: 12px; font-family: var(--serif); font-size: 22px; font-weight: 600; line-height: 1.5; }
+.videoFrame { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; }
+.videoFrame video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
 /* ── TABLET+ ─────────────────────────────── */
 @media (min-width: 768px) {
+  .videoSec { padding-top: 96px; }
+  .videoHead { padding-bottom: 40px; }
+  .videoHead h2 { font-size: 30px; }
+  .videoSec { padding-bottom: 96px; }
+  .videoFrame { max-width: 1280px; margin: 0 auto; }
   .fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .fieldFull { grid-column: 1 / -1; }
   .form { padding: 40px 36px; }

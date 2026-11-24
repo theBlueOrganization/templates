@@ -103,6 +103,14 @@ const config = {
           height: 1271,
         },
       },
+      // 2026-11-24 'VIDEO라는 이름의 동영상을 홈페이지 내에 반영' — 현장·주변 드론 항공영상(원본 VIDEO.mp4 45MB → aerial.mp4 22MB 재압축, 소리 없음)
+      video: {
+        src: '/apt/deokeun-dmc-eileens-garden-3-2/aerial.mp4',
+        poster: '/apt/deokeun-dmc-eileens-garden-3-2/aerial-poster.webp',
+        eyebrow: 'AERIAL FILM',
+        title: '하늘에서 본\n덕은 DMC 에일린의 뜰 한강',
+        alt: '덕은 DMC 에일린의 뜰 한강 현장과 한강·주변 일대 드론 항공 영상',
+      },
       // 카탈로그 메인 카피
       hero: {
         bg: { src: '/apt/deokeun-dmc-eileens-garden-3-2/hero.webp', alt: '덕은 DMC 에일린의 뜰 한강 한강변 야경 투시도' },

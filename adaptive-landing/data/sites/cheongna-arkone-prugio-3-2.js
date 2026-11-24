@@ -396,7 +396,7 @@ const config = {
       title: '오피스텔',
       benefit: {
         titleLines: ['무상 옵션 + 중도금 무이자 + 오션뷰.', '오피스텔에서 챙길 세 가지 혜택.'],
-        image: { src: '/apt/cheongna-arkone-prugio-3-2/officetel-benefit.webp', alt: '청라 아크원 푸르지오 오피스텔 안내 이미지', caption: '청라 아크원 푸르지오 오피스텔 안내 이미지' },
+        image: { src: '/apt/cheongna-arkone-prugio-3-2/officetel-benefit.webp', alt: '청라 아크원 푸르지오 조감도', caption: '청라 아크원 푸르지오 조감도' },
         stats: [
           { value: '987실', label: '오피스텔' },
           { value: '105·121·136㎡', label: '전용면적' },
@@ -415,7 +415,7 @@ const config = {
         cards: [
           {
             num: '01', label: '주거 기능',
-            image: { src: '/apt/cheongna-arkone-prugio-3-2/officetel-card-01.webp', alt: '청라 아크원 푸르지오 오피스텔 투시도' },
+            image: { src: '/apt/cheongna-arkone-prugio-3-2/officetel-card-01.webp', alt: '청라 아크원 푸르지오 투시도' },
             title: '난방 규제 완화,\n주거형으로 진화',
             desc: '소형 임대 중심에서\n가족이 사는 중대형까지.',
             years: [

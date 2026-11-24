@@ -23,6 +23,7 @@ import osanHeritageXiXi1 from './sites/osan-heritage-xi-xi1'
 import cheongnaArkonePrugio from './sites/cheongna-arkone-prugio'
 import cheongnaArkonePrugio2 from './sites/cheongna-arkone-prugio-2'
 import cheongnaArkonePrugio3 from './sites/cheongna-arkone-prugio-3'
+import cheongnaArkonePrugio32 from './sites/cheongna-arkone-prugio-3-2'
 import cheongnaArkonePrugio4 from './sites/cheongna-arkone-prugio-4'
 import forenaIncheonHagik from './sites/forena-incheon-hagik'
 import cityOciel9 from './sites/city-ociel-9'
@@ -88,6 +89,7 @@ const sites = [
   cheongnaArkonePrugio,
   cheongnaArkonePrugio2,
   cheongnaArkonePrugio3,
+  cheongnaArkonePrugio32,
   cheongnaArkonePrugio4,
   forenaIncheonHagik,
   cityOciel9,

@@ -219,7 +219,7 @@ const config = {
           luxeUnit('84A-1', '84a-1', 910, '301동 24실 · 한강 조망', '전용 84.9426㎡ · 공급 113.5462㎡ · 계약 185.5073㎡'),
           luxeUnit('84B-1', '84b-1', 912, '301동 48실 · 일부 세대 한강 조망', '전용 84.9332㎡ · 공급 112.7427㎡ · 계약 184.6958㎡'),
         ],
-        note: '※ 평면 이미지는 소비자의 이해를 돕기 위한 것으로 실제와 차이가 있을 수 있으니 실물 세대에서 확인하시기 바랍니다.',
+        note: '※ 평면·인테리어 3D 이미지는 소비자의 이해를 돕기 위한 것으로 가구 배치는 예시이며 실제와 차이가 있을 수 있으니 실물 세대에서 확인하시기 바랍니다.',
       },
       // 지도전단 '일상을 채우는 6가지 커뮤니티' — 배치도는 같은 전단에서 평면만 크롭
       community: {
@@ -606,12 +606,16 @@ const config = {
   },
 }
 
-// luxe 세대안내 탭 한 칸 — 카탈로그 타입 안내 아이소메트릭 평면(1000폭)
+// luxe 세대안내 탭 한 칸 — 하위 탭 2개: 카탈로그 타입 안내 아이소메트릭 평면(1000폭) + 인테리어 3D 렌더
+// 인테리어 3D: 2026-11-24 사용자 제공 「덕은DMC_에일린의뜰_한강_하이엔드_인테리어_3D_룩북_개정판」 PDF 내장 렌더 원본(1573×1000) 추출 → webp
 function luxeUnit(label, file, height, where, area) {
   return {
     label,
     info: `${where}\n${area}`,
-    image: { src: `/apt/deokeun-dmc-eileens-garden-3-2/unit-${file}.webp`, alt: `${label} 타입(${where}) — ${area}`, width: 1000, height },
+    images: [
+      { label: '평면도', src: `/apt/deokeun-dmc-eileens-garden-3-2/unit-${file}.webp`, alt: `${label} 타입(${where}) — ${area}`, width: 1000, height },
+      { label: '인테리어 3D', src: `/apt/deokeun-dmc-eileens-garden-3-2/interior-${file}.webp`, alt: `${label} 타입 하이엔드 인테리어 3D — 거실·다이닝 밝은 광택 대리석, 안방·작은방 밝은 오크 강화마루 가구 배치 예시`, width: 1573, height: 1000 },
+    ],
   }
 }
 

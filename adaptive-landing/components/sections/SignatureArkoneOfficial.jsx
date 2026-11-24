@@ -480,8 +480,17 @@ export default function SignatureArkoneOfficial({ site }) {
       </div>
 
       {/* 진입 이벤트 팝업 — 예약 방문 시 신세계상품권 증정 → 하단 "방문예약"으로 등록 폼 팝업 이동 */}
-      <dialog ref={eventRef} className={cn(styles.dialog, styles.eventDialog)} aria-labelledby="arkoneEventTitle" onClick={(e) => { if (e.target === eventRef.current) closeEvent() }}>
+      <dialog ref={eventRef} className={cn(styles.dialog, styles.eventDialog, content.popupImage && styles.eventImageDialog)} aria-labelledby={content.popupImage ? undefined : 'arkoneEventTitle'} aria-label={content.popupImage ? (content.popupImageAlt ?? '이벤트 안내') : undefined} onClick={(e) => { if (e.target === eventRef.current) closeEvent() }}>
         <button type="button" className={styles.dialogClose} onClick={closeEvent} aria-label="닫기">팝업닫기 ✕</button>
+        {content.popupImage ? (
+          // content.popupImage — 현장에서 준 팝업 이미지 한 장. 이미지를 누르면 방문예약 폼, 이미지 속 X 자리는 닫기
+          <div className={styles.eventImageCard}>
+            <button type="button" className={styles.eventImageBtn} onClick={openForm} autoFocus aria-label="방문예약 신청">
+              <img src={content.popupImage} alt={content.popupImageAlt ?? ''} />
+            </button>
+            <button type="button" className={styles.eventImageX} onClick={closeEvent} aria-label="닫기" />
+          </div>
+        ) : (
         <div className={styles.eventCard}>
           <div className={styles.eventTop}>
             <p className={styles.eventEyebrow}>VISIT EVENT</p>
@@ -503,6 +512,7 @@ export default function SignatureArkoneOfficial({ site }) {
           </div>
           <button type="button" className={styles.eventCta} onClick={openForm} autoFocus>방문예약 <span aria-hidden="true">→</span></button>
         </div>
+        )}
       </dialog>
 
       <dialog ref={dialogRef} className={styles.dialog} onClick={(e) => { if (e.target === dialogRef.current) closeForm() }}>

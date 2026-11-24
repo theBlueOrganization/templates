@@ -312,6 +312,14 @@
 .eventCta span { transition: transform 0.2s; }
 .eventCta:hover span { transform: translateX(4px); }
 
+/* content.popupImage — 팝업 이미지(1156x1360) 한 장을 화면 높이 안에 통째로 */
+.eventImageDialog { max-width: min(420px, calc(100vw - 40px), calc((100dvh - 64px) * 0.85)); }
+.eventImageCard { position: relative; margin-top: 40px; border-radius: 12px; overflow: hidden; line-height: 0; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35); }
+.eventImageBtn { display: block; width: 100%; border: 0; padding: 0; background: none; cursor: pointer; }
+.eventImageBtn img { display: block; width: 100%; height: auto; }
+/* 이미지 오른쪽 위에 그려진 X 위치 */
+.eventImageX { position: absolute; top: 0; right: 0; width: 13%; height: 11%; border: 0; padding: 0; background: transparent; cursor: pointer; }
+
 /* ── PC ─────────────────────────────── */
 @media (min-width: 1024px) {
   .header { height: 72px; }

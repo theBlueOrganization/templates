@@ -141,6 +141,8 @@ const adaptiveLandingPointers = [
   { slug: "deokeun-dmc-eileens-garden-3", subdomain: "덕은dmc에일린의뜰3차", template: "adaptive-landing" },
   // 덕은 DMC 에일린의 뜰 한강 3차(2026-11-24) — 3차 복제 별도 분양팀, 한글도메인 덕은dmc에일린의뜰한강3차.addupapt.kr
   { slug: "deokeun-dmc-eileens-garden-3-2", subdomain: "덕은dmc에일린의뜰한강3차", template: "adaptive-landing" },
+  // 제일풍경채 광주 포에듀(2026-11-24) — 한글도메인 제일풍경채광주포에듀.addupapt.kr
+  { slug: "jeil-gwangju-foredu", subdomain: "제일풍경채광주포에듀", template: "adaptive-landing" },
 ];
 
 const allSites = [...sites, ...adaptiveLandingPointers];

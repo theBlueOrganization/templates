@@ -516,6 +516,15 @@ export default function SignatureLuxeOfficial({ site, holdForIntro = false }) {
           </div>
           <div className={styles.reveal}><TabGallery tabs={unit.tabs} onZoom={setZoom} columns={unit.tabs.length} columnsMobile={3} /></div>
           <p className={styles.noteDark}>{unit.note}</p>
+          {/* unit.video — 세대 내부 투어 영상(평면·3D 다음) */}
+          {unit.video && (
+            <div className={cn(styles.unitVideo, styles.reveal)}>
+              {unit.video.eyebrow && <p className={styles.eyebrowEn}>{unit.video.eyebrow}</p>}
+              {unit.video.title && <h3>{unit.video.title}</h3>}
+              <LuxeVideo video={unit.video} />
+              {unit.video.note && <p className={styles.noteDark}>{unit.video.note}</p>}
+            </div>
+          )}
         </section>
 
         {/* 8. COMMUNITY */}

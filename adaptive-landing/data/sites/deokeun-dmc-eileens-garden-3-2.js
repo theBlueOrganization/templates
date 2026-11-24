@@ -240,6 +240,16 @@ const config = {
           luxeUnit('84B-1', '84b-1', 912, '301동 48실 · 일부 세대 한강 조망', '전용 84.9332㎡ · 공급 112.7427㎡ · 계약 184.6958㎡'),
         ],
         note: '※ 평면·인테리어 3D 이미지는 소비자의 이해를 돕기 위한 것으로 가구 배치는 예시이며 실제와 차이가 있을 수 있으니 실물 세대에서 확인하시기 바랍니다.',
+        // 2026-11-24 '비디오 하나 더 — 모델하우스 영상, 적절히 배치' — 세대 내부 투어(현관·주방·거실·한강 조망). 원본 VIDEO2.mp4(HEVC 1080p 19MB) → H.264 720p 14MB(일부 브라우저 HEVC 미지원)
+        video: {
+          src: '/apt/deokeun-dmc-eileens-garden-3-2/unit-tour.mp4',
+          poster: '/apt/deokeun-dmc-eileens-garden-3-2/unit-tour-poster.webp',
+          eyebrow: 'UNIT TOUR',
+          title: '실물 세대 둘러보기',
+          alt: '덕은 DMC 에일린의 뜰 한강 오피스텔 세대 내부(현관·주방·거실·창밖 조망) 투어 영상',
+          controls: true,
+          note: '※ 영상 속 가구·소품은 연출용으로 분양 품목에 포함되지 않을 수 있습니다.',
+        },
       },
       // 지도전단 '일상을 채우는 6가지 커뮤니티' — 배치도는 같은 전단에서 평면만 크롭
       community: {

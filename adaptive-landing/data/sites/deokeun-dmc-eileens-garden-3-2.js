@@ -333,8 +333,6 @@ const config = {
     // 인트로(2026-11-22 요청 '3개로 된 걸로') — 3분할 이미지 → 브랜드 임팩트(SignatureArkoneIntro, 엘리프 검단 포레듀와 같은 형식).
     //   장면 이미지: 1 야경 CG(사용자 추가 1.jpg) · 2 상담북 한강 사진 · 3 상담북 주간 CG, 각 900×560 크롭
     arkoneIntro: {
-      // 2026-11-23 요청 — 3분할 이미지 단계 3초 연장(4s→7s), 뒤 로고 단계 2초(1.6s→2s)
-      timing: { sceneSec: 7, brandSec: 2 },
       ariaLabel: '덕은 DMC 에일린의 뜰 한강을 소개하는 인트로',
       scenes: [
         { img: '/apt/deokeun-dmc-eileens-garden-3-2/intro-1.webp', label: '01 · HANGANG VIEW', name: '한강 뷰 오피스텔 총 168실' },

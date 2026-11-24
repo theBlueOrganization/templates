@@ -207,6 +207,9 @@ export default function SignatureLuxeOfficial({ site, holdForIntro = false }) {
   const rootRef = useRef(null)
   const formDialogRef = useRef(null)
   const popupDialogRef = useRef(null)
+  // popup.images(앞에서부터 순서대로) + popup.image(마지막) — '닫기'를 누르면 다음 이미지, 마지막에서 닫힘
+  const popupImages = luxe.popup ? [...(luxe.popup.images || []), ...(luxe.popup.image ? [luxe.popup.image] : [])] : []
+  const [popupIdx, setPopupIdx] = useState(0)
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [zoom, setZoom] = useState(null)
@@ -242,7 +245,10 @@ export default function SignatureLuxeOfficial({ site, holdForIntro = false }) {
     setMenuOpen(false)
   }
   const closeForm = () => formDialogRef.current?.close()
-  const closePopup = () => { popupDialogRef.current?.close(); if (luxe.popup?.formAfterClose) setTimeout(openForm, 250) }
+  const closePopup = () => {
+    if (!luxe.popup?.card && popupIdx < popupImages.length - 1) { setPopupIdx((i) => i + 1); return }
+    popupDialogRef.current?.close(); if (luxe.popup?.formAfterClose) setTimeout(openForm, 250)
+  }
 
   const go = (id) => (e) => {
     e.preventDefault()
@@ -591,13 +597,18 @@ export default function SignatureLuxeOfficial({ site, holdForIntro = false }) {
               </button>
             ) : (
               <button type="button" className={styles.popupImgBtn} onClick={openForm} aria-label="방문예약 신청하기">
-                <Image src={luxe.popup.image.src} alt={luxe.popup.image.alt} width={luxe.popup.image.width} height={luxe.popup.image.height} sizes="(max-width: 600px) 92vw, 440px" />
+                <Image key={popupImages[popupIdx].src} src={popupImages[popupIdx].src} alt={popupImages[popupIdx].alt} width={popupImages[popupIdx].width} height={popupImages[popupIdx].height} sizes="(max-width: 600px) 92vw, 440px" />
               </button>
             )}
-            <div className={styles.popupActions}>
-              <button type="button" onClick={closePopup}>닫기</button>
-              <button type="button" onClick={openForm}>방문예약 신청</button>
-            </div>
+            {/* popup.closeIcon — 하단 '닫기' 대신 이미지 우측 상단 ✕ */}
+            {luxe.popup.closeIcon && <button type="button" className={styles.popupCloseX} onClick={closePopup} aria-label="닫기">✕</button>}
+            {/* images[].hideActions — 그 이미지에서는 하단 버튼 줄 숨김(✕로만 닫기) */}
+            {!(luxe.popup.card ? false : popupImages[popupIdx]?.hideActions) && (
+              <div className={cn(styles.popupActions, luxe.popup.closeIcon && styles.popupActionsSingle)}>
+                {!luxe.popup.closeIcon && <button type="button" onClick={closePopup}>닫기</button>}
+                <button type="button" onClick={openForm}>방문예약 신청</button>
+              </div>
+            )}
           </div>
         </dialog>
       )}

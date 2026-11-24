@@ -286,7 +286,9 @@
 .dialog[open] { display: block; }
 .dialogClose { position: absolute; z-index: 2; top: 14px; right: 14px; width: 34px; height: 34px; border: 0; border-radius: 50%; background: var(--ice); color: var(--navy); font-size: 15px; font-weight: 700; }
 .popupDialog { max-width: min(440px, calc(100vw - 32px)); }
-.popupBody { border-radius: 10px; overflow: hidden; background: #fff; }
+.popupBody { position: relative; border-radius: 10px; overflow: hidden; background: #fff; }
+.popupCloseX { position: absolute; top: 10px; right: 10px; z-index: 2; width: 34px; height: 34px; border: 0; border-radius: 50%; background: rgba(0,0,0,.45); color: #fff; font-size: 16px; line-height: 34px; text-align: center; cursor: pointer; }
+.popupActions.popupActionsSingle { grid-template-columns: 1fr; }
 .popupImgBtn { display: block; width: 100%; padding: 0; border: 0; background: none; }
 .popupImgBtn img { width: 100%; height: auto; max-height: calc(100dvh - 120px); object-fit: contain; display: block; }
 .popupActions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }

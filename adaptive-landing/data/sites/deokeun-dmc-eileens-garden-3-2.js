@@ -97,8 +97,9 @@ const config = {
           },
         ],
         image: {
-          src: '/apt/deokeun-dmc-eileens-garden-3-2/popup-catalog.webp',
-          alt: '지금 바로 입주하는 한강 뷰 오피스텔 — 전망도 가치도 눈부신 마지막 한강 프리미엄, 덕은 DMC 에일린의 뜰 한강. 건설사 보유 로열층 한정 특별 분양: 즉시 입주(준공 완료), 실물 세대 확인, 청약통장 無(만 19세 이상), 본사 직접 계약(아이에스동서). 6·7BL 오피스텔 총 168실',
+          // 2026-11-24 '두번째 팝업 이미지 내에 문구 추가 — 3년전분양가 15%할인 23세대 특별할인분양' — 카탈로그 표지(popup-catalog.webp)에 하늘색 배지 합성 + 하단 '특별 분양'→'특별할인분양'
+          src: '/apt/deokeun-dmc-eileens-garden-3-2/popup-catalog-sale.webp',
+          alt: '지금 바로 입주하는 한강 뷰 오피스텔 — 전망도 가치도 눈부신 마지막 한강 프리미엄, 덕은 DMC 에일린의 뜰 한강. 3년 전 분양가 15% 할인 · 23세대 특별할인분양. 건설사 보유 로열층 한정 특별할인분양: 즉시 입주(준공 완료), 실물 세대 확인, 청약통장 無(만 19세 이상), 본사 직접 계약(아이에스동서). 6·7BL 오피스텔 총 168실',
           width: 900,
           height: 1271,
         },
@@ -118,8 +119,10 @@ const config = {
         eyebrow: 'THE LAST HANGANG PREMIUM',
         titleLight: '전망도 가치도 눈부신',
         titleStrong: '마지막 한강 프리미엄',
+        // 2026-11-24 '전망도 가치도 눈부신 마지막 한강 프리미엄 글자크기 키워' — 히어로 제목 배율(모바일 1.2배 · PC 1.3배)
+        titleScale: { mobile: 1.2, desktop: 1.3 },
         name: '덕은 DMC 에일린의 뜰 한강',
-        badge: '건설사 보유 로열층 한정 특별 분양',
+        badge: '건설사 보유 로열층 한정 특별할인분양',
         ringText: "EILEEN'S GARDEN · HANGANG · VISIT · ",
         circleInfo: ['준공 완료', '즉시 입주'],
       },
@@ -180,7 +183,7 @@ const config = {
       // 카탈로그 06쪽 분양 혜택
       lifestyle: {
         bg: { src: '/apt/deokeun-dmc-eileens-garden-3-2/intro-1.webp' },
-        kicker: '건설사 보유 로열층 한정 특별 분양',
+        kicker: '건설사 보유 로열층 한정 특별할인분양',
         title: '기다림 없이,\n오늘 보고 바로 삽니다',
         visual: { src: '/apt/deokeun-dmc-eileens-garden-3-2/intro-3.webp', alt: '덕은 DMC 에일린의 뜰 한강 주간 투시도', width: 900, height: 560 },
         eyebrow: 'SPECIAL OFFER',
@@ -322,7 +325,7 @@ const config = {
       images: [
         {
           src: '/apt/deokeun-dmc-eileens-garden-3-2/popup.webp',
-          alt: '지금 바로 입주하는 한강 뷰 오피스텔 — 전망도 가치도 눈부신 마지막 한강 프리미엄, 덕은 DMC 에일린의 뜰 한강. 건설사 보유 로열층 한정 특별 분양: 즉시 입주(준공 완료), 실물 세대 확인, 청약통장 無(만 19세 이상), 본사 직접 계약(아이에스동서). 6·7BL 오피스텔 총 168실',
+          alt: '지금 바로 입주하는 한강 뷰 오피스텔 — 전망도 가치도 눈부신 마지막 한강 프리미엄, 덕은 DMC 에일린의 뜰 한강. 건설사 보유 로열층 한정 특별할인분양: 즉시 입주(준공 완료), 실물 세대 확인, 청약통장 無(만 19세 이상), 본사 직접 계약(아이에스동서). 6·7BL 오피스텔 총 168실',
           width: 900,
           height: 1272,
         },
@@ -409,7 +412,7 @@ const config = {
         // 카탈로그 '전망도 가치도 눈부신 마지막 한강 프리미엄' — 한 줄로는 모바일 폭을 넘쳐 큰 글씨는 '마지막 한강 프리미엄'만
         lines: [{ light: '마지막 ', strong: '한강 프리미엄', dots: 0 }],
         name: '덕은 DMC 에일린의 뜰 한강',
-        badge: '건설사 보유 로열층 한정 특별 분양',
+        badge: '건설사 보유 로열층 한정 특별할인분양',
         badgeBox: true,
         ctaBadge: {
           ringText: "EILEEN'S GARDEN · VISIT RESERVATION · ",
@@ -436,7 +439,7 @@ const config = {
       afterHero: true,
       hoverTextWhite: true,
       eyebrow: 'SPECIAL OFFER',
-      titleSmall: '건설사 보유 로열층 한정 특별 분양',
+      titleSmall: '건설사 보유 로열층 한정 특별할인분양',
       // 카탈로그 '기다림 없이, 오늘 보고 바로 삽니다' — 큰 글씨 줄이 단어 중간에서 끊기지 않게 둘로 나눔
       titleBold: '기다림 없이, 오늘 보고',
       titleScript: '바로 삽니다',

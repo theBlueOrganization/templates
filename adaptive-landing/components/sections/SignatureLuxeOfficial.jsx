@@ -323,7 +323,8 @@ export default function SignatureLuxeOfficial({ site, holdForIntro = false }) {
           <div className={styles.heroShade} aria-hidden="true" />
           <div className={styles.heroCopy}>
             <p className={styles.heroEyebrow}>{hero.eyebrow}</p>
-            <h1 className={styles.heroTitle}>
+            {/* hero.titleScale — 사이트별 제목 배율 { mobile, desktop } (없으면 1배) */}
+            <h1 className={styles.heroTitle} style={hero.titleScale ? { '--hero-title-m': hero.titleScale.mobile ?? 1, '--hero-title-d': hero.titleScale.desktop ?? hero.titleScale.mobile ?? 1 } : undefined}>
               <span>{hero.titleLight}</span>
               <strong>{hero.titleStrong}</strong>
             </h1>

@@ -337,13 +337,9 @@
 }
 
 /* 공통 마무리 문구 + 각주 */
-/* 요청 반영(2026-11-24) — 마무리 문구+각주를 테두리 박스(선) 안에 */
+/* 요청 반영(2026-11-24) — 마무리 문구+각주는 선·박스 없이 글만 */
 .closing {
-  margin-top: 24px;
-  padding: 20px 22px;
-  border: 1px solid #d5dfdb;
-  border-radius: 16px;
-  background: #fff;
+  margin-top: 28px;
 }
 
 .closingText {
@@ -457,9 +453,5 @@
 
   .closingText {
     font-size: 20px;
-  }
-
-  .closing {
-    padding: 26px 32px;
   }
 }

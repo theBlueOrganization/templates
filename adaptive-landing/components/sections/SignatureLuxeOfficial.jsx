@@ -4,6 +4,7 @@ import { Fragment, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { useUtmSource } from '../../lib/useUtmSource'
 import { cn } from '../../lib/utils'
+import { isDirectLink } from '../../lib/directLink'
 import SignatureLightbox from '../ui/SignatureLightbox'
 import styles from './SignatureLuxeOfficial.module.css'
 
@@ -245,7 +246,8 @@ export default function SignatureLuxeOfficial({ site, holdForIntro = false }) {
 
   // 진입 팝업 — 홍보 이미지 → 닫으면 방문예약 폼(기존 사이트 popup.order 'imageFirst'와 같은 흐름)
   useEffect(() => {
-    if (!luxe.popup) return
+    // 다이렉트 링크(#앵커로 진입, 예: 방문예약 #contact)면 진입 팝업을 띄우지 않음 — 다른 템플릿(SignaturePopupSequence)과 동일
+    if (!luxe.popup || isDirectLink()) return
     let t
     const schedule = () => {
       t = setTimeout(() => { const d = popupDialogRef.current; if (d && !d.open) d.showModal() }, holdForIntro ? 500 : (luxe.popup.delayMs ?? 1000))

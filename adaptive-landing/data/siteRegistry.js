@@ -50,6 +50,7 @@ import yeowolJungangHeightsArbiche from './sites/yeowol-jungang-heights-arbiche'
 import seochoPh1603 from './sites/seocho-ph1603'
 import deokeunDmcEileensGarden3 from './sites/deokeun-dmc-eileens-garden-3'
 import deokeunDmcEileensGarden32 from './sites/deokeun-dmc-eileens-garden-3-2'
+import jeilGwangjuForedu from './sites/jeil-gwangju-foredu'
 
 /**
  * 새 현장 추가 방법:
@@ -116,6 +117,7 @@ const sites = [
   seochoPh1603,
   deokeunDmcEileensGarden3,
   deokeunDmcEileensGarden32,
+  jeilGwangjuForedu,
 ]
 
 // slug로 현장 하나를 찾음 (app/apt/[slug]/page.jsx에서 사용)

@@ -67,6 +67,8 @@ import SignatureBottomDockGeomdan from '../../../components/ui/SignatureBottomDo
 import SignatureArkoneImmersive from '../../../components/sections/SignatureArkoneImmersive'
 import SignatureArkoneOfficial from '../../../components/sections/SignatureArkoneOfficial'
 import SignatureLuxeOfficial from '../../../components/sections/SignatureLuxeOfficial'
+import SignatureBandIntro from '../../../components/sections/SignatureBandIntro'
+import SignatureJeilOfficial from '../../../components/sections/SignatureJeilOfficial'
 import ArkoneGoldEvent from '../../../components/sections/ArkoneGoldEvent'
 import SignatureTiamoImmersive from '../../../components/sections/SignatureTiamoImmersive'
 import SignatureViaafImmersive from '../../../components/sections/SignatureViaafImmersive'
@@ -128,6 +130,34 @@ export default async function AptPage({ params }) {
   // 전용 컴포넌트(SignatureViaafImmersive)로 분기(sig.viaafImmersive)
   // 청라 아크원 푸르지오4(cheongna-arkone-prugio-4) — 공식 홈페이지(arkone-prugio.com) 메인을 따른 일반 스크롤 전용 화면.
   // 폼(ArkoneApplyForm)·푸터에 필요한 값만 추려서 넘김
+  // 제일풍경채 광주 포에듀(jeil-gwangju-foredu) — 공식 홈페이지(jeil-foredu.co.kr) 메인 구성을 따른 전용 화면(sig.jeil)
+  // + 띠 인트로(sig.bandIntro). 폼·푸터에 필요한 값만 추려서 넘김
+  if (sig.jeil) {
+    const jeilSite = {
+      slug: site.slug,
+      telNumber: site.telNumber,
+      telNumberByUtm: site.telNumberByUtm,
+      projectName: site.projectName,
+      adminPhones: site.adminPhones,
+      adminPhonesByUtm: site.adminPhonesByUtm,
+      adminPhoneNames: site.adminPhoneNames,
+      smsMediaLabel: site.smsMediaLabel,
+      sheetId: site.sheetId,
+      sheetTab: site.sheetTab,
+      showUtmInSms: site.showUtmInSms,
+      visitTimeOptions: site.visitTimeOptions,
+      privacyText: sig.vipForm.privacyText,
+      footer: { companyLines: sig.footer.companyLines, disclaimers: sig.footer.disclaimers, agencySlogan: sig.footer.agencySlogan },
+      jeil: sig.jeil,
+    }
+    return (
+      <>
+        {sig.bandIntro && <SignatureBandIntro intro={sig.bandIntro} />}
+        <SignatureJeilOfficial site={jeilSite} holdForIntro={!!sig.bandIntro} />
+      </>
+    )
+  }
+
   // 공식 홈페이지형 일반 스크롤 화면(아크원4 구성 참고, 데이터 기반) — sig.luxe가 있으면 전용 렌더.
   // 폼·푸터에 필요한 값만 추려서 넘김. 사용 현장: deokeun-dmc-eileens-garden-3
   if (sig.luxe) {

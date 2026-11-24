@@ -397,7 +397,8 @@ const config = {
       stacked: true,
       zoomLightbox: true,
       tabs: [
-        // 2026-11-24 「청라아크원_2036_데스크상담북_v1.pdf」 26페이지 캡처(200dpi → 2000px webp)
+        // 2026-11-24 「청라아크원_2036_데스크상담북_v1.pdf」 24·26페이지 캡처(200dpi → 2000px webp) — 상담북 순서대로 혜택 → 가격 판단 기준
+        { label: '', image: { src: '/apt/cheongna-arkone-prugio-3-2/officetel-p24.webp', alt: '무상 옵션 + 중도금 무이자 + 오션뷰. 오피스텔에서 챙길 세 가지 혜택 — 오피스텔 987실, 전용면적 105·121·136㎡', width: 2000, height: 1414 } },
         { label: '', image: { src: '/apt/cheongna-arkone-prugio-3-2/officetel-p26.webp', alt: '오피스텔은 안 올라요? 다섯 가지 기준으로 보시죠 — 주거 기능, 가족형 공간, 실제 거래 사례, 일자리 수요, 비교의 기준', width: 2000, height: 1414 } },
       ],
     },

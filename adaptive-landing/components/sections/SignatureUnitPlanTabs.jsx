@@ -80,8 +80,8 @@ export default function SignatureUnitPlanTabs({ unitPlan }) {
       {unitPlan.stacked ? (
         <div className={cn(styles.inner, styles.stacked)}>
           {unitPlan.tabs.map((t) => (
-            <Reveal key={t.label} className={styles.stackItem}>
-              <h3 className={styles.stackLabel}>{t.label}</h3>
+            <Reveal key={t.label || t.image.src} className={styles.stackItem}>
+              {t.label && <h3 className={styles.stackLabel}>{t.label}</h3>}
               {renderImage(t)}
             </Reveal>
           ))}

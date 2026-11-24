@@ -36,6 +36,7 @@ import SignatureComplexIntro from '../../../components/sections/SignatureComplex
 import SignatureTransitDetail from '../../../components/sections/SignatureTransitDetail'
 import SignatureUnitPlan from '../../../components/sections/SignatureUnitPlan'
 import SignatureUnitPlanTabs from '../../../components/sections/SignatureUnitPlanTabs'
+import ArkoneOfficetelInfo from '../../../components/sections/ArkoneOfficetelInfo'
 import SignatureClub from '../../../components/sections/SignatureClub'
 import SignatureClubSimple from '../../../components/sections/SignatureClubSimple'
 import SignatureClubZones from '../../../components/sections/SignatureClubZones'
@@ -479,6 +480,8 @@ export default async function AptPage({ params }) {
         ))}
         {/* subscriptionTabs — 청약안내(변경된 청약정보·특별공급·일반공급) 이미지 탭. 예: cheongna-arkone-prugio-3 */}
         {sig.subscriptionTabs && <SignatureUnitPlanTabs unitPlan={sig.subscriptionTabs} />}
+        {/* officetelInfo — 오피스텔 혜택·가격 판단 기준 카드(상담북 24p·26p를 HTML로). 예: cheongna-arkone-prugio-3-2 */}
+        {sig.officetelInfo && <ArkoneOfficetelInfo info={sig.officetelInfo} />}
         {sig.infrastructure && <SignatureInfrastructure infrastructure={sig.infrastructure} />}
         {sig.landscapeGeomdan && <SignatureLandscapeGeomdan landscape={sig.landscapeGeomdan} />}
         {sig.landscape && <SignatureLandscape landscape={sig.landscape} />}

@@ -388,19 +388,84 @@ const config = {
 
     // 요청 반영(2026-11-24) — "사전 청약 이벤트 금1돈" 배너(goldEvent) 삭제
 
-    // 요청 반영(2026-11-24) — 청약안내 3탭 대신 "오피스텔" 안내 이미지 (메뉴 '오피스텔'이 이 섹션으로 이동)
-    subscriptionTabs: {
+    // 요청 반영(2026-11-24) — 청약안내 대신 "오피스텔" 섹션(메뉴 '오피스텔'이 이 섹션으로 이동).
+    // 「청라아크원_2036_데스크상담북_v1.pdf」 24p(세 가지 혜택)·26p(가격 판단 5가지 기준)를 이미지 캡처 대신 HTML 카드로(사진만 PDF에서 추출)
+    officetelInfo: {
       id: 'subscription',
       eyebrow: 'OFFICETEL',
-      titlePlain: '',
-      titleAccent: '오피스텔',
-      stacked: true,
-      zoomLightbox: true,
-      tabs: [
-        // 2026-11-24 사용자 전달 이미지(카카오톡) 2장 — 오피스텔 3대 혜택 / 오피스텔 가격 판단 5가지 기준
-        { label: '', image: { src: '/apt/cheongna-arkone-prugio-3-2/officetel-01.png', alt: '무상 옵션 + 중도금 무이자 + 오션뷰. 오피스텔에서 챙길 세 가지 혜택 — 987실, 전용 105·121·136㎡', width: 764, height: 541 } },
-        { label: '', image: { src: '/apt/cheongna-arkone-prugio-3-2/officetel-02.png', alt: '오피스텔은 안 올라요? 다섯 가지 기준으로 보시죠 — 주거 기능, 가족형 공간, 실제 거래 사례, 일자리 수요, 비교의 기준', width: 764, height: 544 } },
-      ],
+      title: '오피스텔',
+      benefit: {
+        titleLines: ['무상 옵션 + 중도금 무이자 + 오션뷰.', '오피스텔에서 챙길 세 가지 혜택.'],
+        image: { src: '/apt/cheongna-arkone-prugio-3-2/officetel-benefit.webp', alt: '청라 아크원 푸르지오 조감도', caption: '청라 아크원 푸르지오 조감도' },
+        stats: [
+          { value: '987실', label: '오피스텔' },
+          { value: '105·121·136㎡', label: '전용면적' },
+        ],
+        items: [
+          { tag: '현장 제공 상담조건', tone: 'blue', title: '무상 옵션', desc: '별도 선택품목 부담을 줄일 조건\n제공 품목 확인 후 비교' },
+          { tag: '현장 제공 상담조건', tone: 'red', title: '중도금 무이자', desc: '적용 기간 중 이자 부담 완화\n입주 준비에 집중' },
+          { tag: '조망의 가치', tone: 'sky', title: '오션뷰', desc: '서해를 향한 탁 트인 조망\n동·층·방향별 확인' },
+        ],
+        chips: ['멀티 발코니', '푸르지오 브랜드'],
+        closing: '제공 혜택에, 매일 누릴 조망의 가치까지.',
+        note: '무상옵션·무이자는 최종 계약조건 기준. 오션뷰는 동·층·방향·주변 건축물에 따라 다르며 해당 호실 확인.',
+      },
+      criteria: {
+        titleLines: ['“오피스텔은 안 올라요?”', '다섯 가지 기준으로 보시죠.'],
+        cards: [
+          {
+            num: '01', label: '주거 기능',
+            image: { src: '/apt/cheongna-arkone-prugio-3-2/officetel-card-01.webp', alt: '청라 아크원 푸르지오 투시도' },
+            title: '난방 규제 완화,\n주거형으로 진화',
+            desc: '소형 임대 중심에서\n가족이 사는 중대형까지.',
+            years: [
+              { year: '2009', text: '85㎡ 이하 허용' },
+              { year: '2021', text: '120㎡까지 확대' },
+              { year: '2024', text: '면적 제한 폐지' },
+            ],
+          },
+          {
+            num: '02', label: '가족형 공간',
+            image: { src: '/apt/cheongna-arkone-prugio-3-2/officetel-card-02.webp', alt: '단지 조경 이미지' },
+            title: '가족이 살 집,\n주거형 공간',
+            desc: '생활면적·발코니까지.\n가족의 일상을 담을 공간.',
+            highlight: '105·121·136㎡',
+            foot: '아크원 오피스텔 전용면적\n멀티 발코니 계획',
+          },
+          {
+            num: '03', label: '실제 거래 사례', featured: true,
+            image: { src: '/apt/cheongna-arkone-prugio-3-2/officetel-card-03.webp', alt: '스타필드 고양 앞 e편한세상 시티 삼송 3차' },
+            imageCaption: 'e편한세상 시티 삼송 3차 · MDM',
+            title: '스타필드 고양 앞\n오피스텔 거래',
+            desc: 'e편한세상 시티 삼송 3차\n전용 82.7617㎡',
+            deal: {
+              label: '조회 최저 → 조회 최고',
+              value: '3.70 → 8.55억',
+              meta: '2019.12.26 · 4층\n2021.07.28 · 27층',
+              recent: '최근 5.60억\n2026.10.15 · 13층',
+            },
+          },
+          {
+            num: '04', label: '일자리 수요',
+            image: { src: '/apt/cheongna-arkone-prugio-3-2/officetel-card-04.webp', alt: '마곡 LG사이언스파크' },
+            imageCaption: '마곡 LG사이언스파크 · LG',
+            title: '직장 가까운 집을\n찾는 사람들',
+            desc: '여의도 금융·마곡 연구.\n직주근접 주거 선택.',
+            highlight: '직장 가까운 수요',
+            foot: '일자리·교통·상품의 결합\n공급·소득 여건 함께 비교',
+          },
+          {
+            num: '05', label: '비교의 기준',
+            image: { src: '/apt/cheongna-arkone-prugio-3-2/officetel-card-05.webp', alt: '청라 아크원 푸르지오 조감도' },
+            title: '같은 조건끼리\n가격 비교',
+            desc: '면적·입지·브랜드·조망.\n이 집을 찾을 수요부터.',
+            highlight: '내 집의 경쟁력',
+            foot: '유사 면적·연식·입지의\n실거래와 공급조건 비교',
+          },
+        ],
+        closing: '가격을 판단할 기준은, 이 집을 찾을 사람과 생활의 가치.',
+        note: '삼송 3차 동일 전용면적·서로 다른 층의 과거 개별 거래. 재게시 2곳 대조·해제 표시 제외. 최고가가 현재가·향후 상승 보장은 아님. 난방 시방은 별도 확인.',
+      },
     },
 
     vipForm: {

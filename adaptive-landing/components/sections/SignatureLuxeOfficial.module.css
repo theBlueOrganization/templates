@@ -205,6 +205,9 @@
 .galleryImg { position: relative; display: block; width: 100%; margin-top: 20px; padding: 0; border: 1px solid #e3ebf2; background: #fff; cursor: zoom-in; border-radius: 4px; overflow: hidden; }
 .galleryImg img { width: 100%; height: auto; display: block; }
 .unit .galleryImg { max-width: 860px; margin-left: auto; margin-right: auto; }
+.unitVideo { max-width: 860px; margin: 56px auto 0; padding: 0 20px; text-align: center; }
+.unitVideo h3 { margin: 10px 0 20px; font-family: var(--serif); font-size: 20px; font-weight: 600; color: var(--navy); }
+.unitVideo .videoFrame { border-radius: 8px; overflow: hidden; box-shadow: 0 12px 32px rgba(14, 42, 71, 0.16); }
 
 /* ── COMMUNITY ─────────────────────────────── */
 .community { position: relative; padding: 88px 16px; color: #fff; background: radial-gradient(ellipse 55% 45% at 88% 8%, rgba(90, 169, 220, 0.3), rgba(90, 169, 220, 0) 70%), linear-gradient(160deg, #183a5e 0%, #12304f 55%, #0c2340 100%); }

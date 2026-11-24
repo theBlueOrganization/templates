@@ -29,43 +29,41 @@ function BlockTitle({ lines }) {
 function Benefit({ benefit }) {
   return (
     <div className={styles.block}>
-      <Reveal>
-        <BlockTitle lines={benefit.titleLines} />
-      </Reveal>
-
-      <div className={styles.benefitGrid}>
-        <Reveal className={styles.benefitVisual}>
-          <figure className={styles.photoCard}>
-            <div className={styles.photo}>
-              <Image src={benefit.image.src} alt={benefit.image.alt} fill sizes="(min-width: 1024px) 560px, 100vw" />
-            </div>
-            {benefit.image.caption && <figcaption className={styles.photoCaption}>{benefit.image.caption}</figcaption>}
-          </figure>
-          <dl className={styles.stats}>
+      {/* 큰 조감도 위에 헤드라인·수치 — 아래 혜택 카드 3장이 사진 하단에 겹쳐 올라옴 */}
+      <Reveal className={styles.hero}>
+        <Image src={benefit.image.src} alt={benefit.image.alt} fill sizes="(min-width: 1200px) 1160px, 100vw" className={styles.heroImg} />
+        <div className={styles.heroShade} aria-hidden="true" />
+        <div className={styles.heroCopy}>
+          <h3 className={styles.heroTitle}>
+            <span>{benefit.titleLines[0]}</span>
+            <span className={styles.heroTitleAccent}>{benefit.titleLines[1]}</span>
+          </h3>
+          <dl className={styles.heroStats}>
             {benefit.stats.map((s) => (
-              <div key={s.label} className={styles.stat}>
-                <dt className={styles.statValue}>{s.value}</dt>
-                <dd className={styles.statLabel}>{s.label}</dd>
+              <div key={s.label} className={styles.heroStat}>
+                <dt>{s.value}</dt>
+                <dd>{s.label}</dd>
               </div>
             ))}
           </dl>
-        </Reveal>
-
-        <div className={styles.benefitList}>
-          {benefit.items.map((item, i) => (
-            <Reveal key={item.title} delay={i * 0.08} className={cn(styles.benefitItem, styles[`tone_${item.tone}`])}>
-              <p className={styles.benefitTag}>{item.tag}</p>
-              <p className={styles.benefitTitle}>{item.title}</p>
-              <p className={styles.benefitDesc}><Lines text={item.desc} /></p>
-            </Reveal>
-          ))}
           {benefit.chips?.length > 0 && (
-            <ul className={styles.chips}>
+            <ul className={styles.heroChips}>
               {benefit.chips.map((c) => <li key={c}>{c}</li>)}
             </ul>
           )}
         </div>
-      </div>
+      </Reveal>
+
+      <ol className={styles.perks}>
+        {benefit.items.map((item, i) => (
+          <Reveal key={item.title} delay={i * 0.08} className={styles.perk}>
+            <span className={styles.perkNum}>{String(i + 1).padStart(2, '0')}</span>
+            <p className={styles.perkTag}>{item.tag}</p>
+            <p className={styles.perkTitle}>{item.title}</p>
+            <p className={styles.perkDesc}><Lines text={item.desc} /></p>
+          </Reveal>
+        ))}
+      </ol>
 
       <Reveal className={styles.closing}>
         <p className={styles.closingText}>{benefit.closing}</p>

@@ -1,5 +1,5 @@
 // 청라 아크원 푸르지오c2 (청라아크원푸르지오c2.addupapt.kr) — cheongna-arkone-prugio-3(청라아크원푸르지오c)을 복제한 추가 링크(2026-11-24).
-// 원본과 다른 점: 진입 팝업 삭제(새 팝업 재전달 예정), "청약안내" 메뉴/섹션 → "오피스텔", "사전 청약 이벤트 금1돈" 배너 삭제.
+// 원본과 다른 점: 진입 팝업 교체(12월 4일 GRAND OPEN 전단 → 닫으면 관심고객등록, 2026-11-25), 오피스텔 섹션·메뉴를 맨 앞으로, 관심고객등록 폼의 청약 항목 삭제, "청약안내" 메뉴/섹션 → "오피스텔", "사전 청약 이벤트 금1돈" 배너 삭제.
 // ↓ 원본 주석
 // 청라 아크원 푸르지오3 (청라아크원푸르지오c.addupapt.kr) — 푸르지오2를 복제한 3차 분양팀 사이트.
 // 대표번호 1666-1050·상담 알림 진의원(2026-10-26 변경), 유입경로 SKT/OK캐쉬백은 아래 *ByUtm 참고.
@@ -66,7 +66,9 @@ const config = {
   // 관심고객등록 섹션·방문예약 팝업을 카드형 "방문예약 신청" 폼(ArkoneApplyForm)으로 — 요청 반영(2026-10-23)
   applyForm: {
     title: '방문예약 신청',
-    desc: '11월 2일 특별공급 · 3일 1순위 청약. 방문 희망일과 시간을 남겨주세요.',
+    desc: '방문 희망일과 시간을 남겨주세요.',
+    // 요청 반영(2026-11-25) — 성명 옆 "(청약신청자와 동일)", "청약은 누가 하시나요?", 청약 안내 문구 등 청약 관련 항목을 모두 숨김
+    noSubscription: true,
     submitLabel: '방문예약 신청하기',
     // 이용약관 전문 보기 — 시행사 요청(2026-10-23) "개인정보 수집 및 이용 안내" 표 형식.
     // 실제 접수·운영은 더블루파트너스가 하므로 처리 위탁(수탁자) 줄과 동의 거부권 줄을 더하고,
@@ -75,8 +77,8 @@ const config = {
       ['개인정보처리자', '㈜청라스마트시티'],
       ['개인정보 처리 수탁자', '㈜더블루파트너스 (홈페이지 운영, 관심고객 접수 및 관리)'],
       ['수집방법', '공식 홈페이지 고객 등록, 현장 QR 및 고객이 직접 동의한 접수 경로'],
-      ['수집 항목', '성명, 휴대전화번호, 청약자 구분, 방문희망일시'],
-      ['이용 목적', '분양상담, 견본주택 오픈, 분양일정, 청약·계약, 미분양·잔여세대 및 분양 관련 이벤트 안내 등 분양 홍보와 판매 권유'],
+      ['수집 항목', '성명, 휴대전화번호, 방문희망일시'],
+      ['이용 목적', '분양상담, 견본주택 오픈, 분양일정, 계약, 미분양·잔여세대 및 분양 관련 이벤트 안내 등 분양 홍보와 판매 권유'],
       ['보유·이용기간', '아파트·오피스텔·상업시설 중 마지막 상품의 전 세대 분양계약 체결일로부터 90일까지. 단, 동의 철회 또는 이용 목적 달성 시 지체 없이 파기'],
       ['동의 거부 권리', '개인정보 수집 및 이용에 대한 동의를 거부할 수 있으며, 거부 시 방문예약 접수가 제한될 수 있습니다.'],
     ],
@@ -97,9 +99,10 @@ const config = {
     header: {
       logo: { src: '/apt/cheongna-arkone-prugio-3-2/logo-white.svg', alt: '청라 아크원 푸르지오', width: 161, height: 26 },
       logoSize: { base: 96, lg: 130, xl: 150 },
-      gnb: ['입지환경', '교통호재', '청라핵심', '프리미엄', '오피스텔', '관심고객등록'],
+      // 요청 반영(2026-11-25) — 오피스텔을 메뉴 맨 앞으로(섹션도 히어로 바로 다음)
+      gnb: ['오피스텔', '입지환경', '교통호재', '청라핵심', '프리미엄', '관심고객등록'],
       // gnb 라벨과 같은 순서로 이동할 섹션 id (청라핵심 = 첫 랜드마크 스타필드)
-      gnbTargetIds: ['location', 'network', 'starfield', 'premium-value', 'subscription', 'vip-reservation'],
+      gnbTargetIds: ['subscription', 'location', 'network', 'starfield', 'premium-value', 'vip-reservation'],
       quickCtaLabel: '관심고객등록',
       phone: '1666-1050',
     },
@@ -116,11 +119,11 @@ const config = {
       tagline: 'ABSOLUTE REMARKABLE ONE',
       items: [
         { num: '01', label: 'MAIN', sub: '메인페이지', targetId: 'hero' },
-        { num: '02', label: 'LOCATION', sub: '입지환경', targetId: 'location' },
-        { num: '03', label: 'TRAFFIC', sub: '교통호재', targetId: 'network' },
-        { num: '04', label: 'VALUE', sub: '청라핵심', targetId: 'starfield' },
-        { num: '05', label: 'PREMIUM', sub: '프리미엄', targetId: 'premium-value' },
-        { num: '06', label: 'OFFICETEL', sub: '오피스텔', targetId: 'subscription' },
+        { num: '02', label: 'OFFICETEL', sub: '오피스텔', targetId: 'subscription' },
+        { num: '03', label: 'LOCATION', sub: '입지환경', targetId: 'location' },
+        { num: '04', label: 'TRAFFIC', sub: '교통호재', targetId: 'network' },
+        { num: '05', label: 'VALUE', sub: '청라핵심', targetId: 'starfield' },
+        { num: '06', label: 'PREMIUM', sub: '프리미엄', targetId: 'premium-value' },
         { num: '07', label: 'CONTACT', sub: '관심고객등록', targetId: 'vip-reservation' },
       ],
     },
@@ -161,7 +164,8 @@ const config = {
       ],
       eyebrowLine1: '청라의 절대적 기준이 될',
       eyebrowLine2: '단 하나의 주거명작을 상징',
-      badge: { small: '10년만의 공급', lines: ['분양가 상한제', '적용단지'] },
+      // 요청 반영(2026-11-25) — "분양가 상한제 적용단지" → "12월 4일 오피스텔 GRAND OPEN"
+      badge: { small: '12월 4일', lines: ['오피스텔', 'GRAND OPEN'] },
       bgImageMobile: { src: '/apt/cheongna-arkone-prugio-3-2/hero-bg-mobile.webp', alt: '청라 아크원 푸르지오 대표 조감도(모바일) — ABSOLUTE REMARKABLE ONE' },
       bgImage: { src: '/apt/cheongna-arkone-prugio-3-2/hero-bg.webp', alt: '청라 아크원 푸르지오 대표 조감도 — ABSOLUTE REMARKABLE ONE' },
       mobileBar: {
@@ -391,6 +395,8 @@ const config = {
     // 요청 반영(2026-11-24) — 청약안내 대신 "오피스텔" 섹션(메뉴 '오피스텔'이 이 섹션으로 이동).
     // 「청라아크원_2036_데스크상담북_v1.pdf」 24p(세 가지 혜택)·26p(가격 판단 5가지 기준)를 이미지 캡처 대신 HTML 카드로(사진만 PDF에서 추출)
     officetelInfo: {
+      // 요청 반영(2026-11-25) — 히어로 바로 다음에 배치
+      afterHero: true,
       id: 'subscription',
       eyebrow: 'OFFICETEL',
       title: '오피스텔',
@@ -513,7 +519,18 @@ const config = {
       csHours: 'AM 09:00 ~ PM 19:00',
     },
 
-    // 요청 반영(2026-11-24) — 기존 진입 팝업(arkonePopups) 삭제. 새 팝업 재전달 예정
+    // 진입 팝업 — 요청 반영(2026-11-25) "12월 4일 GRAND OPEN" 전단 이미지 → × 닫으면 관심고객등록(방문예약) 팝업.
+    // 전단에 전화번호가 없어 유입경로(기본·SKT 1666-1050 / OK캐쉬백·롯데온2 1800-2261)와 관계없이 같은 이미지
+    arkonePopups: {
+      notice: {
+        openDelayMs: 700,
+        posterByTel: {
+          '1666-1050': '/apt/cheongna-arkone-prugio-3-2/popup1.png',
+          '1800-2261': '/apt/cheongna-arkone-prugio-3-2/popup1.png',
+        },
+        title: '청라 아크원 푸르지오 오피스텔 12월 4일 GRAND OPEN',
+      },
+    },
   },
 }
 

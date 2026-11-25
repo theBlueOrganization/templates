@@ -18,7 +18,7 @@ description: 새 분양 현장(아파트 랜딩페이지)을 추가할 때 사�
 - offices (전화번호 + 관리자 수신번호, 복수 가능)
 - kakao (true/false), sheetTab
 - popup 여부 및 이미지
-- company 정보 (기본값: 주식회사 더블루파트너스, 789-81-03093, addup@addup.kr — 변경 없으면 기존 값 그대로 사용)
+- company 정보 (기본값: 주식회사 더블루파트너스, 789-81-03093, contact@addup.kr — 변경 없으면 기존 값 그대로 사용)
 - visitTimeOptions (기본값은 기존 현장과 동일하게 10시~18시 1시간 단위)
 - hero (eyebrow, title, subtitle, bgColor, accentKeyword, 이미지)
 - sections 배열 (사업개요/입지환경/프리미엄/단지설계/커뮤니티/평면도 등 — 현장마다 섹션 구성이 다를 수 있으니 사용자에게 몇 개 섹션인지 확인)

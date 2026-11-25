@@ -55,7 +55,7 @@ const config = {
     label:     "광고 대행사", // 푸터 라벨(기본값: 홈페이지 운영·관리 대행사)
     name:      "주식회사 더블루파트너스",
     bizNumber: "789-81-03093",
-    email:     "addup@addup.kr",
+    email:     "contact@addup.kr",
     phone:     "1666-1755",
   },
 

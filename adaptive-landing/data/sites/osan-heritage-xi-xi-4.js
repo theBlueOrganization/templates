@@ -34,7 +34,7 @@ const config = {
   company: {
     name: '주식회사 더블루파트너스',
     bizNumber: '789-81-03093',
-    email: 'addup@addup.kr',
+    email: 'contact@addup.kr',
   },
 
   visitTimeOptions: [
@@ -637,7 +637,7 @@ const config = {
         { label: '시행사', value: '(주)양산사지구에스피씨' },
         { label: '사업자 등록번호', value: '434-88-02873' },
         { label: '대표자', value: '신우철,이담경' },
-        { label: '이메일', value: 'addup@addup.kr' },
+        { label: '이메일', value: 'contact@addup.kr' },
         { label: '담당회사', value: '주식회사 더블루파트너스', newLine: true },
         { label: '사업자 등록번호', value: '789-81-03093' },
         { label: '전화번호', value: '1666-1755' },

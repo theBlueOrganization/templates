@@ -27,7 +27,7 @@ const config = {
   company: {
     name: '주식회사 더블루파트너스',
     bizNumber: '789-81-03093',
-    email: 'addup@addup.kr',
+    email: 'contact@addup.kr',
   },
 
   visitTimeOptions: [
@@ -306,7 +306,7 @@ const config = {
         { label: '광고 운영·관리 대행사', value: '더블루파트너스', dividerBefore: true },
         { label: '전화번호', value: '1666-1755' },
         { label: '사업자등록번호', value: '789-81-03093' },
-        { label: '이메일', value: 'addup@addup.kr' },
+        { label: '이메일', value: 'contact@addup.kr' },
       ],
       disclaimers: [
         '※ 본 사업은 「민간임대주택에 관한 특별법」에 따른 장기일반민간임대주택으로, 임대조건 · 분양전환 조건 등은 관련 법령 및 사업 진행에 따라 변경될 수 있으니 계약 전 반드시 확인하시기 바랍니다.',

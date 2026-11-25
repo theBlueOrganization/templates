@@ -32,7 +32,7 @@ const config = {
   company: {
     name: '주식회사 더블루파트너스',
     bizNumber: '789-81-03093',
-    email: 'addup@addup.kr',
+    email: 'contact@addup.kr',
   },
 
   visitTimeOptions: [
@@ -544,7 +544,7 @@ const config = {
 2. 처리하는 개인정보의 항목 : 성명, 휴대전화번호, 관심 서비스, 방문/상담 희망일시
 3. 개인정보의 처리 및 보유 기간 : 두산위브더제니스 부천 분양 완료 시까지
 4. 동의 거부 권리 및 거부 시 불이익 : 동의를 거부할 경우 방문예약 및 상담 접수가 불가합니다.
-5. 개인정보 처리 위탁 : 홈페이지 운영·관리 대행사 주식회사 더블루파트너스 (addup@addup.kr)`,
+5. 개인정보 처리 위탁 : 홈페이지 운영·관리 대행사 주식회사 더블루파트너스 (contact@addup.kr)`,
     },
 
     footer: {
@@ -556,7 +556,7 @@ const config = {
         { label: '시공', value: '두산건설(주) · 쌍용건설(주)' },
         { label: '온라인대행', value: '주식회사 더블루파트너스' },
         { label: '사업자등록번호', value: '789-81-03093' },
-        { label: '이메일', value: 'addup@addup.kr' },
+        { label: '이메일', value: 'contact@addup.kr' },
       ],
       disclaimers: [
         '※ 본 홈페이지에 사용된 CG, 이미지, 일러스트, 내용, 문구 등은 소비자의 이해를 돕기 위해 제작된 것으로 실제와 차이가 있을 수 있습니다.',

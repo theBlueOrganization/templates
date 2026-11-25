@@ -481,7 +481,8 @@ export default function SignatureArkoneOfficial({ site }) {
 
       {/* 진입 이벤트 팝업 — 예약 방문 시 신세계상품권 증정 → 하단 "방문예약"으로 등록 폼 팝업 이동 */}
       <dialog ref={eventRef} className={cn(styles.dialog, styles.eventDialog, content.popupImage && styles.eventImageDialog)} aria-labelledby={content.popupImage ? undefined : 'arkoneEventTitle'} aria-label={content.popupImage ? (content.popupImageAlt ?? '이벤트 안내') : undefined} onClick={(e) => { if (e.target === eventRef.current) closeEvent() }}>
-        <button type="button" className={styles.dialogClose} onClick={closeEvent} aria-label="닫기">팝업닫기 ✕</button>
+        {/* 이미지 팝업은 이미지 안에 X가 그려져 있어 별도 "팝업닫기" 버튼을 두지 않음 */}
+        {!content.popupImage && <button type="button" className={styles.dialogClose} onClick={closeEvent} aria-label="닫기">팝업닫기 ✕</button>}
         {content.popupImage ? (
           // content.popupImage — 현장에서 준 팝업 이미지 한 장. 이미지를 누르면 방문예약 폼, 이미지 속 X 자리는 닫기
           <div className={styles.eventImageCard}>

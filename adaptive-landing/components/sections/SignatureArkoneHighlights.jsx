@@ -294,6 +294,21 @@ export function SignatureArkonePopups({ popups, config }) {
             <article className={styles.posterCard}>
               <button type="button" className={styles.noticeX} aria-label="닫기" onClick={closeNotice}>×</button>
               <Image src={posterSrc} alt={`${notice.title} 사전 방문 예약 / 청약 상담 문의 ${telNumber}`} width={913} height={1284} sizes="420px" priority />
+              {/* notice.posterCta — 전단 속 버튼 그림 위에 투명 클릭 영역(%)을 얹어, 누르면 전단을 닫고 방문예약(관심고객) 팝업으로 */}
+              {notice.posterCta && (
+                <button
+                  type="button"
+                  className={styles.posterCta}
+                  aria-label={notice.posterCta.label ?? '사전 방문 예약'}
+                  style={{
+                    left: `${notice.posterCta.left}%`,
+                    top: `${notice.posterCta.top}%`,
+                    width: `${notice.posterCta.width}%`,
+                    height: `${notice.posterCta.height}%`,
+                  }}
+                  onClick={closeNotice}
+                />
+              )}
             </article>
           ) : (
           <article className={styles.noticeCard}>

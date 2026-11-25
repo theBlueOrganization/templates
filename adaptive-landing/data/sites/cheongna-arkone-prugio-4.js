@@ -16,7 +16,7 @@ const config = {
   metaTitle: '청라 아크원 푸르지오',
   shortName: '청라 아크원 푸르지오',
   telNumber: '032-320-2905',
-  ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/cheongna-arkone-prugio-4/og.jpg',
+  ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/cheongna-arkone-prugio-4/og.jpg?v=2', // og.jpg가 하늘만 잘린 이미지라 조감도로 교체(2026-11-25), ?v=2는 카톡·SNS 캐시 갱신용
   // 출처: 공식 사이트 token.css 원문(2026-09-16) — primary-500/primary-900/secondary-500/secondary-100
   colorTheme: {
     navy: '#004B45',

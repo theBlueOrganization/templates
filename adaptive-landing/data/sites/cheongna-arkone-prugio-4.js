@@ -1,5 +1,5 @@
 // 청라 아크원 푸르지오4 (청라아크원푸르지오d.addupapt.kr) — 4차 분양팀 사이트(2026-11-22).
-// 대표번호 1800-2899, 상담 알림 010-6227-0012.
+// 대표번호 032-320-2905, 상담 알림(연결번호·카톡) 010-2069-8339 — 요청 반영(2026-11-25, 기존 1800-2899 / 010-6227-0012).
 // 화면: signature.arkoneOfficial=true → SignatureArkoneOfficial. 공식 홈페이지(arkone-prugio.com) 메인 구성
 // (HERO → 아크원이란 → OVERVIEW → LOCATION → LIFESTYLE → PREMIUM → BRAND → CONTACT)과 이미지
 // (/apt/cheongna-arkone-prugio-4/, 공식 사이트 원본을 webp로 변환)·컬러·폰트를 따름. 인트로 없음.
@@ -15,7 +15,7 @@ const config = {
   projectName: '청라 아크원 푸르지오',
   metaTitle: '청라 아크원 푸르지오',
   shortName: '청라 아크원 푸르지오',
-  telNumber: '1800-2899',
+  telNumber: '032-320-2905',
   ogImage: 'https://adaptive-landing-ochre.vercel.app/apt/cheongna-arkone-prugio-4/og.jpg',
   // 출처: 공식 사이트 token.css 원문(2026-09-16) — primary-500/primary-900/secondary-500/secondary-100
   colorTheme: {
@@ -29,7 +29,7 @@ const config = {
     family: "'SUIT', 'Pretendard', var(--font-noto-sans-kr, 'Noto Sans KR'), sans-serif",
     cssUrl: 'https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css',
   },
-  adminPhones: ['01062270012'],
+  adminPhones: ['01020698339'],
   sheetId: '',
   sheetTab: '청라아크원푸르지오4',
   showUtmInSms: true,
@@ -91,7 +91,7 @@ const config = {
       logoSize: { base: 96, lg: 130, xl: 150 },
       gnb: ['사업개요', '입지환경', '프리미엄', '단지안내', '세대안내', '관심고객등록'],
       quickCtaLabel: '관심고객등록',
-      phone: '1800-2899',
+      phone: '032-320-2905',
     },
 
     // PC 우측 고정 사이드 퀵메뉴 — 공식 사이트가 fullPage.js 기반 풀스크린 스크롤 구조라 화면
@@ -99,7 +99,7 @@ const config = {
     quickMenu: {
       brand: '청라 아크원 푸르지오',
       phoneLabel: '분양문의',
-      phone: '1800-2899',
+      phone: '032-320-2905',
       favoriteLabel: '관심고객',
       menuLabel: 'MENU',
       ctaTargetId: 'vip-reservation',
@@ -423,7 +423,7 @@ const config = {
     footer: {
       logo: { src: '/apt/cheongna-arkone-prugio/logo-white.svg', alt: '청라 아크원 푸르지오', width: 130, height: 21 },
       logoAlign: 'center',
-      highlightText: '분양문의 1800-2899',
+      highlightText: '분양문의 032-320-2905',
       agencySlogan: '분양완판 전문가 그룹, (주) 더블루파트너스',
       companyLines: [
         { label: '시행', value: '(주)청라스마트시티' },
@@ -442,7 +442,7 @@ const config = {
         '※ 사업지 인근의 개발사업과 관련된 사항은 지자체, 개발주체 및 관계기관의 사정에 따라 변경될 수 있습니다.',
         '※ 제작, 편집, 인쇄과정상 오탈자 등의 오류가 있을 수 있으니, 계약 전 반드시 견본주택 관계자에게 문의하시기 바랍니다.',
       ],
-      csPhone: '1800-2899',
+      csPhone: '032-320-2905',
       csHours: 'AM 09:00 ~ PM 19:00',
     },
   },

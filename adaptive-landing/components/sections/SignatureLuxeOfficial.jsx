@@ -72,7 +72,7 @@ function TabGallery({ tabs, onZoom, columns, columnsMobile }) {
           </button>
         ))}
       </div>
-      {images.length > 1 && (
+      {images.length > 1 && !tab.grid && (
         <div className={styles.subTabs}>
           {images.map((im, i) => (
             <button key={im.src} type="button" className={cn(styles.subTab, i === sub && styles.subTabOn)} onClick={() => setSub(i)}>{im.label}</button>
@@ -80,10 +80,21 @@ function TabGallery({ tabs, onZoom, columns, columnsMobile }) {
         </div>
       )}
       {tab.info && <p className={styles.tabInfo}><Lines text={tab.info} /></p>}
-      <button type="button" className={styles.galleryImg} onClick={() => onZoom(img)} aria-label={`${img.alt} 크게 보기`}>
-        <Image key={img.src} src={img.src} alt={img.alt} width={img.width} height={img.height} sizes="(max-width: 1023px) 100vw, 1100px" />
-        <span className={styles.zoomIcon}>{ZOOM_ICON}</span>
-      </button>
+      {/* tab.grid — 여러 장을 버튼 없이 한 화면에 격자로(각 사진 눌러 크게 보기) */}
+      {tab.grid ? (
+        <div className={styles.galleryGrid}>
+          {images.map((im) => (
+            <button key={im.src} type="button" className={styles.galleryGridItem} onClick={() => onZoom(im)} aria-label={`${im.alt} 크게 보기`}>
+              <Image src={im.src} alt={im.alt} fill sizes="(max-width: 767px) 50vw, 360px" />
+            </button>
+          ))}
+        </div>
+      ) : (
+        <button type="button" className={styles.galleryImg} onClick={() => onZoom(img)} aria-label={`${img.alt} 크게 보기`}>
+          <Image key={img.src} src={img.src} alt={img.alt} width={img.width} height={img.height} sizes="(max-width: 1023px) 100vw, 1100px" />
+          <span className={styles.zoomIcon}>{ZOOM_ICON}</span>
+        </button>
+      )}
     </div>
   )
 }
@@ -237,6 +248,22 @@ export default function SignatureLuxeOfficial({ site, holdForIntro = false }) {
 
   useReveal(rootRef)
 
+  // luxe.hero.slides — 히어로 배경 자동 전환(크로스페이드 + 줌). [{ src, srcMobile, alt }], 간격 hero.slideMs(기본 5500ms)
+  const heroSlides = luxe.hero.slides
+  const [heroIdx, setHeroIdx] = useState(0)
+  // 확대(줌)는 화면이 뜬 뒤 시작 — 첫 장면도 1.08배에서 천천히 줄어들게(투명도는 서버 렌더부터 바로 보임)
+  const [heroMounted, setHeroMounted] = useState(false)
+  useEffect(() => {
+    const r = requestAnimationFrame(() => setHeroMounted(true))
+    return () => cancelAnimationFrame(r)
+  }, [])
+  useEffect(() => {
+    if (!heroSlides || heroSlides.length < 2) return
+    // 장면이 바뀔 때마다(자동·점 클릭 모두) 타이머를 새로 걸어 진행 막대와 맞춤
+    const t = setTimeout(() => setHeroIdx((i) => (i + 1) % heroSlides.length), luxe.hero.slideMs ?? 5500)
+    return () => clearTimeout(t)
+  }, [heroSlides, heroIdx, luxe.hero.slideMs])
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
     onScroll()
@@ -282,7 +309,8 @@ export default function SignatureLuxeOfficial({ site, holdForIntro = false }) {
   const logo = luxe.logo
 
   return (
-    <div ref={rootRef} className={styles.page}>
+    // luxe.palette — 현장별 색 덮어쓰기({ '--navy': '#...', '--sky-rgb': 'r, g, b', ... }), 없으면 CSS 기본값(덕은 하늘색 톤)
+    <div ref={rootRef} className={styles.page} style={luxe.palette}>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Aboreto&family=Noto+Serif+KR:wght@400;500;600&display=swap" precedence="default" />
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" precedence="default" />
 
@@ -317,11 +345,30 @@ export default function SignatureLuxeOfficial({ site, holdForIntro = false }) {
 
       <main>
         {/* 1. HERO */}
-        <section id="hero" className={styles.hero}>
-          <picture className={styles.heroPic}>
-            <source media="(max-width: 767px)" srcSet={hero.bgMobile.src} />
-            <img className={styles.heroBg} src={hero.bg.src} alt={hero.bg.alt} fetchPriority="high" />
-          </picture>
+        {/* hero.mobileFitBar — 모바일에서 하단 고정바(60px)를 뺀 높이로(히어로 하단이 고정바에 가리지 않게) */}
+        <section id="hero" className={cn(styles.hero, hero.mobileFitBar && styles.heroFitBar)}>
+          {heroSlides ? (
+            <>
+              {heroSlides.map((s, i) => (
+                <picture key={s.src} className={cn(styles.heroPic, styles.heroSlide, i === heroIdx && styles.heroSlideOn, i === heroIdx && heroMounted && styles.heroSlideZoom, s.mobileDim && styles.heroSlideDim)} style={s.mobileDim ? { '--slide-dim': s.mobileDim } : undefined} aria-hidden={i !== heroIdx}>
+                  <source media="(max-width: 767px)" srcSet={s.srcMobile} />
+                  <img className={styles.heroBg} src={s.src} alt={s.alt} fetchPriority={i === 0 ? 'high' : 'low'} decoding="async" />
+                </picture>
+              ))}
+              <div className={styles.heroDots} role="tablist" aria-label="히어로 이미지 선택">
+                {heroSlides.map((s, i) => (
+                  <button key={s.src} type="button" role="tab" aria-selected={i === heroIdx} aria-label={`${i + 1}번째 이미지`} className={cn(styles.heroDot, i === heroIdx && styles.heroDotOn)} style={{ '--slide-ms': `${luxe.hero.slideMs ?? 5500}ms` }} onClick={() => setHeroIdx(i)}>
+                    <i />
+                  </button>
+                ))}
+              </div>
+            </>
+          ) : (
+            <picture className={styles.heroPic}>
+              <source media="(max-width: 767px)" srcSet={hero.bgMobile.src} />
+              <img className={styles.heroBg} src={hero.bg.src} alt={hero.bg.alt} fetchPriority="high" />
+            </picture>
+          )}
           <div className={styles.heroShade} aria-hidden="true" />
           <div className={styles.heroCopy}>
             <p className={styles.heroEyebrow}>{hero.eyebrow}</p>
@@ -517,8 +564,23 @@ export default function SignatureLuxeOfficial({ site, holdForIntro = false }) {
             <h2>{unit.title}</h2>
             <p><Lines text={unit.desc} /></p>
           </div>
-          <div className={styles.reveal}><TabGallery tabs={unit.tabs} onZoom={setZoom} columns={unit.tabs.length} columnsMobile={3} /></div>
+          <div className={styles.reveal}><TabGallery tabs={unit.tabs} onZoom={setZoom} columns={unit.tabs.length} columnsMobile={unit.tabColumnsMobile ?? 3} /></div>
           <p className={styles.noteDark}>{unit.note}</p>
+          {/* unit.gallery — 평면 탭 아래 별도 사진 격자(견본주택 등). { eyebrow, title, desc, images: [{ src, alt }] } */}
+          {unit.gallery && (
+            <div className={cn(styles.unitGallery, styles.reveal)}>
+              {unit.gallery.eyebrow && <p className={styles.eyebrowEn}>{unit.gallery.eyebrow}</p>}
+              {unit.gallery.title && <h3>{unit.gallery.title}</h3>}
+              {unit.gallery.desc && <p className={styles.unitGalleryDesc}>{unit.gallery.desc}</p>}
+              <div className={styles.galleryGrid}>
+                {unit.gallery.images.map((im) => (
+                  <button key={im.src} type="button" className={styles.galleryGridItem} onClick={() => setZoom(im)} aria-label={`${im.alt} 크게 보기`}>
+                    <Image src={im.src} alt={im.alt} fill sizes="(max-width: 767px) 50vw, 240px" />
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
           {/* unit.video — 세대 내부 투어 영상(평면·3D 다음) */}
           {unit.video && (
             <div className={cn(styles.unitVideo, styles.reveal)}>

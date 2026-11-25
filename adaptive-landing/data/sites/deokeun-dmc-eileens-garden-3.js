@@ -327,7 +327,7 @@ const config = {
     },
 
     // 인트로(2026-11-22 요청 '3개로 된 걸로') — 3분할 이미지 → 브랜드 임팩트(SignatureArkoneIntro, 엘리프 검단 포레듀와 같은 형식).
-    //   장면 이미지: 1 야경 CG(사용자 추가 1.jpg) · 2 상담북 한강 사진 · 3 상담북 주간 CG, 각 900×560 크롭
+    //   장면 이미지: 1 야경 CG(사용자 추가 1.jpg) · 2 상담북 한강 사진 · 3 석양 CG 확대(2026-11-25 사용자 추가 세로 원본 1.jpg → 태양·건물 중심 크롭 1350×840), 1·2는 900×560 크롭
     arkoneIntro: {
       // 2026-11-23 요청 — 3분할 이미지 단계 3초 연장(4s→7s), 뒤 로고 단계 2초(1.6s→2s)
       timing: { sceneSec: 7, brandSec: 2 },
@@ -335,7 +335,7 @@ const config = {
       scenes: [
         { img: '/apt/deokeun-dmc-eileens-garden-3/intro-1.webp', label: '01 · HANGANG VIEW', name: '한강 뷰 아파텔 총 168실' },
         { img: '/apt/deokeun-dmc-eileens-garden-3/intro-2.webp', label: '02 · HANGANG PARK', name: '한강공원을 곁에 품은 자리' },
-        { img: '/apt/deokeun-dmc-eileens-garden-3/intro-3.webp', label: '03 · READY TO LIVE', name: '준공 완료 · 즉시 입주' },
+        { img: '/apt/deokeun-dmc-eileens-garden-3/intro-3-sunset.webp', label: '03 · READY TO LIVE', name: '준공 완료 · 즉시 입주' },
       ],
       copySmall: 'THE LAST HANGANG PREMIUM',
       copyLine1: 'Own the',

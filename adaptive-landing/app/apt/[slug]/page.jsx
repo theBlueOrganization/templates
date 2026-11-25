@@ -412,6 +412,8 @@ export default async function AptPage({ params }) {
           <SignatureNewsImage key={img.src} id={img.id} image={img} title={img.title} maxWidth={img.maxWidth} />
         ))}
         {/* goldEvent — 히어로 바로 아래 "사전 청약 이벤트 금1돈" 배너(누르면 관심고객등록으로). 예: cheongna-arkone-prugio-3 */}
+        {/* officetelInfo.afterHero — 오피스텔 섹션을 히어로 바로 다음에. 예: cheongna-arkone-prugio-3-2 */}
+        {sig.officetelInfo?.afterHero && <ArkoneOfficetelInfo info={sig.officetelInfo} />}
         {sig.goldEvent && <ArkoneGoldEvent event={sig.goldEvent} href={`#${sig.vipForm.id}`} />}
         {/* vipForm.showAfterHero — 관심고객등록 폼을 히어로 바로 다음(영상보다 위)에 두는 현장용. 예: 호반써밋 첨단3지구-2 */}
         {sig.vipForm.showAfterHero && (
@@ -481,7 +483,7 @@ export default async function AptPage({ params }) {
         {/* subscriptionTabs — 청약안내(변경된 청약정보·특별공급·일반공급) 이미지 탭. 예: cheongna-arkone-prugio-3 */}
         {sig.subscriptionTabs && <SignatureUnitPlanTabs unitPlan={sig.subscriptionTabs} />}
         {/* officetelInfo — 오피스텔 혜택·가격 판단 기준 카드(상담북 24p·26p를 HTML로). 예: cheongna-arkone-prugio-3-2 */}
-        {sig.officetelInfo && <ArkoneOfficetelInfo info={sig.officetelInfo} />}
+        {sig.officetelInfo && !sig.officetelInfo.afterHero && <ArkoneOfficetelInfo info={sig.officetelInfo} />}
         {sig.infrastructure && <SignatureInfrastructure infrastructure={sig.infrastructure} />}
         {sig.landscapeGeomdan && <SignatureLandscapeGeomdan landscape={sig.landscapeGeomdan} />}
         {sig.landscape && <SignatureLandscape landscape={sig.landscape} />}

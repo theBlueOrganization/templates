@@ -21,6 +21,8 @@ const APPLICANTS = [
 export default function ArkoneApplyForm({ config, idPrefix, variant = 'section', compact = false, onSuccess }) {
   const { applyForm, slug, projectName, visitTimeOptions, adminPhones, adminPhonesByUtm, adminPhoneNames, smsMediaLabel, sheetId, sheetTab, showUtmInSms } = config
   const privacyText = config.signature.vipForm.privacyText
+  // applyForm.noSubscription — 청약 관련 항목(성명 옆 안내·청약자 구분·청약 안내 문구)을 숨김. 예: cheongna-arkone-prugio-3-2
+  const noSubscription = !!applyForm.noSubscription
   const utmSource = useUtmSource() ?? '직접유입'
   const resolvedAdminPhones = adminPhonesByUtm?.[utmSource] ?? adminPhones
   const [submitting, setSubmitting] = useState(false)
@@ -81,7 +83,7 @@ export default function ArkoneApplyForm({ config, idPrefix, variant = 'section',
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={cn(styles.field, styles.fName)}>
           <label htmlFor={`${idPrefix}-name`} className={styles.label}>
-            성명 <em>*</em> <small>(청약신청자와 동일)</small>
+            성명 <em>*</em>{!noSubscription && <> <small>(청약신청자와 동일)</small></>}
           </label>
           <input id={`${idPrefix}-name`} className={styles.input} name="name" required placeholder="성명" autoComplete="name" />
         </div>
@@ -95,6 +97,7 @@ export default function ArkoneApplyForm({ config, idPrefix, variant = 'section',
           </div>
         </div>
 
+        {!noSubscription && (
         <div className={cn(styles.field, styles.fApplicant)} role="radiogroup" aria-labelledby={`${idPrefix}-applicant`}>
           <span id={`${idPrefix}-applicant`} className={styles.label}>청약은 누가 하시나요? <em>*</em></span>
           {APPLICANTS.map((a, i) => (
@@ -104,6 +107,7 @@ export default function ArkoneApplyForm({ config, idPrefix, variant = 'section',
             </label>
           ))}
         </div>
+        )}
 
         <div className={cn(styles.field, styles.fDate)}>
           <label htmlFor={`${idPrefix}-date`} className={styles.label}>방문희망일 <em>*</em></label>
@@ -137,7 +141,7 @@ export default function ArkoneApplyForm({ config, idPrefix, variant = 'section',
           )}
         </details>
 
-        <p className={styles.notice}>※ 한 세대에서 두 분 이상 청약하시면 각자 신청해 주세요.</p>
+        {!noSubscription && <p className={styles.notice}>※ 한 세대에서 두 분 이상 청약하시면 각자 신청해 주세요.</p>}
 
         <label className={styles.agree}>
           <input type="checkbox" name="privacy_agree" required />

@@ -145,6 +145,8 @@ const adaptiveLandingPointers = [
   { slug: "deokeun-dmc-eileens-garden-3-2", subdomain: "덕은dmc에일린의뜰한강3차", template: "adaptive-landing" },
   // 제일풍경채 광주 포에듀(2026-11-24) — 한글도메인 제일풍경채광주포에듀.addupapt.kr
   { slug: "jeil-gwangju-foredu", subdomain: "제일풍경채광주포에듀", template: "adaptive-landing" },
+  // 이안 강서(2026-11-25) — 한글도메인 이안강서.addupapt.kr
+  { slug: "iaan-gangseo", subdomain: "이안강서", template: "adaptive-landing" },
 ];
 
 const allSites = [...sites, ...adaptiveLandingPointers];

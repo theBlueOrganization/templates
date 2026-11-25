@@ -76,9 +76,9 @@ const config = {
     arkoneOfficialContent: {
       // 히어로 제목 아래 알약 문구(공식 사이트는 "10월 30일 GRAND OPEN")
       heroBadge: '분양가 상한제 적용단지',
-      // 진입 팝업 이미지 — 요청 반영(2026-11-24). 이미지 클릭 시 방문예약 폼 팝업
-      popupImage: '/apt/cheongna-arkone-prugio-4/popup.png',
-      popupImageAlt: '예약방문시 특별혜택 — 방문 예약 후 방문 시 스타벅스 상품권 증정. 방문예약',
+      // 진입 팝업 이미지 — 요청 반영(2026-11-24, 2026-11-25 이미지 교체). 이미지 클릭 시 방문예약 폼 팝업
+      popupImage: '/apt/cheongna-arkone-prugio-4/popup.webp',
+      popupImageAlt: '아파트 잔여세대 문의, 오피스텔 & 상가 사전문의 — 방문 예약 후 방문 시 스타벅스 상품권 증정. 방문예약',
     },
     header: {
       // 출처: 공식 사이트 공용 워드마크(/resources/img/common/logotype.svg, 원본 161x26 black) —

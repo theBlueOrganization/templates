@@ -61,7 +61,7 @@ const config = {
     eyebrowUrgent: 0,  // 공용 긴급 배지는 빨간색 깜빡임이라 브랜드 팔레트 유지 위해 끔
     brand:         "음성 푸르지오 센터피크",
     title:         "음성 기업복합도시\n푸르지오 센터피크\n지금 바로 입주",
-    subtitle:      "충북 음성군 대소면 · 총 875세대",
+    subtitle:      "충북 음성군 대소면 · 총 2,456세대",
     bgColor:       "rgb(68 106 174)",  // 히어로 이미지 최상단 하늘 평균색 — 이미지 위쪽 빈 공간을 하늘로 이어 줌
     accentKeyword:  ["푸르지오 센터피크", "바로 입주"],
     image: {
@@ -72,12 +72,12 @@ const config = {
     },
   },
 
-  // 히어로 바로 다음 핵심 혜택 8가지 — 광고주 전달 순서 그대로
+  // 히어로 바로 다음 핵심 혜택 7가지 — 광고주 전달 순서 그대로 (황금열쇠 제외 요청 반영)
   benefits: {
     variant: "condition",
-    eyebrow: "SPECIAL 8",
+    eyebrow: "SPECIAL 7",
     brand:   "음성 푸르지오 센터피크",
-    title:   "미분양 특례 적용\n8가지 특별 혜택",
+    title:   "미분양 특례 적용\n7가지 특별 혜택",
     desc:    "즉시입주 가능한 기업복합도시 브랜드 아파트, 지금이 마지막 기회입니다.",
     bgImage: { src: "/apt/eumseong-prugio-centerpeak/1-2.webp", alt: "음성 푸르지오 센터피크 투시도" },
     items: [
@@ -85,10 +85,9 @@ const config = {
       { num: "02", label: "취득세\n50% 감면" },
       { num: "03", label: "5천세대 미니신도시\n기업복합도시" },
       { num: "04", label: "잔금유예\n6개월" },
-      { num: "05", label: "최대\n3,500만원 할인" },
-      { num: "06", label: "계약시\n황금열쇠 5냥 증정" },
-      { num: "07", label: "최고급시설 초등학교\n3월 개교" },
-      { num: "08", label: "마감임박\n잔여 20세대" },
+      { num: "05", label: "최대\n4,000만원 혜택" },
+      { num: "06", label: "최고급시설 초등학교\n3월 개교" },
+      { num: "07", label: "마감임박\n잔여 20세대" },
     ],
   },
 
@@ -106,10 +105,8 @@ const config = {
       specItems: [
         { label: "단지명",   value: "음성 푸르지오 센터피크" },
         { label: "대지위치", value: "충북 음성군 대소면 성본리 21 일원 (성본산업단지 B2BL)" },
-        { label: "대지면적", value: "48,331.00㎡ (14,620.12평)" },
         { label: "건축규모", value: "지하 2층 ~ 지상 최고 35층, 8개동" },
-        { label: "세대수",   value: "총 875세대 (84㎡A·B·C / 110㎡A·B)" },
-        { label: "주차대수", value: "총 1,192대 (세대당 1.36대)" },
+        { label: "세대수",   value: "총 2,456세대 (푸르지오 1·2·3차 통합)" },
         { label: "시공",     value: "㈜대우건설" },
         { label: "입주",     value: "즉시입주 가능" },
       ],
@@ -135,7 +132,7 @@ const config = {
         },
         {
           tag:   "CITY",
-          title: "총 2,567세대 푸르지오 브랜드타운",
+          title: "총 2,456세대 푸르지오 브랜드타운",
           titleStrong: "푸르지오 브랜드타운",
           desc:  "5천여 세대 미니신도시급 주거타운 '음성 기업복합도시'의 중심",
           image: { src: "/apt/eumseong-prugio-centerpeak/7-1.webp", alt: "음성 기업복합도시 현황" },
@@ -166,7 +163,7 @@ const config = {
       type:     "image",
       navLabel: "단지배치",
       title:    "단지배치",
-      subtitle: "중앙마당을 품은 8개동, 총 875세대",
+      subtitle: "조망과 채광, 통풍을 극대화한 남향 위주 단지배치",
       images: [
         { src: "/apt/eumseong-prugio-centerpeak/3-0.webp", alt: "음성 푸르지오 센터피크 단지배치도" },
       ],

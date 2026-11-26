@@ -536,20 +536,20 @@ const config = {
       csHours: 'AM 09:00 ~ PM 19:00',
     },
 
-    // 진입 팝업 — 요청 반영(2026-11-25) "12월 4일 GRAND OPEN" 전단 이미지 → × 닫으면 관심고객등록(방문예약) 팝업.
+    // 진입 팝업 — 요청 반영(2026-11-25) "12월 4일 GRAND OPEN" 전단 이미지(2026-11-26 사은품 고급와인 → 1만원 상품권 버전 popup2로 교체) → × 닫으면 관심고객등록(방문예약) 팝업.
     // 전단에 전화번호가 없어 유입경로(기본·SKT 1666-1050 / OK캐쉬백·롯데온2 1800-2261)와 관계없이 같은 이미지
     arkonePopups: {
       notice: {
         openDelayMs: 700,
         posterByTel: {
-          '1666-1050': '/apt/cheongna-arkone-prugio-3-2/popup1.png',
-          '1800-2261': '/apt/cheongna-arkone-prugio-3-2/popup1.png',
+          '1666-1050': '/apt/cheongna-arkone-prugio-3-2/popup2.png',
+          '1800-2261': '/apt/cheongna-arkone-prugio-3-2/popup2.png',
           // 담당자별 추가 링크(A~E)도 같은 전단
-          '032-320-2982': '/apt/cheongna-arkone-prugio-3-2/popup1.png',
-          '032-860-2956': '/apt/cheongna-arkone-prugio-3-2/popup1.png',
-          '032-860-2955': '/apt/cheongna-arkone-prugio-3-2/popup1.png',
-          '032-860-2943': '/apt/cheongna-arkone-prugio-3-2/popup1.png',
-          '032-290-5478': '/apt/cheongna-arkone-prugio-3-2/popup1.png',
+          '032-320-2982': '/apt/cheongna-arkone-prugio-3-2/popup2.png',
+          '032-860-2956': '/apt/cheongna-arkone-prugio-3-2/popup2.png',
+          '032-860-2955': '/apt/cheongna-arkone-prugio-3-2/popup2.png',
+          '032-860-2943': '/apt/cheongna-arkone-prugio-3-2/popup2.png',
+          '032-290-5478': '/apt/cheongna-arkone-prugio-3-2/popup2.png',
         },
         // 요청 반영(2026-11-25) — 전단 하단 "사전 방문 예약 / 청약 상담 문의" 버튼 영역(이미지 대비 %)을 누르면
         // 전단을 닫고 관심고객등록(방문예약) 팝업으로 연결

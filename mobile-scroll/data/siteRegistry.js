@@ -43,6 +43,7 @@ import dongtanHeriumCentral  from "./sites/dongtan-herium-central.js";
 import centrevilleGeoje  from "./sites/centreville-geoje.js";
 import jeonjuArtiemLaterrace  from "./sites/jeonju-artiem-laterrace.js";
 import cityOciel9M  from "./sites/city-ociel-9-m.js";
+import sangokXiHillstateHanulche  from "./sites/sangok-xi-hillstate-hanulche.js";
 
 
 /** @type {SiteConfig[]} */
@@ -65,6 +66,7 @@ const sites = [
   centrevilleGeoje,
   jeonjuArtiemLaterrace,
   cityOciel9M,
+  sangokXiHillstateHanulche,
 ];
 
 // adaptive-landing 프로젝트가 실제로 렌더링하는 현장의 "포인터" 항목 — 이 앱은 이 현장들을

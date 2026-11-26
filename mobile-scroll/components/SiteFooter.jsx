@@ -1,8 +1,20 @@
 import styles from "./SiteFooter.module.css";
 
-export default function SiteFooter({ company, telNumber, hideLeadContact, footerNotice }) {
+// theme.SiteFooter: { background, textColor, subColor, faintColor, lineColor } — 현장별 푸터 색
+// (미설정 시 SiteFooter.module.css의 기존 기본값 그대로 — 다른 현장 영향 없음)
+export default function SiteFooter({ company, telNumber, hideLeadContact, footerNotice, theme }) {
+  const th = theme?.SiteFooter;
+  const footerStyle = th
+    ? {
+        ...(th.background ? { "--footer-bg": th.background } : {}),
+        ...(th.textColor  ? { "--footer-text": th.textColor } : {}),
+        ...(th.subColor   ? { "--footer-sub": th.subColor } : {}),
+        ...(th.faintColor ? { "--footer-faint": th.faintColor } : {}),
+        ...(th.lineColor  ? { "--footer-line": th.lineColor } : {}),
+      }
+    : undefined;
   return (
-    <footer id="main-footer" className={styles.footer}>
+    <footer id="main-footer" className={styles.footer} style={footerStyle}>
       <div className={styles.container}>
         {!hideLeadContact && (
           <p className={styles.leadContact}><span className={styles.leadKey}>대표 분양 상담 문의</span>{telNumber}</p>

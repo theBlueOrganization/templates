@@ -27,7 +27,7 @@ function OfficeShellInner({ offices, defaultTelNumber, defaultAdminPhones, telNu
     <>
       <ContactForm config={{ ...contactConfig, adminPhones, officeLabel }} />
       <ClientFooter clientCompany={clientCompany} telNumber={telNumber} theme={theme} />
-      <SiteFooter company={company} telNumber={telNumber} hideLeadContact={hasClientCompany} footerNotice={footerNotice} />
+      <SiteFooter company={company} telNumber={telNumber} hideLeadContact={hasClientCompany} footerNotice={footerNotice} theme={theme} />
       <BottomBar telNumber={telNumber} theme={theme} />
     </>
   );
@@ -45,7 +45,7 @@ export default function OfficeShell({ offices, defaultTelNumber, defaultAdminPho
         <>
           <ContactForm config={{ ...contactConfig, adminPhones: fallbackAdminPhones, officeLabel: fallbackOfficeLabel, disabled: Boolean(offices) }} />
           <ClientFooter clientCompany={clientCompany} telNumber={fallbackTelNumber} theme={theme} />
-          <SiteFooter company={company} telNumber={fallbackTelNumber} hideLeadContact={hasClientCompany} footerNotice={footerNotice} />
+          <SiteFooter company={company} telNumber={fallbackTelNumber} hideLeadContact={hasClientCompany} footerNotice={footerNotice} theme={theme} />
           <BottomBar telNumber={fallbackTelNumber} theme={theme} />
         </>
       }

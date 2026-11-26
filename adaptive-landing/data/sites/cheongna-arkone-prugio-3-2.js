@@ -183,8 +183,9 @@ const config = {
       eyebrowLine2: '단 하나의 주거명작을 상징',
       // 요청 반영(2026-11-25) — "분양가 상한제 적용단지" → "12월 4일 오피스텔 GRAND OPEN"
       badge: { small: '12월 4일', lines: ['오피스텔', 'GRAND OPEN'] },
-      bgImageMobile: { src: '/apt/cheongna-arkone-prugio-3-2/hero-bg-mobile.webp', alt: '청라 아크원 푸르지오 대표 조감도(모바일) — ABSOLUTE REMARKABLE ONE' },
-      bgImage: { src: '/apt/cheongna-arkone-prugio-3-2/hero-bg.webp', alt: '청라 아크원 푸르지오 대표 조감도 — ABSOLUTE REMARKABLE ONE' },
+      // 요청 반영(2026-11-26) — 히어로 배경을 새 조감도(KakaoTalk_20261126_141010507.jpg)로 교체, PC/모바일 크롭본 -v2
+      bgImageMobile: { src: '/apt/cheongna-arkone-prugio-3-2/hero-bg-mobile-v2.webp', alt: '청라 아크원 푸르지오 대표 조감도(모바일) — ABSOLUTE REMARKABLE ONE' },
+      bgImage: { src: '/apt/cheongna-arkone-prugio-3-2/hero-bg-v2.webp', alt: '청라 아크원 푸르지오 대표 조감도 — ABSOLUTE REMARKABLE ONE' },
       mobileBar: {
         announcements: [{ badge: '안내', textStrong: '청라 아크원 푸르지오', textLight: ' 공식 안내센터입니다.' }],
         bubbleText: '관심고객등록 시 분양소식을 가장 먼저 안내드립니다',

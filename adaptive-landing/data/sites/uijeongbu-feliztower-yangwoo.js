@@ -44,7 +44,7 @@ const config = {
   company: {
     name: '주식회사 더블루파트너스',
     bizNumber: '789-81-03093',
-    email: 'addup@addup.kr',
+    email: 'contact@addup.kr',
   },
 
   visitTimeOptions: [
@@ -371,7 +371,7 @@ const config = {
         { label: '견본주택', value: '경기도 의정부시 호원동 434번지' },
         { label: '광고 운영·관리 대행사', value: '더블루파트너스', dividerBefore: true },
         { label: '사업자등록번호', value: '789-81-03093' },
-        { label: '이메일', value: 'addup@addup.kr' },
+        { label: '이메일', value: 'contact@addup.kr' },
       ],
       disclaimers: [
         '※ 본 사이트에 사용된 CG 및 일러스트, 이미지 등은 소비자의 이해를 돕기 위해 제작된 것으로 실제와 다를 수 있습니다.',

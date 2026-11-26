@@ -42,7 +42,7 @@ const config = {
   company: {
     name: '주식회사 더블루파트너스',
     bizNumber: '789-81-03093',
-    email: 'addup@addup.kr',
+    email: 'contact@addup.kr',
   },
 
   visitTimeOptions: [
@@ -388,7 +388,7 @@ const config = {
       companyLines: [
         { label: '시행위탁', value: '청라플러스' },
         { label: '시공', value: 'SGC E&C' },
-        { label: '이메일', value: 'addup@addup.kr' },
+        { label: '이메일', value: 'contact@addup.kr' },
         { label: '담당회사', value: '주식회사 더블루파트너스', newLine: true },
         { label: '사업자 등록번호', value: '789-81-03093' },
         { label: '전화번호', value: '1666-1755' },

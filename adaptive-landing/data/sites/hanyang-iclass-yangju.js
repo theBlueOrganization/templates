@@ -49,7 +49,7 @@ const config = {
   company: {
     name: '주식회사 더블루파트너스',
     bizNumber: '789-81-03093',
-    email: 'addup@addup.kr',
+    email: 'contact@addup.kr',
   },
 
   visitTimeOptions: [
@@ -465,7 +465,7 @@ const config = {
         { label: '시공', value: '한양산업개발(주)' },
         { label: '온라인대행', value: '주식회사 더블루파트너스' },
         { label: '사업자등록번호', value: '789-81-03093' },
-        { label: '이메일', value: 'addup@addup.kr' },
+        { label: '이메일', value: 'contact@addup.kr' },
       ],
       disclaimers: [
         '※ 본 사이트에 사용된 CG, 일러스트, 이미지 등은 소비자의 이해를 돕기 위해 제작된 것으로 실제와 상이할 수 있습니다.',

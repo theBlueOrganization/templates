@@ -45,7 +45,7 @@ const config = {
   company: {
     name: '주식회사 더블루파트너스',
     bizNumber: '789-81-03093',
-    email: 'addup@addup.kr',
+    email: 'contact@addup.kr',
   },
 
   visitTimeOptions: [
@@ -343,7 +343,7 @@ const config = {
         { label: '광고 운영·관리 대행사', value: '더블루파트너스', dividerBefore: true },
         { label: '전화번호', value: '1666-1755' },
         { label: '사업자등록번호', value: '789-81-03093' },
-        { label: '이메일', value: 'addup@addup.kr' },
+        { label: '이메일', value: 'contact@addup.kr' },
       ],
       disclaimers: [
         '※ 본 광고는 「주택법 시행규칙」 제11조의5(조합원 모집 광고 등에 관한 준수사항)에 의거한 지역주택조합의 조합원 모집을 위한 광고입니다.',

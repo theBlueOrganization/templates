@@ -22,7 +22,7 @@ const NAV = [
   { id: 'lifestyle', label: '라이프스타일' },
   { id: 'premium', label: '프리미엄' },
   { id: 'brand', label: '브랜드' },
-  { id: 'contact', label: '오시는길' },
+  { id: 'contact', label: '관심고객등록' },
 ]
 
 const STATS = [
@@ -76,11 +76,6 @@ const LOCATION_POINTS = [
   { tag: '개발', title: '완성되고 있는 핵심 개발비전', desc: "하나드림타운('26년 예정), 영상문화복합단지('31년 계획), 인천로봇랜드(예정)" },
   { tag: '생활', title: '눈앞에 다가온 생활특권', desc: "스타필드 청라('28년 개장 예정), 서울아산청라병원('29년 예정), 코스트코 청라점" },
   { tag: '교육', title: '단지 앞 안심 교육환경', desc: '도보 5분 초교 신설(예정), 중교 신설(계획), 경연초·중교, 청라달튼외국인학교' },
-]
-
-const PLACES = [
-  { label: '견본주택', addr: '인천광역시 서해구 청라동 87-1번지', naver: 'https://naver.me/xjYQRQX3', kakao: 'https://kko.to/ECKFY834xe' },
-  { label: '현장', addr: '인천광역시 서해구 청라동 86-1번지', naver: 'https://naver.me/Ge7JVSTn', kakao: 'https://kko.to/v0EVmGNQ0l' },
 ]
 
 // 스크롤 진입 시 .in 클래스를 붙여 페이드업(공식 사이트의 GSAP 등장 모션을 가볍게 대체)
@@ -418,7 +413,7 @@ export default function SignatureArkoneOfficial({ site }) {
           </div>
         </section>
 
-        {/* 7. CONTACT — 관심고객등록(방문예약) 폼 + 오시는길 */}
+        {/* 7. CONTACT — 관심고객등록(방문예약) 폼 + 분양문의 전화 */}
         <section id="contact" className={styles.contact}>
           <Image className={styles.bgCover} src={A('contact-bg.webp')} alt="" fill sizes="100vw" aria-hidden="true" />
           <div className={styles.contactInner}>
@@ -428,18 +423,6 @@ export default function SignatureArkoneOfficial({ site }) {
                 <ArkoneApplyForm config={site} idPrefix="officialContact" />
               </div>
               <div className={cn(styles.contactSide, styles.reveal)}>
-                <Image className={styles.contactMap} src={A('contact-map-01.webp')} alt="청라 아크원 푸르지오 현장과 견본주택 약도" width={970} height={680} sizes="(max-width: 1023px) 92vw, 480px" />
-                <ul className={styles.places}>
-                  {PLACES.map((p) => (
-                    <li key={p.label}>
-                      <div><strong>{p.label}</strong><span>{p.addr}</span></div>
-                      <div className={styles.placeLinks}>
-                        <a href={p.naver} target="_blank" rel="noopener noreferrer" aria-label={`${p.label} 네이버 지도`} className={styles.naver}><Image src={A('ico-naver.svg')} alt="" width={12} height={12} /></a>
-                        <a href={p.kakao} target="_blank" rel="noopener noreferrer" aria-label={`${p.label} 카카오맵`} className={styles.kakao}><Image src={A('ico-kko-map.svg')} alt="" width={11} height={15} /></a>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
                 <a className={styles.contactTel} href={telHref}><small>분양문의</small>{telNumber}</a>
               </div>
             </div>

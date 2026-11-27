@@ -248,17 +248,6 @@
 .contactGrid { margin-top: 40px; display: flex; flex-direction: column; gap: 24px; }
 .contactForm { color: var(--s900); }
 .contactSide { display: flex; flex-direction: column; gap: 14px; }
-.contactMap { width: 100%; height: auto; background: rgba(30, 28, 27, 0.55); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 10px; padding: 14px; }
-/* .page ul/dl 초기화(padding·margin 0)가 단일 클래스보다 우선해서 여백이 사라졌던 것 — .page를 붙여 우선순위를 맞춤 */
-.page .places { background: rgba(30, 28, 27, 0.55); border: 1px solid rgba(255, 255, 255, 0.12); backdrop-filter: blur(6px); border-radius: 10px; padding: 6px 20px; }
-.places li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.16); }
-.places li:last-child { border-bottom: 0; }
-.places strong { display: block; font-size: 16px; }
-.places span { display: block; margin-top: 4px; font-size: 14px; opacity: 0.85; }
-.placeLinks { display: flex; gap: 8px; flex-shrink: 0; }
-.placeLinks a { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; }
-.naver { background: #8b7f71; }
-.kakao { background: #4a76a8; }
 .contactTel { display: flex; align-items: baseline; justify-content: center; gap: 10px; padding: 18px; border-radius: 10px; background: var(--p500); font-size: 24px; font-weight: 800; letter-spacing: 0.02em; }
 .contactTel small { font-size: 13px; font-weight: 600; opacity: 0.85; }
 
